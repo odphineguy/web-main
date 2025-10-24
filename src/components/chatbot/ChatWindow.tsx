@@ -18,16 +18,16 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, isLoading }) => {
   }, [messages, isLoading]);
 
   return (
-    <div className="flex-1 p-4 overflow-y-auto bg-muted/30">
+    <div className="flex-1 p-2 overflow-y-auto bg-muted/20">
       {messages.map((message, index) => (
         <div
           key={index}
-          className={`mb-4 flex ${
+          className={`mb-2 flex ${
             message.role === 'user' ? 'justify-end' : 'justify-start'
           }`}
         >
           <div
-            className={`max-w-[70%] p-3 rounded-lg shadow-md ${
+            className={`max-w-[80%] p-2 rounded-lg text-sm ${
               message.role === 'user'
                 ? 'bg-primary text-primary-foreground'
                 : message.role === 'model'
@@ -40,8 +40,8 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, isLoading }) => {
         </div>
       ))}
       {isLoading && (
-        <div className="mb-4 flex justify-start">
-          <div className="max-w-[70%] p-3 rounded-lg shadow-md bg-card text-card-foreground border border-border animate-pulse">
+        <div className="mb-2 flex justify-start">
+          <div className="max-w-[80%] p-2 rounded-lg bg-card text-card-foreground border border-border animate-pulse text-sm">
             <p>Thinking...</p>
           </div>
         </div>

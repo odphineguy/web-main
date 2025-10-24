@@ -25,23 +25,23 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, isLoading }) => {
   };
 
   return (
-    <div className="p-4 bg-muted/30 border-t border-border">
-      <div className="flex items-center gap-3">
+    <div className="p-2 bg-muted/20 border-t border-border">
+      <div className="flex items-center gap-2">
         <textarea
-          className="flex-1 p-3 border border-input rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-primary disabled:bg-muted text-base min-h-[44px]"
+          className="flex-1 p-2 border border-input rounded-lg resize-none focus:outline-none focus:ring-1 focus:ring-primary disabled:bg-muted text-sm min-h-[32px] max-h-[80px]"
           rows={1}
-          placeholder={isLoading ? "Please wait..." : "Enter your question"}
+          placeholder={isLoading ? "Please wait..." : "Type your message..."}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyPress={handleKeyPress}
           disabled={isLoading}
         />
         <button
-          className="p-3 bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:bg-primary/50 disabled:cursor-not-allowed transition-colors flex items-center justify-center min-w-[44px]"
+          className="p-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 focus:outline-none focus:ring-1 focus:ring-primary disabled:bg-primary/50 disabled:cursor-not-allowed transition-colors flex items-center justify-center min-w-[32px]"
           onClick={handleSend}
           disabled={isLoading || !input.trim()}
         >
-          <Send className="h-5 w-5" />
+          <Send className="h-4 w-4" />
         </button>
       </div>
     </div>

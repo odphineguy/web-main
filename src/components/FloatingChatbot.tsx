@@ -71,19 +71,19 @@ const FloatingChatbot: React.FC = () => {
 
       {/* Chat Widget */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-80 h-96 bg-background border border-border rounded-lg shadow-2xl flex flex-col">
+        <div className="fixed bottom-6 right-6 z-50 w-72 h-80 bg-background border border-border rounded-xl shadow-2xl flex flex-col resize overflow-hidden">
           {/* Header */}
-          <div className="flex items-center justify-between p-4 bg-primary text-primary-foreground rounded-t-lg">
+          <div className="flex items-center justify-between p-3 bg-primary text-primary-foreground rounded-t-xl">
             <div className="flex items-center gap-2">
-              <MessageCircle className="h-5 w-5" />
-              <span className="font-semibold">Abe Media Support</span>
+              <MessageCircle className="h-4 w-4" />
+              <span className="font-medium text-sm">Abe Media Support</span>
             </div>
             <button
               onClick={() => setIsOpen(false)}
               className="hover:bg-primary-foreground/20 rounded-full p-1 transition-colors"
               aria-label="Close chat"
             >
-              <X className="h-4 w-4" />
+              <X className="h-3 w-3" />
             </button>
           </div>
 
