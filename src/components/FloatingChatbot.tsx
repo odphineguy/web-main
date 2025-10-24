@@ -71,7 +71,7 @@ const FloatingChatbot: React.FC = () => {
 
       {/* Chat Widget */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-72 h-80 bg-background border border-border rounded-xl shadow-2xl flex flex-col resize overflow-hidden">
+        <div className="fixed bottom-6 right-6 z-50 w-72 h-[600px] bg-background border border-border rounded-xl shadow-2xl flex flex-col resize overflow-hidden">
           {/* Header */}
           <div className="flex items-center justify-between p-3 bg-primary text-primary-foreground rounded-t-xl">
             <div className="flex items-center gap-2">
