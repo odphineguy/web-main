@@ -71,20 +71,41 @@ const FloatingChatbot: React.FC = () => {
 
       {/* Chat Widget */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-72 h-[600px] bg-background border border-border rounded-xl shadow-2xl flex flex-col resize overflow-hidden">
+        <div className="fixed bottom-6 right-6 z-50 w-80 h-[500px] bg-white border border-gray-200 rounded-lg shadow-2xl flex flex-col overflow-hidden">
           {/* Header */}
-          <div className="flex items-center justify-between p-3 bg-primary text-primary-foreground rounded-t-xl">
-            <div className="flex items-center gap-2">
-              <MessageCircle className="h-4 w-4" />
-              <span className="font-medium text-sm">Abe Media Support</span>
+          <div className="bg-blue-600 text-white p-4 rounded-t-lg">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="font-semibold text-center flex-1">Chat</h3>
+              <div className="flex gap-2">
+                <button className="text-white/80 hover:text-white transition-colors">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+                  </svg>
+                </button>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="text-white/80 hover:text-white transition-colors"
+                  aria-label="Close chat"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
             </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="hover:bg-primary-foreground/20 rounded-full p-1 transition-colors"
-              aria-label="Close chat"
-            >
-              <X className="h-3 w-3" />
-            </button>
+            
+            {/* Agent Info */}
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full overflow-hidden bg-gray-200">
+                <img 
+                  src="/images/ashlee-profile.svg" 
+                  alt="Ashlee" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div>
+                <div className="font-medium text-sm">Ashlee</div>
+                <div className="text-xs text-blue-100">Abe Media Support Specialist</div>
+              </div>
+            </div>
           </div>
 
           {/* Chat Window */}
