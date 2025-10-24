@@ -1,5 +1,5 @@
 import { GoogleGenAI, Chat } from "@google/genai";
-import { Message } from '../types';
+import { Message } from './types';
 
 const SYSTEM_INSTRUCTION = `You are a helpful customer support chatbot for Abe Media.
 
