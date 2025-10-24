@@ -62,10 +62,14 @@ const FloatingChatbot: React.FC = () => {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-50 bg-primary text-primary-foreground p-4 rounded-full shadow-lg hover:bg-primary/90 transition-all duration-300 hover:scale-110"
-          aria-label="Open chat"
+          className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 overflow-hidden border-2 border-orange-500"
+          aria-label="Open chat with Ashlee"
         >
-          <MessageCircle className="h-6 w-6" />
+          <img 
+            src="/images/ashlee-profile.png" 
+            alt="Chat with Ashlee" 
+            className="w-full h-full object-cover"
+          />
         </button>
       )}
 
