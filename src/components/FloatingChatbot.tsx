@@ -71,9 +71,9 @@ const FloatingChatbot: React.FC = () => {
 
       {/* Chat Widget */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-80 h-[500px] bg-white border border-gray-200 rounded-lg shadow-2xl flex flex-col overflow-hidden">
+        <div className="fixed bottom-6 right-6 z-50 w-80 h-[500px] bg-white dark:bg-black border border-gray-200 dark:border-gray-700 rounded-lg shadow-2xl flex flex-col overflow-hidden">
           {/* Header */}
-          <div className="bg-blue-600 text-white p-4 rounded-t-lg">
+          <div className="bg-orange-500 dark:bg-orange-500 text-white p-4 rounded-t-lg">
             <div className="flex items-center justify-between mb-3">
               <h3 className="font-semibold text-center flex-1">Chat</h3>
               <div className="flex gap-2">
@@ -96,14 +96,14 @@ const FloatingChatbot: React.FC = () => {
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-full overflow-hidden bg-gray-200">
                 <img 
-                  src="/images/ashlee-profile.svg" 
+                  src="/images/ashlee-profile.png" 
                   alt="Ashlee" 
                   className="w-full h-full object-cover"
                 />
               </div>
               <div>
                 <div className="font-medium text-sm">Ashlee</div>
-                <div className="text-xs text-blue-100">Abe Media Support Specialist</div>
+                <div className="text-xs text-orange-100">Abe Media Support Specialist</div>
               </div>
             </div>
           </div>

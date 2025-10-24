@@ -1,6 +1,0 @@
-<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="100" cy="100" r="100" fill="#E5E7EB"/>
-<circle cx="100" cy="80" r="30" fill="#F9FAFB"/>
-<path d="M50 150C50 125.1 70.1 105 100 105S150 125.1 150 150H150V170H50V150Z" fill="#F9FAFB"/>
-<text x="100" y="190" text-anchor="middle" fill="#6B7280" font-size="12" font-family="Arial">Ashlee</text>
-</svg>
