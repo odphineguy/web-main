@@ -124,7 +124,7 @@ export default function LogoMaker() {
                 </div>
                 <Button 
                   size="lg" 
-                  className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold px-8 md:px-10 lg:px-14 py-6 md:py-7 lg:py-8 rounded-full shadow-[0_8px_25px_rgba(249,115,22,0.4)] hover:shadow-[0_12px_35px_rgba(249,115,22,0.5)] transform hover:scale-105 transition-all duration-300 text-lg md:text-xl lg:text-2xl whitespace-nowrap md:mr-2 mx-3 md:mx-0"
+                  className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold px-8 md:px-10 lg:px-14 py-6 md:py-7 lg:py-8 rounded-full shadow-[0_8px_25px_rgba(250,129,48,0.4)] hover:shadow-[0_12px_35px_rgba(250,129,48,0.5)] transform hover:scale-105 transition-all duration-300 text-lg md:text-xl lg:text-2xl whitespace-nowrap md:mr-2 mx-3 md:mx-0"
                 >
                   Show Me Logo Ideas →
                   <Sparkles className="ml-2 h-5 w-5 md:h-6 w-6 lg:h-7 w-7" />

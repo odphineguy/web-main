@@ -96,7 +96,7 @@ export default function Services() {
             {services.map((service, index) => (
               <Card key={index} className="group hover:shadow-lg transition-shadow duration-300">
                 <CardHeader>
-                  <div className="text-primary mb-4">
+                  <div className="text-orange-500 mb-4">
                     {service.icon}
                   </div>
                   <CardTitle className="text-xl">{service.title}</CardTitle>

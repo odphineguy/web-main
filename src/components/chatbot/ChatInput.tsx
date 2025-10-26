@@ -14,6 +14,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, onVoiceToggle, isR
   void onVoiceToggle;
   const [input, setInput] = useState('');
   const [attachedImage, setAttachedImage] = useState<{ data: string; mimeType: string } | null>(null);
+  const [isAttachClicked, setIsAttachClicked] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleSend = () => {
@@ -80,9 +81,17 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, onVoiceToggle, isR
           disabled={isLoading}
         />
         <button
-          onClick={() => fileInputRef.current?.click()}
+          onClick={() => {
+            setIsAttachClicked(true);
+            fileInputRef.current?.click();
+            setTimeout(() => setIsAttachClicked(false), 200);
+          }}
           disabled={isLoading}
-          className="p-3 text-gray-600 dark:text-gray-400 hover:text-orange-500 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center min-w-[40px]"
+          className={`p-3 text-gray-600 dark:text-gray-400 hover:text-orange-500 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center min-w-[40px] ${
+            isAttachClicked 
+              ? 'scale-90 text-orange-500 rotate-12' 
+              : 'hover:scale-105'
+          }`}
           aria-label="Attach image"
         >
           <PaperclipIcon className="h-5 w-5" />

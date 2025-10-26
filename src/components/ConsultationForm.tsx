@@ -171,22 +171,26 @@ export default function ConsultationForm({ isOpen, onClose }: ConsultationFormPr
             
             <button
               type="submit"
-              disabled={status === "sending"}
+              disabled={status === "sending" || status === "sent"}
               className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 px-8 py-3 text-base font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-60 mt-4"
             >
-              {status === "sending" ? "Sending..." : status === "sent" ? "Request Sent!" : "Book Consultation"}
+              {status === "sending" ? "Sending..." : status === "sent" ? "✓ Request Sent!" : "Book Consultation"}
             </button>
             
             {status === "error" && (
-              <p className="text-sm text-red-500 break-words mt-2">
-                There was a problem sending your request. {errorMessage}
-              </p>
+              <div className="mt-2 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                <p className="text-sm text-red-600 dark:text-red-400 break-words">
+                  There was a problem sending your request. {errorMessage}
+                </p>
+              </div>
             )}
             
             {status === "sent" && (
-              <p className="text-sm text-green-600 dark:text-green-400 mt-2">
-                Thank you! We&apos;ll contact you within 24 hours to schedule your consultation.
-              </p>
+              <div className="mt-2 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+                <p className="text-sm text-green-600 dark:text-green-400 font-medium">
+                  ✓ Thank you! Your consultation request has been sent. We&apos;ll contact you within 24 hours.
+                </p>
+              </div>
             )}
           </form>
         </div>

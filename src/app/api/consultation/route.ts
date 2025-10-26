@@ -23,7 +23,7 @@ export async function POST(req: Request) {
     
     const html = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <h2 style="color: #f97316; border-bottom: 2px solid #f97316; padding-bottom: 10px;">
+        <h2 style="color: #fa8130; border-bottom: 2px solid #fa8130; padding-bottom: 10px;">
           New Consultation Request
         </h2>
         
@@ -46,7 +46,7 @@ export async function POST(req: Request) {
           <div style="white-space: pre-wrap; line-height: 1.6;">${description}</div>
         </div>
         
-        <div style="margin-top: 30px; padding: 15px; background-color: #e7f3ff; border-left: 4px solid #f97316; border-radius: 4px;">
+        <div style="margin-top: 30px; padding: 15px; background-color: #e7f3ff; border-left: 4px solid #fa8130; border-radius: 4px;">
           <p style="margin: 0; color: #333;">
             <strong>Next Steps:</strong> Please contact this client within 24 hours to schedule their free consultation.
           </p>
