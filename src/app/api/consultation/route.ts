@@ -37,8 +37,8 @@ export async function POST(req: Request) {
         
         <div style="background-color: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
           <h3 style="color: #333; margin-top: 0;">Project Details</h3>
-          ${service ? `<p><strong>Service Interest:</strong> ${service.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}</p>` : ''}
-          ${budget ? `<p><strong>Budget Range:</strong> ${budget.replace('-', ' - ').replace(/\b\w/g, l => l.toUpperCase())}</p>` : ''}
+          ${service ? `<p><strong>Service Interest:</strong> ${service.replace('-', ' ').replace(/\b\w/g, (l: string) => l.toUpperCase())}</p>` : ''}
+          ${budget ? `<p><strong>Budget Range:</strong> ${budget.replace('-', ' - ').replace(/\b\w/g, (l: string) => l.toUpperCase())}</p>` : ''}
         </div>
         
         <div style="background-color: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
