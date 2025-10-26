@@ -31,6 +31,7 @@ const ChatbotApp: React.FC = () => {
 
   // Initialize audio contexts
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const AudioContextCompat = (window.AudioContext || (window as any).webkitAudioContext) as typeof AudioContext;
     inputAudioContextRef.current = new AudioContextCompat({ sampleRate: MICROPHONE_SAMPLE_RATE });
     outputAudioContextRef.current = new AudioContextCompat({ sampleRate: MODEL_AUDIO_SAMPLE_RATE });
