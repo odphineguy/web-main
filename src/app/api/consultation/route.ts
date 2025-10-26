@@ -55,7 +55,7 @@ export async function POST(req: Request) {
     `;
 
     const { data, error } = await resend.emails.send({
-      from: "Abe Media <onboarding@resend.dev>",
+      from: "Abe Media <hello@abemedia.online>",
       to,
       subject,
       html,
