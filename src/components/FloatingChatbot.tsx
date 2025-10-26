@@ -13,12 +13,13 @@ const FloatingChatbot: React.FC = () => {
   ]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSendMessage = async (text: string) => {
-    const userMessage: Message = { role: 'user', text };
+  const [isRecording, setIsRecording] = useState(false);
+
+  const handleSendMessage = async (text: string, image?: { data: string; mimeType: string }) => {
+    const userMessage: Message = { role: 'user', text, image };
     setMessages((prevMessages) => [...prevMessages, userMessage]);
     setIsLoading(true);
 
-    // Add a placeholder message for the model's response
     const tempModelMessageIndex = messages.length + 1;
     setMessages((prevMessages) => [
       ...prevMessages,
@@ -26,7 +27,7 @@ const FloatingChatbot: React.FC = () => {
     ]);
 
     try {
-      // For now, simulate a response since the API key needs investigation
+      // For now, simulate a response
       setTimeout(() => {
         setMessages((prevMessages) => {
           const newMessages = [...prevMessages];
@@ -56,6 +57,10 @@ const FloatingChatbot: React.FC = () => {
     }
   };
 
+  const toggleRecording = () => {
+    setIsRecording(prev => !prev);
+  };
+
   return (
     <>
       {/* Floating Chat Button */}
@@ -77,9 +82,21 @@ const FloatingChatbot: React.FC = () => {
       {isOpen && (
         <div className="fixed bottom-6 right-6 z-50 w-80 h-[500px] bg-white dark:bg-black border border-gray-200 dark:border-gray-700 rounded-lg shadow-2xl flex flex-col overflow-hidden">
           {/* Header */}
-          <div className="bg-orange-500 dark:bg-orange-500 text-white p-4 rounded-t-lg">
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="font-semibold text-center flex-1">Chat</h3>
+          <div className="bg-orange-500 dark:bg-orange-500 text-white p-3 rounded-t-lg">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full overflow-hidden bg-gray-200">
+                  <img 
+                    src="/images/ashlee-profile.png" 
+                    alt="Ashlee" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <div className="font-medium text-sm">Ashlee</div>
+                  <div className="text-xs text-orange-100">Abe Media Support Specialist</div>
+                </div>
+              </div>
               <div className="flex gap-2">
                 <button className="text-white/80 hover:text-white transition-colors">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -95,21 +112,6 @@ const FloatingChatbot: React.FC = () => {
                 </button>
               </div>
             </div>
-            
-            {/* Agent Info */}
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full overflow-hidden bg-gray-200">
-                <img 
-                  src="/images/ashlee-profile.png" 
-                  alt="Ashlee" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div>
-                <div className="font-medium text-sm">Ashlee</div>
-                <div className="text-xs text-orange-100">Abe Media Support Specialist</div>
-              </div>
-            </div>
           </div>
 
           {/* Chat Window */}
@@ -119,7 +121,7 @@ const FloatingChatbot: React.FC = () => {
 
           {/* Chat Input */}
           <div className="border-t border-border">
-            <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
+            <ChatInput onSendMessage={handleSendMessage} onVoiceToggle={toggleRecording} isRecording={isRecording} isLoading={isLoading} />
           </div>
         </div>
       )}

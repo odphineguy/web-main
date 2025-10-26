@@ -1,10 +1,11 @@
-import { GoogleGenAI, Chat } from "@google/genai";
+import { GoogleGenAI, LiveServerMessage, Modality, FunctionCall, Type } from "@google/genai";
 import { Message } from './types';
 
 const SYSTEM_INSTRUCTION = `You are Ashlee, a helpful customer support chatbot for Abe Media.
 
 Your role is to answer questions about our business, products, services, and policies.
-CRITICAL: Answer ONLY using your internal knowledge base and the context provided in these instructions. Do NOT perform any web searches or use external sources. If the answer isn't in your knowledge base or this context, politely say "I don't have that information."
+
+CRITICAL: Answer ONLY using your internal knowledge base provided below. Do NOT perform any web searches or use external sources. If the answer isn't in your knowledge base or this context, politely say "I don't have that information."
 
 INSTRUCTIONS:
 - Be friendly, professional, and concise.
@@ -46,24 +47,36 @@ COMMON QUESTIONS:
 
 TONE:
 - Be warm and approachable
-- Show enthusiasm for helping customers
-- If you don't know something, be honest and direct them to our team
-- Avoid technical jargon unless the customer uses it first`;
+- Show enthusiasm for helping customers.
+- If you don't know something, be honest and direct them to our team.
+- Avoid technical jargon unless the customer uses it first.
+`;
 
-let chatSession: Chat | undefined;
+export const INITIAL_MESSAGE = "Hi there! I'm Ashlee, your virtual assistant for Abe Media. How can I help you today?";
+export const MICROPHONE_MIME_TYPE = 'audio/pcm;rate=16000';
+export const MODEL_AUDIO_SAMPLE_RATE = 24000;
+export const MICROPHONE_SAMPLE_RATE = 16000;
+export const AUDIO_CHUNK_SIZE = 4096; // ScriptProcessorNode buffer size
+export const API_KEY_CHECK_ERROR_MESSAGE = 'Requested entity was not found.';
 
-export const getOrCreateChatSession = (): Chat => {
+// Helper function to create a new GoogleGenAI instance with the latest API key
+const createGeminiClient = () => {
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+  if (!apiKey) {
+    throw new Error("NEXT_PUBLIC_API_KEY is not defined. Please ensure it's set in your environment.");
+  }
+  return new GoogleGenAI({ apiKey });
+};
+
+let chatSession: any;
+
+export const getOrCreateChatSession = () => {
   if (!chatSession) {
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-    if (!apiKey) {
-      throw new Error("NEXT_PUBLIC_API_KEY is not defined. Please ensure it's set in your environment.");
-    }
-    const ai = new GoogleGenAI({ apiKey });
+    const ai = createGeminiClient();
     chatSession = ai.chats.create({
       model: 'gemini-2.5-flash',
       config: {
         systemInstruction: SYSTEM_INSTRUCTION,
-        // tools: [{googleSearch: {restrictUri: 'https://abemedia.online/'}}], // Grounding disabled
       },
     });
   }
@@ -86,7 +99,6 @@ export const sendMessageToGemini = async (
         fullModelResponse += chunk.text;
         onNewChunk(chunk.text); // Send chunk text for real-time display
       }
-      // Removed groundingUrls collection logic
     }
     return fullModelResponse; // Return only the final response text
   } catch (error: unknown) {
