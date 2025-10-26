@@ -261,14 +261,15 @@ const ChatbotApp: React.FC = () => {
 
       liveSessionRef.current = await sessionPromiseRef.current;
 
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Failed to start live session:', error);
       setIsLoading(false);
       setIsRecording(false);
-      if (error.message && error.message.includes('permission')) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      if (errorMessage.includes('permission')) {
         setMessages(prev => [...prev, { role: 'error', text: 'Microphone access denied. Please allow microphone access to use voice chat.' }]);
       } else {
-        setMessages(prev => [...prev, { role: 'error', text: `Failed to connect: ${error.message || 'Unknown error'}.` }]);
+        setMessages(prev => [...prev, { role: 'error', text: `Failed to connect: ${errorMessage}.` }]);
       }
       stopLiveSession();
     }

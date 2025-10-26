@@ -68,6 +68,7 @@ const createGeminiClient = () => {
   return new GoogleGenAI({ apiKey });
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let chatSession: any;
 
 export const getOrCreateChatSession = () => {

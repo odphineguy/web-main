@@ -10,6 +10,8 @@ interface ChatInputProps {
 }
 
 const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, onVoiceToggle, isRecording, isLoading }) => {
+  // Unused but required for interface
+  void onVoiceToggle;
   const [input, setInput] = useState('');
   const [attachedImage, setAttachedImage] = useState<{ data: string; mimeType: string } | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
