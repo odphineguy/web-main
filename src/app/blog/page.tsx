@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -121,10 +122,12 @@ export default function Blog() {
             <Card className="overflow-hidden group hover:shadow-lg transition-shadow duration-300">
               <div className="grid grid-cols-1 lg:grid-cols-2">
                 <div className="relative h-64 lg:h-auto">
-                  <img 
+                  <Image 
                     src={featuredPost.image} 
                     alt={featuredPost.title}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>
                 <CardContent className="p-8 flex flex-col justify-center">
@@ -166,10 +169,12 @@ export default function Blog() {
             {regularPosts.map((post) => (
               <Card key={post.id} className="group hover:shadow-lg transition-shadow duration-300 overflow-hidden">
                 <div className="relative h-48">
-                  <img 
+                  <Image 
                     src={post.image} 
                     alt={post.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 </div>
                 <CardContent className="p-6">

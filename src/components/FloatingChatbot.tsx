@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { X } from 'lucide-react';
 import ChatWindow from './chatbot/ChatWindow';
 import ChatInput from './chatbot/ChatInput';
@@ -70,9 +71,11 @@ const FloatingChatbot: React.FC = () => {
           className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 overflow-hidden border-2 border-orange-500"
           aria-label="Open chat with Ashlee"
         >
-          <img 
+          <Image 
             src="/images/ashlee-profile.png" 
             alt="Chat with Ashlee" 
+            width={64}
+            height={64}
             className="w-full h-full object-cover"
           />
         </button>
@@ -86,9 +89,11 @@ const FloatingChatbot: React.FC = () => {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full overflow-hidden bg-gray-200">
-                  <img 
+                  <Image 
                     src="/images/ashlee-profile.png" 
                     alt="Ashlee" 
+                    width={32}
+                    height={32}
                     className="w-full h-full object-cover"
                   />
                 </div>
