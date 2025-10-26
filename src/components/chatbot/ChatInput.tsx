@@ -80,10 +80,10 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, onVoiceToggle, isR
         <button
           onClick={() => fileInputRef.current?.click()}
           disabled={isLoading}
-          className="p-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 disabled:bg-orange-400 disabled:cursor-not-allowed transition-colors flex items-center justify-center min-w-[40px]"
+          className="p-3 text-gray-600 dark:text-gray-400 hover:text-orange-500 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center min-w-[40px]"
           aria-label="Attach image"
         >
-          <PaperclipIcon className="h-4 w-4" />
+          <PaperclipIcon className="h-5 w-5" />
         </button>
         <textarea
           className="flex-1 p-3 border border-gray-300 bg-white dark:bg-gray-800 dark:text-white rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-orange-500 disabled:bg-gray-100 dark:disabled:bg-gray-700 text-sm min-h-[40px] max-h-[100px]"
