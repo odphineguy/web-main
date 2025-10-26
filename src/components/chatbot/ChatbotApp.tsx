@@ -205,7 +205,7 @@ const ChatbotApp: React.FC = () => {
               });
             }
 
-            const base64EncodedAudioString = message.serverContent?.modelTurn?.parts[0]?.inlineData?.data;
+            const base64EncodedAudioString = message.serverContent?.modelTurn?.parts?.[0]?.inlineData?.data;
             if (base64EncodedAudioString) {
               playAudio(base64EncodedAudioString);
             }
