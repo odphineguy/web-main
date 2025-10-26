@@ -1,13 +1,11 @@
-import { Metadata } from "next";
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, Code, Palette, Smartphone, Globe, Zap, ArrowRight } from "lucide-react";
-
-export const metadata: Metadata = {
-  title: "Services",
-  description: "Professional design and development services for web and mobile applications.",
-};
+import ConsultationForm from "@/components/ConsultationForm";
 
 const services = [
   {
@@ -68,6 +66,8 @@ const services = [
 ];
 
 export default function Services() {
+  const [isConsultationOpen, setIsConsultationOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-white dark:bg-black">
       {/* Hero Section */}
@@ -79,8 +79,12 @@ export default function Services() {
           <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl mx-auto font-light">
             We provide comprehensive design and development services to bring your digital vision to life.
           </p>
-          <Button size="lg" className="text-lg px-8 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
-            Get Started Today
+          <Button 
+            size="lg" 
+            className="text-lg px-8 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+            onClick={() => setIsConsultationOpen(true)}
+          >
+            Book Consultation
           </Button>
         </div>
       </section>
@@ -178,6 +182,12 @@ export default function Services() {
           {/* Empty placeholder section */}
         </div>
       </section>
+
+      {/* Consultation Modal */}
+      <ConsultationForm 
+        isOpen={isConsultationOpen} 
+        onClose={() => setIsConsultationOpen(false)} 
+      />
     </div>
   );
 }
