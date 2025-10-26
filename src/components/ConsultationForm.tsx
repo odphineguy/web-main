@@ -185,7 +185,7 @@ export default function ConsultationForm({ isOpen, onClose }: ConsultationFormPr
             
             {status === "sent" && (
               <p className="text-sm text-green-600 dark:text-green-400 mt-2">
-                Thank you! We'll contact you within 24 hours to schedule your consultation.
+                Thank you! We&apos;ll contact you within 24 hours to schedule your consultation.
               </p>
             )}
           </form>
