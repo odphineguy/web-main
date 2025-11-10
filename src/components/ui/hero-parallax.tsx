@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Link from "next/link";
 import {
   motion,
   useScroll,
@@ -7,7 +8,7 @@ import {
   useSpring,
   MotionValue,
 } from "motion/react";
-
+import { Button } from "@/components/ui/button";
 
 
 export const HeroParallax = ({
@@ -99,13 +100,18 @@ export const Header = () => {
   return (
     <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full  left-0 top-0">
       <h1 className="text-4xl md:text-8xl lg:text-9xl font-bold dark:text-white">
-        The <span className="text-orange-500">Ultimate</span> <br /> development studio
+        Big business <span className="text-orange-500">tools</span> <br /> built for your small <span className="text-orange-500">business</span>.
       </h1>
       <p className="max-w-2xl text-lg md:text-2xl mt-8 dark:text-neutral-200">
-        We build beautiful products with the latest technologies and frameworks.
-        We are a team of passionate developers and designers that love to build
-        amazing products.
+        You deserve tools that make your business look professional — without paying “big agency” prices.
       </p>
+      <div className="mt-10 flex flex-wrap gap-4">
+        <Link href="/contact">
+          <Button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-6 text-base md:text-lg">
+            Let&apos;s Talk
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 };

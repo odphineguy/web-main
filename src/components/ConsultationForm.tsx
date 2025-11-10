@@ -50,7 +50,7 @@ export default function ConsultationForm({ isOpen, onClose }: ConsultationFormPr
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+      <div className="bg-white dark:bg-gray-950 rounded-3xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto border border-orange-500/10">
         <div className="p-6">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -74,7 +74,7 @@ export default function ConsultationForm({ isOpen, onClose }: ConsultationFormPr
                 name="name" 
                 type="text" 
                 required 
-                className="rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-gray-900 dark:text-white" 
+                className="rounded-full border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-gray-900 dark:text-white shadow-sm" 
               />
             </div>
             
@@ -87,7 +87,7 @@ export default function ConsultationForm({ isOpen, onClose }: ConsultationFormPr
                 name="email" 
                 type="email" 
                 required 
-                className="rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-gray-900 dark:text-white" 
+                className="rounded-full border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-gray-900 dark:text-white shadow-sm" 
               />
             </div>
             
@@ -99,7 +99,7 @@ export default function ConsultationForm({ isOpen, onClose }: ConsultationFormPr
                 id="phone" 
                 name="phone" 
                 type="tel" 
-                className="rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-gray-900 dark:text-white" 
+                className="rounded-full border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-gray-900 dark:text-white shadow-sm" 
               />
             </div>
             
@@ -111,7 +111,7 @@ export default function ConsultationForm({ isOpen, onClose }: ConsultationFormPr
                 id="company" 
                 name="company" 
                 type="text" 
-                className="rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-gray-900 dark:text-white" 
+                className="rounded-full border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-gray-900 dark:text-white shadow-sm" 
               />
             </div>
             
@@ -122,7 +122,7 @@ export default function ConsultationForm({ isOpen, onClose }: ConsultationFormPr
               <select 
                 id="service" 
                 name="service" 
-                className="rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-gray-900 dark:text-white"
+                className="rounded-full border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-gray-900 dark:text-white shadow-sm"
               >
                 <option value="">Select a service</option>
                 <option value="web-development">Web Development</option>
@@ -146,7 +146,7 @@ export default function ConsultationForm({ isOpen, onClose }: ConsultationFormPr
                 rows={4} 
                 required 
                 placeholder="Tell us about your project, goals, timeline, and any specific requirements..."
-                className="rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-gray-900 dark:text-white resize-none" 
+                className="rounded-3xl border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-gray-900 dark:text-white resize-none shadow-sm" 
               />
             </div>
             
@@ -157,7 +157,7 @@ export default function ConsultationForm({ isOpen, onClose }: ConsultationFormPr
               <select 
                 id="budget" 
                 name="budget" 
-                className="rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-gray-900 dark:text-white"
+                className="rounded-full border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-gray-900 dark:text-white shadow-sm"
               >
                 <option value="">Select budget range</option>
                 <option value="under-5k">Under $5,000</option>
@@ -172,7 +172,7 @@ export default function ConsultationForm({ isOpen, onClose }: ConsultationFormPr
             <button
               type="submit"
               disabled={status === "sending" || status === "sent"}
-              className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 px-8 py-3 text-base font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-60 mt-4"
+              className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 px-8 py-3 text-base font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-60 mt-4"
             >
               {status === "sending" ? "Sending..." : status === "sent" ? "✓ Request Sent!" : "Book Consultation"}
             </button>

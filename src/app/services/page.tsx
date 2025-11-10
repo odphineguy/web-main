@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle, Code, Palette, Smartphone, Globe, Zap, ArrowRight } from "lucide-react";
+import { CheckCircle, Code, Palette, Smartphone, Globe, Zap, Bot, Sparkles } from "lucide-react";
 import ConsultationForm from "@/components/ConsultationForm";
 
 const services = [
@@ -17,7 +17,8 @@ const services = [
       "SEO Optimization",
       "Fast Loading Times",
       "Cross-Browser Compatibility"
-    ]
+    ],
+    placeholderLabel: "Website preview coming soon",
   },
   {
     icon: <Smartphone className="h-8 w-8" />,
@@ -28,7 +29,8 @@ const services = [
       "iOS & Android Apps",
       "App Store Optimization",
       "Push Notifications"
-    ]
+    ],
+    placeholderLabel: "Mobile app preview coming soon",
   },
   {
     icon: <Palette className="h-8 w-8" />,
@@ -39,7 +41,8 @@ const services = [
       "Wireframing & Prototyping",
       "Visual Design",
       "Usability Testing"
-    ]
+    ],
+    placeholderLabel: "Design mockups coming soon",
   },
   {
     icon: <Code className="h-8 w-8" />,
@@ -50,7 +53,8 @@ const services = [
       "Database Design",
       "Third-party Integrations",
       "Maintenance & Support"
-    ]
+    ],
+    placeholderLabel: "Custom integration preview coming soon",
   },
   {
     icon: <Zap className="h-8 w-8" />,
@@ -61,8 +65,39 @@ const services = [
       "Image Optimization",
       "Caching Strategies",
       "Performance Monitoring"
-    ]
+    ],
+    placeholderLabel: "Performance metrics coming soon",
+  },
+  {
+    icon: <Bot className="h-8 w-8" />,
+    title: "AI Chatbots & Agents",
+    description: "Custom AI assistants tailored to your brand voice and customer needs.",
+    features: [
+      "Business-specific chatbot development",
+      "Training and fine-tuning AI agents",
+      "Bilingual support in English & Spanish",
+      "Integrations with your existing tools"
+    ],
+    placeholderLabel: "AI assistant preview coming soon",
   }
+];
+
+const testimonials = [
+  {
+    quote: "Abe Media delivered a beautiful site and a bilingual chatbot that now handles 70% of our inbound questions.",
+    name: "Lucía Hernández",
+    role: "Founder, Casa Verde",
+  },
+  {
+    quote: "Their team trained AI agents that feel like real teammates—our response time is faster than ever.",
+    name: "Daniel Ortiz",
+    role: "Operations Lead, MetroFit",
+  },
+  {
+    quote: "We launched in weeks with a polished product and smarter support automation. Clients rave about the experience.",
+    name: "Rebecca Collins",
+    role: "CEO, Summit Legal",
+  },
 ];
 
 export default function Services() {
@@ -96,6 +131,11 @@ export default function Services() {
             {services.map((service, index) => (
               <Card key={index} className="group hover:shadow-lg transition-shadow duration-300">
                 <CardHeader>
+                  <div className="mb-4 h-40 w-full overflow-hidden rounded-2xl border border-orange-500/20 bg-gradient-to-br from-orange-500/10 via-transparent to-orange-600/20 flex items-center justify-center">
+                    <span className="text-sm font-semibold text-orange-600 dark:text-orange-300 text-center px-4">
+                      {service.placeholderLabel}
+                    </span>
+                  </div>
                   <div className="text-orange-500 mb-4">
                     {service.icon}
                   </div>
@@ -120,68 +160,39 @@ export default function Services() {
         </div>
       </section>
 
-      {/* Logo Maker Section */}
+      {/* Testimonials */}
       <section className="py-16 px-6 bg-white dark:bg-black">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Create Your Logo with Our <span className="text-primary">AI Logo Maker</span>
-              </h2>
-              <p className="text-xl text-muted-foreground mb-8">
-                Design professional logos in minutes with our advanced logo maker. Choose from thousands of unique fonts, icons, and color combinations to create a brand that stands out.
-              </p>
-              <div className="space-y-4 mb-8">
-                <div className="flex items-center gap-3">
-                  <CheckCircle className="h-5 w-5 text-neutral-500 dark:text-neutral-400" />
-                  <span>Unlimited logo variations</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <CheckCircle className="h-5 w-5 text-neutral-500 dark:text-neutral-400" />
-                  <span>Custom fonts and icons</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <CheckCircle className="h-5 w-5 text-neutral-500 dark:text-neutral-400" />
-                  <span>Instant brand kit generation</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <CheckCircle className="h-5 w-5 text-neutral-500 dark:text-neutral-400" />
-                  <span>High-resolution downloads</span>
-                </div>
-              </div>
-              <Button
-                size="lg"
-                disabled
-                className="text-lg px-8 flex items-center bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold rounded-full shadow-lg transition-all duration-300 opacity-70 cursor-not-allowed"
-              >
-                Logo Maker Coming Soon
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </div>
-            <div className="relative">
-              <div className="bg-white dark:bg-gray-900 rounded-lg shadow-2xl p-6 border">
-                <div className="bg-gray-100 dark:bg-gray-800 rounded-md p-4 mb-4">
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+          <div className="flex items-center gap-3 mb-6">
+            <Sparkles className="h-6 w-6 text-orange-500" />
+            <p className="uppercase tracking-[0.3em] text-xs font-semibold text-orange-500">Client Voices</p>
+          </div>
+          <div className="flex flex-col gap-3 md:gap-6">
+            <div className="flex flex-col md:flex-row md:items-stretch md:gap-6">
+              {testimonials.map((testimonial, index) => (
+                <motion.div
+                  key={testimonial.name}
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 6, repeat: Infinity, delay: index * 0.4, repeatType: "loop" }}
+                  className="relative flex-1 rounded-3xl border border-orange-500/20 bg-white/80 dark:bg-neutral-900/80 backdrop-blur px-6 py-8 shadow-sm"
+                >
+                  <div className="absolute -top-4 left-6">
+                    <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-white dark:bg-neutral-950 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
+                      <Sparkles className="h-4 w-4" />
+                      Testimonial
+                    </span>
                   </div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">Logo Maker Preview</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-primary mb-2">Your Brand</div>
-                  <div className="text-sm text-muted-foreground">Professional logo design in seconds</div>
-                </div>
-              </div>
+                  <blockquote className="mt-6 text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                    “{testimonial.quote}”
+                  </blockquote>
+                  <div className="mt-6">
+                    <p className="text-sm font-semibold text-gray-900 dark:text-white">{testimonial.name}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">{testimonial.role}</p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Placeholder Section */}
-      <section className="py-24 px-6 bg-gray-50 dark:bg-neutral-950">
-        <div className="max-w-6xl mx-auto">
-          {/* Empty placeholder section */}
         </div>
       </section>
 
