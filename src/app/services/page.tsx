@@ -149,12 +149,14 @@ export default function Services() {
                   <span>High-resolution downloads</span>
                 </div>
               </div>
-              <Link href="/logo-maker">
-                <Button size="lg" className="text-lg px-8 flex items-center bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
-                  Try Logo Maker Now
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
+              <Button
+                size="lg"
+                disabled
+                className="text-lg px-8 flex items-center bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold rounded-full shadow-lg transition-all duration-300 opacity-70 cursor-not-allowed"
+              >
+                Logo Maker Coming Soon
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
             </div>
             <div className="relative">
               <div className="bg-white dark:bg-gray-900 rounded-lg shadow-2xl p-6 border">

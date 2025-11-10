@@ -1,11 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  experimental: {
-    turbo: {
-      // Pin Turbopack root to this app to avoid multi-lockfile inference.
-      root: __dirname,
-    },
+  turbopack: {
+    // Pin Turbopack root to this app to avoid multi-lockfile inference.
+    root: __dirname,
   },
   // Restore default caching behavior (remove temporary no-cache headers)
   async redirects() {

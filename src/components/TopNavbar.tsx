@@ -44,12 +44,12 @@ export default function TopNavbar() {
         <div className="flex items-center gap-3">
           <Link href="/" className="hover:opacity-80 transition-opacity">
             <img
-              src="/images/portfolio/abemedia.black.svg?v=5"
+              src="/images/portfolio/abemedia.black.svg"
               alt="Abe Media"
               className="block dark:hidden w-32 sm:w-40 md:w-44 lg:w-48 h-auto"
             />
             <img
-              src="/images/portfolio/abemedia.white.svg?v=5"
+              src="/images/portfolio/abemedia.white.svg"
               alt="Abe Media"
               className="hidden dark:block w-32 sm:w-40 md:w-44 lg:w-48 h-auto"
             />
@@ -60,11 +60,9 @@ export default function TopNavbar() {
         <nav className="hidden md:flex items-center gap-5 md:gap-6 text-base ml-3 sm:ml-6 md:ml-10">
           <Link href="/" className="font-bold opacity-80 hover:opacity-100">Home</Link>
           <Link href="/services" className="font-bold opacity-80 hover:opacity-100">Services</Link>
-          <Link href="/logo-maker" className="font-bold opacity-80 hover:opacity-100">Logo Maker</Link>
           <Link href="/portfolio" className="font-bold opacity-80 hover:opacity-100">Portfolio</Link>
           <Link href="/blog" className="font-bold opacity-80 hover:opacity-100">Blog</Link>
           <Link href="/contact" className="font-bold opacity-80 hover:opacity-100">Contact</Link>
-          <Link href="/get-started" className="font-bold opacity-80 hover:opacity-100">Get Started</Link>
           <button
             ref={themeRef}
             onClick={toggleSwitchTheme}
@@ -106,11 +104,9 @@ export default function TopNavbar() {
           <nav className="flex flex-col py-4 px-6 space-y-3">
             <Link href="/" className="text-gray-900 dark:text-white font-bold opacity-80 hover:opacity-100 py-2" onClick={() => setMobileMenuOpen(false)}>Home</Link>
             <Link href="/services" className="text-gray-900 dark:text-white font-bold opacity-80 hover:opacity-100 py-2" onClick={() => setMobileMenuOpen(false)}>Services</Link>
-            <Link href="/logo-maker" className="text-gray-900 dark:text-white font-bold opacity-80 hover:opacity-100 py-2" onClick={() => setMobileMenuOpen(false)}>Logo Maker</Link>
             <Link href="/portfolio" className="text-gray-900 dark:text-white font-bold opacity-80 hover:opacity-100 py-2" onClick={() => setMobileMenuOpen(false)}>Portfolio</Link>
             <Link href="/blog" className="text-gray-900 dark:text-white font-bold opacity-80 hover:opacity-100 py-2" onClick={() => setMobileMenuOpen(false)}>Blog</Link>
             <Link href="/contact" className="text-gray-900 dark:text-white font-bold opacity-80 hover:opacity-100 py-2" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
-            <Link href="/get-started" className="text-gray-900 dark:text-white font-bold opacity-80 hover:opacity-100 py-2" onClick={() => setMobileMenuOpen(false)}>Get Started</Link>
           </nav>
         </motion.div>
       )}
