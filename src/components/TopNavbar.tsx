@@ -58,7 +58,6 @@ export default function TopNavbar() {
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-5 md:gap-6 text-base ml-3 sm:ml-6 md:ml-10">
-          <Link href="/" className="font-bold opacity-80 hover:opacity-100">Home</Link>
           <Link href="/services" className="font-bold opacity-80 hover:opacity-100">Services</Link>
           <Link href="/portfolio" className="font-bold opacity-80 hover:opacity-100">Portfolio</Link>
           <Link href="/blog" className="font-bold opacity-80 hover:opacity-100">Blog</Link>
@@ -102,7 +101,6 @@ export default function TopNavbar() {
           className="md:hidden bg-white/95 dark:bg-neutral-900/95 backdrop-blur supports-[backdrop-filter]:bg-white/95 dark:supports-[backdrop-filter]:bg-neutral-900/95 border-t border-border"
         >
           <nav className="flex flex-col py-4 px-6 space-y-3">
-            <Link href="/" className="text-gray-900 dark:text-white font-bold opacity-80 hover:opacity-100 py-2" onClick={() => setMobileMenuOpen(false)}>Home</Link>
             <Link href="/services" className="text-gray-900 dark:text-white font-bold opacity-80 hover:opacity-100 py-2" onClick={() => setMobileMenuOpen(false)}>Services</Link>
             <Link href="/portfolio" className="text-gray-900 dark:text-white font-bold opacity-80 hover:opacity-100 py-2" onClick={() => setMobileMenuOpen(false)}>Portfolio</Link>
             <Link href="/blog" className="text-gray-900 dark:text-white font-bold opacity-80 hover:opacity-100 py-2" onClick={() => setMobileMenuOpen(false)}>Blog</Link>
