@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -18,6 +19,7 @@ const services = [
       "Fast Loading Times",
       "Cross-Browser Compatibility"
     ],
+    image: "/images/services/web-development.png",
     placeholderLabel: "Website preview coming soon",
   },
   {
@@ -30,6 +32,7 @@ const services = [
       "App Store Optimization",
       "Push Notifications"
     ],
+    image: "/images/services/mobile-app-development.png",
     placeholderLabel: "Mobile app preview coming soon",
   },
   {
@@ -42,6 +45,7 @@ const services = [
       "Visual Design",
       "Usability Testing"
     ],
+    image: "/images/services/ui-ux-design.png",
     placeholderLabel: "Design mockups coming soon",
   },
   {
@@ -54,6 +58,7 @@ const services = [
       "Third-party Integrations",
       "Maintenance & Support"
     ],
+    image: "/images/services/custom-solutions.png",
     placeholderLabel: "Custom integration preview coming soon",
   },
   {
@@ -66,6 +71,7 @@ const services = [
       "Caching Strategies",
       "Performance Monitoring"
     ],
+    image: "/images/services/performance-optimization.png",
     placeholderLabel: "Performance metrics coming soon",
   },
   {
@@ -78,6 +84,7 @@ const services = [
       "Bilingual support in English & Spanish",
       "Integrations with your existing tools"
     ],
+    image: "/images/services/ai-chatbots-agents.png",
     placeholderLabel: "AI assistant preview coming soon",
   }
 ];
@@ -102,6 +109,7 @@ const testimonials = [
 
 export default function Services() {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
+  const [imageErrors, setImageErrors] = useState<Set<number>>(new Set());
 
   return (
     <div className="min-h-screen bg-white dark:bg-black">
@@ -131,10 +139,25 @@ export default function Services() {
             {services.map((service, index) => (
               <Card key={index} className="group hover:shadow-lg transition-shadow duration-300">
                 <CardHeader>
-                  <div className="mb-4 h-40 w-full overflow-hidden rounded-2xl border border-orange-500/20 bg-gradient-to-br from-orange-500/10 via-transparent to-orange-600/20 flex items-center justify-center">
-                    <span className="text-sm font-semibold text-orange-600 dark:text-orange-300 text-center px-4">
-                      {service.placeholderLabel}
-                    </span>
+                  <div className="relative mb-4 h-40 w-full overflow-hidden rounded-2xl border border-orange-500/20 bg-gradient-to-br from-orange-500/10 via-transparent to-orange-600/20">
+                    {service.image && !imageErrors.has(index) ? (
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        onError={() => {
+                          setImageErrors(prev => new Set(prev).add(index));
+                        }}
+                      />
+                    ) : (
+                      <div className="flex items-center justify-center h-full">
+                        <span className="text-sm font-semibold text-orange-600 dark:text-orange-300 text-center px-4">
+                          {service.placeholderLabel}
+                        </span>
+                      </div>
+                    )}
                   </div>
                   <div className="text-orange-500 mb-4">
                     {service.icon}
@@ -163,10 +186,6 @@ export default function Services() {
       {/* Testimonials */}
       <section className="py-16 px-6 bg-white dark:bg-black">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-center gap-3 mb-6">
-            <Sparkles className="h-6 w-6 text-orange-500" />
-            <p className="uppercase tracking-[0.3em] text-xs font-semibold text-orange-500">Client Voices</p>
-          </div>
           <div className="flex flex-col gap-3 md:gap-6">
             <div className="flex flex-col md:flex-row md:items-stretch md:gap-6">
               {testimonials.map((testimonial, index) => (

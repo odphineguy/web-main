@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { HeroParallax } from "@/components/ui/hero-parallax";
 import HomeFaq from "@/components/HomeFaq";
@@ -125,21 +126,18 @@ export default function Home() {
       {/* Content Section: Image Left, Text Right */}
       <section className="py-24 px-6 bg-gray-50 dark:bg-neutral-950">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="min-h-[320px] rounded-3xl border border-orange-500/20 bg-gradient-to-br from-orange-500/10 via-transparent to-orange-500/20 flex items-center justify-center">
-            <div className="text-center space-y-4 px-6">
-              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full border border-orange-500/30 bg-white/80 dark:bg-neutral-900/80">
-                <span className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-500">
-                  Image
-                </span>
-              </div>
-              <p className="text-sm font-medium text-gray-700 dark:text-gray-300 max-w-xs mx-auto leading-relaxed">
-                A frustrated business owner staring at their outdated phone website.
-              </p>
-            </div>
+          <div className="relative min-h-[320px] rounded-3xl border border-orange-500/20 bg-gradient-to-br from-orange-500/10 via-transparent to-orange-500/20 overflow-hidden">
+            <Image
+              src="/images/home/frustrated-business-owner.png"
+              alt="A frustrated business owner staring at their outdated phone website"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
           </div>
           <div className="space-y-6">
             <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-white dark:bg-neutral-950 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
-              Section Title
+              Small Business
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
               Tired of feeling invisible online?
@@ -171,7 +169,7 @@ export default function Home() {
       </section>
 
       {/* Content Section: Text Left, Image Right */}
-      <section className="py-24 px-6 bg-white dark:bg-black">
+      <section className="py-24 pb-32 px-6 bg-white dark:bg-black">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="order-2 lg:order-1 space-y-6">
             <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-gray-50 dark:bg-neutral-900 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
@@ -189,17 +187,14 @@ export default function Home() {
             </p>
             <div className="h-0.5 w-24 bg-gradient-to-r from-orange-500 to-orange-600" />
           </div>
-          <div className="order-1 lg:order-2 min-h-[320px] rounded-3xl border border-orange-500/20 bg-gradient-to-br from-orange-500/10 via-transparent to-orange-500/20 flex items-center justify-center">
-            <div className="text-center space-y-4 px-6">
-              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full border border-orange-500/30 bg-white/80 dark:bg-neutral-900/80">
-                <span className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-500">
-                  Image
-                </span>
-              </div>
-              <p className="text-sm font-medium text-gray-700 dark:text-gray-300 max-w-xs mx-auto leading-relaxed">
-                Friendly portrait of you: clean headshot, simple background, approachable vibe.
-              </p>
-            </div>
+          <div className="order-1 lg:order-2 relative min-h-[320px] rounded-3xl border border-orange-500/20 bg-gradient-to-br from-orange-500/10 via-transparent to-orange-500/20 overflow-hidden">
+            <Image
+              src="/images/home/portrait-headshot.png"
+              alt="Friendly portrait: clean headshot, simple background, approachable vibe"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
           </div>
         </div>
       </section>

@@ -29,6 +29,9 @@ export const metadata: Metadata = {
     template: "%s | Abe Media",
   },
   description: "Design portfolio and contact for Abe Media.",
+  icons: {
+    icon: "/favicon.ico",
+  },
   openGraph: {
     type: "website",
     url: "https://abemedia.online",
