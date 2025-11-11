@@ -211,9 +211,9 @@ A: Logo design projects typically take 1-2 weeks, depending on complexity and re
 
 - **Website Refresh**: Starting at $750-$3,750
 - **New Website**: Starting at $2,000-$12,500+
-- **Mobile Apps**: Starting at $6,250-$37,500+
-- **Custom Chatbot**: Starting at $625-$3,750
-- **AI Agents**: Starting at $2,500-$18,750+
+- **Mobile Apps**: Starting at $2,500-$25,000
+- **Custom Chatbot**: Starting at $500-$35,000
+- **AI Agents**: Starting at $2,500-$25,000
 - **SEO Services**: $375-$2,500/month
 - **Marketing Services**: $500-$3,750/month + ad spend
 - **Social Media Management**: $375-$2,000/month

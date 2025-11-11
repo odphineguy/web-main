@@ -2,10 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle, Code, Palette, Smartphone, Globe, Zap, Bot, Sparkles } from "lucide-react";
+import { CheckCircle, Code, Palette, Smartphone, Globe, Zap, Bot } from "lucide-react";
 import ConsultationForm from "@/components/ConsultationForm";
 
 const services = [
@@ -89,24 +88,6 @@ const services = [
   }
 ];
 
-const testimonials = [
-  {
-    quote: "Abe Media delivered a beautiful site and a bilingual chatbot that now handles 70% of our inbound questions.",
-    name: "Lucía Hernández",
-    role: "Founder, Casa Verde",
-  },
-  {
-    quote: "Their team trained AI agents that feel like real teammates—our response time is faster than ever.",
-    name: "Daniel Ortiz",
-    role: "Operations Lead, MetroFit",
-  },
-  {
-    quote: "We launched in weeks with a polished product and smarter support automation. Clients rave about the experience.",
-    name: "Rebecca Collins",
-    role: "CEO, Summit Legal",
-  },
-];
-
 export default function Services() {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
   const [imageErrors, setImageErrors] = useState<Set<number>>(new Set());
@@ -137,15 +118,18 @@ export default function Services() {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <Card key={index} className="group hover:shadow-lg transition-shadow duration-300">
-                <CardHeader>
-                  <div className="relative mb-4 h-40 w-full overflow-hidden rounded-2xl border border-orange-500/20 bg-gradient-to-br from-orange-500/10 via-transparent to-orange-600/20">
+              <Card 
+                key={index} 
+                className="group relative overflow-hidden border-2 border-transparent hover:border-orange-500/30 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-300 ease-out hover:-translate-y-2 bg-white dark:bg-neutral-900"
+              >
+                <CardHeader className="pb-4">
+                  <div className="relative mb-4 h-40 w-full overflow-hidden rounded-2xl border border-orange-500/20 bg-gradient-to-br from-orange-500/10 via-transparent to-orange-600/20 group-hover:border-orange-500/40 transition-all duration-300">
                     {service.image && !imageErrors.has(index) ? (
                       <Image
                         src={service.image}
                         alt={service.title}
                         fill
-                        className="object-cover"
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         onError={() => {
                           setImageErrors(prev => new Set(prev).add(index));
@@ -158,11 +142,15 @@ export default function Services() {
                         </span>
                       </div>
                     )}
+                    {/* Gradient overlay on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-orange-500/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
-                  <div className="text-orange-500 mb-4">
+                  <div className="text-orange-500 mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:text-orange-600 group-hover:rotate-3">
                     {service.icon}
                   </div>
-                  <CardTitle className="text-xl">{service.title}</CardTitle>
+                  <CardTitle className="text-xl group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-300">
+                    {service.title}
+                  </CardTitle>
                   <CardDescription className="text-base">
                     {service.description}
                   </CardDescription>
@@ -170,47 +158,25 @@ export default function Services() {
                 <CardContent>
                   <ul className="space-y-2">
                     {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-neutral-500 dark:text-neutral-400 flex-shrink-0" />
-                        <span className="text-sm">{feature}</span>
+                      <li 
+                        key={featureIndex} 
+                        className="flex items-center gap-2 transition-transform duration-200 group-hover:translate-x-1"
+                        style={{ transitionDelay: `${featureIndex * 50}ms` }}
+                      >
+                        <CheckCircle className="h-4 w-4 text-neutral-500 dark:text-neutral-400 flex-shrink-0 group-hover:text-orange-500 transition-colors duration-300" />
+                        <span className="text-sm group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors duration-300">
+                          {feature}
+                        </span>
                       </li>
                     ))}
                   </ul>
                 </CardContent>
+                {/* Shine effect on hover */}
+                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none">
+                  <div className="h-full w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
+                </div>
               </Card>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-16 px-6 bg-white dark:bg-black">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col gap-3 md:gap-6">
-            <div className="flex flex-col md:flex-row md:items-stretch md:gap-6">
-              {testimonials.map((testimonial, index) => (
-                <motion.div
-                  key={testimonial.name}
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{ duration: 6, repeat: Infinity, delay: index * 0.4, repeatType: "loop" }}
-                  className="relative flex-1 rounded-3xl border border-orange-500/20 bg-white/80 dark:bg-neutral-900/80 backdrop-blur px-6 py-8 shadow-sm"
-                >
-                  <div className="absolute -top-4 left-6">
-                    <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-white dark:bg-neutral-950 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
-                      <Sparkles className="h-4 w-4" />
-                      Testimonial
-                    </span>
-                  </div>
-                  <blockquote className="mt-6 text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                    “{testimonial.quote}”
-                  </blockquote>
-                  <div className="mt-6">
-                    <p className="text-sm font-semibold text-gray-900 dark:text-white">{testimonial.name}</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">{testimonial.role}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
           </div>
         </div>
       </section>

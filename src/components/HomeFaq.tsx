@@ -24,14 +24,12 @@ const faqs = [
 
 export default function HomeFaq() {
   return (
-    <section className="mx-auto max-w-6xl px-6 pb-24">
+    <section className="mx-auto max-w-6xl px-6 pt-24 pb-24">
       <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-12 md:gap-16">
         {/* Heading on the left */}
         <div>
-          <h2 className="text-3xl md:text-4xl font-medium tracking-tight leading-tight">
-            <span className="font-sans">Frequently asked</span>
-            <br />
-            <span className="font-serif text-4xl md:text-5xl italic font-normal">questions</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white leading-tight">
+            Frequently asked questions
           </h2>
         </div>
 

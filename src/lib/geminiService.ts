@@ -45,7 +45,7 @@ ${SOP_CONTENT}
 Remember: Use this knowledge base as your primary source of information. When answering questions, reference the relevant sections, pricing information, timelines, and procedures to provide accurate and comprehensive responses.
 `;
 
-export const INITIAL_MESSAGE = "Hi there! I'm Ashlee, your virtual assistant for Abe Media. How can I help you today?";
+export const INITIAL_MESSAGE = "Hi there! I'm Ashlee, your Media Specialist. How can I help you today?";
 export const MICROPHONE_MIME_TYPE = 'audio/pcm;rate=16000';
 export const MODEL_AUDIO_SAMPLE_RATE = 24000;
 export const MICROPHONE_SAMPLE_RATE = 16000;
