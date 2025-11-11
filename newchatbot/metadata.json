@@ -1,5 +1,0 @@
-{
-  "name": "Abe Media Support Chatbot",
-  "description": "A customer support chatbot for Abe Media, powered by Gemini. It uses uploaded business documents to provide accurate answers about products, services, and policies.",
-  "requestFramePermissions": []
-}
