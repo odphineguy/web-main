@@ -141,7 +141,7 @@ Be friendly, professional, and concise. Format your answers clearly, using markd
 
       const botMessage: ChatMessage = {
         id: Date.now().toString() + '-bot',
-        text: response.text,
+        text: response.text || "Sorry, I couldn't generate a response. Please try again.",
         sender: 'bot',
       };
       setMessages((prev) => [...prev, botMessage]);
