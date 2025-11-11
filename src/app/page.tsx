@@ -255,7 +255,7 @@ export default function Home() {
                     </span>
                   </div>
                   <blockquote className="mt-6 text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                    "{testimonial.quote}"
+                    &ldquo;{testimonial.quote}&rdquo;
                   </blockquote>
                   <div className="mt-6 flex items-center gap-4">
                     <div className="relative h-12 w-12 rounded-full overflow-hidden border-2 border-orange-500/20 flex-shrink-0 bg-white dark:bg-white">
