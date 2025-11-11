@@ -2,7 +2,7 @@
 
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { X, Calendar } from 'lucide-react';
+import { X } from 'lucide-react';
 import ChatWindow from './chatbot/ChatWindow';
 import ChatInput from './chatbot/ChatInput';
 import ConsultationForm from './ConsultationForm';
@@ -135,7 +135,7 @@ const FloatingChatbot: React.FC = () => {
                 </div>
                 <div>
                   <div className="font-medium text-sm">Ashlee</div>
-                  <div className="text-xs text-orange-100">Abe Media Support Specialist</div>
+                  <div className="text-xs text-orange-100">Media Specialist</div>
                 </div>
               </div>
               <div className="flex gap-2 items-center">
@@ -144,12 +144,11 @@ const FloatingChatbot: React.FC = () => {
                     setIsConsultationOpen(true);
                     setIsOpen(false);
                   }}
-                  className="text-white/90 hover:text-white transition-all flex items-center gap-1.5 px-2.5 py-1.5 rounded-md hover:bg-white/20 text-xs font-semibold border border-white/20 hover:border-white/40"
+                  className="bg-white text-orange-600 hover:bg-orange-50 dark:bg-white dark:text-orange-600 dark:hover:bg-orange-50 transition-all flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-md hover:shadow-lg hover:scale-105 active:scale-100"
                   aria-label="Book consultation"
                   title="Book Consultation"
                 >
-                  <Calendar className="h-3.5 w-3.5" />
-                  <span>Book</span>
+                  <span>Book Consultation</span>
                 </button>
                 <button
                   onClick={() => setIsOpen(false)}

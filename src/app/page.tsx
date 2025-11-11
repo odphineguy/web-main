@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { HeroParallax } from "@/components/ui/hero-parallax";
+import HomeFaq from "@/components/HomeFaq";
 
 const products = [
   {
@@ -204,38 +205,7 @@ export default function Home() {
       </section>
 
       {/* FAQs */}
-      <section className="py-24 px-6 bg-gray-50 dark:bg-neutral-950">
-        <div className="max-w-4xl mx-auto space-y-12">
-          <div className="text-center space-y-4">
-            <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-white dark:bg-neutral-900 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
-              FAQs
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
-              Everything you want to know before we get started.
-            </h2>
-          </div>
-          <div className="space-y-8">
-            <div className="rounded-3xl border border-orange-500/20 bg-white dark:bg-neutral-900/60 p-6 shadow-sm">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Do I need to know tech?</h3>
-              <p className="mt-3 text-gray-600 dark:text-gray-400">
-                No. We make it simple — we guide you the whole way.
-              </p>
-            </div>
-            <div className="rounded-3xl border border-orange-500/20 bg-white dark:bg-neutral-900/60 p-6 shadow-sm">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Can we start small?</h3>
-              <p className="mt-3 text-gray-600 dark:text-gray-400">
-                Yes. We customize everything — we can start with just a website or just ads.
-              </p>
-            </div>
-            <div className="rounded-3xl border border-orange-500/20 bg-white dark:bg-neutral-900/60 p-6 shadow-sm">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">What if I’m not happy?</h3>
-              <p className="mt-3 text-gray-600 dark:text-gray-400">
-                Satisfaction guaranteed — if it’s not right, we fix it.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HomeFaq />
 
       {/* CTA */}
       <section className="py-16 px-6 bg-white dark:bg-black">

@@ -150,25 +150,6 @@ export default function ConsultationForm({ isOpen, onClose }: ConsultationFormPr
               />
             </div>
             
-            <div className="grid gap-2">
-              <label htmlFor="budget" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                Budget Range
-              </label>
-              <select 
-                id="budget" 
-                name="budget" 
-                className="rounded-full border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-gray-900 dark:text-white shadow-sm"
-              >
-                <option value="">Select budget range</option>
-                <option value="under-5k">Under $5,000</option>
-                <option value="5k-10k">$5,000 - $10,000</option>
-                <option value="10k-25k">$10,000 - $25,000</option>
-                <option value="25k-50k">$25,000 - $50,000</option>
-                <option value="50k-plus">$50,000+</option>
-                <option value="discuss">Prefer to discuss</option>
-              </select>
-            </div>
-            
             <button
               type="submit"
               disabled={status === "sending" || status === "sent"}
