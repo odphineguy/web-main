@@ -18,7 +18,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, isLoading }) => {
   }, [messages, isLoading]);
 
   return (
-    <div className="flex-1 p-4 overflow-y-auto bg-white dark:bg-black">
+    <div className="flex-1 overflow-y-auto p-4 bg-white dark:bg-black min-h-0" style={{ maxHeight: '100%' }}>
       <div className="text-center text-gray-500 dark:text-gray-400 text-sm mb-4">Chat started</div>
       
       {messages.map((message, index) => {

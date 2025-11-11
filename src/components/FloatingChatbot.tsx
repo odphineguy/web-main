@@ -1,62 +1,98 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { X } from 'lucide-react';
+import { X, Calendar } from 'lucide-react';
 import ChatWindow from './chatbot/ChatWindow';
 import ChatInput from './chatbot/ChatInput';
+import ConsultationForm from './ConsultationForm';
 import { Message } from '../lib/types';
+import { sendMessageToGemini, INITIAL_MESSAGE } from '../lib/geminiService';
 
 const FloatingChatbot: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'model', text: 'Hello! I\'m here to help you with Abe Media. How can I assist you today?' }
+    { role: 'model', text: INITIAL_MESSAGE }
   ]);
   const [isLoading, setIsLoading] = useState(false);
-
   const [isRecording, setIsRecording] = useState(false);
+  const [isConsultationOpen, setIsConsultationOpen] = useState(false);
+  const messagesRef = useRef<Message[]>(messages);
 
-  const handleSendMessage = async (text: string, image?: { data: string; mimeType: string }) => {
+  // Keep ref in sync with state
+  useEffect(() => {
+    messagesRef.current = messages;
+  }, [messages]);
+
+  const handleSendMessage = useCallback(async (text: string, image?: { data: string; mimeType: string }) => {
     const userMessage: Message = { role: 'user', text, image };
-    setMessages((prevMessages) => [...prevMessages, userMessage]);
+    
+    // Add user message and update ref immediately
+    let messagesWithUser: Message[] = [];
+    setMessages((prevMessages) => {
+      messagesWithUser = [...prevMessages, userMessage];
+      messagesRef.current = messagesWithUser;
+      return messagesWithUser;
+    });
+    
     setIsLoading(true);
 
-    const tempModelMessageIndex = messages.length + 1;
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      { role: 'model', text: '' }, 
-    ]);
+    // Calculate index where model message will be (after user message)
+    const tempModelMessageIndex = messagesWithUser.length;
+    
+    // Add placeholder for model response
+    setMessages((prevMessages) => {
+      const updated = [...prevMessages, { role: 'model' as const, text: '' }];
+      messagesRef.current = updated;
+      return updated;
+    });
 
     try {
-      // For now, simulate a response
-      setTimeout(() => {
-        setMessages((prevMessages) => {
-          const newMessages = [...prevMessages];
-          if (newMessages[tempModelMessageIndex] && newMessages[tempModelMessageIndex].role === 'model') {
-            newMessages[tempModelMessageIndex] = { 
-              role: 'model', 
-              text: "I'm here to help with Abe Media! We offer website development, logo design, and marketing services. For immediate assistance, please contact us at support@abemedia.online or visit our contact page."
-            };
-          }
-          return newMessages;
-        });
-        setIsLoading(false);
-      }, 1500);
-    } catch (error) {
-      console.error("Error during chat:", error);
+      const finalResponseText = await sendMessageToGemini(
+        text,
+        (chunk) => {
+          setMessages((prevMessages) => {
+            const newMessages = [...prevMessages];
+            const lastModelMessage = newMessages[tempModelMessageIndex];
+            if (lastModelMessage && lastModelMessage.role === 'model') {
+              lastModelMessage.text += chunk;
+            }
+            return newMessages;
+          });
+        },
+        messagesWithUser, // Use messages with user message but without the empty model message
+      );
+
       setMessages((prevMessages) => {
         const newMessages = [...prevMessages];
-        if (newMessages[tempModelMessageIndex]?.role === 'model') {
+        if (newMessages[tempModelMessageIndex] && newMessages[tempModelMessageIndex].role === 'model') {
           newMessages[tempModelMessageIndex] = { 
-            role: 'error', 
-            text: "I'm having trouble connecting right now. Please contact us directly at support@abemedia.online for immediate assistance."
+            role: 'model', 
+            text: finalResponseText, 
           };
         }
         return newMessages;
       });
+
+    } catch (error: unknown) {
+      console.error("Error during chat:", error);
+      let errorMessage = "Failed to get response. Please try again. If the issue persists, contact support@abemedia.online.";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      setMessages((prevMessages) => {
+        const newMessages = [...prevMessages];
+        if (newMessages[tempModelMessageIndex]?.role === 'model') {
+          newMessages[tempModelMessageIndex] = { role: 'error', text: `Error: ${errorMessage}` };
+        } else {
+          newMessages.push({ role: 'error', text: `Error: ${errorMessage}` });
+        }
+        return newMessages;
+      });
+    } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
   const toggleRecording = () => {
     setIsRecording(prev => !prev);
@@ -102,15 +138,22 @@ const FloatingChatbot: React.FC = () => {
                   <div className="text-xs text-orange-100">Abe Media Support Specialist</div>
                 </div>
               </div>
-              <div className="flex gap-2">
-                <button className="text-white/80 hover:text-white transition-colors">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
-                  </svg>
+              <div className="flex gap-2 items-center">
+                <button
+                  onClick={() => {
+                    setIsConsultationOpen(true);
+                    setIsOpen(false);
+                  }}
+                  className="text-white/90 hover:text-white transition-all flex items-center gap-1.5 px-2.5 py-1.5 rounded-md hover:bg-white/20 text-xs font-semibold border border-white/20 hover:border-white/40"
+                  aria-label="Book consultation"
+                  title="Book Consultation"
+                >
+                  <Calendar className="h-3.5 w-3.5" />
+                  <span>Book</span>
                 </button>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="text-white/80 hover:text-white transition-colors"
+                  className="text-white/80 hover:text-white transition-colors p-1 rounded-md hover:bg-white/10"
                   aria-label="Close chat"
                 >
                   <X className="h-4 w-4" />
@@ -120,7 +163,7 @@ const FloatingChatbot: React.FC = () => {
           </div>
 
           {/* Chat Window */}
-          <div className="flex-1 overflow-hidden">
+          <div className="flex-1 overflow-hidden flex flex-col min-h-0">
             <ChatWindow messages={messages} isLoading={isLoading} />
           </div>
 
@@ -130,6 +173,12 @@ const FloatingChatbot: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* Consultation Form Modal */}
+      <ConsultationForm 
+        isOpen={isConsultationOpen} 
+        onClose={() => setIsConsultationOpen(false)} 
+      />
     </>
   );
 };
