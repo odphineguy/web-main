@@ -25,10 +25,38 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   metadataBase: new URL("https://abemedia.online"),
   title: {
-    default: "Abe Media — Portfolio",
+    default: "Abe Media — Bilingual Web Development & AI Solutions for Small Business",
     template: "%s | Abe Media",
   },
-  description: "Design portfolio and contact for Abe Media.",
+  description: "Professional bilingual web development, AI chatbots, and custom digital solutions for small businesses. Modern websites, mobile apps, and AI automation in English & Spanish. Get started with a free consultation.",
+  keywords: [
+    "small business website",
+    "bilingual website",
+    "AI chatbots",
+    "web development",
+    "mobile app development",
+    "custom software",
+    "bilingual digital solutions",
+    "small business automation",
+    "AI agents",
+    "website design",
+    "English Spanish website",
+    "business website",
+  ],
+  authors: [{ name: "Abe Media" }],
+  creator: "Abe Media",
+  publisher: "Abe Media",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -40,22 +68,34 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://abemedia.online",
-    title: "Abe Media — Portfolio",
-    description: "Design portfolio and contact for Abe Media.",
+    siteName: "Abe Media",
+    title: "Abe Media — Bilingual Web Development & AI Solutions for Small Business",
+    description: "Professional bilingual web development, AI chatbots, and custom digital solutions for small businesses. Modern websites, mobile apps, and AI automation in English & Spanish.",
+    locale: "en_US",
+    alternateLocale: ["es_US", "es_MX"],
     images: [
       {
         url: "/images/portfolio/home.png",
         width: 1200,
         height: 630,
-        alt: "Abe Media",
+        alt: "Abe Media - Bilingual Web Development & AI Solutions",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Abe Media — Portfolio",
-    description: "Design portfolio and contact for Abe Media.",
+    title: "Abe Media — Bilingual Web Development & AI Solutions",
+    description: "Professional bilingual web development, AI chatbots, and custom digital solutions for small businesses.",
     images: ["/images/portfolio/home.png"],
+    creator: "@abe_vision",
+  },
+  alternates: {
+    canonical: "https://abemedia.online",
+  },
+  verification: {
+    // Add your verification codes here if you have them
+    // google: "your-google-verification-code",
+    // yandex: "your-yandex-verification-code",
   },
 };
 
@@ -64,10 +104,61 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Structured data for SEO
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Abe Media",
+    url: "https://abemedia.online",
+    logo: "https://abemedia.online/images/portfolio/abemedia.black.svg",
+    description: "Professional bilingual web development, AI chatbots, and custom digital solutions for small businesses.",
+    sameAs: [
+      "https://x.com/abe_vision",
+      "https://www.instagram.com/abevision_",
+      "https://www.facebook.com/profile.php?id=100091085333551",
+      "https://www.tiktok.com/@abevision_",
+    ],
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      availableLanguage: ["English", "Spanish"],
+    },
+    areaServed: "US",
+    knowsAbout: [
+      "Web Development",
+      "AI Chatbots",
+      "Mobile App Development",
+      "Bilingual Websites",
+      "UI/UX Design",
+      "Custom Software Development",
+    ],
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Abe Media",
+    url: "https://abemedia.online",
+    description: "Professional bilingual web development, AI chatbots, and custom digital solutions for small businesses.",
+    publisher: {
+      "@type": "Organization",
+      name: "Abe Media",
+    },
+    inLanguage: ["en-US", "es-US", "es-MX"],
+  };
+
   // Normal static/dynamic behavior restored
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${outfit.variable} antialiased`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
         <ThemeProvider>
           <TopNavbar />
           <main className="min-h-screen">{children}</main>

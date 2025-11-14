@@ -1,6 +1,22 @@
 import ContactForm from "@/components/ContactForm";
-export const metadata = {
-  title: "Contact | Abe Media",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact Us — Get Your Free Consultation | Abe Media",
+  description: "Get in touch with Abe Media for bilingual web development, AI chatbot solutions, and custom digital tools for your small business. Free 30-minute strategy call available.",
+  keywords: ["contact abe media", "web development consultation", "small business website consultation", "AI chatbot consultation", "bilingual website consultation"],
+  alternates: {
+    canonical: "https://abemedia.online/contact",
+  },
+  openGraph: {
+    title: "Contact Us — Get Your Free Consultation | Abe Media",
+    description: "Get in touch with Abe Media for bilingual web development, AI chatbot solutions, and custom digital tools for your small business.",
+    url: "https://abemedia.online/contact",
+  },
+  twitter: {
+    title: "Contact Us — Get Your Free Consultation | Abe Media",
+    description: "Get in touch with Abe Media for bilingual web development, AI chatbot solutions, and custom digital tools for your small business.",
+  },
 };
 
 export default function ContactPage() {

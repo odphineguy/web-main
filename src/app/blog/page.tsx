@@ -6,8 +6,21 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Blog",
-  description: "Latest insights on web development, design trends, and digital innovation.",
+  title: "Blog — Web Development & Design Insights | Abe Media",
+  description: "Latest insights on web development, design trends, AI chatbots, bilingual websites, and digital innovation for small businesses. Expert tips and tutorials.",
+  keywords: ["web development blog", "design trends", "AI chatbots", "bilingual websites", "small business tips", "digital innovation", "website optimization"],
+  alternates: {
+    canonical: "https://abemedia.online/blog",
+  },
+  openGraph: {
+    title: "Blog — Web Development & Design Insights | Abe Media",
+    description: "Latest insights on web development, design trends, AI chatbots, bilingual websites, and digital innovation for small businesses.",
+    url: "https://abemedia.online/blog",
+  },
+  twitter: {
+    title: "Blog — Web Development & Design Insights | Abe Media",
+    description: "Latest insights on web development, design trends, AI chatbots, bilingual websites, and digital innovation for small businesses.",
+  },
 };
 
 const blogPosts = [

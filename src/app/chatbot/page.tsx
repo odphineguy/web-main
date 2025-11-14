@@ -1,8 +1,16 @@
 import ChatbotApp from "@/components/chatbot/ChatbotApp";
+import type { Metadata } from "next";
 
-export const metadata = {
-  title: "Chatbot | Abe Media",
-  description: "Get help with Abe Media services and support",
+export const metadata: Metadata = {
+  title: "AI Chatbot — Get Help & Support | Abe Media",
+  description: "Chat with our AI assistant to learn about Abe Media services, pricing, bilingual web development, AI chatbot solutions, and how we can help your small business.",
+  robots: {
+    index: false,
+    follow: true,
+  },
+  alternates: {
+    canonical: "https://abemedia.online/chatbot",
+  },
 };
 
 export default function ChatbotPage() {
