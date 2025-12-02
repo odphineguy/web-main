@@ -65,7 +65,7 @@
         "dateModified": "2024-12-02",
         "image": "/images/resources/bilingual-ecommerce-marketing-strategies.png"
       },
-      "relatedPages": ["hispanic-mobile-marketing-strategies", "bilingual-customer-journey-mapping", "hispanic-consumer-behavior"],
+      "relatedPages": ["hispanic-mobile-marketing-strategies", "bilingual-customer-journey-mapping", "hispanic-market-research-methods"],
       "cta": {
         "text": "Ready to capture the Hispanic e-commerce opportunity?",
         "buttonText": "Get E-commerce Localization Consultation",
@@ -137,7 +137,7 @@
         "dateModified": "2024-12-02",
         "image": "/images/resources/spanish-seo-hispanic-search-optimization.png"
       },
-      "relatedPages": ["spanish-social-media-marketing", "bilingual-advertising-platforms", "hispanic-mobile-marketing-strategies"],
+      "relatedPages": ["spanish-social-media-advertising-guide", "bilingual-ppc-google-ads-strategies", "hispanic-mobile-marketing-strategies"],
       "cta": {
         "text": "Ready to rank for Spanish searches?",
         "buttonText": "Get a Spanish SEO Audit",
@@ -209,7 +209,7 @@
         "dateModified": "2024-12-02",
         "image": "/images/resources/ai-lead-generation-hispanic-markets.png"
       },
-      "relatedPages": ["ai-personalization-hispanic-audiences", "bilingual-chatbot-benefits", "ai-marketing-for-small-business"],
+      "relatedPages": ["ai-personalization-hispanic-audiences", "chatbot-analytics-bilingual-performance", "ai-lead-generation-hispanic-markets"],
       "cta": {
         "text": "Ready to generate more qualified Hispanic leads?",
         "buttonText": "Explore AI Lead Generation Solutions",
@@ -281,7 +281,7 @@
         "dateModified": "2024-12-02",
         "image": "/images/resources/healthcare-marketing-hispanic-patients.png"
       },
-      "relatedPages": ["bilingual-marketing-professional-services", "understanding-hispanic-market", "bilingual-customer-journey-mapping"],
+      "relatedPages": ["bilingual-marketing-professional-services", "hispanic-market-research-methods", "bilingual-customer-journey-mapping"],
       "cta": {
         "text": "Ready to better serve Hispanic patients?",
         "buttonText": "Explore Healthcare Marketing Solutions",
@@ -353,7 +353,7 @@
         "dateModified": "2024-12-02",
         "image": "/images/resources/building-trust-latino-small-business-owners.png"
       },
-      "relatedPages": ["understanding-hispanic-market", "bilingual-marketing-professional-services", "hispanic-consumer-behavior"],
+      "relatedPages": ["hispanic-market-research-methods", "bilingual-marketing-professional-services", "building-trust-latino-small-business-owners"],
       "cta": {
         "text": "Want to grow your Hispanic B2B client base?",
         "buttonText": "Request a B2B Hispanic Strategy Session",
@@ -425,7 +425,7 @@
         "dateModified": "2024-12-02",
         "image": "/images/resources/chatbot-analytics-bilingual-performance.png"
       },
-      "relatedPages": ["spanish-chatbot-training-best-practices", "building-spanish-english-chatbot", "conversational-ai-trends-2025"],
+      "relatedPages": ["spanish-chatbot-training-best-practices", "multilingual-customer-support-automation", "conversational-ai-trends-2025"],
       "cta": {
         "text": "Need help optimizing your bilingual chatbot?",
         "buttonText": "Get Chatbot Performance Analysis",
@@ -497,7 +497,7 @@
         "dateModified": "2024-12-02",
         "image": "/images/resources/spanish-social-media-advertising-guide.png"
       },
-      "relatedPages": ["spanish-social-media-marketing", "hispanic-influencer-marketing-guide", "gen-z-hispanic-marketing-strategies"],
+      "relatedPages": ["spanish-social-media-advertising-guide", "hispanic-influencer-marketing-guide", "gen-z-hispanic-marketing-strategies"],
       "cta": {
         "text": "Ready to reach Hispanic audiences on social media?",
         "buttonText": "Launch Spanish Social Campaigns",
@@ -569,7 +569,7 @@
         "dateModified": "2024-12-02",
         "image": "/images/resources/multilingual-customer-support-automation.png"
       },
-      "relatedPages": ["bilingual-chatbot-benefits", "building-spanish-english-chatbot", "voice-ai-bilingual-customer-service"],
+      "relatedPages": ["chatbot-analytics-bilingual-performance", "spanish-chatbot-training-best-practices", "voice-ai-bilingual-customer-service"],
       "cta": {
         "text": "Ready to automate your multilingual customer support?",
         "buttonText": "Explore Support Automation Solutions",
@@ -641,7 +641,7 @@
         "dateModified": "2024-12-02",
         "image": "/images/resources/hispanic-real-estate-marketing-guide.png"
       },
-      "relatedPages": ["bilingual-marketing-professional-services", "building-trust-latino-small-business-owners", "understanding-hispanic-market"],
+      "relatedPages": ["bilingual-marketing-professional-services", "building-trust-latino-small-business-owners", "hispanic-market-research-methods"],
       "cta": {
         "text": "Ready to capture the Hispanic real estate opportunity?",
         "buttonText": "Get Real Estate Marketing Consultation",
@@ -713,7 +713,7 @@
         "dateModified": "2024-12-02",
         "image": "/images/resources/ai-content-localization-spanish-markets.png"
       },
-      "relatedPages": ["ai-translation-vs-human-transcreation", "bilingual-copywriting-tips", "ai-marketing-personalization"],
+      "relatedPages": ["ai-translation-vs-human-transcreation", "ai-personalization-hispanic-audiences", "ai-content-localization-spanish-markets"],
       "cta": {
         "text": "Ready to scale your Spanish content with AI?",
         "buttonText": "Explore AI Localization Solutions",
@@ -785,7 +785,7 @@
         "dateModified": "2024-12-02",
         "image": "/images/resources/bilingual-ppc-google-ads-strategies.png"
       },
-      "relatedPages": ["spanish-seo-hispanic-search-optimization", "spanish-social-media-advertising-guide", "bilingual-advertising-platforms"],
+      "relatedPages": ["spanish-seo-hispanic-search-optimization", "spanish-social-media-advertising-guide", "bilingual-email-marketing-automation"],
       "cta": {
         "text": "Ready to capture Spanish search demand?",
         "buttonText": "Get Bilingual PPC Consultation",
@@ -857,7 +857,7 @@
         "dateModified": "2024-12-02",
         "image": "/images/resources/hispanic-restaurant-marketing-guide.png"
       },
-      "relatedPages": ["cultural-marketing-calendar-hispanic", "building-trust-latino-small-business-owners", "understanding-hispanic-market"],
+      "relatedPages": ["cultural-marketing-calendar-hispanic", "building-trust-latino-small-business-owners", "hispanic-market-research-methods"],
       "cta": {
         "text": "Ready to grow your Hispanic dining business?",
         "buttonText": "Get Restaurant Marketing Consultation",
@@ -1001,7 +1001,7 @@
         "dateModified": "2024-12-02",
         "image": "/images/resources/measuring-bilingual-marketing-roi.png"
       },
-      "relatedPages": ["bilingual-customer-journey-mapping", "hispanic-market-research-methods", "bilingual-advertising-platforms"],
+      "relatedPages": ["bilingual-customer-journey-mapping", "hispanic-market-research-methods", "bilingual-email-marketing-automation"],
       "cta": {
         "text": "Need help measuring your Hispanic marketing ROI?",
         "buttonText": "Get Marketing Measurement Consultation",
