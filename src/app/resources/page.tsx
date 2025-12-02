@@ -356,18 +356,12 @@ export default function ResourcesPage() {
           <p className="text-neutral-300 mb-8 max-w-2xl mx-auto text-lg">
             Let our team help you implement bilingual advertising strategies and AI-powered marketing solutions that drive real results.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex justify-center">
             <Link
               href="/contact"
               className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-orange-500 text-white font-semibold hover:bg-orange-600 transition-colors"
             >
               Contact Us
-            </Link>
-            <Link
-              href="/get-started"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-neutral-700 text-white font-semibold hover:bg-neutral-600 transition-colors"
-            >
-              Get a Free Consultation
             </Link>
           </div>
         </section>
