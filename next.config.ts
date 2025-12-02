@@ -5,6 +5,15 @@ const nextConfig: NextConfig = {
     // Pin Turbopack root to this project directory to avoid multi-lockfile inference
     root: process.cwd(),
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "abemedia.online",
+        pathname: "/images/**",
+      },
+    ],
+  },
   async redirects() {
     return [
       {
