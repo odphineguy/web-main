@@ -157,7 +157,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black">
+    <div className="relative min-h-screen bg-white dark:bg-black">
       <HeroParallax products={products} />
       
       {/* Content Section: Image Left, Text Right */}
