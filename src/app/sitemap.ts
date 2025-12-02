@@ -1,11 +1,12 @@
 import { MetadataRoute } from "next";
+import { getAllSlugs } from "@/lib/seoPages";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://abemedia.online";
   const currentDate = new Date();
 
   // Define all the main pages
-  const routes = [
+  const mainRoutes = [
     {
       url: baseUrl,
       lastModified: currentDate,
@@ -42,9 +43,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.7,
     },
+    {
+      url: `${baseUrl}/resources`,
+      lastModified: currentDate,
+      changeFrequency: "weekly" as const,
+      priority: 0.85,
+    },
     // Note: chatbot page is excluded as it's set to noindex
   ];
 
-  return routes;
-}
+  // Generate resource page routes from SEO pages data
+  const resourceSlugs = getAllSlugs();
+  const resourceRoutes = resourceSlugs.map((slug) => ({
+    url: `${baseUrl}/resources/${slug}`,
+    lastModified: currentDate,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
 
+  return [...mainRoutes, ...resourceRoutes];
+}
