@@ -231,18 +231,12 @@ export default function SeoPageTemplate({ page }: SeoPageTemplateProps) {
           <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
             Let us help you implement {page.category.toLowerCase()} strategies that drive results for your business.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex justify-center">
             <Link
               href={ctaLink}
               className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-white text-blue-600 font-semibold hover:bg-blue-50 transition-colors"
             >
               {ctaButtonText}
-            </Link>
-            <Link
-              href="/get-started"
-              className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-blue-700 text-white font-semibold hover:bg-blue-800 transition-colors"
-            >
-              Get a Free Consultation
             </Link>
           </div>
         </div>
