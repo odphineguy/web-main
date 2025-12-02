@@ -1,39 +1,78 @@
 export * from "./types";
 
-import { SeoPage, categories, CategoryInfo } from "./types";
-import { bilingualAdvertisingPages } from "./bilingualAdvertising";
-import { hispanicMarketPages } from "./hispanicMarket";
-import { aiMarketingPages } from "./aiMarketing";
-import { chatbotDevelopmentPages } from "./chatbotDevelopment";
-import { bilingualChatbotsPages } from "./bilingualChatbots";
-import { spanishMarketingPages } from "./spanishMarketing";
-import { industrySolutionsPages } from "./industrySolutions";
-import { caseStudiesPages } from "./caseStudies";
+import { SeoPage, SeoPageJson, categories, CategoryInfo } from "./types";
 
-// Combine all pages into a single array
-export const allSeoPages: SeoPage[] = [
-  ...bilingualAdvertisingPages,
-  ...hispanicMarketPages,
-  ...aiMarketingPages,
-  ...chatbotDevelopmentPages,
-  ...bilingualChatbotsPages,
-  ...spanishMarketingPages,
-  ...industrySolutionsPages,
-  ...caseStudiesPages,
-];
+// Import JSON files
+import seoPagesBatch1 from "../../../seo-pages-batch-december-2025.json";
+import seoPagesBatch2 from "../../../seo-pages-batch-december-2025-part2.json";
 
-// Export individual category arrays
-export {
-  bilingualAdvertisingPages,
-  hispanicMarketPages,
-  aiMarketingPages,
-  chatbotDevelopmentPages,
-  bilingualChatbotsPages,
-  spanishMarketingPages,
-  industrySolutionsPages,
-  caseStudiesPages,
-  categories,
-};
+// Helper to calculate read time based on content length
+function calculateReadTime(content: SeoPageJson["content"]): string {
+  const wordsPerMinute = 200;
+  const intro = content.intro || "";
+  const sections = content.sections.map((s) => s.content).join(" ");
+  const conclusion = content.conclusion || "";
+  const totalText = `${intro} ${sections} ${conclusion}`;
+  const wordCount = totalText.split(/\s+/).filter(Boolean).length;
+  const minutes = Math.ceil(wordCount / wordsPerMinute);
+  return `${minutes} min read`;
+}
+
+// Helper to generate excerpt from description or intro
+function generateExcerpt(page: SeoPageJson): string {
+  // Use description, truncated to ~160 chars if needed
+  const text = page.description || page.content.intro;
+  if (text.length <= 160) return text;
+  return text.substring(0, 157).trim() + "...";
+}
+
+// Helper to generate metaTitle from title
+function generateMetaTitle(page: SeoPageJson): string {
+  // If title already contains brand, use as-is, otherwise append
+  if (page.title.includes("ABE Media") || page.title.includes("Abe Media")) {
+    return page.title;
+  }
+  return `${page.title} | Abe Media`;
+}
+
+// Transform JSON page to normalized SeoPage format
+function transformJsonPage(jsonPage: SeoPageJson): SeoPage {
+  return {
+    slug: jsonPage.slug,
+    title: jsonPage.title,
+    metaTitle: generateMetaTitle(jsonPage),
+    metaDescription: jsonPage.description,
+    description: jsonPage.description,
+    keywords: jsonPage.keywords,
+    category: jsonPage.category,
+    author: jsonPage.author,
+    excerpt: generateExcerpt(jsonPage),
+    content: jsonPage.content,
+    relatedSlugs: jsonPage.relatedPages || [],
+    publishedDate: jsonPage.publishedDate,
+    updatedDate: jsonPage.publishedDate, // Use publishedDate as default
+    readTime: calculateReadTime(jsonPage.content),
+    featured: false,
+    image: jsonPage.image,
+    cta: jsonPage.cta,
+    schema: jsonPage.schema,
+  };
+}
+
+// Load and transform all pages from JSON files
+function loadAllPages(): SeoPage[] {
+  const allJsonPages: SeoPageJson[] = [
+    ...(seoPagesBatch1.pages as SeoPageJson[]),
+    ...(seoPagesBatch2.pages as SeoPageJson[]),
+  ];
+  return allJsonPages.map(transformJsonPage);
+}
+
+// All SEO pages combined
+export const allSeoPages: SeoPage[] = loadAllPages();
+
+// Export categories
+export { categories };
 
 // Helper function to get page by slug
 export function getPageBySlug(slug: string): SeoPage | undefined {
@@ -84,4 +123,3 @@ export function searchPages(query: string): SeoPage[] {
 
 // Export total page count
 export const totalPageCount = allSeoPages.length;
-

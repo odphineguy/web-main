@@ -7,7 +7,7 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-// Generate static paths for all 200 pages
+// Generate static paths for all SEO pages
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({
     slug,
@@ -25,27 +25,43 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  // Use image from JSON if available
+  const imageUrl = page.image?.url 
+    ? (page.image.url.startsWith('http') ? page.image.url : `https://abemedia.online${page.image.url}`)
+    : undefined;
+
   return {
     title: page.metaTitle,
     description: page.metaDescription,
     keywords: page.keywords,
-    authors: [{ name: "Abe Media" }],
+    authors: [{ name: page.author || "Abe Media" }],
     openGraph: {
       title: page.metaTitle,
       description: page.metaDescription,
       type: "article",
       publishedTime: page.publishedDate,
       modifiedTime: page.updatedDate,
-      authors: ["Abe Media"],
+      authors: [page.author || "Abe Media"],
       tags: page.keywords,
       siteName: "Abe Media",
       locale: "en_US",
       url: `https://abemedia.online/resources/${page.slug}`,
+      ...(imageUrl && {
+        images: [
+          {
+            url: imageUrl,
+            width: page.image?.width || 1200,
+            height: page.image?.height || 630,
+            alt: page.image?.alt || page.title,
+          },
+        ],
+      }),
     },
     twitter: {
       card: "summary_large_image",
       title: page.metaTitle,
       description: page.metaDescription,
+      ...(imageUrl && { images: [imageUrl] }),
     },
     alternates: {
       canonical: `https://abemedia.online/resources/${page.slug}`,
@@ -61,8 +77,8 @@ export default async function ResourcePage({ params }: PageProps) {
     notFound();
   }
 
-  // Article structured data for SEO
-  const articleSchema = {
+  // Use pre-built schema from JSON if available, otherwise generate
+  const articleSchema = page.schema || {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: page.title,
@@ -71,7 +87,7 @@ export default async function ResourcePage({ params }: PageProps) {
     dateModified: page.updatedDate,
     author: {
       "@type": "Organization",
-      name: "Abe Media",
+      name: page.author || "Abe Media",
       url: "https://abemedia.online",
     },
     publisher: {
@@ -90,6 +106,9 @@ export default async function ResourcePage({ params }: PageProps) {
     keywords: page.keywords.join(", "),
     articleSection: page.category,
     inLanguage: "en-US",
+    ...(page.image && {
+      image: page.image.url.startsWith('http') ? page.image.url : `https://abemedia.online${page.image.url}`,
+    }),
   };
 
   // Breadcrumb structured data
@@ -156,4 +175,3 @@ export default async function ResourcePage({ params }: PageProps) {
     </>
   );
 }
-

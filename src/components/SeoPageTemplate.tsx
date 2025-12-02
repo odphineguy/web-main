@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { SeoPage, getRelatedPages } from "@/lib/seoPages";
 import { 
   Calendar, 
@@ -14,7 +15,8 @@ import {
   MessageCircle,
   Globe,
   Building,
-  Trophy
+  Trophy,
+  User
 } from "lucide-react";
 
 interface SeoPageTemplateProps {
@@ -45,6 +47,11 @@ const categoryColors: Record<string, string> = {
 
 export default function SeoPageTemplate({ page }: SeoPageTemplateProps) {
   const relatedPages = getRelatedPages(page.slug);
+
+  // Use custom CTA from JSON or fallback to defaults
+  const ctaText = page.cta?.text || "Ready to Get Started?";
+  const ctaButtonText = page.cta?.buttonText || "Contact Us";
+  const ctaLink = page.cta?.link || "/contact";
 
   return (
     <article className="min-h-screen bg-gradient-to-b from-neutral-50 to-white dark:from-neutral-950 dark:to-neutral-900">
@@ -89,6 +96,12 @@ export default function SeoPageTemplate({ page }: SeoPageTemplateProps) {
 
           {/* Meta Info */}
           <div className="flex flex-wrap items-center gap-4 text-sm text-neutral-600 dark:text-neutral-400">
+            {page.author && (
+              <div className="flex items-center gap-1.5">
+                <User className="w-4 h-4" />
+                {page.author}
+              </div>
+            )}
             <div className="flex items-center gap-1.5">
               <Calendar className="w-4 h-4" />
               <time dateTime={page.publishedDate}>
@@ -111,6 +124,22 @@ export default function SeoPageTemplate({ page }: SeoPageTemplateProps) {
           </p>
         </div>
       </header>
+
+      {/* Featured Image */}
+      {page.image && (
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 mb-10">
+          <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-800">
+            <Image
+              src={page.image.url}
+              alt={page.image.alt}
+              fill
+              className="object-cover"
+              priority
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 896px"
+            />
+          </div>
+        </div>
+      )}
 
       {/* Main Content */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 pb-16">
@@ -194,20 +223,20 @@ export default function SeoPageTemplate({ page }: SeoPageTemplateProps) {
           </div>
         )}
 
-        {/* CTA Section */}
+        {/* CTA Section - Uses custom CTA from JSON or defaults */}
         <div className="mt-16 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 sm:p-12 text-center">
           <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
-            Ready to Get Started?
+            {ctaText}
           </h3>
           <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
             Let us help you implement {page.category.toLowerCase()} strategies that drive results for your business.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/contact"
+              href={ctaLink}
               className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-white text-blue-600 font-semibold hover:bg-blue-50 transition-colors"
             >
-              Contact Us
+              {ctaButtonText}
             </Link>
             <Link
               href="/get-started"
@@ -221,4 +250,3 @@ export default function SeoPageTemplate({ page }: SeoPageTemplateProps) {
     </article>
   );
 }
-

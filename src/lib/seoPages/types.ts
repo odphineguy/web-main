@@ -8,27 +8,64 @@ export type PageCategory =
   | "Industry Solutions"
   | "Case Studies";
 
+export interface SeoPageImage {
+  url: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
+export interface SeoPageCta {
+  text: string;
+  buttonText: string;
+  link: string;
+}
+
+export interface SeoPageContent {
+  intro: string;
+  sections: {
+    heading: string;
+    content: string;
+  }[];
+  conclusion: string;
+}
+
+// JSON format from the SEO pages batch files
+export interface SeoPageJson {
+  slug: string;
+  title: string;
+  description: string;
+  keywords: string[];
+  author: string;
+  publishedDate: string;
+  category: PageCategory;
+  image: SeoPageImage;
+  content: SeoPageContent;
+  schema: Record<string, unknown>;
+  relatedPages: string[];
+  cta: SeoPageCta;
+}
+
+// Normalized format used in the application (with computed fields)
 export interface SeoPage {
   slug: string;
   title: string;
   metaTitle: string;
   metaDescription: string;
+  description: string;
   keywords: string[];
   category: PageCategory;
+  author: string;
   excerpt: string;
-  content: {
-    intro: string;
-    sections: {
-      heading: string;
-      content: string;
-    }[];
-    conclusion: string;
-  };
+  content: SeoPageContent;
   relatedSlugs: string[];
   publishedDate: string;
   updatedDate: string;
   readTime: string;
   featured?: boolean;
+  image?: SeoPageImage;
+  cta?: SeoPageCta;
+  schema?: Record<string, unknown>;
 }
 
 export interface CategoryInfo {
@@ -97,4 +134,3 @@ export const categories: CategoryInfo[] = [
     color: "yellow",
   },
 ];
-
