@@ -24,6 +24,7 @@ import {
   Sparkles,
   X
 } from "lucide-react";
+import SlidingHighlightGrid from "@/components/SlidingHighlightGrid";
 
 const categoryIcons: Record<string, React.ReactNode> = {
   "Bilingual Advertising": <Megaphone className="w-5 h-5" />,
@@ -214,14 +215,14 @@ export default function ResourcesPage() {
               <Trophy className="w-6 h-6 text-orange-500" />
               Featured Resources
             </h2>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <SlidingHighlightGrid className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {featuredPages.map((page) => {
                 const colors = categoryColors[page.category];
                 return (
                   <Link
                     key={page.slug}
                     href={`/resources/${page.slug}`}
-                    className={`group relative block p-6 rounded-2xl border-2 ${colors.border} ${colors.hover} ${colors.bg} transition-all duration-200 hover:shadow-xl`}
+                    className={`group relative block p-6 rounded-2xl border-2 ${colors.border} bg-white dark:bg-neutral-800/50 transition-all duration-200`}
                   >
                     <div className="absolute top-4 right-4">
                       <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-orange-500 text-white dark:bg-orange-600">
@@ -245,7 +246,7 @@ export default function ResourcesPage() {
                   </Link>
                 );
               })}
-            </div>
+            </SlidingHighlightGrid>
           </section>
         )}
 
@@ -253,14 +254,14 @@ export default function ResourcesPage() {
         {selectedCategory || searchQuery ? (
           // Filtered Results Grid
           <section>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <SlidingHighlightGrid className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {filteredPages.map((page) => {
                 const colors = categoryColors[page.category];
                 return (
                   <Link
                     key={page.slug}
                     href={`/resources/${page.slug}`}
-                    className={`group block p-5 rounded-xl border ${colors.border} ${colors.hover} bg-white dark:bg-neutral-800/50 transition-all duration-200 hover:shadow-lg`}
+                    className={`group block p-5 rounded-xl border ${colors.border} bg-white dark:bg-neutral-800/50 transition-all duration-200`}
                   >
                     <div className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-xs font-medium ${colors.bg} ${colors.text} mb-3`}>
                       {categoryIcons[page.category]}
@@ -275,7 +276,7 @@ export default function ResourcesPage() {
                   </Link>
                 );
               })}
-            </div>
+            </SlidingHighlightGrid>
 
             {filteredPages.length === 0 && (
               <div className="text-center py-20">
@@ -323,12 +324,12 @@ export default function ResourcesPage() {
                   </button>
                 </div>
 
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <SlidingHighlightGrid className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                   {categoryPages.map((page) => (
                     <Link
                       key={page.slug}
                       href={`/resources/${page.slug}`}
-                      className={`group block p-5 rounded-xl border ${colors.border} ${colors.hover} bg-white dark:bg-neutral-800/50 transition-all duration-200 hover:shadow-lg`}
+                      className={`group block p-5 rounded-xl border ${colors.border} bg-white dark:bg-neutral-800/50 transition-all duration-200`}
                     >
                       <h3 className="font-semibold text-neutral-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors line-clamp-2 mb-2">
                         {page.title}
@@ -341,7 +342,7 @@ export default function ResourcesPage() {
                       </div>
                     </Link>
                   ))}
-                </div>
+                </SlidingHighlightGrid>
               </section>
             );
           })
