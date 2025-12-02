@@ -2,52 +2,22 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { SeoPage, getRelatedPages } from "@/lib/seoPages";
+import { BlogPage, getRelatedBlogPages } from "@/lib/blogPages";
 import { 
   Calendar, 
   Clock, 
   ArrowLeft, 
   ChevronRight,
-  Megaphone,
-  Users,
-  Brain,
-  Bot,
-  MessageCircle,
-  Globe,
-  Building,
-  Trophy,
-  User
+  User,
+  Tag
 } from "lucide-react";
 
-interface SeoPageTemplateProps {
-  page: SeoPage;
+interface BlogPageTemplateProps {
+  page: BlogPage;
 }
 
-const categoryIcons: Record<string, React.ReactNode> = {
-  "Bilingual Advertising": <Megaphone className="w-5 h-5" />,
-  "Hispanic Market": <Users className="w-5 h-5" />,
-  "AI Marketing": <Brain className="w-5 h-5" />,
-  "Chatbot Development": <Bot className="w-5 h-5" />,
-  "Bilingual Chatbots": <MessageCircle className="w-5 h-5" />,
-  "Spanish Marketing": <Globe className="w-5 h-5" />,
-  "Industry Solutions": <Building className="w-5 h-5" />,
-  "Case Studies": <Trophy className="w-5 h-5" />,
-};
-
-// All categories use brand colors: orange, black, white, and gray only
-const categoryColors: Record<string, string> = {
-  "Bilingual Advertising": "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300",
-  "Hispanic Market": "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300",
-  "AI Marketing": "bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300",
-  "Chatbot Development": "bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300",
-  "Bilingual Chatbots": "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300",
-  "Spanish Marketing": "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300",
-  "Industry Solutions": "bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300",
-  "Case Studies": "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300",
-};
-
-export default function SeoPageTemplate({ page }: SeoPageTemplateProps) {
-  const relatedPages = getRelatedPages(page.slug);
+export default function BlogPageTemplate({ page }: BlogPageTemplateProps) {
+  const relatedPages = getRelatedBlogPages(page.slug);
 
   // Use custom CTA from JSON or fallback to defaults
   const ctaText = page.cta?.text || "Ready to Get Started?";
@@ -61,14 +31,14 @@ export default function SeoPageTemplate({ page }: SeoPageTemplateProps) {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3">
           <nav className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
             <Link 
-              href="/resources" 
-              className="hover:text-neutral-900 dark:hover:text-white transition-colors flex items-center gap-1"
+              href="/blog" 
+              className="hover:text-orange-500 transition-colors flex items-center gap-1"
             >
               <ArrowLeft className="w-4 h-4" />
-              Resources
+              Blog
             </Link>
             <ChevronRight className="w-4 h-4" />
-            <span className="text-neutral-400 dark:text-neutral-500">{page.category}</span>
+            <span className="text-neutral-400 dark:text-neutral-500 truncate">{page.category}</span>
           </nav>
         </div>
       </div>
@@ -76,18 +46,12 @@ export default function SeoPageTemplate({ page }: SeoPageTemplateProps) {
       {/* Hero Section */}
       <header className="pt-12 pb-8 sm:pt-16 sm:pb-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          {/* Category Badge */}
+          {/* Category Badge - Brand colors only */}
           <div className="flex items-center gap-2 mb-6">
-            <span className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium ${categoryColors[page.category]}`}>
-              {categoryIcons[page.category]}
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300">
+              <Tag className="w-4 h-4" />
               {page.category}
             </span>
-            {page.featured && (
-              <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-medium bg-orange-500 text-white dark:bg-orange-600 dark:text-white">
-                <Trophy className="w-4 h-4" />
-                Featured
-              </span>
-            )}
           </div>
 
           {/* Title */}
@@ -145,18 +109,18 @@ export default function SeoPageTemplate({ page }: SeoPageTemplateProps) {
       {/* Main Content */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 pb-16">
         <div className="prose prose-lg dark:prose-invert max-w-none">
-          {/* Introduction */}
+          {/* Introduction - Brand colors */}
           <div className="bg-gradient-to-r from-neutral-100 to-neutral-50 dark:from-neutral-800 dark:to-neutral-900 rounded-2xl p-6 sm:p-8 mb-10 border border-neutral-200 dark:border-neutral-700">
             <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed m-0 text-lg">
               {page.content.intro}
             </p>
           </div>
 
-          {/* Content Sections */}
+          {/* Content Sections - Orange accent colors */}
           {page.content.sections.map((section, index) => (
             <section key={index} className="mb-10">
               <h2 className="text-2xl sm:text-3xl font-bold text-neutral-900 dark:text-white mb-4 flex items-center gap-3">
-                <span className="flex-shrink-0 w-10 h-10 rounded-xl bg-orange-500 text-white flex items-center justify-center text-lg font-bold">
+                <span className="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 text-white flex items-center justify-center text-lg font-bold">
                   {index + 1}
                 </span>
                 {section.heading}
@@ -167,8 +131,8 @@ export default function SeoPageTemplate({ page }: SeoPageTemplateProps) {
             </section>
           ))}
 
-          {/* Conclusion */}
-          <div className="bg-gradient-to-r from-orange-50 to-orange-100/50 dark:from-neutral-800 dark:to-neutral-900 rounded-2xl p-6 sm:p-8 mt-12 border border-orange-200 dark:border-neutral-700">
+          {/* Conclusion - Orange accent */}
+          <div className="bg-gradient-to-r from-orange-50 to-amber-50 dark:from-orange-950/50 dark:to-amber-950/50 rounded-2xl p-6 sm:p-8 mt-12 border border-orange-100 dark:border-orange-900">
             <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-3">
               Key Takeaway
             </h3>
@@ -178,7 +142,7 @@ export default function SeoPageTemplate({ page }: SeoPageTemplateProps) {
           </div>
         </div>
 
-        {/* Keywords/Tags */}
+        {/* Keywords/Tags - Brand colors */}
         <div className="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-800">
           <h4 className="text-sm font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider mb-4">
             Related Topics
@@ -187,7 +151,7 @@ export default function SeoPageTemplate({ page }: SeoPageTemplateProps) {
             {page.keywords.map((keyword) => (
               <span
                 key={keyword}
-                className="px-3 py-1.5 rounded-full text-sm bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300"
+                className="px-3 py-1.5 rounded-full text-sm bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 hover:bg-orange-100 hover:text-orange-700 dark:hover:bg-orange-900/30 dark:hover:text-orange-300 transition-colors"
               >
                 {keyword}
               </span>
@@ -195,7 +159,7 @@ export default function SeoPageTemplate({ page }: SeoPageTemplateProps) {
           </div>
         </div>
 
-        {/* Related Articles */}
+        {/* Related Articles - Brand colors */}
         {relatedPages.length > 0 && (
           <div className="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-800">
             <h4 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
@@ -205,11 +169,11 @@ export default function SeoPageTemplate({ page }: SeoPageTemplateProps) {
               {relatedPages.map((relatedPage) => (
                 <Link
                   key={relatedPage.slug}
-                  href={`/resources/${relatedPage.slug}`}
+                  href={`/blog/${relatedPage.slug}`}
                   className="group block p-5 rounded-xl bg-white dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 hover:border-orange-300 dark:hover:border-orange-700 hover:shadow-lg transition-all duration-200"
                 >
-                  <span className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-xs font-medium ${categoryColors[relatedPage.category]} mb-3`}>
-                    {categoryIcons[relatedPage.category]}
+                  <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-xs font-medium bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300 mb-3">
+                    <Tag className="w-3 h-3" />
                     {relatedPage.category}
                   </span>
                   <h5 className="font-semibold text-neutral-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors line-clamp-2">
@@ -224,18 +188,18 @@ export default function SeoPageTemplate({ page }: SeoPageTemplateProps) {
           </div>
         )}
 
-        {/* CTA Section - Uses custom CTA from JSON or defaults */}
-        <div className="mt-16 bg-gradient-to-r from-neutral-900 to-neutral-800 dark:from-neutral-800 dark:to-neutral-900 rounded-2xl p-8 sm:p-12 text-center border border-neutral-700">
+        {/* CTA Section - Orange gradient */}
+        <div className="mt-16 bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl p-8 sm:p-12 text-center">
           <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
             {ctaText}
           </h3>
-          <p className="text-neutral-300 mb-8 max-w-2xl mx-auto">
-            Let us help you implement {page.category.toLowerCase()} strategies that drive results for your business.
+          <p className="text-orange-100 mb-8 max-w-2xl mx-auto">
+            Let us help you with your {page.category.toLowerCase()} project. Our team of experts is ready to bring your vision to life.
           </p>
           <div className="flex justify-center">
             <Link
               href={ctaLink}
-              className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-orange-500 text-white font-semibold hover:bg-orange-600 transition-colors"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-white text-orange-600 font-semibold hover:bg-orange-50 transition-colors"
             >
               {ctaButtonText}
             </Link>
@@ -245,3 +209,4 @@ export default function SeoPageTemplate({ page }: SeoPageTemplateProps) {
     </article>
   );
 }
+

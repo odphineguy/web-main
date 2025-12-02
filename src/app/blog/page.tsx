@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -26,62 +27,68 @@ export const metadata: Metadata = {
 const blogPosts = [
   {
     id: 1,
-    title: "The Future of Web Development: Trends to Watch in 2025",
+    slug: "web-development-trends-2026",
+    title: "The Future of Web Development: Trends to Watch in 2026",
     excerpt: "Explore the latest trends shaping the web development landscape, from AI integration to performance optimization.",
     category: "Web Development",
-    date: "2025-01-15",
+    date: "2025-12-02",
     readTime: "5 min read",
-    image: "/images/portfolio/smart-website.png",
+    image: "/images/blog/web-development-trends-2026.png",
     featured: true
   },
   {
     id: 2,
+    slug: "react-native-mobile-apps",
     title: "Building Responsive Mobile Apps with React Native",
     excerpt: "Learn best practices for creating cross-platform mobile applications that work seamlessly on both iOS and Android.",
     category: "Mobile Development",
-    date: "2025-01-10",
+    date: "2025-11-28",
     readTime: "7 min read",
-    image: "/images/portfolio/agua-app-carousel.png",
+    image: "/images/blog/react-native-mobile-apps.png",
     featured: false
   },
   {
     id: 3,
+    slug: "ui-ux-design-principles",
     title: "UI/UX Design Principles for Modern Web Applications",
     excerpt: "Discover essential design principles that create engaging and user-friendly web experiences.",
     category: "Design",
-    date: "2025-01-05",
+    date: "2025-11-20",
     readTime: "6 min read",
-    image: "/images/portfolio/green-website.png",
+    image: "/images/blog/ui-ux-design-principles.png",
     featured: false
   },
   {
     id: 4,
+    slug: "website-performance-optimization",
     title: "Optimizing Website Performance: A Complete Guide",
     excerpt: "Learn how to improve your website's loading speed and overall performance for better user experience.",
     category: "Performance",
-    date: "2024-12-28",
+    date: "2025-11-15",
     readTime: "8 min read",
-    image: "/images/portfolio/solar-website.png",
+    image: "/images/blog/website-performance-optimization.png",
     featured: false
   },
   {
     id: 5,
+    slug: "web-accessibility-guide",
     title: "The Importance of Accessibility in Web Design",
     excerpt: "Understanding web accessibility standards and how to implement them in your projects.",
     category: "Accessibility",
-    date: "2024-12-20",
+    date: "2025-11-10",
     readTime: "4 min read",
-    image: "/images/portfolio/barbershop-website.png",
+    image: "/images/blog/web-accessibility-guide.png",
     featured: false
   },
   {
     id: 6,
+    slug: "nextjs-14-getting-started",
     title: "Getting Started with Next.js 14: New Features and Improvements",
     excerpt: "Explore the latest features in Next.js 14 and how they can improve your development workflow.",
     category: "Web Development",
-    date: "2024-12-15",
+    date: "2025-11-05",
     readTime: "6 min read",
-    image: "/images/portfolio/yummy-website.png",
+    image: "/images/blog/nextjs-14-getting-started.png",
     featured: false
   }
 ];
@@ -132,44 +139,46 @@ export default function Blog() {
         <section className="py-12 px-6">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-2xl font-bold mb-8 text-center">Featured Post</h2>
-            <Card className="overflow-hidden group hover:shadow-lg transition-shadow duration-300">
-              <div className="grid grid-cols-1 lg:grid-cols-2">
-                <div className="relative h-64 lg:h-auto">
-                  <Image 
-                    src={featuredPost.image} 
-                    alt={featuredPost.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
-                <CardContent className="p-8 flex flex-col justify-center">
-                  <Badge variant="secondary" className="w-fit mb-4">
-                    {featuredPost.category}
-                  </Badge>
-                  <CardTitle className="text-2xl mb-4 group-hover:text-primary transition-colors">
-                    {featuredPost.title}
-                  </CardTitle>
-                  <CardDescription className="text-base mb-6">
-                    {featuredPost.excerpt}
-                  </CardDescription>
-                  <div className="flex items-center gap-4 text-sm text-muted-foreground mb-6">
-                    <div className="flex items-center gap-1">
-                      <Calendar className="h-4 w-4" />
-                      {new Date(featuredPost.date).toLocaleDateString()}
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Clock className="h-4 w-4" />
-                      {featuredPost.readTime}
-                    </div>
+            <Link href={`/blog/${featuredPost.slug}`}>
+              <Card className="overflow-hidden group hover:shadow-lg transition-shadow duration-300">
+                <div className="grid grid-cols-1 lg:grid-cols-2">
+                  <div className="relative h-64 lg:h-auto">
+                    <Image 
+                      src={featuredPost.image} 
+                      alt={featuredPost.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
                   </div>
-                  <Button className="w-fit group bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
-                    Read More
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </CardContent>
-              </div>
-            </Card>
+                  <CardContent className="p-8 flex flex-col justify-center">
+                    <Badge variant="secondary" className="w-fit mb-4">
+                      {featuredPost.category}
+                    </Badge>
+                    <CardTitle className="text-2xl mb-4 group-hover:text-orange-500 transition-colors">
+                      {featuredPost.title}
+                    </CardTitle>
+                    <CardDescription className="text-base mb-6">
+                      {featuredPost.excerpt}
+                    </CardDescription>
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground mb-6">
+                      <div className="flex items-center gap-1">
+                        <Calendar className="h-4 w-4" />
+                        {new Date(featuredPost.date).toLocaleDateString()}
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Clock className="h-4 w-4" />
+                        {featuredPost.readTime}
+                      </div>
+                    </div>
+                    <Button className="w-fit group bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
+                      Read More
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </CardContent>
+                </div>
+              </Card>
+            </Link>
           </div>
         </section>
       )}
@@ -180,42 +189,44 @@ export default function Blog() {
           <h2 className="text-2xl font-bold mb-8">Latest Posts</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {regularPosts.map((post) => (
-              <Card key={post.id} className="group hover:shadow-lg transition-shadow duration-300 overflow-hidden">
-                <div className="relative h-48">
-                  <Image 
-                    src={post.image} 
-                    alt={post.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <Badge variant="outline" className="mb-3">
-                    {post.category}
-                  </Badge>
-                  <CardTitle className="text-lg mb-3 group-hover:text-primary transition-colors line-clamp-2">
-                    {post.title}
-                  </CardTitle>
-                  <CardDescription className="mb-4 line-clamp-3">
-                    {post.excerpt}
-                  </CardDescription>
-                  <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
-                    <div className="flex items-center gap-1">
-                      <Calendar className="h-4 w-4" />
-                      {new Date(post.date).toLocaleDateString()}
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Clock className="h-4 w-4" />
-                      {post.readTime}
-                    </div>
+              <Link key={post.id} href={`/blog/${post.slug}`}>
+                <Card className="group hover:shadow-lg transition-shadow duration-300 overflow-hidden h-full">
+                  <div className="relative h-48">
+                    <Image 
+                      src={post.image} 
+                      alt={post.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
                   </div>
-                  <Button variant="ghost" className="p-0 h-auto group">
-                    Read More
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </CardContent>
-              </Card>
+                  <CardContent className="p-6">
+                    <Badge variant="outline" className="mb-3">
+                      {post.category}
+                    </Badge>
+                    <CardTitle className="text-lg mb-3 group-hover:text-orange-500 transition-colors line-clamp-2">
+                      {post.title}
+                    </CardTitle>
+                    <CardDescription className="mb-4 line-clamp-3">
+                      {post.excerpt}
+                    </CardDescription>
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
+                      <div className="flex items-center gap-1">
+                        <Calendar className="h-4 w-4" />
+                        {new Date(post.date).toLocaleDateString()}
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Clock className="h-4 w-4" />
+                        {post.readTime}
+                      </div>
+                    </div>
+                    <Button variant="ghost" className="p-0 h-auto group">
+                      Read More
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>
