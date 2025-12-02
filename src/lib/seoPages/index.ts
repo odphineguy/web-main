@@ -5,6 +5,7 @@ import { SeoPage, SeoPageJson, categories, CategoryInfo } from "./types";
 // Import JSON files
 import seoPagesBatch1 from "../../../seo-pages-batch-december-2025.json";
 import seoPagesBatch2 from "../../../seo-pages-batch-december-2025-part2.json";
+import seoPagesBatch3 from "../../../seo-pages-batch-december-2025-part3.json";
 
 // Helper to calculate read time based on content length
 function calculateReadTime(content: SeoPageJson["content"]): string {
@@ -64,6 +65,7 @@ function loadAllPages(): SeoPage[] {
   const allJsonPages: SeoPageJson[] = [
     ...(seoPagesBatch1.pages as SeoPageJson[]),
     ...(seoPagesBatch2.pages as SeoPageJson[]),
+    ...(seoPagesBatch3.pages as SeoPageJson[]),
   ];
   return allJsonPages.map(transformJsonPage);
 }
