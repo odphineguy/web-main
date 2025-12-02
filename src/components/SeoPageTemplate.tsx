@@ -126,11 +126,11 @@ export default function SeoPageTemplate({ page }: SeoPageTemplateProps) {
       </header>
 
       {/* Featured Image */}
-      {imageUrl && page.image && (
+      {page.image && (
         <div className="max-w-4xl mx-auto px-4 sm:px-6 mb-10">
           <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-800">
             <Image
-              src={imageUrl}
+              src={page.image.url}
               alt={page.image.alt}
               fill
               className="object-cover"
