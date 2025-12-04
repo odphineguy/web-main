@@ -170,6 +170,15 @@ const FloatingChatbot: React.FC = () => {
           <div className="border-t border-border">
             <ChatInput onSendMessage={handleSendMessage} onVoiceToggle={toggleRecording} isRecording={isRecording} isLoading={isLoading} />
           </div>
+
+          {/* Powered by abemedia */}
+          <div className="text-center py-2 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+            <p className="text-[10px] text-gray-400" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+              Powered by{' '}
+              <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, color: '#F97316' }}>abe</span>
+              <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 400 }} className="text-black dark:text-white">media</span>
+            </p>
+          </div>
         </div>
       )}
 
