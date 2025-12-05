@@ -1,9 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-11-17.clover',
-});
+// Lazy initialization - only create Stripe instance when needed (at runtime, not build time)
+function getStripe() {
+  const apiKey = process.env.STRIPE_SECRET_KEY;
+  if (!apiKey) {
+    throw new Error('STRIPE_SECRET_KEY is not configured');
+  }
+  return new Stripe(apiKey, {
+    apiVersion: '2025-11-17.clover',
+  });
+}
 
 // Define pricing plans with their details (flat one-time prices)
 const PRICING_PLANS = {
@@ -32,6 +39,7 @@ export async function POST(request: NextRequest) {
     }
 
     const plan = PRICING_PLANS[planId as keyof typeof PRICING_PLANS];
+    const stripe = getStripe();
 
     // Create a Stripe Checkout Session for one-time payment
     const session = await stripe.checkout.sessions.create({

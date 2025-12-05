@@ -93,18 +93,25 @@ export default function PortfolioPage() {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black">
-      <div className="px-6 pt-8 md:pt-12 pb-16 sm:px-10">
+    <div className="min-h-screen bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-950 relative overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-orange-600/10 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-500/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="relative z-10 px-6 pt-8 md:pt-12 pb-16 sm:px-10">
         <div className="max-w-6xl mx-auto text-center mb-12">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            The <span className="text-orange-500">Portfolio</span>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white">
+            The <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Portfolio</span>
           </h1>
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl mx-auto font-light">
+          <p className="text-lg md:text-xl text-neutral-400 mb-8 max-w-3xl mx-auto font-light">
             Explore our collection of innovative projects and creative solutions that showcase our expertise in design and development.
           </p>
           <Button 
             size="lg" 
-            className="text-lg px-8 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+            className="text-lg px-8 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300"
             onClick={() => setIsConsultationOpen(true)}
           >
             Book Consultation
@@ -114,8 +121,30 @@ export default function PortfolioPage() {
       </div>
       
       {/* Website Screenshots Section */}
-      <section className="py-16 px-6 bg-gray-50 dark:bg-neutral-950">
+      <section className="relative z-10 py-16 px-6">
         <WebsiteCarousel items={websiteItems} />
+      </section>
+
+      {/* Bottom CTA Section */}
+      <section className="relative z-10 px-6 pb-16">
+        <div className="max-w-2xl mx-auto mt-4 text-center">
+          <div className="rounded-2xl p-px bg-gradient-to-r from-white/10 via-white/5 to-white/10">
+            <div className="rounded-2xl p-8 lg:p-10 backdrop-blur-xl bg-neutral-900/50">
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                Like What You See?
+              </h2>
+              <p className="text-neutral-400 mb-6">
+                Let&apos;s create something amazing together. Book a consultation to discuss your project.
+              </p>
+              <button
+                onClick={() => setIsConsultationOpen(true)}
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-3.5 rounded-full font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40"
+              >
+                Start Your Project
+              </button>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Consultation Modal */}

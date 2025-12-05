@@ -139,21 +139,21 @@ export default function PricingPage() {
         </motion.div>
       )}
 
-      <div className="relative z-10 px-6 py-16 md:py-24">
+      <div className="relative z-10 px-6 pt-8 md:pt-12 pb-16">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-5xl mx-auto mb-16"
+          className="text-center max-w-6xl mx-auto mb-16"
         >
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 whitespace-nowrap">
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
             Flexible Plans for Your{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
               Digital Growth
             </span>
           </h1>
-          <p className="text-lg md:text-xl text-neutral-400 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-neutral-400 max-w-3xl mx-auto font-light">
             Transparent pricing for custom chatbots, web development, and marketing solutions.
           </p>
         </motion.div>

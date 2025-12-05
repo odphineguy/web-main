@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -9,11 +9,18 @@ import { useModeAnimation, ThemeAnimationType } from "react-theme-switch-animati
 import { Menu, X } from "lucide-react";
 
 export default function TopNavbar() {
+  const pathname = usePathname();
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   useEffect(() => setMounted(true), []);
   const isDark = (mounted ? resolvedTheme : undefined) === "dark";
+
+  // Check if a link is active
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  };
   const { scrollY } = useScroll();
 
   // Theme animation hook
@@ -58,11 +65,11 @@ export default function TopNavbar() {
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-5 md:gap-6 text-base ml-3 sm:ml-6 md:ml-10">
-          <Link href="/services" className="font-bold opacity-80 hover:opacity-100">Services</Link>
-          <Link href="/pricing" className="font-bold opacity-80 hover:opacity-100">Pricing</Link>
-          <Link href="/portfolio" className="font-bold opacity-80 hover:opacity-100">Portfolio</Link>
-          <Link href="/blog" className="font-bold opacity-80 hover:opacity-100">Blog</Link>
-          <Link href="/contact" className="font-bold opacity-80 hover:opacity-100">Contact</Link>
+          <Link href="/services" className={`font-bold transition-colors ${isActive("/services") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>Services</Link>
+          <Link href="/pricing" className={`font-bold transition-colors ${isActive("/pricing") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>Pricing</Link>
+          <Link href="/portfolio" className={`font-bold transition-colors ${isActive("/portfolio") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>Portfolio</Link>
+          <Link href="/blog" className={`font-bold transition-colors ${isActive("/blog") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>Blog</Link>
+          <Link href="/contact" className={`font-bold transition-colors ${isActive("/contact") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>Contact</Link>
           <button
             ref={themeRef}
             onClick={toggleSwitchTheme}
@@ -102,11 +109,11 @@ export default function TopNavbar() {
           className="md:hidden bg-white/95 dark:bg-neutral-900/95 backdrop-blur supports-[backdrop-filter]:bg-white/95 dark:supports-[backdrop-filter]:bg-neutral-900/95 border-t border-border"
         >
           <nav className="flex flex-col py-4 px-6 space-y-3">
-            <Link href="/services" className="text-gray-900 dark:text-white font-bold opacity-80 hover:opacity-100 py-2" onClick={() => setMobileMenuOpen(false)}>Services</Link>
-            <Link href="/pricing" className="text-gray-900 dark:text-white font-bold opacity-80 hover:opacity-100 py-2" onClick={() => setMobileMenuOpen(false)}>Pricing</Link>
-            <Link href="/portfolio" className="text-gray-900 dark:text-white font-bold opacity-80 hover:opacity-100 py-2" onClick={() => setMobileMenuOpen(false)}>Portfolio</Link>
-            <Link href="/blog" className="text-gray-900 dark:text-white font-bold opacity-80 hover:opacity-100 py-2" onClick={() => setMobileMenuOpen(false)}>Blog</Link>
-            <Link href="/contact" className="text-gray-900 dark:text-white font-bold opacity-80 hover:opacity-100 py-2" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
+            <Link href="/services" className={`font-bold py-2 transition-colors ${isActive("/services") ? "text-orange-500" : "text-gray-900 dark:text-white opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>Services</Link>
+            <Link href="/pricing" className={`font-bold py-2 transition-colors ${isActive("/pricing") ? "text-orange-500" : "text-gray-900 dark:text-white opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>Pricing</Link>
+            <Link href="/portfolio" className={`font-bold py-2 transition-colors ${isActive("/portfolio") ? "text-orange-500" : "text-gray-900 dark:text-white opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>Portfolio</Link>
+            <Link href="/blog" className={`font-bold py-2 transition-colors ${isActive("/blog") ? "text-orange-500" : "text-gray-900 dark:text-white opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>Blog</Link>
+            <Link href="/contact" className={`font-bold py-2 transition-colors ${isActive("/contact") ? "text-orange-500" : "text-gray-900 dark:text-white opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>Contact</Link>
           </nav>
         </motion.div>
       )}

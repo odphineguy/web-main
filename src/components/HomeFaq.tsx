@@ -8,17 +8,52 @@ const faqs = [
   {
     id: "q1",
     question: "Do I need to know tech?",
-    answer: "No. We make it simple — we guide you the whole way.",
+    answer: "Not at all. We handle all the technical stuff — from design to development to launch. We guide you through every step and explain things in plain language. You focus on your business, we handle the tech.",
   },
   {
     id: "q2",
     question: "Can we start small?",
-    answer: "Yes. We customize everything — we can start with just a website or just ads.",
+    answer: "Absolutely. We offer flexible packages starting at $1,500 for a custom AI chatbot. You can start with just a website, just a chatbot, or combine services as your business grows. No pressure to buy everything at once.",
   },
   {
     id: "q3",
     question: "What if I'm not happy?",
-    answer: "Satisfaction guaranteed — if it's not right, we fix it.",
+    answer: "Satisfaction guaranteed — if something isn't right, we fix it. We believe in building long-term relationships, not one-time transactions. Your success is our success.",
+  },
+  {
+    id: "q4",
+    question: "Do you offer bilingual websites and chatbots?",
+    answer: "Yes! Bilingual (English & Spanish) support is one of our specialties. We build websites, chatbots, and marketing materials that speak to both English and Spanish-speaking audiences — helping you reach more customers.",
+  },
+  {
+    id: "q5",
+    question: "How long does it take to build a website?",
+    answer: "Most projects launch within 2-4 weeks depending on complexity. A simple website can be ready in as little as 1-2 weeks, while larger projects with custom features may take 4-6 weeks. We'll give you a clear timeline during our consultation.",
+  },
+  {
+    id: "q6",
+    question: "What's included in your AI chatbot?",
+    answer: "Our chatbots include custom training on your business, 24/7 automated lead capture, email integration, and basic analytics. They can answer FAQs, book appointments, and qualify leads — all in English and Spanish if needed.",
+  },
+  {
+    id: "q7",
+    question: "Do you provide ongoing support and maintenance?",
+    answer: "Yes. We offer ongoing support packages to keep your website and chatbots running smoothly. This includes updates, security patches, content changes, and performance monitoring. We're here for the long haul.",
+  },
+  {
+    id: "q8",
+    question: "What industries do you work with?",
+    answer: "We work with small businesses across many industries — restaurants, barbershops, law firms, real estate, healthcare, retail, and more. If you serve customers and want to look professional online, we can help.",
+  },
+  {
+    id: "q9",
+    question: "How much does a website cost?",
+    answer: "Our Professional Web & App package starts at $3,500, which includes custom design, SEO optimization, a content management system, and priority support. For simpler needs, we can discuss custom pricing during your free consultation.",
+  },
+  {
+    id: "q10",
+    question: "How do I get started?",
+    answer: "Easy! Book a free 30-minute strategy call with us. We'll discuss your goals, answer your questions, and create a custom plan for your business. No commitment required — just a friendly conversation about how we can help.",
   },
 ];
 

@@ -12,7 +12,6 @@ import {
   ArrowRight, 
   Search, 
   X, 
-  Sparkles,
   Code,
   Smartphone,
   Palette,
@@ -64,27 +63,6 @@ const getIcon = (category: string): React.ReactNode => {
   return categoryIcons[category as BlogCategory] || <Tag className="w-4 h-4" />;
 };
 
-// Category colors (brand colors: orange and neutral)
-const getCategoryColors = (category: string) => {
-  const orangeCategories = [
-    "Web Development", "Mobile Development", "Design", "Performance", "Accessibility",
-    "Bilingual Advertising", "Hispanic Market", "Bilingual Chatbots", "Spanish Marketing", "Case Studies"
-  ];
-  
-  if (orangeCategories.includes(category)) {
-    return {
-      bg: "bg-orange-50 dark:bg-orange-950/30",
-      text: "text-orange-700 dark:text-orange-300",
-      border: "border-orange-200 dark:border-orange-800"
-    };
-  }
-  return {
-    bg: "bg-neutral-100 dark:bg-neutral-800",
-    text: "text-neutral-700 dark:text-neutral-300",
-    border: "border-neutral-200 dark:border-neutral-700"
-  };
-};
-
 export default function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -132,19 +110,22 @@ export default function BlogPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-neutral-50 to-white dark:from-neutral-950 dark:to-neutral-900">
+    <div className="min-h-screen bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-950 relative overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-orange-600/10 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-500/5 rounded-full blur-3xl" />
+      </div>
+
       {/* Hero Section */}
-      <section className="pt-20 pb-12 sm:pt-28 sm:pb-16 border-b border-neutral-200 dark:border-neutral-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 text-sm font-medium mb-6">
-              <Sparkles className="w-4 h-4" />
-              {totalBlogPageCount} Articles & Resources
-            </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-neutral-900 dark:text-white mb-6">
-              Our <span className="text-orange-500">Blog</span>
+      <section className="relative z-10 pt-8 md:pt-12 pb-12 border-b border-neutral-800">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="text-center">
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+              Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Blog</span>
             </h1>
-            <p className="text-lg sm:text-xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-neutral-400 max-w-3xl mx-auto font-light">
               Insights, tutorials, and resources on web development, design, AI marketing, bilingual advertising, and digital innovation for your business.
             </p>
           </div>
@@ -158,12 +139,12 @@ export default function BlogPage() {
                 placeholder="Search articles and resources..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 rounded-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
+                className="w-full pl-12 pr-4 py-4 rounded-2xl border border-neutral-700 bg-neutral-800/50 backdrop-blur-sm text-white placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery("")}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-neutral-700 transition-colors"
                 >
                   <X className="w-4 h-4 text-neutral-400" />
                 </button>
@@ -174,31 +155,31 @@ export default function BlogPage() {
       </section>
 
       {/* Category Pills */}
-      <section className="py-6 border-b border-neutral-200 dark:border-neutral-800 sticky top-16 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-lg z-20">
+      <section className="relative z-10 py-6 border-b border-neutral-800 sticky top-16 bg-neutral-900/80 backdrop-blur-lg z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           {/* Left scroll button */}
           <button
             onClick={() => scrollCategories('left')}
-            className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-white dark:bg-neutral-800 shadow-md border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
+            className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-neutral-800 shadow-md border border-neutral-700 hover:bg-neutral-700 transition-colors"
             aria-label="Scroll left"
           >
-            <ChevronLeft className="w-4 h-4" />
+            <ChevronLeft className="w-4 h-4 text-white" />
           </button>
           
           {/* Right scroll button */}
           <button
             onClick={() => scrollCategories('right')}
-            className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-white dark:bg-neutral-800 shadow-md border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
+            className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-neutral-800 shadow-md border border-neutral-700 hover:bg-neutral-700 transition-colors"
             aria-label="Scroll right"
           >
-            <ChevronRight className="w-4 h-4" />
+            <ChevronRight className="w-4 h-4 text-white" />
           </button>
 
           {/* Left fade gradient */}
-          <div className="absolute left-8 sm:left-10 top-0 bottom-0 w-8 bg-gradient-to-r from-white/90 dark:from-neutral-900/90 to-transparent pointer-events-none z-10" />
+          <div className="absolute left-8 sm:left-10 top-0 bottom-0 w-8 bg-gradient-to-r from-neutral-900/90 to-transparent pointer-events-none z-10" />
           
           {/* Right fade gradient */}
-          <div className="absolute right-8 sm:right-10 top-0 bottom-0 w-8 bg-gradient-to-l from-white/90 dark:from-neutral-900/90 to-transparent pointer-events-none z-10" />
+          <div className="absolute right-8 sm:right-10 top-0 bottom-0 w-8 bg-gradient-to-l from-neutral-900/90 to-transparent pointer-events-none z-10" />
           
           <div 
             ref={scrollContainerRef}
@@ -208,8 +189,8 @@ export default function BlogPage() {
               onClick={() => setSelectedCategory(null)}
               className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all ${
                 selectedCategory === null
-                  ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-900"
-                  : "bg-neutral-100 text-neutral-700 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700"
+                  ? "bg-white text-neutral-900"
+                  : "bg-neutral-800 text-neutral-300 hover:bg-neutral-700"
               }`}
             >
               All ({totalBlogPageCount})
@@ -217,15 +198,14 @@ export default function BlogPage() {
             {blogCategories.map((category) => {
               const count = getBlogPagesByCategory(category.name).length;
               if (count === 0) return null; // Hide empty categories
-              const colors = getCategoryColors(category.name);
               return (
                 <button
                   key={category.slug}
                   onClick={() => setSelectedCategory(category.name)}
                   className={`flex-shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
                     selectedCategory === category.name
-                      ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-900"
-                      : `${colors.bg} ${colors.text}`
+                      ? "bg-white text-neutral-900"
+                      : "bg-neutral-800 text-neutral-300 hover:bg-neutral-700"
                   }`}
                 >
                   {getIcon(category.name)}
@@ -237,16 +217,16 @@ export default function BlogPage() {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-12">
         {/* Active Filters */}
         {(selectedCategory || searchQuery) && (
           <div className="flex items-center gap-4 mb-8">
-            <span className="text-sm text-neutral-500 dark:text-neutral-400">
+            <span className="text-sm text-neutral-400">
               Showing {filteredPosts.length} results
             </span>
             <button
               onClick={clearFilters}
-              className="text-sm text-orange-600 hover:text-orange-700 dark:text-orange-400 dark:hover:text-orange-300 font-medium"
+              className="text-sm text-orange-400 hover:text-orange-300 font-medium"
             >
               Clear filters
             </button>
@@ -256,7 +236,7 @@ export default function BlogPage() {
         {/* Featured Post - Only show when no filters */}
         {!selectedCategory && !searchQuery && featuredPost && (
           <section className="mb-16">
-            <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6 flex items-center gap-2">
+            <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
               <Trophy className="w-6 h-6 text-orange-500" />
               Featured Article
             </h2>
@@ -311,7 +291,7 @@ export default function BlogPage() {
         {/* Blog Posts Grid */}
         <section>
           {!selectedCategory && !searchQuery && (
-            <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-8">
+            <h2 className="text-2xl font-bold text-white mb-8">
               Latest Articles
             </h2>
           )}
@@ -320,12 +300,12 @@ export default function BlogPage() {
             <BlogCardsGrid posts={filteredPosts} />
           ) : (
             <div className="text-center py-20">
-              <p className="text-xl text-neutral-600 dark:text-neutral-400">
+              <p className="text-xl text-neutral-400">
                 No articles found matching your criteria.
               </p>
               <button
                 onClick={clearFilters}
-                className="mt-4 text-orange-600 hover:text-orange-700 dark:text-orange-400 font-medium"
+                className="mt-4 text-orange-400 hover:text-orange-300 font-medium"
               >
                 Clear filters and show all
               </button>
@@ -334,22 +314,28 @@ export default function BlogPage() {
         </section>
 
         {/* Newsletter CTA */}
-        <section className="mt-20 bg-gradient-to-r from-neutral-900 to-neutral-800 dark:from-neutral-800 dark:to-neutral-900 rounded-3xl p-8 sm:p-12 text-center border border-neutral-700">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Stay Updated
-          </h2>
-          <p className="text-neutral-300 mb-8 max-w-2xl mx-auto text-lg">
-            Subscribe to our newsletter for the latest insights, tutorials, and resources on web development and digital marketing.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-            <input 
-              type="email" 
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-xl border border-neutral-600 bg-neutral-800 text-white placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
-            />
-            <Button className="px-8 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-              Subscribe
-            </Button>
+        <section className="mt-20 pb-4">
+          <div className="max-w-2xl mx-auto text-center">
+            <div className="rounded-2xl p-px bg-gradient-to-r from-white/10 via-white/5 to-white/10">
+              <div className="rounded-2xl p-8 lg:p-10 backdrop-blur-xl bg-neutral-900/50">
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                  Stay Updated
+                </h2>
+                <p className="text-neutral-400 mb-6">
+                  Subscribe to our newsletter for the latest insights, tutorials, and resources on web development and digital marketing.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+                  <input 
+                    type="email" 
+                    placeholder="Enter your email"
+                    className="flex-1 px-4 py-3.5 rounded-full border border-neutral-700 bg-neutral-800/50 text-white placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  />
+                  <Button className="px-8 py-3.5 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300">
+                    Subscribe
+                  </Button>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </div>
