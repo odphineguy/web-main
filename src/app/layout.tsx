@@ -5,6 +5,7 @@ import Link from "next/link";
 import "./globals.css";
 import TopNavbar from "@/components/TopNavbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { ConvexClientProvider } from "@/components/ConvexClientProvider";
 import FloatingChatbot from "@/components/FloatingChatbot";
 import { Analytics } from "@vercel/analytics/react";
 import { Instagram, Facebook, Music2, Twitter } from "lucide-react";
@@ -160,37 +161,39 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
         <ThemeProvider>
-          <TopNavbar />
-          <main className="min-h-screen">{children}</main>
-          <footer className="border-t border-border py-6">
-            <div className="mx-auto max-w-6xl px-6 grid grid-cols-1 sm:grid-cols-3 items-center gap-4">
-              <div className="flex justify-center sm:justify-start">
-                <Link href="/" aria-label="Abe Media" className="inline-flex">
-                  <Image src="/images/portfolio/abemedia.black.svg" alt="Abe Media" width={140} height={28} className="block dark:hidden" />
-                  <Image src="/images/portfolio/abemedia.white.svg" alt="Abe Media" width={140} height={28} className="hidden dark:block" />
-                </Link>
+          <ConvexClientProvider>
+            <TopNavbar />
+            <main className="min-h-screen">{children}</main>
+            <footer className="border-t border-border py-6">
+              <div className="mx-auto max-w-6xl px-6 grid grid-cols-1 sm:grid-cols-3 items-center gap-4">
+                <div className="flex justify-center sm:justify-start">
+                  <Link href="/" aria-label="Abe Media" className="inline-flex">
+                    <Image src="/images/portfolio/abemedia.black.svg" alt="Abe Media" width={140} height={28} className="block dark:hidden" />
+                    <Image src="/images/portfolio/abemedia.white.svg" alt="Abe Media" width={140} height={28} className="hidden dark:block" />
+                  </Link>
+                </div>
+                <div className="text-center">
+                  <p className="text-xs text-neutral-600 dark:text-white/60">© 2025 AbeMedia, LLC. All rights reserved.</p>
+                </div>
+                <div className="flex justify-center sm:justify-end text-neutral-600 dark:text-white/70 gap-5">
+                  <a href="https://x.com/abe_vision" target="_blank" rel="noreferrer" aria-label="Twitter" className="transition-colors">
+                    <Twitter className="h-5 w-5" />
+                  </a>
+                  <a href="https://www.instagram.com/abevision_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noreferrer" aria-label="Instagram" className="transition-colors">
+                    <Instagram className="h-5 w-5" />
+                  </a>
+                  <a href="https://www.facebook.com/profile.php?id=100091085333551&sk=about" target="_blank" rel="noreferrer" aria-label="Facebook" className="transition-colors">
+                    <Facebook className="h-5 w-5" />
+                  </a>
+                  <a href="https://www.tiktok.com/@abevision_?is_from_webapp=1&sender_device=pc" target="_blank" rel="noreferrer" aria-label="TikTok" className="transition-colors">
+                    <Music2 className="h-5 w-5" />
+                  </a>
+                </div>
               </div>
-              <div className="text-center">
-                <p className="text-xs text-neutral-600 dark:text-white/60">© 2025 AbeMedia, LLC. All rights reserved.</p>
-              </div>
-              <div className="flex justify-center sm:justify-end text-neutral-600 dark:text-white/70 gap-5">
-                <a href="https://x.com/abe_vision" target="_blank" rel="noreferrer" aria-label="Twitter" className="transition-colors">
-                  <Twitter className="h-5 w-5" />
-                </a>
-                <a href="https://www.instagram.com/abevision_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noreferrer" aria-label="Instagram" className="transition-colors">
-                  <Instagram className="h-5 w-5" />
-                </a>
-                <a href="https://www.facebook.com/profile.php?id=100091085333551&sk=about" target="_blank" rel="noreferrer" aria-label="Facebook" className="transition-colors">
-                  <Facebook className="h-5 w-5" />
-                </a>
-                <a href="https://www.tiktok.com/@abevision_?is_from_webapp=1&sender_device=pc" target="_blank" rel="noreferrer" aria-label="TikTok" className="transition-colors">
-                  <Music2 className="h-5 w-5" />
-                </a>
-              </div>
-            </div>
-          </footer>
-          <FloatingChatbot />
-          <Analytics />
+            </footer>
+            <FloatingChatbot />
+            <Analytics />
+          </ConvexClientProvider>
         </ThemeProvider>
       </body>
     </html>

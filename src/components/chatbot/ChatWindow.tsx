@@ -18,35 +18,44 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, isLoading }) => {
   }, [messages, isLoading]);
 
   return (
-    <div className="flex-1 overflow-y-auto p-4 bg-white dark:bg-black min-h-0" style={{ maxHeight: '100%' }}>
-      <div className="text-center text-gray-500 dark:text-gray-400 text-sm mb-4">Chat started</div>
-      
+    <div className="flex-1 overflow-y-auto px-4 py-3 bg-gray-50 dark:bg-neutral-900 min-h-0" style={{ maxHeight: '100%' }}>
       {messages.map((message, index) => {
         const timestamp = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
         
         return (
-          <div key={index} className="mb-4">
+          <div key={index} className="mb-3">
             {message.role === 'user' ? (
               <div className="flex justify-end">
-                <div className="max-w-[70%]">
-                  <div className="bg-orange-500 text-white p-3 rounded-lg text-sm">
+                <div className="max-w-[80%]">
+                  <div className="bg-orange-500 text-white px-4 py-2.5 rounded-2xl rounded-br-md text-sm shadow-sm">
                     {message.image && (
                       <img
                         src={`data:${message.image.mimeType};base64,${message.image.data}`}
                         alt="Attached image"
-                        className="max-w-full max-h-32 object-contain rounded-md mb-2"
+                        className="max-w-full max-h-32 object-contain rounded-lg mb-2"
                       />
                     )}
                     <p className="whitespace-pre-wrap">{message.text}</p>
                   </div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400 text-right mt-1 px-2">
+                  <div className="text-[10px] text-gray-400 dark:text-gray-500 text-right mt-1 px-1">
                     {timestamp}
                   </div>
                 </div>
               </div>
+            ) : message.role === 'error' ? (
+              <div className="flex items-start gap-2">
+                <div className="w-7 h-7 rounded-full overflow-hidden bg-red-100 dark:bg-red-900/30 flex-shrink-0 flex items-center justify-center">
+                  <span className="text-red-500 text-xs">!</span>
+                </div>
+                <div className="flex-1">
+                  <div className="bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 px-4 py-2.5 rounded-2xl rounded-bl-md text-sm max-w-[85%] border border-red-100 dark:border-red-800">
+                    <p className="whitespace-pre-wrap">{message.text}</p>
+                  </div>
+                </div>
+              </div>
             ) : (
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full overflow-hidden bg-gray-200 flex-shrink-0 mt-1">
+              <div className="flex items-start gap-2">
+                <div className="w-7 h-7 rounded-full overflow-hidden bg-orange-100 dark:bg-orange-900/30 flex-shrink-0 ring-1 ring-orange-200 dark:ring-orange-800">
                   <img 
                     src="/images/ashlee-profile.png" 
                     alt="Ashlee" 
@@ -54,17 +63,15 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, isLoading }) => {
                   />
                 </div>
                 <div className="flex-1">
-                  <div className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Ashlee</div>
-                  <div className="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 p-3 rounded-lg text-sm max-w-[80%] relative">
-                    <div className="absolute -left-2 top-3 w-0 h-0 border-t-8 border-b-8 border-r-8 border-transparent border-r-gray-100 dark:border-r-gray-800"></div>
+                  <div className="bg-white dark:bg-neutral-800 text-gray-800 dark:text-gray-200 px-4 py-2.5 rounded-2xl rounded-bl-md text-sm max-w-[85%] shadow-sm border border-gray-100 dark:border-neutral-700">
                     {message.image && (
                       <img
                         src={`data:${message.image.mimeType};base64,${message.image.data}`}
                         alt="Generated image"
-                        className="max-w-full max-h-32 object-contain rounded-md mb-2"
+                        className="max-w-full max-h-32 object-contain rounded-lg mb-2"
                       />
                     )}
-                    <p className="whitespace-pre-wrap">{message.text}</p>
+                    <p className="whitespace-pre-wrap leading-relaxed">{message.text}</p>
                     {message.isAudioPlaying && (
                       <div className="absolute -bottom-1 -right-1 animate-pulse">
                         <svg className="w-4 h-4 text-orange-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -73,7 +80,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, isLoading }) => {
                       </div>
                     )}
                   </div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400 mt-1 px-2">
+                  <div className="text-[10px] text-gray-400 dark:text-gray-500 mt-1 px-1">
                     {timestamp}
                   </div>
                 </div>
@@ -84,8 +91,8 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, isLoading }) => {
       })}
       
       {isLoading && (
-        <div className="flex items-start gap-3">
-          <div className="w-6 h-6 rounded-full overflow-hidden bg-gray-200 flex-shrink-0 mt-1">
+        <div className="flex items-start gap-2">
+          <div className="w-7 h-7 rounded-full overflow-hidden bg-orange-100 dark:bg-orange-900/30 flex-shrink-0 ring-1 ring-orange-200 dark:ring-orange-800">
             <img 
               src="/images/ashlee-profile.png" 
               alt="Ashlee" 
@@ -93,13 +100,11 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, isLoading }) => {
             />
           </div>
           <div>
-            <div className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Ashlee</div>
-            <div className="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 p-3 rounded-lg text-sm max-w-[80%] relative">
-              <div className="absolute -left-2 top-3 w-0 h-0 border-t-8 border-b-8 border-r-8 border-transparent border-r-gray-100 dark:border-r-gray-800"></div>
-              <div className="flex items-center gap-1">
-                <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce"></div>
-                <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-                <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+            <div className="bg-white dark:bg-neutral-800 px-4 py-3 rounded-2xl rounded-bl-md text-sm shadow-sm border border-gray-100 dark:border-neutral-700">
+              <div className="flex items-center gap-1.5">
+                <div className="w-2 h-2 bg-orange-400 rounded-full animate-bounce"></div>
+                <div className="w-2 h-2 bg-orange-400 rounded-full animate-bounce" style={{animationDelay: '0.15s'}}></div>
+                <div className="w-2 h-2 bg-orange-400 rounded-full animate-bounce" style={{animationDelay: '0.3s'}}></div>
               </div>
             </div>
           </div>
