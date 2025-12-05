@@ -14,13 +14,6 @@ import { Id } from '../../convex/_generated/dataModel';
 // Quick action button types
 type QuickAction = 'faq' | 'consultation' | 'services' | 'pricing';
 
-const QUICK_ACTION_PROMPTS: Record<QuickAction, string> = {
-  faq: "I have some questions about your services. Can you help me with frequently asked questions?",
-  consultation: "I'd like to schedule a free consultation to discuss my project.",
-  services: "Can you tell me about the services Abe Media offers?",
-  pricing: "I'd like to learn about your pricing and packages.",
-};
-
 const FloatingChatbot: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showWelcome, setShowWelcome] = useState(true);
@@ -174,11 +167,30 @@ const FloatingChatbot: React.FC = () => {
   }, [initializeConversation, addMessage]);
 
   const handleQuickAction = (action: QuickAction) => {
-    if (action === 'consultation') {
-      setIsConsultationOpen(true);
-      setIsOpen(false);
-    } else {
-      handleSendMessage(QUICK_ACTION_PROMPTS[action]);
+    setIsOpen(false); // Close the chat widget
+    
+    switch (action) {
+      case 'faq':
+        // Navigate to home page and scroll to FAQ section
+        if (window.location.pathname === '/') {
+          // Already on home page, just scroll
+          document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          // Navigate to home page with hash
+          window.location.href = '/#faq';
+        }
+        break;
+      case 'consultation':
+        // Open consultation popup
+        setIsConsultationOpen(true);
+        break;
+      case 'services':
+        // Navigate to services page
+        window.location.href = '/services';
+        break;
+      case 'pricing':
+        // Future: Navigate to pricing page
+        break;
     }
   };
 
@@ -312,7 +324,7 @@ const FloatingChatbot: React.FC = () => {
               </div>
 
               {/* Floating Input Box */}
-              <div className="flex items-center gap-2 bg-white dark:bg-neutral-800 rounded-full px-4 py-3 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="flex items-center gap-2 bg-white dark:bg-neutral-800 rounded-full px-4 py-2 shadow-lg hover:shadow-xl transition-shadow">
                 <input
                   ref={inputRef}
                   type="text"
@@ -326,10 +338,10 @@ const FloatingChatbot: React.FC = () => {
                 <button
                   onClick={() => handleSendMessage(input)}
                   disabled={isLoading || !input.trim()}
-                  className="p-2 text-gray-400 hover:text-orange-500 disabled:text-gray-300 dark:disabled:text-gray-600 transition-colors"
+                  className="p-1.5 text-gray-400 hover:text-orange-500 disabled:text-gray-300 dark:disabled:text-gray-600 transition-colors"
                   aria-label="Send message"
                 >
-                  <Send className="h-5 w-5" />
+                  <Send className="h-4 w-4" />
                 </button>
               </div>
             </div>
@@ -342,7 +354,7 @@ const FloatingChatbot: React.FC = () => {
           {/* Chat Input - Only shown when not in welcome state */}
           {!showWelcome && (
             <div className="p-3 bg-gray-50 dark:bg-neutral-900">
-              <div className="flex items-center gap-2 bg-white dark:bg-neutral-800 rounded-full px-4 py-3 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="flex items-center gap-2 bg-white dark:bg-neutral-800 rounded-full px-4 py-2 shadow-lg hover:shadow-xl transition-shadow">
                 <input
                   ref={inputRef}
                   type="text"
@@ -356,10 +368,10 @@ const FloatingChatbot: React.FC = () => {
                 <button
                   onClick={() => handleSendMessage(input)}
                   disabled={isLoading || !input.trim()}
-                  className="p-2 text-gray-400 hover:text-orange-500 disabled:text-gray-300 dark:disabled:text-gray-600 transition-colors"
+                  className="p-1.5 text-gray-400 hover:text-orange-500 disabled:text-gray-300 dark:disabled:text-gray-600 transition-colors"
                   aria-label="Send message"
                 >
-                  <Send className="h-5 w-5" />
+                  <Send className="h-4 w-4" />
                 </button>
               </div>
             </div>

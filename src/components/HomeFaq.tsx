@@ -24,7 +24,7 @@ const faqs = [
 
 export default function HomeFaq() {
   return (
-    <section className="mx-auto max-w-6xl px-6 pt-24 pb-24">
+    <section id="faq" className="mx-auto max-w-6xl px-6 pt-24 pb-24 scroll-mt-20">
       <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-12 md:gap-16">
         {/* Heading on the left */}
         <div>
