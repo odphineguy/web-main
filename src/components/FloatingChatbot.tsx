@@ -189,7 +189,8 @@ const FloatingChatbot: React.FC = () => {
         window.location.href = '/services';
         break;
       case 'pricing':
-        // Future: Navigate to pricing page
+        // Navigate to pricing page
+        window.location.href = '/pricing';
         break;
     }
   };
@@ -315,9 +316,7 @@ const FloatingChatbot: React.FC = () => {
                 </button>
                 <button
                   onClick={() => handleQuickAction('pricing')}
-                  className="px-4 py-3 rounded-full border border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-gray-700 dark:text-gray-200 text-sm font-medium hover:border-orange-500 hover:text-orange-500 dark:hover:border-orange-500 dark:hover:text-orange-400 transition-all shadow-md opacity-60 cursor-not-allowed"
-                  disabled
-                  title="Coming soon"
+                  className="px-4 py-3 rounded-full border border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-gray-700 dark:text-gray-200 text-sm font-medium hover:border-orange-500 hover:text-orange-500 dark:hover:border-orange-500 dark:hover:text-orange-400 transition-all shadow-md hover:shadow-lg active:shadow-sm"
                 >
                   Pricing
                 </button>

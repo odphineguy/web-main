@@ -173,7 +173,7 @@ export default function RootLayout({
                   </Link>
                 </div>
                 <div className="text-center">
-                  <p className="text-xs text-neutral-600 dark:text-white/60">© 2025 AbeMedia, LLC. All rights reserved.</p>
+                  <p className="text-xs text-neutral-600 dark:text-white/60">© 2026 AbeMedia, LLC. All rights reserved.</p>
                 </div>
                 <div className="flex justify-center sm:justify-end text-neutral-600 dark:text-white/70 gap-5">
                   <a href="https://x.com/abe_vision" target="_blank" rel="noreferrer" aria-label="Twitter" className="transition-colors">
