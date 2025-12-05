@@ -61,7 +61,6 @@ export default function TopNavbar() {
           <Link href="/services" className="font-bold opacity-80 hover:opacity-100">Services</Link>
           <Link href="/pricing" className="font-bold opacity-80 hover:opacity-100">Pricing</Link>
           <Link href="/portfolio" className="font-bold opacity-80 hover:opacity-100">Portfolio</Link>
-          <Link href="/resources" className="font-bold opacity-80 hover:opacity-100">Resources</Link>
           <Link href="/blog" className="font-bold opacity-80 hover:opacity-100">Blog</Link>
           <Link href="/contact" className="font-bold opacity-80 hover:opacity-100">Contact</Link>
           <button
@@ -106,7 +105,6 @@ export default function TopNavbar() {
             <Link href="/services" className="text-gray-900 dark:text-white font-bold opacity-80 hover:opacity-100 py-2" onClick={() => setMobileMenuOpen(false)}>Services</Link>
             <Link href="/pricing" className="text-gray-900 dark:text-white font-bold opacity-80 hover:opacity-100 py-2" onClick={() => setMobileMenuOpen(false)}>Pricing</Link>
             <Link href="/portfolio" className="text-gray-900 dark:text-white font-bold opacity-80 hover:opacity-100 py-2" onClick={() => setMobileMenuOpen(false)}>Portfolio</Link>
-            <Link href="/resources" className="text-gray-900 dark:text-white font-bold opacity-80 hover:opacity-100 py-2" onClick={() => setMobileMenuOpen(false)}>Resources</Link>
             <Link href="/blog" className="text-gray-900 dark:text-white font-bold opacity-80 hover:opacity-100 py-2" onClick={() => setMobileMenuOpen(false)}>Blog</Link>
             <Link href="/contact" className="text-gray-900 dark:text-white font-bold opacity-80 hover:opacity-100 py-2" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
           </nav>

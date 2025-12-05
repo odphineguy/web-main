@@ -1,5 +1,5 @@
 import { MetadataRoute } from "next";
-import { allSeoPages } from "@/lib/seoPages";
+import { allBlogPages } from "@/lib/blogPages";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://abemedia.online";
@@ -29,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/blog`,
       lastModified: currentDate,
       changeFrequency: "weekly" as const,
-      priority: 0.8,
+      priority: 0.85,
     },
     {
       url: `${baseUrl}/contact`,
@@ -43,22 +43,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.7,
     },
-    {
-      url: `${baseUrl}/resources`,
-      lastModified: currentDate,
-      changeFrequency: "weekly" as const,
-      priority: 0.85,
-    },
     // Note: chatbot page is excluded as it's set to noindex
+    // Note: /resources now redirects to /blog
   ];
 
-  // Generate resource page routes from SEO pages data with actual dates
-  const resourceRoutes = allSeoPages.map((page) => ({
-    url: `${baseUrl}/resources/${page.slug}`,
+  // Generate blog page routes from all blog pages data with actual dates
+  const blogRoutes = allBlogPages.map((page) => ({
+    url: `${baseUrl}/blog/${page.slug}`,
     lastModified: new Date(page.updatedDate || page.publishedDate),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
-  return [...mainRoutes, ...resourceRoutes];
+  return [...mainRoutes, ...blogRoutes];
 }

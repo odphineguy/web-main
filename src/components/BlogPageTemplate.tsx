@@ -2,19 +2,69 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { BlogPage, getRelatedBlogPages } from "@/lib/blogPages";
+import { BlogPage, BlogCategory, getRelatedBlogPages } from "@/lib/blogPages";
 import { 
   Calendar, 
   Clock, 
   ArrowLeft, 
   ChevronRight,
   User,
+  Code,
+  Smartphone,
+  Palette,
+  Zap,
+  Eye,
+  Megaphone,
+  Users,
+  Brain,
+  Bot,
+  MessageCircle,
+  Globe,
+  Building,
+  Trophy,
   Tag
 } from "lucide-react";
 
 interface BlogPageTemplateProps {
   page: BlogPage;
 }
+
+// Category icons mapping
+const categoryIcons: Record<BlogCategory, React.ReactNode> = {
+  // Blog categories
+  "Web Development": <Code className="w-4 h-4" />,
+  "Mobile Development": <Smartphone className="w-4 h-4" />,
+  "Design": <Palette className="w-4 h-4" />,
+  "Performance": <Zap className="w-4 h-4" />,
+  "Accessibility": <Eye className="w-4 h-4" />,
+  // SEO/Resources categories
+  "Bilingual Advertising": <Megaphone className="w-4 h-4" />,
+  "Hispanic Market": <Users className="w-4 h-4" />,
+  "AI Marketing": <Brain className="w-4 h-4" />,
+  "Chatbot Development": <Bot className="w-4 h-4" />,
+  "Bilingual Chatbots": <MessageCircle className="w-4 h-4" />,
+  "Spanish Marketing": <Globe className="w-4 h-4" />,
+  "Industry Solutions": <Building className="w-4 h-4" />,
+  "Case Studies": <Trophy className="w-4 h-4" />,
+};
+
+// Fallback icon for unknown categories
+const getIcon = (category: string): React.ReactNode => {
+  return categoryIcons[category as BlogCategory] || <Tag className="w-4 h-4" />;
+};
+
+// Category colors (brand colors: orange and neutral)
+const getCategoryColors = (category: string) => {
+  const orangeCategories = [
+    "Web Development", "Mobile Development", "Design", "Performance", "Accessibility",
+    "Bilingual Advertising", "Hispanic Market", "Bilingual Chatbots", "Spanish Marketing", "Case Studies"
+  ];
+  
+  if (orangeCategories.includes(category)) {
+    return "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300";
+  }
+  return "bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300";
+};
 
 export default function BlogPageTemplate({ page }: BlogPageTemplateProps) {
   const relatedPages = getRelatedBlogPages(page.slug);
@@ -46,12 +96,18 @@ export default function BlogPageTemplate({ page }: BlogPageTemplateProps) {
       {/* Hero Section */}
       <header className="pt-12 pb-8 sm:pt-16 sm:pb-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          {/* Category Badge - Brand colors only */}
+          {/* Category Badge with Icon */}
           <div className="flex items-center gap-2 mb-6">
-            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300">
-              <Tag className="w-4 h-4" />
+            <span className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium ${getCategoryColors(page.category)}`}>
+              {getIcon(page.category)}
               {page.category}
             </span>
+            {page.featured && (
+              <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-medium bg-orange-500 text-white dark:bg-orange-600 dark:text-white">
+                <Trophy className="w-4 h-4" />
+                Featured
+              </span>
+            )}
           </div>
 
           {/* Title */}
@@ -172,8 +228,8 @@ export default function BlogPageTemplate({ page }: BlogPageTemplateProps) {
                   href={`/blog/${relatedPage.slug}`}
                   className="group block p-5 rounded-xl bg-white dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 hover:border-orange-300 dark:hover:border-orange-700 hover:shadow-lg transition-all duration-200"
                 >
-                  <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-xs font-medium bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300 mb-3">
-                    <Tag className="w-3 h-3" />
+                  <span className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-xs font-medium ${getCategoryColors(relatedPage.category)} mb-3`}>
+                    {getIcon(relatedPage.category)}
                     {relatedPage.category}
                   </span>
                   <h5 className="font-semibold text-neutral-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors line-clamp-2">
@@ -209,4 +265,3 @@ export default function BlogPageTemplate({ page }: BlogPageTemplateProps) {
     </article>
   );
 }
-

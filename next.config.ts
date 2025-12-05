@@ -27,6 +27,17 @@ const nextConfig: NextConfig = {
         destination: "https://abemedia.online/:path*",
         permanent: true,
       },
+      // Redirect /resources to /blog (SEO merge)
+      {
+        source: "/resources",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/resources/:slug",
+        destination: "/blog/:slug",
+        permanent: true,
+      },
     ];
   },
 };

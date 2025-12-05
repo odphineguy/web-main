@@ -1,9 +1,16 @@
 export * from "./types";
 
-import { BlogPage, BlogPageJson, blogCategories, BlogCategoryInfo } from "./types";
+import { BlogPage, BlogPageJson, blogCategories, BlogCategoryInfo, BlogCategory } from "./types";
 
-// Import JSON file
+// Import JSON files - Blog pages
 import blogPagesData from "../../../blog-pages.json";
+
+// Import JSON files - SEO pages (formerly Resources)
+import seoPagesBatch1 from "../../../seo-pages-batch-december-2025.json";
+import seoPagesBatch2 from "../../../seo-pages-batch-december-2025-part2.json";
+import seoPagesBatch3 from "../../../seo-pages-batch-december-2025-part3.json";
+import seoPagesBatch4 from "../../../seo-pages-batch-december-2025-part4.json";
+import seoPagesBatch5 from "../../../seo-pages-batch-december-2025-part5.json";
 
 // Helper to calculate read time based on content length
 function calculateReadTime(content: BlogPageJson["content"]): string {
@@ -43,7 +50,7 @@ function transformJsonPage(jsonPage: BlogPageJson): BlogPage {
     metaDescription: jsonPage.description,
     description: jsonPage.description,
     keywords: jsonPage.keywords,
-    category: jsonPage.category,
+    category: jsonPage.category as BlogCategory,
     author: jsonPage.author,
     excerpt: generateExcerpt(jsonPage),
     content: jsonPage.content,
@@ -58,13 +65,27 @@ function transformJsonPage(jsonPage: BlogPageJson): BlogPage {
   };
 }
 
-// Load and transform all pages from JSON file
+// Load and transform all pages from all JSON files
 function loadAllPages(): BlogPage[] {
-  const allJsonPages: BlogPageJson[] = blogPagesData.pages as BlogPageJson[];
+  // Load blog pages
+  const blogJsonPages: BlogPageJson[] = blogPagesData.pages as BlogPageJson[];
+  
+  // Load SEO pages (formerly Resources)
+  const seoJsonPages: BlogPageJson[] = [
+    ...(seoPagesBatch1.pages as BlogPageJson[]),
+    ...(seoPagesBatch2.pages as BlogPageJson[]),
+    ...(seoPagesBatch3.pages as BlogPageJson[]),
+    ...(seoPagesBatch4.pages as BlogPageJson[]),
+    ...(seoPagesBatch5.pages as BlogPageJson[]),
+  ];
+  
+  // Combine all pages
+  const allJsonPages = [...blogJsonPages, ...seoJsonPages];
+  
   return allJsonPages.map(transformJsonPage);
 }
 
-// All blog pages
+// All blog pages combined (blog + former SEO/resources pages)
 export const allBlogPages: BlogPage[] = loadAllPages();
 
 // Export categories
@@ -104,6 +125,18 @@ export function getBlogCategoryInfo(categoryName: string): BlogCategoryInfo | un
   return blogCategories.find((cat) => cat.name === categoryName);
 }
 
+// Helper function to search pages
+export function searchBlogPages(query: string): BlogPage[] {
+  const lowercaseQuery = query.toLowerCase();
+  return allBlogPages.filter(
+    (page) =>
+      page.title.toLowerCase().includes(lowercaseQuery) ||
+      page.excerpt.toLowerCase().includes(lowercaseQuery) ||
+      page.keywords.some((keyword) =>
+        keyword.toLowerCase().includes(lowercaseQuery)
+      )
+  );
+}
+
 // Export total page count
 export const totalBlogPageCount = allBlogPages.length;
-

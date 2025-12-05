@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { Check, Sparkles } from "lucide-react";
 import ConsultationForm from "@/components/ConsultationForm";
+import SlidingHighlightGrid from "@/components/SlidingHighlightGrid";
 
 interface PricingTier {
   id: string;
@@ -158,14 +159,14 @@ export default function PricingPage() {
         </motion.div>
 
         {/* Pricing Cards */}
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-start">
+        <SlidingHighlightGrid className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-start">
           {pricingTiers.map((tier, index) => (
             <motion.div
               key={tier.id}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="relative group"
+              className="relative group h-full"
             >
               {/* Popular Badge */}
               {tier.popular && (
@@ -182,8 +183,8 @@ export default function PricingPage() {
                 className={`h-full rounded-2xl p-px transition-all duration-300 ${
                   tier.popular
                     ? "bg-gradient-to-b from-orange-500/50 to-orange-600/20"
-                    : "bg-gradient-to-b from-white/10 to-white/5 group-hover:from-orange-500/30 group-hover:to-orange-600/10"
-                } group-hover:shadow-[0_12px_30px_rgba(249,115,22,0.25)]`}
+                    : "bg-gradient-to-b from-white/10 to-white/5"
+                }`}
               >
                 <div
                   className="h-full rounded-2xl p-6 lg:p-8 backdrop-blur-xl transition-all duration-300 text-center bg-black"
@@ -256,7 +257,7 @@ export default function PricingPage() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </SlidingHighlightGrid>
 
         {/* Request Quote Section */}
         <motion.div
