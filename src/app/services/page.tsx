@@ -127,7 +127,7 @@ export default function Services() {
             {services.map((service, index) => (
               <Card 
                 key={index} 
-                className="group relative overflow-hidden border border-neutral-800 hover:border-orange-500/30 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-300 ease-out hover:-translate-y-2 bg-neutral-900/50 backdrop-blur-sm"
+                className="group relative overflow-hidden border border-neutral-800 hover:border-orange-500/30 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-300 ease-out hover:-translate-y-2 bg-black"
               >
                 <CardHeader className="pb-4">
                   <div className="relative mb-4 h-40 w-full overflow-hidden rounded-2xl border border-orange-500/20 bg-gradient-to-br from-orange-500/10 via-transparent to-orange-600/20 group-hover:border-orange-500/40 transition-all duration-300">
@@ -191,8 +191,8 @@ export default function Services() {
       {/* Bottom CTA Section */}
       <section className="relative z-10 px-6 pb-16">
         <div className="max-w-2xl mx-auto mt-20 text-center">
-          <div className="rounded-2xl p-px bg-gradient-to-r from-white/10 via-white/5 to-white/10">
-            <div className="rounded-2xl p-8 lg:p-10 backdrop-blur-xl bg-neutral-900/50">
+          <div className="rounded-2xl p-px bg-gradient-to-b from-white/10 to-white/5">
+            <div className="rounded-2xl p-8 lg:p-10 bg-black">
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
                 Ready to Start Your Project?
               </h2>

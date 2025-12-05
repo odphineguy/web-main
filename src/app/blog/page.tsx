@@ -241,7 +241,7 @@ export default function BlogPage() {
               Featured Article
             </h2>
             <Link href={`/blog/${featuredPost.slug}`}>
-              <Card className="overflow-hidden group hover:shadow-lg transition-shadow duration-300">
+              <Card className="overflow-hidden group hover:shadow-lg transition-shadow duration-300 bg-black border-neutral-800">
                 <div className="grid grid-cols-1 lg:grid-cols-2">
                   {featuredPost.image && (
                     <div className="relative h-64 lg:h-auto min-h-[300px]">
@@ -316,8 +316,8 @@ export default function BlogPage() {
         {/* Newsletter CTA */}
         <section className="mt-20 pb-4">
           <div className="max-w-2xl mx-auto text-center">
-            <div className="rounded-2xl p-px bg-gradient-to-r from-white/10 via-white/5 to-white/10">
-              <div className="rounded-2xl p-8 lg:p-10 backdrop-blur-xl bg-neutral-900/50">
+            <div className="rounded-2xl p-px bg-gradient-to-b from-white/10 to-white/5">
+              <div className="rounded-2xl p-8 lg:p-10 bg-black">
                 <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
                   Stay Updated
                 </h2>

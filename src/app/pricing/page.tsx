@@ -266,8 +266,8 @@ export default function PricingPage() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="max-w-2xl mx-auto mt-20 text-center"
         >
-          <div className="rounded-2xl p-px bg-gradient-to-r from-white/10 via-white/5 to-white/10">
-            <div className="rounded-2xl p-8 lg:p-10 backdrop-blur-xl bg-neutral-900/50">
+          <div className="rounded-2xl p-px bg-gradient-to-b from-white/10 to-white/5">
+            <div className="rounded-2xl p-8 lg:p-10 bg-black">
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
                 Need a Custom Solution?
               </h2>
