@@ -83,13 +83,13 @@ const blogPosts = [
   },
   {
     id: 6,
-    slug: "nextjs-14-getting-started",
-    title: "Getting Started with Next.js 14: New Features and Improvements",
-    excerpt: "Explore the latest features in Next.js 14 and how they can improve your development workflow.",
+    slug: "nextjs-16-getting-started",
+    title: "Getting Started with Next.js 16: Cache Components, Turbopack, and AI DevTools",
+    excerpt: "Explore Next.js 16's groundbreaking features including Cache Components, Turbopack as default bundler, and AI-powered DevTools.",
     category: "Web Development",
-    date: "2025-11-05",
+    date: "2025-12-04",
     readTime: "6 min read",
-    image: "/images/blog/nextjs-14-getting-started.png",
+    image: "/images/blog/nextjs-16-getting-started.png",
     featured: false
   }
 ];
