@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
 import "./globals.css";
 import TopNavbar from "@/components/TopNavbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -151,6 +152,20 @@ export default function RootLayout({
   // Normal static/dynamic behavior restored
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-EJCZTY1MCG"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-EJCZTY1MCG');
+          `}
+        </Script>
+      </head>
       <body className={`${outfit.variable} antialiased`}>
         <script
           type="application/ld+json"
