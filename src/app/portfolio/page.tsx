@@ -4,6 +4,7 @@ import { useState } from "react";
 import { AppleCardsCarousel, AppleCardItem } from "@/components/AppleCardsCarousel";
 import { WebsiteCarousel, WebsiteItem } from "@/components/WebsiteCarousel";
 import { Button } from "@/components/ui/button";
+import { Awards } from "@/components/ui/award";
 import ConsultationForm from "@/components/ConsultationForm";
 
 const mobileAppItems: AppleCardItem[] = [
@@ -119,25 +120,17 @@ export default function PortfolioPage() {
         <WebsiteCarousel items={websiteItems} />
       </section>
 
-      {/* Bottom CTA Section */}
+      {/* Award Section */}
       <section className="bg-white dark:bg-black px-6 py-16">
-        <div className="max-w-2xl mx-auto text-center">
-          <div className="rounded-2xl p-px bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
-            <div className="rounded-2xl p-8 lg:p-10 bg-gray-50 dark:bg-neutral-950">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">
-                Like What You See?
-              </h2>
-              <p className="text-gray-600 dark:text-neutral-400 mb-6">
-                Let&apos;s create something amazing together. Book a consultation to discuss your project.
-              </p>
-              <button
-                onClick={() => setIsConsultationOpen(true)}
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-3.5 rounded-full font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40"
-              >
-                Start Your Project
-              </button>
-            </div>
-          </div>
+        <div className="flex justify-center">
+          <Awards
+            variant="award"
+            title="WINNER"
+            subtitle="A Design Award & Competition"
+            recipient="AbeMedia"
+            date="June 2025"
+            level="gold"
+          />
         </div>
       </section>
 
