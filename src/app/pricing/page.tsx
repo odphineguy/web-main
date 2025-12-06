@@ -107,14 +107,7 @@ export default function PricingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-950 relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-orange-600/10 rounded-full blur-3xl animate-pulse delay-1000" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-500/5 rounded-full blur-3xl" />
-      </div>
-
+    <div className="min-h-screen bg-white dark:bg-black">
       {/* Success/Cancel Messages */}
       {success && (
         <motion.div
@@ -139,21 +132,21 @@ export default function PricingPage() {
         </motion.div>
       )}
 
-      <div className="relative z-10 px-6 pt-8 md:pt-12 pb-16">
-        {/* Header */}
+      {/* Header */}
+      <section className="bg-white dark:bg-black px-6 pt-8 md:pt-12 pb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="text-center max-w-6xl mx-auto mb-16"
         >
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
             Flexible Plans for Your{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
               Digital Growth
             </span>
           </h1>
-          <p className="text-lg md:text-xl text-neutral-400 max-w-3xl mx-auto font-light">
+          <p className="text-lg md:text-xl text-gray-600 dark:text-neutral-400 max-w-3xl mx-auto font-light">
             Transparent pricing for custom chatbots, web development, and marketing solutions.
           </p>
         </motion.div>
@@ -183,14 +176,14 @@ export default function PricingPage() {
                 className={`h-full rounded-2xl p-px transition-all duration-300 ${
                   tier.popular
                     ? "bg-gradient-to-b from-orange-500/50 to-orange-600/20"
-                    : "bg-gradient-to-b from-white/10 to-white/5"
+                    : "bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5"
                 }`}
               >
                 <div
-                  className="h-full rounded-2xl p-6 lg:p-8 backdrop-blur-xl transition-all duration-300 text-center bg-black"
+                  className="h-full rounded-2xl p-6 lg:p-8 backdrop-blur-xl transition-all duration-300 text-center bg-gray-50 dark:bg-neutral-900"
                 >
                   {/* Tier Name */}
-                  <h3 className="text-sm font-bold tracking-widest text-neutral-400 mb-6">
+                  <h3 className="text-sm font-bold tracking-widest text-gray-500 dark:text-neutral-400 mb-6">
                     {tier.name}
                   </h3>
 
@@ -199,7 +192,7 @@ export default function PricingPage() {
 
                   {/* Price */}
                   <div className="mb-6">
-                    <span className="text-4xl lg:text-5xl font-bold text-white">
+                    <span className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white">
                       {tier.price}
                     </span>
                   </div>
@@ -209,7 +202,7 @@ export default function PricingPage() {
                     {tier.features.map((feature, featureIndex) => (
                       <li
                         key={featureIndex}
-                        className="text-neutral-300 text-sm"
+                        className="text-gray-600 dark:text-neutral-300 text-sm"
                       >
                         {feature}
                       </li>
@@ -223,7 +216,7 @@ export default function PricingPage() {
                     className={`w-full py-3.5 px-6 rounded-full font-semibold text-sm transition-all duration-300 ${
                       tier.popular
                         ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:from-orange-600 hover:to-orange-700 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40"
-                        : "bg-white/10 text-white border border-white/20 hover:bg-orange-500 hover:border-orange-500"
+                        : "bg-gray-200 dark:bg-white/10 text-gray-900 dark:text-white border border-gray-300 dark:border-white/20 hover:bg-orange-500 hover:text-white hover:border-orange-500"
                     } disabled:opacity-50 disabled:cursor-not-allowed`}
                   >
                     {loadingPlan === tier.id ? (
@@ -258,20 +251,22 @@ export default function PricingPage() {
             </motion.div>
           ))}
         </SlidingHighlightGrid>
+      </section>
 
-        {/* Request Quote Section */}
+      {/* Request Quote Section */}
+      <section className="bg-gray-100 dark:bg-neutral-900 px-6 py-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="max-w-2xl mx-auto mt-20 text-center"
+          className="max-w-2xl mx-auto text-center"
         >
-          <div className="rounded-2xl p-px bg-gradient-to-b from-white/10 to-white/5">
-            <div className="rounded-2xl p-8 lg:p-10 bg-black">
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+          <div className="rounded-2xl p-px bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
+            <div className="rounded-2xl p-8 lg:p-10 bg-white dark:bg-neutral-950">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">
                 Need a Custom Solution?
               </h2>
-              <p className="text-neutral-400 mb-6">
+              <p className="text-gray-600 dark:text-neutral-400 mb-6">
                 Every business is unique. Let&apos;s discuss your specific requirements and create a tailored plan.
               </p>
               <button
@@ -283,7 +278,7 @@ export default function PricingPage() {
             </div>
           </div>
         </motion.div>
-      </div>
+      </section>
 
       {/* Consultation Form Modal */}
       <ConsultationForm

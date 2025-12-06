@@ -93,21 +93,14 @@ export default function Services() {
   const [imageErrors, setImageErrors] = useState<Set<number>>(new Set());
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-950 relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-orange-600/10 rounded-full blur-3xl animate-pulse delay-1000" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-500/5 rounded-full blur-3xl" />
-      </div>
-
+    <div className="min-h-screen bg-white dark:bg-black">
       {/* Hero Section */}
-      <section className="relative z-10 pt-8 md:pt-12 pb-12 px-6">
+      <section className="bg-white dark:bg-black pt-8 md:pt-12 pb-12 px-6">
         <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-gray-900 dark:text-white">
             Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Services</span>
           </h1>
-          <p className="text-lg md:text-xl text-neutral-400 mb-8 max-w-3xl mx-auto font-light">
+          <p className="text-lg md:text-xl text-gray-600 dark:text-neutral-400 mb-8 max-w-3xl mx-auto font-light">
             We provide comprehensive design and development services to bring your digital vision to life.
           </p>
           <Button 
@@ -121,13 +114,13 @@ export default function Services() {
       </section>
 
       {/* Services Grid */}
-      <section className="relative z-10 py-16 px-6">
+      <section className="bg-gray-100 dark:bg-neutral-900 py-16 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <Card 
                 key={index} 
-                className="group relative overflow-hidden border border-neutral-800 hover:border-orange-500/30 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-300 ease-out hover:-translate-y-2 bg-black"
+                className="group relative overflow-hidden border border-gray-200 dark:border-neutral-800 hover:border-orange-500/30 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-300 ease-out hover:-translate-y-2 bg-white dark:bg-neutral-950"
               >
                 <CardHeader className="pb-4">
                   <div className="relative mb-4 h-40 w-full overflow-hidden rounded-2xl border border-orange-500/20 bg-gradient-to-br from-orange-500/10 via-transparent to-orange-600/20 group-hover:border-orange-500/40 transition-all duration-300">
@@ -155,10 +148,10 @@ export default function Services() {
                   <div className="text-orange-500 mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:text-orange-600 group-hover:rotate-3">
                     {service.icon}
                   </div>
-                  <CardTitle className="text-xl group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-300">
+                  <CardTitle className="text-xl text-gray-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-300">
                     {service.title}
                   </CardTitle>
-                  <CardDescription className="text-base">
+                  <CardDescription className="text-base text-gray-600 dark:text-neutral-400">
                     {service.description}
                   </CardDescription>
                 </CardHeader>
@@ -170,8 +163,8 @@ export default function Services() {
                         className="flex items-center gap-2 transition-transform duration-200 group-hover:translate-x-1"
                         style={{ transitionDelay: `${featureIndex * 50}ms` }}
                       >
-                        <CheckCircle className="h-4 w-4 text-neutral-500 dark:text-neutral-400 flex-shrink-0 group-hover:text-orange-500 transition-colors duration-300" />
-                        <span className="text-sm group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors duration-300">
+                        <CheckCircle className="h-4 w-4 text-gray-400 dark:text-neutral-500 flex-shrink-0 group-hover:text-orange-500 transition-colors duration-300" />
+                        <span className="text-sm text-gray-600 dark:text-neutral-400 group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors duration-300">
                           {feature}
                         </span>
                       </li>
@@ -189,14 +182,14 @@ export default function Services() {
       </section>
 
       {/* Bottom CTA Section */}
-      <section className="relative z-10 px-6 pb-16">
-        <div className="max-w-2xl mx-auto mt-20 text-center">
-          <div className="rounded-2xl p-px bg-gradient-to-b from-white/10 to-white/5">
-            <div className="rounded-2xl p-8 lg:p-10 bg-black">
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+      <section className="bg-white dark:bg-black px-6 py-16">
+        <div className="max-w-2xl mx-auto text-center">
+          <div className="rounded-2xl p-px bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
+            <div className="rounded-2xl p-8 lg:p-10 bg-gray-50 dark:bg-neutral-950">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">
                 Ready to Start Your Project?
               </h2>
-              <p className="text-neutral-400 mb-6">
+              <p className="text-gray-600 dark:text-neutral-400 mb-6">
                 Let&apos;s discuss how we can help bring your digital vision to life with our expertise.
               </p>
               <button

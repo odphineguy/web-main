@@ -93,20 +93,14 @@ export default function PortfolioPage() {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-950 relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-orange-600/10 rounded-full blur-3xl animate-pulse delay-1000" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-500/5 rounded-full blur-3xl" />
-      </div>
-
-      <div className="relative z-10 px-6 pt-8 md:pt-12 pb-16 sm:px-10">
+    <div className="min-h-screen bg-white dark:bg-black">
+      {/* Hero Section */}
+      <section className="bg-white dark:bg-black px-6 pt-8 md:pt-12 pb-16 sm:px-10">
         <div className="max-w-6xl mx-auto text-center mb-12">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-gray-900 dark:text-white">
             The <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Portfolio</span>
           </h1>
-          <p className="text-lg md:text-xl text-neutral-400 mb-8 max-w-3xl mx-auto font-light">
+          <p className="text-lg md:text-xl text-gray-600 dark:text-neutral-400 mb-8 max-w-3xl mx-auto font-light">
             Explore our collection of innovative projects and creative solutions that showcase our expertise in design and development.
           </p>
           <Button 
@@ -118,22 +112,22 @@ export default function PortfolioPage() {
           </Button>
         </div>
         <AppleCardsCarousel items={mobileAppItems} />
-      </div>
+      </section>
       
       {/* Website Screenshots Section */}
-      <section className="relative z-10 py-16 px-6">
+      <section className="bg-gray-100 dark:bg-neutral-900 py-16 px-6">
         <WebsiteCarousel items={websiteItems} />
       </section>
 
       {/* Bottom CTA Section */}
-      <section className="relative z-10 px-6 pb-16">
-        <div className="max-w-2xl mx-auto mt-4 text-center">
-          <div className="rounded-2xl p-px bg-gradient-to-b from-white/10 to-white/5">
-            <div className="rounded-2xl p-8 lg:p-10 bg-black">
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+      <section className="bg-white dark:bg-black px-6 py-16">
+        <div className="max-w-2xl mx-auto text-center">
+          <div className="rounded-2xl p-px bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
+            <div className="rounded-2xl p-8 lg:p-10 bg-gray-50 dark:bg-neutral-950">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">
                 Like What You See?
               </h2>
-              <p className="text-neutral-400 mb-6">
+              <p className="text-gray-600 dark:text-neutral-400 mb-6">
                 Let&apos;s create something amazing together. Book a consultation to discuss your project.
               </p>
               <button
@@ -155,5 +149,3 @@ export default function PortfolioPage() {
     </div>
   );
 }
-
-

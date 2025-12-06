@@ -110,22 +110,15 @@ export default function BlogPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-950 relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-orange-600/10 rounded-full blur-3xl animate-pulse delay-1000" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-500/5 rounded-full blur-3xl" />
-      </div>
-
+    <div className="min-h-screen bg-white dark:bg-black">
       {/* Hero Section */}
-      <section className="relative z-10 pt-8 md:pt-12 pb-12 border-b border-neutral-800">
+      <section className="bg-white dark:bg-black pt-8 md:pt-12 pb-12 border-b border-gray-200 dark:border-neutral-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center">
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+            <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
               Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Blog</span>
             </h1>
-            <p className="text-lg md:text-xl text-neutral-400 max-w-3xl mx-auto font-light">
+            <p className="text-lg md:text-xl text-gray-600 dark:text-neutral-400 max-w-3xl mx-auto font-light">
               Insights, tutorials, and resources on web development, design, AI marketing, bilingual advertising, and digital innovation for your business.
             </p>
           </div>
@@ -133,20 +126,20 @@ export default function BlogPage() {
           {/* Search Bar */}
           <div className="max-w-2xl mx-auto mt-10">
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-neutral-400" />
               <input
                 type="text"
                 placeholder="Search articles and resources..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 rounded-2xl border border-neutral-700 bg-neutral-800/50 backdrop-blur-sm text-white placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
+                className="w-full pl-12 pr-4 py-4 rounded-2xl border border-gray-300 dark:border-neutral-700 bg-gray-50 dark:bg-neutral-800/50 backdrop-blur-sm text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery("")}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-neutral-700 transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-gray-200 dark:hover:bg-neutral-700 transition-colors"
                 >
-                  <X className="w-4 h-4 text-neutral-400" />
+                  <X className="w-4 h-4 text-gray-400 dark:text-neutral-400" />
                 </button>
               )}
             </div>
@@ -155,31 +148,31 @@ export default function BlogPage() {
       </section>
 
       {/* Category Pills */}
-      <section className="relative z-10 py-6 border-b border-neutral-800 sticky top-16 bg-neutral-900/80 backdrop-blur-lg z-20">
+      <section className="py-6 border-b border-gray-200 dark:border-neutral-800 sticky top-16 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-lg z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           {/* Left scroll button */}
           <button
             onClick={() => scrollCategories('left')}
-            className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-neutral-800 shadow-md border border-neutral-700 hover:bg-neutral-700 transition-colors"
+            className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800 shadow-md border border-gray-200 dark:border-neutral-700 hover:bg-gray-200 dark:hover:bg-neutral-700 transition-colors"
             aria-label="Scroll left"
           >
-            <ChevronLeft className="w-4 h-4 text-white" />
+            <ChevronLeft className="w-4 h-4 text-gray-700 dark:text-white" />
           </button>
           
           {/* Right scroll button */}
           <button
             onClick={() => scrollCategories('right')}
-            className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-neutral-800 shadow-md border border-neutral-700 hover:bg-neutral-700 transition-colors"
+            className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800 shadow-md border border-gray-200 dark:border-neutral-700 hover:bg-gray-200 dark:hover:bg-neutral-700 transition-colors"
             aria-label="Scroll right"
           >
-            <ChevronRight className="w-4 h-4 text-white" />
+            <ChevronRight className="w-4 h-4 text-gray-700 dark:text-white" />
           </button>
 
           {/* Left fade gradient */}
-          <div className="absolute left-8 sm:left-10 top-0 bottom-0 w-8 bg-gradient-to-r from-neutral-900/90 to-transparent pointer-events-none z-10" />
+          <div className="absolute left-8 sm:left-10 top-0 bottom-0 w-8 bg-gradient-to-r from-white/90 dark:from-neutral-900/90 to-transparent pointer-events-none z-10" />
           
           {/* Right fade gradient */}
-          <div className="absolute right-8 sm:right-10 top-0 bottom-0 w-8 bg-gradient-to-l from-neutral-900/90 to-transparent pointer-events-none z-10" />
+          <div className="absolute right-8 sm:right-10 top-0 bottom-0 w-8 bg-gradient-to-l from-white/90 dark:from-neutral-900/90 to-transparent pointer-events-none z-10" />
           
           <div 
             ref={scrollContainerRef}
@@ -189,8 +182,8 @@ export default function BlogPage() {
               onClick={() => setSelectedCategory(null)}
               className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all ${
                 selectedCategory === null
-                  ? "bg-white text-neutral-900"
-                  : "bg-neutral-800 text-neutral-300 hover:bg-neutral-700"
+                  ? "bg-gray-900 dark:bg-white text-white dark:text-neutral-900"
+                  : "bg-gray-100 dark:bg-neutral-800 text-gray-700 dark:text-neutral-300 hover:bg-gray-200 dark:hover:bg-neutral-700"
               }`}
             >
               All ({totalBlogPageCount})
@@ -204,8 +197,8 @@ export default function BlogPage() {
                   onClick={() => setSelectedCategory(category.name)}
                   className={`flex-shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
                     selectedCategory === category.name
-                      ? "bg-white text-neutral-900"
-                      : "bg-neutral-800 text-neutral-300 hover:bg-neutral-700"
+                      ? "bg-gray-900 dark:bg-white text-white dark:text-neutral-900"
+                      : "bg-gray-100 dark:bg-neutral-800 text-gray-700 dark:text-neutral-300 hover:bg-gray-200 dark:hover:bg-neutral-700"
                   }`}
                 >
                   {getIcon(category.name)}
@@ -217,16 +210,16 @@ export default function BlogPage() {
         </div>
       </section>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
         {/* Active Filters */}
         {(selectedCategory || searchQuery) && (
           <div className="flex items-center gap-4 mb-8">
-            <span className="text-sm text-neutral-400">
+            <span className="text-sm text-gray-500 dark:text-neutral-400">
               Showing {filteredPosts.length} results
             </span>
             <button
               onClick={clearFilters}
-              className="text-sm text-orange-400 hover:text-orange-300 font-medium"
+              className="text-sm text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 font-medium"
             >
               Clear filters
             </button>
@@ -236,12 +229,12 @@ export default function BlogPage() {
         {/* Featured Post - Only show when no filters */}
         {!selectedCategory && !searchQuery && featuredPost && (
           <section className="mb-16">
-            <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
               <Trophy className="w-6 h-6 text-orange-500" />
               Featured Article
             </h2>
             <Link href={`/blog/${featuredPost.slug}`}>
-              <Card className="overflow-hidden group hover:shadow-lg transition-shadow duration-300 bg-black border-neutral-800">
+              <Card className="overflow-hidden group hover:shadow-lg transition-shadow duration-300 bg-gray-50 dark:bg-neutral-950 border-gray-200 dark:border-neutral-800">
                 <div className="grid grid-cols-1 lg:grid-cols-2">
                   {featuredPost.image && (
                     <div className="relative h-64 lg:h-auto min-h-[300px]">
@@ -261,13 +254,13 @@ export default function BlogPage() {
                       {getIcon(featuredPost.category)}
                       {featuredPost.category}
                     </Badge>
-                    <CardTitle className="text-2xl mb-4 group-hover:text-orange-500 transition-colors">
+                    <CardTitle className="text-2xl mb-4 text-gray-900 dark:text-white group-hover:text-orange-500 transition-colors">
                       {featuredPost.title}
                     </CardTitle>
-                    <CardDescription className="text-base mb-6">
+                    <CardDescription className="text-base text-gray-600 dark:text-neutral-400 mb-6">
                       {featuredPost.excerpt}
                     </CardDescription>
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground mb-6">
+                    <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-muted-foreground mb-6">
                       <div className="flex items-center gap-1">
                         <Calendar className="h-4 w-4" />
                         {new Date(featuredPost.publishedDate).toLocaleDateString()}
@@ -291,7 +284,7 @@ export default function BlogPage() {
         {/* Blog Posts Grid */}
         <section>
           {!selectedCategory && !searchQuery && (
-            <h2 className="text-2xl font-bold text-white mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">
               Latest Articles
             </h2>
           )}
@@ -300,12 +293,12 @@ export default function BlogPage() {
             <BlogCardsGrid posts={filteredPosts} />
           ) : (
             <div className="text-center py-20">
-              <p className="text-xl text-neutral-400">
+              <p className="text-xl text-gray-500 dark:text-neutral-400">
                 No articles found matching your criteria.
               </p>
               <button
                 onClick={clearFilters}
-                className="mt-4 text-orange-400 hover:text-orange-300 font-medium"
+                className="mt-4 text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 font-medium"
               >
                 Clear filters and show all
               </button>
@@ -316,19 +309,19 @@ export default function BlogPage() {
         {/* Newsletter CTA */}
         <section className="mt-20 pb-4">
           <div className="max-w-2xl mx-auto text-center">
-            <div className="rounded-2xl p-px bg-gradient-to-b from-white/10 to-white/5">
-              <div className="rounded-2xl p-8 lg:p-10 bg-black">
-                <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+            <div className="rounded-2xl p-px bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
+              <div className="rounded-2xl p-8 lg:p-10 bg-gray-50 dark:bg-neutral-950">
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">
                   Stay Updated
                 </h2>
-                <p className="text-neutral-400 mb-6">
+                <p className="text-gray-600 dark:text-neutral-400 mb-6">
                   Subscribe to our newsletter for the latest insights, tutorials, and resources on web development and digital marketing.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
                   <input 
                     type="email" 
                     placeholder="Enter your email"
-                    className="flex-1 px-4 py-3.5 rounded-full border border-neutral-700 bg-neutral-800/50 text-white placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="flex-1 px-4 py-3.5 rounded-full border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-800/50 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
                   />
                   <Button className="px-8 py-3.5 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300">
                     Subscribe

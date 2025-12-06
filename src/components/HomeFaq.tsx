@@ -59,7 +59,7 @@ const faqs = [
 
 export default function HomeFaq() {
   return (
-    <section id="faq" className="mx-auto max-w-6xl px-6 pt-24 pb-24 scroll-mt-20">
+    <section id="faq" className="relative z-10 mx-auto max-w-6xl px-6 pt-24 pb-24 scroll-mt-20">
       <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-12 md:gap-16">
         {/* Heading on the left */}
         <div>
@@ -75,18 +75,18 @@ export default function HomeFaq() {
               <AccordionPrimitive.Item 
                 key={item.id} 
                 value={item.id}
-                className="border-b border-gray-200 dark:border-gray-800 last:border-b-0"
+                className="border-b border-gray-200 dark:border-neutral-800 last:border-b-0"
               >
                 <AccordionPrimitive.Header className="flex">
-                  <AccordionPrimitive.Trigger className="group flex flex-1 items-center justify-between gap-4 py-5 text-left text-base md:text-lg font-normal text-gray-900 dark:text-gray-100 hover:no-underline transition-all outline-none">
+                  <AccordionPrimitive.Trigger className="group flex flex-1 items-center justify-between gap-4 py-5 text-left text-base md:text-lg font-normal text-gray-900 dark:text-neutral-100 hover:no-underline transition-all outline-none">
                     <span className="pr-4 flex-1">
                       {item.question}
                     </span>
-                    <ChevronDown className="h-4 w-4 text-gray-500 dark:text-gray-400 shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                    <ChevronDown className="h-4 w-4 text-gray-500 dark:text-neutral-400 shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                   </AccordionPrimitive.Trigger>
                 </AccordionPrimitive.Header>
                 <AccordionPrimitive.Content className="overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
-                  <div className="pb-5 text-muted-foreground">
+                  <div className="pb-5 text-gray-600 dark:text-neutral-400">
                     {item.answer}
                   </div>
                 </AccordionPrimitive.Content>
@@ -98,5 +98,3 @@ export default function HomeFaq() {
     </section>
   );
 }
-
-
