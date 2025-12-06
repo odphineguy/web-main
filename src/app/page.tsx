@@ -133,11 +133,21 @@ export default function Home() {
               className="relative"
             >
               <div className="relative w-full aspect-[4/3] max-w-2xl mx-auto lg:scale-125 lg:translate-x-8">
+                {/* Light mode hero */}
+                <Image
+                  src="/images/home/home-hero-light.png"
+                  alt="Smart chatbot illustration"
+                  fill
+                  className="object-contain block dark:hidden"
+                  sizes="(max-width: 1024px) 100vw, 60vw"
+                  priority
+                />
+                {/* Dark mode hero */}
                 <Image
                   src="/images/home/home-hero.png"
                   alt="Smart chatbot illustration"
                   fill
-                  className="object-contain"
+                  className="object-contain hidden dark:block scale-110"
                   sizes="(max-width: 1024px) 100vw, 60vw"
                   priority
                 />
@@ -147,21 +157,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Success Stories / Logo Carousel - Gray background */}
-      <section className="bg-gray-100 dark:bg-neutral-900 py-16 px-6">
+      {/* Trusted By / Logo Carousel - Gray background */}
+      <section className="bg-gray-100 dark:bg-neutral-900 py-10 px-6">
         <div className="max-w-6xl mx-auto">
-          <motion.h2
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white text-center mb-10"
+            className="text-sm md:text-base text-gray-500 dark:text-neutral-400 text-center mb-6"
           >
-            Success Stories
-          </motion.h2>
+            Trusted by leading organizations worldwide
+          </motion.p>
 
           {/* Logo Marquee */}
-          <div className="relative overflow-hidden py-8">
+          <div className="relative overflow-hidden py-4">
             <div className="flex animate-marquee items-center">
               {/* Double the logos for seamless loop */}
               {[...clientLogos, ...clientLogos].map((logo, index) => (
@@ -188,20 +198,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Featured Quote */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="mt-12 text-center"
-          >
-            <div className="h-px w-full max-w-md mx-auto bg-gradient-to-r from-transparent via-orange-500/30 to-transparent mb-8" />
-            <blockquote className="text-lg md:text-xl text-gray-600 dark:text-neutral-300 italic max-w-2xl mx-auto">
-              &ldquo;Abe Media&apos;s chatbot handles 70% of our inquiries!&rdquo;
-            </blockquote>
-            <p className="mt-4 text-gray-500 dark:text-neutral-400">— Lucía Hernández</p>
-          </motion.div>
         </div>
       </section>
 
