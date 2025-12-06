@@ -3,13 +3,18 @@ import { Outfit } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
+import nextDynamic from "next/dynamic";
 import "./globals.css";
 import TopNavbar from "@/components/TopNavbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ConvexClientProvider } from "@/components/ConvexClientProvider";
-import FloatingChatbot from "@/components/FloatingChatbot";
 import { Analytics } from "@vercel/analytics/react";
 import { Instagram, Facebook, Music2, Twitter } from "lucide-react";
+
+// Lazy load the chatbot to reduce initial bundle size (code-splitting)
+const FloatingChatbot = nextDynamic(() => import("@/components/FloatingChatbot"), {
+  loading: () => null,
+});
 
 // Force fresh HTML on production so updates appear immediately
 export const dynamic = "force-dynamic";
@@ -153,6 +158,19 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Preload LCP hero images for faster initial paint */}
+        <link
+          rel="preload"
+          href="/images/home/home-hero-light.png"
+          as="image"
+          type="image/png"
+        />
+        <link
+          rel="preload"
+          href="/images/home/home-hero.png"
+          as="image"
+          type="image/png"
+        />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-EJCZTY1MCG"
           strategy="afterInteractive"

@@ -9,16 +9,5 @@ Disallow: /api/
 Disallow: /_next/
 Disallow: /chatbot
 
-# Allow common crawl patterns
-Allow: /services
-Allow: /portfolio
-Allow: /blog
-Allow: /contact
-Allow: /get-started
-
 # Sitemap location
 Sitemap: https://abemedia.online/sitemap.xml
-
-# Crawl-delay (optional, helps prevent server overload)
-# Crawl-delay: 1
-

@@ -3,11 +3,20 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import HomeFaq from "@/components/HomeFaq";
 import { Bot, Users, Zap, Clock, Database, Globe } from "lucide-react";
-import SlidingHighlightGrid from "@/components/SlidingHighlightGrid";
+
+// Lazy load below-fold components to reduce initial bundle size
+const HomeFaq = dynamic(() => import("@/components/HomeFaq"), {
+  ssr: false,
+  loading: () => <div className="py-20 px-6 text-center text-gray-400">Loading...</div>,
+});
+
+const SlidingHighlightGrid = dynamic(() => import("@/components/SlidingHighlightGrid"), {
+  ssr: false,
+});
 
 // Client logos for the carousel
 // isDark: true for black logos that need to be inverted in dark mode
@@ -65,22 +74,22 @@ const features = [
   {
     icon: Globe,
     title: "Bilingual Support",
-    description: "Bilingual support and chat built for your small business.",
+    description: "Serve English and Spanish-speaking customers with fully bilingual chatbots that feel natural in both languages.",
   },
   {
     icon: Bot,
     title: "AI-Powered",
-    description: "AI-Powered to complete with thousands made and refined in chatbots.",
+    description: "Custom-trained AI chatbots that learn your business and provide intelligent, context-aware responses.",
   },
   {
     icon: Users,
     title: "Lead Capture",
-    description: "Concentrate AI in lead and lead capture controls and container metric data.",
+    description: "Automatically qualify prospects, collect contact information, and route hot leads to your sales team.",
   },
   {
     icon: Zap,
     title: "Seamless Integration",
-    description: "Generates seamless integration with tools and seamless integration.",
+    description: "Connect with your existing CRM, email marketing, calendar, and analytics platforms effortlessly.",
   },
 ];
 
@@ -88,17 +97,17 @@ const benefits = [
   {
     icon: Zap,
     title: "Instant Responses",
-    description: "Instant autoresponder enables chatbots extraordinarily rays your bot and intel responses.",
+    description: "Answer customer questions in seconds, not hours. No more waiting for email replies or phone callbacks.",
   },
   {
     icon: Clock,
     title: "24/7 Availability",
-    description: "Rcatese chatbots emit coaploveless originating fontless and methods.",
+    description: "Your chatbot never sleeps. Capture leads and answer inquiries around the clock, even on holidays.",
   },
   {
     icon: Database,
     title: "Smart Data Collection",
-    description: "Smart data collection sames help ostithoriteas year accunness.",
+    description: "Gather valuable customer insights automatically and sync directly to your CRM for better follow-up.",
   },
 ];
 
@@ -287,10 +296,10 @@ export default function Home() {
                 </span>
               </h2>
               <p className="text-lg text-gray-600 dark:text-neutral-400">
-                Most small business owners say the same things. Use autoresponders.
+                Most small business owners struggle with the same challenge: responding to every inquiry while running their business.
               </p>
               <p className="text-gray-600 dark:text-neutral-400">
-                And every day it stays the flat you lose lead, lose clients, and lose opportunities — especially when people check your business cite first.
+                Every unanswered message means lost leads, missed clients, and wasted opportunities — especially when customers check your website first.
               </p>
             </motion.div>
 
@@ -302,7 +311,7 @@ export default function Home() {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              {benefits.map((benefit, index) => (
+              {benefits.map((benefit) => (
                 <div key={benefit.title} className="flex items-start gap-4">
                   <div className="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-orange-500" />
                   <div>

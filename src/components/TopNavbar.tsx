@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
@@ -10,7 +11,7 @@ import { Menu, X } from "lucide-react";
 
 export default function TopNavbar() {
   const pathname = usePathname();
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -50,15 +51,21 @@ export default function TopNavbar() {
       >
         <div className="flex items-center gap-3">
           <Link href="/" className="hover:opacity-80 transition-opacity">
-            <img
+            <Image
               src="/images/portfolio/abemedia.black.svg"
               alt="Abe Media"
+              width={192}
+              height={38}
               className="block dark:hidden w-32 sm:w-40 md:w-44 lg:w-48 h-auto"
+              priority
             />
-            <img
+            <Image
               src="/images/portfolio/abemedia.white.svg"
               alt="Abe Media"
+              width={192}
+              height={38}
               className="hidden dark:block w-32 sm:w-40 md:w-44 lg:w-48 h-auto"
+              priority
             />
           </Link>
         </div>
