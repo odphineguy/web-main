@@ -41,6 +41,24 @@ const testimonials = [
     role: "Collins & Morales",
     avatar: "/images/testimonials/rebecca-collins.png",
   },
+  {
+    quote: "The custom chatbot they built for our firm has been a game-changer. It answers client questions 24/7 and helps us qualify leads before they even call.",
+    name: "Salvador Alvarez",
+    role: "Partner, Alvarez & Kerr Law",
+    avatar: "/images/testimonials/salvador-alvarez.png",
+  },
+  {
+    quote: "Their bilingual marketing strategy helped us connect with Spanish-speaking customers we'd never been able to reach. Our client base has grown significantly.",
+    name: "Ricardo Lopez",
+    role: "General Manager, Muebleria Lopez",
+    avatar: "/images/testimonials/ricardo-lopez.png",
+  },
+  {
+    quote: "We started with SEO optimization and saw such great results that we came back for monthly chatbot management and social media handling. They're now an essential part of our team.",
+    name: "Sam Akers",
+    role: "Owner, MyLabCompliance.io",
+    avatar: "/images/testimonials/sam-akers.png",
+  },
 ];
 
 const features = [
@@ -99,7 +117,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white dark:bg-black">
       {/* Hero Section - Black background */}
-      <section className="bg-white dark:bg-black px-6 pt-8 md:pt-16 pb-16">
+      <section className="bg-white dark:bg-black px-6 pt-8 md:pt-16 pb-16 lg:pb-32 overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left: Text Content */}
@@ -132,7 +150,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative"
             >
-              <div className="relative w-full aspect-[4/3] max-w-2xl mx-auto lg:scale-125 lg:translate-x-8">
+              <div className="relative w-full aspect-[4/3] max-w-2xl mx-auto lg:scale-[1.20] lg:translate-x-8">
                 {/* Light mode hero */}
                 <Image
                   src="/images/home/home-hero-light.png"
@@ -158,8 +176,8 @@ export default function Home() {
       </section>
 
       {/* Trusted By / Logo Carousel - Gray background */}
-      <section className="bg-gray-100 dark:bg-neutral-900 py-10 px-6">
-        <div className="max-w-6xl mx-auto">
+      <section className="bg-gray-100 dark:bg-neutral-900 py-10">
+        <div className="px-6">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -169,35 +187,38 @@ export default function Home() {
           >
             Trusted by leading organizations worldwide
           </motion.p>
+        </div>
 
-          {/* Logo Marquee */}
-          <div className="relative overflow-hidden py-4">
-            <div className="flex animate-marquee items-center">
-              {/* Double the logos for seamless loop */}
-              {[...clientLogos, ...clientLogos].map((logo, index) => (
-                <div
-                  key={index}
-                  className="flex-shrink-0 mx-12 flex items-center justify-center grayscale opacity-60"
-                >
-                  <div className="h-24 w-64 relative flex items-center justify-center">
-                    <Image
-                      src={logo.src}
-                      alt={logo.name}
-                      width={240}
-                      height={96}
-                      className={`object-contain max-h-24 ${
-                        logo.isDark 
-                          ? "dark:invert" 
-                          : "invert dark:invert-0"
-                      }`}
-                      loading="eager"
-                    />
-                  </div>
+        {/* Logo Marquee */}
+        <div className="relative overflow-hidden py-4">
+          {/* Left fade gradient */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-gray-100 dark:from-neutral-900 to-transparent pointer-events-none" />
+          {/* Right fade gradient */}
+          <div className="absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-gray-100 dark:from-neutral-900 to-transparent pointer-events-none" />
+          <div className="flex animate-marquee items-center">
+            {/* Double the logos for seamless loop */}
+            {[...clientLogos, ...clientLogos].map((logo, index) => (
+              <div
+                key={index}
+                className="flex-shrink-0 mx-12 flex items-center justify-center grayscale opacity-60"
+              >
+                <div className="h-24 w-64 relative flex items-center justify-center">
+                  <Image
+                    src={logo.src}
+                    alt={logo.name}
+                    width={240}
+                    height={96}
+                    className={`object-contain max-h-24 ${
+                      logo.isDark 
+                        ? "dark:invert" 
+                        : "invert dark:invert-0"
+                    }`}
+                    loading="eager"
+                  />
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-
         </div>
       </section>
 
@@ -300,36 +321,41 @@ export default function Home() {
       </section>
 
       {/* Testimonials - Black background */}
-      <section className="bg-white dark:bg-black py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.h2
+      <section className="bg-white dark:bg-black py-10">
+        <div className="px-6">
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white text-center mb-12"
+            className="text-sm md:text-base text-gray-500 dark:text-neutral-400 text-center mb-6"
           >
             Testimonials
-          </motion.h2>
+          </motion.p>
+        </div>
 
-          <SlidingHighlightGrid className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={testimonial.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="relative group h-full"
+        {/* Testimonials Carousel */}
+        <div className="relative overflow-hidden">
+          {/* Left fade gradient */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-white dark:from-black to-transparent pointer-events-none" />
+          {/* Right fade gradient */}
+          <div className="absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-white dark:from-black to-transparent pointer-events-none" />
+          
+          <div className="flex animate-marquee-slow items-stretch py-4">
+            {/* Double the testimonials for seamless loop */}
+            {[...testimonials, ...testimonials].map((testimonial, index) => (
+              <div
+                key={`${testimonial.name}-${index}`}
+                className="flex-shrink-0 w-80 md:w-96 mx-3"
               >
                 <div className="h-full rounded-2xl p-px transition-all duration-300 bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
-                  <div className="h-full rounded-2xl p-6 lg:p-8 backdrop-blur-xl transition-all duration-300 bg-gray-50 dark:bg-neutral-900">
-                    <blockquote className="text-gray-700 dark:text-neutral-300 mb-6">
+                  <div className="h-full rounded-2xl p-6 backdrop-blur-xl transition-all duration-300 bg-gray-50 dark:bg-neutral-900">
+                    <blockquote className="text-gray-700 dark:text-neutral-300 mb-6 text-sm">
                       &ldquo;{testimonial.quote}&rdquo;
                     </blockquote>
                     <div className="flex items-center gap-4">
                       <div className="relative h-10 w-10 rounded-full overflow-hidden border-2 border-orange-500/20 flex-shrink-0 bg-gray-100 dark:bg-neutral-800">
-                        {!avatarErrors.has(index) ? (
+                        {!avatarErrors.has(index % testimonials.length) ? (
                           <Image
                             src={testimonial.avatar}
                             alt={testimonial.name}
@@ -337,7 +363,7 @@ export default function Home() {
                             className="object-cover"
                             sizes="40px"
                             onError={() => {
-                              setAvatarErrors((prev) => new Set(prev).add(index));
+                              setAvatarErrors((prev) => new Set(prev).add(index % testimonials.length));
                             }}
                           />
                         ) : (
@@ -355,9 +381,9 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </SlidingHighlightGrid>
+          </div>
         </div>
       </section>
 

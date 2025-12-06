@@ -234,3 +234,9 @@
   width: max-content;
   animation: marquee 40s linear infinite;
 }
+
+.animate-marquee-slow {
+  display: flex;
+  width: max-content;
+  animation: marquee 60s linear infinite;
+}
