@@ -60,7 +60,7 @@ export default function TopNavbar() {
           />
           <Link href="/" className="hover:opacity-80 transition-opacity">
             <Image
-              src="/images/portfolio/abemedia.black.svg"
+              src="/images/portfolio/abemedia.logo.nobg.png"
               alt="Abe Media"
               width={192}
               height={38}
@@ -68,7 +68,7 @@ export default function TopNavbar() {
               priority
             />
             <Image
-              src="/images/portfolio/abemedia.white.svg"
+              src="/images/portfolio/abemedia.logo.nobg.png"
               alt="Abe Media"
               width={192}
               height={38}
