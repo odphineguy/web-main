@@ -274,8 +274,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Benefits Section - Gray background */}
-      <section className="bg-gray-100 dark:bg-neutral-900 py-20 px-6">
+      {/* Benefits Section - Black background */}
+      <section className="bg-white dark:bg-black py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left: Text & Image */}
@@ -329,8 +329,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials - Black background */}
-      <section className="bg-white dark:bg-black py-10">
+      {/* Testimonials - Gray background with dark cards */}
+      <section className="bg-gray-100 dark:bg-neutral-900 py-10">
         <div className="px-6">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -346,9 +346,9 @@ export default function Home() {
         {/* Testimonials Carousel */}
         <div className="relative overflow-hidden">
           {/* Left fade gradient */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-white dark:from-black to-transparent pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-gray-100 dark:from-neutral-900 to-transparent pointer-events-none" />
           {/* Right fade gradient */}
-          <div className="absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-white dark:from-black to-transparent pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-gray-100 dark:from-neutral-900 to-transparent pointer-events-none" />
           
           <div className="flex animate-marquee-slow items-stretch py-4">
             {/* Double the testimonials for seamless loop */}
@@ -357,9 +357,9 @@ export default function Home() {
                 key={`${testimonial.name}-${index}`}
                 className="flex-shrink-0 w-80 md:w-96 mx-3"
               >
-                <div className="h-full rounded-2xl p-px transition-all duration-300 bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
-                  <div className="h-full rounded-2xl p-6 backdrop-blur-xl transition-all duration-300 bg-gray-50 dark:bg-neutral-900">
-                    <blockquote className="text-gray-700 dark:text-neutral-300 mb-6 text-sm">
+                <div className="h-full rounded-2xl p-px transition-all duration-300 bg-gradient-to-b from-gray-300 dark:from-white/10 to-gray-200 dark:to-white/5">
+                  <div className="h-full rounded-2xl p-6 backdrop-blur-xl transition-all duration-300 bg-black text-white dark:bg-neutral-950">
+                    <blockquote className="text-gray-100 dark:text-neutral-200 mb-6 text-sm">
                       &ldquo;{testimonial.quote}&rdquo;
                     </blockquote>
                     <div className="flex items-center gap-4">
@@ -384,8 +384,8 @@ export default function Home() {
                         )}
                       </div>
                       <div>
-                        <p className="text-sm font-semibold text-gray-900 dark:text-white">{testimonial.name}</p>
-                        <p className="text-xs text-gray-500 dark:text-neutral-500">{testimonial.role}</p>
+                        <p className="text-sm font-semibold text-white">{testimonial.name}</p>
+                        <p className="text-xs text-gray-300 dark:text-neutral-400">{testimonial.role}</p>
                       </div>
                     </div>
                   </div>
@@ -396,13 +396,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FAQs - Gray background */}
-      <div className="bg-gray-100 dark:bg-neutral-900">
+      {/* FAQs - Black background */}
+      <div className="bg-white dark:bg-black">
         <HomeFaq />
       </div>
 
-      {/* Final CTA - Black background */}
-      <section className="bg-white dark:bg-black py-20 px-6">
+      {/* Final CTA - Gray background */}
+      <section className="bg-gray-100 dark:bg-neutral-900 py-20 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="rounded-2xl p-px bg-gradient-to-b from-orange-500/30 to-orange-600/10">
             <div className="rounded-2xl p-10 md:p-16 bg-gray-50 dark:bg-neutral-950 text-center">
