@@ -26,7 +26,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-white dark:bg-black text-foreground">
       {/* Contact Section */}
-      <section className="bg-white dark:bg-black pt-8 md:pt-12 pb-16 px-6">
+      <section id="book-consultation" className="bg-white dark:bg-black pt-8 md:pt-12 pb-16 px-6">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
@@ -67,14 +67,14 @@ export default function ContactPage() {
 
                   {/* Phone */}
                   <a 
-                    href="tel:+16267356216" 
+                    href="tel:+16264814827" 
                     className="flex items-center gap-4 text-gray-600 dark:text-neutral-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors group"
                   >
                     <div className="w-10 h-10 rounded-lg bg-gray-200 dark:bg-neutral-800/50 border border-gray-300 dark:border-neutral-700 flex items-center justify-center group-hover:border-orange-500/50 transition-colors">
                       <Phone className="w-5 h-5 text-orange-500" />
                     </div>
                     <div>
-                      <span>626-735-6216</span>
+                      <span>626-481-4827</span>
                       <p className="text-sm text-gray-500 dark:text-neutral-500">(Mon-Fri, 9am-5pm PST)</p>
                     </div>
                   </a>

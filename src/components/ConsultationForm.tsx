@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { X } from "lucide-react";
+import Image from "next/image";
 
 interface ConsultationFormProps {
   isOpen: boolean;
@@ -52,13 +53,26 @@ export default function ConsultationForm({ isOpen, onClose }: ConsultationFormPr
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-white dark:bg-gray-950 rounded-3xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto border border-orange-500/10">
         <div className="p-6">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-              Book Your Free Consultation
-            </h2>
+          <div className="flex items-start justify-between mb-6">
+            <div className="flex-1">
+              <div className="flex justify-center mb-3">
+                <Image
+                  src="/images/portfolio/a-icon-small.svg"
+                  alt="Abe Media icon"
+                  width={56}
+                  height={56}
+                  className="h-12 w-12"
+                  priority
+                />
+              </div>
+              <h2 className="text-2xl font-bold text-center text-gray-900 dark:text-white">
+                Book Your Free Consultation
+              </h2>
+            </div>
             <button
               onClick={onClose}
-              className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+              className="ml-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+              aria-label="Close consultation form"
             >
               <X className="h-6 w-6" />
             </button>

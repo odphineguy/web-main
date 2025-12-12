@@ -6,6 +6,8 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { ShinyButton } from "@/components/ui/shiny-button";
+import ConsultationForm from "@/components/ConsultationForm";
 import { Bot, Users, Zap, Clock, Database, Globe } from "lucide-react";
 
 // Lazy load below-fold components to reduce initial bundle size
@@ -113,6 +115,7 @@ const benefits = [
 
 export default function Home() {
   const [avatarErrors, setAvatarErrors] = useState<Set<number>>(new Set());
+  const [isConsultationOpen, setIsConsultationOpen] = useState(false);
 
   const getInitials = (name: string) => {
     return name
@@ -145,11 +148,13 @@ export default function Home() {
               <p className="text-lg md:text-xl text-gray-600 dark:text-neutral-300 max-w-xl">
                 Boost engagement, capture leads, and automate support with intelligent, bilingual chatbots tailored for your business.
               </p>
-              <Link href="/contact">
-                <Button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-6 text-base md:text-lg">
-                  Talk to Abe
-                </Button>
-              </Link>
+              <ShinyButton
+                type="button"
+                onClick={() => setIsConsultationOpen(true)}
+                className="px-8 py-4 text-base md:text-lg"
+              >
+                Talk to Abe
+              </ShinyButton>
             </motion.div>
 
             {/* Right: Hero Image */}
@@ -415,15 +420,21 @@ export default function Home() {
               >
                 Start Building Your Chatbot Today
               </motion.h2>
-              <Link href="/contact">
-                <Button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-6 text-base md:text-lg">
-                  Talk to Abe
-                </Button>
-              </Link>
+              <ShinyButton
+                type="button"
+                onClick={() => setIsConsultationOpen(true)}
+                className="px-8 py-4 text-base md:text-lg"
+              >
+                Talk to Abe
+              </ShinyButton>
             </div>
           </div>
         </div>
       </section>
+      <ConsultationForm
+        isOpen={isConsultationOpen}
+        onClose={() => setIsConsultationOpen(false)}
+      />
     </div>
   );
 }
