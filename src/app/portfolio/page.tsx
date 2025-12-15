@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { AppleCardsCarousel, AppleCardItem } from "@/components/AppleCardsCarousel";
 import { WebsiteCarousel, WebsiteItem } from "@/components/WebsiteCarousel";
-import { Button } from "@/components/ui/button";
+import { ScheduleCallButton } from "@/components/ScheduleCallButton";
 import { Awards } from "@/components/ui/award";
 import ConsultationForm from "@/components/ConsultationForm";
 
@@ -104,13 +104,10 @@ export default function PortfolioPage() {
           <p className="text-lg md:text-xl text-gray-600 dark:text-neutral-400 mb-8 max-w-3xl mx-auto font-light">
             Explore our collection of innovative projects and creative solutions that showcase our expertise in design and development.
           </p>
-          <Button 
-            size="lg" 
-            className="text-lg px-8 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300"
+          <ScheduleCallButton
             onClick={() => setIsConsultationOpen(true)}
-          >
-            Book Consultation
-          </Button>
+            className="mx-auto"
+          />
         </div>
         <AppleCardsCarousel items={mobileAppItems} />
       </section>

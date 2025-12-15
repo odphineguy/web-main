@@ -118,15 +118,15 @@ export default function ContactPage() {
               <p className="text-gray-600 dark:text-neutral-400 mb-6">
                 Subscribe to our newsletter for the latest insights, tutorials, and resources on web development and digital marketing.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+              <div className="relative max-w-lg mx-auto">
                 <input 
                   type="email" 
-                  placeholder="Enter your email"
-                  className="flex-1 px-4 py-3.5 rounded-full border border-gray-300 dark:border-neutral-700 bg-gray-50 dark:bg-neutral-800/50 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  placeholder="my@email.com"
+                  className="w-full pl-6 pr-44 py-4 rounded-full border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-gray-900 dark:text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 transition-all shadow-sm"
                 />
-                <Button className="px-8 py-3.5 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300">
-                  Subscribe
-                </Button>
+                <button className="absolute right-1.5 top-1.5 bottom-1.5 px-6 rounded-full bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 font-bold text-xs sm:text-sm tracking-wide uppercase hover:bg-orange-200 dark:hover:bg-orange-500/30 transition-colors">
+                  JOIN NEWSLETTER
+                </button>
               </div>
             </div>
           </div>

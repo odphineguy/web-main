@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import { ShinyButton } from "@/components/ui/shiny-button";
+import { ScheduleCallButton } from "@/components/ScheduleCallButton";
 import ConsultationForm from "@/components/ConsultationForm";
 import { Bot, Users, Zap, Clock, Database, Globe } from "lucide-react";
 
@@ -15,6 +15,10 @@ const HomeFaq = dynamic(() => import("@/components/HomeFaq"), {
 });
 
 const SlidingHighlightGrid = dynamic(() => import("@/components/SlidingHighlightGrid"), {
+  ssr: false,
+});
+
+const PartnerSteps = dynamic(() => import("@/components/PartnerSteps"), {
   ssr: false,
 });
 
@@ -146,13 +150,10 @@ export default function Home() {
               <p className="text-lg md:text-xl text-gray-600 dark:text-neutral-300 max-w-xl">
                 Boost engagement, capture leads, and automate support with intelligent, bilingual chatbots tailored for your business.
               </p>
-              <ShinyButton
+              <ScheduleCallButton
                 type="button"
                 onClick={() => setIsConsultationOpen(true)}
-                className="px-8 py-4 text-base md:text-lg"
-              >
-                Talk to Abe
-              </ShinyButton>
+              />
             </motion.div>
 
             {/* Right: Hero Image */}
@@ -229,6 +230,9 @@ export default function Home() {
           </SlidingHighlightGrid>
         </div>
       </section>
+
+      {/* Partner Steps Section */}
+      <PartnerSteps />
 
       {/* Trusted By / Logo Carousel - Gray background */}
       <section className="bg-gray-100 dark:bg-neutral-900 py-10">
@@ -316,7 +320,15 @@ export default function Home() {
             >
               {benefits.map((benefit) => (
                 <div key={benefit.title} className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-orange-500" />
+                  <div className="flex-shrink-0 w-6 h-6 mt-1">
+                    <Image
+                      src="/images/home/check.png"
+                      alt="Check"
+                      width={24}
+                      height={24}
+                      className="object-contain"
+                    />
+                  </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
                       {benefit.title}
@@ -418,13 +430,11 @@ export default function Home() {
               >
                 Start Building Your Chatbot Today
               </motion.h2>
-              <ShinyButton
+              <ScheduleCallButton
                 type="button"
                 onClick={() => setIsConsultationOpen(true)}
-                className="px-8 py-4 text-base md:text-lg"
-              >
-                Talk to Abe
-              </ShinyButton>
+                className="mx-auto"
+              />
             </div>
           </div>
         </div>

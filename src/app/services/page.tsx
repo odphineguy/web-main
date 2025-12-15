@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { ScheduleCallButton } from "@/components/ScheduleCallButton";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, Code, Palette, Smartphone, Globe, Zap, Bot, Languages, ArrowRight } from "lucide-react";
 import ConsultationForm from "@/components/ConsultationForm";
@@ -106,13 +107,10 @@ export default function Services() {
           <p className="text-lg md:text-xl text-gray-600 dark:text-neutral-400 mb-8 max-w-3xl mx-auto font-light">
             We provide comprehensive design and development services to bring your digital vision to life.
           </p>
-          <Button 
-            size="lg" 
-            className="text-lg px-8 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300"
+          <ScheduleCallButton 
             onClick={() => setIsConsultationOpen(true)}
-          >
-            Book Consultation
-          </Button>
+            className="mx-auto"
+          />
         </div>
       </section>
 
@@ -212,12 +210,10 @@ export default function Services() {
               <p className="text-gray-600 dark:text-neutral-400 mb-6">
                 Let&apos;s discuss how we can help bring your digital vision to life with our expertise.
               </p>
-              <button
+              <ScheduleCallButton
                 onClick={() => setIsConsultationOpen(true)}
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-3.5 rounded-full font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40"
-              >
-                Book a Consultation
-              </button>
+                className="mx-auto"
+              />
             </div>
           </div>
         </div>
