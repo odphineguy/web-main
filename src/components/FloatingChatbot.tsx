@@ -85,23 +85,18 @@ const FloatingChatbot: React.FC = () => {
       }
     }
     
-    // Add user message and update ref immediately
-    let messagesWithUser: Message[] = [];
-    setMessages((prevMessages) => {
-      messagesWithUser = [...prevMessages, userMessage];
-      messagesRef.current = messagesWithUser;
-      return messagesWithUser;
-    });
-    
     setIsLoading(true);
     setInput('');
 
-    // Calculate index where model message will be (after user message)
-    const tempModelMessageIndex = messagesWithUser.length;
+    // Calculate the index synchronously before the state update
+    // messagesRef.current is kept in sync with messages state
+    const currentMessages = messagesRef.current;
+    const messagesWithUser = [...currentMessages, userMessage];
+    const tempModelMessageIndex = messagesWithUser.length; // Index where model message will be (after user message)
     
-    // Add placeholder for model response
-    setMessages((prevMessages) => {
-      const updated = [...prevMessages, { role: 'model' as const, text: '' }];
+    // Add user message AND model placeholder in a single state update to ensure correct order
+    setMessages(() => {
+      const updated = [...messagesWithUser, { role: 'model' as const, text: '' }];
       messagesRef.current = updated;
       return updated;
     });

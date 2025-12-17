@@ -321,14 +321,14 @@ const ChatbotApp: React.FC = () => {
 
   const handleSendMessage = useCallback(async (text: string, image?: { data: string; mimeType: string }) => {
     const userMessage: Message = { role: 'user', text, image };
-    setMessages((prevMessages) => [...prevMessages, userMessage]);
     setIsLoading(true);
 
-    const tempModelMessageIndex = messages.length + 1;
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      { role: 'model', text: '' }, 
-    ]);
+    // Calculate the index synchronously before the state update
+    const messagesWithUser = [...messages, userMessage];
+    const tempModelMessageIndex = messagesWithUser.length; // Index where model message will be (after user message)
+    
+    // Add user message AND model placeholder in a single state update to ensure correct order
+    setMessages([...messagesWithUser, { role: 'model', text: '' }]);
 
     try {
       const finalResponseText = await sendMessageToGemini(
@@ -343,7 +343,7 @@ const ChatbotApp: React.FC = () => {
             return newMessages;
           });
         },
-        messages,
+        messagesWithUser,
       );
 
       setMessages((prevMessages) => {
