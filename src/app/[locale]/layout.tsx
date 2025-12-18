@@ -1,13 +1,14 @@
 import { NextIntlClientProvider, useTranslations } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import type { Metadata } from "next";
 
 import { Outfit } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
 import nextDynamic from "next/dynamic";
-import "./globals.css";
+import "../globals.css";
 import TopNavbar from "@/components/TopNavbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ConvexClientProvider } from "@/components/ConvexClientProvider";
@@ -148,11 +149,13 @@ function Footer() {
 
 export default async function RootLayout({
   children,
-  params: { locale }
+  params
 }: Readonly<{
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }>) {
+  const { locale } = await params;
+
   // Ensure that the incoming locale is valid
   if (!['en', 'es'].includes(locale)) {
     notFound();
