@@ -1,26 +1,18 @@
 import ContactForm from "@/components/ContactForm";
-import type { Metadata } from "next";
+import { constructMetadata } from "@/lib/seo";
+import { Metadata } from "next";
 import { Mail, Phone, MapPin } from "lucide-react";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 
-export const metadata: Metadata = {
-  title: "Contact Us — Get Your Free Consultation | Abe Media",
-  description: "Get in touch with Abe Media for bilingual web development, AI chatbot solutions, and custom digital tools for your small business. Free 30-minute strategy call available.",
-  keywords: ["contact abe media", "web development consultation", "small business website consultation", "AI chatbot consultation", "bilingual website consultation"],
-  alternates: {
-    canonical: "./",
-  },
-  openGraph: {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return constructMetadata({
     title: "Contact Us — Get Your Free Consultation | Abe Media",
-    description: "Get in touch with Abe Media for bilingual web development, AI chatbot solutions, and custom digital tools for your small business.",
-    url: "https://abemedia.online/contact",
-  },
-  twitter: {
-    title: "Contact Us — Get Your Free Consultation | Abe Media",
-    description: "Get in touch with Abe Media for bilingual web development, AI chatbot solutions, and custom digital tools for your small business.",
-  },
-};
+    description: "Get in touch with Abe Media for bilingual web development, AI chatbot solutions, and custom digital tools for your small business. Free 30-minute strategy call available.",
+    path: "/contact",
+    locale: locale,
+  });
+}
 
 export default function ContactPage() {
   return (

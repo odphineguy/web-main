@@ -1,30 +1,15 @@
-import type { Metadata } from "next";
+import { constructMetadata } from "@/lib/seo";
+import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Portfolio — Our Work & Projects | Abe Media",
-  description: "Explore our portfolio of innovative web development projects, mobile apps, and AI chatbot solutions. See how we help small businesses with bilingual websites and custom digital tools.",
-  keywords: [
-    "abe media portfolio",
-    "web development portfolio",
-    "mobile app portfolio",
-    "AI chatbot examples",
-    "bilingual website portfolio",
-    "small business websites",
-    "website design portfolio",
-  ],
-  alternates: {
-    canonical: "https://abemedia.online/portfolio",
-  },
-  openGraph: {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return constructMetadata({
     title: "Portfolio — Our Work & Projects | Abe Media",
-    description: "Explore our portfolio of innovative web development projects, mobile apps, and AI chatbot solutions for small businesses.",
-    url: "https://abemedia.online/portfolio",
-  },
-  twitter: {
-    title: "Portfolio — Our Work & Projects | Abe Media",
-    description: "Explore our portfolio of innovative web development projects, mobile apps, and AI chatbot solutions for small businesses.",
-  },
-};
+    description: "Explore our portfolio of innovative web development projects, mobile apps, and AI chatbot solutions. See how we help small businesses with bilingual websites and custom digital tools.",
+    path: "/portfolio",
+    locale: locale,
+  });
+}
 
 export default function PortfolioLayout({
   children,
@@ -33,4 +18,3 @@ export default function PortfolioLayout({
 }) {
   return <>{children}</>;
 }
-
