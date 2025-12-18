@@ -17,7 +17,5 @@ Allow: /
 # Disallow admin and API routes
 Disallow: /api/
 Disallow: /_next/
-Disallow: /chatbot
-
 # Sitemap location
 Sitemap: https://abemedia.online/sitemap.xml
