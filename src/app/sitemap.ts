@@ -27,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       return {
         url: `${baseUrl}${fullPath}`,
         lastModified: currentDate,
-        changeFrequency: path === "" ? "weekly" : "monthly" as const,
+        changeFrequency: (path === "" ? "weekly" : "monthly") as "weekly" | "monthly",
         priority: path === "" ? 1.0 : 0.8,
       };
     });
