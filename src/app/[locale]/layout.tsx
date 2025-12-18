@@ -102,10 +102,6 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "./",
-    languages: {
-      'en': '/en',
-      'es': '/es',
-    },
   },
   verification: {
     // Add your verification codes here if you have them
@@ -205,6 +201,10 @@ export default async function RootLayout({
     publisher: {
       "@type": "Organization",
       name: "Abe Media",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://abemedia.online/images/portfolio/abemedia.black.svg"
+      }
     },
     inLanguage: ["en-US", "es-US", "es-MX"],
   };

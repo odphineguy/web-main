@@ -4,6 +4,16 @@
 User-agent: *
 Allow: /
 
+# Explicitly allow AI bots
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
 # Disallow admin and API routes
 Disallow: /api/
 Disallow: /_next/
