@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "Get in touch with Abe Media for bilingual web development, AI chatbot solutions, and custom digital tools for your small business. Free 30-minute strategy call available.",
   keywords: ["contact abe media", "web development consultation", "small business website consultation", "AI chatbot consultation", "bilingual website consultation"],
   alternates: {
-    canonical: "https://abemedia.online/contact",
+    canonical: "./",
   },
   openGraph: {
     title: "Contact Us — Get Your Free Consultation | Abe Media",

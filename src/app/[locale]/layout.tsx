@@ -1,4 +1,7 @@
-import type { Metadata } from "next";
+import { NextIntlClientProvider, useTranslations } from 'next-intl';
+import { getMessages } from 'next-intl/server';
+import { notFound } from 'next/navigation';
+
 import { Outfit } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
@@ -97,7 +100,11 @@ export const metadata: Metadata = {
     creator: "@abe_vision",
   },
   alternates: {
-    canonical: "https://abemedia.online",
+    canonical: "./",
+    languages: {
+      'en': '/en',
+      'es': '/es',
+    },
   },
   verification: {
     // Add your verification codes here if you have them
@@ -106,12 +113,57 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+function Footer() {
+  const t = useTranslations('Footer');
+  return (
+    <footer className="border-t border-border py-6">
+      <div className="mx-auto max-w-6xl px-6 grid grid-cols-1 sm:grid-cols-3 items-center gap-4">
+        <div className="flex justify-center sm:justify-start">
+          <Link href="/" aria-label="Abe Media" className="inline-flex">
+            <Image src="/images/portfolio/abemedia.black.svg" alt="Abe Media" width={140} height={28} className="block dark:hidden" />
+            <Image src="/images/portfolio/abemedia.white.svg" alt="Abe Media" width={140} height={28} className="hidden dark:block" />
+          </Link>
+        </div>
+        <div className="text-center">
+          <p className="text-xs text-neutral-600 dark:text-white/60">{t('copyright')}</p>
+        </div>
+        <div className="flex justify-center sm:justify-end text-neutral-600 dark:text-white/70 gap-5">
+          <a href="https://x.com/abe_vision" target="_blank" rel="noreferrer" aria-label="Twitter" className="transition-colors">
+            <Twitter className="h-5 w-5" />
+          </a>
+          <a href="https://www.instagram.com/abevision_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noreferrer" aria-label="Instagram" className="transition-colors">
+            <Instagram className="h-5 w-5" />
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=100091085333551&sk=about" target="_blank" rel="noreferrer" aria-label="Facebook" className="transition-colors">
+            <Facebook className="h-5 w-5" />
+          </a>
+          <a href="https://www.tiktok.com/@abevision_?is_from_webapp=1&sender_device=pc" target="_blank" rel="noreferrer" aria-label="TikTok" className="transition-colors">
+            <Music2 className="h-5 w-5" />
+          </a>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+export default async function RootLayout({
   children,
+  params: { locale }
 }: Readonly<{
   children: React.ReactNode;
+  params: { locale: string };
 }>) {
+  // Ensure that the incoming locale is valid
+  if (!['en', 'es'].includes(locale)) {
+    notFound();
+  }
+
+  // Providing all messages to the client
+  // side is the easiest way to get started
+  const messages = await getMessages();
+
   // Structured data for SEO
+
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -156,7 +208,7 @@ export default function RootLayout({
 
   // Normal static/dynamic behavior restored
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <head>
         {/* Preload LCP hero images for faster initial paint */}
         <link
@@ -194,39 +246,15 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
         <ThemeProvider>
-          <ConvexClientProvider>
+          <NextIntlClientProvider messages={messages}>
+            <ConvexClientProvider>
             <TopNavbar />
             <main className="min-h-screen">{children}</main>
-            <footer className="border-t border-border py-6">
-              <div className="mx-auto max-w-6xl px-6 grid grid-cols-1 sm:grid-cols-3 items-center gap-4">
-                <div className="flex justify-center sm:justify-start">
-                  <Link href="/" aria-label="Abe Media" className="inline-flex">
-                    <Image src="/images/portfolio/abemedia.black.svg" alt="Abe Media" width={140} height={28} className="block dark:hidden" />
-                    <Image src="/images/portfolio/abemedia.white.svg" alt="Abe Media" width={140} height={28} className="hidden dark:block" />
-                  </Link>
-                </div>
-                <div className="text-center">
-                  <p className="text-xs text-neutral-600 dark:text-white/60">© 2026 AbeMedia, LLC. All rights reserved.</p>
-                </div>
-                <div className="flex justify-center sm:justify-end text-neutral-600 dark:text-white/70 gap-5">
-                  <a href="https://x.com/abe_vision" target="_blank" rel="noreferrer" aria-label="Twitter" className="transition-colors">
-                    <Twitter className="h-5 w-5" />
-                  </a>
-                  <a href="https://www.instagram.com/abevision_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noreferrer" aria-label="Instagram" className="transition-colors">
-                    <Instagram className="h-5 w-5" />
-                  </a>
-                  <a href="https://www.facebook.com/profile.php?id=100091085333551&sk=about" target="_blank" rel="noreferrer" aria-label="Facebook" className="transition-colors">
-                    <Facebook className="h-5 w-5" />
-                  </a>
-                  <a href="https://www.tiktok.com/@abevision_?is_from_webapp=1&sender_device=pc" target="_blank" rel="noreferrer" aria-label="TikTok" className="transition-colors">
-                    <Music2 className="h-5 w-5" />
-                  </a>
-                </div>
-              </div>
-            </footer>
+            <Footer />
             <FloatingChatbot />
             <Analytics />
-          </ConvexClientProvider>
+            </ConvexClientProvider>
+          </NextIntlClientProvider>
         </ThemeProvider>
       </body>
     </html>

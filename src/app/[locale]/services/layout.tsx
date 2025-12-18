@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "AI agents",
   ],
   alternates: {
-    canonical: "https://abemedia.online/services",
+    canonical: "./",
   },
   openGraph: {
     title: "Services — Web Development, AI Chatbots & Mobile Apps | Abe Media",

@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { ScheduleCallButton } from "@/components/ScheduleCallButton";
 import ConsultationForm from "@/components/ConsultationForm";
 import { Bot, Users, Zap, Clock, Database, Globe } from "lucide-react";
+import { useTranslations } from 'next-intl';
 
 // Lazy load below-fold components to reduce initial bundle size
 const HomeFaq = dynamic(() => import("@/components/HomeFaq"), {
@@ -36,86 +37,19 @@ const clientLogos = [
 ];
 
 const testimonials = [
-  {
-    quote: "Abe Media delivered a beautiful site and a bilingual chatbot that now handles 70% of our inbound questions.",
-    name: "Lucía Hernández",
-    role: "Casa Verde",
-    avatar: "/images/testimonials/lucia-hernandez.png",
-  },
-  {
-    quote: "Their team trained AI agents that feel like real teammates—our response time is faster than ever.",
-    name: "Daniel Ortiz",
-    role: "Operations Lead, MetroFit",
-    avatar: "/images/testimonials/daniel-ortiz.png",
-  },
-  {
-    quote: "We launched in weeks with a polished product and smarter support automation. Clients rave about the experience.",
-    name: "Rebecca Collins",
-    role: "Collins & Morales",
-    avatar: "/images/testimonials/rebecca-collins.png",
-  },
-  {
-    quote: "The custom chatbot they built for our firm has been a game-changer. It answers client questions 24/7 and helps us qualify leads before they even call.",
-    name: "Salvador Alvarez",
-    role: "Partner, Alvarez & Kerr Law",
-    avatar: "/images/testimonials/salvador-alvarez.png",
-  },
-  {
-    quote: "Their bilingual marketing strategy helped us connect with Spanish-speaking customers we'd never been able to reach. Our client base has grown significantly.",
-    name: "Ricardo Lopez",
-    role: "General Manager, Muebleria Lopez",
-    avatar: "/images/testimonials/ricardo-lopez.png",
-  },
-  {
-    quote: "We started with SEO optimization and saw such great results that we came back for monthly chatbot management and social media handling. They're now an essential part of our team.",
-    name: "Sam Akers",
-    role: "Owner, MyLabCompliance.io",
-    avatar: "/images/testimonials/sam-akers.png",
-  },
+  // Testimonials are now handled directly in the JSX to support translations
 ];
 
 const features = [
-  {
-    icon: Globe,
-    title: "Bilingual Support",
-    description: "Serve English and Spanish-speaking customers with fully bilingual chatbots that feel natural in both languages.",
-  },
-  {
-    icon: Bot,
-    title: "AI-Powered",
-    description: "Custom-trained AI chatbots that learn your business and provide intelligent, context-aware responses.",
-  },
-  {
-    icon: Users,
-    title: "Lead Capture",
-    description: "Automatically qualify prospects, collect contact information, and route hot leads to your sales team.",
-  },
-  {
-    icon: Zap,
-    title: "Seamless Integration",
-    description: "Connect with your existing CRM, email marketing, calendar, and analytics platforms effortlessly.",
-  },
+  // Features are now handled directly in the JSX to support translations
 ];
 
 const benefits = [
-  {
-    icon: Zap,
-    title: "Instant Responses",
-    description: "Answer customer questions in seconds, not hours. No more waiting for email replies or phone callbacks.",
-  },
-  {
-    icon: Clock,
-    title: "24/7 Availability",
-    description: "Your chatbot never sleeps. Capture leads and answer inquiries around the clock, even on holidays.",
-  },
-  {
-    icon: Database,
-    title: "Smart Data Collection",
-    description: "Gather valuable customer insights automatically and sync directly to your CRM for better follow-up.",
-  },
+  // Benefits are now handled directly in the JSX to support translations
 ];
 
 export default function Home() {
+  const t = useTranslations('Home');
   const [avatarErrors, setAvatarErrors] = useState<Set<number>>(new Set());
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
 
@@ -142,13 +76,13 @@ export default function Home() {
               className="space-y-6"
             >
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
-                Custom Chatbots:{" "}
+                {t('Hero.titlePart1')}{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
-                  Your 24/7 Digital Workforce.
+                  {t('Hero.titlePart2')}
                 </span>
               </h1>
               <p className="text-lg md:text-xl text-gray-600 dark:text-neutral-300 max-w-xl">
-                Boost engagement, capture leads, and automate support with intelligent, bilingual chatbots tailored for your business.
+                {t('Hero.subtitle')}
               </p>
               <ScheduleCallButton
                 type="button"
@@ -198,35 +132,101 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white text-center mb-12"
           >
-            Core Chatbot Features
+            {t('Features.title')}
           </motion.h2>
 
           <SlidingHighlightGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="relative group h-full"
-              >
-                <div className="h-full rounded-2xl p-px transition-all duration-300 bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
-                  <div className="h-full rounded-2xl p-6 lg:p-8 backdrop-blur-xl transition-all duration-300 bg-gray-50 dark:bg-neutral-900">
-                    <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4">
-                      <feature.icon className="w-6 h-6 text-orange-500" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                      {feature.title}
-                    </h3>
-                    <div className="h-px w-full mb-4 bg-orange-500/30" />
-                    <p className="text-sm text-gray-600 dark:text-neutral-400">
-                      {feature.description}
-                    </p>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0 }}
+              viewport={{ once: true }}
+              className="relative group h-full"
+            >
+              <div className="h-full rounded-2xl p-px transition-all duration-300 bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
+                <div className="h-full rounded-2xl p-6 lg:p-8 backdrop-blur-xl transition-all duration-300 bg-gray-50 dark:bg-neutral-900">
+                  <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4">
+                    <Globe className="w-6 h-6 text-orange-500" />
                   </div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                    {t('Features.bilingualSupport.title')}
+                  </h3>
+                  <div className="h-px w-full mb-4 bg-orange-500/30" />
+                  <p className="text-sm text-gray-600 dark:text-neutral-400">
+                    {t('Features.bilingualSupport.description')}
+                  </p>
                 </div>
-              </motion.div>
-            ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="relative group h-full"
+            >
+              <div className="h-full rounded-2xl p-px transition-all duration-300 bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
+                <div className="h-full rounded-2xl p-6 lg:p-8 backdrop-blur-xl transition-all duration-300 bg-gray-50 dark:bg-neutral-900">
+                  <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4">
+                    <Bot className="w-6 h-6 text-orange-500" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                    {t('Features.aiPowered.title')}
+                  </h3>
+                  <div className="h-px w-full mb-4 bg-orange-500/30" />
+                  <p className="text-sm text-gray-600 dark:text-neutral-400">
+                    {t('Features.aiPowered.description')}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="relative group h-full"
+            >
+              <div className="h-full rounded-2xl p-px transition-all duration-300 bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
+                <div className="h-full rounded-2xl p-6 lg:p-8 backdrop-blur-xl transition-all duration-300 bg-gray-50 dark:bg-neutral-900">
+                  <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4">
+                    <Users className="w-6 h-6 text-orange-500" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                    {t('Features.leadCapture.title')}
+                  </h3>
+                  <div className="h-px w-full mb-4 bg-orange-500/30" />
+                  <p className="text-sm text-gray-600 dark:text-neutral-400">
+                    {t('Features.leadCapture.description')}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="relative group h-full"
+            >
+              <div className="h-full rounded-2xl p-px transition-all duration-300 bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
+                <div className="h-full rounded-2xl p-6 lg:p-8 backdrop-blur-xl transition-all duration-300 bg-gray-50 dark:bg-neutral-900">
+                  <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4">
+                    <Zap className="w-6 h-6 text-orange-500" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                    {t('Features.seamlessIntegration.title')}
+                  </h3>
+                  <div className="h-px w-full mb-4 bg-orange-500/30" />
+                  <p className="text-sm text-gray-600 dark:text-neutral-400">
+                    {t('Features.seamlessIntegration.description')}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
           </SlidingHighlightGrid>
         </div>
       </section>
@@ -244,7 +244,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-sm md:text-base text-gray-500 dark:text-neutral-400 text-center mb-6"
           >
-            Trusted by leading organizations worldwide
+            {t('TrustedBy.text')}
           </motion.p>
         </div>
 
@@ -272,7 +272,6 @@ export default function Home() {
                         ? "dark:invert" 
                         : "invert dark:invert-0"
                     }`}
-                    loading="eager"
                   />
                 </div>
               </div>
@@ -294,19 +293,19 @@ export default function Home() {
               className="space-y-6"
             >
               <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-white dark:bg-neutral-950 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
-                Tired of feeling invisible
+                {t('Benefits.badge')}
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
-                Automate Your Growth.{" "}
+                {t('Benefits.titlePart1')}{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
-                  Never Miss a Lead.
+                  {t('Benefits.titlePart2')}
                 </span>
               </h2>
               <p className="text-lg text-gray-600 dark:text-neutral-400">
-                Most small business owners struggle with the same challenge: responding to every inquiry while running their business.
+                {t('Benefits.p1')}
               </p>
               <p className="text-gray-600 dark:text-neutral-400">
-                Every unanswered message means lost leads, missed clients, and wasted opportunities — especially when customers check your website first.
+                {t('Benefits.p2')}
               </p>
             </motion.div>
 
@@ -318,27 +317,65 @@ export default function Home() {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              {benefits.map((benefit) => (
-                <div key={benefit.title} className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-6 h-6 mt-1">
-                    <Image
-                      src="/images/home/check.png"
-                      alt="Check"
-                      width={24}
-                      height={24}
-                      className="object-contain"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 dark:text-neutral-400">
-                      {benefit.description}
-                    </p>
-                  </div>
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-6 h-6 mt-1">
+                  <Image
+                    src="/images/home/check.png"
+                    alt="Check"
+                    width={24}
+                    height={24}
+                    className="object-contain"
+                  />
                 </div>
-              ))}
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                    {t('Benefits.instantResponses.title')}
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-neutral-400">
+                    {t('Benefits.instantResponses.description')}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-6 h-6 mt-1">
+                  <Image
+                    src="/images/home/check.png"
+                    alt="Check"
+                    width={24}
+                    height={24}
+                    className="object-contain"
+                  />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                    {t('Benefits.availability.title')}
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-neutral-400">
+                    {t('Benefits.availability.description')}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-6 h-6 mt-1">
+                  <Image
+                    src="/images/home/check.png"
+                    alt="Check"
+                    width={24}
+                    height={24}
+                    className="object-contain"
+                  />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                    {t('Benefits.smartData.title')}
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-neutral-400">
+                    {t('Benefits.smartData.description')}
+                  </p>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -354,7 +391,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-sm md:text-base text-gray-500 dark:text-neutral-400 text-center mb-6"
           >
-            Testimonials
+            {t('Testimonials.title')}
           </motion.p>
         </div>
 
@@ -367,7 +404,68 @@ export default function Home() {
           
           <div className="flex animate-marquee-slow items-stretch py-4">
             {/* Double the testimonials for seamless loop */}
-            {[...testimonials, ...testimonials].map((testimonial, index) => (
+            {[
+              {
+                id: "lucia",
+                name: "Lucía Hernández",
+                avatar: "/images/testimonials/lucia-hernandez.png",
+              },
+              {
+                id: "daniel",
+                name: "Daniel Ortiz",
+                avatar: "/images/testimonials/daniel-ortiz.png",
+              },
+              {
+                id: "rebecca",
+                name: "Rebecca Collins",
+                avatar: "/images/testimonials/rebecca-collins.png",
+              },
+              {
+                id: "salvador",
+                name: "Salvador Alvarez",
+                avatar: "/images/testimonials/salvador-alvarez.png",
+              },
+              {
+                id: "ricardo",
+                name: "Ricardo Lopez",
+                avatar: "/images/testimonials/ricardo-lopez.png",
+              },
+              {
+                id: "sam",
+                name: "Sam Akers",
+                avatar: "/images/testimonials/sam-akers.png",
+              },
+              {
+                id: "lucia",
+                name: "Lucía Hernández",
+                avatar: "/images/testimonials/lucia-hernandez.png",
+              },
+              {
+                id: "daniel",
+                name: "Daniel Ortiz",
+                avatar: "/images/testimonials/daniel-ortiz.png",
+              },
+              {
+                id: "rebecca",
+                name: "Rebecca Collins",
+                avatar: "/images/testimonials/rebecca-collins.png",
+              },
+              {
+                id: "salvador",
+                name: "Salvador Alvarez",
+                avatar: "/images/testimonials/salvador-alvarez.png",
+              },
+              {
+                id: "ricardo",
+                name: "Ricardo Lopez",
+                avatar: "/images/testimonials/ricardo-lopez.png",
+              },
+              {
+                id: "sam",
+                name: "Sam Akers",
+                avatar: "/images/testimonials/sam-akers.png",
+              }
+            ].map((testimonial, index) => (
               <div
                 key={`${testimonial.name}-${index}`}
                 className="flex-shrink-0 w-80 md:w-96 mx-3"
@@ -375,11 +473,11 @@ export default function Home() {
                 <div className="h-full rounded-2xl p-px transition-all duration-300 bg-gradient-to-b from-gray-300 dark:from-white/10 to-gray-200 dark:to-white/5">
                   <div className="h-full rounded-2xl p-6 backdrop-blur-xl transition-all duration-300 bg-black text-white dark:bg-neutral-950">
                     <blockquote className="text-gray-100 dark:text-neutral-200 mb-6 text-sm">
-                      &ldquo;{testimonial.quote}&rdquo;
+                      &ldquo;{t(`Testimonials.${testimonial.id}.quote`)}&rdquo;
                     </blockquote>
                     <div className="flex items-center gap-4">
                       <div className="relative h-10 w-10 rounded-full overflow-hidden border-2 border-orange-500/20 flex-shrink-0 bg-gray-100 dark:bg-neutral-800">
-                        {!avatarErrors.has(index % testimonials.length) ? (
+                        {!avatarErrors.has(index % 6) ? (
                           <Image
                             src={testimonial.avatar}
                             alt={testimonial.name}
@@ -387,7 +485,7 @@ export default function Home() {
                             className="object-cover"
                             sizes="40px"
                             onError={() => {
-                              setAvatarErrors((prev) => new Set(prev).add(index % testimonials.length));
+                              setAvatarErrors((prev) => new Set(prev).add(index % 6));
                             }}
                           />
                         ) : (
@@ -400,7 +498,7 @@ export default function Home() {
                       </div>
                       <div>
                         <p className="text-sm font-semibold text-white">{testimonial.name}</p>
-                        <p className="text-xs text-gray-300 dark:text-neutral-400">{testimonial.role}</p>
+                        <p className="text-xs text-gray-300 dark:text-neutral-400">{t(`Testimonials.${testimonial.id}.role`)}</p>
                       </div>
                     </div>
                   </div>
@@ -428,7 +526,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6"
               >
-                Start Building Your Chatbot Today
+                {t('CTA.title')}
               </motion.h2>
               <ScheduleCallButton
                 type="button"

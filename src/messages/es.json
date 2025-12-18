@@ -1,0 +1,170 @@
+{
+  "Navbar": {
+    "services": "Servicios",
+    "pricing": "Precios",
+    "portfolio": "Portafolio",
+    "blog": "Blog",
+    "contact": "Contacto"
+  },
+  "Footer": {
+    "copyright": "© 2026 AbeMedia, LLC. Todos los derechos reservados."
+  },
+  "Home": {
+    "Hero": {
+      "titlePart1": "Chatbots Personalizados:",
+      "titlePart2": "Tu Fuerza Laboral Digital 24/7.",
+      "subtitle": "Aumenta la interacción, captura leads y automatiza el soporte con chatbots inteligentes y bilingües diseñados para tu negocio."
+    },
+    "Features": {
+      "title": "Características Principales",
+      "bilingualSupport": {
+        "title": "Soporte Bilingüe",
+        "description": "Atiende a clientes en inglés y español con chatbots totalmente bilingües que se sienten naturales en ambos idiomas."
+      },
+      "aiPowered": {
+        "title": "Impulsado por IA",
+        "description": "Chatbots entrenados a medida que aprenden tu negocio y brindan respuestas inteligentes y conscientes del contexto."
+      },
+      "leadCapture": {
+        "title": "Captura de Leads",
+        "description": "Califica prospectos automáticamente, recopila información de contacto y envía leads calificados a tu equipo de ventas."
+      },
+      "seamlessIntegration": {
+        "title": "Integración Perfecta",
+        "description": "Conecta con tu CRM existente, email marketing, calendario y plataformas de análisis sin esfuerzo."
+      }
+    },
+    "TrustedBy": {
+      "text": "Con la confianza de organizaciones líderes en todo el mundo"
+    },
+    "Benefits": {
+      "badge": "¿Cansado de sentirte invisible?",
+      "titlePart1": "Automatiza tu Crecimiento.",
+      "titlePart2": "Nunca Pierdas un Lead.",
+      "p1": "La mayoría de los dueños de pequeños negocios luchan con el mismo desafío: responder a cada consulta mientras dirigen su negocio.",
+      "p2": "Cada mensaje sin respuesta significa leads perdidos, clientes perdidos y oportunidades desperdiciadas, especialmente cuando los clientes visitan tu sitio web primero.",
+      "instantResponses": {
+        "title": "Respuestas Instantáneas",
+        "description": "Responde las preguntas de los clientes en segundos, no horas. No más esperas por respuestas de correo electrónico o llamadas telefónicas."
+      },
+      "availability": {
+        "title": "Disponibilidad 24/7",
+        "description": "Tu chatbot nunca duerme. Captura leads y responde consultas las 24 horas, incluso en días festivos."
+      },
+      "smartData": {
+        "title": "Recolección Inteligente de Datos",
+        "description": "Recopila información valiosa de los clientes automáticamente y sincronízala directamente con tu CRM para un mejor seguimiento."
+      }
+    },
+    "Testimonials": {
+      "title": "Testimonios",
+      "lucia": {
+        "quote": "Abe Media entregó un sitio hermoso y un chatbot bilingüe que ahora maneja el 70% de nuestras consultas entrantes.",
+        "role": "Casa Verde"
+      },
+      "daniel": {
+        "quote": "Su equipo entrenó agentes de IA que se sienten como verdaderos compañeros de equipo: nuestro tiempo de respuesta es más rápido que nunca.",
+        "role": "Líder de Operaciones, MetroFit"
+      },
+      "rebecca": {
+        "quote": "Lanzamos en semanas con un producto pulido y una automatización de soporte más inteligente. Los clientes están encantados con la experiencia.",
+        "role": "Collins & Morales"
+      },
+      "salvador": {
+        "quote": "El chatbot personalizado que construyeron para nuestra firma ha cambiado el juego. Responde preguntas de clientes 24/7 y nos ayuda a calificar leads antes de que llamen.",
+        "role": "Socio, Alvarez & Kerr Law"
+      },
+      "ricardo": {
+        "quote": "Su estrategia de marketing bilingüe nos ayudó a conectar con clientes de habla hispana que nunca habíamos podido alcanzar. Nuestra base de clientes ha crecido significativamente.",
+        "role": "Gerente General, Muebleria Lopez"
+      },
+      "sam": {
+        "quote": "Comenzamos con optimización SEO y vimos resultados tan buenos que regresamos para la gestión mensual del chatbot y redes sociales. Ahora son una parte esencial de nuestro equipo.",
+        "role": "Propietario, MyLabCompliance.io"
+      }
+    },
+    "CTA": {
+      "title": "Comienza a Construir Tu Chatbot Hoy"
+    }
+  },
+  "Services": {
+    "Hero": {
+      "title": "Nuestros",
+      "highlight": "Servicios",
+      "subtitle": "Brindamos servicios integrales de diseño y desarrollo para dar vida a tu visión digital."
+    },
+    "Cards": {
+      "aiChatbots": {
+        "title": "Chatbots y Agentes de IA",
+        "description": "Asistentes de IA personalizados adaptados a la voz de tu marca y las necesidades de tus clientes.",
+        "features": {
+          "f1": "Automatización de soporte 24/7",
+          "f2": "Captura y calificación de leads",
+          "f3": "Soporte bilingüe en inglés y español",
+          "f4": "Integraciones con CRM y herramientas"
+        },
+        "placeholder": "Vista previa del asistente de IA próximamente"
+      },
+      "bilingualWeb": {
+        "title": "Desarrollo Web Bilingüe",
+        "description": "Sitios web en español e inglés que llegan a audiencias diversas y expanden tu mercado.",
+        "features": {
+          "f1": "Versiones completas en español e inglés",
+          "f2": "Traducción profesional",
+          "f3": "SEO para ambos idiomas",
+          "f4": "Cambio de idioma fluido"
+        },
+        "placeholder": "Vista previa del sitio bilingüe próximamente"
+      },
+      "webDev": {
+        "title": "Desarrollo Web",
+        "description": "Sitios web personalizados construidos con tecnologías modernas como Next.js, React y TypeScript.",
+        "features": {
+          "f1": "Diseño Responsivo",
+          "f2": "Optimización SEO",
+          "f3": "Tiempos de Carga Rápidos",
+          "f4": "Compatibilidad con Navegadores"
+        },
+        "placeholder": "Vista previa del sitio web próximamente"
+      },
+      "mobileApp": {
+        "title": "Desarrollo de Apps Móviles",
+        "description": "Aplicaciones móviles nativas y multiplataforma para iOS y Android.",
+        "features": {
+          "f1": "Desarrollo con React Native",
+          "f2": "Apps para iOS y Android",
+          "f3": "Optimización para App Store",
+          "f4": "Notificaciones Push"
+        },
+        "placeholder": "Vista previa de la app móvil próximamente"
+      },
+      "uiUx": {
+        "title": "Diseño UI/UX",
+        "description": "Interfaces de usuario hermosas e intuitivas que mejoran la experiencia del usuario.",
+        "features": {
+          "f1": "Investigación de Usuarios",
+          "f2": "Wireframing y Prototipado",
+          "f3": "Diseño Visual",
+          "f4": "Pruebas de Usabilidad"
+        },
+        "placeholder": "Mockups de diseño próximamente"
+      },
+      "customSolutions": {
+        "title": "Soluciones Personalizadas",
+        "description": "Soluciones de software a medida para satisfacer las necesidades específicas de tu negocio.",
+        "features": {
+          "f1": "Desarrollo de API",
+          "f2": "Diseño de Bases de Datos",
+          "f3": "Integraciones de terceros",
+          "f4": "Mantenimiento y Soporte"
+        },
+        "placeholder": "Vista previa de integración personalizada próximamente"
+      }
+    },
+    "CTA": {
+      "title": "¿Listo para Comenzar tu Proyecto?",
+      "description": "Hablemos sobre cómo podemos ayudar a dar vida a tu visión digital con nuestra experiencia.",
+      "link": "Aprender más"
+    }
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "Navbar": {
+    "services": "Services",
+    "pricing": "Pricing",
+    "portfolio": "Portfolio",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "Footer": {
+    "copyright": "© 2026 AbeMedia, LLC. All rights reserved."
+  },
+  "Home": {
+    "Hero": {
+      "titlePart1": "Custom Chatbots:",
+      "titlePart2": "Your 24/7 Digital Workforce.",
+      "subtitle": "Boost engagement, capture leads, and automate support with intelligent, bilingual chatbots tailored for your business."
+    },
+    "Features": {
+      "title": "Core Chatbot Features",
+      "bilingualSupport": {
+        "title": "Bilingual Support",
+        "description": "Serve English and Spanish-speaking customers with fully bilingual chatbots that feel natural in both languages."
+      },
+      "aiPowered": {
+        "title": "AI-Powered",
+        "description": "Custom-trained AI chatbots that learn your business and provide intelligent, context-aware responses."
+      },
+      "leadCapture": {
+        "title": "Lead Capture",
+        "description": "Automatically qualify prospects, collect contact information, and route hot leads to your sales team."
+      },
+      "seamlessIntegration": {
+        "title": "Seamless Integration",
+        "description": "Connect with your existing CRM, email marketing, calendar, and analytics platforms effortlessly."
+      }
+    },
+    "TrustedBy": {
+      "text": "Trusted by leading organizations worldwide"
+    },
+    "Benefits": {
+      "badge": "Tired of feeling invisible",
+      "titlePart1": "Automate Your Growth.",
+      "titlePart2": "Never Miss a Lead.",
+      "p1": "Most small business owners struggle with the same challenge: responding to every inquiry while running their business.",
+      "p2": "Every unanswered message means lost leads, missed clients, and wasted opportunities — especially when customers check your website first.",
+      "instantResponses": {
+        "title": "Instant Responses",
+        "description": "Answer customer questions in seconds, not hours. No more waiting for email replies or phone callbacks."
+      },
+      "availability": {
+        "title": "24/7 Availability",
+        "description": "Your chatbot never sleeps. Capture leads and answer inquiries around the clock, even on holidays."
+      },
+      "smartData": {
+        "title": "Smart Data Collection",
+        "description": "Gather valuable customer insights automatically and sync directly to your CRM for better follow-up."
+      }
+    },
+    "Testimonials": {
+      "title": "Testimonials",
+      "lucia": {
+        "quote": "Abe Media delivered a beautiful site and a bilingual chatbot that now handles 70% of our inbound questions.",
+        "role": "Casa Verde"
+      },
+      "daniel": {
+        "quote": "Their team trained AI agents that feel like real teammates—our response time is faster than ever.",
+        "role": "Operations Lead, MetroFit"
+      },
+      "rebecca": {
+        "quote": "We launched in weeks with a polished product and smarter support automation. Clients rave about the experience.",
+        "role": "Collins & Morales"
+      },
+      "salvador": {
+        "quote": "The custom chatbot they built for our firm has been a game-changer. It answers client questions 24/7 and helps us qualify leads before they even call.",
+        "role": "Partner, Alvarez & Kerr Law"
+      },
+      "ricardo": {
+        "quote": "Their bilingual marketing strategy helped us connect with Spanish-speaking customers we'd never been able to reach. Our client base has grown significantly.",
+        "role": "General Manager, Muebleria Lopez"
+      },
+      "sam": {
+        "quote": "We started with SEO optimization and saw such great results that we came back for monthly chatbot management and social media handling. They're now an essential part of our team.",
+        "role": "Owner, MyLabCompliance.io"
+      }
+    },
+    "CTA": {
+      "title": "Start Building Your Chatbot Today"
+    }
+  },
+  "Services": {
+    "Hero": {
+      "title": "Our",
+      "highlight": "Services",
+      "subtitle": "We provide comprehensive design and development services to bring your digital vision to life."
+    },
+    "Cards": {
+      "aiChatbots": {
+        "title": "AI Chatbots & Agents",
+        "description": "Custom AI assistants tailored to your brand voice and customer needs.",
+        "features": {
+          "f1": "24/7 customer support automation",
+          "f2": "Lead capture and qualification",
+          "f3": "Bilingual support in English & Spanish",
+          "f4": "CRM and tool integrations"
+        },
+        "placeholder": "AI assistant preview coming soon"
+      },
+      "bilingualWeb": {
+        "title": "Bilingual Web Development",
+        "description": "Spanish-English websites that reach diverse audiences and expand your market.",
+        "features": {
+          "f1": "Full Spanish & English versions",
+          "f2": "Professional translation",
+          "f3": "SEO for both languages",
+          "f4": "Seamless language switching"
+        },
+        "placeholder": "Bilingual site preview coming soon"
+      },
+      "webDev": {
+        "title": "Web Development",
+        "description": "Custom websites built with modern technologies like Next.js, React, and TypeScript.",
+        "features": {
+          "f1": "Responsive Design",
+          "f2": "SEO Optimization",
+          "f3": "Fast Loading Times",
+          "f4": "Cross-Browser Compatibility"
+        },
+        "placeholder": "Website preview coming soon"
+      },
+      "mobileApp": {
+        "title": "Mobile App Development",
+        "description": "Native and cross-platform mobile applications for iOS and Android.",
+        "features": {
+          "f1": "React Native Development",
+          "f2": "iOS & Android Apps",
+          "f3": "App Store Optimization",
+          "f4": "Push Notifications"
+        },
+        "placeholder": "Mobile app preview coming soon"
+      },
+      "uiUx": {
+        "title": "UI/UX Design",
+        "description": "Beautiful, intuitive user interfaces that enhance user experience.",
+        "features": {
+          "f1": "User Research",
+          "f2": "Wireframing & Prototyping",
+          "f3": "Visual Design",
+          "f4": "Usability Testing"
+        },
+        "placeholder": "Design mockups coming soon"
+      },
+      "customSolutions": {
+        "title": "Custom Solutions",
+        "description": "Tailored software solutions to meet your specific business needs.",
+        "features": {
+          "f1": "API Development",
+          "f2": "Database Design",
+          "f3": "Third-party Integrations",
+          "f4": "Maintenance & Support"
+        },
+        "placeholder": "Custom integration preview coming soon"
+      }
+    },
+    "CTA": {
+      "title": "Ready to Start Your Project?",
+      "description": "Let's discuss how we can help bring your digital vision to life with our expertise.",
+      "link": "Learn more"
+    }
+  }
+}
