@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { X } from "lucide-react";
 import Image from "next/image";
+import TurnstileWidget from "@/components/TurnstileWidget";
 
 interface ConsultationFormProps {
   isOpen: boolean;
@@ -12,13 +13,24 @@ interface ConsultationFormProps {
 export default function ConsultationForm({ isOpen, onClose }: ConsultationFormProps) {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    if (!turnstileToken) {
+      setErrorMessage("Please complete the verification check.");
+      return;
+    }
+
     const form = e.currentTarget as HTMLFormElement;
     const formData = new FormData(form);
     setStatus("sending");
-    const payload = Object.fromEntries(formData.entries());
+    
+    const payload = {
+      ...Object.fromEntries(formData.entries()),
+      "cf-turnstile-response": turnstileToken,
+    };
     
     try {
       const res = await fetch("/api/consultation", {
@@ -35,6 +47,7 @@ export default function ConsultationForm({ isOpen, onClose }: ConsultationFormPr
       setStatus("sent");
       setErrorMessage(null);
       form.reset();
+      setTurnstileToken(null);
       // Close modal after 2 seconds on success
       setTimeout(() => {
         onClose();
@@ -163,10 +176,19 @@ export default function ConsultationForm({ isOpen, onClose }: ConsultationFormPr
                 className="rounded-3xl border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-gray-900 dark:text-white resize-none shadow-sm" 
               />
             </div>
+
+            <TurnstileWidget 
+              onVerify={(token) => {
+                setTurnstileToken(token);
+                setErrorMessage(null);
+              }} 
+              onError={() => setErrorMessage("Verification failed. Please try again.")}
+              onExpire={() => setTurnstileToken(null)}
+            />
             
             <button
               type="submit"
-              disabled={status === "sending" || status === "sent"}
+              disabled={status === "sending" || status === "sent" || !turnstileToken}
               className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 px-8 py-3 text-base font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-60 mt-4"
             >
               {status === "sending" ? "Sending..." : status === "sent" ? "✓ Request Sent!" : "Book Consultation"}
@@ -175,7 +197,7 @@ export default function ConsultationForm({ isOpen, onClose }: ConsultationFormPr
             {status === "error" && (
               <div className="mt-2 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
                 <p className="text-sm text-red-600 dark:text-red-400 break-words">
-                  There was a problem sending your request. {errorMessage}
+                  {errorMessage?.includes("Verification") ? errorMessage : `There was a problem sending your request. ${errorMessage}`}
                 </p>
               </div>
             )}

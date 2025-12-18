@@ -1,23 +1,37 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import TurnstileWidget from "@/components/TurnstileWidget";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   // Reset form after 5 seconds on success
   const resetForm = () => {
     setStatus("idle");
     setErrorMessage(null);
+    setTurnstileToken(null);
   };
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    
+    if (!turnstileToken) {
+      setErrorMessage("Please complete the verification check.");
+      return;
+    }
+
     const form = e.currentTarget as HTMLFormElement;
     const formData = new FormData(form);
     setStatus("sending");
-    const payload = Object.fromEntries(formData.entries());
+    
+    const payload = {
+      ...Object.fromEntries(formData.entries()),
+      "cf-turnstile-response": turnstileToken,
+    };
+
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -94,17 +108,27 @@ export default function ContactForm() {
           className={`${inputStyles} resize-none`} 
         />
       </div>
+
+      <TurnstileWidget 
+        onVerify={(token) => {
+          setTurnstileToken(token);
+          setErrorMessage(null);
+        }} 
+        onError={() => setErrorMessage("Verification failed. Please try again.")}
+        onExpire={() => setTurnstileToken(null)}
+      />
+
       <button
         type="submit"
-        disabled={status === "sending" || status === "sent"}
+        disabled={status === "sending" || status === "sent" || !turnstileToken}
         className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 px-8 py-3.5 text-sm font-semibold text-white uppercase tracking-wider shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-60"
       >
         {status === "sending" ? "Sending..." : status === "sent" ? "Message Sent!" : "SEND MESSAGE"}
       </button>
-      {status === "error" && (
+      {status === "error" && errorMessage && (
         <div className="p-4 bg-red-900/20 border border-red-800 rounded-lg">
           <p className="text-sm text-red-400 break-words">
-            There was a problem sending your message. {errorMessage}
+            {errorMessage.includes("Verification") ? errorMessage : `There was a problem sending your message. ${errorMessage}`}
           </p>
         </div>
       )}
