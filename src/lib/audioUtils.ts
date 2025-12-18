@@ -1,4 +1,4 @@
-import { MICROPHONE_SAMPLE_RATE, MODEL_AUDIO_SAMPLE_RATE } from './geminiService';
+import { MICROPHONE_SAMPLE_RATE } from './geminiService';
 
 export function decode(base64: string): Uint8Array {
   const binaryString = atob(base64);

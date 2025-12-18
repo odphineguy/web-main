@@ -1,4 +1,4 @@
-import { GoogleGenAI, LiveServerMessage, Modality, FunctionCall, Type } from "@google/genai";
+import { GoogleGenAI } from "@google/genai";
 import { Message } from './types';
 import { SOP_CONTENT } from './sopContent';
 
@@ -80,9 +80,10 @@ export const getOrCreateChatSession = () => {
 export const sendMessageToGemini = async (
   message: string,
   onNewChunk: (chunk: string) => void,
-  _existingMessages: Message[], // existingMessages is no longer explicitly used for context in sendMessageStream
-): Promise<string> => { // Return type changed to string
+  _existingMessages: Message[],
+): Promise<string> => {
   const chat = getOrCreateChatSession();
+  console.debug("Existing messages count:", _existingMessages.length);
   let fullModelResponse = '';
 
   try {

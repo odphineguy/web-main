@@ -4,8 +4,8 @@ import React, { useState, useCallback, useEffect, useRef } from 'react';
 import ChatWindow from './ChatWindow';
 import ChatInput from './ChatInput';
 import { Message, LiveSession } from '../../lib/types';
-import { sendMessageToGemini, getOrCreateChatSession, INITIAL_MESSAGE } from '../../lib/geminiService';
-import { GoogleGenAI, LiveServerMessage, Modality } from '@google/genai';
+import { sendMessageToGemini, INITIAL_MESSAGE } from '../../lib/geminiService';
+import { GoogleGenAI, Modality, LiveServerMessage } from '@google/genai';
 import { decodeAudioData } from '../../lib/audioUtils';
 import { MODEL_AUDIO_SAMPLE_RATE, MICROPHONE_SAMPLE_RATE, AUDIO_CHUNK_SIZE } from '../../lib/geminiService';
 
@@ -104,7 +104,8 @@ const ChatbotApp: React.FC = () => {
     } catch (error) {
       console.error('Error playing audio:', error);
     }
-  }, [stopAllAudio]);
+  }, []);
+
 
   const decode = (base64: string): Uint8Array => {
     const binaryString = atob(base64);
@@ -133,7 +134,7 @@ const ChatbotApp: React.FC = () => {
     return btoa(binary);
   };
 
-  const createBlob = (data: Float32Array): { data: string; mimeType: string } => {
+  const createBlob = useCallback((data: Float32Array): { data: string; mimeType: string } => {
     const l = data.length;
     const int16 = new Int16Array(l);
     for (let i = 0; i < l; i++) {
@@ -143,7 +144,33 @@ const ChatbotApp: React.FC = () => {
       data: encode(new Uint8Array(int16.buffer)),
       mimeType: `audio/pcm;rate=${MICROPHONE_SAMPLE_RATE}`,
     };
-  };
+  }, []);
+
+  const stopLiveSession = useCallback(() => {
+    if (liveSessionRef.current) {
+      liveSessionRef.current.close();
+      liveSessionRef.current = null;
+    }
+    if (scriptProcessorRef.current) {
+      scriptProcessorRef.current.disconnect();
+      scriptProcessorRef.current.onaudioprocess = null;
+      scriptProcessorRef.current = null;
+    }
+    if (sourceNodeRef.current) {
+      sourceNodeRef.current.disconnect();
+      sourceNodeRef.current = null;
+    }
+    if (mediaStreamRef.current) {
+      mediaStreamRef.current.getTracks().forEach(track => track.stop());
+      mediaStreamRef.current = null;
+    }
+    sessionPromiseRef.current = null;
+    stopAllAudio();
+    currentInputTranscriptionRef.current = '';
+    currentOutputTranscriptionRef.current = '';
+    setIsLoading(false);
+    setIsRecording(false);
+  }, [stopAllAudio]);
 
   const initiateLiveSession = useCallback(async () => {
     setIsLoading(true);
@@ -275,33 +302,7 @@ const ChatbotApp: React.FC = () => {
       }
       stopLiveSession();
     }
-  }, [playAudio, stopAllAudio, decodeAudioData]);
-
-  const stopLiveSession = useCallback(() => {
-    if (liveSessionRef.current) {
-      liveSessionRef.current.close();
-      liveSessionRef.current = null;
-    }
-    if (scriptProcessorRef.current) {
-      scriptProcessorRef.current.disconnect();
-      scriptProcessorRef.current.onaudioprocess = null;
-      scriptProcessorRef.current = null;
-    }
-    if (sourceNodeRef.current) {
-      sourceNodeRef.current.disconnect();
-      sourceNodeRef.current = null;
-    }
-    if (mediaStreamRef.current) {
-      mediaStreamRef.current.getTracks().forEach(track => track.stop());
-      mediaStreamRef.current = null;
-    }
-    sessionPromiseRef.current = null;
-    stopAllAudio();
-    currentInputTranscriptionRef.current = '';
-    currentOutputTranscriptionRef.current = '';
-    setIsLoading(false);
-    setIsRecording(false);
-  }, [stopAllAudio]);
+  }, [playAudio, stopAllAudio, stopLiveSession, createBlob]);
 
   useEffect(() => {
     if (isRecording) {

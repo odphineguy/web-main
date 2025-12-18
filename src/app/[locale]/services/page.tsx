@@ -3,10 +3,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { ScheduleCallButton } from "@/components/ScheduleCallButton";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle, Code, Palette, Smartphone, Globe, Zap, Bot, Languages, ArrowRight } from "lucide-react";
+import { CheckCircle, Code, Palette, Smartphone, Globe, Bot, Languages, ArrowRight } from "lucide-react";
 import ConsultationForm from "@/components/ConsultationForm";
 
 import { useTranslations } from 'next-intl';

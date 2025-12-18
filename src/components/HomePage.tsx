@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { ScheduleCallButton } from "@/components/ScheduleCallButton";
 import ConsultationForm from "@/components/ConsultationForm";
-import { Bot, Users, Zap, Clock, Database, Globe } from "lucide-react";
+import { Bot, Users, Zap, Globe } from "lucide-react";
 import { useTranslations } from 'next-intl';
 
 // Lazy load below-fold components to reduce initial bundle size
@@ -34,18 +34,6 @@ const clientLogos = [
   { name: "InAction", src: "/images/logo-maker/inaction.svg", isDark: false },
   { name: "Abe Media", src: "/images/logo-maker/abem.svg", isDark: false },
   { name: "MyLab", src: "/images/logo-maker/mylab.svg", isDark: false },
-];
-
-const testimonials = [
-  // Testimonials are now handled directly in the JSX to support translations
-];
-
-const features = [
-  // Features are now handled directly in the JSX to support translations
-];
-
-const benefits = [
-  // Benefits are now handled directly in the JSX to support translations
 ];
 
 export default function HomePage() {
