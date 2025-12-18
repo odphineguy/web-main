@@ -19,7 +19,7 @@ async function verifyTurnstileToken(token: string) {
       method: "POST",
     });
 
-    const outcome = await result.json();
+    const outcome = await result.json() as { success: boolean };
     if (!outcome.success) {
       console.error("Turnstile verification failed:", outcome);
     }
