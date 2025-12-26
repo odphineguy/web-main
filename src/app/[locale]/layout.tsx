@@ -218,56 +218,18 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
-        {/* Critical CSS for above-the-fold content - inlined to avoid render blocking */}
-        <style dangerouslySetInnerHTML={{ __html: `
-          /* Critical hero styles for LCP optimization */
-          .min-h-screen{min-height:100vh}
-          .bg-white{background-color:#fff}
-          .dark .dark\\:bg-black{background-color:#000}
-          .px-6{padding-left:1.5rem;padding-right:1.5rem}
-          .pt-8{padding-top:2rem}
-          .pb-16{padding-bottom:4rem}
-          .max-w-6xl{max-width:72rem}
-          .mx-auto{margin-left:auto;margin-right:auto}
-          .grid{display:grid}
-          .grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}
-          .gap-12{gap:3rem}
-          .items-center{align-items:center}
-          .space-y-6>:not([hidden])~:not([hidden]){margin-top:1.5rem}
-          .text-4xl{font-size:2.25rem;line-height:2.5rem}
-          .font-bold{font-weight:700}
-          .text-gray-900{color:rgb(17 24 39)}
-          .dark .dark\\:text-white{color:#fff}
-          .leading-tight{line-height:1.25}
-          .text-transparent{color:transparent}
-          .bg-clip-text{-webkit-background-clip:text;background-clip:text}
-          .bg-gradient-to-r{background-image:linear-gradient(to right,var(--tw-gradient-stops))}
-          .from-orange-400{--tw-gradient-from:rgb(251 146 60);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}
-          .to-orange-600{--tw-gradient-to:rgb(234 88 12)}
-          .text-lg{font-size:1.125rem;line-height:1.75rem}
-          .text-gray-600{color:rgb(75 85 99)}
-          .dark .dark\\:text-neutral-300{color:rgb(212 212 212)}
-          .relative{position:relative}
-          .w-full{width:100%}
-          .aspect-\\[4\\/3\\]{aspect-ratio:4/3}
-          .object-contain{object-fit:contain}
-          @media(min-width:768px){.md\\:text-5xl{font-size:3rem;line-height:1}.md\\:pt-16{padding-top:4rem}}
-          @media(min-width:1024px){.lg\\:text-6xl{font-size:3.75rem;line-height:1}.lg\\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.lg\\:pb-32{padding-bottom:8rem}.lg\\:scale-\\[1\\.20\\]{transform:scale(1.2)}.lg\\:translate-x-8{transform:translateX(2rem)}}
-        `}} />
         {/* Preload LCP hero images for faster initial paint */}
         <link
           rel="preload"
           href="/images/home/home-hero-light.png"
           as="image"
           type="image/png"
-          fetchPriority="high"
         />
         <link
           rel="preload"
           href="/images/home/home-hero.png"
           as="image"
           type="image/png"
-          fetchPriority="high"
         />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-EJCZTY1MCG"
