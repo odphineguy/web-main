@@ -11,9 +11,26 @@
   },
   "Home": {
     "Hero": {
-      "titlePart1": "Custom Chatbots:",
-      "titlePart2": "Your 24/7 Digital Workforce.",
-      "subtitle": "Boost engagement, capture leads, and automate support with intelligent, bilingual chatbots tailored for your business."
+      "titlePart1": "Bilingual Web Development, AI Solutions & SEO",
+      "titlePart2": "for Small Business Growth",
+      "subtitle": "Custom websites, intelligent chatbots, and SEO strategies tailored for businesses reaching English and Spanish-speaking customers."
+    },
+    "BilingualServices": {
+      "title": "Bilingual Web Development Services",
+      "subtitle": "Reach English and Spanish-speaking customers with professional bilingual websites that drive growth.",
+      "benefit1": {
+        "title": "Expand Your Market",
+        "description": "Connect with the growing Hispanic market and reach customers who prefer doing business in Spanish."
+      },
+      "benefit2": {
+        "title": "Better Customer Experience",
+        "description": "Serve customers in their preferred language with seamless language switching and culturally relevant content."
+      },
+      "benefit3": {
+        "title": "SEO for Both Languages",
+        "description": "Rank in search results for both English and Spanish keywords with proper hreflang implementation."
+      },
+      "cta": "Learn More About Bilingual Web Development"
     },
     "Features": {
       "title": "Core Chatbot Features",

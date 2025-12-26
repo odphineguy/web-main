@@ -54,6 +54,7 @@ export function constructMetadata({
       languages: {
         en: `/en${cleanPath}`,
         es: `/es${cleanPath}`,
+        'x-default': `/en${cleanPath}`,
       },
     },
   };

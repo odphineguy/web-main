@@ -11,9 +11,26 @@
   },
   "Home": {
     "Hero": {
-      "titlePart1": "Chatbots Personalizados:",
-      "titlePart2": "Tu Fuerza Laboral Digital 24/7.",
-      "subtitle": "Aumenta la interacción, captura leads y automatiza el soporte con chatbots inteligentes y bilingües diseñados para tu negocio."
+      "titlePart1": "Desarrollo Web Bilingue, Soluciones IA y SEO",
+      "titlePart2": "para el Crecimiento de tu Negocio",
+      "subtitle": "Sitios web personalizados, chatbots inteligentes y estrategias SEO para negocios que atienden clientes en ingles y espanol."
+    },
+    "BilingualServices": {
+      "title": "Servicios de Desarrollo Web Bilingue",
+      "subtitle": "Alcanza a clientes de habla inglesa y espanola con sitios web bilingues profesionales que impulsan el crecimiento.",
+      "benefit1": {
+        "title": "Expande tu Mercado",
+        "description": "Conecta con el creciente mercado hispano y alcanza a clientes que prefieren hacer negocios en espanol."
+      },
+      "benefit2": {
+        "title": "Mejor Experiencia del Cliente",
+        "description": "Atiende a tus clientes en su idioma preferido con cambio de idioma fluido y contenido culturalmente relevante."
+      },
+      "benefit3": {
+        "title": "SEO para Ambos Idiomas",
+        "description": "Posicionate en los resultados de busqueda tanto en ingles como en espanol con implementacion correcta de hreflang."
+      },
+      "cta": "Conoce Mas Sobre Desarrollo Web Bilingue"
     },
     "Features": {
       "title": "Características Principales",

@@ -6,7 +6,8 @@ import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { ScheduleCallButton } from "@/components/ScheduleCallButton";
 import ConsultationForm from "@/components/ConsultationForm";
-import { Bot, Users, Zap, Globe } from "lucide-react";
+import { Bot, Users, Zap, Globe, TrendingUp, Heart, Search } from "lucide-react";
+import Link from "next/link";
 import { useTranslations } from 'next-intl';
 
 // Lazy load below-fold components to reduce initial bundle size
@@ -101,6 +102,97 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Bilingual Web Development Services Section */}
+      <section className="bg-gray-50 dark:bg-neutral-950 py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+              {t('BilingualServices.title')}
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-neutral-400 max-w-2xl mx-auto">
+              {t('BilingualServices.subtitle')}
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0 }}
+              viewport={{ once: true }}
+              className="text-center"
+            >
+              <div className="w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center mx-auto mb-4">
+                <TrendingUp className="w-7 h-7 text-orange-500" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                {t('BilingualServices.benefit1.title')}
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-neutral-400">
+                {t('BilingualServices.benefit1.description')}
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="text-center"
+            >
+              <div className="w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center mx-auto mb-4">
+                <Heart className="w-7 h-7 text-orange-500" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                {t('BilingualServices.benefit2.title')}
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-neutral-400">
+                {t('BilingualServices.benefit2.description')}
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="text-center"
+            >
+              <div className="w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center mx-auto mb-4">
+                <Search className="w-7 h-7 text-orange-500" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                {t('BilingualServices.benefit3.title')}
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-neutral-400">
+                {t('BilingualServices.benefit3.description')}
+              </p>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <Link
+              href="/services/bilingual-web-development"
+              className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-orange-600"
+            >
+              {t('BilingualServices.cta')}
+            </Link>
+          </motion.div>
         </div>
       </section>
 

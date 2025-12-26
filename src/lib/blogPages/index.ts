@@ -11,6 +11,7 @@ import seoPagesBatch2 from "../../../seo-pages-batch-december-2025-part2.json";
 import seoPagesBatch3 from "../../../seo-pages-batch-december-2025-part3.json";
 import seoPagesBatch4 from "../../../seo-pages-batch-december-2025-part4.json";
 import seoPagesBatch5 from "../../../seo-pages-batch-december-2025-part5.json";
+import seoStrategyBatch from "../../../seo-pages-batch-seo-strategy.json";
 
 // Helper to calculate read time based on content length
 function calculateReadTime(content: BlogPageJson["content"]): string {
@@ -77,6 +78,7 @@ function loadAllPages(): BlogPage[] {
     ...(seoPagesBatch3.pages as BlogPageJson[]),
     ...(seoPagesBatch4.pages as BlogPageJson[]),
     ...(seoPagesBatch5.pages as BlogPageJson[]),
+    ...(seoStrategyBatch.pages as BlogPageJson[]),
   ];
   
   // Combine all pages
