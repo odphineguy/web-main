@@ -13,7 +13,7 @@ const faqs = [
   {
     id: "q2",
     question: "Can we start small?",
-    answer: "Absolutely. We offer flexible packages starting at $1,500 for a custom AI chatbot. You can start with just a website, just a chatbot, or combine services as your business grows. No pressure to buy everything at once.",
+    answer: "Absolutely. We offer flexible packages starting at $499 for a custom AI chatbot. You can start with just a website, just a chatbot, or combine services as your business grows. No pressure to buy everything at once.",
   },
   {
     id: "q3",
@@ -48,7 +48,7 @@ const faqs = [
   {
     id: "q9",
     question: "How much does a website cost?",
-    answer: "Our Professional Web & App package starts at $3,500, which includes custom design, SEO optimization, a content management system, and priority support. For simpler needs, we can discuss custom pricing during your free consultation.",
+    answer: "Our Business Web & AI Chatbot package is $1,499, which includes a custom website (up to 5 pages), AI chatbot, basic SEO, and 30-day support. For more advanced needs, our Professional Web & App package at $3,500 includes custom design, SEO optimization, advanced chatbot integration, CMS, and priority support.",
   },
   {
     id: "q10",

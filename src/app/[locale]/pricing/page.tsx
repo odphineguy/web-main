@@ -16,13 +16,14 @@ interface PricingTier {
   cta: string;
   popular?: boolean;
   isEnterprise?: boolean;
+  isMonthly?: boolean;
 }
 
 const pricingTiers: PricingTier[] = [
   {
     id: "starter",
     name: "STARTER CHATBOT",
-    price: "$1,500",
+    price: "$499",
     description: "Perfect for small businesses looking to automate customer support",
     features: [
       "Custom AI Chatbot",
@@ -34,10 +35,25 @@ const pricingTiers: PricingTier[] = [
     cta: "Select Starter",
   },
   {
+    id: "business",
+    name: "BUSINESS WEB & AI CHATBOT",
+    price: "$1,499",
+    description: "Complete website and chatbot solution for growing businesses",
+    features: [
+      "Custom Website (up to 5 pages)",
+      "AI Chatbot",
+      "Basic SEO",
+      "Email Integration",
+      "30-day Support",
+    ],
+    cta: "Choose Business",
+    popular: true,
+  },
+  {
     id: "professional",
     name: "PROFESSIONAL WEB & APP",
     price: "$3,500",
-    description: "Complete digital solution for growing businesses",
+    description: "Complete digital solution for established businesses",
     features: [
       "Custom Website & App Design",
       "SEO Optimization",
@@ -47,22 +63,50 @@ const pricingTiers: PricingTier[] = [
       "Dedicated Project Manager",
     ],
     cta: "Choose Professional",
-    popular: true,
+  },
+];
+
+const addonTiers: PricingTier[] = [
+  {
+    id: "seo-maintenance",
+    name: "SEO MAINTENANCE",
+    price: "$99",
+    description: "Keep your site ranking with monthly SEO care",
+    features: [
+      "Monthly SEO audit",
+      "Keyword monitoring",
+      "Performance reports",
+      "Content optimization tips",
+    ],
+    cta: "Add SEO Service",
+    isMonthly: true,
   },
   {
-    id: "enterprise",
-    name: "ENTERPRISE SEO & GROWTH",
-    price: "Custom",
-    description: "Tailored solutions for large-scale operations",
+    id: "social-media",
+    name: "SOCIAL MEDIA MANAGEMENT",
+    price: "$99",
+    description: "Stay active on social with weekly content",
     features: [
-      "Comprehensive SEO Strategy",
-      "Global Market Reach",
-      "Multi-platform App Development",
-      "Custom AI Solutions",
-      "24/7 Premium Support",
+      "1 weekly post",
+      "Content creation",
+      "Platform management",
+      "Engagement monitoring",
     ],
-    cta: "Contact Abe",
-    isEnterprise: true,
+    cta: "Add Social Media",
+    isMonthly: true,
+  },
+  {
+    id: "new-website",
+    name: "NEW WEBSITE",
+    price: "$99",
+    description: "Get a fresh new website for your business",
+    features: [
+      "Up to 5 pages",
+      "Mobile responsive design",
+      "Basic SEO setup",
+      "Contact form included",
+    ],
+    cta: "Add Website",
   },
 ];
 
@@ -74,11 +118,6 @@ export default function PricingPage() {
   const canceled = searchParams.get("canceled");
 
   const handleSelectPlan = async (tier: PricingTier) => {
-    if (tier.isEnterprise) {
-      setIsConsultationOpen(true);
-      return;
-    }
-
     setLoadingPlan(tier.id);
 
     try {
@@ -195,6 +234,9 @@ export default function PricingPage() {
                     <span className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white">
                       {tier.price}
                     </span>
+                    {tier.isMonthly && (
+                      <span className="text-lg text-gray-500 dark:text-neutral-400">/mo</span>
+                    )}
                   </div>
 
                   {/* Features */}
@@ -251,6 +293,98 @@ export default function PricingPage() {
             </motion.div>
           ))}
         </SlidingHighlightGrid>
+
+        {/* Add-ons Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-center max-w-6xl mx-auto mt-20 mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            Power Up Your{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
+              Digital Presence
+            </span>
+          </h2>
+          <p className="text-lg text-gray-600 dark:text-neutral-400 max-w-2xl mx-auto">
+            Enhance any package with these affordable add-on services.
+          </p>
+        </motion.div>
+
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {addonTiers.map((tier, index) => (
+            <motion.div
+              key={tier.id}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
+              className="relative group h-full"
+            >
+              <div className="h-full rounded-2xl p-px transition-all duration-300 bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
+                <div className="h-full rounded-2xl p-6 lg:p-8 backdrop-blur-xl transition-all duration-300 text-center bg-gray-50 dark:bg-neutral-900">
+                  <h3 className="text-sm font-bold tracking-widest text-gray-500 dark:text-neutral-400 mb-6">
+                    {tier.name}
+                  </h3>
+                  <div className="h-px w-full mb-6 bg-orange-500/60" />
+                  <div className="mb-2">
+                    <span className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white">
+                      {tier.price}
+                    </span>
+                    {tier.isMonthly && (
+                      <span className="text-lg text-gray-500 dark:text-neutral-400">/mo</span>
+                    )}
+                  </div>
+                  <p className="text-sm text-gray-500 dark:text-neutral-500 mb-6">
+                    {tier.description}
+                  </p>
+                  <ul className="space-y-3 mb-8">
+                    {tier.features.map((feature, featureIndex) => (
+                      <li
+                        key={featureIndex}
+                        className="text-gray-600 dark:text-neutral-300 text-sm"
+                      >
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  <button
+                    onClick={() => handleSelectPlan(tier)}
+                    disabled={loadingPlan === tier.id}
+                    className="w-full py-3.5 px-6 rounded-full font-semibold text-sm transition-all duration-300 bg-gray-200 dark:bg-white/10 text-gray-900 dark:text-white border border-gray-300 dark:border-white/20 hover:bg-orange-500 hover:text-white hover:border-orange-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {loadingPlan === tier.id ? (
+                      <span className="flex items-center justify-center gap-2">
+                        <svg
+                          className="animate-spin h-4 w-4"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          />
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          />
+                        </svg>
+                        Processing...
+                      </span>
+                    ) : (
+                      tier.cta
+                    )}
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </section>
 
       {/* Request Quote Section */}

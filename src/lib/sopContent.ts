@@ -206,17 +206,27 @@ A: Logo design projects typically take 1-2 weeks, depending on complexity and re
 
 ## PRICING INFORMATION
 
-**General Price Ranges:**
+**Package Pricing:**
+- **Starter Chatbot**: $499 - Custom AI Chatbot with 24/7 Lead Capture, Basic Analytics, Email Integration, and Limited Support
+- **Business Web & AI Chatbot**: $1,499 - Custom Website (up to 5 pages), AI Chatbot, Basic SEO, Email Integration, and 30-day Support (Most Popular)
+- **Professional Web & App**: $3,500 - Custom Website & App Design, SEO Optimization, Advanced Chatbot Integration, CMS, Priority Support, and Dedicated Project Manager
+
+**Add-On Services:**
+- **SEO Maintenance**: $99/month - Monthly SEO audit, keyword monitoring, performance reports, and content optimization
+- **Social Media Management**: $99/month - 1 weekly post, content creation, platform management, and engagement monitoring
+- **New Website**: $99 - Up to 5 pages, mobile responsive design, basic SEO setup, and contact form
+
+**General Price Ranges for Custom Projects:**
 *Note: These are starting ranges. Exact pricing depends on project scope, complexity, and specific requirements. A consultation is required for accurate quotes.*
 
 - **Website Refresh**: Starting at $750-$3,750
-- **New Website**: Starting at $2,000-$12,500+
+- **New Website**: Starting at $99-$12,500+
 - **Mobile Apps**: Starting at $2,500-$25,000
-- **Custom Chatbot**: Starting at $500-$35,000
+- **Custom Chatbot**: Starting at $499-$35,000
 - **AI Agents**: Starting at $2,500-$25,000
-- **SEO Services**: $375-$2,500/month
+- **SEO Services**: $99-$2,500/month
 - **Marketing Services**: $500-$3,750/month + ad spend
-- **Social Media Management**: $375-$2,000/month
+- **Social Media Management**: $99-$2,000/month
 - **Logo Design**: $100-$300
 
 **Pricing Factors:**
