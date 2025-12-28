@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { ScheduleCallButton } from "@/components/ScheduleCallButton";
 import ConsultationForm from "@/components/ConsultationForm";
-import { Bot, Users, Zap, Globe, TrendingUp, Heart, Search } from "lucide-react";
+import { Bot, Users, Zap, Globe, TrendingUp, Heart, Search, Calculator } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from 'next-intl';
 
@@ -445,6 +445,38 @@ export default function HomePage() {
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Calculator CTA Section */}
+      <section className="bg-gray-50 dark:bg-neutral-950 py-20 px-6">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="rounded-2xl p-px bg-gradient-to-b from-orange-500/30 to-orange-600/10"
+          >
+            <div className="rounded-2xl p-10 md:p-16 bg-white dark:bg-neutral-900 text-center">
+              <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-600 dark:text-orange-400 mb-6">
+                <Calculator className="w-3.5 h-3.5" />
+                {t('CalculatorCTA.badge')}
+              </span>
+              <h2 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                {t('CalculatorCTA.title')}
+              </h2>
+              <p className="text-gray-600 dark:text-neutral-400 max-w-2xl mx-auto mb-8">
+                {t('CalculatorCTA.subtitle')}
+              </p>
+              <Link
+                href="/calculator"
+                className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-8 py-4 text-base font-semibold text-white transition-colors hover:bg-orange-600"
+              >
+                {t('CalculatorCTA.button')}
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
 

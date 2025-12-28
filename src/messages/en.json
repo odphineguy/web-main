@@ -2,6 +2,7 @@
   "Navbar": {
     "services": "Services",
     "pricing": "Pricing",
+    "calculator": "Calculator",
     "portfolio": "Portfolio",
     "blog": "Blog",
     "contact": "Contact"
@@ -11,9 +12,9 @@
   },
   "Home": {
     "Hero": {
-      "titlePart1": "Bilingual Web Development, AI Solutions & SEO",
+      "titlePart1": "Bilingual Web Development, AI Chatbots & SEO",
       "titlePart2": "for Small Business Growth",
-      "subtitle": "Custom websites, intelligent chatbots, and SEO strategies tailored for businesses reaching English and Spanish-speaking customers."
+      "subtitle": "Custom websites, intelligent chatbots, and SEO strategies for businesses serving English and Spanish-speaking customers."
     },
     "BilingualServices": {
       "title": "Bilingual Web Development Services",
@@ -102,6 +103,12 @@
     },
     "CTA": {
       "title": "Start Building Your Chatbot Today"
+    },
+    "CalculatorCTA": {
+      "badge": "Free Growth Calculator",
+      "title": "See How Much Revenue You're Missing",
+      "subtitle": "Discover the untapped potential of reaching Spanish-speaking customers in your area with our free bilingual growth calculator.",
+      "button": "Calculate My Growth Potential"
     }
   },
   "Services": {
@@ -182,6 +189,90 @@
       "title": "Ready to Start Your Project?",
       "description": "Let's discuss how we can help bring your digital vision to life with our expertise.",
       "link": "Learn more"
+    }
+  },
+  "CalculatorPage": {
+    "hero": {
+      "titlePart1": "Bilingual Growth",
+      "titlePart2": "Calculator",
+      "subtitle": "Discover how much revenue you could be missing by not reaching Spanish-speaking customers in your area."
+    },
+    "stats": {
+      "hispanicPopulation": "Hispanic population in the US",
+      "spanishSpeakers": "Spanish speakers at home",
+      "buyingPower": "Hispanic buying power"
+    },
+    "info": {
+      "title": "How We Calculate Your Potential",
+      "description": "Our calculator uses real census data and industry benchmarks to estimate your growth opportunity.",
+      "methodology": {
+        "title": "Our Methodology",
+        "description": "We combine local Hispanic population data with industry-specific online search patterns to estimate the portion of potential customers you could reach with a bilingual website."
+      },
+      "disclaimer": {
+        "title": "Important Note",
+        "description": "These are estimates based on market data and industry averages. Actual results may vary based on your specific business, location, and marketing efforts."
+      }
+    }
+  },
+  "Calculator": {
+    "title": "Bilingual Growth Calculator",
+    "subtitle": "See your potential revenue increase",
+    "inputs": {
+      "industry": {
+        "label": "What is your industry?",
+        "placeholder": "Select your industry",
+        "options": {
+          "restaurant": "Restaurant / Food Service",
+          "homeServices": "Home Services (Plumbing, Landscaping, etc.)",
+          "healthWellness": "Health & Wellness (Gym, Salon, Spa)",
+          "retail": "Retail / E-commerce",
+          "professional": "Professional Services (Law, Accounting)",
+          "other": "Other"
+        }
+      },
+      "customers": {
+        "label": "How many new customers do you get per month?",
+        "placeholder": "e.g., 10"
+      },
+      "revenue": {
+        "label": "What is your average revenue per customer?",
+        "placeholder": "e.g., 500"
+      },
+      "city": {
+        "label": "What is your city or service area?",
+        "placeholder": "Select your city",
+        "hint": "We use census data to estimate the Hispanic population in your area",
+        "other": "Other US City (19% avg)"
+      }
+    },
+    "calculateButton": "Calculate My Potential",
+    "errors": {
+      "industry": "Please select your industry",
+      "customers": "Please enter a valid number of customers",
+      "revenue": "Please enter a valid revenue amount",
+      "city": "Please enter your city"
+    },
+    "leadCapture": {
+      "title": "Want a detailed report?",
+      "subtitle": "Enter your info and we'll email you a personalized growth analysis.",
+      "name": "Your name",
+      "email": "Email address",
+      "phone": "Phone number (optional)",
+      "submit": "Send My Report",
+      "submitting": "Sending...",
+      "skip": "No thanks, just show me the results"
+    },
+    "results": {
+      "title": "Your Growth Potential",
+      "basedOn": "Based on {city} with {percent}% Hispanic population",
+      "emailSent": "Your detailed report has been sent to your email!",
+      "newCustomers": "Potential New Customers",
+      "month": "month",
+      "monthlyRevenue": "Potential Monthly Revenue Increase",
+      "yearlyRevenue": "Potential Yearly Revenue Increase",
+      "cta": "Start Reaching More Customers",
+      "recalculate": "Calculate again"
     }
   }
 }

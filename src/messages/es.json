@@ -2,6 +2,7 @@
   "Navbar": {
     "services": "Servicios",
     "pricing": "Precios",
+    "calculator": "Calculadora",
     "portfolio": "Portafolio",
     "blog": "Blog",
     "contact": "Contacto"
@@ -11,9 +12,9 @@
   },
   "Home": {
     "Hero": {
-      "titlePart1": "Desarrollo Web Bilingue, Soluciones IA y SEO",
+      "titlePart1": "Desarrollo Web Bilingüe, Chatbots IA y SEO",
       "titlePart2": "para el Crecimiento de tu Negocio",
-      "subtitle": "Sitios web personalizados, chatbots inteligentes y estrategias SEO para negocios que atienden clientes en ingles y espanol."
+      "subtitle": "Sitios web personalizados, chatbots inteligentes y estrategias SEO para negocios que atienden a clientes de habla inglesa y española."
     },
     "BilingualServices": {
       "title": "Servicios de Desarrollo Web Bilingue",
@@ -102,6 +103,12 @@
     },
     "CTA": {
       "title": "Comienza a Construir Tu Chatbot Hoy"
+    },
+    "CalculatorCTA": {
+      "badge": "Calculadora de Crecimiento Gratis",
+      "title": "Descubre Cuántos Ingresos Estás Perdiendo",
+      "subtitle": "Descubre el potencial sin explotar de alcanzar a clientes hispanohablantes en tu área con nuestra calculadora de crecimiento bilingüe gratuita.",
+      "button": "Calcular Mi Potencial de Crecimiento"
     }
   },
   "Services": {
@@ -182,6 +189,90 @@
       "title": "¿Listo para Comenzar tu Proyecto?",
       "description": "Hablemos sobre cómo podemos ayudar a dar vida a tu visión digital con nuestra experiencia.",
       "link": "Aprender más"
+    }
+  },
+  "CalculatorPage": {
+    "hero": {
+      "titlePart1": "Calculadora de Crecimiento",
+      "titlePart2": "Bilingüe",
+      "subtitle": "Descubre cuántos ingresos podrías estar perdiendo al no alcanzar a clientes hispanohablantes en tu área."
+    },
+    "stats": {
+      "hispanicPopulation": "Población hispana en EE.UU.",
+      "spanishSpeakers": "Hablan español en casa",
+      "buyingPower": "Poder adquisitivo hispano"
+    },
+    "info": {
+      "title": "Cómo Calculamos tu Potencial",
+      "description": "Nuestra calculadora usa datos reales del censo y referencias de la industria para estimar tu oportunidad de crecimiento.",
+      "methodology": {
+        "title": "Nuestra Metodología",
+        "description": "Combinamos datos locales de población hispana con patrones de búsqueda en línea específicos de cada industria para estimar la porción de clientes potenciales que podrías alcanzar con un sitio web bilingüe."
+      },
+      "disclaimer": {
+        "title": "Nota Importante",
+        "description": "Estas son estimaciones basadas en datos del mercado y promedios de la industria. Los resultados reales pueden variar según tu negocio específico, ubicación y esfuerzos de marketing."
+      }
+    }
+  },
+  "Calculator": {
+    "title": "Calculadora de Crecimiento Bilingüe",
+    "subtitle": "Ve tu potencial aumento de ingresos",
+    "inputs": {
+      "industry": {
+        "label": "¿Cuál es tu industria?",
+        "placeholder": "Selecciona tu industria",
+        "options": {
+          "restaurant": "Restaurante / Servicio de Comida",
+          "homeServices": "Servicios del Hogar (Plomería, Jardinería, etc.)",
+          "healthWellness": "Salud y Bienestar (Gimnasio, Salón, Spa)",
+          "retail": "Retail / Comercio Electrónico",
+          "professional": "Servicios Profesionales (Legal, Contabilidad)",
+          "other": "Otro"
+        }
+      },
+      "customers": {
+        "label": "¿Cuántos clientes nuevos obtienes por mes?",
+        "placeholder": "ej., 10"
+      },
+      "revenue": {
+        "label": "¿Cuál es tu ingreso promedio por cliente?",
+        "placeholder": "ej., 500"
+      },
+      "city": {
+        "label": "¿Cuál es tu ciudad o área de servicio?",
+        "placeholder": "Selecciona tu ciudad",
+        "hint": "Usamos datos del censo para estimar la población hispana en tu área",
+        "other": "Otra ciudad de EE.UU. (19% prom)"
+      }
+    },
+    "calculateButton": "Calcular Mi Potencial",
+    "errors": {
+      "industry": "Por favor selecciona tu industria",
+      "customers": "Por favor ingresa un número válido de clientes",
+      "revenue": "Por favor ingresa una cantidad válida de ingresos",
+      "city": "Por favor ingresa tu ciudad"
+    },
+    "leadCapture": {
+      "title": "¿Quieres un reporte detallado?",
+      "subtitle": "Ingresa tu información y te enviaremos un análisis de crecimiento personalizado.",
+      "name": "Tu nombre",
+      "email": "Correo electrónico",
+      "phone": "Teléfono (opcional)",
+      "submit": "Enviar Mi Reporte",
+      "submitting": "Enviando...",
+      "skip": "No gracias, solo muéstrame los resultados"
+    },
+    "results": {
+      "title": "Tu Potencial de Crecimiento",
+      "basedOn": "Basado en {city} con {percent}% de población hispana",
+      "emailSent": "¡Tu reporte detallado ha sido enviado a tu correo!",
+      "newCustomers": "Clientes Nuevos Potenciales",
+      "month": "mes",
+      "monthlyRevenue": "Aumento Potencial de Ingresos Mensuales",
+      "yearlyRevenue": "Aumento Potencial de Ingresos Anuales",
+      "cta": "Comienza a Alcanzar Más Clientes",
+      "recalculate": "Calcular de nuevo"
     }
   }
 }

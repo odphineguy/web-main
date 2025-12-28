@@ -85,6 +85,7 @@ export default function TopNavbar() {
         <nav className="hidden md:flex items-center gap-5 md:gap-6 text-base ml-3 sm:ml-6 md:ml-10">
           <Link href="/services" className={`font-bold transition-colors ${isActive("/services") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('services')}</Link>
           <Link href="/pricing" className={`font-bold transition-colors ${isActive("/pricing") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('pricing')}</Link>
+          <Link href="/calculator" className={`font-bold transition-colors ${isActive("/calculator") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('calculator')}</Link>
           <Link href="/portfolio" className={`font-bold transition-colors ${isActive("/portfolio") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('portfolio')}</Link>
           <Link href="/blog" className={`font-bold transition-colors ${isActive("/blog") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('blog')}</Link>
           <Link href="/contact" className={`font-bold transition-colors ${isActive("/contact") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('contact')}</Link>
@@ -129,6 +130,7 @@ export default function TopNavbar() {
           <nav className="flex flex-col py-4 px-6 space-y-3">
             <Link href="/services" className={`font-bold py-2 transition-colors ${isActive("/services") ? "text-orange-500" : "text-gray-900 dark:text-white opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('services')}</Link>
             <Link href="/pricing" className={`font-bold py-2 transition-colors ${isActive("/pricing") ? "text-orange-500" : "text-gray-900 dark:text-white opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('pricing')}</Link>
+            <Link href="/calculator" className={`font-bold py-2 transition-colors ${isActive("/calculator") ? "text-orange-500" : "text-gray-900 dark:text-white opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('calculator')}</Link>
             <Link href="/portfolio" className={`font-bold py-2 transition-colors ${isActive("/portfolio") ? "text-orange-500" : "text-gray-900 dark:text-white opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('portfolio')}</Link>
             <Link href="/blog" className={`font-bold py-2 transition-colors ${isActive("/blog") ? "text-orange-500" : "text-gray-900 dark:text-white opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('blog')}</Link>
             <Link href="/contact" className={`font-bold py-2 transition-colors ${isActive("/contact") ? "text-orange-500" : "text-gray-900 dark:text-white opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('contact')}</Link>
