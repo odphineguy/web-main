@@ -146,12 +146,13 @@ export default function ConsultationForm({ isOpen, onClose }: ConsultationFormPr
               <label htmlFor="service" className="text-sm font-medium text-gray-700 dark:text-gray-300">
                 Service Interest
               </label>
-              <select 
-                id="service" 
-                name="service" 
+              <select
+                id="service"
+                name="service"
                 className="rounded-full border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-gray-900 dark:text-white shadow-sm"
               >
                 <option value="">Select a service</option>
+                <option value="ai-chatbot">AI Chatbot</option>
                 <option value="web-development">Web Development</option>
                 <option value="mobile-app">Mobile App Development</option>
                 <option value="ui-ux-design">UI/UX Design</option>

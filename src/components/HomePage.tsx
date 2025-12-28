@@ -24,6 +24,17 @@ const PartnerSteps = dynamic(() => import("@/components/PartnerSteps"), {
   ssr: false,
 });
 
+const BilingualHeroDemo = dynamic(() => import("@/components/demos/BilingualHeroDemo"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full max-w-md mx-auto lg:mx-0 h-[340px] rounded-2xl bg-gray-100 dark:bg-neutral-800 animate-pulse" />
+  ),
+});
+
+const ChatDemoShowcase = dynamic(() => import("@/components/demos/ChatDemoShowcase"), {
+  ssr: false,
+});
+
 // Client logos for the carousel
 // isDark: true for black logos that need to be inverted in dark mode
 const clientLogos = [
@@ -76,30 +87,9 @@ export default function HomePage() {
               />
             </div>
 
-            {/* Right: Hero Image - Animations removed for LCP optimization */}
-            <div
-              className="relative"
-            >
-              <div className="relative w-full aspect-[4/3] max-w-2xl mx-auto lg:scale-[1.20] lg:translate-x-8">
-                {/* Light mode hero */}
-                <Image
-                  src="/images/home/home-hero-light.png"
-                  alt="Smart chatbot illustration"
-                  fill
-                  className="object-contain block dark:hidden"
-                  sizes="(max-width: 1024px) 100vw, 60vw"
-                  priority
-                />
-                {/* Dark mode hero */}
-                <Image
-                  src="/images/home/home-hero.png"
-                  alt="Smart chatbot illustration"
-                  fill
-                  className="object-contain hidden dark:block scale-110"
-                  sizes="(max-width: 1024px) 100vw, 60vw"
-                  priority
-                />
-              </div>
+            {/* Right: Live Bilingual Chatbot Demo */}
+            <div className="relative">
+              <BilingualHeroDemo />
             </div>
           </div>
         </div>
@@ -304,6 +294,9 @@ export default function HomePage() {
           </SlidingHighlightGrid>
         </div>
       </section>
+
+      {/* Industry Demo Showcase */}
+      <ChatDemoShowcase onCtaClick={() => setIsConsultationOpen(true)} />
 
       {/* Partner Steps Section */}
       <PartnerSteps />

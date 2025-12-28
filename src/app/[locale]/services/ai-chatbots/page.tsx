@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import ConsultationForm from "@/components/ConsultationForm";
@@ -32,6 +33,11 @@ import {
   Brain,
   ArrowRight,
 } from "lucide-react";
+
+const ChatDemoShowcase = dynamic(
+  () => import("@/components/demos/ChatDemoShowcase"),
+  { ssr: false }
+);
 
 const chatbotCapabilities = [
   {
@@ -323,6 +329,9 @@ export default function AIChatbots() {
           </div>
         </div>
       </section>
+
+      {/* Live Demo Showcase */}
+      <ChatDemoShowcase onCtaClick={() => setIsConsultationOpen(true)} />
 
       {/* Industry-Specific Solutions */}
       <section className="bg-white dark:bg-black py-20 px-6">
