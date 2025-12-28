@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { AppleCardsCarousel, AppleCardItem } from "@/components/AppleCardsCarousel";
 import { WebsiteCarousel, WebsiteItem } from "@/components/WebsiteCarousel";
 import { ScheduleCallButton } from "@/components/ScheduleCallButton";
 import { Awards } from "@/components/ui/award";
 import ConsultationForm from "@/components/ConsultationForm";
+import { ArrowRight } from "lucide-react";
 
 const mobileAppItems: AppleCardItem[] = [
   {
@@ -128,6 +130,40 @@ export default function PortfolioPage() {
             date="June 2025"
             level="gold"
           />
+        </div>
+      </section>
+
+      {/* Case Studies Section */}
+      <section className="bg-gray-100 dark:bg-neutral-900 py-16 px-6">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-900 dark:text-white text-center">
+            Case{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
+              Studies
+            </span>
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* myLabCompliance Case Study */}
+            <Link
+              href="/portfolio/mylabcompliance"
+              className="group block p-6 rounded-xl bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 hover:border-orange-300 dark:hover:border-orange-500/50 hover:shadow-lg transition-all duration-300"
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 dark:bg-orange-500/10 text-orange-600 dark:text-orange-500 text-sm mb-4">
+                <span className="w-2 h-2 rounded-full bg-orange-500" />
+                B2B SaaS
+              </div>
+              <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white group-hover:text-orange-500 transition-colors">
+                myLabCompliance.io
+              </h3>
+              <p className="text-gray-600 dark:text-neutral-400 text-sm mb-4">
+                From critical SEO failures to excellent performance. 95% bug reduction, 500 SEO pages, and 981ms load time.
+              </p>
+              <div className="flex items-center gap-2 text-orange-500 text-sm font-medium">
+                Read Case Study
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+          </div>
         </div>
       </section>
 
