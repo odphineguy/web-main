@@ -105,6 +105,9 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
+            <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-white dark:bg-neutral-950 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500 mb-4">
+              {t('BilingualServices.badge')}
+            </span>
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
               {t('BilingualServices.title')}
             </h2>
@@ -189,15 +192,20 @@ export default function HomePage() {
       {/* Core Chatbot Features - Black background */}
       <section className="bg-white dark:bg-black py-20 px-6">
         <div className="max-w-6xl mx-auto">
-          <motion.h2
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white text-center mb-12"
+            className="text-center mb-12"
           >
-            {t('Features.title')}
-          </motion.h2>
+            <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-white dark:bg-neutral-950 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500 mb-4">
+              {t('Features.badge')}
+            </span>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+              {t('Features.title')}
+            </h2>
+          </motion.div>
 
           <SlidingHighlightGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <motion.div

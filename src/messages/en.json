@@ -17,6 +17,7 @@
       "subtitle": "Custom websites, intelligent chatbots, and SEO strategies for businesses serving English and Spanish-speaking customers."
     },
     "BilingualServices": {
+      "badge": "Expand Your Reach",
       "title": "Bilingual Web Development Services",
       "subtitle": "Reach English and Spanish-speaking customers with professional bilingual websites that drive growth.",
       "benefit1": {
@@ -34,6 +35,7 @@
       "cta": "Learn More About Bilingual Web Development"
     },
     "Features": {
+      "badge": "AI-Powered Automation",
       "title": "Core Chatbot Features",
       "bilingualSupport": {
         "title": "Bilingual Support",
