@@ -3,7 +3,7 @@ import { Metadata } from "next";
 export function constructMetadata({
   title,
   description,
-  image = "/images/portfolio/home.png",
+  image = "/images/portfolio/og.png",
   icons = "/favicon.ico",
   noIndex = false,
   path = "",

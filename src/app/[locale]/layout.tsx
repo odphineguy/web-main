@@ -86,7 +86,7 @@ export const metadata: Metadata = {
     alternateLocale: ["es_US", "es_MX"],
     images: [
       {
-        url: "/images/portfolio/home.png",
+        url: "/images/portfolio/og.png",
         width: 1200,
         height: 630,
         alt: "Abe Media - Bilingual Web Development & AI Solutions",
@@ -97,7 +97,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Abe Media — Bilingual Web Development & AI Solutions",
     description: "Professional bilingual web development, AI chatbots, and custom digital solutions for small businesses.",
-    images: ["/images/portfolio/home.png"],
+    images: ["/images/portfolio/og.png"],
     creator: "@abe_vision",
   },
   alternates: {
