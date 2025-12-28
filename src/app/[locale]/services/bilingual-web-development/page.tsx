@@ -3,7 +3,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import ConsultationForm from "@/components/ConsultationForm";
+import SlidingHighlightGrid from "@/components/SlidingHighlightGrid";
 import {
   Globe,
   Smartphone,
@@ -91,7 +93,6 @@ const processSteps = [
 
 const technologies = [
   "Modern HTML5, CSS3, and JavaScript",
-  "WordPress for easy content updates",
   "Responsive frameworks for mobile optimization",
   "Schema markup for better search visibility",
   "SSL security and fast hosting",
@@ -264,8 +265,8 @@ export default function BilingualWebDevelopment() {
                 viewport={{ once: true }}
                 className="group text-center"
               >
-                <div className="w-16 h-16 mx-auto rounded-2xl bg-gray-100 dark:bg-neutral-900 flex items-center justify-center mb-4 group-hover:bg-orange-500/10 transition-colors">
-                  <industry.icon className="w-8 h-8 text-gray-600 dark:text-neutral-400 group-hover:text-orange-500 transition-colors" />
+                <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-orange-500/10 to-orange-600/5 flex items-center justify-center mb-4 group-hover:from-orange-500 group-hover:to-orange-600 group-hover:shadow-lg group-hover:shadow-orange-500/25 transition-all duration-300">
+                  <industry.icon className="w-8 h-8 text-orange-500 group-hover:text-white transition-colors duration-300" />
                 </div>
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
                   {industry.name}
@@ -376,7 +377,7 @@ export default function BilingualWebDevelopment() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-8">
+          <SlidingHighlightGrid className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-8 items-start">
             {pricingTiers.map((tier, index) => (
               <motion.div
                 key={tier.name}
@@ -435,7 +436,7 @@ export default function BilingualWebDevelopment() {
                 </div>
               </motion.div>
             ))}
-          </div>
+          </SlidingHighlightGrid>
 
           <motion.p
             initial={{ opacity: 0 }}
@@ -512,11 +513,15 @@ export default function BilingualWebDevelopment() {
                 &ldquo;Their bilingual marketing strategy helped us connect with Spanish-speaking customers we&apos;d never been able to reach. Our client base has grown significantly.&rdquo;
               </blockquote>
               <div className="flex items-center justify-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center text-white font-bold">
-                  MG
-                </div>
+                <Image
+                  src="/images/testimonials/maria-b.png"
+                  alt="Maria B."
+                  width={48}
+                  height={48}
+                  className="w-12 h-12 rounded-full object-cover"
+                />
                 <div className="text-left">
-                  <p className="font-semibold text-gray-900 dark:text-white">Maria G.</p>
+                  <p className="font-semibold text-gray-900 dark:text-white">Maria B.</p>
                   <p className="text-sm text-gray-600 dark:text-neutral-400">Real Estate Agency</p>
                 </div>
               </div>

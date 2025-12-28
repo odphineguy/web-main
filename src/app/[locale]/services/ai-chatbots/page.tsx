@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import ConsultationForm from "@/components/ConsultationForm";
+import SlidingHighlightGrid from "@/components/SlidingHighlightGrid";
 import {
   Bot,
   MessageSquare,
@@ -552,7 +553,7 @@ export default function AIChatbots() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          <SlidingHighlightGrid className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-start">
             {pricingTiers.map((tier, index) => (
               <motion.div
                 key={tier.name}
@@ -617,7 +618,7 @@ export default function AIChatbots() {
                 </div>
               </motion.div>
             ))}
-          </div>
+          </SlidingHighlightGrid>
         </div>
       </section>
 

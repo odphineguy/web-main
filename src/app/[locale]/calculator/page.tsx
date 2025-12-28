@@ -3,7 +3,10 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { Calendar } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import ROICalculator from "@/components/ROICalculator";
+import ConsultationForm from "@/components/ConsultationForm";
 
 // Animated counter component
 function AnimatedCounter({
@@ -62,6 +65,7 @@ function AnimatedCounter({
 
 export default function CalculatorPage() {
   const t = useTranslations("CalculatorPage");
+  const [isConsultationOpen, setIsConsultationOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-white dark:bg-black">
@@ -173,6 +177,37 @@ export default function CalculatorPage() {
           </div>
         </div>
       </section>
+
+      {/* CTA Section */}
+      <section className="bg-white dark:bg-black px-6 py-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="max-w-3xl mx-auto text-center"
+        >
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            Ready to Grow Your Business?
+          </h2>
+          <p className="text-gray-600 dark:text-neutral-400 mb-8 max-w-xl mx-auto">
+            Let&apos;s discuss how bilingual marketing can help you reach new customers and increase your revenue.
+          </p>
+          <Button
+            size="lg"
+            onClick={() => setIsConsultationOpen(true)}
+            className="text-lg px-8 py-6 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300"
+          >
+            <Calendar className="w-5 h-5 mr-2" />
+            Schedule a Call
+          </Button>
+        </motion.div>
+      </section>
+
+      {/* Consultation Modal */}
+      <ConsultationForm
+        isOpen={isConsultationOpen}
+        onClose={() => setIsConsultationOpen(false)}
+      />
     </div>
   );
 }

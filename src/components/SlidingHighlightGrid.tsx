@@ -82,7 +82,7 @@ export default function SlidingHighlightGrid({
         }}
         onMouseEnter={() => handleMouseEnter(index)}
         onFocus={() => handleMouseEnter(index)}
-        className="relative z-10"
+        className="relative z-10 h-fit"
       >
         {child}
       </div>

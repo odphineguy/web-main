@@ -312,7 +312,7 @@ export default function PricingPage() {
           </p>
         </motion.div>
 
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <SlidingHighlightGrid className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {addonTiers.map((tier, index) => (
             <motion.div
               key={tier.id}
@@ -384,7 +384,7 @@ export default function PricingPage() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </SlidingHighlightGrid>
       </section>
 
       {/* Request Quote Section */}
