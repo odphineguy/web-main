@@ -73,7 +73,7 @@ export default function PortfolioPage() {
   const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(null);
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-white dark:bg-black">
       {/* Hero Section */}
       <section className="px-6 pt-16 pb-8">
         <div className="max-w-6xl mx-auto text-center">
@@ -96,8 +96,8 @@ export default function PortfolioPage() {
                 onClick={() => setSelectedProject(project)}
                 className="group text-left"
               >
-                <div className="relative overflow-hidden rounded-lg border border-neutral-800 hover:border-neutral-600 transition-all duration-300">
-                  <div className="aspect-[16/10] relative bg-neutral-900">
+                <div className="relative overflow-hidden rounded-lg border border-gray-200 dark:border-neutral-800 hover:border-gray-300 dark:hover:border-neutral-600 transition-all duration-300">
+                  <div className="aspect-[16/10] relative bg-gray-100 dark:bg-neutral-900">
                     <iframe
                       src={project.siteUrl}
                       className="absolute inset-0 w-[200%] h-[200%] origin-top-left scale-50 pointer-events-none"
@@ -107,10 +107,10 @@ export default function PortfolioPage() {
                   </div>
                 </div>
                 <div className="mt-4 text-center">
-                  <h3 className="text-lg text-neutral-300 font-light">
+                  <h3 className="text-lg text-gray-700 dark:text-neutral-300 font-light">
                     Design {index + 1}
                   </h3>
-                  <p className="text-sm text-neutral-500">{project.name}</p>
+                  <p className="text-sm text-gray-500 dark:text-neutral-500">{project.name}</p>
                 </div>
               </button>
             ))}
@@ -119,9 +119,9 @@ export default function PortfolioPage() {
       </section>
 
       {/* Case Studies Section */}
-      <section className="bg-neutral-900 py-16 px-6">
+      <section className="bg-gray-100 dark:bg-neutral-900 py-16 px-6">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-white text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-900 dark:text-white text-center">
             Case{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
               Studies
@@ -131,16 +131,16 @@ export default function PortfolioPage() {
             {/* myLabCompliance Case Study */}
             <Link
               href="/portfolio/mylabcompliance"
-              className="group block p-6 rounded-xl bg-neutral-800 border border-neutral-700 hover:border-orange-500/50 hover:shadow-lg transition-all duration-300"
+              className="group block p-6 rounded-xl bg-white dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 hover:border-orange-500/50 hover:shadow-lg transition-all duration-300"
             >
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 text-orange-500 text-sm mb-4">
                 <span className="w-2 h-2 rounded-full bg-orange-500" />
                 B2B SaaS
               </div>
-              <h3 className="text-xl font-bold mb-2 text-white group-hover:text-orange-500 transition-colors">
+              <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white group-hover:text-orange-500 transition-colors">
                 myLabCompliance.io
               </h3>
-              <p className="text-neutral-400 text-sm mb-4">
+              <p className="text-gray-600 dark:text-neutral-400 text-sm mb-4">
                 From critical SEO failures to excellent performance. 95% bug reduction, 500 SEO pages, and 981ms load time.
               </p>
               <div className="flex items-center gap-2 text-orange-500 text-sm font-medium">
