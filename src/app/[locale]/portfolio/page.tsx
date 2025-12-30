@@ -59,7 +59,7 @@ const portfolioProjects: PortfolioProject[] = [
     id: "phoenix-balloon-decor",
     name: "Phoenix Balloon Decor",
     description: "Balloon decoration services",
-    siteUrl: "https://odphineguy.github.io/phx-balloon-decor/",
+    siteUrl: "https://phx-balloon-decor.vercel.app/",
   },
   {
     id: "paw-relief",
