@@ -26,10 +26,16 @@ const portfolioProjects: PortfolioProject[] = [
     siteUrl: "https://odphineguy.github.io/inaction/",
   },
   {
-    id: "paisanos",
-    name: "Paisanos",
-    description: "Restaurant website design",
-    siteUrl: "https://odphineguy.github.io/paisanos-restaurant/",
+    id: "saguaro",
+    name: "Saguaro",
+    description: "Landscaping services website",
+    siteUrl: "https://saguaro.vercel.app/",
+  },
+  {
+    id: "thedrone-college",
+    name: "The Drone College",
+    description: "Drone training and certification",
+    siteUrl: "https://odphineguy.github.io/thedrone-college/",
   },
   {
     id: "mealsaver",
@@ -38,10 +44,22 @@ const portfolioProjects: PortfolioProject[] = [
     siteUrl: "https://mealsaverlanding.vercel.app/",
   },
   {
-    id: "saguaro",
+    id: "saguaro-transport",
     name: "Saguaro Transport",
     description: "Transportation services website",
     siteUrl: "https://saguaro-transport.vercel.app/",
+  },
+  {
+    id: "paisanos",
+    name: "Paisanos",
+    description: "Restaurant website design",
+    siteUrl: "https://odphineguy.github.io/paisanos-restaurant/",
+  },
+  {
+    id: "phoenix-balloon-decor",
+    name: "Phoenix Balloon Decor",
+    description: "Balloon decoration services",
+    siteUrl: "#",
   },
   {
     id: "paw-relief",
@@ -59,10 +77,12 @@ export default function PortfolioPage() {
       {/* Hero Section */}
       <section className="px-6 pt-16 pb-8">
         <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-light text-neutral-300 mb-4">
-            Website Design Previews
+          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
+            Website Design{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
+              Previews
+            </span>
           </h1>
-          <div className="w-24 h-1 bg-gradient-to-r from-red-500 to-red-600 mx-auto" />
         </div>
       </section>
 
