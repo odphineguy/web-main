@@ -25,4 +25,28 @@ export default defineSchema({
   })
     .index("by_conversation", ["conversationId"])
     .index("by_timestamp", ["timestamp"]),
+
+  // Contact form submissions
+  contactSubmissions: defineTable({
+    name: v.string(),
+    email: v.string(),
+    subject: v.optional(v.string()),
+    message: v.string(),
+    submittedAt: v.number(),
+  })
+    .index("by_email", ["email"])
+    .index("by_submittedAt", ["submittedAt"]),
+
+  // Consultation form submissions
+  consultationSubmissions: defineTable({
+    name: v.string(),
+    email: v.string(),
+    phone: v.optional(v.string()),
+    company: v.optional(v.string()),
+    service: v.optional(v.string()),
+    description: v.string(),
+    submittedAt: v.number(),
+  })
+    .index("by_email", ["email"])
+    .index("by_submittedAt", ["submittedAt"]),
 });

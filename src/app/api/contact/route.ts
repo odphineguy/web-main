@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { ConvexHttpClient } from "convex/browser";
+import { api } from "../../../../convex/_generated/api";
 
 // Helper function to verify Turnstile token
 async function verifyTurnstileToken(token: string) {
@@ -61,7 +63,7 @@ export async function POST(req: NextRequest) {
     }
 
     const { data, error } = await resend.emails.send({
-      from: "Abe Media Contact <onboarding@resend.dev>", // Update this to your verified domain later
+      from: "Abe Media Contact <contact@abemedia.online>",
       to: ["support@abemedia.online"], // Your support email
       replyTo: email,
       subject: `New Contact Form: ${subject || "General Inquiry"}`,
@@ -78,6 +80,20 @@ export async function POST(req: NextRequest) {
     if (error) {
       console.error("Resend error:", error);
       return NextResponse.json({ ok: false, error: "Failed to send email" }, { status: 500 });
+    }
+
+    // 4. Save to Convex database
+    try {
+      const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
+      await convex.mutation(api.formSubmissions.saveContactSubmission, {
+        name,
+        email,
+        subject: subject || undefined,
+        message,
+      });
+    } catch (convexError) {
+      console.error("Convex save error:", convexError);
+      // Don't fail the request if Convex save fails - email was already sent
     }
 
     return NextResponse.json({ ok: true, data });
