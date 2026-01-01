@@ -179,12 +179,20 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <Link
-              href="/services/bilingual-web-development"
-              className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-orange-600"
-            >
-              {t('BilingualServices.cta')}
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/services/bilingual-web-development"
+                className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-orange-600"
+              >
+                {t('BilingualServices.cta')}
+              </Link>
+              <Link
+                href="/bilingual-seo-phoenix"
+                className="inline-flex items-center gap-2 rounded-full border border-orange-500 px-6 py-3 text-sm font-semibold text-orange-500 transition-colors hover:bg-orange-500/10"
+              >
+                {t('BilingualServices.seoCta')}
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>
