@@ -122,6 +122,7 @@ const createGeminiClient = () => {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let chatSessionEN: any;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let chatSessionES: any;
 
 export const getOrCreateChatSession = (lang: 'en' | 'es' = 'en') => {
