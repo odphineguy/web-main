@@ -64,7 +64,7 @@ export async function POST(req: NextRequest) {
 
     const { data, error } = await resend.emails.send({
       from: "Abe Media Contact <contact@abemedia.online>",
-      to: ["support@abemedia.online"], // Your support email
+      to: ["abe@abemedia.online"],
       replyTo: email,
       subject: `New Contact Form: ${subject || "General Inquiry"}`,
       text: `
