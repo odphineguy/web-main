@@ -12,47 +12,45 @@ function getStripe() {
   });
 }
 
-// Define pricing plans with their details
+// Define pricing plans with Stripe Price IDs
 const PRICING_PLANS = {
   // Main packages (one-time)
   starter: {
-    name: 'Starter Chatbot',
-    price: 49900, // $499.00 in cents
-    description: 'Custom AI Chatbot with 24/7 Lead Capture, Basic Analytics, Email Integration, and Limited Support',
+    name: 'Starter',
+    priceId: 'price_1SkjChPhokLWRBHmTdzQ2uoz',
     mode: 'payment' as const,
   },
   business: {
-    name: 'Business Web & AI Chatbot',
-    price: 149900, // $1,499.00 in cents
-    description: 'Custom Website (up to 5 pages), AI Chatbot, Basic SEO, Email Integration, and 30-day Support',
+    name: 'Business',
+    priceId: 'price_1SkjDHPhokLWRBHmkcQo203j',
     mode: 'payment' as const,
   },
   professional: {
-    name: 'Professional Web & App',
-    price: 350000, // $3,500.00 in cents
-    description: 'Custom Website & App Design with SEO Optimization, Advanced Chatbot Integration, CMS, Priority Support, and Dedicated Project Manager',
+    name: 'Professional',
+    priceId: 'price_1SkjDwPhokLWRBHmqv5dXybg',
     mode: 'payment' as const,
   },
-  // Add-on packages
+  // Add-ons (one-time)
+  bilingual: {
+    name: 'Bilingual Add-on',
+    priceId: 'price_1SkjElPhokLWRBHmgRv7LL26',
+    mode: 'payment' as const,
+  },
+  // Monthly subscriptions
   'seo-maintenance': {
     name: 'SEO Maintenance',
-    price: 9900, // $99.00 in cents
-    description: 'Monthly SEO audit, keyword monitoring, performance reports, and content optimization tips',
+    priceId: 'price_1SkjFpPhokLWRBHmS1KyccIA',
     mode: 'subscription' as const,
-    interval: 'month' as const,
   },
   'social-media': {
     name: 'Social Media Management',
-    price: 9900, // $99.00 in cents
-    description: '1 weekly post, content creation, platform management, and engagement monitoring',
+    priceId: 'price_1SkjH1PhokLWRBHmtES8GFbB',
     mode: 'subscription' as const,
-    interval: 'month' as const,
   },
-  'new-website': {
-    name: 'New Website',
-    price: 9900, // $99.00 in cents
-    description: 'Up to 5 pages, mobile responsive design, basic SEO setup, and contact form included',
-    mode: 'payment' as const,
+  'website-care': {
+    name: 'Website Care Plan',
+    priceId: 'price_1SkjIXPhokLWRBHmgVwoT6b6',
+    mode: 'subscription' as const,
   },
 };
 
@@ -71,29 +69,12 @@ export async function POST(request: NextRequest) {
     const plan = PRICING_PLANS[planId as keyof typeof PRICING_PLANS];
     const stripe = getStripe();
 
-    // Build price_data based on whether it's a subscription or one-time payment
-    const priceData: Stripe.Checkout.SessionCreateParams.LineItem.PriceData = {
-      currency: 'usd',
-      product_data: {
-        name: plan.name,
-        description: plan.description,
-      },
-      unit_amount: plan.price,
-    };
-
-    // Add recurring interval for subscriptions
-    if (plan.mode === 'subscription' && 'interval' in plan) {
-      priceData.recurring = {
-        interval: plan.interval,
-      };
-    }
-
-    // Create a Stripe Checkout Session
+    // Create a Stripe Checkout Session using pre-defined Price IDs
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
         {
-          price_data: priceData,
+          price: plan.priceId,
           quantity: 1,
         },
       ],
