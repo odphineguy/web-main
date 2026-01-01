@@ -4,7 +4,7 @@
  * This file contains the company's SOP content that the chatbot uses as its knowledge base.
  * To update the SOP, simply replace the content in the SOP_CONTENT constant below.
  * 
- * Last Updated: Optimized for customer-facing chatbot
+ * Last Updated: December 2024 - Updated for bilingual focus
  */
 
 export const SOP_CONTENT = `
@@ -13,15 +13,14 @@ export const SOP_CONTENT = `
 ## COMPANY INFORMATION
 
 **About Abe Media:**
-Abe Media is a digital media agency founded by Mr. Abe Perez (CEO). We specialize in website development, mobile applications, AI-powered tools, digital marketing, and logo design.
+Abe Media is a bilingual digital media agency founded by Abe Perez (CEO). We specialize in website development, AI-powered chatbots, and SEO for small businesses serving English and Spanish-speaking customers.
 
-**Business Hours:**
-Monday-Friday, 9 AM - 6 PM PST
+**Availability:**
+24/7 via chatbot and website contact form
 
 **Contact Information:**
-- Email: support@abemedia.online
+- Email: abe@abemedia.online
 - Website: https://abemedia.online/
-- Live Chat: Available on website during business hours
 
 **Notable Clients:**
 - Tapatio Hot Sauce - Website design
@@ -36,11 +35,12 @@ Monday-Friday, 9 AM - 6 PM PST
 **What We Offer:**
 - **Website Refresh**: Modernizing existing websites with updated design, improved UX/UI, performance optimization, and current web standards
 - **New Website Development**: Full-scale custom website creation from concept to launch, including responsive design, CMS integration, and hosting setup
+- **Bilingual Websites**: English and Spanish website versions to reach more customers
 
 **Common Questions:**
 
 Q: How long does a website project take?
-A: Website refresh projects typically take 4-8 weeks depending on scope. New website development ranges from 8-16 weeks, including design, development, content integration, and testing phases.
+A: Website refresh projects typically take 2-4 weeks depending on scope. New website development ranges from 3-6 weeks, including design, development, content integration, and testing phases.
 
 Q: Do you provide hosting and maintenance?
 A: Yes, we offer hosting solutions and ongoing maintenance packages. We can discuss options that best fit your needs during our consultation.
@@ -50,6 +50,9 @@ A: Absolutely. We can work with your current infrastructure or recommend optimiz
 
 Q: Will my website be mobile-friendly?
 A: Yes, all websites we create are fully responsive and optimized for mobile, tablet, and desktop devices.
+
+Q: Can you build my website in both English and Spanish?
+A: Yes! We specialize in bilingual websites. We can create full English and Spanish versions of your site to reach more customers.
 
 Q: What technologies do you use?
 A: We work with WordPress, React, Next.js, and other modern web technologies based on your project needs.
@@ -62,7 +65,6 @@ A: We work with WordPress, React, Next.js, and other modern web technologies bas
 - Native iOS and Android applications
 - Cross-platform solutions
 - App maintenance and updates
-- App store optimization and submission support
 
 **Common Questions:**
 
@@ -70,35 +72,36 @@ Q: Do you build for both iOS and Android?
 A: Yes, we develop native apps for both platforms as well as cross-platform solutions that work on both iOS and Android from a single codebase.
 
 Q: How long does app development take?
-A: Development timelines range from 3-6 months depending on complexity, features, and design requirements. We'll provide a detailed roadmap after our discovery phase.
-
-Q: Do you help with app store submission?
-A: Yes, we handle the entire submission process for both Apple App Store and Google Play Store, including compliance review and optimization.
+A: Development timelines range from 4-8 weeks depending on complexity, features, and design requirements. We'll provide a detailed roadmap after our discovery phase.
 
 Q: What about app updates and maintenance?
 A: We offer ongoing maintenance packages covering updates, bug fixes, OS compatibility updates, and feature enhancements.
 
 ---
 
-### 3. AI Solutions
+### 3. AI Chatbot Solutions
 
 **What We Offer:**
 - **Custom Chatbots**: Conversational AI for customer service, lead generation, and user engagement
-- **AI Agents**: Intelligent automation solutions for business processes, data analysis, and workflow optimization
+- **Bilingual Chatbots**: Chatbots that communicate in both English and Spanish
+- **AI Agents**: Intelligent automation solutions for business processes and workflow optimization
 
 **Common Questions:**
 
 Q: What can a custom chatbot do for my business?
 A: Our chatbots can handle customer inquiries 24/7, qualify leads, schedule appointments, provide product recommendations, answer FAQs, and integrate with your existing CRM and business tools.
 
+Q: Can the chatbot speak Spanish?
+A: Absolutely! We specialize in bilingual chatbots that can communicate in both English and Spanish, perfect for businesses serving diverse communities.
+
 Q: How does an AI agent differ from a chatbot?
 A: AI agents are more sophisticated automation tools that can perform complex tasks like data analysis, workflow automation, document processing, and intelligent decision-making based on your business rules and data.
 
 Q: What platforms do chatbots work on?
-A: We can deploy chatbots on websites, mobile apps, Facebook Messenger, WhatsApp, SMS, and other messaging platforms based on your needs.
+A: We can deploy chatbots on websites, mobile apps, Facebook Messenger, WhatsApp, and SMS based on your needs.
 
 Q: How long does implementation take?
-A: Basic chatbots can be implemented in 2-4 weeks. More complex AI agents may take 6-12 weeks depending on integrations and custom functionality.
+A: Basic chatbots can be set up in 3-5 days. More complex AI chatbots with RAG (retrieval-augmented generation) or custom training typically take 2-4 weeks depending on integrations and custom functionality.
 
 Q: Will it integrate with our current systems?
 A: Yes, we can integrate with most CRMs, help desk software, e-commerce platforms, and databases. We'll assess your specific systems during consultation.
@@ -114,6 +117,7 @@ A: Yes, we can integrate with most CRMs, help desk software, e-commerce platform
 - Content optimization
 - Link building
 - Local SEO
+- Bilingual SEO (English and Spanish)
 - Monthly performance reporting
 
 **Common Questions:**
@@ -128,7 +132,10 @@ Q: Do you guarantee first-page rankings?
 A: We cannot guarantee specific rankings as search algorithms constantly evolve, but we use proven strategies to improve visibility and have a strong track record of success. We focus on sustainable, white-hat techniques.
 
 Q: Can you help with local SEO?
-A: Yes, we specialize in local SEO including Google Business Profile optimization, local citations, review management, and location-specific content strategies.
+A: Yes, we specialize in local SEO including Google Business Profile optimization, local citations, and location-specific content strategies.
+
+Q: Do you offer bilingual SEO?
+A: Yes! We optimize websites for both English and Spanish search terms to help you reach more customers in both languages.
 
 ---
 
@@ -170,7 +177,7 @@ A: Yes, we manage advertising budgets across platforms, continuously optimizing 
 **Common Questions:**
 
 Q: Which social media platforms do you manage?
-A: We manage all major platforms including Facebook, Instagram, LinkedIn, Twitter/X, TikTok, Pinterest, and YouTube. We'll recommend the best platforms based on your target audience.
+A: We manage Facebook, Instagram, Twitter/X, TikTok, and YouTube. We'll recommend the best platforms based on your target audience.
 
 Q: What's included in social media management?
 A: Our services include content creation (graphics, videos, copy), posting schedule management, community engagement, social listening, performance analytics, and paid social advertising.
@@ -180,9 +187,6 @@ A: Posting frequency is customized to your needs and platform best practices, ty
 
 Q: Do you create original content or can we provide content?
 A: We create original, custom content tailored to your brand. We can also work with your provided content, assets, and brand guidelines. A collaborative approach often works best.
-
-Q: How do you handle negative comments or reviews?
-A: We monitor your accounts daily and respond professionally to all interactions per your approved guidelines. Crisis situations are escalated immediately to your team for collaborative response.
 
 ---
 
@@ -200,7 +204,7 @@ Q: What's included in logo design?
 A: We create custom logo designs tailored to your brand, including multiple concept options, revisions, and final logo files in various formats (vector, PNG, etc.). We can also develop complete brand identity packages.
 
 Q: How long does logo design take?
-A: Logo design projects typically take 1-2 weeks, depending on complexity and revision rounds.
+A: Logo design projects typically take 2-3 days, depending on complexity and revision rounds.
 
 ---
 
@@ -214,13 +218,13 @@ A: Logo design projects typically take 1-2 weeks, depending on complexity and re
 **Add-On Services:**
 - **SEO Maintenance**: $99/month - Monthly SEO audit, keyword monitoring, performance reports, and content optimization
 - **Social Media Management**: $99/month - 1 weekly post, content creation, platform management, and engagement monitoring
-- **New Website**: $99 - Up to 5 pages, mobile responsive design, basic SEO setup, and contact form
+- **New Website**: $499 - Up to 5 pages, mobile responsive design, basic SEO setup, and contact form
 
 **General Price Ranges for Custom Projects:**
 *Note: These are starting ranges. Exact pricing depends on project scope, complexity, and specific requirements. A consultation is required for accurate quotes.*
 
 - **Website Refresh**: Starting at $750-$3,750
-- **New Website**: Starting at $99-$12,500+
+- **New Website**: Starting at $499-$12,500+
 - **Mobile Apps**: Starting at $2,500-$25,000
 - **Custom Chatbot**: Starting at $499-$35,000
 - **AI Agents**: Starting at $2,500-$25,000
@@ -275,11 +279,10 @@ When customers ask about pricing, provide the general range, explain that exact 
 
 If you have concerns or issues:
 
-1. **Contact Support**: Reach out to support@abemedia.online
-2. **Response Time**: We aim to respond within 2 hours during business hours
+1. **Contact Support**: Reach out to abe@abemedia.online
+2. **Response Time**: We aim to respond within 24 hours
 3. **Resolution Process**: We'll work with you to understand and resolve any concerns
-4. **Escalation**: Complex issues may be escalated to specialists or account managers
-5. **Follow-up**: We follow up to ensure your concerns are fully addressed
+4. **Follow-up**: We follow up to ensure your concerns are fully addressed
 
 **Common Resolution Scenarios:**
 
@@ -297,9 +300,9 @@ For billing questions, we'll review your account and invoice details, explain ch
 ## QUICK REFERENCE
 
 **Contact Us:**
-- Email: support@abemedia.online
+- Email: abe@abemedia.online
 - Website: https://abemedia.online/
-- Business Hours: Monday-Friday, 9 AM - 6 PM PST
+- Chatbot: Available 24/7
 
 **Getting Started:**
 1. Contact us via email or website
@@ -309,7 +312,7 @@ For billing questions, we'll review your account and invoice details, explain ch
 5. Begin your project
 
 **Next Steps:**
-For more information or to start your project, contact us at support@abemedia.online or schedule a consultation through our website.
+For more information or to start your project, contact us at abe@abemedia.online or schedule a consultation through our website.
 
 --- END OF DOCUMENT ---
 `;
