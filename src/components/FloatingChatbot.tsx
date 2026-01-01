@@ -143,7 +143,7 @@ const FloatingChatbot: React.FC = () => {
 
     } catch (error: unknown) {
       console.error("Error during chat:", error);
-      let errorMessage = "Failed to get response. Please try again. If the issue persists, contact support@abemedia.online.";
+      let errorMessage = "Failed to get response. Please try again. If the issue persists, contact abe@abemedia.online.";
       if (error instanceof Error) {
         errorMessage = error.message;
       }

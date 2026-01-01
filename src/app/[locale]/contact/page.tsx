@@ -47,14 +47,14 @@ export default function ContactPage() {
                 
                 <div className="space-y-5 mb-8">
                   {/* Email */}
-                  <a 
-                    href="mailto:support@abemedia.online" 
+                  <a
+                    href="mailto:abe@abemedia.online"
                     className="flex items-center gap-4 text-gray-600 dark:text-neutral-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors group"
                   >
                     <div className="w-10 h-10 rounded-lg bg-gray-200 dark:bg-neutral-800/50 border border-gray-300 dark:border-neutral-700 flex items-center justify-center group-hover:border-orange-500/50 transition-colors">
                       <Mail className="w-5 h-5 text-orange-500" />
                     </div>
-                    <span>support@abemedia.online</span>
+                    <span>abe@abemedia.online</span>
                   </a>
 
                   {/* Phone */}
