@@ -22,44 +22,48 @@ interface PricingTier {
 const pricingTiers: PricingTier[] = [
   {
     id: "starter",
-    name: "STARTER CHATBOT",
+    name: "STARTER",
     price: "$499",
     description: "Perfect for small businesses looking to automate customer support",
     features: [
       "Custom AI Chatbot",
+      "Up to 3 pages",
       "24/7 Lead Capture",
+      "Mobile responsive",
       "Basic Analytics",
       "Email Integration",
-      "Limited Support",
+      "14-day support",
     ],
     cta: "Select Starter",
   },
   {
     id: "business",
-    name: "BUSINESS WEB & AI CHATBOT",
+    name: "BUSINESS",
     price: "$1,499",
     description: "Complete website and chatbot solution for growing businesses",
     features: [
-      "Custom Website (up to 5 pages)",
-      "AI Chatbot",
-      "Basic SEO",
-      "Email Integration",
-      "30-day Support",
+      "Custom website (up to 7 pages)",
+      "AI Chatbot included",
+      "Basic SEO setup",
+      "Blog setup",
+      "Integration with your tools",
+      "30-day support",
     ],
     cta: "Choose Business",
     popular: true,
   },
   {
     id: "professional",
-    name: "PROFESSIONAL WEB & APP",
+    name: "PROFESSIONAL",
     price: "$3,500",
     description: "Complete digital solution for established businesses",
     features: [
-      "Custom Website & App Design",
-      "SEO Optimization",
-      "Advanced Chatbot Integration",
+      "Custom website & app design",
+      "Unlimited pages",
+      "Advanced AI Chatbot",
+      "Full SEO optimization",
       "Content Management System",
-      "Priority Support",
+      "Priority support",
       "Dedicated Project Manager",
     ],
     cta: "Choose Professional",
@@ -68,45 +72,59 @@ const pricingTiers: PricingTier[] = [
 
 const addonTiers: PricingTier[] = [
   {
+    id: "bilingual",
+    name: "BILINGUAL ADD-ON",
+    price: "+$500",
+    description: "Add to any tier",
+    features: [
+      "Full EN/ES translation",
+      "Bilingual AI chatbot",
+      "Spanish keyword SEO",
+      "Culturally-adapted content",
+    ],
+    cta: "Add Bilingual",
+  },
+  {
     id: "seo-maintenance",
     name: "SEO MAINTENANCE",
     price: "$99",
-    description: "Keep your site ranking with monthly SEO care",
+    description: "Keep rankings with monthly optimization",
     features: [
       "Monthly SEO audit",
       "Keyword monitoring",
       "Performance reports",
-      "Content optimization tips",
+      "Content optimization",
     ],
-    cta: "Add SEO Service",
+    cta: "Add SEO",
     isMonthly: true,
   },
   {
     id: "social-media",
-    name: "SOCIAL MEDIA MANAGEMENT",
+    name: "SOCIAL MEDIA",
     price: "$99",
-    description: "Stay active on social with weekly content",
+    description: "Weekly content across platforms",
     features: [
-      "1 weekly post",
+      "Weekly post",
       "Content creation",
       "Platform management",
       "Engagement monitoring",
     ],
-    cta: "Add Social Media",
+    cta: "Add Social",
     isMonthly: true,
   },
   {
-    id: "new-website",
-    name: "NEW WEBSITE",
+    id: "website-care",
+    name: "WEBSITE CARE PLAN",
     price: "$99",
-    description: "Get a fresh new website for your business",
+    description: "Ongoing updates, backups, security",
     features: [
-      "Up to 5 pages",
-      "Mobile responsive design",
-      "Basic SEO setup",
-      "Contact form included",
+      "Regular updates",
+      "Daily backups",
+      "Security monitoring",
+      "Priority bug fixes",
     ],
-    cta: "Add Website",
+    cta: "Add Care Plan",
+    isMonthly: true,
   },
 ];
 
@@ -302,17 +320,17 @@ export default function PricingPage() {
           className="text-center max-w-6xl mx-auto mt-20 mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Power Up Your{" "}
+            Add-ons &{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
-              Digital Presence
+              Monthly Services
             </span>
           </h2>
           <p className="text-lg text-gray-600 dark:text-neutral-400 max-w-2xl mx-auto">
-            Enhance any package with these affordable add-on services.
+            Enhance any package with bilingual support or ongoing monthly services.
           </p>
         </motion.div>
 
-        <SlidingHighlightGrid className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <SlidingHighlightGrid className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {addonTiers.map((tier, index) => (
             <motion.div
               key={tier.id}

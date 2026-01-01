@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import ConsultationForm from "@/components/ConsultationForm";
-import SlidingHighlightGrid from "@/components/SlidingHighlightGrid";
 import {
   Globe,
   Smartphone,
@@ -21,7 +20,6 @@ import {
   TestTube,
   Rocket,
   Check,
-  Sparkles,
   Quote,
   Users,
   Shield,
@@ -96,42 +94,6 @@ const technologies = [
   "Responsive frameworks for mobile optimization",
   "Schema markup for better search visibility",
   "SSL security and fast hosting",
-];
-
-const pricingTiers = [
-  {
-    name: "Starter Bilingual Site",
-    price: "$2,500 - $4,000",
-    features: [
-      "5-7 pages in both languages",
-      "Mobile responsive design",
-      "Basic SEO setup",
-      "Contact forms",
-    ],
-  },
-  {
-    name: "Professional Bilingual Site",
-    price: "$4,000 - $7,000",
-    popular: true,
-    features: [
-      "10-15 pages in both languages",
-      "Custom design",
-      "Advanced SEO optimization",
-      "Blog setup",
-      "Integration with your tools",
-    ],
-  },
-  {
-    name: "E-commerce Bilingual Site",
-    price: "$6,000 - $12,000",
-    features: [
-      "Full online store in both languages",
-      "Product catalog management",
-      "Payment processing",
-      "Inventory tracking",
-      "Customer accounts",
-    ],
-  },
 ];
 
 const whyChooseUs = [
@@ -359,94 +321,6 @@ export default function BilingualWebDevelopment() {
               </ul>
             </div>
           </motion.div>
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section className="bg-gray-100 dark:bg-neutral-900 py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Pricing
-            </h2>
-          </motion.div>
-
-          <SlidingHighlightGrid className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-8 items-start">
-            {pricingTiers.map((tier, index) => (
-              <motion.div
-                key={tier.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="relative group"
-              >
-                {tier.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20">
-                    <span className="bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wide flex items-center gap-1.5 shadow-lg shadow-orange-500/30 whitespace-nowrap">
-                      <Sparkles className="h-3 w-3" />
-                      Most Popular
-                    </span>
-                  </div>
-                )}
-                <div
-                  className={`h-full rounded-2xl p-px transition-all duration-300 ${
-                    tier.popular
-                      ? "bg-gradient-to-b from-orange-500/50 to-orange-600/20"
-                      : "bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5"
-                  }`}
-                >
-                  <div className="h-full rounded-2xl p-6 lg:p-8 bg-white dark:bg-neutral-950 text-center">
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
-                      {tier.name}
-                    </h3>
-                    <div className="h-px w-full mb-6 bg-orange-500/30" />
-                    <div className="mb-6">
-                      <span className="text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600">
-                        {tier.price}
-                      </span>
-                    </div>
-                    <ul className="space-y-3 mb-8 text-left">
-                      {tier.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start gap-3">
-                          <Check className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" />
-                          <span className="text-gray-600 dark:text-neutral-400 text-sm">
-                            {feature}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Button
-                      onClick={() => setIsConsultationOpen(true)}
-                      className={`w-full py-3 rounded-full font-semibold transition-all duration-300 ${
-                        tier.popular
-                          ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:from-orange-600 hover:to-orange-700 shadow-lg shadow-orange-500/25"
-                          : "bg-gray-200 dark:bg-white/10 text-gray-900 dark:text-white border border-gray-300 dark:border-white/20 hover:bg-orange-500 hover:text-white hover:border-orange-500"
-                      }`}
-                    >
-                      Get Started
-                    </Button>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </SlidingHighlightGrid>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="text-center text-gray-600 dark:text-neutral-400"
-          >
-            All packages include 30 days of support after launch
-          </motion.p>
         </div>
       </section>
 
