@@ -36,6 +36,22 @@ const PRICING_PLANS = {
     priceId: 'price_1SkjElPhokLWRBHmgRv7LL26',
     mode: 'payment' as const,
   },
+  // Brand Identity packages (one-time)
+  'brand-logo': {
+    name: 'Logo',
+    productId: 'prod_TiMnCqxBWj1iYk',
+    mode: 'payment' as const,
+  },
+  'brand-stationery': {
+    name: 'Logo + Stationery',
+    productId: 'prod_TiMrmVkCwNwa2v',
+    mode: 'payment' as const,
+  },
+  'brand-corporate': {
+    name: 'Full Corporate Identity',
+    productId: 'prod_TiMv5vELR5XpU4',
+    mode: 'payment' as const,
+  },
   // Monthly subscriptions
   'seo-maintenance': {
     name: 'SEO Maintenance',
@@ -69,12 +85,37 @@ export async function POST(request: NextRequest) {
     const plan = PRICING_PLANS[planId as keyof typeof PRICING_PLANS];
     const stripe = getStripe();
 
-    // Create a Stripe Checkout Session using pre-defined Price IDs
+    // Get price ID - either directly or by looking up the product's default price
+    let priceId: string;
+    if ('priceId' in plan) {
+      priceId = plan.priceId;
+    } else if ('productId' in plan) {
+      // Look up the default price for the product
+      const prices = await stripe.prices.list({
+        product: plan.productId,
+        active: true,
+        limit: 1,
+      });
+      if (!prices.data.length) {
+        return NextResponse.json(
+          { error: 'No price found for this product' },
+          { status: 400 }
+        );
+      }
+      priceId = prices.data[0].id;
+    } else {
+      return NextResponse.json(
+        { error: 'Invalid plan configuration' },
+        { status: 500 }
+      );
+    }
+
+    // Create a Stripe Checkout Session
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
         {
-          price: plan.priceId,
+          price: priceId,
           quantity: 1,
         },
       ],

@@ -44,9 +44,10 @@ export default function Services() {
       image: "/images/services/ui-ux-design.png",
     },
     {
-      id: "customSolutions",
-      icon: <Code className="h-8 w-8" />,
-      image: "/images/services/custom-solutions.png",
+      id: "brandIdentity",
+      icon: <Palette className="h-8 w-8" />,
+      image: "/images/services/brand-identity.png",
+      link: "/services/brand-identity",
     },
   ];
 

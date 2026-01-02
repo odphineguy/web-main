@@ -176,16 +176,16 @@
         },
         "placeholder": "Mockups de diseño próximamente"
       },
-      "customSolutions": {
-        "title": "Soluciones Personalizadas",
-        "description": "Soluciones de software a medida para satisfacer las necesidades específicas de tu negocio.",
+      "brandIdentity": {
+        "title": "Diseño de Identidad de Marca",
+        "description": "Paquetes profesionales de logotipo e identidad de marca para negocios de todos los tamaños.",
         "features": {
-          "f1": "Desarrollo de API",
-          "f2": "Diseño de Bases de Datos",
-          "f3": "Integraciones de terceros",
-          "f4": "Mantenimiento y Soporte"
+          "f1": "Diseño de Logotipo Personalizado",
+          "f2": "Tarjetas de Presentación y Papelería",
+          "f3": "Guía de Estilo de Marca",
+          "f4": "Derechos Completos de tu Diseño"
         },
-        "placeholder": "Vista previa de integración personalizada próximamente"
+        "placeholder": "Vista previa de identidad de marca próximamente"
       }
     },
     "CTA": {
@@ -216,6 +216,18 @@
         "title": "Nota Importante",
         "description": "Estas son estimaciones basadas en datos del mercado y promedios de la industria. Los resultados reales pueden variar según tu negocio específico, ubicación y esfuerzos de marketing."
       }
+    }
+  },
+  "BrandIdentity": {
+    "badge": "Identidad de Marca",
+    "title": "Paquetes de Identidad de Marca",
+    "description": "El diseño de marca es una inversión importante. Una identidad de marca es más que solo un logotipo. Como dueño de negocio, tu objetivo es tener una marca que sea profesional, reconocible y auténtica contigo.",
+    "depositNote": "Comienza tu pedido con un depósito del 30%.",
+    "orderNow": "Ordenar Ahora",
+    "cta": {
+      "title": "¿Listo para Comenzar tu Proyecto?",
+      "description": "Hablemos sobre cómo podemos ayudar a dar vida a tu visión digital con nuestra experiencia.",
+      "button": "AGENDA UNA LLAMADA"
     }
   },
   "Calculator": {

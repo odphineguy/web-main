@@ -176,16 +176,16 @@
         },
         "placeholder": "Design mockups coming soon"
       },
-      "customSolutions": {
-        "title": "Custom Solutions",
-        "description": "Tailored software solutions to meet your specific business needs.",
+      "brandIdentity": {
+        "title": "Brand Identity Design",
+        "description": "Professional logo and brand identity packages for businesses of all sizes.",
         "features": {
-          "f1": "API Development",
-          "f2": "Database Design",
-          "f3": "Third-party Integrations",
-          "f4": "Maintenance & Support"
+          "f1": "Custom Logo Design",
+          "f2": "Business Card & Stationery",
+          "f3": "Brand Style Guide",
+          "f4": "Full Rights to Your Design"
         },
-        "placeholder": "Custom integration preview coming soon"
+        "placeholder": "Brand identity preview coming soon"
       }
     },
     "CTA": {
@@ -216,6 +216,18 @@
         "title": "Important Note",
         "description": "These are estimates based on market data and industry averages. Actual results may vary based on your specific business, location, and marketing efforts."
       }
+    }
+  },
+  "BrandIdentity": {
+    "badge": "Brand Identity",
+    "title": "Brand Identity Packages",
+    "description": "Brand design is an important investment. A brand identity is more than just a logo. As a business owner, your goal is to have a brand that is professional, recognizable and authentic to you.",
+    "depositNote": "Start your order with a 30% deposit.",
+    "orderNow": "Order Now",
+    "cta": {
+      "title": "Ready to Start Your Project?",
+      "description": "Let's discuss how we can help bring your digital vision to life with our expertise.",
+      "button": "SCHEDULE A CALL"
     }
   },
   "Calculator": {

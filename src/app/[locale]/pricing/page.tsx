@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { Check, Sparkles } from "lucide-react";
@@ -128,12 +128,42 @@ const addonTiers: PricingTier[] = [
   },
 ];
 
-export default function PricingPage() {
-  const [isConsultationOpen, setIsConsultationOpen] = useState(false);
-  const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
+function PricingMessages() {
   const searchParams = useSearchParams();
   const success = searchParams.get("success");
   const canceled = searchParams.get("canceled");
+
+  return (
+    <>
+      {success && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="fixed top-24 left-1/2 -translate-x-1/2 z-50 bg-green-500/90 backdrop-blur-sm text-white px-6 py-3 rounded-full shadow-lg"
+        >
+          <span className="flex items-center gap-2">
+            <Check className="h-5 w-5" />
+            Payment successful! Welcome aboard.
+          </span>
+        </motion.div>
+      )}
+
+      {canceled && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="fixed top-24 left-1/2 -translate-x-1/2 z-50 bg-neutral-700/90 backdrop-blur-sm text-white px-6 py-3 rounded-full shadow-lg"
+        >
+          Payment canceled. Feel free to try again when you&apos;re ready.
+        </motion.div>
+      )}
+    </>
+  );
+}
+
+export default function PricingPage() {
+  const [isConsultationOpen, setIsConsultationOpen] = useState(false);
+  const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
 
   const handleSelectPlan = async (tier: PricingTier) => {
     setLoadingPlan(tier.id);
@@ -166,28 +196,9 @@ export default function PricingPage() {
   return (
     <div className="min-h-screen bg-white dark:bg-black">
       {/* Success/Cancel Messages */}
-      {success && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="fixed top-24 left-1/2 -translate-x-1/2 z-50 bg-green-500/90 backdrop-blur-sm text-white px-6 py-3 rounded-full shadow-lg"
-        >
-          <span className="flex items-center gap-2">
-            <Check className="h-5 w-5" />
-            Payment successful! Welcome aboard.
-          </span>
-        </motion.div>
-      )}
-
-      {canceled && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="fixed top-24 left-1/2 -translate-x-1/2 z-50 bg-neutral-700/90 backdrop-blur-sm text-white px-6 py-3 rounded-full shadow-lg"
-        >
-          Payment canceled. Feel free to try again when you&apos;re ready.
-        </motion.div>
-      )}
+      <Suspense fallback={null}>
+        <PricingMessages />
+      </Suspense>
 
       {/* Header */}
       <section className="bg-white dark:bg-black px-6 pt-8 md:pt-12 pb-16">
