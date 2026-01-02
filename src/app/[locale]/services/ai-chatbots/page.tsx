@@ -5,7 +5,6 @@ import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import ConsultationForm from "@/components/ConsultationForm";
-import SlidingHighlightGrid from "@/components/SlidingHighlightGrid";
 import {
   Bot,
   MessageSquare,
@@ -24,7 +23,6 @@ import {
   CreditCard,
   Link2,
   Check,
-  Sparkles,
   HelpCircle,
   BarChart3,
   Paintbrush,
@@ -157,48 +155,6 @@ const processSteps = [
   { title: "Testing", description: "Refine responses based on real scenarios" },
   { title: "Launch", description: "Deploy on your website" },
   { title: "Optimize", description: "Monitor and improve based on data" },
-];
-
-const pricingTiers = [
-  {
-    name: "Starter Chatbot",
-    setupPrice: "$499",
-    monthlyPrice: "$49/month",
-    features: [
-      "Custom AI Chatbot",
-      "24/7 Lead Capture",
-      "Basic Analytics",
-      "Email Integration",
-      "Limited Support",
-    ],
-  },
-  {
-    name: "Business Web & Chatbot",
-    setupPrice: "$1,499",
-    monthlyPrice: "$99/month",
-    popular: true,
-    features: [
-      "Custom Website (up to 5 pages)",
-      "AI Chatbot included",
-      "Basic SEO",
-      "Email Integration",
-      "30-day Support",
-      "Bilingual support",
-    ],
-  },
-  {
-    name: "Professional",
-    setupPrice: "$3,500",
-    monthlyPrice: "$199/month",
-    features: [
-      "Custom Website & App Design",
-      "Advanced Chatbot Integration",
-      "SEO Optimization",
-      "Content Management System",
-      "Priority Support",
-      "Dedicated Project Manager",
-    ],
-  },
 ];
 
 const whyChooseUs = [
@@ -535,90 +491,6 @@ export default function AIChatbots() {
               ))}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section className="bg-white dark:bg-black py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
-              Pricing
-            </h2>
-          </motion.div>
-
-          <SlidingHighlightGrid className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-start">
-            {pricingTiers.map((tier, index) => (
-              <motion.div
-                key={tier.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="relative group"
-              >
-                {tier.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20">
-                    <span className="bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wide flex items-center gap-1.5 shadow-lg shadow-orange-500/30 whitespace-nowrap">
-                      <Sparkles className="h-3 w-3" />
-                      Most Popular
-                    </span>
-                  </div>
-                )}
-                <div
-                  className={`h-full rounded-2xl p-px transition-all duration-300 ${
-                    tier.popular
-                      ? "bg-gradient-to-b from-orange-500/50 to-orange-600/20"
-                      : "bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5"
-                  }`}
-                >
-                  <div className="h-full rounded-2xl p-6 lg:p-8 bg-gray-50 dark:bg-neutral-900 text-center">
-                    <h3 className="text-base md:text-lg font-medium text-gray-900 dark:text-white mb-2">
-                      {tier.name}
-                    </h3>
-                    <div className="h-px w-full mb-6 bg-orange-500/30" />
-                    <div className="mb-2">
-                      <span className="text-2xl md:text-3xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600">
-                        {tier.setupPrice}
-                      </span>
-                      <span className="text-sm text-gray-600 dark:text-neutral-400 ml-2">setup</span>
-                    </div>
-                    <div className="mb-6">
-                      <span className="text-lg font-medium text-gray-700 dark:text-neutral-300">
-                        + {tier.monthlyPrice}
-                      </span>
-                    </div>
-                    <ul className="space-y-3 mb-8 text-left">
-                      {tier.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start gap-3">
-                          <Check className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" />
-                          <span className="text-gray-600 dark:text-neutral-400 text-sm leading-relaxed">
-                            {feature}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Button
-                      onClick={() => setIsConsultationOpen(true)}
-                      className={`w-full py-3 rounded-full font-medium text-sm transition-all duration-300 ${
-                        tier.popular
-                          ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:from-orange-600 hover:to-orange-700 shadow-lg shadow-orange-500/25"
-                          : "bg-gray-200 dark:bg-white/10 text-gray-900 dark:text-white border border-gray-300 dark:border-white/20 hover:bg-orange-500 hover:text-white hover:border-orange-500"
-                      }`}
-                    >
-                      Get Started
-                    </Button>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </SlidingHighlightGrid>
         </div>
       </section>
 

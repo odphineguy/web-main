@@ -77,13 +77,13 @@ export default function CalculatorPage() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-4xl mx-auto"
         >
-          <h1 className="text-3xl md:text-4xl lg:text-[40px] font-normal tracking-[-0.05em] text-gray-900 dark:text-white mb-6 leading-tight">
+          <h1 className="text-[32px] md:text-[36px] lg:text-[40px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-6 leading-tight">
             {t("hero.titlePart1")}{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
               {t("hero.titlePart2")}
             </span>
           </h1>
-          <p className="text-sm md:text-base font-light leading-relaxed tracking-[-0.02em] text-gray-600 dark:text-neutral-300 max-w-2xl mx-auto">
+          <p className="text-[14px] md:text-[16px] font-normal leading-[1.5] text-gray-600 dark:text-neutral-300 max-w-2xl mx-auto">
             {t("hero.subtitle")}
           </p>
         </motion.div>
@@ -98,22 +98,22 @@ export default function CalculatorPage() {
           className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
         >
           <div className="text-center p-6 rounded-xl bg-gray-50 dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800">
-            <p className="text-2xl md:text-3xl font-normal tracking-[-0.05em] text-gray-900 dark:text-white mb-1">
+            <p className="text-[20px] md:text-[28px] font-normal tracking-[0em] text-gray-900 dark:text-white mb-1">
               <AnimatedCounter target={62} suffix="M+" duration={1200} />
             </p>
-            <p className="text-sm font-light text-gray-600 dark:text-neutral-400">{t("stats.hispanicPopulation")}</p>
+            <p className="text-[14px] md:text-[16px] font-normal leading-[1.5] text-gray-600 dark:text-neutral-400">{t("stats.hispanicPopulation")}</p>
           </div>
           <div className="text-center p-6 rounded-xl bg-gray-50 dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800">
-            <p className="text-2xl md:text-3xl font-normal tracking-[-0.05em] text-gray-900 dark:text-white mb-1">
+            <p className="text-[20px] md:text-[28px] font-normal tracking-[0em] text-gray-900 dark:text-white mb-1">
               <AnimatedCounter target={41} suffix="M" duration={1200} />
             </p>
-            <p className="text-sm font-light text-gray-600 dark:text-neutral-400">{t("stats.spanishSpeakers")}</p>
+            <p className="text-[14px] md:text-[16px] font-normal leading-[1.5] text-gray-600 dark:text-neutral-400">{t("stats.spanishSpeakers")}</p>
           </div>
           <div className="text-center p-6 rounded-xl bg-gray-50 dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800">
-            <p className="text-2xl md:text-3xl font-normal tracking-[-0.05em] text-gray-900 dark:text-white mb-1">
+            <p className="text-[20px] md:text-[28px] font-normal tracking-[0em] text-gray-900 dark:text-white mb-1">
               <AnimatedCounter target={2.8} prefix="$" suffix="T" duration={1200} decimals={1} />
             </p>
-            <p className="text-sm font-light text-gray-600 dark:text-neutral-400">{t("stats.buyingPower")}</p>
+            <p className="text-[14px] md:text-[16px] font-normal leading-[1.5] text-gray-600 dark:text-neutral-400">{t("stats.buyingPower")}</p>
           </div>
         </motion.div>
       </section>
@@ -138,10 +138,10 @@ export default function CalculatorPage() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-center mb-12"
           >
-            <h2 className="text-xl md:text-2xl font-light tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
+            <h2 className="text-[32px] md:text-[36px] lg:text-[40px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
               {t("info.title")}
             </h2>
-            <p className="text-sm font-light leading-relaxed text-gray-600 dark:text-neutral-400 max-w-2xl mx-auto">
+            <p className="text-[14px] md:text-[16px] font-normal leading-[1.5] text-gray-600 dark:text-neutral-400 max-w-2xl mx-auto">
               {t("info.description")}
             </p>
           </motion.div>
@@ -153,10 +153,10 @@ export default function CalculatorPage() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="p-6 rounded-xl bg-white dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700"
             >
-              <h3 className="text-base md:text-lg font-light tracking-[-0.02em] text-gray-900 dark:text-white mb-3">
+              <h3 className="text-[20px] md:text-[24px] font-normal tracking-[0em] text-gray-900 dark:text-white mb-3">
                 {t("info.methodology.title")}
               </h3>
-              <p className="text-sm font-light leading-relaxed text-gray-600 dark:text-neutral-400">
+              <p className="text-[14px] md:text-[16px] font-normal leading-[1.5] text-gray-600 dark:text-neutral-400">
                 {t("info.methodology.description")}
               </p>
             </motion.div>
@@ -167,10 +167,10 @@ export default function CalculatorPage() {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="p-6 rounded-xl bg-white dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700"
             >
-              <h3 className="text-base md:text-lg font-light tracking-[-0.02em] text-gray-900 dark:text-white mb-3">
+              <h3 className="text-[20px] md:text-[24px] font-normal tracking-[0em] text-gray-900 dark:text-white mb-3">
                 {t("info.disclaimer.title")}
               </h3>
-              <p className="text-sm font-light leading-relaxed text-gray-600 dark:text-neutral-400">
+              <p className="text-[14px] md:text-[16px] font-normal leading-[1.5] text-gray-600 dark:text-neutral-400">
                 {t("info.disclaimer.description")}
               </p>
             </motion.div>
@@ -186,16 +186,16 @@ export default function CalculatorPage() {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="max-w-3xl mx-auto text-center"
         >
-          <h2 className="text-xl md:text-2xl font-light tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
+          <h2 className="text-[32px] md:text-[36px] lg:text-[40px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
             Ready to Grow Your Business?
           </h2>
-          <p className="font-light text-gray-600 dark:text-neutral-400 mb-8 max-w-xl mx-auto">
+          <p className="text-[14px] md:text-[16px] font-normal leading-[1.5] text-gray-600 dark:text-neutral-400 mb-8 max-w-xl mx-auto">
             Let&apos;s discuss how bilingual marketing can help you reach new customers and increase your revenue.
           </p>
           <Button
             size="lg"
             onClick={() => setIsConsultationOpen(true)}
-            className="text-sm px-8 py-6 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-normal rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300"
+            className="text-[14px] px-8 py-6 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300"
           >
             <Calendar className="w-5 h-5 mr-2" />
             Schedule a Call

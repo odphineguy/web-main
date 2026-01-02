@@ -25,18 +25,18 @@ export default function BilingualSEOPhoenixPage() {
       {/* Hero Section */}
       <section className="px-6 pt-20 pb-16">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+          <h1 className="text-[32px] md:text-[36px] lg:text-[40px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-6">
             Bilingual SEO for{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
               Phoenix Local Businesses
             </span>
           </h1>
-          <p className="text-xl text-gray-600 dark:text-neutral-400 mb-8 max-w-2xl mx-auto">
+          <p className="text-[14px] md:text-[16px] font-normal leading-[1.5] text-gray-600 dark:text-neutral-400 mb-8 max-w-2xl mx-auto">
             Reach customers searching in English and Spanish. One-third of Phoenix households speak Spanish at home—is your website visible to them?
           </p>
           <button
             onClick={() => setIsConsultationOpen(true)}
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-[14px] font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
           >
             Get a Free SEO Audit
             <ArrowRight className="w-5 h-5" />
@@ -47,13 +47,13 @@ export default function BilingualSEOPhoenixPage() {
       {/* Why Bilingual SEO Matters */}
       <section className="px-6 py-16 bg-gray-50 dark:bg-neutral-900">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 text-center">
+          <h2 className="text-[32px] md:text-[36px] lg:text-[40px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4 text-center">
             Why Bilingual SEO Matters in{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
               Phoenix
             </span>
           </h2>
-          <p className="text-center text-gray-600 dark:text-neutral-400 mb-10 max-w-2xl mx-auto">
+          <p className="text-center text-[14px] md:text-[16px] font-normal leading-[1.5] text-gray-600 dark:text-neutral-400 mb-10 max-w-2xl mx-auto">
             Many Spanish-speaking users actively search for local services in Spanish, yet few businesses are optimized to reach them.
           </p>
 
@@ -89,13 +89,13 @@ export default function BilingualSEOPhoenixPage() {
       {/* What Makes Bilingual SEO Different */}
       <section className="px-6 py-16">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 text-center">
+          <h2 className="text-[32px] md:text-[36px] lg:text-[40px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4 text-center">
             What Makes Bilingual SEO{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
               Different
             </span>
           </h2>
-          <p className="text-center text-gray-600 dark:text-neutral-400 mb-10 max-w-2xl mx-auto">
+          <p className="text-center text-[14px] md:text-[16px] font-normal leading-[1.5] text-gray-600 dark:text-neutral-400 mb-10 max-w-2xl mx-auto">
             English and Spanish users don&apos;t search the same way. Keywords, phrasing, and intent often differ—even for the same service.
           </p>
 
@@ -125,7 +125,7 @@ export default function BilingualSEOPhoenixPage() {
             </div>
           </div>
 
-          <p className="text-center text-gray-600 dark:text-neutral-400 mt-8">
+          <p className="text-center text-[14px] md:text-[16px] font-normal leading-[1.5] text-gray-600 dark:text-neutral-400 mt-8">
             Effective bilingual SEO accounts for these differences while keeping your site technically sound and easy for Google to understand.
           </p>
         </div>
@@ -134,13 +134,13 @@ export default function BilingualSEOPhoenixPage() {
       {/* Our Approach - 3 Column Grid */}
       <section className="px-6 py-16 bg-gray-50 dark:bg-neutral-900">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 text-center">
+          <h2 className="text-[32px] md:text-[36px] lg:text-[40px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4 text-center">
             Our Approach to Bilingual SEO in{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
               Phoenix
             </span>
           </h2>
-          <p className="text-center text-gray-600 dark:text-neutral-400 mb-12 max-w-2xl mx-auto">
+          <p className="text-center text-[14px] md:text-[16px] font-normal leading-[1.5] text-gray-600 dark:text-neutral-400 mb-12 max-w-2xl mx-auto">
             We focus on practical, beginner-friendly strategies that work for small and local businesses.
           </p>
 
@@ -150,7 +150,7 @@ export default function BilingualSEOPhoenixPage() {
               <div className="w-12 h-12 rounded-xl bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center mb-4">
                 <Search className="w-6 h-6 text-orange-600 dark:text-orange-400" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+              <h3 className="text-[20px] md:text-[24px] font-normal tracking-[0em] text-gray-900 dark:text-white mb-3">
                 Language-Specific Strategy
               </h3>
               <ul className="space-y-2">
@@ -172,7 +172,7 @@ export default function BilingualSEOPhoenixPage() {
               <div className="w-12 h-12 rounded-xl bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center mb-4">
                 <Code className="w-6 h-6 text-orange-600 dark:text-orange-400" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+              <h3 className="text-[20px] md:text-[24px] font-normal tracking-[0em] text-gray-900 dark:text-white mb-3">
                 Technical Structure
               </h3>
               <ul className="space-y-2">
@@ -197,7 +197,7 @@ export default function BilingualSEOPhoenixPage() {
               <div className="w-12 h-12 rounded-xl bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center mb-4">
                 <MapPin className="w-6 h-6 text-orange-600 dark:text-orange-400" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+              <h3 className="text-[20px] md:text-[24px] font-normal tracking-[0em] text-gray-900 dark:text-white mb-3">
                 Local Optimization
               </h3>
               <ul className="space-y-2">
@@ -220,13 +220,13 @@ export default function BilingualSEOPhoenixPage() {
       {/* Who This Is For */}
       <section className="px-6 py-16">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 text-center">
+          <h2 className="text-[32px] md:text-[36px] lg:text-[40px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4 text-center">
             Who This Is{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
               For
             </span>
           </h2>
-          <p className="text-center text-gray-600 dark:text-neutral-400 mb-10">
+          <p className="text-center text-[14px] md:text-[16px] font-normal leading-[1.5] text-gray-600 dark:text-neutral-400 mb-10">
             If your customers are bilingual, your SEO should be too.
           </p>
 
@@ -255,13 +255,13 @@ export default function BilingualSEOPhoenixPage() {
       {/* Common Mistakes We Fix */}
       <section className="px-6 py-16 bg-gray-50 dark:bg-neutral-900">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 text-center">
+          <h2 className="text-[32px] md:text-[36px] lg:text-[40px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4 text-center">
             Common Mistakes{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
               We Fix
             </span>
           </h2>
-          <p className="text-center text-gray-600 dark:text-neutral-400 mb-10">
+          <p className="text-center text-[14px] md:text-[16px] font-normal leading-[1.5] text-gray-600 dark:text-neutral-400 mb-10">
             Many Phoenix businesses struggle with bilingual SEO because of these issues:
           </p>
 
@@ -285,7 +285,7 @@ export default function BilingualSEOPhoenixPage() {
             ))}
           </div>
 
-          <p className="text-center text-gray-600 dark:text-neutral-400 mt-8">
+          <p className="text-center text-[14px] md:text-[16px] font-normal leading-[1.5] text-gray-600 dark:text-neutral-400 mt-8">
             Fixing these issues often leads to quick improvements in visibility.{" "}
             <span className="font-semibold text-orange-500">We audit these issues for free.</span>
           </p>
@@ -295,13 +295,13 @@ export default function BilingualSEOPhoenixPage() {
       {/* Service Areas */}
       <section className="px-6 py-16">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-[32px] md:text-[36px] lg:text-[40px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
             Serving Phoenix and{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
               Surrounding Areas
             </span>
           </h2>
-          <p className="text-gray-600 dark:text-neutral-400 mb-8">
+          <p className="text-[14px] md:text-[16px] font-normal leading-[1.5] text-gray-600 dark:text-neutral-400 mb-8">
             We work with businesses across the Phoenix metro area—without relying on thin city pages or keyword stuffing.
           </p>
 
@@ -322,15 +322,15 @@ export default function BilingualSEOPhoenixPage() {
       {/* Final CTA */}
       <section className="px-6 py-20 bg-gradient-to-r from-orange-500 to-orange-600">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="text-[32px] md:text-[36px] lg:text-[40px] font-medium tracking-[-0.02em] text-white mb-4">
             Ready to Reach Phoenix&apos;s Bilingual Market?
           </h2>
-          <p className="text-white/90 mb-8 text-lg">
+          <p className="text-[14px] md:text-[16px] font-normal leading-[1.5] text-white/90 mb-8">
             Get a free audit of your bilingual SEO setup and see what opportunities you&apos;re missing.
           </p>
           <button
             onClick={() => setIsConsultationOpen(true)}
-            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-orange-600 font-semibold rounded-full shadow-lg hover:shadow-xl hover:bg-gray-50 transition-all duration-300"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-orange-600 text-[14px] font-medium rounded-full shadow-lg hover:shadow-xl hover:bg-gray-50 transition-all duration-300"
           >
             Schedule Your Free Consultation
             <ArrowRight className="w-5 h-5" />
