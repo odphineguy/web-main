@@ -10,6 +10,7 @@ interface PortfolioProject {
   name: string;
   description: string;
   siteUrl: string;
+  category: string;
 }
 
 const portfolioProjects: PortfolioProject[] = [
@@ -18,54 +19,63 @@ const portfolioProjects: PortfolioProject[] = [
     name: "Gor-Jess Grazing",
     description: "Luxury grazing boards and catering",
     siteUrl: "https://odphineguy.github.io/gor-jess-grazing/first.html",
+    category: "Catering",
   },
   {
     id: "inaction",
     name: "InAction",
     description: "Professional business website",
     siteUrl: "https://odphineguy.github.io/inaction/",
+    category: "Business",
   },
   {
     id: "saguaro",
     name: "Saguaro",
-    description: "Landscaping services website",
+    description: "Transportation services website",
     siteUrl: "https://saguaro.vercel.app/",
+    category: "Transportation",
   },
   {
     id: "thedrone-college",
     name: "The Drone College",
     description: "Drone training and certification",
     siteUrl: "https://odphineguy.github.io/thedrone-college/",
+    category: "Education",
   },
   {
     id: "mealsaver",
     name: "Meal Saver",
     description: "Food rescue and savings app",
-    siteUrl: "https://mealsaverlanding.vercel.app/",
+    siteUrl: "https://mealsaver.app/",
+    category: "Food App",
   },
   {
     id: "saguaro-transport",
     name: "Saguaro Transport",
     description: "Transportation services website",
     siteUrl: "https://saguaro-transport.vercel.app/",
+    category: "Transportation",
   },
   {
     id: "paisanos",
     name: "Paisanos",
     description: "Restaurant website design",
     siteUrl: "https://odphineguy.github.io/paisanos-restaurant/",
+    category: "Restaurant",
   },
   {
     id: "phoenix-balloon-decor",
     name: "Phoenix Balloon Decor",
     description: "Balloon decoration services",
     siteUrl: "https://phx-balloon-decor.vercel.app/",
+    category: "Events",
   },
   {
     id: "paw-relief",
     name: "Paw Relief",
     description: "Pet care and relief services",
     siteUrl: "https://paw-relief-landing.vercel.app/",
+    category: "Pet Care",
   },
 ];
 
@@ -108,7 +118,7 @@ export default function PortfolioPage() {
                 </div>
                 <div className="mt-4 text-center">
                   <h3 className="text-lg text-gray-700 dark:text-neutral-300 font-light">
-                    Design {index + 1}
+                    {project.category}
                   </h3>
                   <p className="text-sm text-gray-500 dark:text-neutral-500">{project.name}</p>
                 </div>

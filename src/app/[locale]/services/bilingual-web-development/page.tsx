@@ -122,21 +122,21 @@ export default function BilingualWebDevelopment() {
               <Globe className="h-3.5 w-3.5" />
               Bilingual Solutions
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-[40px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-6 leading-tight">
               Bilingual Web Development{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
                 Services
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-neutral-300 mb-4 font-medium">
+            <p className="text-lg md:text-xl text-gray-600 dark:text-neutral-300 mb-4">
               Reach More Customers with Spanish-English Websites
             </p>
-            <p className="text-lg text-gray-600 dark:text-neutral-400 mb-8 max-w-3xl mx-auto">
+            <p className="text-sm md:text-base text-gray-600 dark:text-neutral-400 mb-8 max-w-3xl mx-auto leading-relaxed">
               Expand your business reach with a professionally designed bilingual website that speaks directly to both English and Spanish-speaking customers. Our multilingual web solutions help small businesses tap into new markets and build stronger connections with diverse audiences.
             </p>
             <Button
               size="lg"
-              className="text-lg px-8 py-6 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300"
+              className="text-sm px-8 py-6 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300"
               onClick={() => setIsConsultationOpen(true)}
             >
               Get Free Consultation
@@ -155,7 +155,7 @@ export default function BilingualWebDevelopment() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
               What We Build
             </h2>
           </motion.div>
@@ -175,7 +175,7 @@ export default function BilingualWebDevelopment() {
                     <div className="w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center mb-5 group-hover:bg-orange-500/20 transition-colors">
                       <feature.icon className="w-7 h-7 text-orange-500" />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                    <h3 className="text-lg md:text-xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
                       {feature.title}
                     </h3>
                     {feature.items ? (
@@ -183,14 +183,14 @@ export default function BilingualWebDevelopment() {
                         {feature.items.map((item, idx) => (
                           <li key={idx} className="flex items-start gap-3">
                             <Check className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" />
-                            <span className="text-gray-600 dark:text-neutral-400 text-sm">
+                            <span className="text-gray-600 dark:text-neutral-400 text-sm leading-relaxed">
                               {item}
                             </span>
                           </li>
                         ))}
                       </ul>
                     ) : (
-                      <p className="text-gray-600 dark:text-neutral-400">
+                      <p className="text-sm text-gray-600 dark:text-neutral-400 leading-relaxed">
                         {feature.description}
                       </p>
                     )}
@@ -212,7 +212,7 @@ export default function BilingualWebDevelopment() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
               Industries We Serve
             </h2>
           </motion.div>
@@ -230,10 +230,10 @@ export default function BilingualWebDevelopment() {
                 <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-orange-500/10 to-orange-600/5 flex items-center justify-center mb-4 group-hover:from-orange-500 group-hover:to-orange-600 group-hover:shadow-lg group-hover:shadow-orange-500/25 transition-all duration-300">
                   <industry.icon className="w-8 h-8 text-orange-500 group-hover:text-white transition-colors duration-300" />
                 </div>
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                <h3 className="font-medium text-gray-900 dark:text-white mb-2">
                   {industry.name}
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-neutral-400">
+                <p className="text-sm text-gray-600 dark:text-neutral-400 leading-relaxed">
                   {industry.description}
                 </p>
               </motion.div>
@@ -252,7 +252,7 @@ export default function BilingualWebDevelopment() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
               Our Process
             </h2>
           </motion.div>
@@ -268,13 +268,13 @@ export default function BilingualWebDevelopment() {
                 className="relative"
               >
                 <div className="text-center">
-                  <div className="w-12 h-12 mx-auto rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center mb-4 text-white font-bold">
+                  <div className="w-12 h-12 mx-auto rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center mb-4 text-white font-medium">
                     {index + 1}
                   </div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                  <h3 className="font-medium text-gray-900 dark:text-white mb-2">
                     {step.title}
                   </h3>
-                  <p className="text-sm text-gray-600 dark:text-neutral-400">
+                  <p className="text-sm text-gray-600 dark:text-neutral-400 leading-relaxed">
                     {step.description}
                   </p>
                 </div>
@@ -298,7 +298,7 @@ export default function BilingualWebDevelopment() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
               Technologies We Use
             </h2>
           </motion.div>
@@ -315,7 +315,7 @@ export default function BilingualWebDevelopment() {
                 {technologies.map((tech, index) => (
                   <li key={index} className="flex items-center gap-3">
                     <div className="w-2 h-2 rounded-full bg-orange-500" />
-                    <span className="text-gray-700 dark:text-neutral-300">{tech}</span>
+                    <span className="text-sm text-gray-700 dark:text-neutral-300 leading-relaxed">{tech}</span>
                   </li>
                 ))}
               </ul>
@@ -334,7 +334,7 @@ export default function BilingualWebDevelopment() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
               Why Choose Abe Media?
             </h2>
           </motion.div>
@@ -352,7 +352,7 @@ export default function BilingualWebDevelopment() {
                 <div className="w-10 h-10 rounded-lg bg-orange-500/10 flex items-center justify-center flex-shrink-0">
                   <item.icon className="w-5 h-5 text-orange-500" />
                 </div>
-                <span className="text-gray-700 dark:text-neutral-300">{item.text}</span>
+                <span className="text-sm text-gray-700 dark:text-neutral-300 leading-relaxed">{item.text}</span>
               </motion.div>
             ))}
           </div>
@@ -369,7 +369,7 @@ export default function BilingualWebDevelopment() {
             viewport={{ once: true }}
             className="text-center mb-8"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
               Real Results
             </h2>
           </motion.div>
@@ -383,7 +383,7 @@ export default function BilingualWebDevelopment() {
           >
             <div className="rounded-2xl p-8 lg:p-10 bg-white dark:bg-neutral-950 text-center">
               <Quote className="w-10 h-10 text-orange-500/40 mx-auto mb-6" />
-              <blockquote className="text-lg md:text-xl text-gray-700 dark:text-neutral-300 mb-6 italic">
+              <blockquote className="text-base md:text-lg text-gray-700 dark:text-neutral-300 mb-6 italic leading-relaxed">
                 &ldquo;Their bilingual marketing strategy helped us connect with Spanish-speaking customers we&apos;d never been able to reach. Our client base has grown significantly.&rdquo;
               </blockquote>
               <div className="flex items-center justify-center gap-3">
@@ -395,7 +395,7 @@ export default function BilingualWebDevelopment() {
                   className="w-12 h-12 rounded-full object-cover"
                 />
                 <div className="text-left">
-                  <p className="font-semibold text-gray-900 dark:text-white">Maria B.</p>
+                  <p className="font-medium text-gray-900 dark:text-white">Maria B.</p>
                   <p className="text-sm text-gray-600 dark:text-neutral-400">Real Estate Agency</p>
                 </div>
               </div>
@@ -413,15 +413,15 @@ export default function BilingualWebDevelopment() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
               Ready to Expand Your Reach?
             </h2>
-            <p className="text-lg text-gray-600 dark:text-neutral-400 mb-8">
+            <p className="text-sm md:text-base text-gray-600 dark:text-neutral-400 mb-8 leading-relaxed">
               Contact us today for a free consultation. We&apos;ll discuss your goals and show you how a bilingual website can grow your business.
             </p>
             <Button
               size="lg"
-              className="text-lg px-10 py-6 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300"
+              className="text-sm px-10 py-6 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300"
               onClick={() => setIsConsultationOpen(true)}
             >
               Get Your Free Consultation

@@ -208,13 +208,13 @@ export default function PricingPage() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-6xl mx-auto mb-16"
         >
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-gray-900 dark:text-white mb-6">
             Flexible Plans for Your{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
               Digital Growth
             </span>
           </h1>
-          <p className="text-lg md:text-xl text-gray-600 dark:text-neutral-400 max-w-3xl mx-auto font-light">
+          <p className="text-base md:text-lg lg:text-xl text-gray-600 dark:text-neutral-400 max-w-3xl mx-auto font-medium leading-relaxed">
             Transparent pricing for custom chatbots, web development, and marketing solutions.
           </p>
         </motion.div>
@@ -251,7 +251,7 @@ export default function PricingPage() {
                   className="h-full rounded-2xl p-6 lg:p-8 backdrop-blur-xl transition-all duration-300 text-center bg-gray-50 dark:bg-neutral-900"
                 >
                   {/* Tier Name */}
-                  <h3 className="text-sm font-bold tracking-widest text-gray-500 dark:text-neutral-400 mb-6">
+                  <h3 className="text-sm font-semibold tracking-widest text-gray-500 dark:text-neutral-400 mb-6">
                     {tier.name}
                   </h3>
 
@@ -260,7 +260,7 @@ export default function PricingPage() {
 
                   {/* Price */}
                   <div className="mb-6">
-                    <span className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white">
+                    <span className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] text-gray-900 dark:text-white">
                       {tier.price}
                     </span>
                     {tier.isMonthly && (
@@ -273,7 +273,7 @@ export default function PricingPage() {
                     {tier.features.map((feature, featureIndex) => (
                       <li
                         key={featureIndex}
-                        className="text-gray-600 dark:text-neutral-300 text-sm"
+                        className="text-gray-600 dark:text-neutral-300 text-base font-medium"
                       >
                         {feature}
                       </li>
@@ -284,7 +284,7 @@ export default function PricingPage() {
                   <button
                     onClick={() => handleSelectPlan(tier)}
                     disabled={loadingPlan === tier.id}
-                    className={`w-full py-3.5 px-6 rounded-full font-semibold text-sm transition-all duration-300 ${
+                    className={`w-full py-3.5 px-6 rounded-full font-semibold text-base transition-all duration-300 ${
                       tier.popular
                         ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:from-orange-600 hover:to-orange-700 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40"
                         : "bg-gray-200 dark:bg-white/10 text-gray-900 dark:text-white border border-gray-300 dark:border-white/20 hover:bg-orange-500 hover:text-white hover:border-orange-500"
@@ -330,13 +330,13 @@ export default function PricingPage() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-center max-w-6xl mx-auto mt-20 mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-2xl md:text-3xl font-medium text-gray-900 dark:text-white mb-4">
             Add-ons &{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
               Monthly Services
             </span>
           </h2>
-          <p className="text-lg text-gray-600 dark:text-neutral-400 max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-gray-600 dark:text-neutral-400 max-w-2xl mx-auto font-medium">
             Enhance any package with bilingual support or ongoing monthly services.
           </p>
         </motion.div>
@@ -352,26 +352,26 @@ export default function PricingPage() {
             >
               <div className="h-full rounded-2xl p-px transition-all duration-300 bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
                 <div className="h-full rounded-2xl p-6 lg:p-8 backdrop-blur-xl transition-all duration-300 text-center bg-gray-50 dark:bg-neutral-900">
-                  <h3 className="text-sm font-bold tracking-widest text-gray-500 dark:text-neutral-400 mb-6">
+                  <h3 className="text-sm font-semibold tracking-widest text-gray-500 dark:text-neutral-400 mb-6">
                     {tier.name}
                   </h3>
                   <div className="h-px w-full mb-6 bg-orange-500/60" />
                   <div className="mb-2">
-                    <span className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white">
+                    <span className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] text-gray-900 dark:text-white">
                       {tier.price}
                     </span>
                     {tier.isMonthly && (
                       <span className="text-lg text-gray-500 dark:text-neutral-400">/mo</span>
                     )}
                   </div>
-                  <p className="text-sm text-gray-500 dark:text-neutral-500 mb-6">
+                  <p className="text-sm text-gray-500 dark:text-neutral-500 mb-6 font-medium">
                     {tier.description}
                   </p>
                   <ul className="space-y-3 mb-8">
                     {tier.features.map((feature, featureIndex) => (
                       <li
                         key={featureIndex}
-                        className="text-gray-600 dark:text-neutral-300 text-sm"
+                        className="text-gray-600 dark:text-neutral-300 text-base font-medium"
                       >
                         {feature}
                       </li>
@@ -380,7 +380,7 @@ export default function PricingPage() {
                   <button
                     onClick={() => handleSelectPlan(tier)}
                     disabled={loadingPlan === tier.id}
-                    className="w-full py-3.5 px-6 rounded-full font-semibold text-sm transition-all duration-300 bg-gray-200 dark:bg-white/10 text-gray-900 dark:text-white border border-gray-300 dark:border-white/20 hover:bg-orange-500 hover:text-white hover:border-orange-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full py-3.5 px-6 rounded-full font-semibold text-base transition-all duration-300 bg-gray-200 dark:bg-white/10 text-gray-900 dark:text-white border border-gray-300 dark:border-white/20 hover:bg-orange-500 hover:text-white hover:border-orange-500 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {loadingPlan === tier.id ? (
                       <span className="flex items-center justify-center gap-2">
@@ -426,10 +426,10 @@ export default function PricingPage() {
         >
           <div className="rounded-2xl p-px bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
             <div className="rounded-2xl p-8 lg:p-10 bg-white dark:bg-neutral-950">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">
+              <h2 className="text-2xl md:text-3xl font-semibold tracking-[-0.02em] text-gray-900 dark:text-white mb-3">
                 Need a Custom Solution?
               </h2>
-              <p className="text-gray-600 dark:text-neutral-400 mb-6">
+              <p className="text-gray-600 dark:text-neutral-400 mb-6 font-medium">
                 Every business is unique. Let&apos;s discuss your specific requirements and create a tailored plan.
               </p>
               <button

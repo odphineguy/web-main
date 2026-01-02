@@ -56,10 +56,10 @@ export default function Services() {
       {/* Hero Section */}
       <section className="bg-white dark:bg-black pt-8 md:pt-12 pb-12 px-6">
         <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-gray-900 dark:text-white">
+          <h1 className="text-3xl md:text-4xl lg:text-[40px] font-medium tracking-[-0.02em] mb-6 text-gray-900 dark:text-white">
             {t('Hero.title')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">{t('Hero.highlight')}</span>
           </h1>
-          <p className="text-lg md:text-xl text-gray-600 dark:text-neutral-400 mb-8 max-w-3xl mx-auto font-light">
+          <p className="text-sm md:text-base text-gray-600 dark:text-neutral-400 mb-8 max-w-3xl mx-auto leading-relaxed">
             {t('Hero.subtitle')}
           </p>
           <ScheduleCallButton 
@@ -104,11 +104,11 @@ export default function Services() {
                     <div className="text-orange-500 mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:text-orange-600 group-hover:rotate-3">
                       {service.icon}
                     </div>
-                    <CardTitle className="text-xl text-gray-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-300 flex items-center gap-2">
+                    <CardTitle className="text-lg md:text-xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-300 flex items-center gap-2">
                       {t(`Cards.${service.id}.title`)}
                       {service.link && <ArrowRight className="h-4 w-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />}
                     </CardTitle>
-                    <CardDescription className="text-base text-gray-600 dark:text-neutral-400">
+                    <CardDescription className="text-sm text-gray-600 dark:text-neutral-400 leading-relaxed">
                       {t(`Cards.${service.id}.description`)}
                     </CardDescription>
                   </CardHeader>
@@ -121,7 +121,7 @@ export default function Services() {
                           style={{ transitionDelay: `${featureIndex * 50}ms` }}
                         >
                           <CheckCircle className="h-4 w-4 text-gray-400 dark:text-neutral-500 flex-shrink-0 group-hover:text-orange-500 transition-colors duration-300" />
-                          <span className="text-sm text-gray-600 dark:text-neutral-400 group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors duration-300">
+                          <span className="text-sm leading-relaxed text-gray-600 dark:text-neutral-400 group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors duration-300">
                             {t(`Cards.${service.id}.features.${featureKey}`)}
                           </span>
                         </li>
@@ -129,7 +129,7 @@ export default function Services() {
                     </ul>
                     {service.link && (
                       <div className="mt-4 pt-4 border-t border-gray-100 dark:border-neutral-800">
-                        <span className="text-sm font-semibold text-orange-500 group-hover:text-orange-600 flex items-center gap-1">
+                        <span className="text-sm font-medium text-orange-500 group-hover:text-orange-600 flex items-center gap-1">
                           {t('CTA.link')} <ArrowRight className="h-3 w-3" />
                         </span>
                       </div>
@@ -159,10 +159,10 @@ export default function Services() {
         <div className="max-w-2xl mx-auto text-center">
           <div className="rounded-2xl p-px bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
             <div className="rounded-2xl p-8 lg:p-10 bg-gray-50 dark:bg-neutral-950">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">
+              <h2 className="text-xl md:text-2xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-3">
                 {t('CTA.title')}
               </h2>
-              <p className="text-gray-600 dark:text-neutral-400 mb-6">
+              <p className="text-sm text-gray-600 dark:text-neutral-400 mb-6 leading-relaxed">
                 {t('CTA.description')}
               </p>
               <ScheduleCallButton

@@ -190,10 +190,10 @@ export default function ROICalculator() {
                   <Calculator className="h-6 w-6 text-orange-500" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                  <h2 className="text-xl md:text-2xl font-normal tracking-[-0.05em] text-gray-900 dark:text-white">
                     {t("title")}
                   </h2>
-                  <p className="text-sm text-gray-600 dark:text-neutral-400">
+                  <p className="text-sm font-light text-gray-600 dark:text-neutral-400">
                     {t("subtitle")}
                   </p>
                 </div>
@@ -202,7 +202,7 @@ export default function ROICalculator() {
               <div className="space-y-5">
                 {/* Industry Select */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-neutral-300 mb-2">
+                  <label className="block text-sm font-light text-gray-700 dark:text-neutral-300 mb-2">
                     {t("inputs.industry.label")}
                   </label>
                   <select
@@ -229,7 +229,7 @@ export default function ROICalculator() {
 
                 {/* Customers per Month */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-neutral-300 mb-2">
+                  <label className="block text-sm font-light text-gray-700 dark:text-neutral-300 mb-2">
                     {t("inputs.customers.label")}
                   </label>
                   <input
@@ -251,7 +251,7 @@ export default function ROICalculator() {
 
                 {/* Revenue per Customer */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-neutral-300 mb-2">
+                  <label className="block text-sm font-light text-gray-700 dark:text-neutral-300 mb-2">
                     {t("inputs.revenue.label")}
                   </label>
                   <div className="relative">
@@ -278,7 +278,7 @@ export default function ROICalculator() {
 
                 {/* City */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-neutral-300 mb-2">
+                  <label className="block text-sm font-light text-gray-700 dark:text-neutral-300 mb-2">
                     {t("inputs.city.label")}
                   </label>
                   <select
@@ -337,7 +337,7 @@ export default function ROICalculator() {
                 {/* Calculate Button */}
                 <button
                   onClick={calculateROI}
-                  className="w-full py-4 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 flex items-center justify-center gap-2"
+                  className="w-full py-4 px-6 rounded-full font-normal text-sm text-white bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 flex items-center justify-center gap-2"
                 >
                   {t("calculateButton")}
                   <ArrowRight className="h-5 w-5" />
@@ -361,10 +361,10 @@ export default function ROICalculator() {
                 <div className="inline-flex items-center justify-center p-3 rounded-full bg-orange-500/10 mb-4">
                   <Mail className="h-8 w-8 text-orange-500" />
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                <h2 className="text-xl md:text-2xl font-light tracking-[-0.02em] text-gray-900 dark:text-white mb-2">
                   {t("leadCapture.title")}
                 </h2>
-                <p className="text-gray-600 dark:text-neutral-400">
+                <p className="text-sm font-light text-gray-600 dark:text-neutral-400">
                   {t("leadCapture.subtitle")}
                 </p>
               </div>
@@ -403,7 +403,7 @@ export default function ROICalculator() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-4 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full py-4 px-6 rounded-full font-normal text-sm text-white bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {isSubmitting ? (
                     <>
@@ -457,10 +457,10 @@ export default function ROICalculator() {
               )}
 
               <div className="text-center mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                <h2 className="text-xl md:text-2xl font-light tracking-[-0.02em] text-gray-900 dark:text-white mb-2">
                   {t("results.title")}
                 </h2>
-                <p className="text-gray-600 dark:text-neutral-400">
+                <p className="text-sm font-light text-gray-600 dark:text-neutral-400">
                   {t("results.basedOn", { city: results.cityName, percent: Math.round(results.hispanicPercent) })}
                 </p>
               </div>
@@ -473,11 +473,11 @@ export default function ROICalculator() {
                   transition={{ delay: 0.1 }}
                   className="p-5 rounded-xl bg-gray-50 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 text-center"
                 >
-                  <p className="text-sm font-medium text-gray-600 dark:text-neutral-400 mb-2">
+                  <p className="text-sm font-light text-gray-600 dark:text-neutral-400 mb-2">
                     {t("results.newCustomers")}
                   </p>
-                  <p className="text-3xl font-bold text-gray-900 dark:text-white">
-                    +{results.potentialNewCustomers} <span className="text-lg font-normal text-gray-500">/{t("results.month")}</span>
+                  <p className="text-2xl font-normal text-gray-900 dark:text-white">
+                    +{results.potentialNewCustomers} <span className="text-base font-light text-gray-500">/{t("results.month")}</span>
                   </p>
                 </motion.div>
 
@@ -487,10 +487,10 @@ export default function ROICalculator() {
                   transition={{ delay: 0.2 }}
                   className="p-5 rounded-xl bg-gray-50 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 text-center"
                 >
-                  <p className="text-sm font-medium text-gray-600 dark:text-neutral-400 mb-2">
+                  <p className="text-sm font-light text-gray-600 dark:text-neutral-400 mb-2">
                     {t("results.monthlyRevenue")}
                   </p>
-                  <p className="text-3xl font-bold text-green-600 dark:text-green-400">
+                  <p className="text-2xl font-normal text-green-600 dark:text-green-400">
                     +{formatCurrency(results.monthlyRevenueIncrease)}
                   </p>
                 </motion.div>
@@ -501,10 +501,10 @@ export default function ROICalculator() {
                   transition={{ delay: 0.3 }}
                   className="p-5 rounded-xl bg-gray-50 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 text-center"
                 >
-                  <p className="text-sm font-medium text-gray-600 dark:text-neutral-400 mb-2">
+                  <p className="text-sm font-light text-gray-600 dark:text-neutral-400 mb-2">
                     {t("results.yearlyRevenue")}
                   </p>
-                  <p className="text-4xl font-bold text-green-600 dark:text-green-400">
+                  <p className="text-3xl font-normal text-green-600 dark:text-green-400">
                     +{formatCurrency(results.yearlyRevenueIncrease)}
                   </p>
                 </motion.div>
@@ -514,14 +514,14 @@ export default function ROICalculator() {
               <div className="space-y-3">
                 <Link
                   href={`/${locale}/get-started`}
-                  className="w-full py-4 px-6 rounded-full font-semibold text-white bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 flex items-center justify-center gap-2"
+                  className="w-full py-4 px-6 rounded-full font-normal text-sm text-white bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 flex items-center justify-center gap-2"
                 >
                   {t("results.cta")}
                   <ArrowRight className="h-5 w-5" />
                 </Link>
                 <button
                   onClick={resetCalculator}
-                  className="w-full py-3 px-6 rounded-full font-medium text-gray-600 dark:text-neutral-400 hover:text-orange-500 dark:hover:text-orange-400 transition-colors"
+                  className="w-full py-3 px-6 rounded-full font-light text-sm text-gray-600 dark:text-neutral-400 hover:text-orange-500 dark:hover:text-orange-400 transition-colors"
                 >
                   {t("results.recalculate")}
                 </button>

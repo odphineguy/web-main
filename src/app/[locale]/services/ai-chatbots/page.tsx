@@ -251,23 +251,23 @@ export default function AIChatbots() {
               <Bot className="h-3.5 w-3.5" />
               AI-Powered Solutions
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-[40px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-6 leading-tight">
               Custom AI Chatbot{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
                 Solutions
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-neutral-300 mb-4 font-medium">
+            <p className="text-lg md:text-xl text-gray-600 dark:text-neutral-300 mb-4">
               24/7 Customer Support That Never Sleeps
             </p>
-            <p className="text-lg text-gray-600 dark:text-neutral-400 mb-8 max-w-3xl mx-auto">
+            <p className="text-sm md:text-base text-gray-600 dark:text-neutral-400 mb-8 max-w-3xl mx-auto leading-relaxed">
               Transform your customer service with a custom AI chatbot designed specifically for
               your business. Answer questions instantly, qualify leads automatically, and free up
               your team to focus on high-value tasks.
             </p>
             <Button
               size="lg"
-              className="text-lg px-8 py-6 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300"
+              className="text-sm px-8 py-6 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300"
               onClick={() => setIsConsultationOpen(true)}
             >
               Get Free Demo
@@ -286,7 +286,7 @@ export default function AIChatbots() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
               What Our Chatbots Do
             </h2>
           </motion.div>
@@ -306,7 +306,7 @@ export default function AIChatbots() {
                     <div className="w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center mb-5 group-hover:bg-orange-500/20 transition-colors">
                       <capability.icon className="w-7 h-7 text-orange-500" />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                    <h3 className="text-lg md:text-xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
                       {capability.title}
                     </h3>
                     {capability.items ? (
@@ -314,14 +314,14 @@ export default function AIChatbots() {
                         {capability.items.map((item, idx) => (
                           <li key={idx} className="flex items-start gap-3">
                             <Check className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" />
-                            <span className="text-gray-600 dark:text-neutral-400 text-sm">
+                            <span className="text-gray-600 dark:text-neutral-400 text-sm leading-relaxed">
                               {item}
                             </span>
                           </li>
                         ))}
                       </ul>
                     ) : (
-                      <p className="text-gray-600 dark:text-neutral-400">{capability.description}</p>
+                      <p className="text-sm text-gray-600 dark:text-neutral-400 leading-relaxed">{capability.description}</p>
                     )}
                   </div>
                 </div>
@@ -344,7 +344,7 @@ export default function AIChatbots() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
               Industry-Specific Solutions
             </h2>
           </motion.div>
@@ -369,7 +369,7 @@ export default function AIChatbots() {
                       <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center">
                         <industry.icon className="w-6 h-6 text-orange-500" />
                       </div>
-                      <span className="font-semibold text-gray-900 dark:text-white text-lg">
+                      <span className="font-medium text-gray-900 dark:text-white text-base md:text-lg">
                         {industry.name}
                       </span>
                     </div>
@@ -391,7 +391,7 @@ export default function AIChatbots() {
                       {industry.features.map((feature, idx) => (
                         <li key={idx} className="flex items-start gap-3">
                           <Check className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" />
-                          <span className="text-gray-600 dark:text-neutral-400">{feature}</span>
+                          <span className="text-sm text-gray-600 dark:text-neutral-400 leading-relaxed">{feature}</span>
                         </li>
                       ))}
                     </ul>
@@ -418,10 +418,10 @@ export default function AIChatbots() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
               Integration Options
             </h2>
-            <p className="text-gray-600 dark:text-neutral-400 text-lg">
+            <p className="text-sm md:text-base text-gray-600 dark:text-neutral-400 leading-relaxed">
               We connect your chatbot with the tools you already use
             </p>
           </motion.div>
@@ -440,11 +440,11 @@ export default function AIChatbots() {
                   <div className="w-10 h-10 rounded-lg bg-orange-500/10 flex items-center justify-center">
                     <integration.icon className="w-5 h-5 text-orange-500" />
                   </div>
-                  <span className="font-semibold text-gray-900 dark:text-white">
+                  <span className="font-medium text-gray-900 dark:text-white">
                     {integration.name}
                   </span>
                 </div>
-                <p className="text-sm text-gray-600 dark:text-neutral-400">{integration.tools}</p>
+                <p className="text-sm text-gray-600 dark:text-neutral-400 leading-relaxed">{integration.tools}</p>
               </motion.div>
             ))}
           </div>
@@ -461,7 +461,7 @@ export default function AIChatbots() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
               Chatbot Features
             </h2>
           </motion.div>
@@ -481,7 +481,7 @@ export default function AIChatbots() {
                 <div className="w-10 h-10 rounded-lg bg-orange-500/10 flex items-center justify-center flex-shrink-0">
                   <feature.icon className="w-5 h-5 text-orange-500" />
                 </div>
-                <span className="text-gray-700 dark:text-neutral-300">{feature.text}</span>
+                <span className="text-sm text-gray-700 dark:text-neutral-300 leading-relaxed">{feature.text}</span>
               </div>
             ))}
           </motion.div>
@@ -498,7 +498,7 @@ export default function AIChatbots() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
               How It Works
             </h2>
           </motion.div>
@@ -518,14 +518,14 @@ export default function AIChatbots() {
                   className="relative pl-16 lg:pl-0"
                 >
                   {/* Mobile step number */}
-                  <div className="absolute left-0 lg:relative lg:mx-auto w-12 h-12 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center text-white font-bold text-sm z-10">
+                  <div className="absolute left-0 lg:relative lg:mx-auto w-12 h-12 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center text-white font-medium text-sm z-10">
                     {index + 1}
                   </div>
                   <div className="lg:text-center lg:mt-4">
-                    <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                    <h3 className="font-medium text-gray-900 dark:text-white mb-1">
                       {step.title}
                     </h3>
-                    <p className="text-sm text-gray-600 dark:text-neutral-400">{step.description}</p>
+                    <p className="text-sm text-gray-600 dark:text-neutral-400 leading-relaxed">{step.description}</p>
                   </div>
                   {/* Connector line for desktop */}
                   {index < processSteps.length - 1 && (
@@ -548,7 +548,7 @@ export default function AIChatbots() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
               Pricing
             </h2>
           </motion.div>
@@ -579,18 +579,18 @@ export default function AIChatbots() {
                   }`}
                 >
                   <div className="h-full rounded-2xl p-6 lg:p-8 bg-gray-50 dark:bg-neutral-900 text-center">
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                    <h3 className="text-base md:text-lg font-medium text-gray-900 dark:text-white mb-2">
                       {tier.name}
                     </h3>
                     <div className="h-px w-full mb-6 bg-orange-500/30" />
                     <div className="mb-2">
-                      <span className="text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600">
+                      <span className="text-2xl md:text-3xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600">
                         {tier.setupPrice}
                       </span>
-                      <span className="text-gray-600 dark:text-neutral-400 ml-2">setup</span>
+                      <span className="text-sm text-gray-600 dark:text-neutral-400 ml-2">setup</span>
                     </div>
                     <div className="mb-6">
-                      <span className="text-xl font-semibold text-gray-700 dark:text-neutral-300">
+                      <span className="text-lg font-medium text-gray-700 dark:text-neutral-300">
                         + {tier.monthlyPrice}
                       </span>
                     </div>
@@ -598,7 +598,7 @@ export default function AIChatbots() {
                       {tier.features.map((feature, idx) => (
                         <li key={idx} className="flex items-start gap-3">
                           <Check className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" />
-                          <span className="text-gray-600 dark:text-neutral-400 text-sm">
+                          <span className="text-gray-600 dark:text-neutral-400 text-sm leading-relaxed">
                             {feature}
                           </span>
                         </li>
@@ -606,7 +606,7 @@ export default function AIChatbots() {
                     </ul>
                     <Button
                       onClick={() => setIsConsultationOpen(true)}
-                      className={`w-full py-3 rounded-full font-semibold transition-all duration-300 ${
+                      className={`w-full py-3 rounded-full font-medium text-sm transition-all duration-300 ${
                         tier.popular
                           ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:from-orange-600 hover:to-orange-700 shadow-lg shadow-orange-500/25"
                           : "bg-gray-200 dark:bg-white/10 text-gray-900 dark:text-white border border-gray-300 dark:border-white/20 hover:bg-orange-500 hover:text-white hover:border-orange-500"
@@ -632,7 +632,7 @@ export default function AIChatbots() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
               Why Choose Our Chatbots?
             </h2>
           </motion.div>
@@ -651,7 +651,7 @@ export default function AIChatbots() {
                     <div className="w-6 h-6 rounded-full bg-orange-500 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <Check className="w-4 h-4 text-white" />
                     </div>
-                    <span className="text-gray-700 dark:text-neutral-300 text-lg">{reason}</span>
+                    <span className="text-sm md:text-base text-gray-700 dark:text-neutral-300 leading-relaxed">{reason}</span>
                   </li>
                 ))}
               </ul>
@@ -670,7 +670,7 @@ export default function AIChatbots() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
               Common Questions
             </h2>
           </motion.div>
@@ -688,10 +688,10 @@ export default function AIChatbots() {
                 <div className="flex items-start gap-4">
                   <HelpCircle className="w-6 h-6 text-orange-500 flex-shrink-0 mt-0.5" />
                   <div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                    <h3 className="font-medium text-gray-900 dark:text-white mb-2">
                       {faq.question}
                     </h3>
-                    <p className="text-gray-600 dark:text-neutral-400">{faq.answer}</p>
+                    <p className="text-sm text-gray-600 dark:text-neutral-400 leading-relaxed">{faq.answer}</p>
                   </div>
                 </div>
               </motion.div>
@@ -709,15 +709,15 @@ export default function AIChatbots() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
               Ready to Automate Your Customer Service?
             </h2>
-            <p className="text-lg text-gray-600 dark:text-neutral-400 mb-8">
+            <p className="text-sm md:text-base text-gray-600 dark:text-neutral-400 mb-8 leading-relaxed">
               Get a free demo showing how a custom chatbot can work for your business.
             </p>
             <Button
               size="lg"
-              className="text-lg px-10 py-6 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300"
+              className="text-sm px-10 py-6 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300"
               onClick={() => setIsConsultationOpen(true)}
             >
               Get Your Free Demo
