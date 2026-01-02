@@ -87,7 +87,7 @@ export default function PortfolioPage() {
       {/* Hero Section */}
       <section className="px-6 pt-16 pb-8">
         <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
+          <h1 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-6">
             Website Design{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
               Previews
@@ -117,10 +117,10 @@ export default function PortfolioPage() {
                   </div>
                 </div>
                 <div className="mt-4 text-center">
-                  <h3 className="text-lg text-gray-700 dark:text-neutral-300 font-light">
+                  <h3 className="text-xl md:text-[28px] font-normal tracking-normal text-gray-700 dark:text-neutral-300">
                     {project.category}
                   </h3>
-                  <p className="text-sm text-gray-500 dark:text-neutral-500">{project.name}</p>
+                  <p className="text-sm md:text-base font-normal leading-relaxed text-gray-500 dark:text-neutral-500">{project.name}</p>
                 </div>
               </button>
             ))}
@@ -131,7 +131,7 @@ export default function PortfolioPage() {
       {/* Case Studies Section */}
       <section className="bg-gray-100 dark:bg-neutral-900 py-16 px-6">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-900 dark:text-white text-center">
+          <h2 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] mb-8 text-gray-900 dark:text-white text-center">
             Case{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
               Studies
@@ -147,10 +147,10 @@ export default function PortfolioPage() {
                 <span className="w-2 h-2 rounded-full bg-orange-500" />
                 B2B SaaS
               </div>
-              <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white group-hover:text-orange-500 transition-colors">
+              <h3 className="text-xl md:text-[28px] font-normal tracking-normal mb-2 text-gray-900 dark:text-white group-hover:text-orange-500 transition-colors">
                 myLabCompliance.io
               </h3>
-              <p className="text-gray-600 dark:text-neutral-400 text-sm mb-4">
+              <p className="text-gray-600 dark:text-neutral-400 text-sm md:text-base font-normal leading-relaxed mb-4">
                 From critical SEO failures to excellent performance. 95% bug reduction, 500 SEO pages, and 981ms load time.
               </p>
               <div className="flex items-center gap-2 text-orange-500 text-sm font-medium">

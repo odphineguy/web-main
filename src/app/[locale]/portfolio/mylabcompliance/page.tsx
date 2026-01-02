@@ -160,14 +160,14 @@ export default function CaseStudyMyLabCompliance() {
             B2B SaaS &bull; Lab Compliance
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+          <h1 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] mb-6 leading-tight">
             From Critical SEO Failures to{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
               Excellent Performance
             </span>
           </h1>
 
-          <p className="text-xl text-gray-600 dark:text-neutral-400 max-w-3xl mb-12">
+          <p className="text-sm md:text-base font-normal leading-relaxed text-gray-600 dark:text-neutral-400 max-w-3xl mb-12">
             A 2-week bug fix turned into a 2+ month partnership that transformed
             site stability, search rankings, and lead quality.
           </p>
@@ -175,28 +175,28 @@ export default function CaseStudyMyLabCompliance() {
           {/* Quick Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="p-4 rounded-xl bg-neutral-100 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 text-center">
-              <div className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
+              <div className="text-xl md:text-[28px] font-normal tracking-normal text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
                 <AnimatedCounter value={95} suffix="%" duration={1200} />
               </div>
-              <div className="text-sm text-gray-500 dark:text-neutral-500">Bug Reduction</div>
+              <div className="text-sm md:text-base font-normal leading-relaxed text-gray-500 dark:text-neutral-500">Bug Reduction</div>
             </div>
             <div className="p-4 rounded-xl bg-neutral-100 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 text-center">
-              <div className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
+              <div className="text-xl md:text-[28px] font-normal tracking-normal text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
                 <AnimatedCounter value={500} duration={1400} />
               </div>
-              <div className="text-sm text-gray-500 dark:text-neutral-500">SEO Pages Created</div>
+              <div className="text-sm md:text-base font-normal leading-relaxed text-gray-500 dark:text-neutral-500">SEO Pages Created</div>
             </div>
             <div className="p-4 rounded-xl bg-neutral-100 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 text-center">
-              <div className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
+              <div className="text-xl md:text-[28px] font-normal tracking-normal text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
                 <AnimatedCounter value={981} suffix="ms" duration={1300} />
               </div>
-              <div className="text-sm text-gray-500 dark:text-neutral-500">Load Time</div>
+              <div className="text-sm md:text-base font-normal leading-relaxed text-gray-500 dark:text-neutral-500">Load Time</div>
             </div>
             <div className="p-4 rounded-xl bg-neutral-100 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 text-center">
-              <div className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
+              <div className="text-xl md:text-[28px] font-normal tracking-normal text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
                 <AnimatedCounter value={2} suffix="+" duration={800} />
               </div>
-              <div className="text-sm text-gray-500 dark:text-neutral-500">Months Ongoing</div>
+              <div className="text-sm md:text-base font-normal leading-relaxed text-gray-500 dark:text-neutral-500">Months Ongoing</div>
             </div>
           </div>
         </div>
@@ -210,8 +210,8 @@ export default function CaseStudyMyLabCompliance() {
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-2xl font-bold mb-4">A Site Plagued by Issues</h3>
-              <p className="text-gray-600 dark:text-neutral-400 leading-relaxed">
+              <h3 className="text-xl md:text-[28px] font-normal tracking-normal mb-4">A Site Plagued by Issues</h3>
+              <p className="text-sm md:text-base font-normal leading-relaxed text-gray-600 dark:text-neutral-400">
                 Sam from myLabCompliance.io reached out for help with persistent bugs—5-10 errors
                 occurring daily that were disrupting user experience and reliability. What was
                 scoped as a 2-week engagement revealed deeper issues: critical SEO failures,
@@ -250,7 +250,7 @@ export default function CaseStudyMyLabCompliance() {
           <h2 className="text-sm font-semibold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600 uppercase tracking-wider mb-4">
             The Work
           </h2>
-          <h3 className="text-2xl font-bold mb-8">Complete Technical Overhaul</h3>
+          <h3 className="text-xl md:text-[28px] font-normal tracking-normal mb-8">Complete Technical Overhaul</h3>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {deliverables.map((item, i) => (
@@ -261,8 +261,8 @@ export default function CaseStudyMyLabCompliance() {
                 <div className="w-12 h-12 rounded-lg bg-orange-100 dark:bg-orange-500/10 text-orange-500 flex items-center justify-center mb-4 group-hover:bg-orange-500 group-hover:text-white transition-all duration-300">
                   {item.icon}
                 </div>
-                <h4 className="text-lg font-semibold mb-2">{item.title}</h4>
-                <p className="text-gray-600 dark:text-neutral-400 text-sm leading-relaxed">{item.description}</p>
+                <h4 className="text-xl md:text-[28px] font-normal tracking-normal mb-2">{item.title}</h4>
+                <p className="text-sm md:text-base font-normal leading-relaxed text-gray-600 dark:text-neutral-400">{item.description}</p>
               </div>
             ))}
           </div>
@@ -275,7 +275,7 @@ export default function CaseStudyMyLabCompliance() {
           <h2 className="text-sm font-semibold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600 uppercase tracking-wider mb-4">
             The Results
           </h2>
-          <h3 className="text-2xl font-bold mb-8">Before & After</h3>
+          <h3 className="text-xl md:text-[28px] font-normal tracking-normal mb-8">Before & After</h3>
 
           <div className="grid md:grid-cols-2 gap-4">
             {metrics.map((metric) => (
@@ -289,8 +289,8 @@ export default function CaseStudyMyLabCompliance() {
                   {/* Before */}
                   <div className="flex-1">
                     <div className="text-xs text-gray-500 dark:text-neutral-500 uppercase tracking-wider mb-1">Before</div>
-                    <div className="text-lg font-semibold text-red-500 dark:text-red-400">{metric.before}</div>
-                    <div className="text-sm text-gray-500 dark:text-neutral-500">{metric.beforeDetail}</div>
+                    <div className="text-xl md:text-[28px] font-normal tracking-normal text-red-500 dark:text-red-400">{metric.before}</div>
+                    <div className="text-sm md:text-base font-normal leading-relaxed text-gray-500 dark:text-neutral-500">{metric.beforeDetail}</div>
                   </div>
 
                   {/* Arrow */}
@@ -301,8 +301,8 @@ export default function CaseStudyMyLabCompliance() {
                   {/* After */}
                   <div className="flex-1 text-right">
                     <div className="text-xs text-gray-500 dark:text-neutral-500 uppercase tracking-wider mb-1">After</div>
-                    <div className="text-lg font-semibold text-green-600 dark:text-green-400">{metric.after}</div>
-                    <div className="text-sm text-gray-500 dark:text-neutral-500">{metric.afterDetail}</div>
+                    <div className="text-xl md:text-[28px] font-normal tracking-normal text-green-600 dark:text-green-400">{metric.after}</div>
+                    <div className="text-sm md:text-base font-normal leading-relaxed text-gray-500 dark:text-neutral-500">{metric.afterDetail}</div>
                   </div>
                 </div>
               </div>
@@ -319,7 +319,7 @@ export default function CaseStudyMyLabCompliance() {
             <div className="absolute -top-4 left-8 text-6xl text-orange-300 dark:text-orange-500/30 font-serif">&ldquo;</div>
 
             <blockquote className="relative">
-              <p className="text-xl md:text-2xl leading-relaxed text-gray-700 dark:text-gray-200 mb-8">
+              <p className="text-xl md:text-[28px] font-normal tracking-normal leading-relaxed text-gray-700 dark:text-gray-200 mb-8">
                 Abe from Abe Media helped us dramatically improve our online presence and lead quality.
                 He rebuilt our SEO strategy, taking us from critical issues to excellent performance,
                 and created hundreds of SEO pages that now rank for competitive keywords. Abe also added
@@ -349,10 +349,10 @@ export default function CaseStudyMyLabCompliance() {
       {/* CTA Section */}
       <section className="py-20 px-6 border-t border-neutral-200 dark:border-neutral-800">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] mb-4">
             Ready for Similar Results?
           </h2>
-          <p className="text-gray-600 dark:text-neutral-400 mb-8">
+          <p className="text-sm md:text-base font-normal leading-relaxed text-gray-600 dark:text-neutral-400 mb-8">
             Let&apos;s discuss how we can improve your site&apos;s performance, SEO, and lead quality.
           </p>
           <ScheduleCallButton

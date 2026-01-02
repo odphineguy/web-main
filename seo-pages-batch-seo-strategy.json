@@ -65,7 +65,7 @@
         "dateModified": "2025-12-25",
         "image": "/images/blog/hreflang-implementation-guide.png"
       },
-      "relatedPages": ["choosing-right-url-structure-multilingual-websites", "bilingual-seo-best-practices-2025"],
+      "relatedPages": ["choosing-right-url-structure-multilingual-websites", "bilingual-seo-best-practices-2026"],
       "cta": {
         "text": "Need help with bilingual SEO for your website?",
         "buttonText": "Get a Free SEO Consultation",
@@ -137,7 +137,7 @@
         "dateModified": "2025-12-25",
         "image": "/images/blog/multilingual-url-structure.png"
       },
-      "relatedPages": ["how-to-implement-hreflang-tags-small-business", "bilingual-seo-best-practices-2025"],
+      "relatedPages": ["how-to-implement-hreflang-tags-small-business", "bilingual-seo-best-practices-2026"],
       "cta": {
         "text": "Ready to build your bilingual website?",
         "buttonText": "Start Your Project",
@@ -145,8 +145,8 @@
       }
     },
     {
-      "slug": "bilingual-seo-best-practices-2025",
-      "title": "Bilingual SEO Best Practices for 2025: Reach English and Spanish Markets",
+      "slug": "bilingual-seo-best-practices-2026",
+      "title": "Bilingual SEO Best Practices for 2026: Reach English and Spanish Markets",
       "description": "Master bilingual SEO strategies to rank in both English and Spanish search results. Complete guide for small businesses targeting multilingual audiences.",
       "keywords": ["bilingual SEO", "Spanish SEO", "English Spanish marketing", "multilingual search optimization", "Hispanic market SEO", "dual language SEO"],
       "author": "Abe Media Team",
@@ -191,7 +191,7 @@
       "schema": {
         "@context": "https://schema.org",
         "@type": "Article",
-        "headline": "Bilingual SEO Best Practices for 2025",
+        "headline": "Bilingual SEO Best Practices for 2026",
         "description": "Complete guide to ranking in both English and Spanish search results for small businesses.",
         "author": {
           "@type": "Organization",
@@ -502,7 +502,7 @@
     },
     {
       "slug": "why-small-business-needs-headless-cms",
-      "title": "Why Your Small Business Needs a Headless CMS in 2025",
+      "title": "Why Your Small Business Needs a Headless CMS in 2026",
       "description": "Learn how headless CMS architecture benefits small businesses with faster websites, better SEO, and omnichannel content delivery. A complete guide.",
       "keywords": ["headless CMS", "content management system", "small business CMS", "website architecture", "JAMstack", "decoupled CMS"],
       "author": "Abe Media Team",
@@ -547,7 +547,7 @@
       "schema": {
         "@context": "https://schema.org",
         "@type": "Article",
-        "headline": "Why Your Small Business Needs a Headless CMS in 2025",
+        "headline": "Why Your Small Business Needs a Headless CMS in 2026",
         "description": "Learn how headless CMS architecture benefits small businesses with faster, more secure websites.",
         "author": {
           "@type": "Organization",

@@ -115,10 +115,10 @@ export default function BlogPage() {
       <section className="bg-white dark:bg-black pt-8 md:pt-12 pb-12 border-b border-gray-200 dark:border-neutral-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center">
-            <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
+            <h1 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-6">
               Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Blog</span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-600 dark:text-neutral-400 max-w-3xl mx-auto font-light">
+            <p className="text-xl md:text-[28px] font-normal tracking-normal text-gray-600 dark:text-neutral-400 max-w-3xl mx-auto">
               Insights, tutorials, and resources on web development, design, AI marketing, bilingual advertising, and digital innovation for your business.
             </p>
           </div>
@@ -229,7 +229,7 @@ export default function BlogPage() {
         {/* Featured Post - Only show when no filters */}
         {!selectedCategory && !searchQuery && featuredPost && (
           <section className="mb-16">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+            <h2 className="text-xl md:text-[28px] font-normal tracking-normal text-gray-900 dark:text-white mb-6 flex items-center gap-2">
               <Trophy className="w-6 h-6 text-orange-500" />
               Featured Article
             </h2>
@@ -254,10 +254,10 @@ export default function BlogPage() {
                       {getIcon(featuredPost.category)}
                       {featuredPost.category}
                     </Badge>
-                    <CardTitle className="text-2xl mb-4 text-gray-900 dark:text-white group-hover:text-orange-500 transition-colors">
+                    <CardTitle className="text-xl md:text-[28px] font-normal tracking-normal mb-4 text-gray-900 dark:text-white group-hover:text-orange-500 transition-colors">
                       {featuredPost.title}
                     </CardTitle>
-                    <CardDescription className="text-base text-gray-600 dark:text-neutral-400 mb-6">
+                    <CardDescription className="text-sm md:text-base font-normal leading-relaxed text-gray-600 dark:text-neutral-400 mb-6">
                       {featuredPost.excerpt}
                     </CardDescription>
                     <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-muted-foreground mb-6">
@@ -270,7 +270,7 @@ export default function BlogPage() {
                         {featuredPost.readTime}
                       </div>
                     </div>
-                    <Button className="w-fit group bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
+                    <Button className="w-fit group bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-sm font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
                       Read More
                       <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </Button>
@@ -284,7 +284,7 @@ export default function BlogPage() {
         {/* Blog Posts Grid */}
         <section>
           {!selectedCategory && !searchQuery && (
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">
+            <h2 className="text-xl md:text-[28px] font-normal tracking-normal text-gray-900 dark:text-white mb-8">
               Latest Articles
             </h2>
           )}
@@ -293,7 +293,7 @@ export default function BlogPage() {
             <BlogCardsGrid posts={filteredPosts} />
           ) : (
             <div className="text-center py-20">
-              <p className="text-xl text-gray-500 dark:text-neutral-400">
+              <p className="text-sm md:text-base font-normal leading-relaxed text-gray-500 dark:text-neutral-400">
                 No articles found matching your criteria.
               </p>
               <button
@@ -311,10 +311,10 @@ export default function BlogPage() {
           <div className="max-w-2xl mx-auto text-center">
             <div className="rounded-2xl p-px bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
               <div className="rounded-2xl p-8 lg:p-10 bg-gray-50 dark:bg-neutral-950">
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">
+                <h2 className="text-xl md:text-[28px] font-normal tracking-normal text-gray-900 dark:text-white mb-3">
                   Stay Updated
                 </h2>
-                <p className="text-gray-600 dark:text-neutral-400 mb-6">
+                <p className="text-sm md:text-base font-normal leading-relaxed text-gray-600 dark:text-neutral-400 mb-6">
                   Subscribe to our newsletter for the latest insights, tutorials, and resources on web development and digital marketing.
                 </p>
                 <div className="relative max-w-lg mx-auto">
@@ -323,7 +323,7 @@ export default function BlogPage() {
                     placeholder="my@email.com"
                     className="w-full pl-6 pr-44 py-4 rounded-full border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-gray-900 dark:text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 transition-all shadow-sm"
                   />
-                  <button className="absolute right-1.5 top-1.5 bottom-1.5 px-6 rounded-full bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 font-bold text-xs sm:text-sm tracking-wide uppercase hover:bg-orange-200 dark:hover:bg-orange-500/30 transition-colors">
+                  <button className="absolute right-1.5 top-1.5 bottom-1.5 px-6 rounded-full bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 text-sm font-medium uppercase hover:bg-orange-200 dark:hover:bg-orange-500/30 transition-colors">
                     JOIN NEWSLETTER
                   </button>
                 </div>
