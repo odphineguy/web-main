@@ -57,11 +57,11 @@ const portfolioProjects: PortfolioProject[] = [
     category: "Transportation",
   },
   {
-    id: "paisanos",
-    name: "Paisanos",
-    description: "Restaurant website design",
-    siteUrl: "https://odphineguy.github.io/paisanos-restaurant/",
-    category: "Restaurant",
+    id: "dental",
+    name: "Dental Office",
+    description: "Dental practice website",
+    siteUrl: "https://odphineguy.github.io/dental/",
+    category: "Healthcare",
   },
   {
     id: "phoenix-balloon-decor",
@@ -69,6 +69,13 @@ const portfolioProjects: PortfolioProject[] = [
     description: "Balloon decoration services",
     siteUrl: "https://phx-balloon-decor.vercel.app/",
     category: "Events",
+  },
+  {
+    id: "paisanos",
+    name: "Paisanos",
+    description: "Restaurant website design",
+    siteUrl: "https://odphineguy.github.io/paisanos-restaurant/",
+    category: "Restaurant",
   },
   {
     id: "paw-relief",
