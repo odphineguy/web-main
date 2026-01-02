@@ -123,7 +123,7 @@ export default function ChatDemoWindow({
       className={cn(
         "relative rounded-2xl overflow-hidden border border-gray-200 dark:border-neutral-700",
         "bg-white dark:bg-neutral-900",
-        "shadow-lg shadow-black/5 dark:shadow-black/20",
+        "shadow-lg shadow-black/5 dark:shadow-[0_0_40px_rgba(255,107,44,0.25)]",
         className
       )}
     >
@@ -234,7 +234,10 @@ export default function ChatDemoWindow({
       <div className="px-4 py-2 text-center border-t border-gray-100 dark:border-neutral-700 bg-gray-50 dark:bg-neutral-800/50">
         <span className="text-[10px] text-gray-400 dark:text-neutral-500">
           Powered by{" "}
-          <span className="font-semibold text-orange-500">abemedia</span>
+          <span className="font-semibold">
+            <span className="text-orange-500">abe</span>
+            <span className="text-gray-400 dark:text-neutral-500">media</span>
+          </span>
         </span>
       </div>
     </div>

@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import ChatDemoWindow from "./ChatDemoWindow";
 import { industryDemos, industryConversations } from "./chatDemoData";
 import { cn } from "@/lib/utils";
-import { Bot } from "lucide-react";
 
 interface ChatDemoShowcaseProps {
   onCtaClick?: () => void;
@@ -36,8 +35,7 @@ export default function ChatDemoShowcase({ onCtaClick }: ChatDemoShowcaseProps) 
           viewport={{ once: true }}
           className="text-center mb-10"
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-orange-500 mb-4">
-            <Bot className="h-3.5 w-3.5" />
+          <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-orange-500 mb-4">
             See It In Action
           </span>
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">
@@ -84,7 +82,7 @@ export default function ChatDemoShowcase({ onCtaClick }: ChatDemoShowcaseProps) 
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
           viewport={{ once: true }}
-          className="max-w-md mx-auto group"
+          className="max-w-md mx-auto group glow-orange rounded-2xl"
         >
           <ChatDemoWindow
             key={key}

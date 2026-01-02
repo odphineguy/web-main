@@ -240,3 +240,21 @@
   width: max-content;
   animation: marquee 60s linear infinite;
 }
+
+/* Orange glow effects for chatbot widgets */
+.glow-orange {
+  box-shadow: 0 0 40px rgba(255, 107, 44, 0.3);
+}
+
+.glow-orange-sm {
+  box-shadow: 0 0 20px rgba(255, 107, 44, 0.2);
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 44, 0.4); }
+  50% { box-shadow: 0 0 40px rgba(255, 107, 44, 0.7); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}

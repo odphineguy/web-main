@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { ScheduleCallButton } from "@/components/ScheduleCallButton";
 import ConsultationForm from "@/components/ConsultationForm";
-import { Bot, Users, Zap, Globe, TrendingUp, Heart, Search, Calculator } from "lucide-react";
+import { Bot, Users, Zap, Globe, TrendingUp, Heart, Search } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from 'next-intl';
 
@@ -72,6 +72,16 @@ export default function HomePage() {
             <div
               className="space-y-6"
             >
+              {/* Pulsating badge */}
+              <div className="inline-flex items-center gap-2 rounded-full bg-orange-500/10 border border-orange-500/30 px-4 py-1.5 animate-pulse-glow">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+                </span>
+                <span className="text-xs font-semibold uppercase tracking-wide text-orange-500">
+                  Serving Small Businesses
+                </span>
+              </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
                 {t('Hero.titlePart1')}{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
@@ -88,7 +98,7 @@ export default function HomePage() {
             </div>
 
             {/* Right: Live Bilingual Chatbot Demo */}
-            <div className="relative">
+            <div className="relative lg:flex lg:justify-end">
               <BilingualHeroDemo />
             </div>
           </div>
@@ -105,7 +115,7 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-white dark:bg-neutral-950 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500 mb-4">
+            <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500 mb-4">
               {t('BilingualServices.badge')}
             </span>
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
@@ -207,7 +217,7 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-white dark:bg-neutral-950 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500 mb-4">
+            <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500 mb-4">
               {t('Features.badge')}
             </span>
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
@@ -320,15 +330,17 @@ export default function HomePage() {
       {/* Trusted By / Logo Carousel - Gray background */}
       <section className="bg-gray-100 dark:bg-neutral-900 py-10">
         <div className="px-6">
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="text-sm md:text-base text-gray-500 dark:text-neutral-400 text-center mb-6"
+            className="flex justify-center mb-6"
           >
-            {t('TrustedBy.text')}
-          </motion.p>
+            <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
+              {t('TrustedBy.text')}
+            </span>
+          </motion.div>
         </div>
 
         {/* Logo Marquee */}
@@ -375,7 +387,7 @@ export default function HomePage() {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-white dark:bg-neutral-950 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
+              <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
                 {t('Benefits.badge')}
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
@@ -475,8 +487,7 @@ export default function HomePage() {
             className="rounded-2xl p-px bg-gradient-to-b from-orange-500/30 to-orange-600/10"
           >
             <div className="rounded-2xl p-10 md:p-16 bg-white dark:bg-neutral-900 text-center">
-              <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-600 dark:text-orange-400 mb-6">
-                <Calculator className="w-3.5 h-3.5" />
+              <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-600 dark:text-orange-400 mb-6">
                 {t('CalculatorCTA.badge')}
               </span>
               <h2 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -499,15 +510,17 @@ export default function HomePage() {
       {/* Testimonials - Gray background with dark cards */}
       <section className="bg-gray-100 dark:bg-neutral-900 py-10">
         <div className="px-6">
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="text-sm md:text-base text-gray-500 dark:text-neutral-400 text-center mb-6"
+            className="flex justify-center mb-6"
           >
-            {t('Testimonials.title')}
-          </motion.p>
+            <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
+              {t('Testimonials.title')}
+            </span>
+          </motion.div>
         </div>
 
         {/* Testimonials Carousel */}
