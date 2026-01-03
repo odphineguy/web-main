@@ -3,7 +3,7 @@ import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import type { Metadata } from "next";
 
-import { Outfit } from "next/font/google";
+import { Outfit, Pacifico } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
@@ -31,6 +31,13 @@ const outfit = Outfit({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
   display: "swap",
   preload: true,
+});
+
+const pacifico = Pacifico({
+  variable: "--font-pacifico",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -244,7 +251,7 @@ export default async function RootLayout({
           `}
         </Script>
       </head>
-      <body className={`${outfit.variable} antialiased`}>
+      <body className={`${outfit.variable} ${pacifico.variable} antialiased`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
