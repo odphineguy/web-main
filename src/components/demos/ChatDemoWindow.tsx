@@ -122,29 +122,46 @@ export default function ChatDemoWindow({
     <div
       className={cn(
         "relative rounded-3xl overflow-hidden",
-        // Light mode - Saffron Studio style
-        "bg-gradient-to-b from-white/[0.78] to-white/[0.58]",
-        "border border-slate-900/10",
-        "shadow-[0_18px_50px_rgba(2,6,23,0.20),0_2px_0_rgba(255,255,255,0.55)_inset,0_-1px_0_rgba(2,6,23,0.08)_inset]",
-        "backdrop-blur-[16px]",
-        // Dark mode - Charcoal style (exact match)
-        "dark:bg-[rgba(38,38,38,0.75)]",
+        // Light mode - Cream style (warm white + peach accents)
+        "border border-[rgba(23,23,23,0.08)]",
+        "shadow-[0_18px_50px_rgba(0,0,0,0.10)]",
+        "backdrop-blur-[14px]",
+        // Dark mode - Charcoal style
         "dark:border-[rgba(115,115,115,0.20)]",
         "dark:shadow-[0_24px_70px_rgba(0,0,0,0.48)]",
-        "dark:backdrop-blur-[14px]",
         className
       )}
+      style={{
+        background: `
+          radial-gradient(900px 380px at 20% 0%, rgba(251,146,60,0.12), transparent 60%),
+          radial-gradient(780px 360px at 90% 15%, rgba(253,186,116,0.10), transparent 58%),
+          radial-gradient(700px 330px at 50% 110%, rgba(249,115,22,0.08), transparent 56%),
+          linear-gradient(180deg, rgba(255,253,250,0.92), rgba(255,253,250,0.78))
+        `
+      }}
     >
-      {/* Aurora effect for dark mode - ::before pseudo-element equivalent */}
+      {/* Dot pattern overlay for light mode - Cream style */}
       <div
-        className="absolute inset-[-40px] pointer-events-none opacity-0 dark:opacity-90 z-0 animate-aurora"
+        className="absolute inset-0 pointer-events-none z-0 dark:hidden"
+        style={{
+          backgroundImage: 'radial-gradient(circle at 12px 12px, rgba(23,23,23,0.04) 1px, transparent 1px)',
+          backgroundSize: '26px 26px',
+          opacity: 0.25,
+          maskImage: 'linear-gradient(180deg, rgba(0,0,0,0.70), rgba(0,0,0,0.10))',
+          WebkitMaskImage: 'linear-gradient(180deg, rgba(0,0,0,0.70), rgba(0,0,0,0.10))'
+        }}
+      />
+      {/* Aurora effect for dark mode */}
+      <div
+        className="absolute inset-[-40px] pointer-events-none hidden dark:block z-0 animate-aurora"
         style={{
           background: `
-            radial-gradient(500px 240px at 20% 10%, rgba(249,115,22,0.30), transparent 60%),
-            radial-gradient(520px 260px at 85% 20%, rgba(251,146,60,0.25), transparent 62%),
-            radial-gradient(540px 260px at 55% 110%, rgba(234,88,12,0.18), transparent 65%)
+            radial-gradient(500px 240px at 20% 10%, rgba(249,115,22,0.35), transparent 60%),
+            radial-gradient(520px 260px at 85% 20%, rgba(251,146,60,0.30), transparent 62%),
+            radial-gradient(540px 260px at 55% 110%, rgba(234,88,12,0.25), transparent 65%)
           `,
-          filter: 'blur(18px)'
+          filter: 'blur(18px)',
+          opacity: 0.95
         }}
       />
       {/* Replay button */}
@@ -164,20 +181,27 @@ export default function ChatDemoWindow({
       {/* Header */}
       <div className={cn(
         "flex items-center gap-3 px-4 py-3 border-b relative z-10",
-        // Light - Saffron
-        "border-slate-900/10 bg-white/55",
+        // Light - Cream (transparent to show warm gradient)
+        "border-[rgba(23,23,23,0.07)] bg-transparent",
         // Dark - Charcoal (transparent to show aurora behind)
         "dark:border-[rgba(115,115,115,0.20)] dark:bg-transparent"
       )}>
+        {/* Avatar with favicon */}
         <div className={cn(
-          "w-10 h-10 rounded-2xl flex items-center justify-center text-lg",
-          // Light mode
-          "bg-gradient-to-br from-orange-500 to-orange-600 shadow-sm",
-          // Dark - Charcoal avatar style
-          "dark:bg-[radial-gradient(circle_at_35%_30%,rgba(251,146,60,0.35),rgba(38,38,38,0.88))]",
-          "dark:shadow-[0_0_0_1px_rgba(115,115,115,0.16),0_16px_40px_rgba(0,0,0,0.42)]"
+          "w-10 h-10 rounded-2xl flex items-center justify-center overflow-hidden",
+          // Light mode - matches favicon color #f17523
+          "bg-[#f17523]",
+          "shadow-[0_18px_44px_rgba(241,117,35,0.25)]",
+          // Dark mode - same color with subtle inner glow
+          "dark:bg-[#f17523]",
+          "dark:shadow-[0_0_0_1px_rgba(241,117,35,0.30),0_16px_40px_rgba(0,0,0,0.42)]"
         )}>
-          <span className="dark:text-orange-200">{config.avatar}</span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/favicon.ico"
+            alt={config.name}
+            className="w-6 h-6 object-contain"
+          />
         </div>
         <div className="flex-1 min-w-0">
           <h3 className="text-sm font-semibold text-gray-900 dark:text-[rgba(250,250,250,0.92)] truncate">
@@ -187,12 +211,6 @@ export default function ChatDemoWindow({
             {config.subtitle}
           </span>
         </div>
-        <div className="flex items-center gap-1.5">
-          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-          <span className="text-xs text-green-600 dark:text-green-400">
-            Online
-          </span>
-        </div>
       </div>
 
       {/* Messages area */}
@@ -200,8 +218,8 @@ export default function ChatDemoWindow({
         ref={messagesRef}
         className={cn(
           "px-4 py-3 overflow-y-auto flex flex-col gap-3 relative z-10",
-          // Light
-          "bg-white/55",
+          // Light - Cream (transparent to show warm gradient)
+          "bg-transparent",
           // Dark - transparent to show aurora
           "dark:bg-transparent",
           height
@@ -221,20 +239,17 @@ export default function ChatDemoWindow({
                 msg.type === "bot"
                   ? cn(
                       "rounded-bl-sm",
-                      // Light - Saffron style
-                      "bg-gradient-to-b from-white/[0.86] to-slate-100/[0.78] border border-slate-900/[0.08] text-slate-900",
-                      "shadow-[0_14px_32px_rgba(0,0,0,0.12)]",
+                      // Light - Cream style: subtle warm background
+                      "bg-[rgba(38,38,38,0.04)] border border-[rgba(23,23,23,0.07)] text-[rgb(38,38,38)]",
                       // Dark - Charcoal style: dark glass bubble
-                      "dark:from-transparent dark:to-transparent dark:bg-[rgba(64,64,64,0.55)]",
-                      "dark:border-[rgba(115,115,115,0.25)] dark:text-[rgba(250,250,250,0.92)] dark:shadow-none"
+                      "dark:bg-[rgba(115,115,115,0.10)]",
+                      "dark:border-[rgba(115,115,115,0.18)] dark:text-[rgba(250,250,250,0.92)]"
                     )
                   : cn(
                       "rounded-br-sm",
-                      // Light mode - orange gradient
-                      "bg-gradient-to-b from-orange-500/95 to-orange-600/[0.92] text-white",
-                      "shadow-[0_18px_40px_rgba(249,115,22,0.25)]",
+                      // Light mode - Cream style: peach gradient
+                      "bg-[linear-gradient(135deg,rgba(251,146,60,0.94),rgba(253,186,116,0.80))] text-white",
                       // Dark mode - Charcoal user bubble gradient
-                      "dark:from-transparent dark:to-transparent",
                       "dark:bg-[linear-gradient(135deg,rgba(251,146,60,0.92),rgba(234,88,12,0.75))]",
                       "dark:text-[rgba(10,10,10,0.92)]"
                     )
@@ -258,12 +273,11 @@ export default function ChatDemoWindow({
           <div className="self-start animate-in fade-in slide-in-from-bottom-2 duration-300">
             <div className={cn(
               "px-4 py-3 rounded-2xl rounded-bl-sm flex gap-1.5",
-              // Light - Saffron style
-              "bg-gradient-to-b from-white/[0.86] to-slate-100/[0.78] border border-slate-900/[0.08]",
-              "shadow-[0_14px_32px_rgba(0,0,0,0.12)]",
+              // Light - Cream style
+              "bg-[rgba(38,38,38,0.04)] border border-[rgba(23,23,23,0.07)]",
               // Dark - Charcoal style: dark glass bubble
-              "dark:from-transparent dark:to-transparent dark:bg-[rgba(64,64,64,0.55)]",
-              "dark:border-[rgba(115,115,115,0.25)] dark:shadow-none"
+              "dark:bg-[rgba(115,115,115,0.10)]",
+              "dark:border-[rgba(115,115,115,0.18)]"
             )}>
               <span className="w-2 h-2 rounded-full bg-slate-400 dark:bg-[rgba(212,212,212,0.62)] animate-bounce [animation-delay:0ms]" />
               <span className="w-2 h-2 rounded-full bg-slate-400 dark:bg-[rgba(212,212,212,0.62)] animate-bounce [animation-delay:150ms]" />
@@ -273,19 +287,19 @@ export default function ChatDemoWindow({
         )}
       </div>
 
-      {/* Input area - Charcoal style: input + button inside wrapper */}
+      {/* Input area */}
       <div className={cn(
         "px-4 py-3 relative z-10",
-        // Light - Saffron
-        "bg-white/70",
+        // Light - Cream (transparent)
+        "bg-transparent",
         // Dark - transparent to keep aurora visible
         "dark:bg-transparent"
       )}>
         <div className={cn(
           "p-2 rounded-2xl border",
-          // Light - Saffron style
-          "bg-white/70 border-slate-900/10",
-          // Dark - Charcoal style (exact match)
+          // Light - Cream style
+          "bg-[rgba(255,253,250,0.65)] border-[rgba(23,23,23,0.10)]",
+          // Dark - Charcoal style
           "dark:bg-[rgba(38,38,38,0.42)] dark:border-[rgba(115,115,115,0.20)]"
         )}>
           <div className="flex items-end gap-2">
@@ -295,19 +309,18 @@ export default function ChatDemoWindow({
               disabled
               className={cn(
                 "flex-1 bg-transparent outline-none text-sm py-1.5 px-2",
-                // Light
-                "text-slate-900 placeholder-slate-500",
+                // Light - Cream style
+                "text-[rgb(38,38,38)] placeholder-[rgba(64,64,64,0.58)]",
                 // Dark - Charcoal style
                 "dark:text-[rgba(250,250,250,0.92)] dark:placeholder-[rgba(212,212,212,0.60)]"
               )}
             />
             <button
-              disabled
               className={cn(
                 "px-3.5 py-2 rounded-xl text-sm font-medium shrink-0",
-                // Light - Saffron style
-                "bg-gradient-to-b from-orange-500 to-orange-600 text-white",
-                // Dark - Charcoal send button (exact match)
+                // Light - Cream style (peach gradient)
+                "bg-[linear-gradient(135deg,rgba(251,146,60,0.94),rgba(253,186,116,0.82))] text-white",
+                // Dark - Charcoal send button
                 "dark:bg-[linear-gradient(135deg,rgba(251,146,60,0.94),rgba(234,88,12,0.78))]",
                 "dark:text-[rgba(10,10,10,0.92)]"
               )}
@@ -321,16 +334,16 @@ export default function ChatDemoWindow({
       {/* Powered by footer */}
       <div className={cn(
         "px-4 py-2 text-center border-t relative z-10",
-        // Light
-        "border-slate-900/10 bg-white/55",
+        // Light - Cream
+        "border-[rgba(23,23,23,0.07)] bg-transparent",
         // Dark - Charcoal style
-        "dark:border-[rgba(115,115,115,0.20)] dark:bg-[rgba(38,38,38,0.35)]"
+        "dark:border-[rgba(115,115,115,0.20)] dark:bg-transparent"
       )}>
-        <span className="text-[10px] text-slate-500 dark:text-[rgba(212,212,212,0.58)]">
+        <span className="text-[10px] text-[rgba(64,64,64,0.58)] dark:text-[rgba(212,212,212,0.58)]">
           Powered by{" "}
           <span className="font-semibold">
-            <span className="text-orange-500 dark:text-[rgb(251,146,60)]">abe</span>
-            <span className="text-slate-500 dark:text-[rgba(212,212,212,0.58)]">media</span>
+            <span className="text-[rgb(251,146,60)] dark:text-[rgb(251,146,60)]">abe</span>
+            <span className="text-[rgba(64,64,64,0.58)] dark:text-[rgba(212,212,212,0.58)]">media</span>
           </span>
         </span>
       </div>
