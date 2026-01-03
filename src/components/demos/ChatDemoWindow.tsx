@@ -203,9 +203,7 @@ export default function ChatDemoWindow({
         <div
           className="w-10 h-10 rounded-2xl flex items-center justify-center overflow-hidden"
           style={{
-            background: isDark
-              ? "radial-gradient(circle at 35% 30%, rgba(251,146,60,0.35), rgba(38,38,38,0.88))"
-              : "linear-gradient(135deg, rgba(249,115,22,0.96), rgba(251,146,60,0.85))",
+            background: "#f17523",
             boxShadow: isDark
               ? "0 0 0 1px rgba(115,115,115,0.16), 0 16px 40px rgba(0,0,0,0.42)"
               : "0 14px 30px rgba(249,115,22,0.28)",
@@ -218,7 +216,7 @@ export default function ChatDemoWindow({
             className="w-6 h-6 object-contain"
           />
         </div>
-        <div className="flex-1 min-w-0">
+        <div className="flex-1 min-w-0 text-center">
           <h3
             className="text-sm font-semibold truncate"
             style={{

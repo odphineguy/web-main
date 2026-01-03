@@ -225,13 +225,13 @@ const FloatingChatbot: React.FC = () => {
       {isOpen && (
         <div className="fixed bottom-6 right-6 z-50 w-[360px] h-[580px] bg-white dark:bg-neutral-950 border border-gray-200 dark:border-neutral-800 rounded-2xl shadow-2xl flex flex-col overflow-hidden">
           {/* Header */}
-          <div className="bg-gradient-to-r from-orange-500 to-orange-600 dark:from-orange-600 dark:to-orange-700 text-white px-4 py-3">
+          <div className="bg-gradient-to-r from-orange-500 to-orange-600 dark:from-orange-600 dark:to-slate-950 text-white px-4 py-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full overflow-hidden bg-white/20 ring-2 ring-white/30">
-                  <Image 
-                    src="/images/ashlee-profile.png" 
-                    alt="Ashlee" 
+                  <Image
+                    src="/images/ashlee-profile.png"
+                    alt="Ashlee"
                     width={40}
                     height={40}
                     className="w-full h-full object-cover"
@@ -263,7 +263,7 @@ const FloatingChatbot: React.FC = () => {
 
           {/* Welcome Screen or Chat Window */}
           {showWelcome ? (
-            <div className="flex-1 flex flex-col px-6 py-6 bg-gray-50 dark:bg-neutral-900">
+            <div className="flex-1 flex flex-col px-6 py-6 bg-[#fffdfb] dark:bg-neutral-900">
               {/* Top Section - Avatar and Welcome Text */}
               <div className="flex flex-col items-center pt-4">
                 {/* Avatar */}
@@ -293,36 +293,36 @@ const FloatingChatbot: React.FC = () => {
               <div className="grid grid-cols-2 gap-3 w-full mb-4">
                 <button
                   onClick={() => handleQuickAction('faq')}
-                  className="px-4 py-3 rounded-full border border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-gray-700 dark:text-gray-200 text-sm font-medium hover:border-orange-500 hover:text-orange-500 dark:hover:border-orange-500 dark:hover:text-orange-400 transition-all shadow-md hover:shadow-lg active:shadow-sm"
+                  className="px-4 py-3 rounded-full border border-slate-900/10 dark:border-orange-500/25 bg-white/55 dark:bg-white/5 text-slate-800 dark:text-orange-100 text-sm font-medium hover:bg-white/70 hover:border-orange-500/30 dark:hover:border-orange-400 dark:hover:text-orange-300 dark:hover:bg-white/10 transition-all shadow-[0_10px_25px_rgba(2,6,23,0.08)] hover:shadow-[0_14px_30px_rgba(2,6,23,0.12)] dark:shadow-[0_18px_45px_rgba(249,115,22,0.15)]"
                 >
                   FAQ
                 </button>
                 <button
                   onClick={() => handleQuickAction('consultation')}
-                  className="px-4 py-3 rounded-full border border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-gray-700 dark:text-gray-200 text-sm font-medium hover:border-orange-500 hover:text-orange-500 dark:hover:border-orange-500 dark:hover:text-orange-400 transition-all shadow-md hover:shadow-lg active:shadow-sm"
+                  className="px-4 py-3 rounded-full border border-slate-900/10 dark:border-orange-500/25 bg-white/55 dark:bg-white/5 text-slate-800 dark:text-orange-100 text-sm font-medium hover:bg-white/70 hover:border-orange-500/30 dark:hover:border-orange-400 dark:hover:text-orange-300 dark:hover:bg-white/10 transition-all shadow-[0_10px_25px_rgba(2,6,23,0.08)] hover:shadow-[0_14px_30px_rgba(2,6,23,0.12)] dark:shadow-[0_18px_45px_rgba(249,115,22,0.15)]"
                 >
                   Consultation
                 </button>
                 <button
                   onClick={() => handleQuickAction('services')}
-                  className="px-4 py-3 rounded-full border border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-gray-700 dark:text-gray-200 text-sm font-medium hover:border-orange-500 hover:text-orange-500 dark:hover:border-orange-500 dark:hover:text-orange-400 transition-all shadow-md hover:shadow-lg active:shadow-sm"
+                  className="px-4 py-3 rounded-full border border-slate-900/10 dark:border-orange-500/25 bg-white/55 dark:bg-white/5 text-slate-800 dark:text-orange-100 text-sm font-medium hover:bg-white/70 hover:border-orange-500/30 dark:hover:border-orange-400 dark:hover:text-orange-300 dark:hover:bg-white/10 transition-all shadow-[0_10px_25px_rgba(2,6,23,0.08)] hover:shadow-[0_14px_30px_rgba(2,6,23,0.12)] dark:shadow-[0_18px_45px_rgba(249,115,22,0.15)]"
                 >
                   Services
                 </button>
                 <button
                   onClick={() => handleQuickAction('pricing')}
-                  className="px-4 py-3 rounded-full border border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-gray-700 dark:text-gray-200 text-sm font-medium hover:border-orange-500 hover:text-orange-500 dark:hover:border-orange-500 dark:hover:text-orange-400 transition-all shadow-md hover:shadow-lg active:shadow-sm"
+                  className="px-4 py-3 rounded-full border border-slate-900/10 dark:border-orange-500/25 bg-white/55 dark:bg-white/5 text-slate-800 dark:text-orange-100 text-sm font-medium hover:bg-white/70 hover:border-orange-500/30 dark:hover:border-orange-400 dark:hover:text-orange-300 dark:hover:bg-white/10 transition-all shadow-[0_10px_25px_rgba(2,6,23,0.08)] hover:shadow-[0_14px_30px_rgba(2,6,23,0.12)] dark:shadow-[0_18px_45px_rgba(249,115,22,0.15)]"
                 >
                   Pricing
                 </button>
               </div>
 
               {/* Floating Input Box */}
-              <div className="flex items-center gap-2 bg-white dark:bg-neutral-800 rounded-full px-4 py-2 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="flex items-center gap-2 bg-white/70 dark:bg-white/5 border border-slate-900/10 dark:border-orange-500/25 rounded-2xl px-4 py-2 shadow-[0_18px_45px_rgba(2,6,23,0.10)] dark:shadow-[0_18px_45px_rgba(249,115,22,0.12)] transition-shadow">
                 <input
                   ref={inputRef}
                   type="text"
-                  className="flex-1 bg-transparent text-sm text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500 outline-none"
+                  className="flex-1 bg-transparent text-sm text-slate-800 dark:text-orange-50 placeholder-slate-500 dark:placeholder-orange-200/50 outline-none"
                   placeholder="Type a message..."
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
@@ -332,27 +332,30 @@ const FloatingChatbot: React.FC = () => {
                 <button
                   onClick={() => handleSendMessage(input)}
                   disabled={isLoading || !input.trim()}
-                  className="p-1.5 text-gray-400 hover:text-orange-500 disabled:text-gray-300 dark:disabled:text-gray-600 transition-colors"
+                  className="px-3.5 py-2 rounded-xl bg-white dark:bg-gradient-to-b dark:from-orange-500 dark:to-orange-700 text-slate-900 dark:text-white border border-slate-900/10 dark:border-transparent shadow-[0_18px_40px_rgba(2,6,23,0.12)] hover:shadow-[0_24px_55px_rgba(2,6,23,0.16)] dark:shadow-[0_10px_25px_rgba(249,115,22,0.25)] dark:hover:brightness-110 disabled:opacity-50 transition-all"
                   aria-label="Send message"
                 >
-                  <Send className="h-4 w-4" />
+                  <span className="inline-flex items-center gap-2 text-sm font-semibold">
+                    Send
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-orange-500 group-hover:translate-x-0.5 transition-transform"></span>
+                  </span>
                 </button>
               </div>
             </div>
           ) : (
-            <div className="flex-1 overflow-hidden flex flex-col min-h-0 bg-gray-50 dark:bg-neutral-900">
+            <div className="flex-1 overflow-hidden flex flex-col min-h-0 bg-[#fffdfb] dark:bg-neutral-900">
               <ChatWindow messages={messages} isLoading={isLoading} />
             </div>
           )}
 
           {/* Chat Input - Only shown when not in welcome state */}
           {!showWelcome && (
-            <div className="p-3 bg-gray-50 dark:bg-neutral-900">
-              <div className="flex items-center gap-2 bg-white dark:bg-neutral-800 rounded-full px-4 py-2 shadow-lg hover:shadow-xl transition-shadow">
+            <div className="p-3 bg-[#fffdfb] dark:bg-neutral-900">
+              <div className="flex items-center gap-2 bg-white/70 dark:bg-white/5 border border-slate-900/10 dark:border-orange-500/25 rounded-2xl px-4 py-2 shadow-[0_18px_45px_rgba(2,6,23,0.10)] dark:shadow-[0_18px_45px_rgba(249,115,22,0.12)] transition-shadow">
                 <input
                   ref={inputRef}
                   type="text"
-                  className="flex-1 bg-transparent text-sm text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500 outline-none"
+                  className="flex-1 bg-transparent text-sm text-slate-800 dark:text-orange-50 placeholder-slate-500 dark:placeholder-orange-200/50 outline-none"
                   placeholder="Type a message..."
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
@@ -362,17 +365,20 @@ const FloatingChatbot: React.FC = () => {
                 <button
                   onClick={() => handleSendMessage(input)}
                   disabled={isLoading || !input.trim()}
-                  className="p-1.5 text-gray-400 hover:text-orange-500 disabled:text-gray-300 dark:disabled:text-gray-600 transition-colors"
+                  className="px-3.5 py-2 rounded-xl bg-white dark:bg-gradient-to-b dark:from-orange-500 dark:to-orange-700 text-slate-900 dark:text-white border border-slate-900/10 dark:border-transparent shadow-[0_18px_40px_rgba(2,6,23,0.12)] hover:shadow-[0_24px_55px_rgba(2,6,23,0.16)] dark:shadow-[0_10px_25px_rgba(249,115,22,0.25)] dark:hover:brightness-110 disabled:opacity-50 transition-all"
                   aria-label="Send message"
                 >
-                  <Send className="h-4 w-4" />
+                  <span className="inline-flex items-center gap-2 text-sm font-semibold">
+                    Send
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-orange-500 group-hover:translate-x-0.5 transition-transform"></span>
+                  </span>
                 </button>
               </div>
             </div>
           )}
 
           {/* Powered by abemedia */}
-          <div className="text-center py-2 bg-gray-50 dark:bg-neutral-900">
+          <div className="text-center py-2 bg-[#fffdfb] dark:bg-neutral-900">
             <p className="text-[10px] text-gray-400" style={{ fontFamily: "'Montserrat', sans-serif" }}>
               Powered by{' '}
               <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, color: '#F97316' }}>abe</span>
