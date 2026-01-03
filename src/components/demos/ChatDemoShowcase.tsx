@@ -82,7 +82,13 @@ export default function ChatDemoShowcase({ onCtaClick }: ChatDemoShowcaseProps) 
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
           viewport={{ once: true }}
-          className="max-w-md mx-auto group glow-orange rounded-2xl"
+          className={cn(
+            "max-w-md mx-auto group rounded-3xl",
+            // Light mode - Saffron glow
+            "shadow-[0_0_40px_rgba(249,115,22,0.3)]",
+            // Dark mode - pulsing aurora glow
+            "dark:animate-pulse-glow dark:shadow-none"
+          )}
         >
           <ChatDemoWindow
             key={key}

@@ -121,12 +121,32 @@ export default function ChatDemoWindow({
   return (
     <div
       className={cn(
-        "relative rounded-2xl overflow-hidden border border-gray-200 dark:border-neutral-700",
-        "bg-white dark:bg-neutral-900",
-        "shadow-lg shadow-black/5 dark:shadow-[0_0_40px_rgba(255,107,44,0.25)]",
+        "relative rounded-3xl overflow-hidden",
+        // Light mode - Saffron Studio style
+        "bg-gradient-to-b from-white/[0.78] to-white/[0.58]",
+        "border border-slate-900/10",
+        "shadow-[0_18px_50px_rgba(2,6,23,0.20),0_2px_0_rgba(255,255,255,0.55)_inset,0_-1px_0_rgba(2,6,23,0.08)_inset]",
+        "backdrop-blur-[16px]",
+        // Dark mode - Charcoal style (exact match)
+        "dark:bg-[rgba(38,38,38,0.75)]",
+        "dark:border-[rgba(115,115,115,0.20)]",
+        "dark:shadow-[0_24px_70px_rgba(0,0,0,0.48)]",
+        "dark:backdrop-blur-[14px]",
         className
       )}
     >
+      {/* Aurora effect for dark mode - ::before pseudo-element equivalent */}
+      <div
+        className="absolute inset-[-40px] pointer-events-none opacity-0 dark:opacity-90 z-0 animate-aurora"
+        style={{
+          background: `
+            radial-gradient(500px 240px at 20% 10%, rgba(249,115,22,0.30), transparent 60%),
+            radial-gradient(520px 260px at 85% 20%, rgba(251,146,60,0.25), transparent 62%),
+            radial-gradient(540px 260px at 55% 110%, rgba(234,88,12,0.18), transparent 65%)
+          `,
+          filter: 'blur(18px)'
+        }}
+      />
       {/* Replay button */}
       <button
         onClick={handleReplay}
@@ -142,15 +162,28 @@ export default function ChatDemoWindow({
       </button>
 
       {/* Header */}
-      <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-100 dark:border-neutral-700 bg-gray-50 dark:bg-neutral-800">
-        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center text-lg shadow-sm">
-          {config.avatar}
+      <div className={cn(
+        "flex items-center gap-3 px-4 py-3 border-b relative z-10",
+        // Light - Saffron
+        "border-slate-900/10 bg-white/55",
+        // Dark - Charcoal (transparent to show aurora behind)
+        "dark:border-[rgba(115,115,115,0.20)] dark:bg-transparent"
+      )}>
+        <div className={cn(
+          "w-10 h-10 rounded-2xl flex items-center justify-center text-lg",
+          // Light mode
+          "bg-gradient-to-br from-orange-500 to-orange-600 shadow-sm",
+          // Dark - Charcoal avatar style
+          "dark:bg-[radial-gradient(circle_at_35%_30%,rgba(251,146,60,0.35),rgba(38,38,38,0.88))]",
+          "dark:shadow-[0_0_0_1px_rgba(115,115,115,0.16),0_16px_40px_rgba(0,0,0,0.42)]"
+        )}>
+          <span className="dark:text-orange-200">{config.avatar}</span>
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-sm font-semibold text-gray-900 dark:text-white truncate">
+          <h3 className="text-sm font-semibold text-gray-900 dark:text-[rgba(250,250,250,0.92)] truncate">
             {config.name}
           </h3>
-          <span className="text-xs text-gray-500 dark:text-neutral-400">
+          <span className="text-xs text-gray-500 dark:text-[rgba(212,212,212,0.58)]">
             {config.subtitle}
           </span>
         </div>
@@ -162,12 +195,15 @@ export default function ChatDemoWindow({
         </div>
       </div>
 
-      {/* Messages - lighter background for better contrast */}
+      {/* Messages area */}
       <div
         ref={messagesRef}
         className={cn(
-          "px-4 py-3 overflow-y-auto flex flex-col gap-3",
-          "bg-gray-50 dark:bg-neutral-800",
+          "px-4 py-3 overflow-y-auto flex flex-col gap-3 relative z-10",
+          // Light
+          "bg-white/55",
+          // Dark - transparent to show aurora
+          "dark:bg-transparent",
           height
         )}
       >
@@ -183,8 +219,25 @@ export default function ChatDemoWindow({
               className={cn(
                 "px-3.5 py-2.5 rounded-2xl text-sm leading-relaxed whitespace-pre-line",
                 msg.type === "bot"
-                  ? "bg-white dark:bg-neutral-700 text-gray-900 dark:text-white rounded-bl-sm shadow-sm"
-                  : "bg-orange-500 text-white rounded-br-sm shadow-sm"
+                  ? cn(
+                      "rounded-bl-sm",
+                      // Light - Saffron style
+                      "bg-gradient-to-b from-white/[0.86] to-slate-100/[0.78] border border-slate-900/[0.08] text-slate-900",
+                      "shadow-[0_14px_32px_rgba(0,0,0,0.12)]",
+                      // Dark - Charcoal style: dark glass bubble
+                      "dark:from-transparent dark:to-transparent dark:bg-[rgba(64,64,64,0.55)]",
+                      "dark:border-[rgba(115,115,115,0.25)] dark:text-[rgba(250,250,250,0.92)] dark:shadow-none"
+                    )
+                  : cn(
+                      "rounded-br-sm",
+                      // Light mode - orange gradient
+                      "bg-gradient-to-b from-orange-500/95 to-orange-600/[0.92] text-white",
+                      "shadow-[0_18px_40px_rgba(249,115,22,0.25)]",
+                      // Dark mode - Charcoal user bubble gradient
+                      "dark:from-transparent dark:to-transparent",
+                      "dark:bg-[linear-gradient(135deg,rgba(251,146,60,0.92),rgba(234,88,12,0.75))]",
+                      "dark:text-[rgba(10,10,10,0.92)]"
+                    )
               )}
             >
               {msg.text}
@@ -203,40 +256,81 @@ export default function ChatDemoWindow({
         {/* Typing indicator */}
         {isTyping && (
           <div className="self-start animate-in fade-in slide-in-from-bottom-2 duration-300">
-            <div className="px-4 py-3 rounded-2xl rounded-bl-sm bg-white dark:bg-neutral-700 shadow-sm flex gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-gray-400 dark:bg-neutral-400 animate-bounce [animation-delay:0ms]" />
-              <span className="w-2 h-2 rounded-full bg-gray-400 dark:bg-neutral-400 animate-bounce [animation-delay:150ms]" />
-              <span className="w-2 h-2 rounded-full bg-gray-400 dark:bg-neutral-400 animate-bounce [animation-delay:300ms]" />
+            <div className={cn(
+              "px-4 py-3 rounded-2xl rounded-bl-sm flex gap-1.5",
+              // Light - Saffron style
+              "bg-gradient-to-b from-white/[0.86] to-slate-100/[0.78] border border-slate-900/[0.08]",
+              "shadow-[0_14px_32px_rgba(0,0,0,0.12)]",
+              // Dark - Charcoal style: dark glass bubble
+              "dark:from-transparent dark:to-transparent dark:bg-[rgba(64,64,64,0.55)]",
+              "dark:border-[rgba(115,115,115,0.25)] dark:shadow-none"
+            )}>
+              <span className="w-2 h-2 rounded-full bg-slate-400 dark:bg-[rgba(212,212,212,0.62)] animate-bounce [animation-delay:0ms]" />
+              <span className="w-2 h-2 rounded-full bg-slate-400 dark:bg-[rgba(212,212,212,0.62)] animate-bounce [animation-delay:150ms]" />
+              <span className="w-2 h-2 rounded-full bg-slate-400 dark:bg-[rgba(212,212,212,0.62)] animate-bounce [animation-delay:300ms]" />
             </div>
           </div>
         )}
       </div>
 
-      {/* Input (disabled, decorative) */}
-      <div className="flex items-center gap-3 px-4 py-3 border-t border-gray-100 dark:border-neutral-700 bg-white dark:bg-neutral-800">
-        <input
-          type="text"
-          placeholder="Type a message..."
-          disabled
-          className="flex-1 bg-gray-50 dark:bg-neutral-900 border border-gray-200 dark:border-neutral-600 rounded-xl px-4 py-2.5 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-neutral-500"
-        />
-        <button
-          disabled
-          className="w-10 h-10 rounded-xl bg-orange-500 flex items-center justify-center"
-        >
-          <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white">
-            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-          </svg>
-        </button>
+      {/* Input area - Charcoal style: input + button inside wrapper */}
+      <div className={cn(
+        "px-4 py-3 relative z-10",
+        // Light - Saffron
+        "bg-white/70",
+        // Dark - transparent to keep aurora visible
+        "dark:bg-transparent"
+      )}>
+        <div className={cn(
+          "p-2 rounded-2xl border",
+          // Light - Saffron style
+          "bg-white/70 border-slate-900/10",
+          // Dark - Charcoal style (exact match)
+          "dark:bg-[rgba(38,38,38,0.42)] dark:border-[rgba(115,115,115,0.20)]"
+        )}>
+          <div className="flex items-end gap-2">
+            <input
+              type="text"
+              placeholder="Type a message..."
+              disabled
+              className={cn(
+                "flex-1 bg-transparent outline-none text-sm py-1.5 px-2",
+                // Light
+                "text-slate-900 placeholder-slate-500",
+                // Dark - Charcoal style
+                "dark:text-[rgba(250,250,250,0.92)] dark:placeholder-[rgba(212,212,212,0.60)]"
+              )}
+            />
+            <button
+              disabled
+              className={cn(
+                "px-3.5 py-2 rounded-xl text-sm font-medium shrink-0",
+                // Light - Saffron style
+                "bg-gradient-to-b from-orange-500 to-orange-600 text-white",
+                // Dark - Charcoal send button (exact match)
+                "dark:bg-[linear-gradient(135deg,rgba(251,146,60,0.94),rgba(234,88,12,0.78))]",
+                "dark:text-[rgba(10,10,10,0.92)]"
+              )}
+            >
+              Send
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Powered by footer */}
-      <div className="px-4 py-2 text-center border-t border-gray-100 dark:border-neutral-700 bg-gray-50 dark:bg-neutral-800/50">
-        <span className="text-[10px] text-gray-400 dark:text-neutral-500">
+      <div className={cn(
+        "px-4 py-2 text-center border-t relative z-10",
+        // Light
+        "border-slate-900/10 bg-white/55",
+        // Dark - Charcoal style
+        "dark:border-[rgba(115,115,115,0.20)] dark:bg-[rgba(38,38,38,0.35)]"
+      )}>
+        <span className="text-[10px] text-slate-500 dark:text-[rgba(212,212,212,0.58)]">
           Powered by{" "}
           <span className="font-semibold">
-            <span className="text-orange-500">abe</span>
-            <span className="text-gray-400 dark:text-neutral-500">media</span>
+            <span className="text-orange-500 dark:text-[rgb(251,146,60)]">abe</span>
+            <span className="text-slate-500 dark:text-[rgba(212,212,212,0.58)]">media</span>
           </span>
         </span>
       </div>

@@ -50,8 +50,14 @@ export default function BilingualHeroDemo() {
         </div>
       </div>
 
-      {/* Demo window with glow */}
-      <div className="animate-pulse-glow rounded-2xl">
+      {/* Demo window with glow - keep pulse animation in dark mode */}
+      <div className={cn(
+        "rounded-3xl",
+        // Light mode - Saffron ring glow (no pulse, just soft glow)
+        "shadow-[0_0_40px_rgba(249,115,22,0.3)]",
+        // Dark mode - keep the pulsing glow effect
+        "dark:animate-pulse-glow dark:shadow-none"
+      )}>
         <ChatDemoWindow
           config={localizedConfig}
           messages={bilingualConversations[language]}

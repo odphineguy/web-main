@@ -258,3 +258,13 @@
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
 }
+
+/* Aurora animation for Charcoal dark mode theme */
+@keyframes aurora {
+  0%, 100% { transform: translate3d(0,0,0) scale(1); }
+  50% { transform: translate3d(-10px, 8px, 0) scale(1.03); }
+}
+
+.animate-aurora {
+  animation: aurora 9.5s ease-in-out infinite;
+}
