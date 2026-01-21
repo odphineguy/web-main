@@ -573,22 +573,23 @@ export default function AIChatbots() {
 
       {/* CTA Section */}
       <section className="bg-gray-100 dark:bg-neutral-900 py-20 px-6">
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
+            className="rounded-2xl p-10 md:p-16 bg-gradient-to-br from-orange-500 via-orange-500 to-orange-600 shadow-xl shadow-orange-500/25 text-center"
           >
-            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
               Ready to Automate Your Customer Service?
             </h2>
-            <p className="text-sm md:text-base text-gray-600 dark:text-neutral-400 mb-8 leading-relaxed">
+            <p className="text-orange-100 max-w-2xl mx-auto mb-8">
               Get a free demo showing how a custom chatbot can work for your business.
             </p>
             <Button
               size="lg"
-              className="text-sm px-10 py-6 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300"
+              className="text-sm px-10 py-6 bg-white hover:bg-orange-50 text-orange-600 font-medium rounded-full shadow-lg shadow-black/10 transition-all duration-300"
               onClick={() => setIsConsultationOpen(true)}
             >
               Get Your Free Demo

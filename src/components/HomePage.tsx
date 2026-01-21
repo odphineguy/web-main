@@ -82,7 +82,7 @@ export default function HomePage() {
                   Serving Small Businesses
                 </span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
+              <h1 className="text-[40px] md:text-[48px] lg:text-[56px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white leading-tight">
                 {t('Hero.titlePart1')}{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
                   {t('Hero.titlePart2')}
@@ -118,10 +118,10 @@ export default function HomePage() {
             <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500 mb-4">
               {t('BilingualServices.badge')}
             </span>
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-[28px] md:text-[32px] lg:text-[36px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
               {t('BilingualServices.title')}
             </h2>
-            <p className="text-lg text-gray-600 dark:text-neutral-400 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl font-normal leading-relaxed text-gray-600 dark:text-neutral-400 max-w-2xl mx-auto">
               {t('BilingualServices.subtitle')}
             </p>
           </motion.div>
@@ -220,7 +220,7 @@ export default function HomePage() {
             <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500 mb-4">
               {t('Features.badge')}
             </span>
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+            <h2 className="text-[28px] md:text-[32px] lg:text-[36px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white">
               {t('Features.title')}
             </h2>
           </motion.div>
@@ -390,13 +390,13 @@ export default function HomePage() {
               <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
                 {t('Benefits.badge')}
               </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
+              <h2 className="text-[28px] md:text-[32px] lg:text-[36px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white">
                 {t('Benefits.titlePart1')}{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
                   {t('Benefits.titlePart2')}
                 </span>
               </h2>
-              <p className="text-lg text-gray-600 dark:text-neutral-400">
+              <p className="text-lg md:text-xl font-normal leading-relaxed text-gray-600 dark:text-neutral-400">
                 {t('Benefits.p1')}
               </p>
               <p className="text-gray-600 dark:text-neutral-400">
@@ -484,25 +484,23 @@ export default function HomePage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="rounded-2xl p-px bg-gradient-to-b from-orange-500/30 to-orange-600/10"
+            className="rounded-2xl p-10 md:p-16 bg-gradient-to-br from-orange-500 via-orange-500 to-orange-600 shadow-xl shadow-orange-500/25 text-center"
           >
-            <div className="rounded-2xl p-10 md:p-16 bg-white dark:bg-neutral-900 text-center">
-              <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-600 dark:text-orange-400 mb-6">
-                {t('CalculatorCTA.badge')}
-              </span>
-              <h2 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                {t('CalculatorCTA.title')}
-              </h2>
-              <p className="text-gray-600 dark:text-neutral-400 max-w-2xl mx-auto mb-8">
-                {t('CalculatorCTA.subtitle')}
-              </p>
-              <Link
-                href="/calculator"
-                className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-8 py-4 text-base font-semibold text-white transition-colors hover:bg-orange-600"
-              >
-                {t('CalculatorCTA.button')}
-              </Link>
-            </div>
+            <span className="inline-flex items-center rounded-full border border-white/30 bg-white/20 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-white mb-6">
+              {t('CalculatorCTA.badge')}
+            </span>
+            <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
+              {t('CalculatorCTA.title')}
+            </h2>
+            <p className="text-orange-100 max-w-2xl mx-auto mb-8">
+              {t('CalculatorCTA.subtitle')}
+            </p>
+            <Link
+              href="/calculator"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-base font-semibold text-orange-600 transition-colors hover:bg-orange-50"
+            >
+              {t('CalculatorCTA.button')}
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -645,23 +643,21 @@ export default function HomePage() {
       {/* Final CTA - Gray background */}
       <section className="bg-gray-100 dark:bg-neutral-900 py-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="rounded-2xl p-px bg-gradient-to-b from-orange-500/30 to-orange-600/10">
-            <div className="rounded-2xl p-10 md:p-16 bg-gray-50 dark:bg-neutral-950 text-center">
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-                className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6"
-              >
-                {t('CTA.title')}
-              </motion.h2>
-              <ScheduleCallButton
-                type="button"
-                onClick={() => setIsConsultationOpen(true)}
-                className="mx-auto"
-              />
-            </div>
+          <div className="rounded-2xl p-10 md:p-16 bg-gradient-to-br from-orange-500 via-orange-500 to-orange-600 shadow-xl shadow-orange-500/25 text-center">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="text-2xl md:text-4xl font-bold text-white mb-6"
+            >
+              {t('CTA.title')}
+            </motion.h2>
+            <ScheduleCallButton
+              type="button"
+              onClick={() => setIsConsultationOpen(true)}
+              className="mx-auto bg-white hover:bg-orange-50 text-orange-600 shadow-lg shadow-black/10 hover:shadow-black/20"
+            />
           </div>
         </div>
       </section>

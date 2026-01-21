@@ -155,21 +155,19 @@ export default function Services() {
       </section>
 
       {/* Bottom CTA Section */}
-      <section className="bg-white dark:bg-black px-6 py-16">
-        <div className="max-w-2xl mx-auto text-center">
-          <div className="rounded-2xl p-px bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
-            <div className="rounded-2xl p-8 lg:p-10 bg-gray-50 dark:bg-neutral-950">
-              <h2 className="text-xl md:text-2xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-3">
-                {t('CTA.title')}
-              </h2>
-              <p className="text-sm text-gray-600 dark:text-neutral-400 mb-6 leading-relaxed">
-                {t('CTA.description')}
-              </p>
-              <ScheduleCallButton
-                onClick={() => setIsConsultationOpen(true)}
-                className="mx-auto"
-              />
-            </div>
+      <section className="bg-gray-100 dark:bg-neutral-900 px-6 py-20">
+        <div className="max-w-4xl mx-auto">
+          <div className="rounded-2xl p-10 md:p-16 bg-gradient-to-br from-orange-500 via-orange-500 to-orange-600 shadow-xl shadow-orange-500/25 text-center">
+            <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
+              {t('CTA.title')}
+            </h2>
+            <p className="text-orange-100 max-w-2xl mx-auto mb-8 leading-relaxed">
+              {t('CTA.description')}
+            </p>
+            <ScheduleCallButton
+              onClick={() => setIsConsultationOpen(true)}
+              className="mx-auto bg-white hover:bg-orange-50 text-orange-600 shadow-lg shadow-black/10"
+            />
           </div>
         </div>
       </section>

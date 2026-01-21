@@ -118,7 +118,7 @@ export default function BlogPage() {
             <h1 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-6">
               Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Blog</span>
             </h1>
-            <p className="text-xl md:text-[28px] font-normal tracking-normal text-gray-600 dark:text-neutral-400 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl font-normal leading-relaxed text-gray-600 dark:text-neutral-400 max-w-3xl mx-auto">
               Insights, tutorials, and resources on web development, design, AI marketing, bilingual advertising, and digital innovation for your business.
             </p>
           </div>
@@ -229,7 +229,7 @@ export default function BlogPage() {
         {/* Featured Post - Only show when no filters */}
         {!selectedCategory && !searchQuery && featuredPost && (
           <section className="mb-16">
-            <h2 className="text-xl md:text-[28px] font-normal tracking-normal text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+            <h2 className="text-xl md:text-2xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-6 flex items-center gap-2">
               <Trophy className="w-6 h-6 text-orange-500" />
               Featured Article
             </h2>
@@ -284,7 +284,7 @@ export default function BlogPage() {
         {/* Blog Posts Grid */}
         <section>
           {!selectedCategory && !searchQuery && (
-            <h2 className="text-xl md:text-[28px] font-normal tracking-normal text-gray-900 dark:text-white mb-8">
+            <h2 className="text-xl md:text-2xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-8">
               Latest Articles
             </h2>
           )}
@@ -308,25 +308,23 @@ export default function BlogPage() {
 
         {/* Newsletter CTA */}
         <section className="mt-20 pb-4">
-          <div className="max-w-2xl mx-auto text-center">
-            <div className="rounded-2xl p-px bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
-              <div className="rounded-2xl p-8 lg:p-10 bg-gray-50 dark:bg-neutral-950">
-                <h2 className="text-xl md:text-[28px] font-normal tracking-normal text-gray-900 dark:text-white mb-3">
-                  Stay Updated
-                </h2>
-                <p className="text-sm md:text-base font-normal leading-relaxed text-gray-600 dark:text-neutral-400 mb-6">
-                  Subscribe to our newsletter for the latest insights, tutorials, and resources on web development and digital marketing.
-                </p>
-                <div className="relative max-w-lg mx-auto">
-                  <input 
-                    type="email" 
-                    placeholder="my@email.com"
-                    className="w-full pl-6 pr-44 py-4 rounded-full border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-gray-900 dark:text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 transition-all shadow-sm"
-                  />
-                  <button className="absolute right-1.5 top-1.5 bottom-1.5 px-6 rounded-full bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 text-sm font-medium uppercase hover:bg-orange-200 dark:hover:bg-orange-500/30 transition-colors">
-                    JOIN NEWSLETTER
-                  </button>
-                </div>
+          <div className="max-w-4xl mx-auto">
+            <div className="rounded-2xl p-10 md:p-16 bg-gradient-to-br from-orange-500 via-orange-500 to-orange-600 shadow-xl shadow-orange-500/25 text-center">
+              <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
+                Stay Updated
+              </h2>
+              <p className="text-orange-100 max-w-2xl mx-auto mb-8">
+                Subscribe to our newsletter for the latest insights, tutorials, and resources on web development and digital marketing.
+              </p>
+              <div className="relative max-w-lg mx-auto">
+                <input
+                  type="email"
+                  placeholder="my@email.com"
+                  className="w-full pl-6 pr-44 py-4 rounded-full border-0 bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all shadow-lg"
+                />
+                <button className="absolute right-1.5 top-1.5 bottom-1.5 px-6 rounded-full bg-orange-500 text-white text-sm font-medium uppercase hover:bg-orange-600 transition-colors shadow-md">
+                  JOIN NEWSLETTER
+                </button>
               </div>
             </div>
           </div>

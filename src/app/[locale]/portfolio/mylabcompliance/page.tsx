@@ -347,18 +347,20 @@ export default function CaseStudyMyLabCompliance() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-6 border-t border-neutral-200 dark:border-neutral-800">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] mb-4">
-            Ready for Similar Results?
-          </h2>
-          <p className="text-sm md:text-base font-normal leading-relaxed text-gray-600 dark:text-neutral-400 mb-8">
-            Let&apos;s discuss how we can improve your site&apos;s performance, SEO, and lead quality.
-          </p>
-          <ScheduleCallButton
-            onClick={() => setIsConsultationOpen(true)}
-            className="mx-auto"
-          />
+      <section className="bg-gray-100 dark:bg-neutral-900 py-20 px-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="rounded-2xl p-10 md:p-16 bg-gradient-to-br from-orange-500 via-orange-500 to-orange-600 shadow-xl shadow-orange-500/25 text-center">
+            <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
+              Ready for Similar Results?
+            </h2>
+            <p className="text-orange-100 max-w-2xl mx-auto mb-8">
+              Let&apos;s discuss how we can improve your site&apos;s performance, SEO, and lead quality.
+            </p>
+            <ScheduleCallButton
+              onClick={() => setIsConsultationOpen(true)}
+              className="mx-auto bg-white hover:bg-orange-50 text-orange-600 shadow-lg shadow-black/10"
+            />
+          </div>
         </div>
       </section>
 

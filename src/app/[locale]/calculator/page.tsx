@@ -179,28 +179,30 @@ export default function CalculatorPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-white dark:bg-black px-6 py-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="max-w-3xl mx-auto text-center"
-        >
-          <h2 className="text-[32px] md:text-[36px] lg:text-[40px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
-            Ready to Grow Your Business?
-          </h2>
-          <p className="text-[14px] md:text-[16px] font-normal leading-[1.5] text-gray-600 dark:text-neutral-400 mb-8 max-w-xl mx-auto">
-            Let&apos;s discuss how bilingual marketing can help you reach new customers and increase your revenue.
-          </p>
-          <Button
-            size="lg"
-            onClick={() => setIsConsultationOpen(true)}
-            className="text-[14px] px-8 py-6 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300"
+      <section className="bg-gray-100 dark:bg-neutral-900 px-6 py-20">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="rounded-2xl p-10 md:p-16 bg-gradient-to-br from-orange-500 via-orange-500 to-orange-600 shadow-xl shadow-orange-500/25 text-center"
           >
-            <Calendar className="w-5 h-5 mr-2" />
-            Schedule a Call
-          </Button>
-        </motion.div>
+            <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
+              Ready to Grow Your Business?
+            </h2>
+            <p className="text-orange-100 max-w-2xl mx-auto mb-8">
+              Let&apos;s discuss how bilingual marketing can help you reach new customers and increase your revenue.
+            </p>
+            <Button
+              size="lg"
+              onClick={() => setIsConsultationOpen(true)}
+              className="text-[14px] px-8 py-6 bg-white hover:bg-orange-50 text-orange-600 font-medium rounded-full shadow-lg shadow-black/10 transition-all duration-300"
+            >
+              <Calendar className="w-5 h-5 mr-2" />
+              Schedule a Call
+            </Button>
+          </motion.div>
+        </div>
       </section>
 
       {/* Consultation Modal */}

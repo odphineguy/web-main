@@ -25,7 +25,7 @@ export default function ContactPage() {
             <h1 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] mb-6 text-gray-900 dark:text-white">
               Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Touch</span>
             </h1>
-            <p className="text-xl md:text-[28px] font-normal tracking-normal text-gray-600 dark:text-neutral-400 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl font-normal leading-relaxed text-gray-600 dark:text-neutral-400 max-w-3xl mx-auto">
               Let&apos;s discuss your custom chatbot solutions. We&apos;re here to help.
             </p>
           </div>
@@ -33,17 +33,17 @@ export default function ContactPage() {
           {/* Two Column Layout */}
           <div className="grid lg:grid-cols-2 gap-8 items-stretch">
             {/* Left Column - Contact Form */}
-            <div className="rounded-2xl p-px bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5 h-full">
+            <div className="rounded-2xl p-px bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5 h-full shadow-lg dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)]">
               <div className="bg-gray-50 dark:bg-neutral-950 rounded-2xl p-8 h-full">
-                <h2 className="text-xl md:text-[28px] font-normal tracking-normal text-gray-900 dark:text-white mb-6">Send Us a Message</h2>
+                <h2 className="text-xl md:text-2xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-6">Send Us a Message</h2>
                 <ContactForm />
               </div>
             </div>
 
             {/* Right Column - Contact Information */}
-            <div className="rounded-2xl p-px bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5 h-full">
+            <div className="rounded-2xl p-px bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5 h-full shadow-lg dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)]">
               <div className="bg-gray-50 dark:bg-neutral-950 rounded-2xl p-8 h-full flex flex-col">
-                <h2 className="text-xl md:text-[28px] font-normal tracking-normal text-gray-900 dark:text-white mb-6">Contact Information</h2>
+                <h2 className="text-xl md:text-2xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-6">Contact Information</h2>
                 
                 <div className="space-y-5 mb-8">
                   {/* Email */}
@@ -90,7 +90,7 @@ export default function ContactPage() {
                     alt="Office Location Map"
                     width={500}
                     height={300}
-                    className="w-full h-auto object-cover"
+                    className="w-full h-auto object-cover brightness-110 dark:brightness-125"
                   />
                 </div>
               </div>
@@ -100,26 +100,24 @@ export default function ContactPage() {
       </section>
 
       {/* Newsletter Section */}
-      <section className="bg-gray-100 dark:bg-neutral-900 px-6 py-16">
-        <div className="max-w-2xl mx-auto">
-          <div className="rounded-2xl p-px bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
-            <div className="bg-white dark:bg-neutral-950 rounded-2xl p-8 lg:p-10 text-center">
-              <h2 className="text-xl md:text-[28px] font-normal tracking-normal text-gray-900 dark:text-white mb-3">
-                Stay Updated
-              </h2>
-              <p className="text-sm md:text-base font-normal leading-relaxed text-gray-600 dark:text-neutral-400 mb-6">
-                Subscribe to our newsletter for the latest insights, tutorials, and resources on web development and digital marketing.
-              </p>
-              <div className="relative max-w-lg mx-auto">
-                <input 
-                  type="email" 
-                  placeholder="my@email.com"
-                  className="w-full pl-6 pr-44 py-4 rounded-full border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-gray-900 dark:text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 transition-all shadow-sm"
-                />
-                <button className="absolute right-1.5 top-1.5 bottom-1.5 px-6 rounded-full bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 text-sm font-medium uppercase hover:bg-orange-200 dark:hover:bg-orange-500/30 transition-colors">
-                  JOIN NEWSLETTER
-                </button>
-              </div>
+      <section className="bg-gray-100 dark:bg-neutral-900 px-6 py-20">
+        <div className="max-w-4xl mx-auto">
+          <div className="rounded-2xl p-10 md:p-16 bg-gradient-to-br from-orange-500 via-orange-500 to-orange-600 shadow-xl shadow-orange-500/25 text-center">
+            <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
+              Stay Updated
+            </h2>
+            <p className="text-orange-100 max-w-2xl mx-auto mb-8">
+              Subscribe to our newsletter for the latest insights, tutorials, and resources on web development and digital marketing.
+            </p>
+            <div className="relative max-w-lg mx-auto">
+              <input
+                type="email"
+                placeholder="my@email.com"
+                className="w-full pl-6 pr-44 py-4 rounded-full border-0 bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all shadow-lg"
+              />
+              <button className="absolute right-1.5 top-1.5 bottom-1.5 px-6 rounded-full bg-orange-500 text-white text-sm font-medium uppercase hover:bg-orange-600 transition-colors shadow-md">
+                JOIN NEWSLETTER
+              </button>
             </div>
           </div>
         </div>

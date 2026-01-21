@@ -197,30 +197,28 @@ export default function BrandIdentity() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-white dark:bg-black py-20 px-6">
-        <div className="max-w-3xl mx-auto text-center">
+      <section className="bg-gray-100 dark:bg-neutral-900 py-20 px-6">
+        <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="rounded-2xl p-px bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5"
+            className="rounded-2xl p-10 md:p-16 bg-gradient-to-br from-orange-500 via-orange-500 to-orange-600 shadow-xl shadow-orange-500/25 text-center"
           >
-            <div className="rounded-2xl p-8 lg:p-12 bg-gray-50 dark:bg-neutral-900">
-              <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-gray-900 dark:text-white mb-4">
-                {t("cta.title")}
-              </h2>
-              <p className="text-sm md:text-base font-normal leading-relaxed text-gray-600 dark:text-neutral-400 mb-8 max-w-xl mx-auto">
-                {t("cta.description")}
-              </p>
-              <button
-                onClick={() => setIsConsultationOpen(true)}
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-3.5 rounded-full text-sm font-medium hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40"
-              >
-                {t("cta.button")}
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
+            <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
+              {t("cta.title")}
+            </h2>
+            <p className="text-orange-100 max-w-2xl mx-auto mb-8">
+              {t("cta.description")}
+            </p>
+            <button
+              onClick={() => setIsConsultationOpen(true)}
+              className="inline-flex items-center gap-2 bg-white text-orange-600 px-8 py-3.5 rounded-full text-sm font-medium hover:bg-orange-50 transition-all duration-300 shadow-lg shadow-black/10"
+            >
+              {t("cta.button")}
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </motion.div>
         </div>
       </section>

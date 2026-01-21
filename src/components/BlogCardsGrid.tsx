@@ -60,7 +60,7 @@ export default function BlogCardsGrid({ posts }: BlogCardsGridProps) {
     <SlidingHighlightGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {posts.map((post) => (
         <Link key={post.slug} href={`/blog/${post.slug}`}>
-          <Card className="group hover:shadow-lg transition-shadow duration-300 overflow-hidden h-full bg-black border-neutral-800">
+          <Card className="group hover:shadow-lg transition-shadow duration-300 overflow-hidden h-full bg-gray-50 dark:bg-neutral-950 border-gray-200 dark:border-neutral-800">
             {post.image && (
               <div className="relative h-48">
                 <Image 

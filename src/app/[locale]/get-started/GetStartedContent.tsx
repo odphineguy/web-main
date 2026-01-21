@@ -49,10 +49,10 @@ export default function GetStartedContent() {
       {/* Hero Section */}
       <section className="pt-8 md:pt-12 pb-12 px-6">
         <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            Get <span className="text-orange-500">Started</span>
+          <h1 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-6">
+            Get <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Started</span>
           </h1>
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl mx-auto font-light">
+          <p className="text-lg md:text-xl font-normal leading-relaxed text-gray-600 dark:text-neutral-400 mb-8 max-w-3xl mx-auto">
             Ready to bring your digital vision to life? Let&apos;s start your project today.
           </p>
         </div>
@@ -216,19 +216,21 @@ export default function GetStartedContent() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 px-6 bg-gray-50 dark:bg-neutral-950">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-white">Ready to Get Started?</h2>
-          <p className="text-xl mb-8 text-gray-600 dark:text-gray-300">
-            Let&apos;s discuss your project and create something amazing together.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="text-lg px-8 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
-              Start Your Project
-            </Button>
-            <Button size="lg" variant="outline" className="text-lg px-8 rounded-full">
-              Schedule Consultation
-            </Button>
+      <section className="py-20 px-6 bg-gray-100 dark:bg-neutral-900">
+        <div className="max-w-4xl mx-auto">
+          <div className="rounded-2xl p-10 md:p-16 bg-gradient-to-br from-orange-500 via-orange-500 to-orange-600 shadow-xl shadow-orange-500/25 text-center">
+            <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">Ready to Get Started?</h2>
+            <p className="text-orange-100 max-w-2xl mx-auto mb-8">
+              Let&apos;s discuss your project and create something amazing together.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button className="text-lg px-8 bg-white hover:bg-orange-50 text-orange-600 font-semibold rounded-full shadow-lg shadow-black/10 transition-all duration-300">
+                Start Your Project
+              </Button>
+              <Button size="lg" variant="outline" className="text-lg px-8 rounded-full border-white text-white hover:bg-white/10">
+                Schedule Consultation
+              </Button>
+            </div>
           </div>
         </div>
       </section>
