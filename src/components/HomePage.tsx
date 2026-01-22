@@ -478,32 +478,16 @@ export default function HomePage() {
       </section>
 
       {/* Calculator CTA Section */}
-      <section className="bg-gray-50 dark:bg-neutral-950 py-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="rounded-2xl p-10 md:p-16 bg-gradient-to-br from-orange-500 via-orange-500 to-orange-600 shadow-xl shadow-orange-500/25 text-center"
-          >
-            <span className="inline-flex items-center rounded-full border border-white/30 bg-white/20 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-white mb-6">
-              {t('CalculatorCTA.badge')}
-            </span>
-            <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
-              {t('CalculatorCTA.title')}
-            </h2>
-            <p className="text-orange-100 max-w-2xl mx-auto mb-8">
-              {t('CalculatorCTA.subtitle')}
-            </p>
-            <Link
-              href="/calculator"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-base font-semibold text-orange-600 transition-colors hover:bg-orange-50"
-            >
-              {t('CalculatorCTA.button')}
-            </Link>
-          </motion.div>
-        </div>
+      <section className="bg-gray-100 dark:bg-neutral-900 py-20 px-6">
+        <FooterCTA
+          eyebrow={t('CalculatorCTA.badge')}
+          heading={t('CalculatorCTA.title')}
+          subtext={t('CalculatorCTA.subtitle')}
+          buttonText={t('CalculatorCTA.button').toUpperCase()}
+          buttonHref="/calculator"
+          metaPill="Free tool"
+          metaText="Instant results"
+        />
       </section>
 
       {/* Testimonials - Gray background with dark cards */}
