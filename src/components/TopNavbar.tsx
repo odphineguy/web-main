@@ -53,14 +53,6 @@ export default function TopNavbar() {
         className="mx-auto flex h-full items-center justify-between"
       >
         <div className="flex items-center gap-3">
-          <Image
-            src="/images/portfolio/a-icon-small.svg"
-            alt="Abe Media icon"
-            width={48}
-            height={48}
-            className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12"
-            priority
-          />
           <Link href="/" className="hover:opacity-80 transition-opacity">
             <Image
               src="/images/portfolio/abemedia.logo.nobg.png"

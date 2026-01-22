@@ -129,8 +129,7 @@ function Footer() {
     <footer className="border-t border-border py-6">
       <div className="mx-auto max-w-6xl px-6 grid grid-cols-1 sm:grid-cols-3 items-center gap-4">
         <div className="flex justify-center sm:justify-start">
-          <Link href="/" aria-label="Abe Media" className="inline-flex items-center gap-2">
-            <Image src="/images/portfolio/a-icon-small.svg" alt="Abe Media icon" width={32} height={32} className="w-8 h-8" />
+          <Link href="/" aria-label="Abe Media">
             <Image src="/images/portfolio/abemedia.logo.nobg.png" alt="Abe Media" width={120} height={24} className="h-6 w-auto" />
           </Link>
         </div>
