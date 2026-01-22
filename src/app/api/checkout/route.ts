@@ -8,7 +8,7 @@ function getStripe() {
     throw new Error('STRIPE_SECRET_KEY is not configured');
   }
   return new Stripe(apiKey, {
-    apiVersion: '2025-11-17.clover',
+    apiVersion: '2025-12-15.clover',
   });
 }
 
