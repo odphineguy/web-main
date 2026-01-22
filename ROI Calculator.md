@@ -312,4 +312,3 @@ For your business, that represents a potential **$4,200 increase in monthly reve
 
 ---
 
-T
