@@ -200,19 +200,19 @@
 /* Footer CTA Card Styles */
 :root {
   --footer-cta-outer-bg:
-    radial-gradient(circle at 0% 0%, oklch(0.70 0.18 47.64 / 0.35) 0, transparent 50%),
-    radial-gradient(circle at 100% 100%, oklch(0.70 0.18 47.64 / 0.35) 0, transparent 50%),
-    oklch(0.97 0.02 47.64);
+    radial-gradient(circle at 0% 0%, oklch(0.78 0.14 47.64 / 0.5) 0, transparent 40%),
+    radial-gradient(circle at 100% 100%, oklch(0.72 0.18 47.64 / 0.65) 0, transparent 45%),
+    oklch(0.95 0.04 47.64);
   --footer-cta-inner-bg:
-    radial-gradient(circle at top right, oklch(0.70 0.18 47.64 / 0.12), transparent 50%),
-    radial-gradient(circle at bottom left, oklch(0.70 0.18 47.64 / 0.08), transparent 60%),
-    oklch(0.98 0.01 47.64);
-  --footer-cta-glow-opacity: 0.18;
-  --footer-cta-border-color: oklch(0.85 0.06 47.64);
-  --footer-cta-shadow: 0 18px 45px rgba(234, 88, 12, 0.12), 0 0 0 1px rgba(234, 88, 12, 0.08);
-  --footer-cta-text-primary: oklch(0.25 0 0);
-  --footer-cta-text-secondary: oklch(0.40 0.05 47.64);
-  --footer-cta-dot-glow: 0 0 14px oklch(0.70 0.18 47.64 / 0.6);
+    radial-gradient(circle at top right, oklch(0.75 0.16 47.64 / 0.35), transparent 40%),
+    radial-gradient(circle at bottom left, oklch(0.82 0.10 47.64 / 0.25), transparent 45%),
+    oklch(0.96 0.035 47.64);
+  --footer-cta-glow-opacity: 0.3;
+  --footer-cta-border-color: oklch(0.86 0.10 47.64);
+  --footer-cta-shadow: 0 18px 45px rgba(234, 88, 12, 0.18), 0 0 0 1px rgba(234, 88, 12, 0.15);
+  --footer-cta-text-primary: oklch(0.20 0 0);
+  --footer-cta-text-secondary: oklch(0.35 0.08 47.64);
+  --footer-cta-dot-glow: 0 0 18px oklch(0.70 0.18 47.64 / 0.75);
 }
 
 .dark {
