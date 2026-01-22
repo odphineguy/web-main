@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ROICalculator from "@/components/ROICalculator";
 import ConsultationForm from "@/components/ConsultationForm";
@@ -198,7 +197,6 @@ export default function CalculatorPage() {
               onClick={() => setIsConsultationOpen(true)}
               className="text-[14px] px-8 py-6 bg-white hover:bg-orange-50 text-orange-600 font-medium rounded-full shadow-lg shadow-black/10 transition-all duration-300"
             >
-              <Calendar className="w-5 h-5 mr-2" />
               Schedule a Call
             </Button>
           </motion.div>
