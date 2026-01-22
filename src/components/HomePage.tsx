@@ -582,8 +582,8 @@ export default function HomePage() {
                 className="flex-shrink-0 w-80 md:w-96 mx-3"
               >
                 <div className="h-full rounded-2xl p-px transition-all duration-300 bg-gradient-to-b from-gray-300 dark:from-white/10 to-gray-200 dark:to-white/5">
-                  <div className="h-full rounded-2xl p-6 backdrop-blur-xl transition-all duration-300 bg-black text-white dark:bg-neutral-950">
-                    <blockquote className="text-gray-100 dark:text-neutral-200 mb-6 text-sm">
+                  <div className="h-full rounded-2xl p-6 backdrop-blur-xl transition-all duration-300 bg-gray-50 dark:bg-neutral-950">
+                    <blockquote className="text-gray-700 dark:text-neutral-200 mb-6 text-sm">
                       &ldquo;{t(`Testimonials.${testimonial.id}.quote`)}&rdquo;
                     </blockquote>
                     <div className="flex items-center gap-4">
@@ -608,8 +608,8 @@ export default function HomePage() {
                         )}
                       </div>
                       <div>
-                        <p className="text-sm font-semibold text-white">{testimonial.name}</p>
-                        <p className="text-xs text-gray-300 dark:text-neutral-400">{t(`Testimonials.${testimonial.id}.role`)}</p>
+                        <p className="text-sm font-semibold text-gray-900 dark:text-white">{testimonial.name}</p>
+                        <p className="text-xs text-gray-500 dark:text-neutral-400">{t(`Testimonials.${testimonial.id}.role`)}</p>
                       </div>
                     </div>
                   </div>
