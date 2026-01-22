@@ -51,6 +51,7 @@ const clientLogos = [
 
 export default function HomePage() {
   const t = useTranslations('Home');
+  const p = useTranslations('Platforms');
   const [avatarErrors, setAvatarErrors] = useState<Set<number>>(new Set());
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
 
@@ -376,36 +377,31 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Benefits Section - Black background */}
+      {/* Platforms Preview Section */}
       <section className="bg-white dark:bg-black py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left: Text & Image */}
+            {/* Left: Laptop Mockup */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="space-y-6"
+              className="relative"
             >
-              <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
-                {t('Benefits.badge')}
-              </span>
-              <h2 className="text-[28px] md:text-[32px] lg:text-[36px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white">
-                {t('Benefits.titlePart1')}{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
-                  {t('Benefits.titlePart2')}
-                </span>
-              </h2>
-              <p className="text-lg md:text-xl font-normal leading-relaxed text-gray-600 dark:text-neutral-400">
-                {t('Benefits.p1')}
-              </p>
-              <p className="text-gray-600 dark:text-neutral-400">
-                {t('Benefits.p2')}
-              </p>
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-orange-500/10">
+                <Image
+                  src="/images/assets-platforms/laptop.png"
+                  alt="Saguaro Transport Platform"
+                  width={800}
+                  height={500}
+                  className="w-full h-auto"
+                  loading="lazy"
+                />
+              </div>
             </motion.div>
 
-            {/* Right: Benefits List */}
+            {/* Right: Content */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -413,65 +409,95 @@ export default function HomePage() {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-6 h-6 mt-1">
-                  <Image
-                    src="/images/home/check.png"
-                    alt="Check"
-                    width={24}
-                    height={24}
-                    className="object-contain"
-                  />
+              <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
+                {p('Preview.badge')}
+              </span>
+              <h2 className="text-[28px] md:text-[32px] lg:text-[36px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white">
+                {p('Preview.title')}{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
+                  {p('Preview.titleAccent')}
+                </span>
+              </h2>
+              <h3 className="text-xl font-semibold text-orange-500">
+                {p('Preview.subtitle')}
+              </h3>
+              <p className="text-gray-600 dark:text-neutral-400">
+                {p('Preview.description')}
+              </p>
+
+              {/* Feature List */}
+              <div className="space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-6 h-6 mt-1">
+                    <Image
+                      src="/images/home/check.png"
+                      alt="Check"
+                      width={24}
+                      height={24}
+                      className="object-contain"
+                    />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                      {p('Preview.feature1.title')}
+                    </h4>
+                    <p className="text-sm text-gray-600 dark:text-neutral-400">
+                      {p('Preview.feature1.description')}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
-                    {t('Benefits.instantResponses.title')}
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-neutral-400">
-                    {t('Benefits.instantResponses.description')}
-                  </p>
+
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-6 h-6 mt-1">
+                    <Image
+                      src="/images/home/check.png"
+                      alt="Check"
+                      width={24}
+                      height={24}
+                      className="object-contain"
+                    />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                      {p('Preview.feature2.title')}
+                    </h4>
+                    <p className="text-sm text-gray-600 dark:text-neutral-400">
+                      {p('Preview.feature2.description')}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-6 h-6 mt-1">
+                    <Image
+                      src="/images/home/check.png"
+                      alt="Check"
+                      width={24}
+                      height={24}
+                      className="object-contain"
+                    />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                      {p('Preview.feature3.title')}
+                    </h4>
+                    <p className="text-sm text-gray-600 dark:text-neutral-400">
+                      {p('Preview.feature3.description')}
+                    </p>
+                  </div>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-6 h-6 mt-1">
-                  <Image
-                    src="/images/home/check.png"
-                    alt="Check"
-                    width={24}
-                    height={24}
-                    className="object-contain"
-                  />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
-                    {t('Benefits.availability.title')}
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-neutral-400">
-                    {t('Benefits.availability.description')}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-6 h-6 mt-1">
-                  <Image
-                    src="/images/home/check.png"
-                    alt="Check"
-                    width={24}
-                    height={24}
-                    className="object-contain"
-                  />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
-                    {t('Benefits.smartData.title')}
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-neutral-400">
-                    {t('Benefits.smartData.description')}
-                  </p>
-                </div>
-              </div>
+              {/* CTA Button */}
+              <Link
+                href="/platforms"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-full transition-colors"
+              >
+                {p('Preview.cta')}
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
             </motion.div>
           </div>
         </div>

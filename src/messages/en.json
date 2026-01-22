@@ -289,5 +289,73 @@
       "cta": "Start Reaching More Customers",
       "recalculate": "Calculate again"
     }
+  },
+  "Platforms": {
+    "Preview": {
+      "badge": "CUSTOM PLATFORMS",
+      "title": "Powerful Platforms.",
+      "titleAccent": "Built for Your Business.",
+      "subtitle": "Saguaro Transport",
+      "description": "Operations management platform for logistics and transportation companies. Track your fleet in real-time, manage drivers, handle accounting, and run your entire business from one unified dashboard.",
+      "feature1": {
+        "title": "Real-Time Fleet Tracking",
+        "description": "Monitor every vehicle with live GPS, dispatch assignments, and route optimization."
+      },
+      "feature2": {
+        "title": "Integrated CRM & Accounting",
+        "description": "Manage customers, invoices, and finances without switching between apps."
+      },
+      "feature3": {
+        "title": "Driver & HR Management",
+        "description": "Onboard drivers, track compliance, and manage payroll in one place."
+      },
+      "cta": "Explore Platforms"
+    },
+    "Page": {
+      "Hero": {
+        "badge": "CUSTOM SOFTWARE",
+        "title": "Custom Platforms",
+        "titleAccent": "for Growing Businesses",
+        "subtitle": "Purpose-built software designed around your workflows. Stop adapting to generic tools—get a platform that adapts to you."
+      },
+      "Saguaro": {
+        "badge": "LOGISTICS & TRANSPORTATION",
+        "title": "Saguaro Transport",
+        "subtitle": "Complete operations management for trucking and logistics companies",
+        "description": "Built for transportation businesses that need more than spreadsheets and disconnected software. Saguaro Transport brings fleet tracking, dispatch, CRM, accounting, and HR into one powerful platform.",
+        "features": {
+          "fleet": {
+            "title": "Fleet Management",
+            "description": "Real-time GPS tracking, vehicle maintenance schedules, and fuel management."
+          },
+          "crm": {
+            "title": "Customer Relations",
+            "description": "Manage shipper relationships, track loads, and handle customer communications."
+          },
+          "admin": {
+            "title": "Admin Dashboard",
+            "description": "Bird's-eye view of your entire operation with actionable insights."
+          },
+          "accounting": {
+            "title": "Accounting",
+            "description": "Invoicing, expense tracking, and financial reporting built for trucking."
+          },
+          "hr": {
+            "title": "Human Resources",
+            "description": "Driver onboarding, compliance tracking, payroll, and document management."
+          }
+        }
+      },
+      "ComingSoon": {
+        "badge": "MORE COMING SOON",
+        "title": "More Platforms in Development",
+        "description": "We're building industry-specific platforms for businesses that need custom solutions. Interested in a platform for your industry?"
+      },
+      "CTA": {
+        "title": "Need a Custom Platform?",
+        "subtitle": "Tell us about your business and we'll show you what's possible.",
+        "button": "Schedule a Call"
+      }
+    }
   }
 }

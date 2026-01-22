@@ -289,5 +289,73 @@
       "cta": "Comienza a Alcanzar Más Clientes",
       "recalculate": "Calcular de nuevo"
     }
+  },
+  "Platforms": {
+    "Preview": {
+      "badge": "PLATAFORMAS PERSONALIZADAS",
+      "title": "Plataformas Poderosas.",
+      "titleAccent": "Diseñadas para Tu Negocio.",
+      "subtitle": "Saguaro Transport",
+      "description": "Plataforma de gestión de operaciones para empresas de logística y transporte. Rastrea tu flota en tiempo real, administra conductores, maneja contabilidad y opera todo tu negocio desde un panel unificado.",
+      "feature1": {
+        "title": "Rastreo de Flota en Tiempo Real",
+        "description": "Monitorea cada vehículo con GPS en vivo, asignación de despachos y optimización de rutas."
+      },
+      "feature2": {
+        "title": "CRM y Contabilidad Integrados",
+        "description": "Administra clientes, facturas y finanzas sin cambiar entre aplicaciones."
+      },
+      "feature3": {
+        "title": "Gestión de Conductores y RH",
+        "description": "Incorpora conductores, rastrea cumplimiento y administra nómina en un solo lugar."
+      },
+      "cta": "Explorar Plataformas"
+    },
+    "Page": {
+      "Hero": {
+        "badge": "SOFTWARE PERSONALIZADO",
+        "title": "Plataformas Personalizadas",
+        "titleAccent": "para Negocios en Crecimiento",
+        "subtitle": "Software diseñado específicamente para tus flujos de trabajo. Deja de adaptarte a herramientas genéricas—obtén una plataforma que se adapte a ti."
+      },
+      "Saguaro": {
+        "badge": "LOGÍSTICA Y TRANSPORTE",
+        "title": "Saguaro Transport",
+        "subtitle": "Gestión completa de operaciones para empresas de transporte y logística",
+        "description": "Diseñado para empresas de transporte que necesitan más que hojas de cálculo y software desconectado. Saguaro Transport integra rastreo de flota, despacho, CRM, contabilidad y RH en una plataforma poderosa.",
+        "features": {
+          "fleet": {
+            "title": "Gestión de Flota",
+            "description": "Rastreo GPS en tiempo real, programación de mantenimiento de vehículos y gestión de combustible."
+          },
+          "crm": {
+            "title": "Relaciones con Clientes",
+            "description": "Administra relaciones con transportistas, rastrea cargas y maneja comunicaciones con clientes."
+          },
+          "admin": {
+            "title": "Panel de Administración",
+            "description": "Vista panorámica de toda tu operación con información accionable."
+          },
+          "accounting": {
+            "title": "Contabilidad",
+            "description": "Facturación, seguimiento de gastos y reportes financieros diseñados para transporte."
+          },
+          "hr": {
+            "title": "Recursos Humanos",
+            "description": "Incorporación de conductores, seguimiento de cumplimiento, nómina y gestión de documentos."
+          }
+        }
+      },
+      "ComingSoon": {
+        "badge": "MÁS PRÓXIMAMENTE",
+        "title": "Más Plataformas en Desarrollo",
+        "description": "Estamos construyendo plataformas específicas por industria para negocios que necesitan soluciones personalizadas. ¿Interesado en una plataforma para tu industria?"
+      },
+      "CTA": {
+        "title": "¿Necesitas una Plataforma Personalizada?",
+        "subtitle": "Cuéntanos sobre tu negocio y te mostraremos lo que es posible.",
+        "button": "Agenda una Llamada"
+      }
+    }
   }
 }
