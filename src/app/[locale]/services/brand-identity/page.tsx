@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import ConsultationForm from "@/components/ConsultationForm";
 import SlidingHighlightGrid from "@/components/SlidingHighlightGrid";
+import { FooterCTA } from "@/components/ui/footer-cta";
 import { Check, Palette, ArrowRight } from "lucide-react";
 
 interface Package {
@@ -198,29 +199,14 @@ export default function BrandIdentity() {
 
       {/* CTA Section */}
       <section className="bg-gray-100 dark:bg-neutral-900 py-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="rounded-2xl p-10 md:p-16 bg-gradient-to-br from-orange-500 via-orange-500 to-orange-600 shadow-xl shadow-orange-500/25 text-center"
-          >
-            <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
-              {t("cta.title")}
-            </h2>
-            <p className="text-orange-100 max-w-2xl mx-auto mb-8">
-              {t("cta.description")}
-            </p>
-            <button
-              onClick={() => setIsConsultationOpen(true)}
-              className="inline-flex items-center gap-2 bg-white text-orange-600 px-8 py-3.5 rounded-full text-sm font-medium hover:bg-orange-50 transition-all duration-300 shadow-lg shadow-black/10"
-            >
-              {t("cta.button")}
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </motion.div>
-        </div>
+        <FooterCTA
+          heading={t("cta.title")}
+          subtext={t("cta.description")}
+          buttonText={t("cta.button").toUpperCase()}
+          onButtonClick={() => setIsConsultationOpen(true)}
+          metaPill="Custom design"
+          metaText="100% satisfaction"
+        />
       </section>
 
       {/* Consultation Modal */}

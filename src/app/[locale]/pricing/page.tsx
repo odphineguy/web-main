@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Check, Sparkles } from "lucide-react";
 import ConsultationForm from "@/components/ConsultationForm";
 import SlidingHighlightGrid from "@/components/SlidingHighlightGrid";
+import { FooterCTA } from "@/components/ui/footer-cta";
 
 interface PricingTier {
   id: string;
@@ -418,27 +419,14 @@ export default function PricingPage() {
 
       {/* Request Quote Section */}
       <section className="bg-gray-100 dark:bg-neutral-900 px-6 py-16">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="max-w-2xl mx-auto text-center"
-        >
-          <div className="rounded-2xl p-10 md:p-16 bg-gradient-to-br from-orange-500 via-orange-500 to-orange-600 shadow-xl shadow-orange-500/25 text-center">
-            <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
-              Need a Custom Solution?
-            </h2>
-            <p className="text-orange-100 max-w-2xl mx-auto mb-8">
-              Every business is unique. Let&apos;s discuss your specific requirements and create a tailored plan.
-            </p>
-            <button
-              onClick={() => setIsConsultationOpen(true)}
-              className="inline-flex items-center gap-2 bg-white text-orange-600 px-8 py-3.5 rounded-full text-[14px] font-medium hover:bg-orange-50 transition-all duration-300 shadow-lg shadow-black/10"
-            >
-              Request a Quote
-            </button>
-          </div>
-        </motion.div>
+        <FooterCTA
+          heading="Need a Custom Solution?"
+          subtext="Every business is unique. Let's discuss your specific requirements and create a tailored plan."
+          buttonText="REQUEST A QUOTE"
+          onButtonClick={() => setIsConsultationOpen(true)}
+          metaPill="Free quote"
+          metaText="Tailored to your needs"
+        />
       </section>
 
       {/* Consultation Form Modal */}

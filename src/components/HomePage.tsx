@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { ScheduleCallButton } from "@/components/ScheduleCallButton";
 import ConsultationForm from "@/components/ConsultationForm";
+import { FooterCTA } from "@/components/ui/footer-cta";
 import { Bot, Users, Zap, Globe, TrendingUp, Heart, Search } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from 'next-intl';
@@ -642,24 +643,14 @@ export default function HomePage() {
 
       {/* Final CTA - Gray background */}
       <section className="bg-gray-100 dark:bg-neutral-900 py-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="rounded-2xl p-10 md:p-16 bg-gradient-to-br from-orange-500 via-orange-500 to-orange-600 shadow-xl shadow-orange-500/25 text-center">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="text-2xl md:text-4xl font-bold text-white mb-6"
-            >
-              {t('CTA.title')}
-            </motion.h2>
-            <ScheduleCallButton
-              type="button"
-              onClick={() => setIsConsultationOpen(true)}
-              className="mx-auto bg-white hover:bg-orange-50 text-orange-600 shadow-lg shadow-black/10 hover:shadow-black/20"
-            />
-          </div>
-        </div>
+        <FooterCTA
+          heading={t('CTA.title')}
+          subtext="Share your goals, timelines, and questions. We'll help you scope the work and map out a clear launch plan."
+          buttonText="SCHEDULE A CALL"
+          onButtonClick={() => setIsConsultationOpen(true)}
+          metaPill="No obligation"
+          metaText="Replies within 1 business day"
+        />
       </section>
       <ConsultationForm
         isOpen={isConsultationOpen}

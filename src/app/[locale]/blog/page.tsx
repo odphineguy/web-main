@@ -30,6 +30,7 @@ import {
   ChevronRight
 } from "lucide-react";
 import BlogCardsGrid from "@/components/BlogCardsGrid";
+import { FooterCTANewsletter } from "@/components/ui/footer-cta";
 import { 
   allBlogPages, 
   blogCategories, 
@@ -307,27 +308,13 @@ export default function BlogPage() {
         </section>
 
         {/* Newsletter CTA */}
-        <section className="mt-20 pb-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="rounded-2xl p-10 md:p-16 bg-gradient-to-br from-orange-500 via-orange-500 to-orange-600 shadow-xl shadow-orange-500/25 text-center">
-              <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
-                Stay Updated
-              </h2>
-              <p className="text-orange-100 max-w-2xl mx-auto mb-8">
-                Subscribe to our newsletter for the latest insights, tutorials, and resources on web development and digital marketing.
-              </p>
-              <div className="relative max-w-lg mx-auto">
-                <input
-                  type="email"
-                  placeholder="my@email.com"
-                  className="w-full pl-6 pr-44 py-4 rounded-full border-0 bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all shadow-lg"
-                />
-                <button className="absolute right-1.5 top-1.5 bottom-1.5 px-6 rounded-full bg-orange-500 text-white text-sm font-medium uppercase hover:bg-orange-600 transition-colors shadow-md">
-                  JOIN NEWSLETTER
-                </button>
-              </div>
-            </div>
-          </div>
+        <section className="mt-20 pb-4 px-6">
+          <FooterCTANewsletter
+            heading="Stay Updated"
+            subtext="Subscribe to our newsletter for the latest insights, tutorials, and resources on web development and digital marketing."
+            inputPlaceholder="my@email.com"
+            buttonText="JOIN NEWSLETTER"
+          />
         </section>
       </div>
     </div>

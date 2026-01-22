@@ -1,18 +1,9 @@
+"use client";
+
 import ContactForm from "@/components/ContactForm";
-import { constructMetadata } from "@/lib/seo";
-import { Metadata } from "next";
 import { Mail, Phone, MapPin } from "lucide-react";
 import Image from "next/image";
-
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params;
-  return constructMetadata({
-    title: "Contact Us — Get Your Free Consultation | Abe Media",
-    description: "Get in touch with Abe Media for bilingual web development, AI chatbot solutions, and custom digital tools for your small business. Free 30-minute strategy call available.",
-    path: "/contact",
-    locale: locale,
-  });
-}
+import { FooterCTANewsletter } from "@/components/ui/footer-cta";
 
 export default function ContactPage() {
   return (
@@ -101,26 +92,12 @@ export default function ContactPage() {
 
       {/* Newsletter Section */}
       <section className="bg-gray-100 dark:bg-neutral-900 px-6 py-20">
-        <div className="max-w-4xl mx-auto">
-          <div className="rounded-2xl p-10 md:p-16 bg-gradient-to-br from-orange-500 via-orange-500 to-orange-600 shadow-xl shadow-orange-500/25 text-center">
-            <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
-              Stay Updated
-            </h2>
-            <p className="text-orange-100 max-w-2xl mx-auto mb-8">
-              Subscribe to our newsletter for the latest insights, tutorials, and resources on web development and digital marketing.
-            </p>
-            <div className="relative max-w-lg mx-auto">
-              <input
-                type="email"
-                placeholder="my@email.com"
-                className="w-full pl-6 pr-44 py-4 rounded-full border-0 bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all shadow-lg"
-              />
-              <button className="absolute right-1.5 top-1.5 bottom-1.5 px-6 rounded-full bg-orange-500 text-white text-sm font-medium uppercase hover:bg-orange-600 transition-colors shadow-md">
-                JOIN NEWSLETTER
-              </button>
-            </div>
-          </div>
-        </div>
+        <FooterCTANewsletter
+          heading="Stay Updated"
+          subtext="Subscribe to our newsletter for the latest insights, tutorials, and resources on web development and digital marketing."
+          inputPlaceholder="my@email.com"
+          buttonText="JOIN NEWSLETTER"
+        />
       </section>
     </div>
   );

@@ -7,6 +7,7 @@ import { ScheduleCallButton } from "@/components/ScheduleCallButton";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, Code, Palette, Smartphone, Globe, Bot, Languages, ArrowRight } from "lucide-react";
 import ConsultationForm from "@/components/ConsultationForm";
+import { FooterCTA } from "@/components/ui/footer-cta";
 
 import { useTranslations } from 'next-intl';
 
@@ -156,20 +157,14 @@ export default function Services() {
 
       {/* Bottom CTA Section */}
       <section className="bg-gray-100 dark:bg-neutral-900 px-6 py-20">
-        <div className="max-w-4xl mx-auto">
-          <div className="rounded-2xl p-10 md:p-16 bg-gradient-to-br from-orange-500 via-orange-500 to-orange-600 shadow-xl shadow-orange-500/25 text-center">
-            <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
-              {t('CTA.title')}
-            </h2>
-            <p className="text-orange-100 max-w-2xl mx-auto mb-8 leading-relaxed">
-              {t('CTA.description')}
-            </p>
-            <ScheduleCallButton
-              onClick={() => setIsConsultationOpen(true)}
-              className="mx-auto bg-white hover:bg-orange-50 text-orange-600 shadow-lg shadow-black/10"
-            />
-          </div>
-        </div>
+        <FooterCTA
+          heading={t('CTA.title')}
+          subtext={t('CTA.description')}
+          buttonText="SCHEDULE A CALL"
+          onButtonClick={() => setIsConsultationOpen(true)}
+          metaPill="No obligation"
+          metaText="Replies within 1 business day"
+        />
       </section>
 
       {/* Consultation Modal */}

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import ConsultationForm from "@/components/ConsultationForm";
+import { FooterCTA } from "@/components/ui/footer-cta";
 import {
   Globe,
   Smartphone,
@@ -406,29 +407,14 @@ export default function BilingualWebDevelopment() {
 
       {/* CTA Section */}
       <section className="bg-gray-100 dark:bg-neutral-900 py-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="rounded-2xl p-10 md:p-16 bg-gradient-to-br from-orange-500 via-orange-500 to-orange-600 shadow-xl shadow-orange-500/25 text-center"
-          >
-            <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
-              Ready to Expand Your Reach?
-            </h2>
-            <p className="text-orange-100 max-w-2xl mx-auto mb-8">
-              Contact us today for a free consultation. We&apos;ll discuss your goals and show you how a bilingual website can grow your business.
-            </p>
-            <Button
-              size="lg"
-              className="text-sm px-10 py-6 bg-white hover:bg-orange-50 text-orange-600 font-medium rounded-full shadow-lg shadow-black/10 transition-all duration-300"
-              onClick={() => setIsConsultationOpen(true)}
-            >
-              Get Your Free Consultation
-            </Button>
-          </motion.div>
-        </div>
+        <FooterCTA
+          heading="Ready to Expand Your Reach?"
+          subtext="Contact us today for a free consultation. We'll discuss your goals and show you how a bilingual website can grow your business."
+          buttonText="GET FREE CONSULTATION"
+          onButtonClick={() => setIsConsultationOpen(true)}
+          metaPill="Free consult"
+          metaText="Grow your business"
+        />
       </section>
 
       {/* Consultation Modal */}

@@ -16,6 +16,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import ConsultationForm from "@/components/ConsultationForm";
+import { FooterCTA } from "@/components/ui/footer-cta";
 
 export default function BilingualSEOPhoenixPage() {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
@@ -320,22 +321,15 @@ export default function BilingualSEOPhoenixPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="px-6 py-20 bg-gradient-to-r from-orange-500 to-orange-600">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-[32px] md:text-[36px] lg:text-[40px] font-medium tracking-[-0.02em] text-white mb-4">
-            Ready to Reach Phoenix&apos;s Bilingual Market?
-          </h2>
-          <p className="text-[14px] md:text-[16px] font-normal leading-[1.5] text-white/90 mb-8">
-            Get a free audit of your bilingual SEO setup and see what opportunities you&apos;re missing.
-          </p>
-          <button
-            onClick={() => setIsConsultationOpen(true)}
-            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-orange-600 text-[14px] font-medium rounded-full shadow-lg hover:shadow-xl hover:bg-gray-50 transition-all duration-300"
-          >
-            Schedule Your Free Consultation
-            <ArrowRight className="w-5 h-5" />
-          </button>
-        </div>
+      <section className="bg-gray-100 dark:bg-neutral-900 py-20 px-6">
+        <FooterCTA
+          heading="Ready to Reach Phoenix's Bilingual Market?"
+          subtext="Get a free audit of your bilingual SEO setup and see what opportunities you're missing."
+          buttonText="SCHEDULE FREE CONSULTATION"
+          onButtonClick={() => setIsConsultationOpen(true)}
+          metaPill="Free audit"
+          metaText="Find missed opportunities"
+        />
       </section>
 
       {/* Consultation Modal */}
