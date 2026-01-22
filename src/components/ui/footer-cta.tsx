@@ -67,7 +67,7 @@ const FooterCTA = React.forwardRef<HTMLElement, FooterCTAProps>(
 
           {/* Inner card */}
           <div
-            className="relative flex flex-col gap-5 p-7 md:p-8 md:flex-row md:justify-between md:items-center md:gap-7 rounded-[17px] border backdrop-blur-[12px]"
+            className="relative flex flex-col gap-5 p-7 md:p-8 md:flex-row md:justify-between md:items-center md:gap-7 rounded-[17px] border backdrop-blur-[12px] min-h-[180px]"
             style={{
               background: "var(--footer-cta-inner-bg)",
               borderColor: "var(--footer-cta-border-color)",
@@ -204,7 +204,7 @@ const FooterCTANewsletter = React.forwardRef<
 
           {/* Inner card */}
           <div
-            className="relative flex flex-col gap-5 p-7 md:p-8 rounded-[17px] border backdrop-blur-[12px] text-center"
+            className="relative flex flex-col gap-5 p-7 md:p-8 rounded-[17px] border backdrop-blur-[12px] text-center min-h-[180px] justify-center"
             style={{
               background: "var(--footer-cta-inner-bg)",
               borderColor: "var(--footer-cta-border-color)",
