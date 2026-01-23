@@ -320,9 +320,11 @@
       },
       "Saguaro": {
         "badge": "LOGÍSTICA Y TRANSPORTE",
+        "forSaleBadge": "DISPONIBLE PARA COMPRA",
         "title": "Saguaro Transport",
         "subtitle": "Gestión completa de operaciones para empresas de transporte y logística",
         "description": "Diseñado para empresas de transporte que necesitan más que hojas de cálculo y software desconectado. Saguaro Transport integra rastreo de flota, despacho, CRM, contabilidad y RH en una plataforma poderosa.",
+        "inquireButton": "Consultar Sobre Esta Plataforma",
         "features": {
           "fleet": {
             "title": "Gestión de Flota",
@@ -343,6 +345,22 @@
           "hr": {
             "title": "Recursos Humanos",
             "description": "Incorporación de conductores, seguimiento de cumplimiento, nómina y gestión de documentos."
+          }
+        }
+      },
+      "DriverApp": {
+        "badge": "APP MÓVIL PARA CONDUCTORES",
+        "title": "App Compañera del Conductor",
+        "description": "Empodera a tus conductores con una app móvil dedicada para gestionar tareas, rastrear ganancias y mantenerse conectados en la carretera.",
+        "screens": {
+          "login": {
+            "title": "Inicio de Sesión"
+          },
+          "tasks": {
+            "title": "Gestión de Tareas"
+          },
+          "earnings": {
+            "title": "Panel de Ganancias"
           }
         }
       },

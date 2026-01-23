@@ -2,7 +2,7 @@
 
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { X, Minimize2, Send } from 'lucide-react';
+import { X, Minimize2 } from 'lucide-react';
 import ChatWindow from './chatbot/ChatWindow';
 import ConsultationForm from './ConsultationForm';
 import { Message } from '../lib/types';
@@ -208,12 +208,12 @@ const FloatingChatbot: React.FC = () => {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 overflow-hidden border-2 border-orange-500"
+          className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full shadow-[0_8px_30px_rgba(249,115,22,0.35),0_0_0_3px_rgba(249,115,22,0.1)] hover:shadow-[0_12px_40px_rgba(249,115,22,0.45),0_0_0_4px_rgba(249,115,22,0.15)] transition-all duration-300 hover:scale-110 overflow-hidden border-2 border-orange-500"
           aria-label="Open chat with Ashlee"
         >
-          <Image 
-            src="/images/ashlee-profile.png" 
-            alt="Chat with Ashlee" 
+          <Image
+            src="/images/ashlee-profile.png"
+            alt="Chat with Ashlee"
             width={64}
             height={64}
             className="w-full h-full object-cover"
@@ -223,7 +223,7 @@ const FloatingChatbot: React.FC = () => {
 
       {/* Chat Widget */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-[360px] h-[580px] bg-white dark:bg-neutral-950 border border-gray-200 dark:border-neutral-800 rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+        <div className="fixed bottom-6 right-6 z-50 w-[360px] h-[580px] bg-white dark:bg-neutral-950 border border-orange-200/50 dark:border-neutral-800 rounded-2xl shadow-[0_25px_60px_-12px_rgba(249,115,22,0.25),0_0_0_1px_rgba(249,115,22,0.05)] dark:shadow-[0_25px_60px_-12px_rgba(249,115,22,0.15)] flex flex-col overflow-hidden">
           {/* Header */}
           <div className="bg-gradient-to-r from-orange-500 to-orange-600 dark:from-orange-600 dark:to-slate-950 text-white px-4 py-3">
             <div className="flex items-center justify-between">
@@ -263,14 +263,14 @@ const FloatingChatbot: React.FC = () => {
 
           {/* Welcome Screen or Chat Window */}
           {showWelcome ? (
-            <div className="flex-1 flex flex-col px-6 py-6 bg-[#fffdfb] dark:bg-neutral-900">
+            <div className="flex-1 flex flex-col px-6 py-6 bg-gradient-to-b from-white via-orange-50/30 to-orange-50/50 dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-900">
               {/* Top Section - Avatar and Welcome Text */}
               <div className="flex flex-col items-center pt-4">
                 {/* Avatar */}
-                <div className="w-20 h-20 rounded-full overflow-hidden ring-4 ring-orange-100 dark:ring-orange-900/30 shadow-lg mb-6">
-                  <Image 
-                    src="/images/ashlee-profile.png" 
-                    alt="Ashlee" 
+                <div className="w-20 h-20 rounded-full overflow-hidden ring-4 ring-orange-200 dark:ring-orange-900/30 shadow-[0_0_25px_rgba(249,115,22,0.3),0_8px_20px_rgba(249,115,22,0.15)] dark:shadow-[0_0_25px_rgba(249,115,22,0.2)] mb-6">
+                  <Image
+                    src="/images/ashlee-profile.png"
+                    alt="Ashlee"
                     width={80}
                     height={80}
                     className="w-full h-full object-cover"
@@ -293,32 +293,32 @@ const FloatingChatbot: React.FC = () => {
               <div className="grid grid-cols-2 gap-3 w-full mb-4">
                 <button
                   onClick={() => handleQuickAction('faq')}
-                  className="px-4 py-3 rounded-full border border-slate-900/10 dark:border-orange-500/25 bg-white/55 dark:bg-white/5 text-slate-800 dark:text-orange-100 text-sm font-medium hover:bg-white/70 hover:border-orange-500/30 dark:hover:border-orange-400 dark:hover:text-orange-300 dark:hover:bg-white/10 transition-all shadow-[0_10px_25px_rgba(2,6,23,0.08)] hover:shadow-[0_14px_30px_rgba(2,6,23,0.12)] dark:shadow-[0_18px_45px_rgba(249,115,22,0.15)]"
+                  className="px-4 py-3 rounded-full border border-orange-200/60 dark:border-orange-500/25 bg-white/80 dark:bg-white/5 text-slate-800 dark:text-orange-100 text-sm font-medium hover:bg-white hover:border-orange-300 dark:hover:border-orange-400 dark:hover:text-orange-300 dark:hover:bg-white/10 transition-all shadow-[0_4px_15px_rgba(249,115,22,0.12),0_1px_3px_rgba(249,115,22,0.08)] hover:shadow-[0_8px_25px_rgba(249,115,22,0.2),0_2px_6px_rgba(249,115,22,0.1)] dark:shadow-[0_18px_45px_rgba(249,115,22,0.15)]"
                 >
                   FAQ
                 </button>
                 <button
                   onClick={() => handleQuickAction('consultation')}
-                  className="px-4 py-3 rounded-full border border-slate-900/10 dark:border-orange-500/25 bg-white/55 dark:bg-white/5 text-slate-800 dark:text-orange-100 text-sm font-medium hover:bg-white/70 hover:border-orange-500/30 dark:hover:border-orange-400 dark:hover:text-orange-300 dark:hover:bg-white/10 transition-all shadow-[0_10px_25px_rgba(2,6,23,0.08)] hover:shadow-[0_14px_30px_rgba(2,6,23,0.12)] dark:shadow-[0_18px_45px_rgba(249,115,22,0.15)]"
+                  className="px-4 py-3 rounded-full border border-orange-200/60 dark:border-orange-500/25 bg-white/80 dark:bg-white/5 text-slate-800 dark:text-orange-100 text-sm font-medium hover:bg-white hover:border-orange-300 dark:hover:border-orange-400 dark:hover:text-orange-300 dark:hover:bg-white/10 transition-all shadow-[0_4px_15px_rgba(249,115,22,0.12),0_1px_3px_rgba(249,115,22,0.08)] hover:shadow-[0_8px_25px_rgba(249,115,22,0.2),0_2px_6px_rgba(249,115,22,0.1)] dark:shadow-[0_18px_45px_rgba(249,115,22,0.15)]"
                 >
                   Consultation
                 </button>
                 <button
                   onClick={() => handleQuickAction('services')}
-                  className="px-4 py-3 rounded-full border border-slate-900/10 dark:border-orange-500/25 bg-white/55 dark:bg-white/5 text-slate-800 dark:text-orange-100 text-sm font-medium hover:bg-white/70 hover:border-orange-500/30 dark:hover:border-orange-400 dark:hover:text-orange-300 dark:hover:bg-white/10 transition-all shadow-[0_10px_25px_rgba(2,6,23,0.08)] hover:shadow-[0_14px_30px_rgba(2,6,23,0.12)] dark:shadow-[0_18px_45px_rgba(249,115,22,0.15)]"
+                  className="px-4 py-3 rounded-full border border-orange-200/60 dark:border-orange-500/25 bg-white/80 dark:bg-white/5 text-slate-800 dark:text-orange-100 text-sm font-medium hover:bg-white hover:border-orange-300 dark:hover:border-orange-400 dark:hover:text-orange-300 dark:hover:bg-white/10 transition-all shadow-[0_4px_15px_rgba(249,115,22,0.12),0_1px_3px_rgba(249,115,22,0.08)] hover:shadow-[0_8px_25px_rgba(249,115,22,0.2),0_2px_6px_rgba(249,115,22,0.1)] dark:shadow-[0_18px_45px_rgba(249,115,22,0.15)]"
                 >
                   Services
                 </button>
                 <button
                   onClick={() => handleQuickAction('pricing')}
-                  className="px-4 py-3 rounded-full border border-slate-900/10 dark:border-orange-500/25 bg-white/55 dark:bg-white/5 text-slate-800 dark:text-orange-100 text-sm font-medium hover:bg-white/70 hover:border-orange-500/30 dark:hover:border-orange-400 dark:hover:text-orange-300 dark:hover:bg-white/10 transition-all shadow-[0_10px_25px_rgba(2,6,23,0.08)] hover:shadow-[0_14px_30px_rgba(2,6,23,0.12)] dark:shadow-[0_18px_45px_rgba(249,115,22,0.15)]"
+                  className="px-4 py-3 rounded-full border border-orange-200/60 dark:border-orange-500/25 bg-white/80 dark:bg-white/5 text-slate-800 dark:text-orange-100 text-sm font-medium hover:bg-white hover:border-orange-300 dark:hover:border-orange-400 dark:hover:text-orange-300 dark:hover:bg-white/10 transition-all shadow-[0_4px_15px_rgba(249,115,22,0.12),0_1px_3px_rgba(249,115,22,0.08)] hover:shadow-[0_8px_25px_rgba(249,115,22,0.2),0_2px_6px_rgba(249,115,22,0.1)] dark:shadow-[0_18px_45px_rgba(249,115,22,0.15)]"
                 >
                   Pricing
                 </button>
               </div>
 
               {/* Floating Input Box */}
-              <div className="flex items-center gap-2 bg-white/70 dark:bg-white/5 border border-slate-900/10 dark:border-orange-500/25 rounded-2xl px-4 py-2 shadow-[0_18px_45px_rgba(2,6,23,0.10)] dark:shadow-[0_18px_45px_rgba(249,115,22,0.12)] transition-shadow">
+              <div className="flex items-center gap-2 bg-white/90 dark:bg-white/5 border border-orange-200/50 dark:border-orange-500/25 rounded-2xl px-4 py-2 shadow-[0_4px_20px_rgba(249,115,22,0.1),0_0_0_1px_rgba(249,115,22,0.03)] dark:shadow-[0_18px_45px_rgba(249,115,22,0.12)] transition-all focus-within:shadow-[0_8px_30px_rgba(249,115,22,0.15),0_0_0_2px_rgba(249,115,22,0.1)] dark:focus-within:shadow-[0_18px_45px_rgba(249,115,22,0.2)]">
                 <input
                   ref={inputRef}
                   type="text"
@@ -332,26 +332,26 @@ const FloatingChatbot: React.FC = () => {
                 <button
                   onClick={() => handleSendMessage(input)}
                   disabled={isLoading || !input.trim()}
-                  className="px-3.5 py-2 rounded-xl bg-white dark:bg-gradient-to-b dark:from-orange-500 dark:to-orange-700 text-slate-900 dark:text-white border border-slate-900/10 dark:border-transparent shadow-[0_18px_40px_rgba(2,6,23,0.12)] hover:shadow-[0_24px_55px_rgba(2,6,23,0.16)] dark:shadow-[0_10px_25px_rgba(249,115,22,0.25)] dark:hover:brightness-110 disabled:opacity-50 transition-all"
+                  className="px-3.5 py-2 rounded-xl bg-gradient-to-b from-orange-400 to-orange-500 dark:from-orange-500 dark:to-orange-700 text-white border border-orange-400/50 dark:border-transparent shadow-[0_4px_15px_rgba(249,115,22,0.3),0_1px_2px_rgba(249,115,22,0.2)] hover:shadow-[0_8px_25px_rgba(249,115,22,0.4),0_2px_4px_rgba(249,115,22,0.25)] dark:shadow-[0_10px_25px_rgba(249,115,22,0.25)] hover:brightness-105 dark:hover:brightness-110 disabled:opacity-50 transition-all"
                   aria-label="Send message"
                 >
                   <span className="inline-flex items-center gap-2 text-sm font-semibold">
                     Send
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-orange-500 group-hover:translate-x-0.5 transition-transform"></span>
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-white/80 group-hover:translate-x-0.5 transition-transform"></span>
                   </span>
                 </button>
               </div>
             </div>
           ) : (
-            <div className="flex-1 overflow-hidden flex flex-col min-h-0 bg-[#fffdfb] dark:bg-neutral-900">
+            <div className="flex-1 overflow-hidden flex flex-col min-h-0 bg-gradient-to-b from-white to-orange-50/30 dark:from-neutral-900 dark:to-neutral-900">
               <ChatWindow messages={messages} isLoading={isLoading} />
             </div>
           )}
 
           {/* Chat Input - Only shown when not in welcome state */}
           {!showWelcome && (
-            <div className="p-3 bg-[#fffdfb] dark:bg-neutral-900">
-              <div className="flex items-center gap-2 bg-white/70 dark:bg-white/5 border border-slate-900/10 dark:border-orange-500/25 rounded-2xl px-4 py-2 shadow-[0_18px_45px_rgba(2,6,23,0.10)] dark:shadow-[0_18px_45px_rgba(249,115,22,0.12)] transition-shadow">
+            <div className="p-3 bg-gradient-to-t from-orange-50/50 to-white dark:from-neutral-900 dark:to-neutral-900">
+              <div className="flex items-center gap-2 bg-white/90 dark:bg-white/5 border border-orange-200/50 dark:border-orange-500/25 rounded-2xl px-4 py-2 shadow-[0_4px_20px_rgba(249,115,22,0.1),0_0_0_1px_rgba(249,115,22,0.03)] dark:shadow-[0_18px_45px_rgba(249,115,22,0.12)] transition-all focus-within:shadow-[0_8px_30px_rgba(249,115,22,0.15),0_0_0_2px_rgba(249,115,22,0.1)] dark:focus-within:shadow-[0_18px_45px_rgba(249,115,22,0.2)]">
                 <input
                   ref={inputRef}
                   type="text"
@@ -365,12 +365,12 @@ const FloatingChatbot: React.FC = () => {
                 <button
                   onClick={() => handleSendMessage(input)}
                   disabled={isLoading || !input.trim()}
-                  className="px-3.5 py-2 rounded-xl bg-white dark:bg-gradient-to-b dark:from-orange-500 dark:to-orange-700 text-slate-900 dark:text-white border border-slate-900/10 dark:border-transparent shadow-[0_18px_40px_rgba(2,6,23,0.12)] hover:shadow-[0_24px_55px_rgba(2,6,23,0.16)] dark:shadow-[0_10px_25px_rgba(249,115,22,0.25)] dark:hover:brightness-110 disabled:opacity-50 transition-all"
+                  className="px-3.5 py-2 rounded-xl bg-gradient-to-b from-orange-400 to-orange-500 dark:from-orange-500 dark:to-orange-700 text-white border border-orange-400/50 dark:border-transparent shadow-[0_4px_15px_rgba(249,115,22,0.3),0_1px_2px_rgba(249,115,22,0.2)] hover:shadow-[0_8px_25px_rgba(249,115,22,0.4),0_2px_4px_rgba(249,115,22,0.25)] dark:shadow-[0_10px_25px_rgba(249,115,22,0.25)] hover:brightness-105 dark:hover:brightness-110 disabled:opacity-50 transition-all"
                   aria-label="Send message"
                 >
                   <span className="inline-flex items-center gap-2 text-sm font-semibold">
                     Send
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-orange-500 group-hover:translate-x-0.5 transition-transform"></span>
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-white/80 group-hover:translate-x-0.5 transition-transform"></span>
                   </span>
                 </button>
               </div>
@@ -378,7 +378,7 @@ const FloatingChatbot: React.FC = () => {
           )}
 
           {/* Powered by abemedia */}
-          <div className="text-center py-2 bg-[#fffdfb] dark:bg-neutral-900">
+          <div className="text-center py-2 bg-gradient-to-t from-orange-50/30 to-white dark:from-neutral-900 dark:to-neutral-900">
             <p className="text-[10px] text-gray-400" style={{ fontFamily: "'Montserrat', sans-serif" }}>
               Powered by{' '}
               <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, color: '#F97316' }}>abe</span>

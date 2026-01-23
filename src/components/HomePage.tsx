@@ -7,7 +7,8 @@ import { motion } from "framer-motion";
 import { ScheduleCallButton } from "@/components/ScheduleCallButton";
 import ConsultationForm from "@/components/ConsultationForm";
 import { FooterCTA } from "@/components/ui/footer-cta";
-import { Bot, Users, Zap, Globe, TrendingUp, Heart, Search } from "lucide-react";
+import { Bot, Users, Zap, Globe, TrendingUp, Heart, Search, X } from "lucide-react";
+import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useTranslations } from 'next-intl';
 
@@ -54,6 +55,18 @@ export default function HomePage() {
   const p = useTranslations('Platforms');
   const [avatarErrors, setAvatarErrors] = useState<Set<number>>(new Set());
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+  const [lightboxTitle, setLightboxTitle] = useState<string>("");
+
+  const openLightbox = (image: string, title: string) => {
+    setLightboxImage(image);
+    setLightboxTitle(title);
+  };
+
+  const closeLightbox = () => {
+    setLightboxImage(null);
+    setLightboxTitle("");
+  };
 
   const getInitials = (name: string) => {
     return name
@@ -389,15 +402,24 @@ export default function HomePage() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-orange-500/10">
+              <div
+                className="relative rounded-2xl overflow-hidden shadow-2xl shadow-orange-500/10 cursor-pointer group"
+                onClick={() => openLightbox("/images/assets-platforms/laptop.png", p('Preview.subtitle'))}
+              >
                 <Image
                   src="/images/assets-platforms/laptop.png"
                   alt="Saguaro Transport Platform"
                   width={800}
                   height={500}
-                  className="w-full h-auto"
+                  className="w-full h-auto transition-transform duration-300 group-hover:scale-[1.02]"
                   loading="lazy"
                 />
+                {/* Hover overlay */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
+                  <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 dark:bg-black/80 text-gray-900 dark:text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg">
+                    Click to enlarge
+                  </span>
+                </div>
               </div>
             </motion.div>
 
@@ -666,6 +688,48 @@ export default function HomePage() {
         isOpen={isConsultationOpen}
         onClose={() => setIsConsultationOpen(false)}
       />
+
+      {/* Image Lightbox Modal */}
+      <AnimatePresence>
+        {lightboxImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+            onClick={closeLightbox}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="relative max-w-5xl w-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={closeLightbox}
+                className="absolute -top-12 right-0 p-2 text-white/80 hover:text-white transition-colors"
+                aria-label="Close"
+              >
+                <X className="w-8 h-8" />
+              </button>
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src={lightboxImage}
+                  alt={lightboxTitle}
+                  width={1920}
+                  height={1080}
+                  className="w-full h-auto"
+                />
+              </div>
+              <p className="text-center text-white/80 mt-4 text-lg">
+                {lightboxTitle}
+              </p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

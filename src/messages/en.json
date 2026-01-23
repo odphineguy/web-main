@@ -320,9 +320,11 @@
       },
       "Saguaro": {
         "badge": "LOGISTICS & TRANSPORTATION",
+        "forSaleBadge": "AVAILABLE FOR PURCHASE",
         "title": "Saguaro Transport",
         "subtitle": "Complete operations management for trucking and logistics companies",
         "description": "Built for transportation businesses that need more than spreadsheets and disconnected software. Saguaro Transport brings fleet tracking, dispatch, CRM, accounting, and HR into one powerful platform.",
+        "inquireButton": "Inquire About This Platform",
         "features": {
           "fleet": {
             "title": "Fleet Management",
@@ -343,6 +345,22 @@
           "hr": {
             "title": "Human Resources",
             "description": "Driver onboarding, compliance tracking, payroll, and document management."
+          }
+        }
+      },
+      "DriverApp": {
+        "badge": "DRIVER MOBILE APP",
+        "title": "Driver Companion App",
+        "description": "Empower your drivers with a dedicated mobile app for managing tasks, tracking earnings, and staying connected on the road.",
+        "screens": {
+          "login": {
+            "title": "Driver Login"
+          },
+          "tasks": {
+            "title": "Task Management"
+          },
+          "earnings": {
+            "title": "Earnings Dashboard"
           }
         }
       },

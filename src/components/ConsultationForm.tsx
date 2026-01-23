@@ -8,9 +8,10 @@ import TurnstileWidget from "@/components/TurnstileWidget";
 interface ConsultationFormProps {
   isOpen: boolean;
   onClose: () => void;
+  preselectedService?: string;
 }
 
-export default function ConsultationForm({ isOpen, onClose }: ConsultationFormProps) {
+export default function ConsultationForm({ isOpen, onClose, preselectedService }: ConsultationFormProps) {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
@@ -149,9 +150,11 @@ export default function ConsultationForm({ isOpen, onClose }: ConsultationFormPr
               <select
                 id="service"
                 name="service"
+                defaultValue={preselectedService || ""}
                 className="rounded-full border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-gray-900 dark:text-white shadow-sm"
               >
                 <option value="">Select a service</option>
+                <option value="platform-inquiry">Platform Inquiry</option>
                 <option value="ai-chatbot">AI Chatbot</option>
                 <option value="web-development">Web Development</option>
                 <option value="mobile-app">Mobile App Development</option>
