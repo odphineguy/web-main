@@ -142,7 +142,7 @@ export default function PlatformsPage() {
               <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-orange-500">
                 {t("Saguaro.badge")}
               </span>
-              <span className="inline-flex items-center rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-emerald-600 dark:text-emerald-400">
+              <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-orange-500">
                 {t("Saguaro.forSaleBadge")}
               </span>
             </div>
@@ -161,7 +161,7 @@ export default function PlatformsPage() {
                 setInquiryService("platform-inquiry");
                 setIsConsultationOpen(true);
               }}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-semibold rounded-full transition-all shadow-lg hover:shadow-xl hover:shadow-emerald-500/25"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full transition-all shadow-lg hover:shadow-xl hover:shadow-orange-500/25"
             >
               {t("Saguaro.inquireButton")}
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -401,7 +401,7 @@ export default function PlatformsPage() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="relative max-w-5xl w-full"
+              className="relative flex flex-col items-center"
               onClick={(e) => e.stopPropagation()}
             >
               <button
@@ -411,13 +411,13 @@ export default function PlatformsPage() {
               >
                 <X className="w-8 h-8" />
               </button>
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl max-h-[80vh]">
                 <Image
                   src={lightboxImage}
                   alt={lightboxTitle}
                   width={1920}
                   height={1080}
-                  className="w-full h-auto"
+                  className="max-h-[80vh] w-auto h-auto object-contain"
                 />
               </div>
               <p className="text-center text-white/80 mt-4 text-lg">
