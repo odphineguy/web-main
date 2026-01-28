@@ -50,11 +50,11 @@ const portfolioProjects: PortfolioProject[] = [
     category: "Food App",
   },
   {
-    id: "saguaro-transport",
-    name: "Saguaro Transport",
-    description: "Transportation services website",
-    siteUrl: "https://saguaro-transport.vercel.app/",
-    category: "Transportation",
+    id: "mealsaver-web",
+    name: "Meal Saver",
+    description: "Food waste reduction web application",
+    siteUrl: "",
+    category: "Web App",
   },
   {
     id: "dental",
@@ -115,12 +115,18 @@ export default function PortfolioPage() {
               >
                 <div className="relative overflow-hidden rounded-lg border border-gray-200 dark:border-neutral-800 hover:border-gray-300 dark:hover:border-neutral-600 transition-all duration-300">
                   <div className="aspect-[16/10] relative bg-gray-100 dark:bg-neutral-900">
-                    <iframe
-                      src={project.siteUrl}
-                      className="absolute inset-0 w-[200%] h-[200%] origin-top-left scale-50 pointer-events-none"
-                      title={`${project.name} preview`}
-                      loading="lazy"
-                    />
+                    {project.siteUrl ? (
+                      <iframe
+                        src={project.siteUrl}
+                        className="absolute inset-0 w-[200%] h-[200%] origin-top-left scale-50 pointer-events-none"
+                        title={`${project.name} preview`}
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center text-gray-400 dark:text-neutral-600">
+                        <span className="text-lg">Coming Soon</span>
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="mt-4 text-center">
