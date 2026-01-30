@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
+import { getPostHogClient } from '@/lib/posthog-server';
 
 // Lazy initialization - only create Stripe instance when needed (at runtime, not build time)
 function getStripe() {
@@ -128,9 +129,35 @@ export async function POST(request: NextRequest) {
       },
     });
 
+    // Track server-side checkout event with PostHog
+    const posthog = getPostHogClient();
+    posthog.capture({
+      distinctId: session.id,
+      event: 'checkout_completed',
+      properties: {
+        plan_id: planId,
+        plan_name: plan.name,
+        plan_mode: plan.mode,
+        session_id: session.id,
+        source: 'api',
+      }
+    });
+
     return NextResponse.json({ url: session.url });
   } catch (error) {
     console.error('Stripe checkout error:', error);
+
+    // Track checkout error with PostHog
+    const posthog = getPostHogClient();
+    posthog.capture({
+      distinctId: 'anonymous',
+      event: 'checkout_error',
+      properties: {
+        error_message: error instanceof Error ? error.message : 'Unknown error',
+        source: 'api',
+      }
+    });
+
     return NextResponse.json(
       { error: 'Failed to create checkout session' },
       { status: 500 }

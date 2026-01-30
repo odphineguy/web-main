@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X, Loader2, ExternalLink } from "lucide-react";
+import posthog from "posthog-js";
 
 interface PortfolioPreviewModalProps {
   isOpen: boolean;
@@ -18,6 +19,16 @@ export default function PortfolioPreviewModal({
 }: PortfolioPreviewModalProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+
+  // Track portfolio preview opened
+  useEffect(() => {
+    if (isOpen) {
+      posthog.capture('portfolio_preview_opened', {
+        project_name: projectName,
+        site_url: siteUrl,
+      });
+    }
+  }, [isOpen, projectName, siteUrl]);
 
   if (!isOpen) return null;
 

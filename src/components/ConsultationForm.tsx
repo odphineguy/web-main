@@ -4,6 +4,7 @@ import { useState, type FormEvent } from "react";
 import { X } from "lucide-react";
 import Image from "next/image";
 import TurnstileWidget from "@/components/TurnstileWidget";
+import posthog from "posthog-js";
 
 interface ConsultationFormProps {
   isOpen: boolean;
@@ -49,6 +50,15 @@ export default function ConsultationForm({ isOpen, onClose, preselectedService }
       setErrorMessage(null);
       form.reset();
       setTurnstileToken(null);
+
+      // Track successful consultation form submission
+      const payloadData = payload as Record<string, unknown>;
+      posthog.capture('consultation_form_submitted', {
+        service: (payloadData.service as string) || 'not_specified',
+        has_company: !!payloadData.company,
+        has_phone: !!payloadData.phone,
+      });
+
       // Close modal after 2 seconds on success
       setTimeout(() => {
         onClose();
@@ -58,6 +68,11 @@ export default function ConsultationForm({ isOpen, onClose, preselectedService }
       setStatus("error");
       const message = err instanceof Error ? err.message : String(err);
       setErrorMessage(message);
+
+      // Track consultation form error
+      posthog.capture('consultation_form_error', {
+        error_message: message,
+      });
     }
   }
 

@@ -7,6 +7,7 @@ import { Check, Sparkles } from "lucide-react";
 import ConsultationForm from "@/components/ConsultationForm";
 import SlidingHighlightGrid from "@/components/SlidingHighlightGrid";
 import { FooterCTA } from "@/components/ui/footer-cta";
+import posthog from "posthog-js";
 
 interface PricingTier {
   id: string;
@@ -168,6 +169,15 @@ export default function PricingPage() {
 
   const handleSelectPlan = async (tier: PricingTier) => {
     setLoadingPlan(tier.id);
+
+    // Track checkout initiated event
+    posthog.capture('checkout_initiated', {
+      plan_id: tier.id,
+      plan_name: tier.name,
+      plan_price: tier.price,
+      is_monthly: tier.isMonthly || false,
+      is_popular: tier.popular || false,
+    });
 
     try {
       const response = await fetch("/api/checkout", {
