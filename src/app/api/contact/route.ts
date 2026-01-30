@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { ConvexHttpClient } from "convex/browser";
 import { api } from "../../../../convex/_generated/api";
-import { getPostHogClient } from "@/lib/posthog-server";
 
 // Helper function to verify Turnstile token
 async function verifyTurnstileToken(token: string) {
@@ -96,17 +95,6 @@ export async function POST(req: NextRequest) {
       console.error("Convex save error:", convexError);
       // Don't fail the request if Convex save fails - email was already sent
     }
-
-    // 5. Track server-side event with PostHog
-    const posthog = getPostHogClient();
-    posthog.capture({
-      distinctId: email,
-      event: 'contact_submission_saved',
-      properties: {
-        subject: subject || 'General Inquiry',
-        source: 'api',
-      }
-    });
 
     return NextResponse.json({ ok: true, data });
   } catch (error) {

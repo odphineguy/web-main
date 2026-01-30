@@ -2,7 +2,6 @@
 
 import { useState, type FormEvent } from "react";
 import TurnstileWidget from "@/components/TurnstileWidget";
-import posthog from "posthog-js";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -49,11 +48,6 @@ export default function ContactForm() {
       setErrorMessage(null);
       form.reset();
 
-      // Track successful contact form submission
-      posthog.capture('contact_form_submitted', {
-        subject: (payload as Record<string, unknown>).subject as string,
-      });
-
       // Reset status after 5 seconds
       setTimeout(() => {
         resetForm();
@@ -62,11 +56,6 @@ export default function ContactForm() {
       setStatus("error");
       const message = err instanceof Error ? err.message : String(err);
       setErrorMessage(message);
-
-      // Track contact form error
-      posthog.capture('contact_form_error', {
-        error_message: message,
-      });
     }
   }
 

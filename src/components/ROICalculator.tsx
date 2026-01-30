@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Calculator, Mail, ArrowRight } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
-import posthog from "posthog-js";
 
 // Hispanic population percentages by city (based on US Census data)
 const cityData: Record<string, { hispanicPercent: number; displayName: string }> = {
@@ -126,17 +125,6 @@ export default function ROICalculator() {
       cityName: cityInfo.displayName || city,
     });
 
-    // Track ROI calculator submitted
-    posthog.capture('roi_calculator_submitted', {
-      industry,
-      city: cityInfo.displayName || city,
-      customers_per_month: customers,
-      revenue_per_customer: revenue,
-      potential_new_customers: Math.round(potentialNewCustomers * 10) / 10,
-      monthly_revenue_increase: monthlyRevenueIncrease,
-      yearly_revenue_increase: yearlyRevenueIncrease,
-    });
-
     setCurrentStep("lead-capture");
   };
 
@@ -152,22 +140,6 @@ export default function ROICalculator() {
 
       // You can integrate with your existing contact form API here
       // await fetch('/api/leads', { ... })
-
-      // Track ROI lead captured
-      posthog.capture('roi_lead_captured', {
-        has_name: !!name,
-        has_email: !!email,
-        has_phone: !!phone,
-      });
-
-      // Identify user with their email
-      if (email) {
-        posthog.identify(email, {
-          name: name || undefined,
-          phone: phone || undefined,
-          source: 'roi_calculator',
-        });
-      }
 
       setLeadCaptured(true);
       setCurrentStep("results");

@@ -10,7 +10,6 @@ import { sendMessageToGemini, INITIAL_MESSAGE } from '../lib/geminiService';
 import { useMutation } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 import { Id } from '../../convex/_generated/dataModel';
-import posthog from 'posthog-js';
 
 // Quick action button types
 type QuickAction = 'faq' | 'consultation' | 'services' | 'pricing';
@@ -65,12 +64,6 @@ const FloatingChatbot: React.FC = () => {
 
   const handleSendMessage = useCallback(async (text: string, image?: { data: string; mimeType: string }) => {
     if (!text.trim()) return;
-
-    // Track chatbot message sent
-    posthog.capture('chatbot_message_sent', {
-      message_length: text.length,
-      has_image: !!image,
-    });
 
     setShowWelcome(false);
     const userMessage: Message = { role: 'user', text, image };
@@ -169,11 +162,6 @@ const FloatingChatbot: React.FC = () => {
   }, [initializeConversation, addMessage]);
 
   const handleQuickAction = (action: QuickAction) => {
-    // Track quick action click
-    posthog.capture('chatbot_quick_action_clicked', {
-      action_type: action,
-    });
-
     setIsOpen(false); // Close the chat widget
 
     switch (action) {
@@ -219,10 +207,7 @@ const FloatingChatbot: React.FC = () => {
       {/* Floating Chat Button */}
       {!isOpen && (
         <button
-          onClick={() => {
-            setIsOpen(true);
-            posthog.capture('chatbot_opened');
-          }}
+          onClick={() => setIsOpen(true)}
           className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full shadow-[0_8px_30px_rgba(249,115,22,0.35),0_0_0_3px_rgba(249,115,22,0.1)] hover:shadow-[0_12px_40px_rgba(249,115,22,0.45),0_0_0_4px_rgba(249,115,22,0.15)] transition-all duration-300 hover:scale-110 overflow-hidden border-2 border-orange-500"
           aria-label="Open chat with Ashlee"
         >
