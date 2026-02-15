@@ -334,17 +334,9 @@
             "title": "Relaciones con Clientes",
             "description": "Administra relaciones con transportistas, rastrea cargas y maneja comunicaciones con clientes."
           },
-          "admin": {
-            "title": "Panel de Administración",
-            "description": "Vista panorámica de toda tu operación con información accionable."
-          },
           "accounting": {
             "title": "Contabilidad",
             "description": "Facturación, seguimiento de gastos y reportes financieros diseñados para transporte."
-          },
-          "hr": {
-            "title": "Recursos Humanos",
-            "description": "Incorporación de conductores, seguimiento de cumplimiento, nómina y gestión de documentos."
           }
         }
       },

@@ -334,17 +334,9 @@
             "title": "Customer Relations",
             "description": "Manage shipper relationships, track loads, and handle customer communications."
           },
-          "admin": {
-            "title": "Admin Dashboard",
-            "description": "Bird's-eye view of your entire operation with actionable insights."
-          },
           "accounting": {
             "title": "Accounting",
             "description": "Invoicing, expense tracking, and financial reporting built for trucking."
-          },
-          "hr": {
-            "title": "Human Resources",
-            "description": "Driver onboarding, compliance tracking, payroll, and document management."
           }
         }
       },

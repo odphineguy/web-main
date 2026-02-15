@@ -18,16 +18,8 @@ const saguaroFeatures = [
     image: "/images/assets-platforms/crm.png",
   },
   {
-    key: "admin",
-    image: "/images/assets-platforms/admin.png",
-  },
-  {
     key: "accounting",
     image: "/images/assets-platforms/accounting.png",
-  },
-  {
-    key: "hr",
-    image: "/images/assets-platforms/human-resources.png",
   },
 ];
 
