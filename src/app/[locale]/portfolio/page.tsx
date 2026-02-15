@@ -15,6 +15,20 @@ interface PortfolioProject {
 
 const portfolioProjects: PortfolioProject[] = [
   {
+    id: "dental",
+    name: "Dental Office",
+    description: "Dental practice website",
+    siteUrl: "https://odphineguy.github.io/dental/",
+    category: "Healthcare",
+  },
+  {
+    id: "phoenix-balloon-decor",
+    name: "Phoenix Balloon Decor",
+    description: "Balloon decoration services",
+    siteUrl: "https://phx-balloon-decor.vercel.app/",
+    category: "Events",
+  },
+  {
     id: "gor-jess",
     name: "Gor-Jess Grazing",
     description: "Luxury grazing boards and catering",
@@ -55,20 +69,6 @@ const portfolioProjects: PortfolioProject[] = [
     description: "Food waste reduction web application",
     siteUrl: "",
     category: "Web App",
-  },
-  {
-    id: "dental",
-    name: "Dental Office",
-    description: "Dental practice website",
-    siteUrl: "https://odphineguy.github.io/dental/",
-    category: "Healthcare",
-  },
-  {
-    id: "phoenix-balloon-decor",
-    name: "Phoenix Balloon Decor",
-    description: "Balloon decoration services",
-    siteUrl: "https://phx-balloon-decor.vercel.app/",
-    category: "Events",
   },
   {
     id: "paisanos",

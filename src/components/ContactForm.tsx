@@ -59,12 +59,12 @@ export default function ContactForm() {
     }
   }
 
-  const inputStyles = "w-full rounded-lg border border-neutral-700 bg-neutral-800/50 px-4 py-3 text-white placeholder-neutral-500 outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all";
+  const inputStyles = "w-full rounded-lg border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-800/50 px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-neutral-500 outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all";
 
   return (
     <form className="grid gap-5" onSubmit={onSubmit}>
       <div className="grid gap-2">
-        <label htmlFor="name" className="text-sm text-white font-medium">Name</label>
+        <label htmlFor="name" className="text-sm text-gray-700 dark:text-white font-medium">Name</label>
         <input 
           id="name" 
           name="name" 
@@ -75,7 +75,7 @@ export default function ContactForm() {
         />
       </div>
       <div className="grid gap-2">
-        <label htmlFor="email" className="text-sm text-white font-medium">Email Address</label>
+        <label htmlFor="email" className="text-sm text-gray-700 dark:text-white font-medium">Email Address</label>
         <input 
           id="email" 
           name="email" 
@@ -86,7 +86,7 @@ export default function ContactForm() {
         />
       </div>
       <div className="grid gap-2">
-        <label htmlFor="subject" className="text-sm text-white font-medium">Subject</label>
+        <label htmlFor="subject" className="text-sm text-gray-700 dark:text-white font-medium">Subject</label>
         <select
           id="subject"
           name="subject"
@@ -99,7 +99,7 @@ export default function ContactForm() {
         </select>
       </div>
       <div className="grid gap-2">
-        <label htmlFor="message" className="text-sm text-white font-medium">Message</label>
+        <label htmlFor="message" className="text-sm text-gray-700 dark:text-white font-medium">Message</label>
         <textarea 
           id="message" 
           name="message" 
@@ -127,15 +127,15 @@ export default function ContactForm() {
         {status === "sending" ? "Sending..." : status === "sent" ? "Message Sent!" : "SEND MESSAGE"}
       </button>
       {status === "error" && errorMessage && (
-        <div className="p-4 bg-red-900/20 border border-red-800 rounded-lg">
-          <p className="text-sm text-red-400 break-words">
+        <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-300 dark:border-red-800 rounded-lg">
+          <p className="text-sm text-red-600 dark:text-red-400 break-words">
             {errorMessage.includes("Verification") ? errorMessage : `There was a problem sending your message. ${errorMessage}`}
           </p>
         </div>
       )}
       {status === "sent" && (
-        <div className="p-4 bg-green-900/20 border border-green-800 rounded-lg">
-          <p className="text-sm text-green-400 font-medium">
+        <div className="p-4 bg-green-50 dark:bg-green-900/20 border border-green-300 dark:border-green-800 rounded-lg">
+          <p className="text-sm text-green-600 dark:text-green-400 font-medium">
             Your message has been sent successfully! We&apos;ll get back to you within 24 hours.
           </p>
         </div>
