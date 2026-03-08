@@ -29,7 +29,9 @@ async function getAuthClient() {
 }
 
 async function fetchSitemapUrls() {
-  const res = await fetch(SITEMAP_URL);
+  const res = await fetch(SITEMAP_URL, {
+    headers: { 'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)' }
+  });
   if (!res.ok) throw new Error(`Failed to fetch sitemap: ${res.status}`);
   const xml = await res.text();
   const matches = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)];
