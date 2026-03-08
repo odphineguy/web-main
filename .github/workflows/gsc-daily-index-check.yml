@@ -1,0 +1,34 @@
+name: GSC Daily Index Check
+
+on:
+  schedule:
+    - cron: '0 10 * * *'   # runs daily at 10:00 AM UTC (offset from saguaro)
+  workflow_dispatch:        # allows manual trigger from GitHub UI
+
+jobs:
+  gsc-index-check:
+    runs-on: ubuntu-latest
+    env:
+      SITE_URL:          'https://abemedia.online/'
+      SITEMAP_URL:       'https://abemedia.online/sitemap.xml'
+      MAX_INSPECT:       100
+      MAX_SUBMIT:        50
+      INSPECT_DELAY_MS:  300
+      SUBMIT_DELAY_MS:   200
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install googleapis
+
+      - name: Run GSC index check
+        env:
+          GSC_CREDENTIALS_JSON: ${{ secrets.GSC_CREDENTIALS_JSON }}
+        run: node scripts/gsc-daily-index-check.js
