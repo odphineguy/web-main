@@ -6,8 +6,7 @@
 
 const { google } = require('googleapis');
 
-const SITE_URL        = process.env.SITE_URL        || 'https://www.saguarotransport.com/';
-const SITEMAP_URL     = process.env.SITEMAP_URL      || 'https://www.saguarotransport.com/sitemap.xml';
+const SITE_URL        = process.env.SITE_URL        || 'https://abemedia.online/';
 const MAX_INSPECT     = parseInt(process.env.MAX_INSPECT     || '100', 10);
 const MAX_SUBMIT      = parseInt(process.env.MAX_SUBMIT      || '50',  10);
 const INSPECT_DELAY   = parseInt(process.env.INSPECT_DELAY_MS || '300', 10);
@@ -28,14 +27,36 @@ async function getAuthClient() {
   return auth.getClient();
 }
 
-async function fetchSitemapUrls() {
-  const res = await fetch(SITEMAP_URL, {
-    headers: { 'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)' }
-  });
-  if (!res.ok) throw new Error(`Failed to fetch sitemap: ${res.status}`);
-  const xml = await res.text();
-  const matches = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)];
-  return matches.map((m) => m[1].trim());
+function generateUrls() {
+  const baseUrl = 'https://abemedia.online';
+  const locales = ['en', 'es'];
+  const staticPaths = [
+    '', '/services', '/services/bilingual-web-development',
+    '/services/ai-chatbots', '/portfolio', '/blog', '/contact', '/get-started',
+  ];
+
+  const blogData = [
+    require('../blog-pages.json'),
+    require('../seo-pages-batch-december-2025.json'),
+    require('../seo-pages-batch-december-2025-part2.json'),
+    require('../seo-pages-batch-december-2025-part3.json'),
+    require('../seo-pages-batch-december-2025-part4.json'),
+    require('../seo-pages-batch-december-2025-part5.json'),
+    require('../seo-pages-batch-seo-strategy.json'),
+    require('../seo-pages-batch-bilingual-seo-articles.json'),
+  ];
+  const slugs = blogData.flatMap((d) => d.pages.map((p) => p.slug));
+
+  const urls = [];
+  for (const locale of locales) {
+    for (const p of staticPaths) {
+      urls.push(`${baseUrl}/${locale}${p}`);
+    }
+    for (const slug of slugs) {
+      urls.push(`${baseUrl}/${locale}/blog/${slug}`);
+    }
+  }
+  return urls;
 }
 
 async function inspectUrl(authClient, url) {
@@ -80,8 +101,8 @@ async function submitUrl(authClient, url) {
 }
 
 async function main() {
-  console.log(`[GSC Daily Index Check] Fetching sitemap: ${SITEMAP_URL}`);
-  const allUrls = await fetchSitemapUrls();
+  console.log(`[GSC Daily Index Check] Generating URLs from source...`);
+  const allUrls = generateUrls();
   console.log(`[GSC Daily Index Check] Total URLs in sitemap: ${allUrls.length}`);
   console.log(`[GSC Daily Index Check] Will inspect up to ${MAX_INSPECT} URLs, submit up to ${MAX_SUBMIT} not-indexed.\n`);
 
