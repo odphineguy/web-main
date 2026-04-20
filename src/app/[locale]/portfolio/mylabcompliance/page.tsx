@@ -14,7 +14,7 @@ import {
   X,
   Check
 } from "lucide-react";
-import { ScheduleCallButton } from "@/components/ScheduleCallButton";
+import { FooterCTA } from "@/components/ui/footer-cta";
 import ConsultationForm from "@/components/ConsultationForm";
 
 // Animated counter component
@@ -346,22 +346,16 @@ export default function CaseStudyMyLabCompliance() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-muted py-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="rounded-2xl p-10 md:p-16 bg-primary shadow-xl shadow-orange-500/25 text-center">
-            <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
-              Ready for Similar Results?
-            </h2>
-            <p className="text-orange-100 max-w-2xl mb-8">
-              Let&apos;s discuss how we can improve your site&apos;s performance, SEO, and lead quality.
-            </p>
-            <ScheduleCallButton
-              onClick={() => setIsConsultationOpen(true)}
-              className="mx-auto bg-white hover:bg-orange-50 text-orange-600 shadow-lg shadow-black/10"
-            />
-          </div>
-        </div>
+      {/* Bottom CTA Section */}
+      <section className="bg-gray-100 dark:bg-neutral-900 px-6 py-20">
+        <FooterCTA
+          heading="Ready for similar results?"
+          subtext="Let's discuss how we can improve your site's performance, SEO, and lead quality."
+          buttonText="SCHEDULE A CALL"
+          onButtonClick={() => setIsConsultationOpen(true)}
+          metaPill="No obligation"
+          metaText="Replies within 1 business day"
+        />
       </section>
 
       {/* Consultation Modal */}

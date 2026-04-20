@@ -184,6 +184,27 @@ export default function PortfolioPage() {
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </div>
             </Link>
+
+            {/* Saguaro Transport Case Study */}
+            <Link
+              href="/portfolio/saguarotransport"
+              className="group block p-6 rounded-xl bg-card border border-border hover:border-orange-500/50 hover:shadow-lg transition-all duration-300"
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 text-orange-500 text-sm mb-4">
+                <span className="w-2 h-2 rounded-full bg-orange-500" />
+                Custom Platform
+              </div>
+              <h3 className="text-xl md:text-[28px] font-normal tracking-normal mb-2 text-foreground group-hover:text-orange-500 transition-colors">
+                Saguaro Transport
+              </h3>
+              <p className="text-muted-foreground text-sm md:text-base font-normal leading-relaxed mb-4">
+                A full trucking operation built in 4 months — Dispatch Command Center, Fleet, CRM, HR, Accounting, Driver App, and Client Portal.
+              </p>
+              <div className="flex items-center gap-2 text-orange-500 text-sm font-medium">
+                Read Case Study
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
           </div>
         </div>
       </section>
