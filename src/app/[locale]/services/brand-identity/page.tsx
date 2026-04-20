@@ -105,9 +105,9 @@ export default function BrandIdentity() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="bg-white dark:bg-black pt-8 md:pt-16 pb-16 lg:pb-24 px-6">
+      <section className="bg-background pt-8 md:pt-16 pb-16 lg:pb-24 px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -119,10 +119,10 @@ export default function BrandIdentity() {
               <Palette className="h-3.5 w-3.5" />
               {t("badge")}
             </span>
-            <h1 className="text-3xl md:text-4xl font-medium tracking-tight text-gray-900 dark:text-white mb-6 leading-tight">
+            <h1 className="text-3xl md:text-4xl font-medium tracking-tight text-foreground mb-6 leading-tight">
               {t("title")}
             </h1>
-            <p className="text-sm md:text-base font-normal leading-relaxed text-gray-600 dark:text-neutral-300 mb-4 max-w-3xl mx-auto">
+            <p className="text-sm md:text-base font-normal leading-relaxed text-muted-foreground mb-4 max-w-3xl">
               {t("description")}
             </p>
             <p className="text-xl md:text-2xl font-normal text-orange-500 mb-8">
@@ -145,18 +145,17 @@ export default function BrandIdentity() {
                 viewport={{ once: true }}
                 className="relative group h-full"
               >
-                <div className="h-full rounded-2xl p-px transition-all duration-300 bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5 hover:from-orange-500/30 hover:to-orange-600/10">
-                  <div className="h-full rounded-2xl p-6 lg:p-8 bg-white dark:bg-neutral-950 flex flex-col">
-                    <h3 className="text-xl md:text-2xl font-normal text-center text-gray-900 dark:text-white mb-4">
+                <div className="h-full rounded-2xl p-px transition-all duration-300 bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5 hover:bg-primary/20">
+                  <div className="h-full rounded-2xl p-6 lg:p-8 bg-card flex flex-col">
+                    <h3 className="text-xl md:text-2xl font-normal text-center text-foreground mb-4">
                       {pkg.name}
                     </h3>
-                    <div className="h-px w-full mb-6 bg-orange-500/30" />
 
                     <ul className="space-y-3 mb-8 flex-grow">
                       {pkg.features.map((feature, idx) => (
                         <li key={idx} className="flex items-start gap-3">
                           <Check className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" />
-                          <span className="text-sm md:text-base font-normal leading-relaxed text-gray-600 dark:text-neutral-400">
+                          <span className="text-sm md:text-base font-normal leading-relaxed text-muted-foreground">
                             {feature}
                           </span>
                         </li>
@@ -164,7 +163,7 @@ export default function BrandIdentity() {
                     </ul>
 
                     <div className="text-center mb-6">
-                      <span className="text-3xl lg:text-4xl font-medium tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600">
+                      <span className="text-3xl lg:text-4xl font-medium tracking-tight text-primary">
                         {pkg.price}
                       </span>
                     </div>
@@ -172,7 +171,7 @@ export default function BrandIdentity() {
                     <button
                       onClick={() => handleCheckout(pkg.planId)}
                       disabled={loadingPlan === pkg.planId}
-                      className="w-full py-3.5 px-6 rounded-full text-sm font-medium text-center transition-all duration-300 bg-gray-200 dark:bg-white/10 text-gray-900 dark:text-white border border-gray-300 dark:border-white/20 hover:bg-orange-500 hover:text-white hover:border-orange-500 flex items-center justify-center gap-2 group/btn disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full py-3.5 px-6 rounded-full text-sm font-medium text-center transition-all duration-300 bg-muted text-foreground border border-border hover:bg-primary hover:text-primary-foreground hover:border-primary flex items-center justify-center gap-2 group/btn disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {loadingPlan === pkg.planId ? (
                         <span className="flex items-center gap-2">

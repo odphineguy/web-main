@@ -5,127 +5,128 @@
     "calculator": "Calculadora",
     "portfolio": "Portafolio",
     "blog": "Blog",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "getStarted": "Comenzar"
   },
   "Footer": {
     "copyright": "© 2026 AbeMedia, LLC. Todos los derechos reservados."
   },
   "Home": {
     "Hero": {
-      "titlePart1": "Desarrollo Web Bilingüe, Chatbots IA y SEO",
-      "titlePart2": "para el Crecimiento de tu Negocio",
-      "subtitle": "Sitios web personalizados, chatbots inteligentes y estrategias SEO para negocios que atienden a clientes de habla inglesa y española."
+      "titlePart1": "Sitios y chatbots",
+      "titlePart2": "que sí hablan español.",
+      "subtitle": "Lanzamos en 2 a 4 semanas. Bilingüe desde el primer día, sin traducciones forzadas. Cada consulta queda en tu CRM, no perdida en tu bandeja."
     },
     "BilingualServices": {
-      "badge": "Expande Tu Alcance",
-      "title": "Servicios de Desarrollo Web Bilingue",
-      "subtitle": "Alcanza a clientes de habla inglesa y espanola con sitios web bilingues profesionales que impulsan el crecimiento.",
+      "badge": "Bilingüe de raíz",
+      "title": "Desarrollo web bilingüe",
+      "subtitle": "El español no es un plugin de traducción ni un pensamiento tardío. Contenido, UX y SEO se construyen para ambas audiencias desde el día uno.",
       "benefit1": {
-        "title": "Expande tu Mercado",
-        "description": "Conecta con el creciente mercado hispano y alcanza a clientes que prefieren hacer negocios en espanol."
+        "title": "Español de primera",
+        "description": "Voz nativa, no traducción automática. Títulos, meta, alt y microcopy se escriben en español — no se pegan desde DeepL."
       },
       "benefit2": {
-        "title": "Mejor Experiencia del Cliente",
-        "description": "Atiende a tus clientes en su idioma preferido con cambio de idioma fluido y contenido culturalmente relevante."
+        "title": "UX bilingüe real",
+        "description": "Cambio de idioma que preserva la URL, el scroll y el contexto. Funciona para clientes que mezclan idiomas a media sesión."
       },
       "benefit3": {
-        "title": "SEO para Ambos Idiomas",
-        "description": "Posicionate en los resultados de busqueda tanto en ingles como en espanol con implementacion correcta de hreflang."
+        "title": "SEO en los dos idiomas",
+        "description": "hreflang, búsqueda de palabras clave localizada y sitemaps para rankear en búsquedas en español — no solo aparecer traducido."
       },
-      "cta": "Conoce Mas Sobre Desarrollo Web Bilingue",
-      "seoCta": "Servicios de SEO Bilingüe"
+      "cta": "Ver proyectos bilingües",
+      "seoCta": "SEO bilingüe en Phoenix"
     },
     "Features": {
-      "badge": "Automatización con IA",
-      "title": "Características Principales",
+      "badge": "Entrenado con tu negocio",
+      "title": "Qué hace el chatbot",
       "bilingualSupport": {
-        "title": "Soporte Bilingüe",
-        "description": "Atiende a clientes en inglés y español con chatbots totalmente bilingües que se sienten naturales en ambos idiomas."
+        "title": "Bilingüe en los dos sentidos",
+        "description": "Cambia de idioma a media conversación igual que tus clientes. Las respuestas en español están escritas, no traducidas."
       },
       "aiPowered": {
-        "title": "Impulsado por IA",
-        "description": "Chatbots entrenados a medida que aprenden tu negocio y brindan respuestas inteligentes y conscientes del contexto."
+        "title": "Entrenado con tus SOPs",
+        "description": "Responde desde tus precios, horarios, servicios y políticas — no desde la web abierta. Actualizas la base de conocimiento sin reentrenar."
       },
       "leadCapture": {
-        "title": "Captura de Leads",
-        "description": "Califica prospectos automáticamente, recopila información de contacto y envía leads calificados a tu equipo de ventas."
+        "title": "Califica y enruta",
+        "description": "Captura problema, plazo y presupuesto. Envía los leads calificados a tu inbox o CRM con el contexto completo."
       },
       "seamlessIntegration": {
-        "title": "Integración Perfecta",
-        "description": "Conecta con tu CRM existente, email marketing, calendario y plataformas de análisis sin esfuerzo."
+        "title": "Encaja con tu stack",
+        "description": "Se conecta con tu CRM, calendario y herramientas de correo. Toda conversación queda registrada, no se pierde."
       }
     },
     "TrustedBy": {
-      "text": "Con la confianza de organizaciones líderes en todo el mundo"
+      "text": "Negocios que ya lanzaron con nosotros"
     },
     "Benefits": {
-      "badge": "¿Cansado de sentirte invisible?",
-      "titlePart1": "Automatiza tu Crecimiento.",
-      "titlePart2": "Nunca Pierdas un Lead.",
-      "p1": "La mayoría de los dueños de pequeños negocios luchan con el mismo desafío: responder a cada consulta mientras dirigen su negocio.",
-      "p2": "Cada mensaje sin respuesta significa leads perdidos, clientes perdidos y oportunidades desperdiciadas, especialmente cuando los clientes visitan tu sitio web primero.",
+      "badge": "Qué cambia",
+      "titlePart1": "Responde más rápido.",
+      "titlePart2": "Descansa tranquilo.",
+      "p1": "Los negocios pequeños pierden consultas de la misma forma cada vez: el mensaje llega a las 9 de la noche, la respuesta sale a las 9 de la mañana, y el cliente ya contrató a otro.",
+      "p2": "Un chatbot entrenado responde en el primer minuto, califica al cliente, y lo envía a donde lo puedas atender — sin que tengas que escribir nada.",
       "instantResponses": {
-        "title": "Respuestas Instantáneas",
-        "description": "Responde las preguntas de los clientes en segundos, no horas. No más esperas por respuestas de correo electrónico o llamadas telefónicas."
+        "title": "Respuestas en menos de un minuto",
+        "description": "Preguntas frecuentes — precios, horarios, disponibilidad, servicios — se contestan al instante. Las preguntas complejas se marcan y te llegan con contexto."
       },
       "availability": {
-        "title": "Disponibilidad 24/7",
-        "description": "Tu chatbot nunca duerme. Captura leads y responde consultas las 24 horas, incluso en días festivos."
+        "title": "Trabaja fuera de horario",
+        "description": "Atiende cada hora que el negocio está cerrado, no solo las de horario laboral. Fines de semana y feriados incluidos."
       },
       "smartData": {
-        "title": "Recolección Inteligente de Datos",
-        "description": "Recopila información valiosa de los clientes automáticamente y sincronízala directamente con tu CRM para un mejor seguimiento."
+        "title": "Captura lo que necesitas",
+        "description": "Extrae problema, plazo y presupuesto — y los guarda con la conversación, no solo con un correo suelto."
       }
     },
     "Testimonials": {
       "title": "Testimonios",
       "lucia": {
-        "quote": "Abe Media entregó un sitio hermoso y un chatbot bilingüe que ahora maneja el 70% de nuestras consultas entrantes.",
+        "quote": "El chatbot bilingüe atiende el 70% de nuestras consultas entrantes. Solo tocamos las conversaciones que realmente necesitan a una persona.",
         "role": "Casa Verde"
       },
       "daniel": {
-        "quote": "Su equipo entrenó agentes de IA que se sienten como verdaderos compañeros de equipo: nuestro tiempo de respuesta es más rápido que nunca.",
+        "quote": "Los agentes de IA responden las preguntas de primera línea que antes me llegaban a las 7 de la mañana. Llego a las decisiones importantes primero.",
         "role": "Líder de Operaciones, MetroFit"
       },
       "rebecca": {
-        "quote": "Lanzamos en semanas con un producto pulido y una automatización de soporte más inteligente. Los clientes están encantados con la experiencia.",
+        "quote": "Lanzamos en tres semanas. Los clientes siguen preguntando cómo lo hicimos.",
         "role": "Collins & Morales"
       },
       "salvador": {
-        "quote": "El chatbot personalizado que construyeron para nuestra firma ha cambiado el juego. Responde preguntas de clientes 24/7 y nos ayuda a calificar leads antes de que llamen.",
+        "quote": "El chatbot responde las preguntas de clientes fuera de horario y califica a los que llaman antes de que levantemos el teléfono.",
         "role": "Socio, Alvarez & Kerr Law"
       },
       "ricardo": {
-        "quote": "Su estrategia de marketing bilingüe nos ayudó a conectar con clientes de habla hispana que nunca habíamos podido alcanzar. Nuestra base de clientes ha crecido significativamente.",
+        "quote": "Su estrategia bilingüe nos abrió una base de clientes para la que éramos invisibles. Cerramos los primeros contratos en español dentro del primer mes.",
         "role": "Gerente General, Muebleria Lopez"
       },
       "sam": {
-        "quote": "Comenzamos con optimización SEO y vimos resultados tan buenos que regresamos para la gestión mensual del chatbot y redes sociales. Ahora son una parte esencial de nuestro equipo.",
+        "quote": "Empezamos con SEO. Nos quedamos por el chatbot y las redes. Son el equipo de operaciones que no tengo que contratar.",
         "role": "Propietario, MyLabCompliance.io"
       }
     },
     "CTA": {
-      "title": "Comienza a Construir Tu Chatbot Hoy"
+      "title": "Ve si encaja con tu negocio"
     },
     "CalculatorCTA": {
-      "badge": "Calculadora de Crecimiento Gratis",
-      "title": "Descubre Cuántos Ingresos Estás Perdiendo",
-      "subtitle": "Descubre el potencial sin explotar de alcanzar a clientes hispanohablantes en tu área con nuestra calculadora de crecimiento bilingüe gratuita.",
-      "button": "Calcular Mi Potencial de Crecimiento"
+      "badge": "Calculadora de crecimiento bilingüe",
+      "title": "Cuánto vale tu mercado de habla hispana",
+      "subtitle": "Con base en la población hispana de tu ciudad y los patrones de búsqueda de tu industria, estima los ingresos mensuales que un sitio bilingüe podría captar.",
+      "button": "Estimar mi mercado"
     }
   },
   "Services": {
     "Hero": {
       "title": "Nuestros",
-      "highlight": "Servicios",
-      "subtitle": "Brindamos servicios integrales de diseño y desarrollo para dar vida a tu visión digital."
+      "highlight": "servicios",
+      "subtitle": "Sitios web, apps, chatbots y plataformas a medida — entregados a negocios pequeños en inglés y español."
     },
     "Cards": {
       "aiChatbots": {
-        "title": "Chatbots y Agentes de IA",
-        "description": "Asistentes de IA personalizados adaptados a la voz de tu marca y las necesidades de tus clientes.",
+        "title": "Chatbots y agentes de IA",
+        "description": "Agentes entrenados con tus SOPs, precios y políticas. Responden en inglés o español. Califican leads y los guardan en tu CRM.",
         "features": {
-          "f1": "Automatización de soporte 24/7",
+          "f1": "Atención automatizada 24/7",
           "f2": "Captura y calificación de leads",
           "f3": "Soporte bilingüe en inglés y español",
           "f4": "Integraciones con CRM y herramientas"
@@ -133,72 +134,72 @@
         "placeholder": "Vista previa del asistente de IA próximamente"
       },
       "bilingualWeb": {
-        "title": "Desarrollo Web Bilingüe",
-        "description": "Sitios web en español e inglés que llegan a audiencias diversas y expanden tu mercado.",
+        "title": "Desarrollo web bilingüe",
+        "description": "Sitios bilingües desde el día uno — contenido, UX, URLs y hreflang hechos como deben ser.",
         "features": {
           "f1": "Versiones completas en español e inglés",
-          "f2": "Traducción profesional",
-          "f3": "SEO para ambos idiomas",
-          "f4": "Cambio de idioma fluido"
+          "f2": "Redacción nativa en español",
+          "f3": "SEO para los dos idiomas",
+          "f4": "Cambio de idioma que preserva contexto"
         },
         "placeholder": "Vista previa del sitio bilingüe próximamente"
       },
       "webDev": {
-        "title": "Desarrollo Web",
-        "description": "Sitios web personalizados construidos con tecnologías modernas como Next.js, React y TypeScript.",
+        "title": "Desarrollo web",
+        "description": "Sitios rápidos y listos para SEO sobre Next.js y React. Fáciles de actualizar, hechos para durar.",
         "features": {
-          "f1": "Diseño Responsivo",
-          "f2": "Optimización SEO",
-          "f3": "Tiempos de Carga Rápidos",
-          "f4": "Compatibilidad con Navegadores"
+          "f1": "Responsivo en todos los dispositivos",
+          "f2": "Listo para SEO al lanzar",
+          "f3": "Carga rápida",
+          "f4": "Probado en navegadores"
         },
         "placeholder": "Vista previa del sitio web próximamente"
       },
       "mobileApp": {
-        "title": "Desarrollo de Apps Móviles",
-        "description": "Aplicaciones móviles nativas y multiplataforma para iOS y Android.",
+        "title": "Apps móviles",
+        "description": "Apps nativas y en React Native para iOS y Android, entregadas a la tienda.",
         "features": {
-          "f1": "Desarrollo con React Native",
-          "f2": "Apps para iOS y Android",
-          "f3": "Optimización para App Store",
-          "f4": "Notificaciones Push"
+          "f1": "Cross-platform con React Native",
+          "f2": "Compilaciones para iOS y Android",
+          "f3": "Envío a App Store incluido",
+          "f4": "Notificaciones push"
         },
         "placeholder": "Vista previa de la app móvil próximamente"
       },
       "uiUx": {
         "title": "Diseño UI/UX",
-        "description": "Interfaces de usuario hermosas e intuitivas que mejoran la experiencia del usuario.",
+        "description": "Interfaces en las que tus clientes no tienen que pensar.",
         "features": {
-          "f1": "Investigación de Usuarios",
-          "f2": "Wireframing y Prototipado",
-          "f3": "Diseño Visual",
-          "f4": "Pruebas de Usabilidad"
+          "f1": "Investigación de usuarios",
+          "f2": "Wireframing y prototipado",
+          "f3": "Diseño visual",
+          "f4": "Pruebas de usabilidad"
         },
         "placeholder": "Mockups de diseño próximamente"
       },
       "brandIdentity": {
-        "title": "Diseño de Identidad de Marca",
-        "description": "Paquetes profesionales de logotipo e identidad de marca para negocios de todos los tamaños.",
+        "title": "Identidad de marca",
+        "description": "Sistemas de logotipo y guías de marca que duran más allá del primer uso. Derechos completos incluidos.",
         "features": {
-          "f1": "Diseño de Logotipo Personalizado",
-          "f2": "Tarjetas de Presentación y Papelería",
-          "f3": "Guía de Estilo de Marca",
-          "f4": "Derechos Completos de tu Diseño"
+          "f1": "Diseño de logotipo a medida",
+          "f2": "Tarjetas y papelería",
+          "f3": "Guía de estilo de marca",
+          "f4": "Derechos completos de tu diseño"
         },
         "placeholder": "Vista previa de identidad de marca próximamente"
       }
     },
     "CTA": {
-      "title": "¿Listo para Comenzar tu Proyecto?",
-      "description": "Hablemos sobre cómo podemos ayudar a dar vida a tu visión digital con nuestra experiencia.",
-      "link": "Aprender más"
+      "title": "¿Listo para empezar?",
+      "description": "Cuéntanos sobre tu proyecto. Te decimos qué lleva, en cuánto tiempo y cuánto cuesta.",
+      "link": "Ver cómo trabajamos"
     }
   },
   "CalculatorPage": {
     "hero": {
-      "titlePart1": "Calculadora de Crecimiento",
-      "titlePart2": "Bilingüe",
-      "subtitle": "Descubre cuántos ingresos podrías estar perdiendo al no alcanzar a clientes hispanohablantes en tu área."
+      "titlePart1": "Calculadora de crecimiento",
+      "titlePart2": "bilingüe",
+      "subtitle": "Estima los ingresos mensuales que podrías captar atendiendo a clientes de habla hispana en tu área."
     },
     "stats": {
       "hispanicPopulation": "Población hispana en EE.UU.",
@@ -206,27 +207,27 @@
       "buyingPower": "Poder adquisitivo hispano"
     },
     "info": {
-      "title": "Cómo Calculamos tu Potencial",
-      "description": "Nuestra calculadora usa datos reales del censo y referencias de la industria para estimar tu oportunidad de crecimiento.",
+      "title": "Cómo salen los números",
+      "description": "Hecha con datos del censo y patrones de búsqueda de la industria — sin adivinanzas.",
       "methodology": {
-        "title": "Nuestra Metodología",
-        "description": "Combinamos datos locales de población hispana con patrones de búsqueda en línea específicos de cada industria para estimar la porción de clientes potenciales que podrías alcanzar con un sitio web bilingüe."
+        "title": "Metodología",
+        "description": "Combinamos datos locales de población hispana con el comportamiento de búsqueda específico de cada industria para estimar la porción de clientes que un sitio bilingüe podría alcanzar."
       },
       "disclaimer": {
-        "title": "Nota Importante",
-        "description": "Estas son estimaciones basadas en datos del mercado y promedios de la industria. Los resultados reales pueden variar según tu negocio específico, ubicación y esfuerzos de marketing."
+        "title": "Una aclaración",
+        "description": "Son estimaciones basadas en datos de mercado y promedios de industria. Los resultados reales varían según ubicación, posicionamiento y qué tan bien está hecho el sitio."
       }
     }
   },
   "BrandIdentity": {
-    "badge": "Identidad de Marca",
-    "title": "Paquetes de Identidad de Marca",
-    "description": "Tu identidad de marca va más allá de un logotipo—es cómo los clientes reconocen y conectan con tu negocio. Creamos diseños profesionales y distintivos que realmente representan quién eres.",
-    "depositNote": "Comienza tu pedido con un depósito del 50%.",
-    "orderNow": "Ordenar Ahora",
+    "badge": "Identidad de marca",
+    "title": "Paquetes de identidad de marca",
+    "description": "Una marca es cómo los clientes te reconocen antes de conocerte. Construimos sistemas de logotipo y guías que duran más allá del primer uso.",
+    "depositNote": "Un depósito del 50% inicia el trabajo.",
+    "orderNow": "Ordenar ahora",
     "cta": {
-      "title": "¿Listo para Comenzar tu Proyecto?",
-      "description": "Hablemos sobre cómo podemos ayudar a dar vida a tu visión digital con nuestra experiencia.",
+      "title": "¿Listo para empezar?",
+      "description": "Cuéntanos sobre tu proyecto. Te decimos qué lleva, en cuánto tiempo y cuánto cuesta.",
       "button": "AGENDA UNA LLAMADA"
     }
   },
@@ -247,7 +248,7 @@
         }
       },
       "customers": {
-        "label": "¿Cuántos clientes nuevos obtienes por mes?",
+        "label": "¿Cuántos clientes nuevos recibes por mes?",
         "placeholder": "ej., 10"
       },
       "revenue": {
@@ -261,111 +262,233 @@
         "other": "Otra ciudad de EE.UU. (19% prom)"
       }
     },
-    "calculateButton": "Calcular Mi Potencial",
+    "calculateButton": "Calcular mi potencial",
     "errors": {
       "industry": "Por favor selecciona tu industria",
-      "customers": "Por favor ingresa un número válido de clientes",
-      "revenue": "Por favor ingresa una cantidad válida de ingresos",
-      "city": "Por favor ingresa tu ciudad"
+      "customers": "Ingresa un número válido de clientes",
+      "revenue": "Ingresa una cantidad válida de ingresos",
+      "city": "Ingresa tu ciudad"
     },
     "leadCapture": {
       "title": "¿Quieres un reporte detallado?",
-      "subtitle": "Ingresa tu información y te enviaremos un análisis de crecimiento personalizado.",
+      "subtitle": "Ingresa tu información y te enviamos un análisis de crecimiento personalizado.",
       "name": "Tu nombre",
       "email": "Correo electrónico",
       "phone": "Teléfono (opcional)",
-      "submit": "Enviar Mi Reporte",
+      "submit": "Enviar mi reporte",
       "submitting": "Enviando...",
       "skip": "No gracias, solo muéstrame los resultados"
     },
     "results": {
-      "title": "Tu Potencial de Crecimiento",
-      "basedOn": "Basado en {city} con {percent}% de población hispana",
-      "emailSent": "¡Tu reporte detallado ha sido enviado a tu correo!",
-      "newCustomers": "Clientes Nuevos Potenciales",
+      "title": "Tu potencial de crecimiento",
+      "basedOn": "Con base en {city} y {percent}% de población hispana",
+      "emailSent": "Tu reporte detallado se envió a tu correo.",
+      "newCustomers": "Clientes nuevos potenciales",
       "month": "mes",
-      "monthlyRevenue": "Aumento Potencial de Ingresos Mensuales",
-      "yearlyRevenue": "Aumento Potencial de Ingresos Anuales",
-      "cta": "Comienza a Alcanzar Más Clientes",
+      "monthlyRevenue": "Aumento potencial de ingresos mensuales",
+      "yearlyRevenue": "Aumento potencial de ingresos anuales",
+      "cta": "Empieza a alcanzar más clientes",
       "recalculate": "Calcular de nuevo"
     }
   },
   "Platforms": {
     "Preview": {
-      "badge": "PLATAFORMAS PERSONALIZADAS",
-      "title": "Plataformas Poderosas.",
-      "titleAccent": "Diseñadas para Tu Negocio.",
+      "badge": "Plataformas a medida",
+      "title": "Plataformas a medida.",
+      "titleAccent": "Construidas alrededor de tu flujo.",
       "subtitle": "Saguaro Transport",
-      "description": "Plataforma de gestión de operaciones para empresas de logística y transporte. Rastrea tu flota en tiempo real, administra conductores, maneja contabilidad y opera todo tu negocio desde un panel unificado.",
+      "description": "Plataforma de operaciones para empresas de logística y transporte. Rastreo de flota en vivo, despacho, CRM, contabilidad y RH — un panel, no seis pestañas.",
       "feature1": {
-        "title": "Rastreo de Flota en Tiempo Real",
-        "description": "Monitorea cada vehículo con GPS en vivo, asignación de despachos y optimización de rutas."
+        "title": "Rastreo de flota en vivo",
+        "description": "GPS en tiempo real, asignación de despachos y optimización de rutas por vehículo."
       },
       "feature2": {
-        "title": "CRM y Contabilidad Integrados",
-        "description": "Administra clientes, facturas y finanzas sin cambiar entre aplicaciones."
+        "title": "CRM y contabilidad juntos",
+        "description": "Clientes, facturas y finanzas en un solo sistema — sin cambiar de app."
       },
       "feature3": {
-        "title": "Gestión de Conductores y RH",
-        "description": "Incorpora conductores, rastrea cumplimiento y administra nómina en un solo lugar."
+        "title": "Conductores y RH",
+        "description": "Incorporación, cumplimiento y nómina en un solo lugar."
       },
-      "cta": "Explorar Plataformas"
+      "cta": "Explorar plataformas"
     },
     "Page": {
       "Hero": {
-        "badge": "SOFTWARE PERSONALIZADO",
-        "title": "Plataformas Personalizadas",
-        "titleAccent": "para Negocios en Crecimiento",
-        "subtitle": "Software diseñado específicamente para tus flujos de trabajo. Deja de adaptarte a herramientas genéricas—obtén una plataforma que se adapte a ti."
+        "badge": "Software a medida",
+        "title": "Plataformas a medida",
+        "titleAccent": "para negocios en crecimiento",
+        "subtitle": "Software hecho alrededor de tu flujo de trabajo. Deja de adaptarte a herramientas genéricas — consigue una plataforma que se adapte a ti."
       },
       "Saguaro": {
-        "badge": "LOGÍSTICA Y TRANSPORTE",
-        "forSaleBadge": "DISPONIBLE PARA COMPRA",
+        "badge": "Logística y transporte",
+        "forSaleBadge": "Disponible para compra",
         "title": "Saguaro Transport",
         "subtitle": "Gestión completa de operaciones para empresas de transporte y logística",
-        "description": "Diseñado para empresas de transporte que necesitan más que hojas de cálculo y software desconectado. Saguaro Transport integra rastreo de flota, despacho, CRM, contabilidad y RH en una plataforma poderosa.",
-        "inquireButton": "Consultar Sobre Esta Plataforma",
+        "description": "Para empresas de transporte que ya crecieron más allá de hojas de cálculo y software desconectado. Rastreo de flota, despacho, CRM, contabilidad y RH en una plataforma.",
+        "inquireButton": "Consultar sobre esta plataforma",
         "features": {
           "fleet": {
-            "title": "Gestión de Flota",
-            "description": "Rastreo GPS en tiempo real, programación de mantenimiento de vehículos y gestión de combustible."
+            "title": "Gestión de flota",
+            "description": "GPS en tiempo real, programación de mantenimiento y seguimiento de combustible."
           },
           "crm": {
-            "title": "Relaciones con Clientes",
-            "description": "Administra relaciones con transportistas, rastrea cargas y maneja comunicaciones con clientes."
+            "title": "Relaciones con clientes",
+            "description": "Relaciones con transportistas, seguimiento de cargas y comunicación con clientes."
           },
           "accounting": {
             "title": "Contabilidad",
-            "description": "Facturación, seguimiento de gastos y reportes financieros diseñados para transporte."
+            "description": "Facturación, control de gastos y reportes hechos para transporte."
           }
         }
       },
       "DriverApp": {
-        "badge": "APP MÓVIL PARA CONDUCTORES",
-        "title": "App Compañera del Conductor",
-        "description": "Empodera a tus conductores con una app móvil dedicada para gestionar tareas, rastrear ganancias y mantenerse conectados en la carretera.",
+        "badge": "App móvil para conductores",
+        "title": "App compañera del conductor",
+        "description": "Una app móvil para que los conductores gestionen tareas, rastreen ganancias y se mantengan conectados en la carretera.",
         "screens": {
           "login": {
-            "title": "Inicio de Sesión"
+            "title": "Inicio de sesión"
           },
           "tasks": {
-            "title": "Gestión de Tareas"
+            "title": "Gestión de tareas"
           },
           "earnings": {
-            "title": "Panel de Ganancias"
+            "title": "Panel de ganancias"
           }
         }
       },
       "ComingSoon": {
-        "badge": "MÁS PRÓXIMAMENTE",
-        "title": "Más Plataformas en Desarrollo",
-        "description": "Estamos construyendo plataformas específicas por industria para negocios que necesitan soluciones personalizadas. ¿Interesado en una plataforma para tu industria?"
+        "badge": "Más próximamente",
+        "title": "Más plataformas en desarrollo",
+        "description": "Construimos plataformas por industria para negocios que ya crecieron más allá de las herramientas genéricas. ¿Te interesa una para tu industria?"
       },
       "CTA": {
-        "title": "¿Necesitas una Plataforma Personalizada?",
-        "subtitle": "Cuéntanos sobre tu negocio y te mostraremos lo que es posible.",
-        "button": "Agenda una Llamada"
+        "title": "¿Necesitas una plataforma a medida?",
+        "subtitle": "Cuéntanos sobre tu flujo de trabajo. Te decimos qué lleva, en cuánto tiempo y cuánto cuesta.",
+        "button": "Agenda una llamada"
       }
+    }
+  },
+  "Pricing": {
+    "Hero": {
+      "title": "Vamos a encontrar el alcance correcto.",
+      "subtitle": "Tres preguntas cortas. Un paquete recomendado. Sin anzuelos ni servicios que no necesitas."
+    },
+    "Breadcrumb": {
+      "edit": "Editar"
+    },
+    "Questions": {
+      "q1": {
+        "prompt": "¿Qué estás construyendo?",
+        "options": {
+          "website": "Un sitio web",
+          "chatbot": "Un chatbot",
+          "both": "Ambos — sitio web y chatbot",
+          "other": "Otra cosa"
+        }
+      },
+      "q2": {
+        "prompt": "¿Bilingüe?",
+        "hint": "Inglés y español, escrito nativo (no traducido).",
+        "options": {
+          "yes": "Sí — inglés y español",
+          "english": "Solo inglés",
+          "unsure": "Aún no sé"
+        }
+      },
+      "q3": {
+        "prompt": "¿Para cuándo lo necesitas en vivo?",
+        "options": {
+          "fast": "2 a 4 semanas",
+          "medium": "1 a 2 meses",
+          "flexible": "Flexible — calidad primero"
+        }
+      }
+    },
+    "Recommendation": {
+      "eyebrow": "Con base en tus respuestas",
+      "perMonth": "/mes",
+      "seeAlt": "Ver otra opción: {tier}",
+      "hideAlt": "Ocultar alternativa",
+      "altLabel": "También vale considerar",
+      "cta": "Agenda una llamada para confirmarlo",
+      "restart": "Responder las preguntas de nuevo"
+    },
+    "Tiers": {
+      "starter": {
+        "name": "Starter",
+        "tagline": "Un alcance enfocado, entregado rápido.",
+        "inclusions": [
+          "Sitio de 3 páginas o chatbot de un solo propósito",
+          "Captura de leads 24/7",
+          "Optimizado para móvil y SEO al lanzar",
+          "14 días de soporte post-lanzamiento"
+        ]
+      },
+      "business": {
+        "name": "Business",
+        "tagline": "Sitio + chatbot + soporte real en un solo alcance.",
+        "inclusions": [
+          "Sitio hasta 7 páginas",
+          "Chatbot entrenado con tus SOPs",
+          "SEO básico y blog incluidos",
+          "Integración con tu CRM",
+          "30 días de soporte post-lanzamiento"
+        ]
+      },
+      "professional": {
+        "name": "Professional",
+        "tagline": "Espacio para alcances complejos, con PM dedicado.",
+        "inclusions": [
+          "Diseño a medida de sitio y app",
+          "Páginas ilimitadas",
+          "Chatbot avanzado con entrenamiento a medida",
+          "Alcance completo de SEO",
+          "CMS para que tu equipo actualice el sitio",
+          "Gerente de proyecto dedicado"
+        ]
+      }
+    },
+    "Rationale": {
+      "starterFast": "Necesitas un sitio enfocado en vivo en pocas semanas. Starter cubre el alcance; Business queda disponible si creces.",
+      "starterChatbotFast": "Un chatbot para tu sitio actual, entregado en semanas. Starter mantiene el alcance ajustado.",
+      "businessBilingualFast": "Bilingüe bien hecho — escrito en los dos idiomas — pasa de Starter. Business lo cubre sin la sobrecarga de Professional.",
+      "businessBoth": "Sitio web y chatbot en un solo alcance. Business lo resuelve sin saltar a Professional.",
+      "businessMedium": "Tienes uno o dos meses, suficiente para hacer las dos cosas bien. Business es el punto medio correcto.",
+      "professionalComplex": "Sitio y chatbot, bilingüe, en plazo largo. Professional te da el espacio y un PM dedicado.",
+      "professionalFlexible": "Sin prisa, y lo quieres bien hecho en los dos idiomas. Professional cubre la profundidad sin atajos."
+    },
+    "Consult": {
+      "heading": "Hablemos directamente.",
+      "subtitle": "\"Otra cosa\" suele ser la conversación interesante. Cuéntanos qué necesitas y te decimos qué lleva — alcance, tiempo y costo.",
+      "cta": "Agendar llamada"
+    },
+    "AddOns": {
+      "heading": "Complementa este paquete",
+      "subtitle": "Opcional. Marca lo que te gustaría incluir en la conversación.",
+      "perMonth": "/mes",
+      "items": {
+        "bilingual": {
+          "name": "Complemento bilingüe",
+          "description": "Sitio en español, copy nativo, hreflang y chatbot bilingüe."
+        },
+        "seo": {
+          "name": "Mantenimiento SEO",
+          "description": "Auditoría mensual, seguimiento de keywords, actualizaciones de contenido."
+        },
+        "social": {
+          "name": "Redes sociales",
+          "description": "Posts semanales, creación de contenido, monitoreo de interacción."
+        },
+        "care": {
+          "name": "Plan de cuidado",
+          "description": "Respaldos, actualizaciones, seguridad y arreglos prioritarios."
+        }
+      }
+    },
+    "Status": {
+      "paymentSuccess": "Pago exitoso. Bienvenido a bordo.",
+      "paymentCanceled": "Pago cancelado. Regresa cuando estés listo."
     }
   }
 }

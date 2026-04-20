@@ -31,19 +31,19 @@ import {
 const features = [
   {
     icon: Globe,
-    title: "True Bilingual Websites",
+    title: "Bilingual from day one",
     items: [
-      "Full Spanish and English versions of your site",
-      "Professional translation that sounds natural, not robotic",
-      "Seamless language switching for visitors",
-      "Proper hreflang implementation for SEO in both languages",
+      "Full Spanish and English versions, not a translation plugin",
+      "Spanish copy written, not run through DeepL",
+      "Language switch that preserves URL, scroll, and context",
+      "hreflang and localized sitemaps so you rank in both languages",
     ],
   },
   {
     icon: Smartphone,
-    title: "Mobile-Optimized Design",
+    title: "Built for phones first",
     description:
-      "Your bilingual site works perfectly on phones, tablets, and desktops. Spanish and English versions both load fast and look great on any device.",
+      "Most bilingual small-business traffic lands on mobile. Both language versions load fast and read well on any screen.",
   },
   {
     icon: Search,
@@ -109,9 +109,9 @@ export default function BilingualWebDevelopment() {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="bg-white dark:bg-black pt-8 md:pt-16 pb-16 lg:pb-24 px-6">
+      <section className="bg-background pt-8 md:pt-16 pb-16 lg:pb-24 px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -123,21 +123,21 @@ export default function BilingualWebDevelopment() {
               <Globe className="h-3.5 w-3.5" />
               Bilingual Solutions
             </span>
-            <h1 className="text-3xl md:text-4xl lg:text-[40px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-6 leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-[40px] font-medium tracking-[-0.02em] text-foreground mb-6 leading-tight">
               Bilingual Web Development{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
+              <span className="text-primary">
                 Services
               </span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-600 dark:text-neutral-300 mb-4">
+            <p className="text-lg md:text-xl text-muted-foreground mb-4">
               Reach More Customers with Spanish-English Websites
             </p>
-            <p className="text-sm md:text-base text-gray-600 dark:text-neutral-400 mb-8 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-sm md:text-base text-muted-foreground mb-8 max-w-3xl leading-relaxed">
               Expand your business reach with a professionally designed bilingual website that speaks directly to both English and Spanish-speaking customers. Our multilingual web solutions help small businesses tap into new markets and build stronger connections with diverse audiences.
             </p>
             <Button
               size="lg"
-              className="text-sm px-8 py-6 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300"
+              className="text-sm px-8 py-6 bg-primary hover:bg-primary/90 text-white font-medium rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300"
               onClick={() => setIsConsultationOpen(true)}
             >
               Get Free Consultation
@@ -154,9 +154,9 @@ export default function BilingualWebDevelopment() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="mb-12 max-w-3xl"
           >
-            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-foreground mb-4">
               What We Build
             </h2>
           </motion.div>
@@ -171,12 +171,12 @@ export default function BilingualWebDevelopment() {
                 viewport={{ once: true }}
                 className="group"
               >
-                <div className="h-full rounded-2xl p-px transition-all duration-300 bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5 hover:from-orange-500/30 hover:to-orange-600/10">
-                  <div className="h-full rounded-2xl p-6 lg:p-8 bg-white dark:bg-neutral-950">
+                <div className="h-full rounded-2xl p-px transition-all duration-300 bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5 hover:bg-primary/20">
+                  <div className="h-full rounded-2xl p-6 lg:p-8 bg-card">
                     <div className="w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center mb-5 group-hover:bg-orange-500/20 transition-colors">
                       <feature.icon className="w-7 h-7 text-orange-500" />
                     </div>
-                    <h3 className="text-lg md:text-xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
+                    <h3 className="text-lg md:text-xl font-medium tracking-[-0.02em] text-foreground mb-4">
                       {feature.title}
                     </h3>
                     {feature.items ? (
@@ -184,14 +184,14 @@ export default function BilingualWebDevelopment() {
                         {feature.items.map((item, idx) => (
                           <li key={idx} className="flex items-start gap-3">
                             <Check className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" />
-                            <span className="text-gray-600 dark:text-neutral-400 text-sm leading-relaxed">
+                            <span className="text-muted-foreground text-sm leading-relaxed">
                               {item}
                             </span>
                           </li>
                         ))}
                       </ul>
                     ) : (
-                      <p className="text-sm text-gray-600 dark:text-neutral-400 leading-relaxed">
+                      <p className="text-sm text-muted-foreground leading-relaxed">
                         {feature.description}
                       </p>
                     )}
@@ -204,16 +204,16 @@ export default function BilingualWebDevelopment() {
       </section>
 
       {/* Industries We Serve */}
-      <section className="bg-white dark:bg-black py-20 px-6">
+      <section className="bg-background py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="mb-12 max-w-3xl"
           >
-            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-foreground mb-4">
               Industries We Serve
             </h2>
           </motion.div>
@@ -228,13 +228,13 @@ export default function BilingualWebDevelopment() {
                 viewport={{ once: true }}
                 className="group text-center"
               >
-                <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-orange-500/10 to-orange-600/5 flex items-center justify-center mb-4 group-hover:from-orange-500 group-hover:to-orange-600 group-hover:shadow-lg group-hover:shadow-orange-500/25 transition-all duration-300">
+                <div className="w-16 h-16 mx-auto rounded-2xl bg-primary/10 flex items-center justify-center mb-4  group-hover:shadow-lg group-hover:shadow-orange-500/25 transition-all duration-300">
                   <industry.icon className="w-8 h-8 text-orange-500 group-hover:text-white transition-colors duration-300" />
                 </div>
-                <h3 className="font-medium text-gray-900 dark:text-white mb-2">
+                <h3 className="font-medium text-foreground mb-2">
                   {industry.name}
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-neutral-400 leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   {industry.description}
                 </p>
               </motion.div>
@@ -251,9 +251,9 @@ export default function BilingualWebDevelopment() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="mb-12 max-w-3xl"
           >
-            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-foreground mb-4">
               Our Process
             </h2>
           </motion.div>
@@ -268,20 +268,20 @@ export default function BilingualWebDevelopment() {
                 viewport={{ once: true }}
                 className="relative"
               >
-                <div className="text-center">
-                  <div className="w-12 h-12 mx-auto rounded-full bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center mb-4 text-white font-medium">
+                <div>
+                  <div className="w-12 h-12 mx-auto rounded-full bg-primary flex items-center justify-center mb-4 text-white font-medium">
                     {index + 1}
                   </div>
-                  <h3 className="font-medium text-gray-900 dark:text-white mb-2">
+                  <h3 className="font-medium text-foreground mb-2">
                     {step.title}
                   </h3>
-                  <p className="text-sm text-gray-600 dark:text-neutral-400 leading-relaxed">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     {step.description}
                   </p>
                 </div>
                 {/* Connector line */}
                 {index < processSteps.length - 1 && (
-                  <div className="hidden lg:block absolute top-6 left-[calc(50%+24px)] w-[calc(100%-48px)] h-px bg-orange-500/30" />
+                  <div className="hidden lg:block absolute top-6 left-[calc(50%+24px)] w-[calc(100%-48px)] h-px bg-border" />
                 )}
               </motion.div>
             ))}
@@ -290,16 +290,16 @@ export default function BilingualWebDevelopment() {
       </section>
 
       {/* Technologies */}
-      <section className="bg-white dark:bg-black py-20 px-6">
+      <section className="bg-background py-20 px-6">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="mb-12 max-w-3xl"
           >
-            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-foreground mb-4">
               Technologies We Use
             </h2>
           </motion.div>
@@ -316,7 +316,7 @@ export default function BilingualWebDevelopment() {
                 {technologies.map((tech, index) => (
                   <li key={index} className="flex items-center gap-3">
                     <div className="w-2 h-2 rounded-full bg-orange-500" />
-                    <span className="text-sm text-gray-700 dark:text-neutral-300 leading-relaxed">{tech}</span>
+                    <span className="text-sm text-foreground leading-relaxed">{tech}</span>
                   </li>
                 ))}
               </ul>
@@ -326,16 +326,16 @@ export default function BilingualWebDevelopment() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="bg-white dark:bg-black py-20 px-6">
+      <section className="bg-background py-20 px-6">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="mb-12 max-w-3xl"
           >
-            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-foreground mb-4">
               Why Choose Abe Media?
             </h2>
           </motion.div>
@@ -353,7 +353,7 @@ export default function BilingualWebDevelopment() {
                 <div className="w-10 h-10 rounded-lg bg-orange-500/10 flex items-center justify-center flex-shrink-0">
                   <item.icon className="w-5 h-5 text-orange-500" />
                 </div>
-                <span className="text-sm text-gray-700 dark:text-neutral-300 leading-relaxed">{item.text}</span>
+                <span className="text-sm text-foreground leading-relaxed">{item.text}</span>
               </motion.div>
             ))}
           </div>
@@ -362,7 +362,7 @@ export default function BilingualWebDevelopment() {
 
       {/* Testimonial */}
       <section className="bg-gray-100 dark:bg-neutral-900 py-20 px-6">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -370,7 +370,7 @@ export default function BilingualWebDevelopment() {
             viewport={{ once: true }}
             className="text-center mb-8"
           >
-            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-foreground mb-4">
               Real Results
             </h2>
           </motion.div>
@@ -380,11 +380,11 @@ export default function BilingualWebDevelopment() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
-            className="rounded-2xl p-px bg-gradient-to-b from-orange-500/30 to-orange-600/10"
+            className="rounded-2xl p-px bg-primary/10"
           >
-            <div className="rounded-2xl p-8 lg:p-10 bg-white dark:bg-neutral-950 text-center">
+            <div className="rounded-2xl p-8 lg:p-10 bg-card text-center">
               <Quote className="w-10 h-10 text-orange-500/40 mx-auto mb-6" />
-              <blockquote className="text-base md:text-lg text-gray-700 dark:text-neutral-300 mb-6 italic leading-relaxed">
+              <blockquote className="text-base md:text-lg text-foreground mb-6 italic leading-relaxed">
                 &ldquo;Their bilingual marketing strategy helped us connect with Spanish-speaking customers we&apos;d never been able to reach. Our client base has grown significantly.&rdquo;
               </blockquote>
               <div className="flex items-center justify-center gap-3">
@@ -396,8 +396,8 @@ export default function BilingualWebDevelopment() {
                   className="w-12 h-12 rounded-full object-cover"
                 />
                 <div className="text-left">
-                  <p className="font-medium text-gray-900 dark:text-white">Maria B.</p>
-                  <p className="text-sm text-gray-600 dark:text-neutral-400">Real Estate Agency</p>
+                  <p className="font-medium text-foreground">Maria B.</p>
+                  <p className="text-sm text-muted-foreground">Real Estate Agency</p>
                 </div>
               </div>
             </div>

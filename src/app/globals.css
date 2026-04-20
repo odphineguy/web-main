@@ -15,9 +15,10 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+  --font-sans: var(--font-manrope), system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+  --font-serif: var(--font-spectral), "Source Serif 4", Georgia, serif;
+  --font-display: var(--font-spectral), "Source Serif 4", Georgia, serif;
   --font-mono: JetBrains Mono, monospace;
-  /* font-pacifico is set dynamically by next/font on body */
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -51,7 +52,6 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --font-serif: Source Serif 4, serif;
   --radius: 0.375rem;
   --tracking-tighter: calc(var(--tracking-normal) - 0.05em);
   --tracking-tight: calc(var(--tracking-normal) - 0.025em);
@@ -119,9 +119,6 @@
   --sidebar-border: oklch(0.9276 0.0058 264.5313);
   --sidebar-ring: oklch(0.70 0.18 47.64);
   --destructive-foreground: oklch(1.0000 0 0);
-  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
-  --font-serif: Source Serif 4, serif;
-  --font-mono: JetBrains Mono, monospace;
   --shadow-color: hsl(0 0% 0%);
   --shadow-opacity: 0.1;
   --shadow-blur: 8px;
@@ -176,9 +173,6 @@
   --sidebar-ring: oklch(0.70 0.18 47.64);
   --destructive-foreground: oklch(1.0000 0 0);
   --radius: 0.375rem;
-  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
-  --font-serif: Source Serif 4, serif;
-  --font-mono: JetBrains Mono, monospace;
   --shadow-color: hsl(0 0% 0%);
   --shadow-opacity: 0.1;
   --shadow-blur: 8px;
@@ -235,13 +229,86 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
     letter-spacing: var(--tracking-normal);
+  }
+  /* Editorial type scale — fluid for marketing/content headings */
+  h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 5vw + 0.75rem, 4.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+  }
+  h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.875rem, 3vw + 0.5rem, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    font-weight: 500;
+  }
+  h3 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 1.5vw + 0.75rem, 1.875rem);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+  }
+  h4 {
+    font-size: 1.25rem;
+    line-height: 1.3;
+    font-weight: 600;
+  }
+  h5 {
+    font-size: 1.125rem;
+    line-height: 1.4;
+    font-weight: 600;
+  }
+  h6 {
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  p {
+    max-width: 65ch;
   }
 }
 
-@keyframes scan-bounce {
+/* Typography utilities */
+@layer utilities {
+  .font-display {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+  }
+  .font-display-italic {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 500;
+  }
+  /* Opt-out when a heading should inherit the body sans (e.g., eyebrows, labels) */
+  .font-sans-override {
+    font-family: var(--font-sans) !important;
+  }
+  /* Tabular numerals for pricing tables and data */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@keyframes scan-line {
   0% { top: -20%; }
   8% { top: -20%; } /* pause at top */
   48% { top: 100%; } /* descend */
@@ -251,7 +318,7 @@
 }
 
 .animate-scan {
-  animation: scan-bounce 2.4s ease-in-out infinite;
+  animation: scan-line 2.4s ease-in-out infinite;
 }
 
 /* Logo marquee animation */
@@ -283,15 +350,6 @@
 
 .glow-orange-sm {
   box-shadow: 0 0 20px rgba(255, 107, 44, 0.2);
-}
-
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 44, 0.4); }
-  50% { box-shadow: 0 0 40px rgba(255, 107, 44, 0.7); }
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
 }
 
 /* Aurora animation for Charcoal dark mode theme */

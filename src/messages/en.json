@@ -5,125 +5,126 @@
     "calculator": "Calculator",
     "portfolio": "Portfolio",
     "blog": "Blog",
-    "contact": "Contact"
+    "contact": "Contact",
+    "getStarted": "Get Started"
   },
   "Footer": {
     "copyright": "© 2026 AbeMedia, LLC. All rights reserved."
   },
   "Home": {
     "Hero": {
-      "titlePart1": "Bilingual Web Development, AI Chatbots & SEO",
-      "titlePart2": "for Small Business Growth",
-      "subtitle": "Custom websites, intelligent chatbots, and SEO strategies for businesses serving English and Spanish-speaking customers."
+      "titlePart1": "Websites and chatbots",
+      "titlePart2": "that actually speak Spanish.",
+      "subtitle": "Launched in 2–4 weeks. Bilingual by default, not translated. Every inquiry logged to your CRM instead of your inbox."
     },
     "BilingualServices": {
-      "badge": "Expand Your Reach",
-      "title": "Bilingual Web Development Services",
-      "subtitle": "Reach English and Spanish-speaking customers with professional bilingual websites that drive growth.",
+      "badge": "Bilingual by default",
+      "title": "Bilingual web development",
+      "subtitle": "Spanish isn't an afterthought or a translation plugin. Content, UX, and SEO are built for both audiences from day one.",
       "benefit1": {
-        "title": "Expand Your Market",
-        "description": "Connect with the growing Hispanic market and reach customers who prefer doing business in Spanish."
+        "title": "First-class Spanish",
+        "description": "Native voice, not machine translation. Headings, meta, alt text, and microcopy are authored in Spanish — not copy-pasted through DeepL."
       },
       "benefit2": {
-        "title": "Better Customer Experience",
-        "description": "Serve customers in their preferred language with seamless language switching and culturally relevant content."
+        "title": "Real bilingual UX",
+        "description": "Language switching that preserves URL, scroll position, and context. Works for customers who code-switch mid-session."
       },
       "benefit3": {
-        "title": "SEO for Both Languages",
-        "description": "Rank in search results for both English and Spanish keywords with proper hreflang implementation."
+        "title": "SEO in both languages",
+        "description": "hreflang, localized keyword research, and sitemaps that help you rank in Spanish search — not just appear in it."
       },
-      "cta": "Learn More About Bilingual Web Development",
-      "seoCta": "Bilingual SEO Services"
+      "cta": "See bilingual projects",
+      "seoCta": "Bilingual SEO in Phoenix"
     },
     "Features": {
-      "badge": "AI-Powered Automation",
-      "title": "Core Chatbot Features",
+      "badge": "Trained on your business",
+      "title": "What the chatbot does",
       "bilingualSupport": {
-        "title": "Bilingual Support",
-        "description": "Serve English and Spanish-speaking customers with fully bilingual chatbots that feel natural in both languages."
+        "title": "Bilingual both ways",
+        "description": "Switches language mid-conversation the way your customers do. Spanish answers are written, not translated."
       },
       "aiPowered": {
-        "title": "AI-Powered",
-        "description": "Custom-trained AI chatbots that learn your business and provide intelligent, context-aware responses."
+        "title": "Trained on your SOPs",
+        "description": "Answers from your pricing, hours, services, and policies — not the open web. Knowledge base updates without retraining."
       },
       "leadCapture": {
-        "title": "Lead Capture",
-        "description": "Automatically qualify prospects, collect contact information, and route hot leads to your sales team."
+        "title": "Qualifies and routes",
+        "description": "Captures problem, timeline, and budget. Hands qualified leads to your inbox or CRM with full context."
       },
       "seamlessIntegration": {
-        "title": "Seamless Integration",
-        "description": "Connect with your existing CRM, email marketing, calendar, and analytics platforms effortlessly."
+        "title": "Fits your stack",
+        "description": "Connects to your CRM, calendar, and email tools. Every conversation logged, not dropped."
       }
     },
     "TrustedBy": {
-      "text": "Trusted by leading organizations worldwide"
+      "text": "Businesses shipping with us"
     },
     "Benefits": {
-      "badge": "Tired of feeling invisible",
-      "titlePart1": "Automate Your Growth.",
-      "titlePart2": "Never Miss a Lead.",
-      "p1": "Most small business owners struggle with the same challenge: responding to every inquiry while running their business.",
-      "p2": "Every unanswered message means lost leads, missed clients, and wasted opportunities — especially when customers check your website first.",
+      "badge": "What changes",
+      "titlePart1": "Respond faster.",
+      "titlePart2": "Sleep through it.",
+      "p1": "Small-business inquiries get lost the same way every time: the message lands at 9pm, the reply goes out at 9am, the customer already found someone else.",
+      "p2": "A trained chatbot answers in the first minute, qualifies the lead, and routes it where you can act on it — without you touching the keyboard.",
       "instantResponses": {
-        "title": "Instant Responses",
-        "description": "Answer customer questions in seconds, not hours. No more waiting for email replies or phone callbacks."
+        "title": "Sub-minute replies",
+        "description": "FAQ-level questions — pricing, hours, availability, services — answered instantly. Harder questions get flagged and handed to you with context."
       },
       "availability": {
-        "title": "24/7 Availability",
-        "description": "Your chatbot never sleeps. Capture leads and answer inquiries around the clock, even on holidays."
+        "title": "Works after hours",
+        "description": "Answers inquiries every hour the business is closed, not just the ones during working hours. Weekends and holidays included."
       },
       "smartData": {
-        "title": "Smart Data Collection",
-        "description": "Gather valuable customer insights automatically and sync directly to your CRM for better follow-up."
+        "title": "Captures what you need",
+        "description": "Pulls out problem, timeline, and budget — and logs them against the conversation, not just an email address."
       }
     },
     "Testimonials": {
       "title": "Testimonials",
       "lucia": {
-        "quote": "Abe Media delivered a beautiful site and a bilingual chatbot that now handles 70% of our inbound questions.",
+        "quote": "The bilingual chatbot handles 70% of our inbound questions. We only touch the conversations that actually need a human.",
         "role": "Casa Verde"
       },
       "daniel": {
-        "quote": "Their team trained AI agents that feel like real teammates—our response time is faster than ever.",
+        "quote": "The AI agents answer the first-line questions that used to land in my inbox at 7am. I get to the real decisions first.",
         "role": "Operations Lead, MetroFit"
       },
       "rebecca": {
-        "quote": "We launched in weeks with a polished product and smarter support automation. Clients rave about the experience.",
+        "quote": "We launched in three weeks. Clients keep asking how we did it.",
         "role": "Collins & Morales"
       },
       "salvador": {
-        "quote": "The custom chatbot they built for our firm has been a game-changer. It answers client questions 24/7 and helps us qualify leads before they even call.",
+        "quote": "The chatbot answers after-hours client questions and qualifies callers before we pick up the phone.",
         "role": "Partner, Alvarez & Kerr Law"
       },
       "ricardo": {
-        "quote": "Their bilingual marketing strategy helped us connect with Spanish-speaking customers we'd never been able to reach. Our client base has grown significantly.",
-        "role": "General Manager, Muebleria Lopez"
+        "quote": "Their bilingual strategy opened a customer base we were effectively invisible to. First Spanish-speaking contracts closed within a month of launch.",
+        "role": "General Manager, Mueblería López"
       },
       "sam": {
-        "quote": "We started with SEO optimization and saw such great results that we came back for monthly chatbot management and social media handling. They're now an essential part of our team.",
+        "quote": "Started with SEO. Stayed for the chatbot and social. They're the ops team I don't have to hire.",
         "role": "Owner, MyLabCompliance.io"
       }
     },
     "CTA": {
-      "title": "Start Building Your Chatbot Today"
+      "title": "See if this fits your business"
     },
     "CalculatorCTA": {
-      "badge": "Free Growth Calculator",
-      "title": "See How Much Revenue You're Missing",
-      "subtitle": "Discover the untapped potential of reaching Spanish-speaking customers in your area with our free bilingual growth calculator.",
-      "button": "Calculate My Growth Potential"
+      "badge": "Bilingual growth calculator",
+      "title": "What your Spanish-speaking market is worth",
+      "subtitle": "Based on your city's Hispanic population and your industry's search patterns, estimate the monthly revenue a bilingual site could capture.",
+      "button": "Estimate my market"
     }
   },
   "Services": {
     "Hero": {
       "title": "Our",
-      "highlight": "Services",
-      "subtitle": "We provide comprehensive design and development services to bring your digital vision to life."
+      "highlight": "services",
+      "subtitle": "Websites, apps, chatbots, and custom platforms — shipped to small businesses in English and Spanish."
     },
     "Cards": {
       "aiChatbots": {
-        "title": "AI Chatbots & Agents",
-        "description": "Custom AI assistants tailored to your brand voice and customer needs.",
+        "title": "AI chatbots & agents",
+        "description": "Agents trained on your SOPs, pricing, and policies. Answers in English or Spanish. Qualifies leads and logs them to your CRM.",
         "features": {
           "f1": "24/7 customer support automation",
           "f2": "Lead capture and qualification",
@@ -133,72 +134,72 @@
         "placeholder": "AI assistant preview coming soon"
       },
       "bilingualWeb": {
-        "title": "Bilingual Web Development",
-        "description": "Spanish-English websites that reach diverse audiences and expand your market.",
+        "title": "Bilingual web development",
+        "description": "Websites built bilingual from day one — content, UX, URLs, and hreflang done right.",
         "features": {
           "f1": "Full Spanish & English versions",
-          "f2": "Professional translation",
+          "f2": "Native Spanish copywriting",
           "f3": "SEO for both languages",
-          "f4": "Seamless language switching"
+          "f4": "Language switching that preserves context"
         },
         "placeholder": "Bilingual site preview coming soon"
       },
       "webDev": {
-        "title": "Web Development",
-        "description": "Custom websites built with modern technologies like Next.js, React, and TypeScript.",
+        "title": "Web development",
+        "description": "Fast, SEO-ready websites on Next.js and React. Easy to update, built to last.",
         "features": {
-          "f1": "Responsive Design",
-          "f2": "SEO Optimization",
-          "f3": "Fast Loading Times",
-          "f4": "Cross-Browser Compatibility"
+          "f1": "Responsive across devices",
+          "f2": "SEO-ready on launch",
+          "f3": "Fast loading",
+          "f4": "Cross-browser tested"
         },
         "placeholder": "Website preview coming soon"
       },
       "mobileApp": {
-        "title": "Mobile App Development",
-        "description": "Native and cross-platform mobile applications for iOS and Android.",
+        "title": "Mobile apps",
+        "description": "Native and React Native apps for iOS and Android, shipped to the store.",
         "features": {
-          "f1": "React Native Development",
-          "f2": "iOS & Android Apps",
-          "f3": "App Store Optimization",
-          "f4": "Push Notifications"
+          "f1": "React Native cross-platform",
+          "f2": "iOS & Android builds",
+          "f3": "App Store submission included",
+          "f4": "Push notifications"
         },
         "placeholder": "Mobile app preview coming soon"
       },
       "uiUx": {
-        "title": "UI/UX Design",
-        "description": "Beautiful, intuitive user interfaces that enhance user experience.",
+        "title": "UI/UX design",
+        "description": "Interfaces your customers don't have to think about.",
         "features": {
-          "f1": "User Research",
-          "f2": "Wireframing & Prototyping",
-          "f3": "Visual Design",
-          "f4": "Usability Testing"
+          "f1": "User research",
+          "f2": "Wireframing & prototyping",
+          "f3": "Visual design",
+          "f4": "Usability testing"
         },
         "placeholder": "Design mockups coming soon"
       },
       "brandIdentity": {
-        "title": "Brand Identity Design",
-        "description": "Professional logo and brand identity packages for businesses of all sizes.",
+        "title": "Brand identity",
+        "description": "Logo systems and brand guidelines that survive past the first use. Full rights included.",
         "features": {
-          "f1": "Custom Logo Design",
-          "f2": "Business Card & Stationery",
-          "f3": "Brand Style Guide",
-          "f4": "Full Rights to Your Design"
+          "f1": "Custom logo design",
+          "f2": "Business card & stationery",
+          "f3": "Brand style guide",
+          "f4": "Full rights to your design"
         },
         "placeholder": "Brand identity preview coming soon"
       }
     },
     "CTA": {
-      "title": "Ready to Start Your Project?",
-      "description": "Let's discuss how we can help bring your digital vision to life with our expertise.",
-      "link": "Learn more"
+      "title": "Ready to start?",
+      "description": "Tell us about your project. We'll tell you what it takes, on what timeline, and what it costs.",
+      "link": "See how we work"
     }
   },
   "CalculatorPage": {
     "hero": {
-      "titlePart1": "Bilingual Growth",
-      "titlePart2": "Calculator",
-      "subtitle": "Discover how much revenue you could be missing by not reaching Spanish-speaking customers in your area."
+      "titlePart1": "Bilingual growth",
+      "titlePart2": "calculator",
+      "subtitle": "Estimate the monthly revenue you could capture by serving Spanish-speaking customers in your area."
     },
     "stats": {
       "hispanicPopulation": "Hispanic population in the US",
@@ -206,27 +207,27 @@
       "buyingPower": "Hispanic buying power"
     },
     "info": {
-      "title": "How We Calculate Your Potential",
-      "description": "Our calculator uses real census data and industry benchmarks to estimate your growth opportunity.",
+      "title": "How the numbers get calculated",
+      "description": "Built on census data and industry search patterns — not hand-wavy guesses.",
       "methodology": {
-        "title": "Our Methodology",
-        "description": "We combine local Hispanic population data with industry-specific online search patterns to estimate the portion of potential customers you could reach with a bilingual website."
+        "title": "Methodology",
+        "description": "We combine local Hispanic population data with industry-specific online search behavior to estimate the share of customers a bilingual site could reach."
       },
       "disclaimer": {
-        "title": "Important Note",
-        "description": "These are estimates based on market data and industry averages. Actual results may vary based on your specific business, location, and marketing efforts."
+        "title": "One caveat",
+        "description": "These are estimates based on market data and industry averages. Actual numbers vary by location, positioning, and how well the site is built."
       }
     }
   },
   "BrandIdentity": {
     "badge": "Brand Identity",
-    "title": "Brand Identity Packages",
-    "description": "Your brand identity goes beyond a logo—it's how customers recognize and connect with your business. We create professional, distinctive designs that truly represent who you are.",
-    "depositNote": "Start your order with a 50% deposit.",
+    "title": "Brand identity packages",
+    "description": "A brand is how customers recognize you before they know you. We build logo systems and guidelines that survive past the first use.",
+    "depositNote": "50% deposit starts the work.",
     "orderNow": "Order Now",
     "cta": {
-      "title": "Ready to Start Your Project?",
-      "description": "Let's discuss how we can help bring your digital vision to life with our expertise.",
+      "title": "Ready to start?",
+      "description": "Tell us about your project. We'll tell you what it takes, on what timeline, and what it costs.",
       "button": "SCHEDULE A CALL"
     }
   },
@@ -261,7 +262,7 @@
         "other": "Other US City (19% avg)"
       }
     },
-    "calculateButton": "Calculate My Potential",
+    "calculateButton": "Calculate my potential",
     "errors": {
       "industry": "Please select your industry",
       "customers": "Please enter a valid number of customers",
@@ -274,98 +275,220 @@
       "name": "Your name",
       "email": "Email address",
       "phone": "Phone number (optional)",
-      "submit": "Send My Report",
+      "submit": "Send my report",
       "submitting": "Sending...",
       "skip": "No thanks, just show me the results"
     },
     "results": {
-      "title": "Your Growth Potential",
+      "title": "Your growth potential",
       "basedOn": "Based on {city} with {percent}% Hispanic population",
-      "emailSent": "Your detailed report has been sent to your email!",
-      "newCustomers": "Potential New Customers",
+      "emailSent": "Your detailed report has been sent to your email.",
+      "newCustomers": "Potential new customers",
       "month": "month",
-      "monthlyRevenue": "Potential Monthly Revenue Increase",
-      "yearlyRevenue": "Potential Yearly Revenue Increase",
-      "cta": "Start Reaching More Customers",
+      "monthlyRevenue": "Potential monthly revenue increase",
+      "yearlyRevenue": "Potential yearly revenue increase",
+      "cta": "Start reaching more customers",
       "recalculate": "Calculate again"
     }
   },
   "Platforms": {
     "Preview": {
-      "badge": "CUSTOM PLATFORMS",
-      "title": "Powerful Platforms.",
-      "titleAccent": "Built for Your Business.",
+      "badge": "Custom platforms",
+      "title": "Custom platforms.",
+      "titleAccent": "Built around your workflow.",
       "subtitle": "Saguaro Transport",
-      "description": "Operations management platform for logistics and transportation companies. Track your fleet in real-time, manage drivers, handle accounting, and run your entire business from one unified dashboard.",
+      "description": "Operations platform for logistics and transportation companies. Live fleet tracking, dispatch, CRM, accounting, and HR — one dashboard, not six tabs.",
       "feature1": {
-        "title": "Real-Time Fleet Tracking",
-        "description": "Monitor every vehicle with live GPS, dispatch assignments, and route optimization."
+        "title": "Live fleet tracking",
+        "description": "Real-time GPS, dispatch assignment, and route optimization per vehicle."
       },
       "feature2": {
-        "title": "Integrated CRM & Accounting",
-        "description": "Manage customers, invoices, and finances without switching between apps."
+        "title": "CRM and accounting together",
+        "description": "Customers, invoices, and finances in one system — no app-switching."
       },
       "feature3": {
-        "title": "Driver & HR Management",
-        "description": "Onboard drivers, track compliance, and manage payroll in one place."
+        "title": "Drivers and HR",
+        "description": "Onboarding, compliance, and payroll in one place."
       },
-      "cta": "Explore Platforms"
+      "cta": "Explore platforms"
     },
     "Page": {
       "Hero": {
-        "badge": "CUSTOM SOFTWARE",
-        "title": "Custom Platforms",
-        "titleAccent": "for Growing Businesses",
-        "subtitle": "Purpose-built software designed around your workflows. Stop adapting to generic tools—get a platform that adapts to you."
+        "badge": "Custom software",
+        "title": "Custom platforms",
+        "titleAccent": "for growing businesses",
+        "subtitle": "Software built around your workflow. Stop adapting to generic tools — get a platform that adapts to you."
       },
       "Saguaro": {
-        "badge": "LOGISTICS & TRANSPORTATION",
-        "forSaleBadge": "AVAILABLE FOR PURCHASE",
+        "badge": "Logistics & transportation",
+        "forSaleBadge": "Available for purchase",
         "title": "Saguaro Transport",
         "subtitle": "Complete operations management for trucking and logistics companies",
-        "description": "Built for transportation businesses that need more than spreadsheets and disconnected software. Saguaro Transport brings fleet tracking, dispatch, CRM, accounting, and HR into one powerful platform.",
-        "inquireButton": "Inquire About This Platform",
+        "description": "For transportation businesses that have outgrown spreadsheets and disconnected software. Fleet tracking, dispatch, CRM, accounting, and HR in one platform.",
+        "inquireButton": "Inquire about this platform",
         "features": {
           "fleet": {
-            "title": "Fleet Management",
-            "description": "Real-time GPS tracking, vehicle maintenance schedules, and fuel management."
+            "title": "Fleet management",
+            "description": "Real-time GPS, maintenance schedules, and fuel tracking."
           },
           "crm": {
-            "title": "Customer Relations",
-            "description": "Manage shipper relationships, track loads, and handle customer communications."
+            "title": "Customer relations",
+            "description": "Shipper relationships, load tracking, and customer communication."
           },
           "accounting": {
             "title": "Accounting",
-            "description": "Invoicing, expense tracking, and financial reporting built for trucking."
+            "description": "Invoicing, expense tracking, and reporting built for trucking."
           }
         }
       },
       "DriverApp": {
-        "badge": "DRIVER MOBILE APP",
-        "title": "Driver Companion App",
-        "description": "Empower your drivers with a dedicated mobile app for managing tasks, tracking earnings, and staying connected on the road.",
+        "badge": "Driver mobile app",
+        "title": "Driver companion app",
+        "description": "A mobile app for drivers to manage tasks, track earnings, and stay connected on the road.",
         "screens": {
           "login": {
-            "title": "Driver Login"
+            "title": "Driver login"
           },
           "tasks": {
-            "title": "Task Management"
+            "title": "Task management"
           },
           "earnings": {
-            "title": "Earnings Dashboard"
+            "title": "Earnings dashboard"
           }
         }
       },
       "ComingSoon": {
-        "badge": "MORE COMING SOON",
-        "title": "More Platforms in Development",
-        "description": "We're building industry-specific platforms for businesses that need custom solutions. Interested in a platform for your industry?"
+        "badge": "More coming",
+        "title": "More platforms in development",
+        "description": "We build industry-specific platforms for businesses that have outgrown off-the-shelf tools. Interested in one for your industry?"
       },
       "CTA": {
-        "title": "Need a Custom Platform?",
-        "subtitle": "Tell us about your business and we'll show you what's possible.",
-        "button": "Schedule a Call"
+        "title": "Need a custom platform?",
+        "subtitle": "Tell us about your workflow. We'll tell you what it takes, on what timeline, and what it costs.",
+        "button": "Schedule a call"
       }
+    }
+  },
+  "Pricing": {
+    "Hero": {
+      "title": "Let's find the right scope.",
+      "subtitle": "Three short questions. One recommended package. No bait, no bundling you don't need."
+    },
+    "Breadcrumb": {
+      "edit": "Edit"
+    },
+    "Questions": {
+      "q1": {
+        "prompt": "What are you building?",
+        "options": {
+          "website": "A website",
+          "chatbot": "A chatbot",
+          "both": "Both — a website and a chatbot",
+          "other": "Something else"
+        }
+      },
+      "q2": {
+        "prompt": "Bilingual?",
+        "hint": "English + Spanish, authored natively (not translated).",
+        "options": {
+          "yes": "Yes — English and Spanish",
+          "english": "English only",
+          "unsure": "Not sure yet"
+        }
+      },
+      "q3": {
+        "prompt": "When does it need to be live?",
+        "options": {
+          "fast": "2–4 weeks",
+          "medium": "1–2 months",
+          "flexible": "Flexible — quality first"
+        }
+      }
+    },
+    "Recommendation": {
+      "eyebrow": "Based on your answers",
+      "perMonth": "/mo",
+      "seeAlt": "See alternate: {tier}",
+      "hideAlt": "Hide alternate",
+      "altLabel": "Also worth considering",
+      "cta": "Book a call to confirm this",
+      "restart": "Answer the questions again"
+    },
+    "Tiers": {
+      "starter": {
+        "name": "Starter",
+        "tagline": "A focused build, shipped fast.",
+        "inclusions": [
+          "3-page site or single-purpose chatbot",
+          "24/7 lead capture",
+          "Mobile-ready, SEO-ready on launch",
+          "14 days of post-launch support"
+        ]
+      },
+      "business": {
+        "name": "Business",
+        "tagline": "Website + chatbot + real support in one scope.",
+        "inclusions": [
+          "Up to 7-page site",
+          "Chatbot trained on your SOPs",
+          "Basic SEO + blog setup",
+          "CRM integration",
+          "30 days of post-launch support"
+        ]
+      },
+      "professional": {
+        "name": "Professional",
+        "tagline": "Room for complex scope, with a dedicated PM.",
+        "inclusions": [
+          "Custom website and app design",
+          "Unlimited pages",
+          "Advanced chatbot with custom training",
+          "Full SEO scope",
+          "CMS for your team to update",
+          "Dedicated project manager"
+        ]
+      }
+    },
+    "Rationale": {
+      "starterFast": "You need a focused site live in the next few weeks. Starter fits the scope; Business is there if you add more later.",
+      "starterChatbotFast": "A chatbot for your current site, shipped in weeks. Starter keeps the scope tight.",
+      "businessBilingualFast": "Bilingual done right — authored in both languages — pushes you past Starter. Business covers it without Professional's overhead.",
+      "businessBoth": "A website and a chatbot in one scope. Business handles both without stepping up to Professional.",
+      "businessMedium": "You've got a month or two, which means room to do both well. Business is the right center point.",
+      "professionalComplex": "Both a site and a chatbot, bilingual, on a longer timeline. Professional gives you the room and a dedicated PM.",
+      "professionalFlexible": "No rush, and you want it done right in both languages. Professional covers the depth without cutting corners."
+    },
+    "Consult": {
+      "heading": "Let's talk about it directly.",
+      "subtitle": "\"Something else\" is usually the interesting conversation. Tell us what you need and we'll tell you what it takes — scope, timeline, cost.",
+      "cta": "Book a call"
+    },
+    "AddOns": {
+      "heading": "Enhance this package",
+      "subtitle": "Optional. Toggle what you'd like to include in the conversation.",
+      "perMonth": "/mo",
+      "items": {
+        "bilingual": {
+          "name": "Bilingual add-on",
+          "description": "Spanish site, native copy, hreflang, and bilingual chatbot."
+        },
+        "seo": {
+          "name": "SEO maintenance",
+          "description": "Monthly audit, keyword monitoring, content updates."
+        },
+        "social": {
+          "name": "Social media",
+          "description": "Weekly posts, content creation, engagement monitoring."
+        },
+        "care": {
+          "name": "Care plan",
+          "description": "Backups, updates, security, priority bug fixes."
+        }
+      }
+    },
+    "Status": {
+      "paymentSuccess": "Payment successful. Welcome aboard.",
+      "paymentCanceled": "Payment canceled. Come back whenever you're ready."
     }
   }
 }

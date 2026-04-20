@@ -111,36 +111,36 @@ export default function BlogPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="bg-white dark:bg-black pt-8 md:pt-12 pb-12 border-b border-gray-200 dark:border-neutral-800">
+      <section className="bg-background pt-8 md:pt-12 pb-12 border-b border-border">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center">
-            <h1 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-6">
-              Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Blog</span>
+          <div>
+            <h1 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] text-foreground mb-6">
+              Our <span className="text-primary">Blog</span>
             </h1>
-            <p className="text-lg md:text-xl font-normal leading-relaxed text-gray-600 dark:text-neutral-400 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl font-normal leading-relaxed text-muted-foreground max-w-3xl">
               Insights, tutorials, and resources on web development, design, AI marketing, bilingual advertising, and digital innovation for your business.
             </p>
           </div>
 
           {/* Search Bar */}
-          <div className="max-w-2xl mx-auto mt-10">
+          <div className="max-w-2xl mt-10">
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-neutral-400" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground dark:text-neutral-400" />
               <input
                 type="text"
                 placeholder="Search articles and resources..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 rounded-2xl border border-gray-300 dark:border-neutral-700 bg-gray-50 dark:bg-neutral-800/50 backdrop-blur-sm text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
+                className="w-full pl-12 pr-4 py-4 rounded-2xl border border-border bg-gray-50 dark:bg-neutral-800/50 backdrop-blur-sm text-foreground placeholder:text-muted-foreground dark:placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery("")}
                   className="absolute right-4 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-gray-200 dark:hover:bg-neutral-700 transition-colors"
                 >
-                  <X className="w-4 h-4 text-gray-400 dark:text-neutral-400" />
+                  <X className="w-4 h-4 text-muted-foreground dark:text-neutral-400" />
                 </button>
               )}
             </div>
@@ -149,24 +149,24 @@ export default function BlogPage() {
       </section>
 
       {/* Category Pills */}
-      <section className="py-6 border-b border-gray-200 dark:border-neutral-800 sticky top-16 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-lg z-20">
+      <section className="py-6 border-b border-border sticky top-16 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-lg z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           {/* Left scroll button */}
           <button
             onClick={() => scrollCategories('left')}
-            className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800 shadow-md border border-gray-200 dark:border-neutral-700 hover:bg-gray-200 dark:hover:bg-neutral-700 transition-colors"
+            className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800 shadow-md border border-border hover:bg-gray-200 dark:hover:bg-neutral-700 transition-colors"
             aria-label="Scroll left"
           >
-            <ChevronLeft className="w-4 h-4 text-gray-700 dark:text-white" />
+            <ChevronLeft className="w-4 h-4 text-foreground" />
           </button>
           
           {/* Right scroll button */}
           <button
             onClick={() => scrollCategories('right')}
-            className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800 shadow-md border border-gray-200 dark:border-neutral-700 hover:bg-gray-200 dark:hover:bg-neutral-700 transition-colors"
+            className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800 shadow-md border border-border hover:bg-gray-200 dark:hover:bg-neutral-700 transition-colors"
             aria-label="Scroll right"
           >
-            <ChevronRight className="w-4 h-4 text-gray-700 dark:text-white" />
+            <ChevronRight className="w-4 h-4 text-foreground" />
           </button>
 
           {/* Left fade gradient */}
@@ -184,7 +184,7 @@ export default function BlogPage() {
               className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all ${
                 selectedCategory === null
                   ? "bg-gray-900 dark:bg-white text-white dark:text-neutral-900"
-                  : "bg-gray-100 dark:bg-neutral-800 text-gray-700 dark:text-neutral-300 hover:bg-gray-200 dark:hover:bg-neutral-700"
+                  : "bg-gray-100 dark:bg-neutral-800 text-foreground hover:bg-gray-200 dark:hover:bg-neutral-700"
               }`}
             >
               All ({totalBlogPageCount})
@@ -199,7 +199,7 @@ export default function BlogPage() {
                   className={`flex-shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
                     selectedCategory === category.name
                       ? "bg-gray-900 dark:bg-white text-white dark:text-neutral-900"
-                      : "bg-gray-100 dark:bg-neutral-800 text-gray-700 dark:text-neutral-300 hover:bg-gray-200 dark:hover:bg-neutral-700"
+                      : "bg-gray-100 dark:bg-neutral-800 text-foreground hover:bg-gray-200 dark:hover:bg-neutral-700"
                   }`}
                 >
                   {getIcon(category.name)}
@@ -215,7 +215,7 @@ export default function BlogPage() {
         {/* Active Filters */}
         {(selectedCategory || searchQuery) && (
           <div className="flex items-center gap-4 mb-8">
-            <span className="text-sm text-gray-500 dark:text-neutral-400">
+            <span className="text-sm text-muted-foreground">
               Showing {filteredPosts.length} results
             </span>
             <button
@@ -230,12 +230,12 @@ export default function BlogPage() {
         {/* Featured Post - Only show when no filters */}
         {!selectedCategory && !searchQuery && featuredPost && (
           <section className="mb-16">
-            <h2 className="text-xl md:text-2xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+            <h2 className="text-xl md:text-2xl font-medium tracking-[-0.02em] text-foreground mb-6 flex items-center gap-2">
               <Trophy className="w-6 h-6 text-orange-500" />
               Featured Article
             </h2>
             <Link href={`/blog/${featuredPost.slug}`}>
-              <Card className="overflow-hidden group hover:shadow-lg transition-shadow duration-300 bg-gray-50 dark:bg-neutral-950 border-gray-200 dark:border-neutral-800">
+              <Card className="overflow-hidden group hover:shadow-lg transition-shadow duration-300 bg-gray-50 dark:bg-neutral-950 border-border">
                 <div className="grid grid-cols-1 lg:grid-cols-2">
                   {featuredPost.image && (
                     <div className="relative h-64 lg:h-auto min-h-[300px]">
@@ -255,13 +255,13 @@ export default function BlogPage() {
                       {getIcon(featuredPost.category)}
                       {featuredPost.category}
                     </Badge>
-                    <CardTitle className="text-xl md:text-[28px] font-normal tracking-normal mb-4 text-gray-900 dark:text-white group-hover:text-orange-500 transition-colors">
+                    <CardTitle className="text-xl md:text-[28px] font-normal tracking-normal mb-4 text-foreground group-hover:text-orange-500 transition-colors">
                       {featuredPost.title}
                     </CardTitle>
-                    <CardDescription className="text-sm md:text-base font-normal leading-relaxed text-gray-600 dark:text-neutral-400 mb-6">
+                    <CardDescription className="text-sm md:text-base font-normal leading-relaxed text-muted-foreground mb-6">
                       {featuredPost.excerpt}
                     </CardDescription>
-                    <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-muted-foreground mb-6">
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground dark:text-muted-foreground mb-6">
                       <div className="flex items-center gap-1">
                         <Calendar className="h-4 w-4" />
                         {new Date(featuredPost.publishedDate).toLocaleDateString()}
@@ -271,7 +271,7 @@ export default function BlogPage() {
                         {featuredPost.readTime}
                       </div>
                     </div>
-                    <Button className="w-fit group bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-sm font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
+                    <Button className="w-fit group bg-primary hover:bg-primary/90 text-white text-sm font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
                       Read More
                       <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </Button>
@@ -285,7 +285,7 @@ export default function BlogPage() {
         {/* Blog Posts Grid */}
         <section>
           {!selectedCategory && !searchQuery && (
-            <h2 className="text-xl md:text-2xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-8">
+            <h2 className="text-xl md:text-2xl font-medium tracking-[-0.02em] text-foreground mb-8">
               Latest Articles
             </h2>
           )}
@@ -294,7 +294,7 @@ export default function BlogPage() {
             <BlogCardsGrid posts={filteredPosts} />
           ) : (
             <div className="text-center py-20">
-              <p className="text-sm md:text-base font-normal leading-relaxed text-gray-500 dark:text-neutral-400">
+              <p className="text-sm md:text-base font-normal leading-relaxed text-muted-foreground">
                 No articles found matching your criteria.
               </p>
               <button

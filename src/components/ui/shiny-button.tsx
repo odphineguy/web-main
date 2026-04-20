@@ -35,7 +35,7 @@ export const ShinyButton = ({
       {...props}
       className={cn(
         "relative overflow-hidden inline-flex items-center justify-center rounded-full font-semibold text-white",
-        "bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700",
+        "bg-primary hover:bg-primary/90",
         "shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out",
         className
       )}

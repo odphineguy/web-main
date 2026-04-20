@@ -37,7 +37,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, isLoading }) => {
                     )}
                     <p className="whitespace-pre-wrap">{message.text}</p>
                   </div>
-                  <div className="text-[10px] text-gray-400 dark:text-gray-500 text-right mt-1 px-1">
+                  <div className="text-[10px] text-muted-foreground text-right mt-1 px-1">
                     {timestamp}
                   </div>
                 </div>
@@ -63,7 +63,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, isLoading }) => {
                   />
                 </div>
                 <div className="flex-1">
-                  <div className="bg-white dark:bg-neutral-800 text-gray-800 dark:text-gray-200 px-4 py-2.5 rounded-2xl rounded-bl-md text-sm max-w-[85%] shadow-sm border border-gray-100 dark:border-neutral-700">
+                  <div className="bg-card text-foreground px-4 py-2.5 rounded-2xl rounded-bl-md text-sm max-w-[85%] shadow-sm border border-gray-100 dark:border-neutral-700">
                     {message.image && (
                       <img
                         src={`data:${message.image.mimeType};base64,${message.image.data}`}
@@ -80,7 +80,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, isLoading }) => {
                       </div>
                     )}
                   </div>
-                  <div className="text-[10px] text-gray-400 dark:text-gray-500 mt-1 px-1">
+                  <div className="text-[10px] text-muted-foreground mt-1 px-1">
                     {timestamp}
                   </div>
                 </div>
@@ -100,11 +100,11 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, isLoading }) => {
             />
           </div>
           <div>
-            <div className="bg-white dark:bg-neutral-800 px-4 py-3 rounded-2xl rounded-bl-md text-sm shadow-sm border border-gray-100 dark:border-neutral-700">
+            <div className="bg-card px-4 py-3 rounded-2xl rounded-bl-md text-sm shadow-sm border border-gray-100 dark:border-neutral-700">
               <div className="flex items-center gap-1.5">
-                <div className="w-2 h-2 bg-orange-400 rounded-full animate-bounce"></div>
-                <div className="w-2 h-2 bg-orange-400 rounded-full animate-bounce" style={{animationDelay: '0.15s'}}></div>
-                <div className="w-2 h-2 bg-orange-400 rounded-full animate-bounce" style={{animationDelay: '0.3s'}}></div>
+                <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
+                <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse" style={{animationDelay: '0.15s'}}></div>
+                <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse" style={{animationDelay: '0.3s'}}></div>
               </div>
             </div>
           </div>

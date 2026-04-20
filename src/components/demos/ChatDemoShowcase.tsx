@@ -38,10 +38,10 @@ export default function ChatDemoShowcase({ onCtaClick }: ChatDemoShowcaseProps) 
           <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-orange-500 mb-4">
             See It In Action
           </span>
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
             AI Chatbots for Every Industry
           </h2>
-          <p className="text-gray-600 dark:text-neutral-400 max-w-xl mx-auto">
+          <p className="text-muted-foreground max-w-xl mx-auto">
             Watch how our chatbots handle real conversations for different businesses
           </p>
         </motion.div>
@@ -62,7 +62,7 @@ export default function ChatDemoShowcase({ onCtaClick }: ChatDemoShowcaseProps) 
                 "flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-200",
                 activeDemo === demo.id
                   ? "bg-orange-500 text-white shadow-lg shadow-orange-500/25"
-                  : "bg-white dark:bg-neutral-800 text-gray-600 dark:text-neutral-400 border border-gray-200 dark:border-neutral-700 hover:border-orange-500/50 hover:text-orange-500"
+                  : "bg-card text-muted-foreground border border-border hover:border-orange-500/50 hover:text-orange-500"
               )}
             >
               <span>{demo.avatar}</span>
@@ -87,7 +87,7 @@ export default function ChatDemoShowcase({ onCtaClick }: ChatDemoShowcaseProps) 
             // Light mode - Saffron glow
             "shadow-[0_0_40px_rgba(249,115,22,0.3)]",
             // Dark mode - pulsing aurora glow
-            "dark:animate-pulse-glow dark:shadow-none"
+            "dark:dark:shadow-none"
           )}
         >
           <ChatDemoWindow
@@ -108,7 +108,7 @@ export default function ChatDemoShowcase({ onCtaClick }: ChatDemoShowcaseProps) 
         >
           <button
             onClick={onCtaClick}
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary/90 text-white font-semibold rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300"
           >
             Get a Chatbot Like This
             <svg

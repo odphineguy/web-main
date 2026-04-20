@@ -22,7 +22,7 @@ export default function PortfolioPreviewModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/90 flex flex-col z-50">
+    <div className="fixed inset-0 bg-foreground/90 flex flex-col z-50">
       {/* Header */}
       <div className="flex items-center justify-between px-6 py-4 bg-neutral-900 border-b border-neutral-800">
         <h2 className="text-xl font-semibold text-white">{projectName}</h2>

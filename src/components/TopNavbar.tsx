@@ -81,11 +81,17 @@ export default function TopNavbar() {
           <Link href="/portfolio" className={`font-bold transition-colors ${isActive("/portfolio") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('portfolio')}</Link>
           <Link href="/blog" className={`font-bold transition-colors ${isActive("/blog") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('blog')}</Link>
           <Link href="/contact" className={`font-bold transition-colors ${isActive("/contact") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('contact')}</Link>
+          <Link
+            href="/get-started"
+            className="ml-2 inline-flex items-center rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+          >
+            {t('getStarted')}
+          </Link>
           <button
             ref={themeRef}
             onClick={toggleSwitchTheme}
             aria-label="Toggle theme"
-            className="ml-2 inline-flex h-8 w-8 items-center justify-center rounded-full border border-border opacity-80 hover:opacity-100"
+            className="ml-1 inline-flex h-8 w-8 items-center justify-center rounded-full border border-border opacity-80 hover:opacity-100"
           >
             {mounted && (isDark ? "🌙" : "☀️")}
           </button>
@@ -120,12 +126,19 @@ export default function TopNavbar() {
           className="md:hidden bg-white/95 dark:bg-neutral-900/95 backdrop-blur supports-[backdrop-filter]:bg-white/95 dark:supports-[backdrop-filter]:bg-neutral-900/95 border-t border-border"
         >
           <nav className="flex flex-col py-4 px-6 space-y-3">
-            <Link href="/services" className={`font-bold py-2 transition-colors ${isActive("/services") ? "text-orange-500" : "text-gray-900 dark:text-white opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('services')}</Link>
-            <Link href="/pricing" className={`font-bold py-2 transition-colors ${isActive("/pricing") ? "text-orange-500" : "text-gray-900 dark:text-white opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('pricing')}</Link>
-            <Link href="/calculator" className={`font-bold py-2 transition-colors ${isActive("/calculator") ? "text-orange-500" : "text-gray-900 dark:text-white opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('calculator')}</Link>
-            <Link href="/portfolio" className={`font-bold py-2 transition-colors ${isActive("/portfolio") ? "text-orange-500" : "text-gray-900 dark:text-white opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('portfolio')}</Link>
-            <Link href="/blog" className={`font-bold py-2 transition-colors ${isActive("/blog") ? "text-orange-500" : "text-gray-900 dark:text-white opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('blog')}</Link>
-            <Link href="/contact" className={`font-bold py-2 transition-colors ${isActive("/contact") ? "text-orange-500" : "text-gray-900 dark:text-white opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('contact')}</Link>
+            <Link href="/services" className={`font-bold py-2 transition-colors ${isActive("/services") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('services')}</Link>
+            <Link href="/pricing" className={`font-bold py-2 transition-colors ${isActive("/pricing") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('pricing')}</Link>
+            <Link href="/calculator" className={`font-bold py-2 transition-colors ${isActive("/calculator") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('calculator')}</Link>
+            <Link href="/portfolio" className={`font-bold py-2 transition-colors ${isActive("/portfolio") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('portfolio')}</Link>
+            <Link href="/blog" className={`font-bold py-2 transition-colors ${isActive("/blog") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('blog')}</Link>
+            <Link href="/contact" className={`font-bold py-2 transition-colors ${isActive("/contact") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('contact')}</Link>
+            <Link
+              href="/get-started"
+              className="mt-2 inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              {t('getStarted')}
+            </Link>
           </nav>
         </motion.div>
       )}

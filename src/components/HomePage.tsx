@@ -15,7 +15,7 @@ import { useTranslations } from 'next-intl';
 // Lazy load below-fold components to reduce initial bundle size
 const HomeFaq = dynamic(() => import("@/components/HomeFaq"), {
   ssr: false,
-  loading: () => <div className="py-20 px-6 text-center text-gray-400">Loading...</div>,
+  loading: () => <div className="py-20 px-6 text-center text-muted-foreground">Loading...</div>,
 });
 
 const SlidingHighlightGrid = dynamic(() => import("@/components/SlidingHighlightGrid"), {
@@ -78,32 +78,29 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black">
+    <div className="min-h-screen bg-background">
       {/* Hero Section - Black background */}
-      <section className="bg-white dark:bg-black px-6 pt-8 md:pt-16 pb-16 lg:pb-32 overflow-hidden">
+      <section className="bg-background px-6 pt-8 md:pt-16 pb-16 lg:pb-32 overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left: Text Content - Animations removed for LCP optimization */}
             <div
               className="space-y-6"
             >
-              {/* Pulsating badge */}
-              <div className="inline-flex items-center gap-2 rounded-full bg-orange-500/10 border border-orange-500/30 px-4 py-1.5 animate-pulse-glow">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
-                </span>
-                <span className="text-xs font-semibold uppercase tracking-wide text-orange-500">
+              {/* Eyebrow — quiet credibility line */}
+              <div className="inline-flex items-center gap-2">
+                <span className="inline-flex h-1.5 w-1.5 rounded-full bg-orange-500"></span>
+                <span className="text-xs font-semibold uppercase tracking-[0.14em] text-orange-500">
                   Serving Small Businesses
                 </span>
               </div>
-              <h1 className="text-[40px] md:text-[48px] lg:text-[56px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white leading-tight">
+              <h1 className="text-[40px] md:text-[48px] lg:text-[56px] font-medium tracking-[-0.02em] text-foreground leading-tight">
                 {t('Hero.titlePart1')}{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
+                <span className="text-primary">
                   {t('Hero.titlePart2')}
                 </span>
               </h1>
-              <p className="text-lg md:text-xl text-gray-600 dark:text-neutral-300 max-w-xl">
+              <p className="text-lg md:text-xl text-muted-foreground max-w-xl">
                 {t('Hero.subtitle')}
               </p>
               <ScheduleCallButton
@@ -128,15 +125,15 @@ export default function HomePage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="mb-12 max-w-3xl"
           >
             <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500 mb-4">
               {t('BilingualServices.badge')}
             </span>
-            <h2 className="text-[28px] md:text-[32px] lg:text-[36px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-4">
+            <h2 className="text-[28px] md:text-[32px] lg:text-[36px] font-medium tracking-[-0.02em] text-foreground mb-4">
               {t('BilingualServices.title')}
             </h2>
-            <p className="text-lg md:text-xl font-normal leading-relaxed text-gray-600 dark:text-neutral-400 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl font-normal leading-relaxed text-muted-foreground max-w-2xl">
               {t('BilingualServices.subtitle')}
             </p>
           </motion.div>
@@ -147,15 +144,15 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0 }}
               viewport={{ once: true }}
-              className="text-center"
+             
             >
-              <div className="w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center mx-auto mb-4">
+              <div className="w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4">
                 <TrendingUp className="w-7 h-7 text-orange-500" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+              <h3 className="text-lg font-semibold text-foreground mb-2">
                 {t('BilingualServices.benefit1.title')}
               </h3>
-              <p className="text-sm text-gray-600 dark:text-neutral-400">
+              <p className="text-sm text-muted-foreground">
                 {t('BilingualServices.benefit1.description')}
               </p>
             </motion.div>
@@ -165,15 +162,15 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
-              className="text-center"
+             
             >
-              <div className="w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center mx-auto mb-4">
+              <div className="w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4">
                 <Heart className="w-7 h-7 text-orange-500" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+              <h3 className="text-lg font-semibold text-foreground mb-2">
                 {t('BilingualServices.benefit2.title')}
               </h3>
-              <p className="text-sm text-gray-600 dark:text-neutral-400">
+              <p className="text-sm text-muted-foreground">
                 {t('BilingualServices.benefit2.description')}
               </p>
             </motion.div>
@@ -183,15 +180,15 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: true }}
-              className="text-center"
+             
             >
-              <div className="w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center mx-auto mb-4">
+              <div className="w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4">
                 <Search className="w-7 h-7 text-orange-500" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+              <h3 className="text-lg font-semibold text-foreground mb-2">
                 {t('BilingualServices.benefit3.title')}
               </h3>
-              <p className="text-sm text-gray-600 dark:text-neutral-400">
+              <p className="text-sm text-muted-foreground">
                 {t('BilingualServices.benefit3.description')}
               </p>
             </motion.div>
@@ -202,9 +199,9 @@ export default function HomePage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             viewport={{ once: true }}
-            className="text-center"
+           
           >
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/services/bilingual-web-development"
                 className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-orange-600"
@@ -223,19 +220,19 @@ export default function HomePage() {
       </section>
 
       {/* Core Chatbot Features - Black background */}
-      <section className="bg-white dark:bg-black py-20 px-6">
+      <section className="bg-background py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="mb-12 max-w-3xl"
           >
             <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500 mb-4">
               {t('Features.badge')}
             </span>
-            <h2 className="text-[28px] md:text-[32px] lg:text-[36px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white">
+            <h2 className="text-[28px] md:text-[32px] lg:text-[36px] font-medium tracking-[-0.02em] text-foreground">
               {t('Features.title')}
             </h2>
           </motion.div>
@@ -253,11 +250,10 @@ export default function HomePage() {
                   <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4">
                     <Globe className="w-6 h-6 text-orange-500" />
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">
                     {t('Features.bilingualSupport.title')}
                   </h3>
-                  <div className="h-px w-full mb-4 bg-orange-500/30" />
-                  <p className="text-sm text-gray-600 dark:text-neutral-400">
+                  <p className="text-sm text-muted-foreground">
                     {t('Features.bilingualSupport.description')}
                   </p>
                 </div>
@@ -276,11 +272,10 @@ export default function HomePage() {
                   <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4">
                     <Bot className="w-6 h-6 text-orange-500" />
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">
                     {t('Features.aiPowered.title')}
                   </h3>
-                  <div className="h-px w-full mb-4 bg-orange-500/30" />
-                  <p className="text-sm text-gray-600 dark:text-neutral-400">
+                  <p className="text-sm text-muted-foreground">
                     {t('Features.aiPowered.description')}
                   </p>
                 </div>
@@ -299,11 +294,10 @@ export default function HomePage() {
                   <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4">
                     <Users className="w-6 h-6 text-orange-500" />
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">
                     {t('Features.leadCapture.title')}
                   </h3>
-                  <div className="h-px w-full mb-4 bg-orange-500/30" />
-                  <p className="text-sm text-gray-600 dark:text-neutral-400">
+                  <p className="text-sm text-muted-foreground">
                     {t('Features.leadCapture.description')}
                   </p>
                 </div>
@@ -322,11 +316,10 @@ export default function HomePage() {
                   <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4">
                     <Zap className="w-6 h-6 text-orange-500" />
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">
                     {t('Features.seamlessIntegration.title')}
                   </h3>
-                  <div className="h-px w-full mb-4 bg-orange-500/30" />
-                  <p className="text-sm text-gray-600 dark:text-neutral-400">
+                  <p className="text-sm text-muted-foreground">
                     {t('Features.seamlessIntegration.description')}
                   </p>
                 </div>
@@ -391,7 +384,7 @@ export default function HomePage() {
       </section>
 
       {/* Platforms Preview Section */}
-      <section className="bg-white dark:bg-black py-20 px-6">
+      <section className="bg-background py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left: Laptop Mockup */}
@@ -415,8 +408,8 @@ export default function HomePage() {
                   loading="lazy"
                 />
                 {/* Hover overlay */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
-                  <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 dark:bg-black/80 text-gray-900 dark:text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg">
+                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-300 flex items-center justify-center">
+                  <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 dark:bg-foreground/80 text-foreground px-4 py-2 rounded-full text-sm font-medium shadow-lg">
                     Click to enlarge
                   </span>
                 </div>
@@ -434,16 +427,16 @@ export default function HomePage() {
               <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
                 {p('Preview.badge')}
               </span>
-              <h2 className="text-[28px] md:text-[32px] lg:text-[36px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white">
+              <h2 className="text-[28px] md:text-[32px] lg:text-[36px] font-medium tracking-[-0.02em] text-foreground">
                 {p('Preview.title')}{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
+                <span className="text-primary">
                   {p('Preview.titleAccent')}
                 </span>
               </h2>
               <h3 className="text-xl font-semibold text-orange-500">
                 {p('Preview.subtitle')}
               </h3>
-              <p className="text-gray-600 dark:text-neutral-400">
+              <p className="text-muted-foreground">
                 {p('Preview.description')}
               </p>
 
@@ -460,10 +453,10 @@ export default function HomePage() {
                     />
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                    <h4 className="text-lg font-semibold text-foreground mb-1">
                       {p('Preview.feature1.title')}
                     </h4>
-                    <p className="text-sm text-gray-600 dark:text-neutral-400">
+                    <p className="text-sm text-muted-foreground">
                       {p('Preview.feature1.description')}
                     </p>
                   </div>
@@ -480,10 +473,10 @@ export default function HomePage() {
                     />
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                    <h4 className="text-lg font-semibold text-foreground mb-1">
                       {p('Preview.feature2.title')}
                     </h4>
-                    <p className="text-sm text-gray-600 dark:text-neutral-400">
+                    <p className="text-sm text-muted-foreground">
                       {p('Preview.feature2.description')}
                     </p>
                   </div>
@@ -500,10 +493,10 @@ export default function HomePage() {
                     />
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                    <h4 className="text-lg font-semibold text-foreground mb-1">
                       {p('Preview.feature3.title')}
                     </h4>
-                    <p className="text-sm text-gray-600 dark:text-neutral-400">
+                    <p className="text-sm text-muted-foreground">
                       {p('Preview.feature3.description')}
                     </p>
                   </div>
@@ -631,7 +624,7 @@ export default function HomePage() {
               >
                 <div className="h-full rounded-2xl p-px transition-all duration-300 bg-gradient-to-b from-gray-300 dark:from-white/10 to-gray-200 dark:to-white/5">
                   <div className="h-full rounded-2xl p-6 backdrop-blur-xl transition-all duration-300 bg-gray-50 dark:bg-neutral-950">
-                    <blockquote className="text-gray-700 dark:text-neutral-200 mb-6 text-sm">
+                    <blockquote className="text-foreground mb-6 text-sm">
                       &ldquo;{t(`Testimonials.${testimonial.id}.quote`)}&rdquo;
                     </blockquote>
                     <div className="flex items-center gap-4">
@@ -656,8 +649,8 @@ export default function HomePage() {
                         )}
                       </div>
                       <div>
-                        <p className="text-sm font-semibold text-gray-900 dark:text-white">{testimonial.name}</p>
-                        <p className="text-xs text-gray-500 dark:text-neutral-400">{t(`Testimonials.${testimonial.id}.role`)}</p>
+                        <p className="text-sm font-semibold text-foreground">{testimonial.name}</p>
+                        <p className="text-xs text-muted-foreground">{t(`Testimonials.${testimonial.id}.role`)}</p>
                       </div>
                     </div>
                   </div>
@@ -669,7 +662,7 @@ export default function HomePage() {
       </section>
 
       {/* FAQs - Black background */}
-      <div className="bg-white dark:bg-black">
+      <div className="bg-background">
         <HomeFaq />
       </div>
 
@@ -696,7 +689,7 @@ export default function HomePage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-foreground/80 backdrop-blur-sm"
             onClick={closeLightbox}
           >
             <motion.div

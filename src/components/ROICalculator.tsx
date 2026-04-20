@@ -182,18 +182,18 @@ export default function ROICalculator() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="rounded-2xl p-px bg-gradient-to-b from-orange-500/30 to-orange-600/10"
+            className="rounded-2xl p-px bg-primary/10"
           >
-            <div className="rounded-2xl p-6 md:p-8 bg-white dark:bg-neutral-900">
+            <div className="rounded-2xl p-6 md:p-8 bg-card">
               <div className="flex items-center gap-3 mb-6">
                 <div className="p-2 rounded-lg bg-orange-500/10">
                   <Calculator className="h-6 w-6 text-orange-500" />
                 </div>
                 <div>
-                  <h2 className="text-xl md:text-2xl font-normal tracking-[-0.05em] text-gray-900 dark:text-white">
+                  <h2 className="text-xl md:text-2xl font-normal tracking-[-0.05em] text-foreground">
                     {t("title")}
                   </h2>
-                  <p className="text-sm font-light text-gray-600 dark:text-neutral-400">
+                  <p className="text-sm font-light text-muted-foreground">
                     {t("subtitle")}
                   </p>
                 </div>
@@ -202,7 +202,7 @@ export default function ROICalculator() {
               <div className="space-y-5">
                 {/* Industry Select */}
                 <div>
-                  <label className="block text-sm font-light text-gray-700 dark:text-neutral-300 mb-2">
+                  <label className="block text-sm font-light text-foreground mb-2">
                     {t("inputs.industry.label")}
                   </label>
                   <select
@@ -211,8 +211,8 @@ export default function ROICalculator() {
                     className={`w-full px-4 py-3 rounded-lg border ${
                       errors.industry
                         ? "border-red-500"
-                        : "border-gray-300 dark:border-neutral-700"
-                    } bg-white dark:bg-neutral-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all`}
+                        : "border-border"
+                    } bg-card text-foreground focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all`}
                   >
                     <option value="">{t("inputs.industry.placeholder")}</option>
                     <option value="restaurant">{t("inputs.industry.options.restaurant")}</option>
@@ -229,7 +229,7 @@ export default function ROICalculator() {
 
                 {/* Customers per Month */}
                 <div>
-                  <label className="block text-sm font-light text-gray-700 dark:text-neutral-300 mb-2">
+                  <label className="block text-sm font-light text-foreground mb-2">
                     {t("inputs.customers.label")}
                   </label>
                   <input
@@ -241,8 +241,8 @@ export default function ROICalculator() {
                     className={`w-full px-4 py-3 rounded-lg border ${
                       errors.customersPerMonth
                         ? "border-red-500"
-                        : "border-gray-300 dark:border-neutral-700"
-                    } bg-white dark:bg-neutral-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all`}
+                        : "border-border"
+                    } bg-card text-foreground focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all`}
                   />
                   {errors.customersPerMonth && (
                     <p className="mt-1 text-sm text-red-500">{errors.customersPerMonth}</p>
@@ -251,11 +251,11 @@ export default function ROICalculator() {
 
                 {/* Revenue per Customer */}
                 <div>
-                  <label className="block text-sm font-light text-gray-700 dark:text-neutral-300 mb-2">
+                  <label className="block text-sm font-light text-foreground mb-2">
                     {t("inputs.revenue.label")}
                   </label>
                   <div className="relative">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 dark:text-neutral-400">
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground">
                       $
                     </span>
                     <input
@@ -267,8 +267,8 @@ export default function ROICalculator() {
                       className={`w-full pl-8 pr-4 py-3 rounded-lg border ${
                         errors.revenuePerCustomer
                           ? "border-red-500"
-                          : "border-gray-300 dark:border-neutral-700"
-                      } bg-white dark:bg-neutral-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all`}
+                          : "border-border"
+                      } bg-card text-foreground focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all`}
                     />
                   </div>
                   {errors.revenuePerCustomer && (
@@ -278,7 +278,7 @@ export default function ROICalculator() {
 
                 {/* City */}
                 <div>
-                  <label className="block text-sm font-light text-gray-700 dark:text-neutral-300 mb-2">
+                  <label className="block text-sm font-light text-foreground mb-2">
                     {t("inputs.city.label")}
                   </label>
                   <select
@@ -287,8 +287,8 @@ export default function ROICalculator() {
                     className={`w-full px-4 py-3 rounded-lg border ${
                       errors.city
                         ? "border-red-500"
-                        : "border-gray-300 dark:border-neutral-700"
-                    } bg-white dark:bg-neutral-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all`}
+                        : "border-border"
+                    } bg-card text-foreground focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all`}
                   >
                     <option value="">{t("inputs.city.placeholder")}</option>
                     <optgroup label="Arizona">
@@ -329,7 +329,7 @@ export default function ROICalculator() {
                   {errors.city && (
                     <p className="mt-1 text-sm text-red-500">{errors.city}</p>
                   )}
-                  <p className="mt-1 text-xs text-gray-500 dark:text-neutral-500">
+                  <p className="mt-1 text-xs text-muted-foreground">
                     {t("inputs.city.hint")}
                   </p>
                 </div>
@@ -337,7 +337,7 @@ export default function ROICalculator() {
                 {/* Calculate Button */}
                 <button
                   onClick={calculateROI}
-                  className="w-full py-4 px-6 rounded-full font-normal text-sm text-white bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 flex items-center justify-center gap-2"
+                  className="w-full py-4 px-6 rounded-full font-normal text-sm text-white bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 flex items-center justify-center gap-2"
                 >
                   {t("calculateButton")}
                   <ArrowRight className="h-5 w-5" />
@@ -354,17 +354,17 @@ export default function ROICalculator() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="rounded-2xl p-px bg-gradient-to-b from-orange-500/30 to-orange-600/10"
+            className="rounded-2xl p-px bg-primary/10"
           >
-            <div className="rounded-2xl p-6 md:p-8 bg-white dark:bg-neutral-900">
+            <div className="rounded-2xl p-6 md:p-8 bg-card">
               <div className="text-center mb-6">
                 <div className="inline-flex items-center justify-center p-3 rounded-full bg-orange-500/10 mb-4">
                   <Mail className="h-8 w-8 text-orange-500" />
                 </div>
-                <h2 className="text-xl md:text-2xl font-light tracking-[-0.02em] text-gray-900 dark:text-white mb-2">
+                <h2 className="text-xl md:text-2xl font-light tracking-[-0.02em] text-foreground mb-2">
                   {t("leadCapture.title")}
                 </h2>
-                <p className="text-sm font-light text-gray-600 dark:text-neutral-400">
+                <p className="text-sm font-light text-muted-foreground">
                   {t("leadCapture.subtitle")}
                 </p>
               </div>
@@ -377,7 +377,7 @@ export default function ROICalculator() {
                     onChange={(e) => setName(e.target.value)}
                     placeholder={t("leadCapture.name")}
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 rounded-lg border border-border bg-card text-foreground focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
                   />
                 </div>
                 <div>
@@ -387,7 +387,7 @@ export default function ROICalculator() {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder={t("leadCapture.email")}
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 rounded-lg border border-border bg-card text-foreground focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
                   />
                 </div>
                 <div>
@@ -396,14 +396,14 @@ export default function ROICalculator() {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder={t("leadCapture.phone")}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 rounded-lg border border-border bg-card text-foreground focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-4 px-6 rounded-full font-normal text-sm text-white bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full py-4 px-6 rounded-full font-normal text-sm text-white bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {isSubmitting ? (
                     <>
@@ -425,7 +425,7 @@ export default function ROICalculator() {
               <div className="mt-4 text-center">
                 <button
                   onClick={skipLeadCapture}
-                  className="text-sm text-gray-500 dark:text-neutral-400 hover:text-orange-500 dark:hover:text-orange-400 transition-colors underline underline-offset-2"
+                  className="text-sm text-muted-foreground hover:text-orange-500 dark:hover:text-orange-400 transition-colors underline underline-offset-2"
                 >
                   {t("leadCapture.skip")}
                 </button>
@@ -443,7 +443,7 @@ export default function ROICalculator() {
             exit={{ opacity: 0, y: -20 }}
             className="rounded-2xl p-px bg-gradient-to-b from-green-500/30 to-green-600/10"
           >
-            <div className="rounded-2xl p-6 md:p-8 bg-white dark:bg-neutral-900">
+            <div className="rounded-2xl p-6 md:p-8 bg-card">
               {leadCaptured && (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -457,10 +457,10 @@ export default function ROICalculator() {
               )}
 
               <div className="text-center mb-8">
-                <h2 className="text-xl md:text-2xl font-light tracking-[-0.02em] text-gray-900 dark:text-white mb-2">
+                <h2 className="text-xl md:text-2xl font-light tracking-[-0.02em] text-foreground mb-2">
                   {t("results.title")}
                 </h2>
-                <p className="text-sm font-light text-gray-600 dark:text-neutral-400">
+                <p className="text-sm font-light text-muted-foreground">
                   {t("results.basedOn", { city: results.cityName, percent: Math.round(results.hispanicPercent) })}
                 </p>
               </div>
@@ -471,13 +471,13 @@ export default function ROICalculator() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 }}
-                  className="p-5 rounded-xl bg-gray-50 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 text-center"
+                  className="p-5 rounded-xl bg-gray-50 dark:bg-neutral-800 border border-border text-center"
                 >
-                  <p className="text-sm font-light text-gray-600 dark:text-neutral-400 mb-2">
+                  <p className="text-sm font-light text-muted-foreground mb-2">
                     {t("results.newCustomers")}
                   </p>
-                  <p className="text-2xl font-normal text-gray-900 dark:text-white">
-                    +{results.potentialNewCustomers} <span className="text-base font-light text-gray-500">/{t("results.month")}</span>
+                  <p className="text-2xl font-normal text-foreground">
+                    +{results.potentialNewCustomers} <span className="text-base font-light text-muted-foreground">/{t("results.month")}</span>
                   </p>
                 </motion.div>
 
@@ -485,9 +485,9 @@ export default function ROICalculator() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.2 }}
-                  className="p-5 rounded-xl bg-gray-50 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 text-center"
+                  className="p-5 rounded-xl bg-gray-50 dark:bg-neutral-800 border border-border text-center"
                 >
-                  <p className="text-sm font-light text-gray-600 dark:text-neutral-400 mb-2">
+                  <p className="text-sm font-light text-muted-foreground mb-2">
                     {t("results.monthlyRevenue")}
                   </p>
                   <p className="text-2xl font-normal text-green-600 dark:text-green-400">
@@ -499,9 +499,9 @@ export default function ROICalculator() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3 }}
-                  className="p-5 rounded-xl bg-gray-50 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 text-center"
+                  className="p-5 rounded-xl bg-gray-50 dark:bg-neutral-800 border border-border text-center"
                 >
-                  <p className="text-sm font-light text-gray-600 dark:text-neutral-400 mb-2">
+                  <p className="text-sm font-light text-muted-foreground mb-2">
                     {t("results.yearlyRevenue")}
                   </p>
                   <p className="text-3xl font-normal text-green-600 dark:text-green-400">
@@ -514,14 +514,14 @@ export default function ROICalculator() {
               <div className="space-y-3">
                 <Link
                   href={`/${locale}/get-started`}
-                  className="w-full py-4 px-6 rounded-full font-normal text-sm text-white bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 flex items-center justify-center gap-2"
+                  className="w-full py-4 px-6 rounded-full font-normal text-sm text-white bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 flex items-center justify-center gap-2"
                 >
                   {t("results.cta")}
                   <ArrowRight className="h-5 w-5" />
                 </Link>
                 <button
                   onClick={resetCalculator}
-                  className="w-full py-3 px-6 rounded-full font-light text-sm text-gray-600 dark:text-neutral-400 hover:text-orange-500 dark:hover:text-orange-400 transition-colors"
+                  className="w-full py-3 px-6 rounded-full font-light text-sm text-muted-foreground hover:text-orange-500 dark:hover:text-orange-400 transition-colors"
                 >
                   {t("results.recalculate")}
                 </button>

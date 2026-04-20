@@ -54,7 +54,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, onVoiceToggle, isR
   };
 
   return (
-    <div className="p-4 bg-white dark:bg-black border-t border-gray-200 dark:border-gray-700">
+    <div className="p-4 bg-background border-t border-gray-200 dark:border-gray-700">
       {attachedImage && (
         <div className="relative inline-block mb-2 mr-2">
           <img
@@ -87,7 +87,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, onVoiceToggle, isR
             setTimeout(() => setIsAttachClicked(false), 200);
           }}
           disabled={isLoading}
-          className={`p-3 text-gray-600 dark:text-gray-400 hover:text-orange-500 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center min-w-[40px] ${
+          className={`p-3 text-muted-foreground hover:text-orange-500 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center min-w-[40px] ${
             isAttachClicked 
               ? 'scale-90 text-orange-500 rotate-12' 
               : 'hover:scale-105'
@@ -97,7 +97,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, onVoiceToggle, isR
           <PaperclipIcon className="h-5 w-5" />
         </button>
         <textarea
-          className="flex-1 p-3 border border-gray-300 bg-white dark:bg-gray-800 dark:text-white rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-orange-500 disabled:bg-gray-100 dark:disabled:bg-gray-700 text-sm min-h-[40px] max-h-[100px]"
+          className="flex-1 p-3 border border-gray-300 bg-card dark:text-white rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-orange-500 disabled:bg-gray-100 dark:disabled:bg-gray-700 text-sm min-h-[40px] max-h-[100px]"
           rows={1}
           placeholder={isRecording ? "Listening..." : ""}
           value={input}

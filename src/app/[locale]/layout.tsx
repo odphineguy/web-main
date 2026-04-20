@@ -3,7 +3,7 @@ import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import type { Metadata } from "next";
 
-import { Outfit, Pacifico } from "next/font/google";
+import { Spectral, Manrope } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
@@ -25,18 +25,20 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 export const fetchCache = "force-no-store";
 
-const outfit = Outfit({
-  variable: "--font-outfit",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+// Body / UI sans — humanist, distinctive, variable weight
+const manrope = Manrope({
+  variable: "--font-manrope",
+  subsets: ["latin", "latin-ext"],
   display: "swap",
   preload: true,
 });
 
-const pacifico = Pacifico({
-  variable: "--font-pacifico",
-  subsets: ["latin"],
-  weight: "400",
+// Display / editorial serif — used for hero and section headings
+const spectral = Spectral({
+  variable: "--font-spectral",
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -134,9 +136,9 @@ function Footer() {
           </Link>
         </div>
         <div className="text-center">
-          <p className="text-xs text-neutral-600 dark:text-white/60">{t('copyright')}</p>
+          <p className="text-xs text-muted-foreground">{t('copyright')}</p>
         </div>
-        <div className="flex justify-center sm:justify-end text-neutral-600 dark:text-white/70 gap-5">
+        <div className="flex justify-center sm:justify-end text-muted-foreground gap-5">
           <a href="https://x.com/abe_vision" target="_blank" rel="noreferrer" aria-label="Twitter" className="transition-colors">
             <Twitter className="h-5 w-5" />
           </a>
@@ -251,7 +253,7 @@ export default async function RootLayout({
           `}
         </Script>
       </head>
-      <body className={`${outfit.variable} ${pacifico.variable} antialiased`}>
+      <body className={`${manrope.variable} ${spectral.variable} font-sans antialiased`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}

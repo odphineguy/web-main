@@ -102,10 +102,8 @@ export default function SlidingHighlightGrid({
     >
       {/* Sliding hover highlight */}
       <div
-        className={`pointer-events-none absolute rounded-2xl transition-all duration-200 ease-out will-change-transform ${
-          isHovering
-            ? "shadow-[0_12px_30px_rgba(249,115,22,0.25)]"
-            : "shadow-none"
+        className={`pointer-events-none absolute rounded-2xl transition-all duration-200 ease-out ${
+          isHovering ? "will-change-transform shadow-[0_12px_30px_rgba(249,115,22,0.25)]" : "shadow-none"
         } ${highlightClassName}`}
         style={{
           background:

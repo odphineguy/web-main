@@ -137,21 +137,21 @@ export default function CaseStudyMyLabCompliance() {
   ];
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Hero Section */}
       <section className="relative py-20 px-6 overflow-hidden">
         {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-primary/5" />
 
         <div className="max-w-5xl mx-auto relative">
           {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-neutral-500 mb-8">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
             <Link href="/portfolio" className="hover:text-orange-500 transition-colors flex items-center gap-1">
               <ArrowLeft className="w-4 h-4" />
               Portfolio
             </Link>
             <span>/</span>
-            <span className="text-gray-600 dark:text-neutral-400">myLabCompliance.io</span>
+            <span className="text-muted-foreground">myLabCompliance.io</span>
           </div>
 
           {/* Badge */}
@@ -162,12 +162,12 @@ export default function CaseStudyMyLabCompliance() {
 
           <h1 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] mb-6 leading-tight">
             From Critical SEO Failures to{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
+            <span className="text-primary">
               Excellent Performance
             </span>
           </h1>
 
-          <p className="text-sm md:text-base font-normal leading-relaxed text-gray-600 dark:text-neutral-400 max-w-3xl mb-12">
+          <p className="text-sm md:text-base font-normal leading-relaxed text-muted-foreground max-w-3xl mb-12">
             A 2-week bug fix turned into a 2+ month partnership that transformed
             site stability, search rankings, and lead quality.
           </p>
@@ -175,43 +175,43 @@ export default function CaseStudyMyLabCompliance() {
           {/* Quick Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="p-4 rounded-xl bg-neutral-100 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 text-center">
-              <div className="text-xl md:text-[28px] font-normal tracking-normal text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
+              <div className="text-xl md:text-[28px] font-normal tracking-normal text-primary">
                 <AnimatedCounter value={95} suffix="%" duration={1200} />
               </div>
-              <div className="text-sm md:text-base font-normal leading-relaxed text-gray-500 dark:text-neutral-500">Bug Reduction</div>
+              <div className="text-sm md:text-base font-normal leading-relaxed text-muted-foreground">Bug Reduction</div>
             </div>
             <div className="p-4 rounded-xl bg-neutral-100 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 text-center">
-              <div className="text-xl md:text-[28px] font-normal tracking-normal text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
+              <div className="text-xl md:text-[28px] font-normal tracking-normal text-primary">
                 <AnimatedCounter value={500} duration={1400} />
               </div>
-              <div className="text-sm md:text-base font-normal leading-relaxed text-gray-500 dark:text-neutral-500">SEO Pages Created</div>
+              <div className="text-sm md:text-base font-normal leading-relaxed text-muted-foreground">SEO Pages Created</div>
             </div>
             <div className="p-4 rounded-xl bg-neutral-100 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 text-center">
-              <div className="text-xl md:text-[28px] font-normal tracking-normal text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
+              <div className="text-xl md:text-[28px] font-normal tracking-normal text-primary">
                 <AnimatedCounter value={981} suffix="ms" duration={1300} />
               </div>
-              <div className="text-sm md:text-base font-normal leading-relaxed text-gray-500 dark:text-neutral-500">Load Time</div>
+              <div className="text-sm md:text-base font-normal leading-relaxed text-muted-foreground">Load Time</div>
             </div>
             <div className="p-4 rounded-xl bg-neutral-100 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 text-center">
-              <div className="text-xl md:text-[28px] font-normal tracking-normal text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
+              <div className="text-xl md:text-[28px] font-normal tracking-normal text-primary">
                 <AnimatedCounter value={2} suffix="+" duration={800} />
               </div>
-              <div className="text-sm md:text-base font-normal leading-relaxed text-gray-500 dark:text-neutral-500">Months Ongoing</div>
+              <div className="text-sm md:text-base font-normal leading-relaxed text-muted-foreground">Months Ongoing</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Challenge Section */}
-      <section className="py-16 px-6 border-t border-neutral-200 dark:border-neutral-800">
+      <section className="py-16 px-6 border-t border-border">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-sm font-semibold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600 uppercase tracking-wider mb-4">
+          <h2 className="text-sm font-semibold text-primary uppercase tracking-wider mb-4">
             The Challenge
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               <h3 className="text-xl md:text-[28px] font-normal tracking-normal mb-4">A Site Plagued by Issues</h3>
-              <p className="text-sm md:text-base font-normal leading-relaxed text-gray-600 dark:text-neutral-400">
+              <p className="text-sm md:text-base font-normal leading-relaxed text-muted-foreground">
                 Sam from myLabCompliance.io reached out for help with persistent bugs—5-10 errors
                 occurring daily that were disrupting user experience and reliability. What was
                 scoped as a 2-week engagement revealed deeper issues: critical SEO failures,
@@ -221,7 +221,7 @@ export default function CaseStudyMyLabCompliance() {
             </div>
             <div className="p-6 rounded-xl bg-red-50 dark:bg-red-500/5 border border-red-200 dark:border-red-500/20">
               <h4 className="text-red-600 dark:text-red-400 font-semibold mb-4">Initial Assessment</h4>
-              <ul className="space-y-3 text-gray-600 dark:text-neutral-400">
+              <ul className="space-y-3 text-muted-foreground">
                 <li className="flex items-start gap-3">
                   <X className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
                   <span>Performance: Critical Failure (31 mobile / 33 desktop)</span>
@@ -245,9 +245,9 @@ export default function CaseStudyMyLabCompliance() {
       </section>
 
       {/* Work Section */}
-      <section className="py-16 px-6 border-t border-neutral-200 dark:border-neutral-800">
+      <section className="py-16 px-6 border-t border-border">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-sm font-semibold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600 uppercase tracking-wider mb-4">
+          <h2 className="text-sm font-semibold text-primary uppercase tracking-wider mb-4">
             The Work
           </h2>
           <h3 className="text-xl md:text-[28px] font-normal tracking-normal mb-8">Complete Technical Overhaul</h3>
@@ -262,7 +262,7 @@ export default function CaseStudyMyLabCompliance() {
                   {item.icon}
                 </div>
                 <h4 className="text-xl md:text-[28px] font-normal tracking-normal mb-2">{item.title}</h4>
-                <p className="text-sm md:text-base font-normal leading-relaxed text-gray-600 dark:text-neutral-400">{item.description}</p>
+                <p className="text-sm md:text-base font-normal leading-relaxed text-muted-foreground">{item.description}</p>
               </div>
             ))}
           </div>
@@ -270,9 +270,9 @@ export default function CaseStudyMyLabCompliance() {
       </section>
 
       {/* Results Section */}
-      <section className="py-16 px-6 border-t border-neutral-200 dark:border-neutral-800">
+      <section className="py-16 px-6 border-t border-border">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-sm font-semibold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600 uppercase tracking-wider mb-4">
+          <h2 className="text-sm font-semibold text-primary uppercase tracking-wider mb-4">
             The Results
           </h2>
           <h3 className="text-xl md:text-[28px] font-normal tracking-normal mb-8">Before & After</h3>
@@ -288,9 +288,9 @@ export default function CaseStudyMyLabCompliance() {
                 <div className="flex items-center justify-between gap-4">
                   {/* Before */}
                   <div className="flex-1">
-                    <div className="text-xs text-gray-500 dark:text-neutral-500 uppercase tracking-wider mb-1">Before</div>
+                    <div className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Before</div>
                     <div className="text-xl md:text-[28px] font-normal tracking-normal text-red-500 dark:text-red-400">{metric.before}</div>
-                    <div className="text-sm md:text-base font-normal leading-relaxed text-gray-500 dark:text-neutral-500">{metric.beforeDetail}</div>
+                    <div className="text-sm md:text-base font-normal leading-relaxed text-muted-foreground">{metric.beforeDetail}</div>
                   </div>
 
                   {/* Arrow */}
@@ -300,9 +300,9 @@ export default function CaseStudyMyLabCompliance() {
 
                   {/* After */}
                   <div className="flex-1 text-right">
-                    <div className="text-xs text-gray-500 dark:text-neutral-500 uppercase tracking-wider mb-1">After</div>
+                    <div className="text-xs text-muted-foreground uppercase tracking-wider mb-1">After</div>
                     <div className="text-xl md:text-[28px] font-normal tracking-normal text-green-600 dark:text-green-400">{metric.after}</div>
-                    <div className="text-sm md:text-base font-normal leading-relaxed text-gray-500 dark:text-neutral-500">{metric.afterDetail}</div>
+                    <div className="text-sm md:text-base font-normal leading-relaxed text-muted-foreground">{metric.afterDetail}</div>
                   </div>
                 </div>
               </div>
@@ -312,14 +312,14 @@ export default function CaseStudyMyLabCompliance() {
       </section>
 
       {/* Testimonial Section */}
-      <section className="py-16 px-6 border-t border-neutral-200 dark:border-neutral-800">
+      <section className="py-16 px-6 border-t border-border">
         <div className="max-w-4xl mx-auto">
-          <div className="relative p-8 md:p-12 rounded-2xl bg-gradient-to-br from-orange-100 dark:from-orange-500/10 to-transparent border border-orange-200 dark:border-orange-500/20">
+          <div className="relative p-8 md:p-12 rounded-2xl bg-primary/5 border border-orange-200 dark:border-orange-500/20">
             {/* Quote mark */}
             <div className="absolute -top-4 left-8 text-6xl text-orange-300 dark:text-orange-500/30 font-serif">&ldquo;</div>
 
             <blockquote className="relative">
-              <p className="text-xl md:text-[28px] font-normal tracking-normal leading-relaxed text-gray-700 dark:text-gray-200 mb-8">
+              <p className="text-xl md:text-[28px] font-normal tracking-normal leading-relaxed text-foreground mb-8">
                 Abe from Abe Media helped us dramatically improve our online presence and lead quality.
                 He rebuilt our SEO strategy, taking us from critical issues to excellent performance,
                 and created hundreds of SEO pages that now rank for competitive keywords. Abe also added
@@ -338,7 +338,7 @@ export default function CaseStudyMyLabCompliance() {
                 />
                 <div>
                   <div className="font-semibold">Sam Akers</div>
-                  <div className="text-sm text-gray-500 dark:text-neutral-500">myLabCompliance.io</div>
+                  <div className="text-sm text-muted-foreground">myLabCompliance.io</div>
                 </div>
               </footer>
             </blockquote>
@@ -349,11 +349,11 @@ export default function CaseStudyMyLabCompliance() {
       {/* CTA Section */}
       <section className="bg-gray-100 dark:bg-neutral-900 py-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="rounded-2xl p-10 md:p-16 bg-gradient-to-br from-orange-500 via-orange-500 to-orange-600 shadow-xl shadow-orange-500/25 text-center">
+          <div className="rounded-2xl p-10 md:p-16 bg-primary shadow-xl shadow-orange-500/25 text-center">
             <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
               Ready for Similar Results?
             </h2>
-            <p className="text-orange-100 max-w-2xl mx-auto mb-8">
+            <p className="text-orange-100 max-w-2xl mb-8">
               Let&apos;s discuss how we can improve your site&apos;s performance, SEO, and lead quality.
             </p>
             <ScheduleCallButton

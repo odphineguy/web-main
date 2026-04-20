@@ -7,16 +7,16 @@ import { FooterCTANewsletter } from "@/components/ui/footer-cta";
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-foreground">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Contact Section */}
-      <section id="book-consultation" className="bg-white dark:bg-black pt-8 md:pt-12 pb-16 px-6">
+      <section id="book-consultation" className="bg-background pt-8 md:pt-12 pb-16 px-6">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] mb-6 text-gray-900 dark:text-white">
-              Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Touch</span>
+          <div className="mb-12 max-w-3xl">
+            <h1 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] mb-6 text-foreground">
+              Get in <span className="text-primary">Touch</span>
             </h1>
-            <p className="text-lg md:text-xl font-normal leading-relaxed text-gray-600 dark:text-neutral-400 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl font-normal leading-relaxed text-muted-foreground max-w-3xl">
               Let&apos;s discuss your custom chatbot solutions. We&apos;re here to help.
             </p>
           </div>
@@ -26,7 +26,7 @@ export default function ContactPage() {
             {/* Left Column - Contact Form */}
             <div className="rounded-2xl p-px bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5 h-full shadow-lg dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)]">
               <div className="bg-gray-50 dark:bg-neutral-950 rounded-2xl p-8 h-full">
-                <h2 className="text-xl md:text-2xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-6">Send Us a Message</h2>
+                <h2 className="text-xl md:text-2xl font-medium tracking-[-0.02em] text-foreground mb-6">Send Us a Message</h2>
                 <ContactForm />
               </div>
             </div>
@@ -34,15 +34,15 @@ export default function ContactPage() {
             {/* Right Column - Contact Information */}
             <div className="rounded-2xl p-px bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5 h-full shadow-lg dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)]">
               <div className="bg-gray-50 dark:bg-neutral-950 rounded-2xl p-8 h-full flex flex-col">
-                <h2 className="text-xl md:text-2xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-6">Contact Information</h2>
+                <h2 className="text-xl md:text-2xl font-medium tracking-[-0.02em] text-foreground mb-6">Contact Information</h2>
                 
                 <div className="space-y-5 mb-8">
                   {/* Email */}
                   <a
                     href="mailto:abe@abemedia.online"
-                    className="flex items-center gap-4 text-gray-600 dark:text-neutral-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors group"
+                    className="flex items-center gap-4 text-muted-foreground hover:text-orange-500 dark:hover:text-orange-400 transition-colors group"
                   >
-                    <div className="w-10 h-10 rounded-lg bg-gray-200 dark:bg-neutral-800/50 border border-gray-300 dark:border-neutral-700 flex items-center justify-center group-hover:border-orange-500/50 transition-colors">
+                    <div className="w-10 h-10 rounded-lg bg-gray-200 dark:bg-neutral-800/50 border border-border flex items-center justify-center group-hover:border-orange-500/50 transition-colors">
                       <Mail className="w-5 h-5 text-orange-500" />
                     </div>
                     <span>abe@abemedia.online</span>
@@ -51,20 +51,20 @@ export default function ContactPage() {
                   {/* Phone */}
                   <a 
                     href="tel:+16264814827" 
-                    className="flex items-center gap-4 text-gray-600 dark:text-neutral-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors group"
+                    className="flex items-center gap-4 text-muted-foreground hover:text-orange-500 dark:hover:text-orange-400 transition-colors group"
                   >
-                    <div className="w-10 h-10 rounded-lg bg-gray-200 dark:bg-neutral-800/50 border border-gray-300 dark:border-neutral-700 flex items-center justify-center group-hover:border-orange-500/50 transition-colors">
+                    <div className="w-10 h-10 rounded-lg bg-gray-200 dark:bg-neutral-800/50 border border-border flex items-center justify-center group-hover:border-orange-500/50 transition-colors">
                       <Phone className="w-5 h-5 text-orange-500" />
                     </div>
                     <div>
                       <span>626-481-4827</span>
-                      <p className="text-sm md:text-base font-normal leading-relaxed text-gray-500 dark:text-neutral-500">(Mon-Fri, 9am-5pm PST)</p>
+                      <p className="text-sm md:text-base font-normal leading-relaxed text-muted-foreground">(Mon-Fri, 9am-5pm PST)</p>
                     </div>
                   </a>
 
                   {/* Address */}
-                  <div className="flex items-start gap-4 text-gray-600 dark:text-neutral-300">
-                    <div className="w-10 h-10 rounded-lg bg-gray-200 dark:bg-neutral-800/50 border border-gray-300 dark:border-neutral-700 flex items-center justify-center flex-shrink-0">
+                  <div className="flex items-start gap-4 text-muted-foreground">
+                    <div className="w-10 h-10 rounded-lg bg-gray-200 dark:bg-neutral-800/50 border border-border flex items-center justify-center flex-shrink-0">
                       <MapPin className="w-5 h-5 text-orange-500" />
                     </div>
                     <div>
@@ -75,7 +75,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* Map Image */}
-                <div className="mt-auto rounded-xl overflow-hidden border border-gray-300 dark:border-neutral-700/50">
+                <div className="mt-auto rounded-xl overflow-hidden border border-border/50">
                   <Image
                     src="/images/home/map.png"
                     alt="Office Location Map"

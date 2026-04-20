@@ -182,7 +182,7 @@ export default function ChatDemoWindow({
         onClick={handleReplay}
         className={cn(
           "absolute top-3 right-3 z-10 p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity",
-          isDark ? "bg-white/10 hover:bg-white/20" : "bg-black/5 hover:bg-black/10"
+          isDark ? "bg-white/10 hover:bg-white/20" : "bg-foreground/5 hover:bg-foreground/10"
         )}
         title="Replay"
       >
@@ -220,7 +220,8 @@ export default function ChatDemoWindow({
           <h3
             className="text-sm font-semibold truncate"
             style={{
-              fontFamily: "var(--font-pacifico), cursive",
+              fontFamily: "var(--font-serif), Georgia, serif",
+              fontStyle: "italic",
               color: "var(--chat-text)",
             }}
           >
@@ -325,15 +326,15 @@ export default function ChatDemoWindow({
               }}
             >
               <span
-                className="w-2 h-2 rounded-full animate-bounce [animation-delay:0ms]"
+                className="w-2 h-2 rounded-full animate-pulse [animation-delay:0ms]"
                 style={{ background: "var(--chat-typing-dot)" }}
               />
               <span
-                className="w-2 h-2 rounded-full animate-bounce [animation-delay:150ms]"
+                className="w-2 h-2 rounded-full animate-pulse [animation-delay:150ms]"
                 style={{ background: "var(--chat-typing-dot)" }}
               />
               <span
-                className="w-2 h-2 rounded-full animate-bounce [animation-delay:300ms]"
+                className="w-2 h-2 rounded-full animate-pulse [animation-delay:300ms]"
                 style={{ background: "var(--chat-typing-dot)" }}
               />
             </div>

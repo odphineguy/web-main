@@ -154,7 +154,7 @@ export const blogCategories: BlogCategoryInfo[] = [
   {
     name: "Bilingual Chatbots",
     slug: "bilingual-chatbots",
-    description: "Create chatbots that seamlessly communicate in both English and Spanish.",
+    description: "Chatbots that speak English and Spanish like they're supposed to — not like they were translated.",
     icon: "message-circle",
     color: "orange",
   },

@@ -2,11 +2,12 @@
 
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { X, Minimize2 } from 'lucide-react';
+import { X, Minimize2, RotateCcw } from 'lucide-react';
 import ChatWindow from './chatbot/ChatWindow';
 import ConsultationForm from './ConsultationForm';
 import { Message } from '../lib/types';
 import { sendMessageToGemini, INITIAL_MESSAGE } from '../lib/geminiService';
+import { humanizeError } from '../lib/humanizeError';
 import { useMutation } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 import { Id } from '../../convex/_generated/dataModel';
@@ -24,6 +25,7 @@ const FloatingChatbot: React.FC = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
   const [input, setInput] = useState('');
+  const [lastFailedMessage, setLastFailedMessage] = useState<{ text: string; image?: { data: string; mimeType: string } } | null>(null);
   const [conversationId, setConversationId] = useState<Id<"conversations"> | null>(null);
   const messagesRef = useRef<Message[]>(messages);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -143,23 +145,41 @@ const FloatingChatbot: React.FC = () => {
 
     } catch (error: unknown) {
       console.error("Error during chat:", error);
-      let errorMessage = "Failed to get response. Please try again. If the issue persists, contact abe@abemedia.online.";
-      if (error instanceof Error) {
-        errorMessage = error.message;
-      }
+      const friendly = humanizeError(error);
       setMessages((prevMessages) => {
         const newMessages = [...prevMessages];
         if (newMessages[tempModelMessageIndex]?.role === 'model') {
-          newMessages[tempModelMessageIndex] = { role: 'error', text: `Error: ${errorMessage}` };
+          newMessages[tempModelMessageIndex] = { role: 'error', text: friendly };
         } else {
-          newMessages.push({ role: 'error', text: `Error: ${errorMessage}` });
+          newMessages.push({ role: 'error', text: friendly });
         }
         return newMessages;
       });
+      setLastFailedMessage({ text, image });
     } finally {
       setIsLoading(false);
     }
   }, [initializeConversation, addMessage]);
+
+  const handleRetry = useCallback(() => {
+    if (!lastFailedMessage) return;
+    const toRetry = lastFailedMessage;
+    setLastFailedMessage(null);
+    // Drop the trailing error bubble before retrying so the chat stays clean.
+    setMessages((prev) => {
+      const last = prev[prev.length - 1];
+      if (last?.role === 'error') return prev.slice(0, -1);
+      return prev;
+    });
+    handleSendMessage(toRetry.text, toRetry.image);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lastFailedMessage]);
+
+  // Clear retry affordance when user successfully sends something (handled via setLastFailedMessage(null) in the happy path below).
+  useEffect(() => {
+    const last = messages[messages.length - 1];
+    if (last && last.role !== 'error') setLastFailedMessage(null);
+  }, [messages]);
 
   const handleQuickAction = (action: QuickAction) => {
     setIsOpen(false); // Close the chat widget
@@ -223,9 +243,9 @@ const FloatingChatbot: React.FC = () => {
 
       {/* Chat Widget */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-[360px] h-[580px] bg-white dark:bg-neutral-950 border border-orange-200/50 dark:border-neutral-800 rounded-2xl shadow-[0_25px_60px_-12px_rgba(249,115,22,0.25),0_0_0_1px_rgba(249,115,22,0.05)] dark:shadow-[0_25px_60px_-12px_rgba(249,115,22,0.15)] flex flex-col overflow-hidden">
+        <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[min(360px,calc(100vw-2rem))] h-[min(580px,calc(100vh-6rem))] bg-card border border-orange-200/50 dark:border-neutral-800 rounded-2xl shadow-[0_25px_60px_-12px_rgba(249,115,22,0.25),0_0_0_1px_rgba(249,115,22,0.05)] dark:shadow-[0_25px_60px_-12px_rgba(249,115,22,0.15)] flex flex-col overflow-hidden">
           {/* Header */}
-          <div className="bg-gradient-to-r from-orange-500 to-orange-600 dark:from-orange-600 dark:to-slate-950 text-white px-4 py-3">
+          <div className="bg-primary  text-white px-4 py-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full overflow-hidden bg-white/20 ring-2 ring-white/30">
@@ -263,7 +283,7 @@ const FloatingChatbot: React.FC = () => {
 
           {/* Welcome Screen or Chat Window */}
           {showWelcome ? (
-            <div className="flex-1 flex flex-col px-6 py-6 bg-gradient-to-b from-white via-orange-50/30 to-orange-50/50 dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-900">
+            <div className="flex-1 flex flex-col px-6 py-6 bg-background">
               {/* Top Section - Avatar and Welcome Text */}
               <div className="flex flex-col items-center pt-4">
                 {/* Avatar */}
@@ -278,10 +298,10 @@ const FloatingChatbot: React.FC = () => {
                 </div>
                 
                 {/* Welcome Text */}
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                <h3 className="text-lg font-semibold text-foreground mb-2">
                   How can we help?
                 </h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
+                <p className="text-sm text-muted-foreground text-center">
                   Choose an option below or start a conversation
                 </p>
               </div>
@@ -332,7 +352,7 @@ const FloatingChatbot: React.FC = () => {
                 <button
                   onClick={() => handleSendMessage(input)}
                   disabled={isLoading || !input.trim()}
-                  className="px-3.5 py-2 rounded-xl bg-gradient-to-b from-orange-400 to-orange-500 dark:from-orange-500 dark:to-orange-700 text-white border border-orange-400/50 dark:border-transparent shadow-[0_4px_15px_rgba(249,115,22,0.3),0_1px_2px_rgba(249,115,22,0.2)] hover:shadow-[0_8px_25px_rgba(249,115,22,0.4),0_2px_4px_rgba(249,115,22,0.25)] dark:shadow-[0_10px_25px_rgba(249,115,22,0.25)] hover:brightness-105 dark:hover:brightness-110 disabled:opacity-50 transition-all"
+                  className="px-3.5 py-2 rounded-xl bg-primary  text-white border border-orange-400/50 dark:border-transparent shadow-[0_4px_15px_rgba(249,115,22,0.3),0_1px_2px_rgba(249,115,22,0.2)] hover:shadow-[0_8px_25px_rgba(249,115,22,0.4),0_2px_4px_rgba(249,115,22,0.25)] dark:shadow-[0_10px_25px_rgba(249,115,22,0.25)] hover:brightness-105 dark:hover:brightness-110 disabled:opacity-50 transition-all"
                   aria-label="Send message"
                 >
                   <span className="inline-flex items-center gap-2 text-sm font-semibold">
@@ -343,14 +363,39 @@ const FloatingChatbot: React.FC = () => {
               </div>
             </div>
           ) : (
-            <div className="flex-1 overflow-hidden flex flex-col min-h-0 bg-gradient-to-b from-white to-orange-50/30 dark:from-neutral-900 dark:to-neutral-900">
+            <div className="flex-1 overflow-hidden flex flex-col min-h-0 bg-background">
               <ChatWindow messages={messages} isLoading={isLoading} />
             </div>
           )}
 
           {/* Chat Input - Only shown when not in welcome state */}
           {!showWelcome && (
-            <div className="p-3 bg-gradient-to-t from-orange-50/50 to-white dark:from-neutral-900 dark:to-neutral-900">
+            <div className="p-3 bg-background">
+              {lastFailedMessage && !isLoading && (
+                <div
+                  role="status"
+                  aria-live="polite"
+                  className="mb-2 flex items-center justify-between gap-3 rounded-xl border border-red-200 dark:border-red-800/50 bg-red-50/70 dark:bg-red-900/20 px-3 py-2 text-xs"
+                >
+                  <span className="text-red-700 dark:text-red-300">Message didn&apos;t go through.</span>
+                  <span className="flex items-center gap-3">
+                    <button
+                      type="button"
+                      onClick={handleRetry}
+                      className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground hover:bg-primary/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+                    >
+                      <RotateCcw className="h-3 w-3" aria-hidden />
+                      Try again
+                    </button>
+                    <a
+                      href="mailto:abe@abemedia.online"
+                      className="text-red-700 dark:text-red-300 underline underline-offset-2 hover:no-underline"
+                    >
+                      Email us
+                    </a>
+                  </span>
+                </div>
+              )}
               <div className="flex items-center gap-2 bg-white/90 dark:bg-white/5 border border-orange-200/50 dark:border-orange-500/25 rounded-2xl px-4 py-2 shadow-[0_4px_20px_rgba(249,115,22,0.1),0_0_0_1px_rgba(249,115,22,0.03)] dark:shadow-[0_18px_45px_rgba(249,115,22,0.12)] transition-all focus-within:shadow-[0_8px_30px_rgba(249,115,22,0.15),0_0_0_2px_rgba(249,115,22,0.1)] dark:focus-within:shadow-[0_18px_45px_rgba(249,115,22,0.2)]">
                 <input
                   ref={inputRef}
@@ -365,7 +410,7 @@ const FloatingChatbot: React.FC = () => {
                 <button
                   onClick={() => handleSendMessage(input)}
                   disabled={isLoading || !input.trim()}
-                  className="px-3.5 py-2 rounded-xl bg-gradient-to-b from-orange-400 to-orange-500 dark:from-orange-500 dark:to-orange-700 text-white border border-orange-400/50 dark:border-transparent shadow-[0_4px_15px_rgba(249,115,22,0.3),0_1px_2px_rgba(249,115,22,0.2)] hover:shadow-[0_8px_25px_rgba(249,115,22,0.4),0_2px_4px_rgba(249,115,22,0.25)] dark:shadow-[0_10px_25px_rgba(249,115,22,0.25)] hover:brightness-105 dark:hover:brightness-110 disabled:opacity-50 transition-all"
+                  className="px-3.5 py-2 rounded-xl bg-primary  text-white border border-orange-400/50 dark:border-transparent shadow-[0_4px_15px_rgba(249,115,22,0.3),0_1px_2px_rgba(249,115,22,0.2)] hover:shadow-[0_8px_25px_rgba(249,115,22,0.4),0_2px_4px_rgba(249,115,22,0.25)] dark:shadow-[0_10px_25px_rgba(249,115,22,0.25)] hover:brightness-105 dark:hover:brightness-110 disabled:opacity-50 transition-all"
                   aria-label="Send message"
                 >
                   <span className="inline-flex items-center gap-2 text-sm font-semibold">
@@ -378,11 +423,11 @@ const FloatingChatbot: React.FC = () => {
           )}
 
           {/* Powered by abemedia */}
-          <div className="text-center py-2 bg-gradient-to-t from-orange-50/30 to-white dark:from-neutral-900 dark:to-neutral-900">
-            <p className="text-[10px] text-gray-400" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+          <div className="text-center py-2 bg-background">
+            <p className="text-[10px] text-muted-foreground" style={{ fontFamily: "'Montserrat', sans-serif" }}>
               Powered by{' '}
               <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, color: '#F97316' }}>abe</span>
-              <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 400 }} className="text-gray-600 dark:text-gray-300">media</span>
+              <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 400 }} className="text-muted-foreground">media</span>
             </p>
           </div>
         </div>

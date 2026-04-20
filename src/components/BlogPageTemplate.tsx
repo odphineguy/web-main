@@ -77,9 +77,9 @@ export default function BlogPageTemplate({ page }: BlogPageTemplateProps) {
   return (
     <article className="min-h-screen bg-gradient-to-b from-neutral-50 to-white dark:from-neutral-950 dark:to-neutral-900">
       {/* Breadcrumb */}
-      <div className="border-b border-neutral-200 dark:border-neutral-800 bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm sticky top-16 z-10">
+      <div className="border-b border-border bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm sticky top-16 z-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3">
-          <nav className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
+          <nav className="flex items-center gap-2 text-sm text-muted-foreground">
             <Link 
               href="/blog" 
               className="hover:text-orange-500 transition-colors flex items-center gap-1"
@@ -88,7 +88,7 @@ export default function BlogPageTemplate({ page }: BlogPageTemplateProps) {
               Blog
             </Link>
             <ChevronRight className="w-4 h-4" />
-            <span className="text-neutral-400 dark:text-neutral-500 truncate">{page.category}</span>
+            <span className="text-muted-foreground truncate">{page.category}</span>
           </nav>
         </div>
       </div>
@@ -111,12 +111,12 @@ export default function BlogPageTemplate({ page }: BlogPageTemplateProps) {
           </div>
 
           {/* Title */}
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-white leading-tight mb-6">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-6">
             {page.title}
           </h1>
 
           {/* Meta Info */}
-          <div className="flex flex-wrap items-center gap-4 text-sm text-neutral-600 dark:text-neutral-400">
+          <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
             {page.author && (
               <div className="flex items-center gap-1.5">
                 <User className="w-4 h-4" />
@@ -140,7 +140,7 @@ export default function BlogPageTemplate({ page }: BlogPageTemplateProps) {
           </div>
 
           {/* Excerpt */}
-          <p className="mt-6 text-lg sm:text-xl text-neutral-700 dark:text-neutral-300 leading-relaxed">
+          <p className="mt-6 text-lg sm:text-xl text-muted-foreground leading-relaxed">
             {page.excerpt}
           </p>
         </div>
@@ -167,7 +167,7 @@ export default function BlogPageTemplate({ page }: BlogPageTemplateProps) {
         <div className="prose prose-lg dark:prose-invert max-w-none">
           {/* Introduction - Brand colors */}
           <div className="bg-gradient-to-r from-neutral-100 to-neutral-50 dark:from-neutral-800 dark:to-neutral-900 rounded-2xl p-6 sm:p-8 mb-10 border border-neutral-200 dark:border-neutral-700">
-            <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed m-0 text-lg">
+            <p className="text-muted-foreground leading-relaxed m-0 text-lg">
               {page.content.intro}
             </p>
           </div>
@@ -175,39 +175,39 @@ export default function BlogPageTemplate({ page }: BlogPageTemplateProps) {
           {/* Content Sections - Orange accent colors */}
           {page.content.sections.map((section, index) => (
             <section key={index} className="mb-10">
-              <h2 className="text-2xl sm:text-3xl font-bold text-neutral-900 dark:text-white mb-4 flex items-center gap-3">
-                <span className="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 text-white flex items-center justify-center text-lg font-bold">
+              <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4 flex items-center gap-3">
+                <span className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center text-lg font-bold">
                   {index + 1}
                 </span>
                 {section.heading}
               </h2>
-              <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed">
                 {section.content}
               </p>
             </section>
           ))}
 
           {/* Conclusion - Orange accent */}
-          <div className="bg-gradient-to-r from-orange-50 to-amber-50 dark:from-orange-950/50 dark:to-amber-950/50 rounded-2xl p-6 sm:p-8 mt-12 border border-orange-100 dark:border-orange-900">
-            <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-3">
+          <div className="bg-primary/5 rounded-2xl p-6 sm:p-8 mt-12 border border-orange-100 dark:border-orange-900">
+            <h3 className="text-xl font-bold text-foreground mb-3">
               Key Takeaway
             </h3>
-            <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed m-0">
+            <p className="text-muted-foreground leading-relaxed m-0">
               {page.content.conclusion}
             </p>
           </div>
         </div>
 
         {/* Keywords/Tags - Brand colors */}
-        <div className="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-800">
-          <h4 className="text-sm font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider mb-4">
+        <div className="mt-12 pt-8 border-t border-border">
+          <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">
             Related Topics
           </h4>
           <div className="flex flex-wrap gap-2">
             {page.keywords.map((keyword) => (
               <span
                 key={keyword}
-                className="px-3 py-1.5 rounded-full text-sm bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 hover:bg-orange-100 hover:text-orange-700 dark:hover:bg-orange-900/30 dark:hover:text-orange-300 transition-colors"
+                className="px-3 py-1.5 rounded-full text-sm bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
               >
                 {keyword}
               </span>
@@ -217,8 +217,8 @@ export default function BlogPageTemplate({ page }: BlogPageTemplateProps) {
 
         {/* Related Articles - Brand colors */}
         {relatedPages.length > 0 && (
-          <div className="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-800">
-            <h4 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
+          <div className="mt-12 pt-8 border-t border-border">
+            <h4 className="text-2xl font-bold text-foreground mb-6">
               Continue Reading
             </h4>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -226,16 +226,16 @@ export default function BlogPageTemplate({ page }: BlogPageTemplateProps) {
                 <Link
                   key={relatedPage.slug}
                   href={`/blog/${relatedPage.slug}`}
-                  className="group block p-5 rounded-xl bg-white dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 hover:border-orange-300 dark:hover:border-orange-700 hover:shadow-lg transition-all duration-200"
+                  className="group block p-5 rounded-xl bg-card/50 border border-neutral-200 dark:border-neutral-700 hover:border-orange-300 dark:hover:border-orange-700 hover:shadow-lg transition-all duration-200"
                 >
                   <span className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-xs font-medium ${getCategoryColors(relatedPage.category)} mb-3`}>
                     {getIcon(relatedPage.category)}
                     {relatedPage.category}
                   </span>
-                  <h5 className="font-semibold text-neutral-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors line-clamp-2">
+                  <h5 className="font-semibold text-foreground group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors line-clamp-2">
                     {relatedPage.title}
                   </h5>
-                  <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2">
+                  <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
                     {relatedPage.excerpt}
                   </p>
                 </Link>
@@ -245,12 +245,12 @@ export default function BlogPageTemplate({ page }: BlogPageTemplateProps) {
         )}
 
         {/* CTA Section */}
-        <div className="mt-16 rounded-2xl p-10 md:p-16 bg-gradient-to-br from-orange-500 via-orange-500 to-orange-600 shadow-xl shadow-orange-500/25 text-center">
+        <div className="mt-16 rounded-2xl p-10 md:p-16 bg-primary shadow-xl shadow-orange-500/25 text-center">
           <h3 className="text-2xl md:text-4xl font-bold text-white mb-4">
             {ctaText}
           </h3>
-          <p className="text-orange-100 max-w-2xl mx-auto mb-8">
-            Let us help you with your {page.category.toLowerCase()} project. Our team of experts is ready to bring your vision to life.
+          <p className="text-orange-100 max-w-2xl mb-8">
+            Tell us what you&apos;re building in {page.category.toLowerCase()}. We&apos;ll tell you what it takes and on what timeline.
           </p>
           <div className="flex justify-center">
             <Link

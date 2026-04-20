@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import PortfolioPreviewModal from "@/components/PortfolioPreviewModal";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 
 interface PortfolioProject {
   id: string;
@@ -11,6 +11,9 @@ interface PortfolioProject {
   description: string;
   siteUrl: string;
   category: string;
+  /** When true, the site refuses iframe embedding (X-Frame-Options / CSP).
+   * Card opens the URL in a new tab directly instead of trying to preview it. */
+  externalOnly?: boolean;
 }
 
 const portfolioProjects: PortfolioProject[] = [
@@ -44,10 +47,10 @@ const portfolioProjects: PortfolioProject[] = [
   },
   {
     id: "saguaro",
-    name: "Saguaro",
-    description: "Transportation services website",
-    siteUrl: "https://saguaro.vercel.app/",
-    category: "Transportation",
+    name: "Saguaro Transport",
+    description: "Custom operations platform for trucking and logistics",
+    siteUrl: "https://www.saguarotransport.com/",
+    category: "Custom Platform",
   },
   {
     id: "thedrone-college",
@@ -62,6 +65,7 @@ const portfolioProjects: PortfolioProject[] = [
     description: "Food rescue and savings app",
     siteUrl: "https://mealsaver.app/",
     category: "Food App",
+    externalOnly: true,
   },
   {
     id: "mealsaver-web",
@@ -90,13 +94,13 @@ export default function PortfolioPage() {
   const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(null);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="px-6 pt-16 pb-8">
         <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-6">
+          <h1 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] text-foreground mb-6">
             Website Design{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
+            <span className="text-primary">
               Previews
             </span>
           </h1>
@@ -107,36 +111,67 @@ export default function PortfolioPage() {
       <section className="px-6 pb-16">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {portfolioProjects.map((project, index) => (
-              <button
-                key={project.id}
-                onClick={() => setSelectedProject(project)}
-                className="group text-left"
-              >
-                <div className="relative overflow-hidden rounded-lg border border-gray-200 dark:border-neutral-800 hover:border-gray-300 dark:hover:border-neutral-600 transition-all duration-300">
-                  <div className="aspect-[16/10] relative bg-gray-100 dark:bg-neutral-900">
-                    {project.siteUrl ? (
-                      <iframe
-                        src={project.siteUrl}
-                        className="absolute inset-0 w-[200%] h-[200%] origin-top-left scale-50 pointer-events-none"
-                        title={`${project.name} preview`}
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 flex items-center justify-center text-gray-400 dark:text-neutral-600">
-                        <span className="text-lg">Coming Soon</span>
-                      </div>
-                    )}
+            {portfolioProjects.map((project) => {
+              const cardBody = (
+                <>
+                  <div className="relative overflow-hidden rounded-lg border border-border hover:border-gray-300 dark:hover:border-neutral-600 transition-all duration-300">
+                    <div className="aspect-[16/10] relative bg-gray-100 dark:bg-neutral-900">
+                      {project.externalOnly && project.siteUrl ? (
+                        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-muted-foreground">
+                          <ExternalLink className="w-7 h-7 opacity-70 group-hover:text-primary transition-colors" />
+                          <span className="text-sm font-medium group-hover:text-primary transition-colors">
+                            Visit live site
+                          </span>
+                        </div>
+                      ) : project.siteUrl ? (
+                        <iframe
+                          src={project.siteUrl}
+                          className="absolute inset-0 w-[200%] h-[200%] origin-top-left scale-50 pointer-events-none"
+                          title={`${project.name} preview`}
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center text-muted-foreground dark:text-neutral-600">
+                          <span className="text-lg">Coming Soon</span>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-                <div className="mt-4 text-center">
-                  <h3 className="text-xl md:text-[28px] font-normal tracking-normal text-gray-700 dark:text-neutral-300">
-                    {project.category}
-                  </h3>
-                  <p className="text-sm md:text-base font-normal leading-relaxed text-gray-500 dark:text-neutral-500">{project.name}</p>
-                </div>
-              </button>
-            ))}
+                  <div className="mt-4 text-center">
+                    <h3 className="text-xl md:text-[28px] font-normal tracking-normal text-foreground">
+                      {project.category}
+                    </h3>
+                    <p className="text-sm md:text-base font-normal leading-relaxed text-muted-foreground">
+                      {project.name}
+                    </p>
+                  </div>
+                </>
+              );
+
+              if (project.externalOnly && project.siteUrl) {
+                return (
+                  <a
+                    key={project.id}
+                    href={project.siteUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group text-left"
+                  >
+                    {cardBody}
+                  </a>
+                );
+              }
+
+              return (
+                <button
+                  key={project.id}
+                  onClick={() => setSelectedProject(project)}
+                  className="group text-left"
+                >
+                  {cardBody}
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -144,9 +179,9 @@ export default function PortfolioPage() {
       {/* Case Studies Section */}
       <section className="bg-gray-100 dark:bg-neutral-900 py-16 px-6">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] mb-8 text-gray-900 dark:text-white text-center">
+          <h2 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] mb-8 text-foreground text-center">
             Case{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
+            <span className="text-primary">
               Studies
             </span>
           </h2>
@@ -154,16 +189,16 @@ export default function PortfolioPage() {
             {/* myLabCompliance Case Study */}
             <Link
               href="/portfolio/mylabcompliance"
-              className="group block p-6 rounded-xl bg-white dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 hover:border-orange-500/50 hover:shadow-lg transition-all duration-300"
+              className="group block p-6 rounded-xl bg-card border border-border hover:border-orange-500/50 hover:shadow-lg transition-all duration-300"
             >
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 text-orange-500 text-sm mb-4">
                 <span className="w-2 h-2 rounded-full bg-orange-500" />
                 B2B SaaS
               </div>
-              <h3 className="text-xl md:text-[28px] font-normal tracking-normal mb-2 text-gray-900 dark:text-white group-hover:text-orange-500 transition-colors">
+              <h3 className="text-xl md:text-[28px] font-normal tracking-normal mb-2 text-foreground group-hover:text-orange-500 transition-colors">
                 myLabCompliance.io
               </h3>
-              <p className="text-gray-600 dark:text-neutral-400 text-sm md:text-base font-normal leading-relaxed mb-4">
+              <p className="text-muted-foreground text-sm md:text-base font-normal leading-relaxed mb-4">
                 From critical SEO failures to excellent performance. 95% bug reduction, 500 SEO pages, and 981ms load time.
               </p>
               <div className="flex items-center gap-2 text-orange-500 text-sm font-medium">

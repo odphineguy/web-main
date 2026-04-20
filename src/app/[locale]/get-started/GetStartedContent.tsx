@@ -45,15 +45,15 @@ export default function GetStartedContent() {
   const [isLogin, setIsLogin] = useState(true);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="pt-8 md:pt-12 pb-12 px-6">
         <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] text-gray-900 dark:text-white mb-6">
-            Get <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Started</span>
+          <h1 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] text-foreground mb-6">
+            Get <span className="text-primary">Started</span>
           </h1>
-          <p className="text-lg md:text-xl font-normal leading-relaxed text-gray-600 dark:text-neutral-400 mb-8 max-w-3xl mx-auto">
-            Ready to bring your digital vision to life? Let&apos;s start your project today.
+          <p className="text-lg md:text-xl font-normal leading-relaxed text-muted-foreground mb-8 max-w-3xl">
+            Tell us about your project. We&apos;ll tell you what it takes, on what timeline, and what it costs.
           </p>
         </div>
       </section>
@@ -63,10 +63,10 @@ export default function GetStartedContent() {
         <div className="max-w-md mx-auto">
           <Tabs value={isLogin ? "login" : "register"} onValueChange={(value) => setIsLogin(value === "login")}>
             <TabsList className="grid w-full grid-cols-2 rounded-full p-1">
-              <TabsTrigger value="login" className="rounded-full data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-orange-600 data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300">
+              <TabsTrigger value="login" className="rounded-full data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300">
                 Login
               </TabsTrigger>
-              <TabsTrigger value="register" className="rounded-full data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-orange-600 data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300">
+              <TabsTrigger value="register" className="rounded-full data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300">
                 Register
               </TabsTrigger>
             </TabsList>
@@ -92,10 +92,10 @@ export default function GetStartedContent() {
                       <Input id="password" type="password" placeholder="Enter your password" className="pl-10" />
                     </div>
                   </div>
-                  <Button className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
+                  <Button className="w-full bg-primary hover:bg-primary/90 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
                     Sign In
                   </Button>
-                  <div className="text-center">
+                  <div>
                     <Button variant="link" className="text-sm">
                       Forgot your password?
                     </Button>
@@ -139,7 +139,7 @@ export default function GetStartedContent() {
                       <Input id="password" type="password" placeholder="Create a password" className="pl-10" />
                     </div>
                   </div>
-                  <Button className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
+                  <Button className="w-full bg-primary hover:bg-primary/90 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
                     Create Account
                   </Button>
                 </CardContent>
@@ -152,9 +152,9 @@ export default function GetStartedContent() {
       {/* Pricing Plans */}
       <section className="py-16 px-6 bg-gray-50 dark:bg-neutral-950">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="mb-16 max-w-3xl">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Choose Your Plan</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl">
               Select the perfect plan for your project needs. All plans include our standard features.
             </p>
           </div>
@@ -164,14 +164,14 @@ export default function GetStartedContent() {
               <Card key={index} className={`relative ${plan.popular ? "border-primary shadow-lg scale-105" : ""}`}>
                 {plan.popular && (
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white px-4 py-1 rounded-full text-sm font-medium">
+                    <span className="bg-gray-200 dark:bg-gray-700 text-foreground px-4 py-1 rounded-full text-sm font-medium">
                       Most Popular
                     </span>
                   </div>
                 )}
-                <CardHeader className="text-center">
+                <CardHeader>
                   <CardTitle className="text-2xl">{plan.name}</CardTitle>
-                  <div className="text-4xl font-bold text-gray-900 dark:text-white">{plan.price}</div>
+                  <div className="text-4xl font-bold text-foreground">{plan.price}</div>
                   <CardDescription>{plan.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -183,7 +183,7 @@ export default function GetStartedContent() {
                       </li>
                     ))}
                   </ul>
-                  <Button className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
+                  <Button className="w-full bg-primary hover:bg-primary/90 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
                     {plan.name === "Enterprise" ? "Contact Us" : "Get Started"}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
@@ -195,9 +195,9 @@ export default function GetStartedContent() {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 px-6 bg-white dark:bg-black">
+      <section className="py-16 px-6 bg-background">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="mb-16 max-w-3xl">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Why Choose Us?</h2>
             <p className="text-xl text-muted-foreground">We&apos;re committed to delivering exceptional results for every project.</p>
           </div>
@@ -218,12 +218,12 @@ export default function GetStartedContent() {
       {/* CTA Section */}
       <section className="py-20 px-6 bg-gray-100 dark:bg-neutral-900">
         <div className="max-w-4xl mx-auto">
-          <div className="rounded-2xl p-10 md:p-16 bg-gradient-to-br from-orange-500 via-orange-500 to-orange-600 shadow-xl shadow-orange-500/25 text-center">
+          <div className="rounded-2xl p-10 md:p-16 bg-primary shadow-xl shadow-orange-500/25 text-center">
             <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">Ready to Get Started?</h2>
-            <p className="text-orange-100 max-w-2xl mx-auto mb-8">
+            <p className="text-orange-100 max-w-2xl mb-8">
               Let&apos;s discuss your project and create something amazing together.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4">
               <Button className="text-lg px-8 bg-white hover:bg-orange-50 text-orange-600 font-semibold rounded-full shadow-lg shadow-black/10 transition-all duration-300">
                 Start Your Project
               </Button>

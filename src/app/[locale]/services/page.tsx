@@ -53,14 +53,14 @@ export default function Services() {
   ];
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="bg-white dark:bg-black pt-8 md:pt-12 pb-12 px-6">
+      <section className="bg-background pt-8 md:pt-12 pb-12 px-6">
         <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-3xl md:text-4xl lg:text-[40px] font-medium tracking-[-0.02em] mb-6 text-gray-900 dark:text-white">
-            {t('Hero.title')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">{t('Hero.highlight')}</span>
+          <h1 className="text-3xl md:text-4xl lg:text-[40px] font-medium tracking-[-0.02em] mb-6 text-foreground">
+            {t('Hero.title')} <span className="text-primary">{t('Hero.highlight')}</span>
           </h1>
-          <p className="text-sm md:text-base text-gray-600 dark:text-neutral-400 mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm md:text-base text-muted-foreground mb-8 max-w-3xl leading-relaxed">
             {t('Hero.subtitle')}
           </p>
           <ScheduleCallButton 
@@ -77,10 +77,10 @@ export default function Services() {
             {services.map((service, index) => {
               const cardContent = (
                 <Card 
-                  className={`group relative overflow-hidden border border-gray-200 dark:border-neutral-800 hover:border-orange-500/30 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-300 ease-out hover:-translate-y-2 bg-white dark:bg-neutral-950 h-full ${service.link ? "cursor-pointer" : ""}`}
+                  className={`group relative overflow-hidden border border-border hover:border-orange-500/30 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-300 ease-out hover:-translate-y-2 bg-card h-full ${service.link ? "cursor-pointer" : ""}`}
                 >
                   <CardHeader className="pb-4">
-                    <div className="relative mb-4 h-40 w-full overflow-hidden rounded-2xl border border-orange-500/20 bg-gradient-to-br from-orange-500/10 via-transparent to-orange-600/20 group-hover:border-orange-500/40 transition-all duration-300">
+                    <div className="relative mb-4 h-40 w-full overflow-hidden rounded-2xl border border-orange-500/20 bg-primary/5 group-hover:border-orange-500/40 transition-all duration-300">
                       {service.image && !imageErrors.has(index) ? (
                         <Image
                           src={service.image}
@@ -100,16 +100,16 @@ export default function Services() {
                         </div>
                       )}
                       {/* Gradient overlay on hover */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-orange-500/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="absolute inset-0 bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
                     <div className="text-orange-500 mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:text-orange-600 group-hover:rotate-3">
                       {service.icon}
                     </div>
-                    <CardTitle className="text-lg md:text-xl font-medium tracking-[-0.02em] text-gray-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-300 flex items-center gap-2">
+                    <CardTitle className="text-lg md:text-xl font-medium tracking-[-0.02em] text-foreground group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-300 flex items-center gap-2">
                       {t(`Cards.${service.id}.title`)}
                       {service.link && <ArrowRight className="h-4 w-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />}
                     </CardTitle>
-                    <CardDescription className="text-sm text-gray-600 dark:text-neutral-400 leading-relaxed">
+                    <CardDescription className="text-sm text-muted-foreground leading-relaxed">
                       {t(`Cards.${service.id}.description`)}
                     </CardDescription>
                   </CardHeader>
@@ -121,8 +121,8 @@ export default function Services() {
                           className="flex items-center gap-2 transition-transform duration-200 group-hover:translate-x-1"
                           style={{ transitionDelay: `${featureIndex * 50}ms` }}
                         >
-                          <CheckCircle className="h-4 w-4 text-gray-400 dark:text-neutral-500 flex-shrink-0 group-hover:text-orange-500 transition-colors duration-300" />
-                          <span className="text-sm leading-relaxed text-gray-600 dark:text-neutral-400 group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors duration-300">
+                          <CheckCircle className="h-4 w-4 text-muted-foreground flex-shrink-0 group-hover:text-orange-500 transition-colors duration-300" />
+                          <span className="text-sm leading-relaxed text-muted-foreground group-hover:text-foreground transition-colors duration-300">
                             {t(`Cards.${service.id}.features.${featureKey}`)}
                           </span>
                         </li>

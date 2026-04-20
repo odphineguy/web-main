@@ -32,7 +32,7 @@ const steps = [
 
 export default function PartnerSteps() {
   return (
-    <section className="bg-white dark:bg-black py-20 px-6">
+    <section className="bg-background py-20 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-10 md:mb-16">
           <motion.div
@@ -42,7 +42,7 @@ export default function PartnerSteps() {
             viewport={{ once: true }}
             className="flex justify-center mb-6"
           >
-            <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-white dark:bg-neutral-950 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
+            <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-card px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
               ENTERPRISE SOLUTIONS FOR SMALL BUSINESS
             </span>
           </motion.div>
@@ -51,7 +51,7 @@ export default function PartnerSteps() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6"
+            className="text-3xl md:text-4xl font-bold text-foreground mb-6"
           >
             How Abe Media{" "}
             <span className="text-orange-500">partners</span> with you
@@ -61,7 +61,7 @@ export default function PartnerSteps() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-lg text-gray-600 dark:text-neutral-400 max-w-3xl mx-auto"
+            className="text-lg text-muted-foreground max-w-3xl"
           >
             We provide ready-to-deploy AI Agents that integrate with your existing tools to automate workflows and drive growth for your business.
           </motion.p>
@@ -111,10 +111,10 @@ export default function PartnerSteps() {
                 </div>
 
                 <div className="mt-4 px-2">
-                  <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-3">
+                  <h3 className="text-2xl font-semibold text-foreground mb-3">
                     {step.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-neutral-400 leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed">
                     {step.description}
                   </p>
                 </div>

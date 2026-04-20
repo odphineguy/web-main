@@ -4,35 +4,48 @@ import { useState, type FormEvent } from "react";
 import { X } from "lucide-react";
 import Image from "next/image";
 import TurnstileWidget from "@/components/TurnstileWidget";
+import { humanizeError, isValidEmail } from "@/lib/humanizeError";
 
 interface ConsultationFormProps {
   isOpen: boolean;
   onClose: () => void;
   preselectedService?: string;
+  prefilledDescription?: string;
 }
 
-export default function ConsultationForm({ isOpen, onClose, preselectedService }: ConsultationFormProps) {
+export default function ConsultationForm({ isOpen, onClose, preselectedService, prefilledDescription }: ConsultationFormProps) {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [emailError, setEmailError] = useState<string | null>(null);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
+    const form = e.currentTarget as HTMLFormElement;
+    const formData = new FormData(form);
+    const email = String(formData.get("email") ?? "");
+
+    if (!isValidEmail(email)) {
+      setEmailError("Double-check this address. Looks like an @ or domain is missing.");
+      form.querySelector<HTMLInputElement>('input[name="email"]')?.focus();
+      return;
+    }
+    setEmailError(null);
+
     if (!turnstileToken) {
-      setErrorMessage("Please complete the verification check.");
+      setStatus("error");
+      setErrorMessage("Complete the verification check above before sending.");
       return;
     }
 
-    const form = e.currentTarget as HTMLFormElement;
-    const formData = new FormData(form);
     setStatus("sending");
-    
+
     const payload = {
       ...Object.fromEntries(formData.entries()),
       "cf-turnstile-response": turnstileToken,
     };
-    
+
     try {
       const res = await fetch("/api/consultation", {
         method: "POST",
@@ -42,7 +55,7 @@ export default function ConsultationForm({ isOpen, onClose, preselectedService }
       const data: { ok?: boolean; error?: unknown } = await res.json().catch(() => ({} as Record<string, unknown>));
       if (!res.ok || !data?.ok) {
         throw new Error(
-          typeof data?.error === "string" ? data.error : JSON.stringify(data?.error || "Failed to send")
+          typeof data?.error === "string" ? data.error : `HTTP ${res.status}`,
         );
       }
       setStatus("sent");
@@ -57,16 +70,15 @@ export default function ConsultationForm({ isOpen, onClose, preselectedService }
       }, 2000);
     } catch (err: unknown) {
       setStatus("error");
-      const message = err instanceof Error ? err.message : String(err);
-      setErrorMessage(message);
+      setErrorMessage(humanizeError(err));
     }
   }
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-950 rounded-3xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto border border-orange-500/10">
+    <div className="fixed inset-0 bg-foreground/50 flex items-center justify-center z-50 p-4">
+      <div className="bg-card rounded-3xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto border border-orange-500/10">
         <div className="p-6">
           <div className="flex items-start justify-between mb-6">
             <div className="flex-1">
@@ -80,13 +92,13 @@ export default function ConsultationForm({ isOpen, onClose, preselectedService }
                   priority
                 />
               </div>
-              <h2 className="text-2xl font-bold text-center text-gray-900 dark:text-white">
+              <h2 className="text-2xl font-bold text-center text-foreground">
                 Book Your Free Consultation
               </h2>
             </div>
             <button
               onClick={onClose}
-              className="ml-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+              className="ml-3 text-muted-foreground hover:text-foreground transition-colors"
               aria-label="Close consultation form"
             >
               <X className="h-6 w-6" />
@@ -95,7 +107,7 @@ export default function ConsultationForm({ isOpen, onClose, preselectedService }
           
           <form className="grid gap-4" onSubmit={onSubmit}>
             <div className="grid gap-2">
-              <label htmlFor="name" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label htmlFor="name" className="text-sm font-medium text-foreground">
                 Full Name *
               </label>
               <input 
@@ -103,56 +115,67 @@ export default function ConsultationForm({ isOpen, onClose, preselectedService }
                 name="name" 
                 type="text" 
                 required 
-                className="rounded-full border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-gray-900 dark:text-white shadow-sm" 
+                className="rounded-full border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-foreground shadow-sm" 
               />
             </div>
             
             <div className="grid gap-2">
-              <label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label htmlFor="email" className="text-sm font-medium text-foreground">
                 Email Address *
               </label>
-              <input 
-                id="email" 
-                name="email" 
-                type="email" 
-                required 
-                className="rounded-full border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-gray-900 dark:text-white shadow-sm" 
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                autoComplete="email"
+                aria-invalid={emailError ? "true" : "false"}
+                aria-describedby={emailError ? "consultation-email-error" : undefined}
+                onChange={() => {
+                  if (emailError) setEmailError(null);
+                }}
+                className="rounded-full border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-foreground shadow-sm"
               />
+              {emailError && (
+                <p id="consultation-email-error" className="text-xs text-red-600 dark:text-red-400">
+                  {emailError}
+                </p>
+              )}
             </div>
             
             <div className="grid gap-2">
-              <label htmlFor="phone" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label htmlFor="phone" className="text-sm font-medium text-foreground">
                 Phone Number
               </label>
               <input 
                 id="phone" 
                 name="phone" 
                 type="tel" 
-                className="rounded-full border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-gray-900 dark:text-white shadow-sm" 
+                className="rounded-full border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-foreground shadow-sm" 
               />
             </div>
             
             <div className="grid gap-2">
-              <label htmlFor="company" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label htmlFor="company" className="text-sm font-medium text-foreground">
                 Company Name
               </label>
               <input 
                 id="company" 
                 name="company" 
                 type="text" 
-                className="rounded-full border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-gray-900 dark:text-white shadow-sm" 
+                className="rounded-full border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-foreground shadow-sm" 
               />
             </div>
             
             <div className="grid gap-2">
-              <label htmlFor="service" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label htmlFor="service" className="text-sm font-medium text-foreground">
                 Service Interest
               </label>
               <select
                 id="service"
                 name="service"
                 defaultValue={preselectedService || ""}
-                className="rounded-full border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-gray-900 dark:text-white shadow-sm"
+                className="rounded-full border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-foreground shadow-sm"
               >
                 <option value="">Select a service</option>
                 <option value="platform-inquiry">Platform Inquiry</option>
@@ -169,16 +192,17 @@ export default function ConsultationForm({ isOpen, onClose, preselectedService }
             </div>
             
             <div className="grid gap-2">
-              <label htmlFor="description" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label htmlFor="description" className="text-sm font-medium text-foreground">
                 Project Description *
               </label>
-              <textarea 
-                id="description" 
-                name="description" 
-                rows={4} 
-                required 
+              <textarea
+                id="description"
+                name="description"
+                rows={4}
+                required
+                defaultValue={prefilledDescription || ""}
                 placeholder="Tell us about your project, goals, timeline, and any specific requirements..."
-                className="rounded-3xl border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-gray-900 dark:text-white resize-none shadow-sm" 
+                className="rounded-3xl border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-foreground resize-none shadow-sm"
               />
             </div>
 
@@ -194,23 +218,38 @@ export default function ConsultationForm({ isOpen, onClose, preselectedService }
             <button
               type="submit"
               disabled={status === "sending" || status === "sent" || !turnstileToken}
-              className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 px-8 py-3 text-base font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-60 mt-4"
+              className="inline-flex items-center justify-center rounded-full bg-primary hover:bg-primary/90 px-8 py-3 text-base font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-60 mt-4"
             >
               {status === "sending" ? "Sending..." : status === "sent" ? "✓ Request Sent!" : "Book Consultation"}
             </button>
             
-            {status === "error" && (
-              <div className="mt-2 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+            {status === "error" && errorMessage && (
+              <div
+                role="alert"
+                aria-live="assertive"
+                className="mt-2 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg"
+              >
                 <p className="text-sm text-red-600 dark:text-red-400 break-words">
-                  {errorMessage?.includes("Verification") ? errorMessage : `There was a problem sending your request. ${errorMessage}`}
+                  {errorMessage}
+                </p>
+                <p className="mt-2 text-xs text-red-600/80 dark:text-red-400/80">
+                  Still stuck? Email{" "}
+                  <a href="mailto:abe@abemedia.online" className="underline underline-offset-2 hover:no-underline">
+                    abe@abemedia.online
+                  </a>{" "}
+                  directly.
                 </p>
               </div>
             )}
-            
+
             {status === "sent" && (
-              <div className="mt-2 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+              <div
+                role="status"
+                aria-live="polite"
+                className="mt-2 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg"
+              >
                 <p className="text-sm text-green-600 dark:text-green-400 font-medium">
-                  ✓ Thank you! Your consultation request has been sent. We&apos;ll contact you within 24 hours.
+                  Request sent. We&apos;ll be in touch within one business day.
                 </p>
               </div>
             )}

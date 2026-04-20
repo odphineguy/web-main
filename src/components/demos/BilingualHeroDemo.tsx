@@ -70,16 +70,7 @@ export default function BilingualHeroDemo() {
         </div>
       </div>
 
-      {/* Demo window with glow - pulse animation in dark mode, soft glow in light */}
-      <div
-        className={cn(
-          "rounded-3xl",
-          mounted && isDark && "animate-pulse-glow"
-        )}
-        style={{
-          boxShadow: mounted && !isDark ? "0 0 40px rgba(249,115,22,0.3)" : undefined,
-        }}
-      >
+      <div className="rounded-3xl">
         <ChatDemoWindow
           config={localizedConfig}
           messages={bilingualConversations[language]}

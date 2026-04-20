@@ -45,7 +45,7 @@ const FooterCTA = React.forwardRef<HTMLElement, FooterCTAProps>(
     return (
       <section
         ref={ref}
-        className={cn("w-full max-w-[960px] mx-auto", className)}
+        className={cn("w-full max-w-5xl mx-auto", className)}
         aria-labelledby="footer-cta-heading"
       >
         <div
@@ -138,7 +138,10 @@ const FooterCTA = React.forwardRef<HTMLElement, FooterCTAProps>(
                   style={{ color: "var(--footer-cta-text-secondary)" }}
                 >
                   {metaPill && (
-                    <span className="rounded-full px-2.5 py-0.5 border border-white/5 dark:border-white/10 bg-black/5 dark:bg-black/55 text-[0.68rem] uppercase tracking-[0.12em]">
+                    <span
+                      className="rounded-full px-2.5 py-0.5 border border-border/60 bg-background text-[0.68rem] uppercase tracking-[0.12em]"
+                      style={{ color: "var(--footer-cta-text-primary)" }}
+                    >
                       {metaPill}
                     </span>
                   )}
@@ -182,7 +185,7 @@ const FooterCTANewsletter = React.forwardRef<
     return (
       <section
         ref={ref}
-        className={cn("w-full max-w-[960px] mx-auto", className)}
+        className={cn("w-full max-w-5xl mx-auto", className)}
         aria-labelledby="footer-newsletter-heading"
       >
         <div
@@ -260,7 +263,7 @@ const FooterCTANewsletter = React.forwardRef<
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={inputPlaceholder}
-                className="w-full pl-6 pr-44 py-4 rounded-full border-0 bg-white dark:bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all shadow-lg"
+                className="w-full pl-6 pr-44 py-4 rounded-full border-0 bg-white dark:bg-white text-gray-900 placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all shadow-lg"
                 required
               />
               <button
