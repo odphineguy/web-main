@@ -84,7 +84,7 @@ export default function PlatformsPage() {
                 {t("Hero.titleAccent")}
               </span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
               {t("Hero.subtitle")}
             </p>
           </motion.div>
@@ -220,7 +220,7 @@ export default function PlatformsPage() {
               <h3 className="text-xl md:text-2xl lg:text-3xl font-medium tracking-[-0.02em] text-foreground mb-3">
                 {t("DriverApp.title")}
               </h3>
-              <p className="text-muted-foreground max-w-2xl">
+              <p className="text-muted-foreground max-w-2xl mx-auto">
                 {t("DriverApp.description")}
               </p>
             </div>
@@ -351,7 +351,7 @@ export default function PlatformsPage() {
             <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-foreground mb-4">
               {t("ComingSoon.title")}
             </h2>
-            <p className="text-muted-foreground max-w-2xl">
+            <p className="text-muted-foreground max-w-2xl mx-auto">
               {t("ComingSoon.description")}
             </p>
           </motion.div>
