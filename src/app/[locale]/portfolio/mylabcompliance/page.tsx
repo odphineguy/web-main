@@ -156,7 +156,7 @@ export default function CaseStudyMyLabCompliance() {
 
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 dark:bg-orange-500/10 border border-orange-200 dark:border-orange-500/20 text-orange-600 dark:text-orange-500 text-sm mb-6">
-            <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-orange-500" />
             B2B SaaS &bull; Lab Compliance
           </div>
 
@@ -174,25 +174,25 @@ export default function CaseStudyMyLabCompliance() {
 
           {/* Quick Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="p-4 rounded-xl bg-neutral-100 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 text-center">
+            <div className="p-4 rounded-xl bg-card border border-border text-center">
               <div className="text-xl md:text-[28px] font-normal tracking-normal text-primary">
                 <AnimatedCounter value={95} suffix="%" duration={1200} />
               </div>
               <div className="text-sm md:text-base font-normal leading-relaxed text-muted-foreground">Bug Reduction</div>
             </div>
-            <div className="p-4 rounded-xl bg-neutral-100 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 text-center">
+            <div className="p-4 rounded-xl bg-card border border-border text-center">
               <div className="text-xl md:text-[28px] font-normal tracking-normal text-primary">
                 <AnimatedCounter value={500} duration={1400} />
               </div>
               <div className="text-sm md:text-base font-normal leading-relaxed text-muted-foreground">SEO Pages Created</div>
             </div>
-            <div className="p-4 rounded-xl bg-neutral-100 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 text-center">
+            <div className="p-4 rounded-xl bg-card border border-border text-center">
               <div className="text-xl md:text-[28px] font-normal tracking-normal text-primary">
                 <AnimatedCounter value={981} suffix="ms" duration={1300} />
               </div>
               <div className="text-sm md:text-base font-normal leading-relaxed text-muted-foreground">Load Time</div>
             </div>
-            <div className="p-4 rounded-xl bg-neutral-100 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 text-center">
+            <div className="p-4 rounded-xl bg-card border border-border text-center">
               <div className="text-xl md:text-[28px] font-normal tracking-normal text-primary">
                 <AnimatedCounter value={2} suffix="+" duration={800} />
               </div>
@@ -219,7 +219,7 @@ export default function CaseStudyMyLabCompliance() {
                 before users reported them.
               </p>
             </div>
-            <div className="p-6 rounded-xl bg-red-50 dark:bg-red-500/5 border border-red-200 dark:border-red-500/20">
+            <div className="p-6 rounded-xl bg-muted border border-border">
               <h4 className="text-red-600 dark:text-red-400 font-semibold mb-4">Initial Assessment</h4>
               <ul className="space-y-3 text-muted-foreground">
                 <li className="flex items-start gap-3">
@@ -256,7 +256,7 @@ export default function CaseStudyMyLabCompliance() {
             {deliverables.map((item, i) => (
               <div
                 key={i}
-                className="group p-6 rounded-xl bg-neutral-100 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 hover:border-orange-300 dark:hover:border-orange-500/50 transition-all duration-300"
+                className="group p-6 rounded-xl bg-card border border-border hover:border-primary/40 transition-all duration-300"
               >
                 <div className="w-12 h-12 rounded-lg bg-orange-100 dark:bg-orange-500/10 text-orange-500 flex items-center justify-center mb-4 group-hover:bg-orange-500 group-hover:text-white transition-all duration-300">
                   {item.icon}
@@ -281,7 +281,7 @@ export default function CaseStudyMyLabCompliance() {
             {metrics.map((metric) => (
               <div
                 key={metric.id}
-                className="p-6 rounded-xl bg-neutral-100 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 hover:border-orange-300 dark:hover:border-orange-500/30 transition-all"
+                className="p-6 rounded-xl bg-card border border-border hover:border-primary/40 transition-all"
                 onMouseEnter={() => setActiveMetric(metric.id)}
                 onMouseLeave={() => setActiveMetric(null)}
               >
@@ -347,7 +347,7 @@ export default function CaseStudyMyLabCompliance() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gray-100 dark:bg-neutral-900 py-20 px-6">
+      <section className="bg-muted py-20 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="rounded-2xl p-10 md:p-16 bg-primary shadow-xl shadow-orange-500/25 text-center">
             <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
