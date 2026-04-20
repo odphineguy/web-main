@@ -60,28 +60,6 @@ const portfolioProjects: PortfolioProject[] = [
     category: "Education",
   },
   {
-    id: "mealsaver",
-    name: "Meal Saver",
-    description: "Food rescue and savings app",
-    siteUrl: "https://mealsaver.app/",
-    category: "Food App",
-    externalOnly: true,
-  },
-  {
-    id: "mealsaver-web",
-    name: "Meal Saver",
-    description: "Food waste reduction web application",
-    siteUrl: "",
-    category: "Web App",
-  },
-  {
-    id: "paisanos",
-    name: "Paisanos",
-    description: "Restaurant website design",
-    siteUrl: "https://odphineguy.github.io/paisanos-restaurant/",
-    category: "Restaurant",
-  },
-  {
     id: "paw-relief",
     name: "Paw Relief",
     description: "Pet care and relief services",
