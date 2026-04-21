@@ -60,7 +60,7 @@ export default function Services() {
           <h1 className="text-3xl md:text-4xl lg:text-[40px] font-medium tracking-[-0.02em] mb-6 text-foreground">
             {t('Hero.title')} <span className="text-primary">{t('Hero.highlight')}</span>
           </h1>
-          <p className="text-sm md:text-base text-muted-foreground mb-8 max-w-3xl leading-relaxed">
+          <p className="text-sm md:text-base text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
             {t('Hero.subtitle')}
           </p>
           <ScheduleCallButton 

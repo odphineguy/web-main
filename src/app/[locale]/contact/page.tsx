@@ -12,11 +12,11 @@ export default function ContactPage() {
       <section id="book-consultation" className="bg-background pt-8 md:pt-12 pb-16 px-6">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <div className="mb-12 max-w-3xl">
+          <div className="mb-12 max-w-3xl mx-auto text-center">
             <h1 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] mb-6 text-foreground">
               Get in <span className="text-primary">Touch</span>
             </h1>
-            <p className="text-lg md:text-xl font-normal leading-relaxed text-muted-foreground max-w-3xl">
+            <p className="text-lg md:text-xl font-normal leading-relaxed text-muted-foreground max-w-3xl mx-auto">
               Let&apos;s discuss your custom chatbot solutions. We&apos;re here to help.
             </p>
           </div>

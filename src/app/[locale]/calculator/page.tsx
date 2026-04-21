@@ -82,7 +82,7 @@ export default function CalculatorPage() {
               {t("hero.titlePart2")}
             </span>
           </h1>
-          <p className="text-[14px] md:text-[16px] font-normal leading-[1.5] text-muted-foreground max-w-2xl">
+          <p className="text-[14px] md:text-[16px] font-normal leading-[1.5] text-muted-foreground max-w-2xl mx-auto">
             {t("hero.subtitle")}
           </p>
         </motion.div>

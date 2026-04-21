@@ -108,14 +108,16 @@ export default function PricingPage() {
       </Suspense>
 
       <section className="px-6 pt-10 pb-24 md:pt-16 md:pb-32">
-        <div className="mx-auto w-full max-w-2xl">
-          <header className="mb-14">
-            <h1 className="m-0">{t("Hero.title")}</h1>
-            <p className="mt-5 text-lg text-muted-foreground">
-              {t("Hero.subtitle")}
-            </p>
-          </header>
+        <header className="mx-auto w-full max-w-4xl text-center mb-14">
+          <h1 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] m-0">
+            {t("Hero.title")}
+          </h1>
+          <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto">
+            {t("Hero.subtitle")}
+          </p>
+        </header>
 
+        <div className="mx-auto w-full max-w-2xl">
           <Suspense fallback={<div className="h-96" />}>
             <TreeWrapper onBookCall={handleBookCall} />
           </Suspense>

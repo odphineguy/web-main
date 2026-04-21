@@ -115,11 +115,11 @@ export default function BlogPage() {
       {/* Hero Section */}
       <section className="bg-background pt-8 md:pt-12 pb-12 border-b border-border">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div>
+          <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] text-foreground mb-6">
               Our <span className="text-primary">Blog</span>
             </h1>
-            <p className="text-lg md:text-xl font-normal leading-relaxed text-muted-foreground max-w-3xl">
+            <p className="text-lg md:text-xl font-normal leading-relaxed text-muted-foreground max-w-3xl mx-auto">
               Insights, tutorials, and resources on web development, design, AI marketing, bilingual advertising, and digital innovation for your business.
             </p>
           </div>
