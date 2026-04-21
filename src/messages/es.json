@@ -372,7 +372,10 @@
   "Pricing": {
     "Hero": {
       "title": "Vamos a encontrar el alcance correcto.",
-      "subtitle": "Tres preguntas cortas. Un paquete recomendado. Sin anzuelos ni servicios que no necesitas."
+      "subtitle": "Tres preguntas cortas. Un paquete recomendado. Sin anzuelos ni servicios que no necesitas.",
+      "titleStart": "Vamos a encontrar el alcance",
+      "titleAccent": "correcto",
+      "titleEnd": "."
     },
     "Breadcrumb": {
       "edit": "Editar"

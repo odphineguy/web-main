@@ -110,7 +110,9 @@ export default function PricingPage() {
       <section className="px-6 pt-10 pb-24 md:pt-16 md:pb-32">
         <header className="mx-auto w-full max-w-4xl text-center mb-14">
           <h1 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] m-0">
-            {t("Hero.title")}
+            {t("Hero.titleStart")}{" "}
+            <span className="text-primary">{t("Hero.titleAccent")}</span>
+            {t("Hero.titleEnd")}
           </h1>
           <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto">
             {t("Hero.subtitle")}

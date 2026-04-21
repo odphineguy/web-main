@@ -340,7 +340,7 @@ function QuestionBlock({
       <h2
         ref={headingRef}
         tabIndex={-1}
-        className="outline-none"
+        className="text-2xl md:text-[28px] font-medium tracking-[-0.01em] outline-none"
       >
         {question}
       </h2>
