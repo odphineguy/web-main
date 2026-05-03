@@ -1,5 +1,4 @@
 import { MetadataRoute } from "next";
-import { allBlogPages } from "@/lib/blogPages";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://abemedia.online";
@@ -12,7 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/services/bilingual-web-development",
     "/services/ai-chatbots",
     "/portfolio",
-    "/blog",
     "/contact",
     "/get-started",
   ];
@@ -20,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const buildLocalized = (locale: string, path: string) =>
     path === "" ? `/${locale}` : `/${locale}${path}`;
 
-  const mainRoutes = locales.flatMap((locale) =>
+  return locales.flatMap((locale) =>
     paths.map((path) => ({
       url: `${baseUrl}${buildLocalized(locale, path)}`,
       lastModified: currentDate,
@@ -35,22 +33,4 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     }))
   );
-
-  const blogRoutes = locales.flatMap((locale) =>
-    allBlogPages.map((page) => ({
-      url: `${baseUrl}/${locale}/blog/${page.slug}`,
-      lastModified: new Date(page.updatedDate || page.publishedDate),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-      alternates: {
-        languages: {
-          en: `${baseUrl}/en/blog/${page.slug}`,
-          es: `${baseUrl}/es/blog/${page.slug}`,
-          "x-default": `${baseUrl}/en/blog/${page.slug}`,
-        },
-      },
-    }))
-  );
-
-  return [...mainRoutes, ...blogRoutes];
 }

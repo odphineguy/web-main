@@ -79,7 +79,6 @@ export default function TopNavbar() {
           <Link href="/pricing" className={`font-bold transition-colors ${isActive("/pricing") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('pricing')}</Link>
           <Link href="/calculator" className={`font-bold transition-colors ${isActive("/calculator") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('calculator')}</Link>
           <Link href="/portfolio" className={`font-bold transition-colors ${isActive("/portfolio") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('portfolio')}</Link>
-          <Link href="/blog" className={`font-bold transition-colors ${isActive("/blog") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('blog')}</Link>
           <Link href="/contact" className={`font-bold transition-colors ${isActive("/contact") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('contact')}</Link>
           <Link
             href="/get-started"
@@ -130,7 +129,6 @@ export default function TopNavbar() {
             <Link href="/pricing" className={`font-bold py-2 transition-colors ${isActive("/pricing") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('pricing')}</Link>
             <Link href="/calculator" className={`font-bold py-2 transition-colors ${isActive("/calculator") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('calculator')}</Link>
             <Link href="/portfolio" className={`font-bold py-2 transition-colors ${isActive("/portfolio") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('portfolio')}</Link>
-            <Link href="/blog" className={`font-bold py-2 transition-colors ${isActive("/blog") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('blog')}</Link>
             <Link href="/contact" className={`font-bold py-2 transition-colors ${isActive("/contact") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('contact')}</Link>
             <Link
               href="/get-started"
