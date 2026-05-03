@@ -12,7 +12,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/services/ai-chatbots",
     "/portfolio",
     "/contact",
-    "/get-started",
   ];
 
   const buildLocalized = (locale: string, path: string) =>

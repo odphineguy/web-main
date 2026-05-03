@@ -513,7 +513,7 @@ export default function ROICalculator() {
               {/* CTA */}
               <div className="space-y-3">
                 <Link
-                  href={`/${locale}/get-started`}
+                  href={`/${locale}/contact`}
                   className="w-full py-4 px-6 rounded-full font-normal text-sm text-white bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 flex items-center justify-center gap-2"
                 >
                   {t("results.cta")}
