@@ -112,11 +112,6 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "./",
-    languages: {
-      en: "/en",
-      es: "/es",
-      "x-default": "/en",
-    },
   },
   verification: {
     // Add your verification codes here if you have them

@@ -4,7 +4,7 @@ import { getBlogPageBySlug, getAllBlogSlugs } from "@/lib/blogPages";
 import BlogPageTemplate from "@/components/BlogPageTemplate";
 
 interface PageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }
 
 // Generate static paths for all blog pages
@@ -16,7 +16,7 @@ export async function generateStaticParams() {
 
 // Generate metadata for each page
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const page = getBlogPageBySlug(slug);
 
   if (!page) {
@@ -26,9 +26,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   // Use image from JSON if available
-  const imageUrl = page.image?.url 
+  const imageUrl = page.image?.url
     ? (page.image.url.startsWith('http') ? page.image.url : `https://abemedia.online${page.image.url}`)
     : undefined;
+
+  const canonicalUrl = `https://abemedia.online/${locale}/blog/${page.slug}`;
+  const enUrl = `https://abemedia.online/en/blog/${page.slug}`;
+  const esUrl = `https://abemedia.online/es/blog/${page.slug}`;
 
   return {
     title: page.metaTitle,
@@ -44,8 +48,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       authors: [page.author || "Abe Media"],
       tags: page.keywords,
       siteName: "Abe Media",
-      locale: "en_US",
-      url: `https://abemedia.online/blog/${page.slug}`,
+      locale: locale === "es" ? "es_US" : "en_US",
+      url: canonicalUrl,
       ...(imageUrl && {
         images: [
           {
@@ -64,7 +68,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       ...(imageUrl && { images: [imageUrl] }),
     },
     alternates: {
-      canonical: `https://abemedia.online/blog/${page.slug}`,
+      canonical: canonicalUrl,
+      languages: {
+        en: enUrl,
+        es: esUrl,
+        "x-default": enUrl,
+      },
     },
   };
 }
