@@ -66,6 +66,13 @@ const portfolioProjects: PortfolioProject[] = [
     siteUrl: "https://paw-relief-landing.vercel.app/",
     category: "Pet Care",
   },
+  {
+    id: "misana",
+    name: "MiSana",
+    description: "Private health platform",
+    siteUrl: "https://misana.app/",
+    category: "Private Health",
+  },
 ];
 
 export default function PortfolioPage() {
