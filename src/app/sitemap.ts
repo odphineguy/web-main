@@ -10,7 +10,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/services",
     "/services/bilingual-web-development",
     "/services/ai-chatbots",
+    "/services/brand-identity",
+    "/platforms",
     "/portfolio",
+    "/portfolio/mylabcompliance",
+    "/portfolio/saguarotransport",
+    "/pricing",
+    "/calculator",
+    "/bilingual-seo-phoenix",
     "/contact",
   ];
 
