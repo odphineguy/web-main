@@ -95,10 +95,12 @@ table `demoCallClicks` via `formSubmissions.logDemoCallClick`.
 - Editing `ROICalculator.tsx` (risk to /calculator for zero benefit).
 
 **Constraints / open risks:**
-- `demoCallClicks` schema is pushed to the **dev** Convex deployment
-  (dev:content-buffalo-738). Production gets it on the next `npx convex deploy`
-  (Vercel pipeline). Until then prod clicks would fail the mutation — the call
-  is fire-and-forget with a swallowed catch, so the tel: link still works.
+- ~~`demoCallClicks` schema is pushed to the **dev** Convex deployment only~~
+  **Resolved 2026-07-12:** deployed to production (cheerful-dinosaur-946) with
+  owner approval and verified end-to-end — a live-site hero click logged
+  `{locale: en, source: hero}` to the prod table; test rows cleaned up.
+  Note: the Vercel build does NOT run `convex deploy` — future Convex schema/
+  function changes must be deployed manually with `npx convex deploy`.
 - Elena recordings not yet present; player is invisible until mp3s are dropped in.
 - Lighthouse not run headlessly; LCP protection verified structurally
   (SSR hero text + no scroll assets in initial HTML + dynamic ssr:false imports).
