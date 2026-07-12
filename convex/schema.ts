@@ -37,6 +37,14 @@ export default defineSchema({
     .index("by_email", ["email"])
     .index("by_submittedAt", ["submittedAt"]),
 
+  // Demo-call CTA clicks ("Call Elena") for attribution
+  demoCallClicks: defineTable({
+    clickedAt: v.number(),
+    locale: v.string(),
+    source: v.optional(v.string()), // e.g. "hero" | "footer"
+    userAgent: v.optional(v.string()),
+  }).index("by_clickedAt", ["clickedAt"]),
+
   // Consultation form submissions
   consultationSubmissions: defineTable({
     name: v.string(),

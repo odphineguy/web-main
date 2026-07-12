@@ -75,7 +75,8 @@ export default function TopNavbar() {
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-5 md:gap-6 text-base ml-3 sm:ml-6 md:ml-10">
-          <Link href="/services" className={`font-bold transition-colors ${isActive("/services") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('services')}</Link>
+          <Link href="/#agents" className="font-bold transition-colors opacity-80 hover:opacity-100">{t('agents')}</Link>
+          <Link href="/platforms" className={`font-bold transition-colors ${isActive("/platforms") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('platforms')}</Link>
           <Link href="/pricing" className={`font-bold transition-colors ${isActive("/pricing") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('pricing')}</Link>
           <Link href="/calculator" className={`font-bold transition-colors ${isActive("/calculator") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('calculator')}</Link>
           <Link href="/portfolio" className={`font-bold transition-colors ${isActive("/portfolio") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('portfolio')}</Link>
@@ -125,7 +126,8 @@ export default function TopNavbar() {
           className="md:hidden bg-white/95 dark:bg-neutral-900/95 backdrop-blur supports-[backdrop-filter]:bg-white/95 dark:supports-[backdrop-filter]:bg-neutral-900/95 border-t border-border"
         >
           <nav className="flex flex-col py-4 px-6 space-y-3">
-            <Link href="/services" className={`font-bold py-2 transition-colors ${isActive("/services") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('services')}</Link>
+            <Link href="/#agents" className="font-bold py-2 transition-colors text-foreground opacity-80 hover:opacity-100" onClick={() => setMobileMenuOpen(false)}>{t('agents')}</Link>
+            <Link href="/platforms" className={`font-bold py-2 transition-colors ${isActive("/platforms") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('platforms')}</Link>
             <Link href="/pricing" className={`font-bold py-2 transition-colors ${isActive("/pricing") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('pricing')}</Link>
             <Link href="/calculator" className={`font-bold py-2 transition-colors ${isActive("/calculator") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('calculator')}</Link>
             <Link href="/portfolio" className={`font-bold py-2 transition-colors ${isActive("/portfolio") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('portfolio')}</Link>

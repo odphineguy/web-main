@@ -7,10 +7,15 @@ import { motion } from "framer-motion";
 import { ScheduleCallButton } from "@/components/ScheduleCallButton";
 import ConsultationForm from "@/components/ConsultationForm";
 import { FooterCTA } from "@/components/ui/footer-cta";
-import { Bot, Users, Zap, Globe, TrendingUp, Heart, Search, X } from "lucide-react";
+import { PhoneCall, Truck, Workflow, Smartphone, Globe, X } from "lucide-react";
 import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from "next-intl";
+import { useMutation } from "convex/react";
+import { api } from "../../convex/_generated/api";
+
+const DEMO_PHONE_DISPLAY = "(669) 669-4486";
+const DEMO_PHONE_TEL = "tel:+16696694486";
 
 // Lazy load below-fold components to reduce initial bundle size
 const HomeFaq = dynamic(() => import("@/components/HomeFaq"), {
@@ -18,22 +23,16 @@ const HomeFaq = dynamic(() => import("@/components/HomeFaq"), {
   loading: () => <div className="py-20 px-6 text-center text-muted-foreground">Loading...</div>,
 });
 
-const SlidingHighlightGrid = dynamic(() => import("@/components/SlidingHighlightGrid"), {
-  ssr: false,
-});
-
-const PartnerSteps = dynamic(() => import("@/components/PartnerSteps"), {
-  ssr: false,
-});
-
-const BilingualHeroDemo = dynamic(() => import("@/components/demos/BilingualHeroDemo"), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full max-w-md mx-auto lg:mx-0 h-[340px] rounded-2xl bg-gray-100 dark:bg-neutral-800 animate-pulse" />
-  ),
-});
-
 const ChatDemoShowcase = dynamic(() => import("@/components/demos/ChatDemoShowcase"), {
+  ssr: false,
+});
+
+// Scroll-world section must never block LCP — hero renders before any of its assets load
+const AfterHoursScroll = dynamic(() => import("@/components/AfterHoursScroll"), {
+  ssr: false,
+});
+
+const MissedCallCalculator = dynamic(() => import("@/components/MissedCallCalculator"), {
   ssr: false,
 });
 
@@ -51,12 +50,23 @@ const clientLogos = [
 ];
 
 export default function HomePage() {
-  const t = useTranslations('Home');
-  const p = useTranslations('Platforms');
+  const t = useTranslations("Home");
+  const p = useTranslations("Platforms");
+  const locale = useLocale();
+  const logDemoCallClick = useMutation(api.formSubmissions.logDemoCallClick);
   const [avatarErrors, setAvatarErrors] = useState<Set<number>>(new Set());
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
   const [lightboxTitle, setLightboxTitle] = useState<string>("");
+
+  // Fire-and-forget attribution log; never block the tel: navigation
+  const handleDemoCallClick = (source: string) => {
+    logDemoCallClick({
+      locale,
+      source,
+      userAgent: typeof navigator !== "undefined" ? navigator.userAgent : undefined,
+    }).catch(() => {});
+  };
 
   const openLightbox = (image: string, title: string) => {
     setLightboxImage(image);
@@ -77,48 +87,124 @@ export default function HomePage() {
       .slice(0, 2);
   };
 
+  const serviceCards = [
+    { key: "voice", Icon: PhoneCall },
+    { key: "dispatch", Icon: Truck },
+    { key: "pipeline", Icon: Workflow },
+    { key: "apps", Icon: Smartphone },
+    { key: "web", Icon: Globe, isAddOn: true },
+  ] as const;
+
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section - Black background */}
-      <section className="bg-background px-6 pt-8 md:pt-16 pb-16 lg:pb-32 overflow-hidden">
+      {/* Hero — agents & after-hours positioning */}
+      <section className="bg-background px-6 pt-8 md:pt-16 pb-16 lg:pb-24 overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left: Text Content - Animations removed for LCP optimization */}
-            <div
-              className="space-y-6"
-            >
-              {/* Eyebrow — quiet credibility line */}
+            <div className="space-y-6">
               <div className="inline-flex items-center gap-2">
                 <span className="inline-flex h-1.5 w-1.5 rounded-full bg-orange-500"></span>
                 <span className="text-xs font-semibold uppercase tracking-[0.14em] text-orange-500">
-                  Serving Small Businesses
+                  {t("Hero.eyebrow")}
                 </span>
               </div>
-              <h1 className="text-[40px] md:text-[48px] lg:text-[56px] font-medium tracking-[-0.02em] text-foreground leading-tight">
-                {t('Hero.titlePart1')}{" "}
-                <span className="text-primary">
-                  {t('Hero.titlePart2')}
-                </span>
+              <h1 className="text-[36px] md:text-[44px] lg:text-[48px] font-medium tracking-[-0.02em] text-foreground leading-tight">
+                {t("Hero.titlePart1")}{" "}
+                <span className="text-primary">{t("Hero.titlePart2")}</span>
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground max-w-xl">
-                {t('Hero.subtitle')}
+                {t("Hero.subtitle")}
               </p>
-              <ScheduleCallButton
-                type="button"
-                onClick={() => setIsConsultationOpen(true)}
-              />
+
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                <a
+                  href={DEMO_PHONE_TEL}
+                  onClick={() => handleDemoCallClick("hero")}
+                  className="group inline-flex items-center justify-center gap-3 bg-orange-500 hover:bg-orange-600 text-white rounded-full px-7 py-3.5 transition-all duration-300 shadow-lg hover:shadow-orange-500/25"
+                >
+                  <PhoneCall className="w-5 h-5" />
+                  <span className="text-sm font-bold tracking-widest uppercase">
+                    {t("Hero.callCta")}
+                  </span>
+                </a>
+                <ScheduleCallButton
+                  type="button"
+                  label={t("CTA.button")}
+                  className="bg-transparent border border-orange-500 !text-orange-500 hover:bg-orange-500/10"
+                  onClick={() => setIsConsultationOpen(true)}
+                />
+              </div>
+              <div className="space-y-1">
+                <p className="text-sm font-medium text-foreground">{t("Hero.callCtaSub")}</p>
+                <p className="text-sm text-muted-foreground">{t("Hero.followUp")}</p>
+              </div>
             </div>
 
-            {/* Right: Live Bilingual Chatbot Demo */}
+            {/* Right: Elena live-demo call card */}
             <div className="relative lg:flex lg:justify-end">
-              <BilingualHeroDemo />
+              <div className="w-full max-w-md mx-auto lg:mx-0 rounded-2xl p-px bg-gradient-to-b from-orange-500/40 to-white/5">
+                <div className="rounded-2xl bg-gray-50 dark:bg-neutral-900 p-8 space-y-5">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="relative">
+                        <div className="w-12 h-12 rounded-full bg-orange-500/15 flex items-center justify-center">
+                          <PhoneCall className="w-6 h-6 text-orange-500" />
+                        </div>
+                        <span className="absolute -top-0.5 -right-0.5 flex h-3 w-3">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-3 w-3 bg-orange-500"></span>
+                        </span>
+                      </div>
+                      <div>
+                        <p className="text-lg font-semibold text-foreground">Elena</p>
+                        <p className="text-xs text-muted-foreground">{t("Hero.callCtaSub")}</p>
+                      </div>
+                    </div>
+                    <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-500/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-orange-500">
+                      {t("Hero.liveBadge")}
+                    </span>
+                  </div>
+
+                  <a
+                    href={DEMO_PHONE_TEL}
+                    onClick={() => handleDemoCallClick("hero-card")}
+                    className="block text-3xl md:text-4xl font-semibold tracking-tight text-foreground hover:text-orange-500 transition-colors"
+                  >
+                    {DEMO_PHONE_DISPLAY}
+                  </a>
+
+                  <div className="rounded-xl bg-white dark:bg-neutral-950 border border-border p-4">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-orange-500 mb-1">
+                      {t("Hero.demoHintTitle")}
+                    </p>
+                    <p className="text-sm text-muted-foreground">{t("Hero.demoHintBody")}</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Bilingual Web Development Services Section */}
-      <section className="bg-gray-50 dark:bg-neutral-950 py-20 px-6">
+      {/* Proof bar — single muted row */}
+      <section className="border-y border-border bg-gray-50 dark:bg-neutral-950 px-6 py-5">
+        <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center text-sm text-muted-foreground">
+          <span>{t("ProofBar.item1")}</span>
+          <span className="text-orange-500/60" aria-hidden="true">·</span>
+          <span>{t("ProofBar.item2")}</span>
+          <span className="text-orange-500/60" aria-hidden="true">·</span>
+          <span>{t("ProofBar.item3")}</span>
+          <span className="text-orange-500/60" aria-hidden="true">·</span>
+          <span>{t("ProofBar.item4")}</span>
+        </div>
+      </section>
+
+      {/* Scroll-world "after hours" sequence */}
+      <AfterHoursScroll />
+
+      {/* Services grid — 5 cards, agents first, websites/chatbots as add-on */}
+      <section id="agents" className="bg-background py-20 px-6 scroll-mt-20">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -128,98 +214,56 @@ export default function HomePage() {
             className="mb-12 max-w-3xl"
           >
             <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500 mb-4">
-              {t('BilingualServices.badge')}
+              {t("ServicesGrid.badge")}
             </span>
             <h2 className="text-[28px] md:text-[32px] lg:text-[36px] font-medium tracking-[-0.02em] text-foreground mb-4">
-              {t('BilingualServices.title')}
+              {t("ServicesGrid.title")}
             </h2>
             <p className="text-lg md:text-xl font-normal leading-relaxed text-muted-foreground max-w-2xl">
-              {t('BilingualServices.subtitle')}
+              {t("ServicesGrid.subtitle")}
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0 }}
-              viewport={{ once: true }}
-             
-            >
-              <div className="w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4">
-                <TrendingUp className="w-7 h-7 text-orange-500" />
-              </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                {t('BilingualServices.benefit1.title')}
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                {t('BilingualServices.benefit1.description')}
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              viewport={{ once: true }}
-             
-            >
-              <div className="w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4">
-                <Heart className="w-7 h-7 text-orange-500" />
-              </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                {t('BilingualServices.benefit2.title')}
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                {t('BilingualServices.benefit2.description')}
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
-             
-            >
-              <div className="w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4">
-                <Search className="w-7 h-7 text-orange-500" />
-              </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                {t('BilingualServices.benefit3.title')}
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                {t('BilingualServices.benefit3.description')}
-              </p>
-            </motion.div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {serviceCards.map(({ key, Icon, ...card }, index) => (
+              <motion.div
+                key={key}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
+                viewport={{ once: true }}
+                className="relative group h-full"
+              >
+                <div className="h-full rounded-2xl p-px transition-all duration-300 bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
+                  <div className="h-full rounded-2xl p-6 lg:p-8 backdrop-blur-xl transition-all duration-300 bg-gray-50 dark:bg-neutral-900">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center">
+                        <Icon className="w-6 h-6 text-orange-500" />
+                      </div>
+                      {"isAddOn" in card && card.isAddOn && (
+                        <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-500/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-orange-500">
+                          {t("ServicesGrid.addOnBadge")}
+                        </span>
+                      )}
+                    </div>
+                    <h3 className="text-lg font-semibold text-foreground mb-2">
+                      {t(`ServicesGrid.${key}.title`)}
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      {t(`ServicesGrid.${key}.description`)}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            viewport={{ once: true }}
-           
-          >
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                href="/services/bilingual-web-development"
-                className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-orange-600"
-              >
-                {t('BilingualServices.cta')}
-              </Link>
-              <Link
-                href="/bilingual-seo-phoenix"
-                className="inline-flex items-center gap-2 rounded-full border border-orange-500 px-6 py-3 text-sm font-semibold text-orange-500 transition-colors hover:bg-orange-500/10"
-              >
-                {t('BilingualServices.seoCta')}
-              </Link>
-            </div>
-          </motion.div>
         </div>
       </section>
 
-      {/* Core Chatbot Features - Black background */}
+      {/* Industry Demo Showcase (retitled to agents) */}
+      <ChatDemoShowcase onCtaClick={() => setIsConsultationOpen(true)} />
+
+      {/* Case studies strip */}
       <section className="bg-background py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -230,110 +274,90 @@ export default function HomePage() {
             className="mb-12 max-w-3xl"
           >
             <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500 mb-4">
-              {t('Features.badge')}
+              {t("CaseStudies.badge")}
             </span>
             <h2 className="text-[28px] md:text-[32px] lg:text-[36px] font-medium tracking-[-0.02em] text-foreground">
-              {t('Features.title')}
+              {t("CaseStudies.title")}
             </h2>
           </motion.div>
 
-          <SlidingHighlightGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Saguaro Transport — laptop mockup */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0 }}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="relative group h-full"
+              className="relative"
             >
-              <div className="h-full rounded-2xl p-px transition-all duration-300 bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
-                <div className="h-full rounded-2xl p-6 lg:p-8 backdrop-blur-xl transition-all duration-300 bg-gray-50 dark:bg-neutral-900">
-                  <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4">
-                    <Globe className="w-6 h-6 text-orange-500" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-foreground mb-2">
-                    {t('Features.bilingualSupport.title')}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {t('Features.bilingualSupport.description')}
-                  </p>
+              <div
+                className="relative rounded-2xl overflow-hidden shadow-2xl shadow-orange-500/10 cursor-pointer group"
+                onClick={() => openLightbox("/images/assets-platforms/laptop.png", p("Preview.subtitle"))}
+              >
+                <Image
+                  src="/images/assets-platforms/laptop.png"
+                  alt="Saguaro Transport Platform"
+                  width={800}
+                  height={500}
+                  className="w-full h-auto transition-transform duration-300 group-hover:scale-[1.02]"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-300 flex items-center justify-center">
+                  <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 dark:bg-foreground/80 text-foreground px-4 py-2 rounded-full text-sm font-medium shadow-lg">
+                    Click to enlarge
+                  </span>
                 </div>
               </div>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
-              className="relative group h-full"
+              className="space-y-4"
             >
-              <div className="h-full rounded-2xl p-px transition-all duration-300 bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
-                <div className="h-full rounded-2xl p-6 lg:p-8 backdrop-blur-xl transition-all duration-300 bg-gray-50 dark:bg-neutral-900">
-                  <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4">
-                    <Bot className="w-6 h-6 text-orange-500" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-foreground mb-2">
-                    {t('Features.aiPowered.title')}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {t('Features.aiPowered.description')}
-                  </p>
-                </div>
-              </div>
+              <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
+                {p("Preview.badge")}
+              </span>
+              <h3 className="text-xl font-semibold text-orange-500">{p("Preview.subtitle")}</h3>
+              <p className="text-muted-foreground">{p("Preview.description")}</p>
+              <Link
+                href="/platforms"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-full transition-colors"
+              >
+                {p("Preview.cta")}
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
             </motion.div>
+          </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="relative group h-full"
-            >
-              <div className="h-full rounded-2xl p-px transition-all duration-300 bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
-                <div className="h-full rounded-2xl p-6 lg:p-8 backdrop-blur-xl transition-all duration-300 bg-gray-50 dark:bg-neutral-900">
-                  <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4">
-                    <Users className="w-6 h-6 text-orange-500" />
-                  </div>
+          {/* Rejunk + Waterloo cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {(["rejunk", "waterloo"] as const).map((study, index) => (
+              <motion.div
+                key={study}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="h-full rounded-2xl p-px bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5"
+              >
+                <div className="h-full rounded-2xl p-6 lg:p-8 bg-gray-50 dark:bg-neutral-900">
                   <h3 className="text-lg font-semibold text-foreground mb-2">
-                    {t('Features.leadCapture.title')}
+                    {t(`CaseStudies.${study}.title`)}
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    {t('Features.leadCapture.description')}
+                    {t(`CaseStudies.${study}.description`)}
                   </p>
                 </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              viewport={{ once: true }}
-              className="relative group h-full"
-            >
-              <div className="h-full rounded-2xl p-px transition-all duration-300 bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
-                <div className="h-full rounded-2xl p-6 lg:p-8 backdrop-blur-xl transition-all duration-300 bg-gray-50 dark:bg-neutral-900">
-                  <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4">
-                    <Zap className="w-6 h-6 text-orange-500" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-foreground mb-2">
-                    {t('Features.seamlessIntegration.title')}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {t('Features.seamlessIntegration.description')}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          </SlidingHighlightGrid>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
-
-      {/* Industry Demo Showcase */}
-      <ChatDemoShowcase onCtaClick={() => setIsConsultationOpen(true)} />
-
-      {/* Partner Steps Section */}
-      <PartnerSteps />
 
       {/* Trusted By / Logo Carousel - Gray background */}
       <section className="bg-gray-100 dark:bg-neutral-900 py-10">
@@ -346,19 +370,16 @@ export default function HomePage() {
             className="flex justify-center mb-6"
           >
             <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
-              {t('TrustedBy.text')}
+              {t("TrustedBy.text")}
             </span>
           </motion.div>
         </div>
 
         {/* Logo Marquee */}
         <div className="relative overflow-hidden py-4">
-          {/* Left fade gradient */}
           <div className="absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-gray-100 dark:from-neutral-900 to-transparent pointer-events-none" />
-          {/* Right fade gradient */}
           <div className="absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-gray-100 dark:from-neutral-900 to-transparent pointer-events-none" />
           <div className="flex animate-marquee items-center">
-            {/* Double the logos for seamless loop */}
             {[...clientLogos, ...clientLogos].map((logo, index) => (
               <div
                 key={index}
@@ -371,9 +392,7 @@ export default function HomePage() {
                     width={240}
                     height={96}
                     className={`object-contain max-h-24 ${
-                      logo.isDark 
-                        ? "dark:invert" 
-                        : "invert dark:invert-0"
+                      logo.isDark ? "dark:invert" : "invert dark:invert-0"
                     }`}
                   />
                 </div>
@@ -383,152 +402,63 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Platforms Preview Section */}
+      {/* Founder story — short */}
       <section className="bg-background py-20 px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left: Laptop Mockup */}
+          <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-10 md:gap-16 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="relative"
+              className="relative aspect-[3/4] w-full max-w-[280px] mx-auto md:mx-0 rounded-2xl overflow-hidden"
             >
-              <div
-                className="relative rounded-2xl overflow-hidden shadow-2xl shadow-orange-500/10 cursor-pointer group"
-                onClick={() => openLightbox("/images/assets-platforms/laptop.png", p('Preview.subtitle'))}
-              >
-                <Image
-                  src="/images/assets-platforms/laptop.png"
-                  alt="Saguaro Transport Platform"
-                  width={800}
-                  height={500}
-                  className="w-full h-auto transition-transform duration-300 group-hover:scale-[1.02]"
-                  loading="lazy"
-                />
-                {/* Hover overlay */}
-                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-300 flex items-center justify-center">
-                  <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 dark:bg-foreground/80 text-foreground px-4 py-2 rounded-full text-sm font-medium shadow-lg">
-                    Click to enlarge
-                  </span>
-                </div>
-              </div>
+              <Image
+                src="/images/home/abe-fire.png"
+                alt="Abe - Founder"
+                fill
+                className="object-cover"
+                sizes="280px"
+                loading="lazy"
+              />
             </motion.div>
-
-            {/* Right: Content */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
+              initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
-              className="space-y-6"
+              className="space-y-4"
             >
               <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
-                {p('Preview.badge')}
+                {t("Founder.badge")}
               </span>
-              <h2 className="text-[28px] md:text-[32px] lg:text-[36px] font-medium tracking-[-0.02em] text-foreground">
-                {p('Preview.title')}{" "}
-                <span className="text-primary">
-                  {p('Preview.titleAccent')}
-                </span>
+              <h2 className="text-[28px] md:text-[32px] font-medium tracking-[-0.02em] text-foreground">
+                {t("Founder.title")}
               </h2>
-              <h3 className="text-xl font-semibold text-orange-500">
-                {p('Preview.subtitle')}
-              </h3>
-              <p className="text-muted-foreground">
-                {p('Preview.description')}
-              </p>
-
-              {/* Feature List */}
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-6 h-6 mt-1">
-                    <Image
-                      src="/images/home/check.png"
-                      alt="Check"
-                      width={24}
-                      height={24}
-                      className="object-contain"
-                    />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-foreground mb-1">
-                      {p('Preview.feature1.title')}
-                    </h4>
-                    <p className="text-sm text-muted-foreground">
-                      {p('Preview.feature1.description')}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-6 h-6 mt-1">
-                    <Image
-                      src="/images/home/check.png"
-                      alt="Check"
-                      width={24}
-                      height={24}
-                      className="object-contain"
-                    />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-foreground mb-1">
-                      {p('Preview.feature2.title')}
-                    </h4>
-                    <p className="text-sm text-muted-foreground">
-                      {p('Preview.feature2.description')}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-6 h-6 mt-1">
-                    <Image
-                      src="/images/home/check.png"
-                      alt="Check"
-                      width={24}
-                      height={24}
-                      className="object-contain"
-                    />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-foreground mb-1">
-                      {p('Preview.feature3.title')}
-                    </h4>
-                    <p className="text-sm text-muted-foreground">
-                      {p('Preview.feature3.description')}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* CTA Button */}
-              <Link
-                href="/platforms"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-full transition-colors"
-              >
-                {p('Preview.cta')}
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
+              <p className="text-muted-foreground">{t("Founder.p1")}</p>
+              <p className="text-muted-foreground">{t("Founder.p2")}</p>
+              <p className="text-foreground font-medium">{t("Founder.p3")}</p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Calculator CTA Section */}
-      <section className="bg-gray-100 dark:bg-neutral-900 py-20 px-6">
-        <FooterCTA
-          eyebrow={t('CalculatorCTA.badge')}
-          heading={t('CalculatorCTA.title')}
-          subtext={t('CalculatorCTA.subtitle')}
-          buttonText={t('CalculatorCTA.button').toUpperCase()}
-          buttonHref="/calculator"
-          metaPill="Free tool"
-          metaText="Instant results"
-        />
+      {/* Missed-call revenue calculator */}
+      <section id="missed-call" className="bg-gray-50 dark:bg-neutral-950 py-20 px-6 scroll-mt-20">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="flex justify-center mb-10"
+          >
+            <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
+              {t("MissedCall.badge")}
+            </span>
+          </motion.div>
+          <MissedCallCalculator />
+        </div>
       </section>
 
       {/* Testimonials - Gray background with dark cards */}
@@ -542,20 +472,17 @@ export default function HomePage() {
             className="flex justify-center mb-6"
           >
             <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
-              {t('Testimonials.title')}
+              {t("Testimonials.title")}
             </span>
           </motion.div>
         </div>
 
         {/* Testimonials Carousel */}
         <div className="relative overflow-hidden">
-          {/* Left fade gradient */}
           <div className="absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-gray-100 dark:from-neutral-900 to-transparent pointer-events-none" />
-          {/* Right fade gradient */}
           <div className="absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-gray-100 dark:from-neutral-900 to-transparent pointer-events-none" />
-          
+
           <div className="flex animate-marquee-slow items-stretch py-4">
-            {/* Double the testimonials for seamless loop */}
             {[
               {
                 id: "lucia",
@@ -669,12 +596,12 @@ export default function HomePage() {
       {/* Final CTA - Gray background */}
       <section className="bg-gray-100 dark:bg-neutral-900 py-20 px-6">
         <FooterCTA
-          heading={t('CTA.title')}
-          subtext="Share your goals, timelines, and questions. We'll help you scope the work and map out a clear launch plan."
-          buttonText="SCHEDULE A CALL"
+          heading={t("CTA.title")}
+          subtext={t("CTA.subtitle")}
+          buttonText={t("CTA.button")}
           onButtonClick={() => setIsConsultationOpen(true)}
-          metaPill="No obligation"
-          metaText="Replies within 1 business day"
+          metaPill={t("CTA.metaPill")}
+          metaText={t("CTA.metaText")}
         />
       </section>
       <ConsultationForm

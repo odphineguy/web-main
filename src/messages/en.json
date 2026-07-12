@@ -1,6 +1,7 @@
 {
   "Navbar": {
-    "services": "Services",
+    "agents": "Agents",
+    "platforms": "Platforms",
     "pricing": "Pricing",
     "calculator": "Calculator",
     "portfolio": "Portfolio",
@@ -12,70 +13,146 @@
   },
   "Home": {
     "Hero": {
-      "titlePart1": "Websites and chatbots",
-      "titlePart2": "that actually speak Spanish.",
-      "subtitle": "Launched in 2–4 weeks. Bilingual by default, not translated. Every inquiry logged to your CRM instead of your inbox."
+      "eyebrow": "AI agents for service businesses",
+      "titlePart1": "AI agents that answer your phones, book your jobs,",
+      "titlePart2": "and run your dispatch. 24/7.",
+      "subtitle": "Bilingual by default — English y español, written natively.",
+      "callCta": "Call Elena now",
+      "callCtaSub": "Live demo — real AI, answers in seconds.",
+      "followUp": "She'll take your info and we'll follow up the same day.",
+      "demoHintTitle": "How to demo her",
+      "demoHintBody": "Call from your phone. She handles a personal-injury intake end to end — qualifies the caller, books the consultation, logs it.",
+      "liveBadge": "Live now"
     },
-    "BilingualServices": {
-      "badge": "Bilingual by default",
-      "title": "Bilingual web development",
-      "subtitle": "Spanish isn't an afterthought or a translation plugin. Content, UX, and SEO are built for both audiences from day one.",
-      "benefit1": {
-        "title": "First-class Spanish",
-        "description": "Native voice, not machine translation. Headings, meta, alt text, and microcopy are authored in Spanish — not copy-pasted through DeepL."
-      },
-      "benefit2": {
-        "title": "Real bilingual UX",
-        "description": "Language switching that preserves URL, scroll position, and context. Works for customers who code-switch mid-session."
-      },
-      "benefit3": {
-        "title": "SEO in both languages",
-        "description": "hreflang, localized keyword research, and sitemaps that help you rank in Spanish search — not just appear in it."
-      },
-      "cta": "See bilingual projects",
-      "seoCta": "Bilingual SEO in Phoenix"
+    "ProofBar": {
+      "item1": "17 years running dispatch",
+      "item2": "Waste Management Los Angeles — recycLA, a billion-dollar franchise",
+      "item3": "Apps live on the App Store & Google Play",
+      "item4": "Platforms running real businesses today"
     },
-    "Features": {
-      "badge": "Trained on your business",
-      "title": "What the chatbot does",
-      "bilingualSupport": {
-        "title": "Bilingual both ways",
-        "description": "Switches language mid-conversation the way your customers do. Spanish answers are written, not translated."
+    "AfterHours": {
+      "badge": "After hours",
+      "title": "While you're closed",
+      "scene1": "Your office closes at 5.",
+      "scene2": "Elena doesn't. 11:30 PM — she answers, qualifies, and books the consultation.",
+      "scene3": "You walk in to a signed-up client, not a voicemail."
+    },
+    "ServicesGrid": {
+      "badge": "Core services",
+      "title": "What we build",
+      "subtitle": "Five ways we put AI to work in a service business.",
+      "addOnBadge": "Add-on",
+      "voice": {
+        "title": "AI voice agents & after-hours answering",
+        "description": "Elena for law firms. The same pattern for HVAC, plumbing, turf, and dental. Intake, qualify, book — logged straight to your CRM."
       },
-      "aiPowered": {
-        "title": "Trained on your SOPs",
-        "description": "Answers from your pricing, hours, services, and policies — not the open web. Knowledge base updates without retraining."
+      "dispatch": {
+        "title": "Dispatch & operations platforms",
+        "description": "Dispatch AI for waste management. Saguaro Transport. Rejunk with driver apps. Live fleet, CRM, and HR in one dashboard."
       },
-      "leadCapture": {
-        "title": "Qualifies and routes",
-        "description": "Captures problem, timeline, and budget. Hands qualified leads to your inbox or CRM with full context."
+      "pipeline": {
+        "title": "Lead pipeline automation",
+        "description": "Thumbtack and Housecall Pro webhooks, auto-quoting, realtime status sync. Lead in, quote out, job booked — no human in the loop."
       },
-      "seamlessIntegration": {
-        "title": "Fits your stack",
-        "description": "Connects to your CRM, calendar, and email tools. Every conversation logged, not dropped."
+      "apps": {
+        "title": "Custom apps & AI plugins",
+        "description": "Apps live on the App Store and Google Play, including on-device AI models. ChatGPT and Claude plugins — the MLC Lab Compliance Finder shipped."
+      },
+      "web": {
+        "title": "Websites & bilingual chatbots",
+        "description": "Every platform needs a front door. Sites and chatbots in English y español, written natively — the add-on that finishes the build."
+      }
+    },
+    "Showcase": {
+      "badge": "See it in action",
+      "title": "Agents for Every Industry",
+      "subtitle": "Watch how our agents handle real conversations for different businesses",
+      "cta": "Get an agent like this",
+      "audioTitle": "Hear Elena take a real call"
+    },
+    "CaseStudies": {
+      "badge": "Case studies",
+      "title": "Running real businesses today",
+      "rejunk": {
+        "title": "Rejunk — hands-free lead pipeline",
+        "description": "Thumbtack lead → quoted → booked → dispatched, no human in the loop. The pipeline runs while the crew is on the truck."
+      },
+      "waterloo": {
+        "title": "Waterloo Turf — instant AI estimates",
+        "description": "A customer uploads yard photos, the AI renders the finished turf and prices the job on the spot. The estimate books the visit before a competitor calls back."
+      }
+    },
+    "Founder": {
+      "badge": "The founder",
+      "title": "I ran dispatch before I automated it.",
+      "p1": "Seventeen years managing dispatch at Waste Management Los Angeles — including recycLA, a billion-dollar franchise.",
+      "p2": "I know what a missed call costs, and what a dropped route does to a week.",
+      "p3": "Now I build the tools I wished I had: agents and platforms that keep the operation moving after everyone goes home."
+    },
+    "MissedCall": {
+      "badge": "Missed-call calculator",
+      "title": "What do after-hours calls cost you?",
+      "subtitle": "Callers who hit voicemail don't leave messages anymore. They dial the next number on the list.",
+      "industryLabel": "Your industry",
+      "industries": {
+        "law": "Law firm",
+        "hvac": "HVAC",
+        "plumbing": "Plumbing",
+        "turf": "Landscaping / turf",
+        "dental": "Dental",
+        "other": "Other service business"
+      },
+      "missedCallsLabel": "Missed calls per week (after hours)",
+      "closeRateLabel": "Close rate",
+      "closeRateHint": "Prefilled by industry — adjust to yours.",
+      "avgTicketLabel": "Average ticket",
+      "button": "Show me the number",
+      "monthlyLostLabel": "Revenue walking away every month",
+      "elenaLine": "Elena costs less than one missed job.",
+      "cta": "Put Elena on the phones",
+      "recalculate": "Run it again",
+      "errors": {
+        "missedCalls": "Enter your missed calls per week",
+        "avgTicket": "Enter your average ticket"
+      }
+    },
+    "Faq": {
+      "title": "Frequently asked questions",
+      "q1": {
+        "question": "What exactly is Elena?",
+        "answer": "A voice AI agent that answers the phone like a trained intake specialist. She picks up in seconds, qualifies the caller, books the appointment, and logs everything. She's live right now — call (669) 669-4486."
+      },
+      "q2": {
+        "question": "Will this work for my industry?",
+        "answer": "Elena runs personal-injury intake for law firms today. The same agent pattern handles HVAC, plumbing, turf, dental, and junk removal. If your phone rings after hours and jobs walk away, an agent fits."
+      },
+      "q3": {
+        "question": "What happens to the info she takes?",
+        "answer": "It's logged the moment the call ends — name, number, what they need, and when. You get it in your CRM or inbox, and we follow up the same day. No voicemail transcription guesswork."
+      },
+      "q4": {
+        "question": "Does this replace my dispatcher or front desk?",
+        "answer": "No. Agents take the calls nobody was going to answer: after hours, weekends, overflow when the line is busy. Your team keeps the judgment calls."
+      },
+      "q5": {
+        "question": "How fast can we launch?",
+        "answer": "A voice agent trained on your business typically goes live in one to two weeks. Dispatch and operations platforms get scoped on a call — we give you a straight timeline before any money moves."
+      },
+      "q6": {
+        "question": "Is the Spanish actually native?",
+        "answer": "Yes. Written by people, in Spanish, from the start — not machine-translated. Agents switch languages mid-call the same way your customers do."
+      },
+      "q7": {
+        "question": "What does it cost?",
+        "answer": "Less than the jobs you're losing. Run the missed-call calculator with your own numbers, then check the pricing page. In most trades a voice agent costs less per month than one average missed job."
+      },
+      "q8": {
+        "question": "Can you plug into my existing tools?",
+        "answer": "That's the point. Thumbtack and Housecall Pro webhooks, CRMs, calendars, quoting. We build around what you run today — you don't migrate your business to fit the agent."
       }
     },
     "TrustedBy": {
       "text": "Businesses shipping with us"
-    },
-    "Benefits": {
-      "badge": "What changes",
-      "titlePart1": "Respond faster.",
-      "titlePart2": "Sleep through it.",
-      "p1": "Small-business inquiries get lost the same way every time: the message lands at 9pm, the reply goes out at 9am, the customer already found someone else.",
-      "p2": "A trained chatbot answers in the first minute, qualifies the lead, and routes it where you can act on it — without you touching the keyboard.",
-      "instantResponses": {
-        "title": "Sub-minute replies",
-        "description": "FAQ-level questions — pricing, hours, availability, services — answered instantly. Harder questions get flagged and handed to you with context."
-      },
-      "availability": {
-        "title": "Works after hours",
-        "description": "Answers inquiries every hour the business is closed, not just the ones during working hours. Weekends and holidays included."
-      },
-      "smartData": {
-        "title": "Captures what you need",
-        "description": "Pulls out problem, timeline, and budget — and logs them against the conversation, not just an email address."
-      }
     },
     "Testimonials": {
       "title": "Testimonials",
@@ -105,13 +182,11 @@
       }
     },
     "CTA": {
-      "title": "See if this fits your business"
-    },
-    "CalculatorCTA": {
-      "badge": "Bilingual growth calculator",
-      "title": "What your Spanish-speaking market is worth",
-      "subtitle": "Based on your city's Hispanic population and your industry's search patterns, estimate the monthly revenue a bilingual site could capture.",
-      "button": "Estimate my market"
+      "title": "Put an agent on your phones this month.",
+      "subtitle": "Call Elena for the live demo, or tell us about your operation. We'll tell you what it takes — scope, timeline, cost.",
+      "button": "SCHEDULE A CALL",
+      "metaPill": "No obligation",
+      "metaText": "Replies within 1 business day"
     }
   },
   "Services": {

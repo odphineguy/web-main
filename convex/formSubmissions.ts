@@ -37,6 +37,22 @@ export const saveConsultationSubmission = mutation({
   },
 });
 
+// Log a "Call Elena" demo-call CTA click for attribution
+export const logDemoCallClick = mutation({
+  args: {
+    locale: v.string(),
+    source: v.optional(v.string()),
+    userAgent: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
+    const id = await ctx.db.insert("demoCallClicks", {
+      ...args,
+      clickedAt: Date.now(),
+    });
+    return id;
+  },
+});
+
 // Get recent contact submissions (for admin)
 export const getContactSubmissions = query({
   args: { limit: v.optional(v.number()) },

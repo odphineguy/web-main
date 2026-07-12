@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import ChatDemoWindow from "./ChatDemoWindow";
 import { industryDemos, industryConversations } from "./chatDemoData";
 import { cn } from "@/lib/utils";
@@ -10,7 +11,54 @@ interface ChatDemoShowcaseProps {
   onCtaClick?: () => void;
 }
 
+const elenaAudioCandidates = [
+  "/audio/elena-demo.mp3",
+  "/audio/elena.mp3",
+  "/audio/elena-call.mp3",
+];
+
+function ElenaAudioPlayer() {
+  const t = useTranslations("Home.Showcase");
+  const [audioSrc, setAudioSrc] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const findRecording = async () => {
+      for (const path of elenaAudioCandidates) {
+        try {
+          const res = await fetch(path, { method: "HEAD" });
+          const contentType = res.headers.get("content-type") ?? "";
+          if (res.ok && contentType.startsWith("audio")) {
+            if (!cancelled) setAudioSrc(path);
+            return;
+          }
+        } catch {
+          // Ignore network errors and try the next candidate
+        }
+      }
+    };
+
+    findRecording();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  if (!audioSrc) return null;
+
+  return (
+    <div className="rounded-2xl bg-card border border-border p-6 max-w-md mx-auto mt-10">
+      <h3 className="text-sm font-semibold text-foreground mb-3">
+        {t("audioTitle")}
+      </h3>
+      <audio controls preload="none" className="w-full" src={audioSrc} />
+    </div>
+  );
+}
+
 export default function ChatDemoShowcase({ onCtaClick }: ChatDemoShowcaseProps) {
+  const t = useTranslations("Home.Showcase");
   const [activeDemo, setActiveDemo] = useState(industryDemos[0].id);
   const [key, setKey] = useState(0);
 
@@ -36,13 +84,13 @@ export default function ChatDemoShowcase({ onCtaClick }: ChatDemoShowcaseProps) 
           className="text-center mb-10"
         >
           <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-orange-500 mb-4">
-            See It In Action
+            {t("badge")}
           </span>
           <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-            AI Chatbots for Every Industry
+            {t("title")}
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Watch how our chatbots handle real conversations for different businesses
+            {t("subtitle")}
           </p>
         </motion.div>
 
@@ -98,6 +146,9 @@ export default function ChatDemoShowcase({ onCtaClick }: ChatDemoShowcaseProps) 
           />
         </motion.div>
 
+        {/* Elena audio recording (renders only if a recording exists) */}
+        <ElenaAudioPlayer />
+
         {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -110,7 +161,7 @@ export default function ChatDemoShowcase({ onCtaClick }: ChatDemoShowcaseProps) 
             onClick={onCtaClick}
             className="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary/90 text-white font-semibold rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300"
           >
-            Get a Chatbot Like This
+            {t("cta")}
             <svg
               className="w-5 h-5"
               fill="none"

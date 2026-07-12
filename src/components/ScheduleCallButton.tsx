@@ -3,9 +3,10 @@ import { cn } from "@/lib/utils";
 
 interface ScheduleCallButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
+  label?: string;
 }
 
-export function ScheduleCallButton({ className, ...props }: ScheduleCallButtonProps) {
+export function ScheduleCallButton({ className, label = "SCHEDULE A CALL", ...props }: ScheduleCallButtonProps) {
   return (
     <button
       className={cn(
@@ -14,7 +15,7 @@ export function ScheduleCallButton({ className, ...props }: ScheduleCallButtonPr
       )}
       {...props}
     >
-      <span className="text-sm font-bold tracking-widest uppercase">SCHEDULE A CALL</span>
+      <span className="text-sm font-bold tracking-widest uppercase">{label}</span>
       <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-black transition-transform duration-300 group-hover:translate-x-1">
         <ArrowRight className="w-4 h-4 stroke-[2.5]" />
       </div>

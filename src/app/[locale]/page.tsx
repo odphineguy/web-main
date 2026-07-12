@@ -4,9 +4,14 @@ import { Metadata } from "next";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  const isEs = locale === 'es';
   return constructMetadata({
-    title: "Abe Media — Bilingual Web Development & AI Solutions for Small Business",
-    description: "Professional bilingual web development, AI chatbots, and custom digital solutions for small businesses. Modern websites, mobile apps, and AI automation in English & Spanish. Get started with a free consultation.",
+    title: isEs
+      ? "Abe Media — Agentes de IA que contestan tus llamadas, agendan trabajos y manejan tu dispatch"
+      : "Abe Media — AI Agents That Answer Your Phones, Book Jobs & Run Dispatch",
+    description: isEs
+      ? "Agentes de voz con IA, contestación fuera de horario, plataformas de dispatch y automatización de leads para negocios de servicios. Bilingüe por diseño — English y español. Llama a Elena, nuestra demo en vivo: (669) 669-4486."
+      : "AI voice agents, after-hours answering, dispatch platforms, and lead-pipeline automation for service businesses. Bilingual by default — English y español. Call Elena, our live demo agent: (669) 669-4486.",
     locale: locale,
     path: "", // Homepage path
   });

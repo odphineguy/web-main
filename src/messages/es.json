@@ -1,6 +1,7 @@
 {
   "Navbar": {
-    "services": "Servicios",
+    "agents": "Agentes",
+    "platforms": "Plataformas",
     "pricing": "Precios",
     "calculator": "Calculadora",
     "portfolio": "Portafolio",
@@ -12,70 +13,146 @@
   },
   "Home": {
     "Hero": {
-      "titlePart1": "Sitios y chatbots",
-      "titlePart2": "que sí hablan español.",
-      "subtitle": "Lanzamos en 2 a 4 semanas. Bilingüe desde el primer día, sin traducciones forzadas. Cada consulta queda en tu CRM, no perdida en tu bandeja."
+      "eyebrow": "Agentes de IA para negocios de servicios",
+      "titlePart1": "Agentes de IA que contestan tus llamadas, agendan tus trabajos,",
+      "titlePart2": "y manejan tu dispatch. 24/7.",
+      "subtitle": "Bilingüe por diseño — English y español, escrito de forma nativa.",
+      "callCta": "Llama a Elena ahora",
+      "callCtaSub": "Demo en vivo — IA real, contesta en segundos.",
+      "followUp": "Ella toma tus datos y te contactamos el mismo día.",
+      "demoHintTitle": "Cómo probarla",
+      "demoHintBody": "Llámala desde tu celular. Maneja una admisión de lesiones personales de principio a fin — califica a quien llama, agenda la consulta y la registra.",
+      "liveBadge": "En vivo"
     },
-    "BilingualServices": {
-      "badge": "Bilingüe de raíz",
-      "title": "Desarrollo web bilingüe",
-      "subtitle": "El español no es un plugin de traducción ni un pensamiento tardío. Contenido, UX y SEO se construyen para ambas audiencias desde el día uno.",
-      "benefit1": {
-        "title": "Español de primera",
-        "description": "Voz nativa, no traducción automática. Títulos, meta, alt y microcopy se escriben en español — no se pegan desde DeepL."
-      },
-      "benefit2": {
-        "title": "UX bilingüe real",
-        "description": "Cambio de idioma que preserva la URL, el scroll y el contexto. Funciona para clientes que mezclan idiomas a media sesión."
-      },
-      "benefit3": {
-        "title": "SEO en los dos idiomas",
-        "description": "hreflang, búsqueda de palabras clave localizada y sitemaps para rankear en búsquedas en español — no solo aparecer traducido."
-      },
-      "cta": "Ver proyectos bilingües",
-      "seoCta": "SEO bilingüe en Phoenix"
+    "ProofBar": {
+      "item1": "17 años manejando dispatch",
+      "item2": "Waste Management Los Ángeles — recycLA, franquicia de mil millones de dólares",
+      "item3": "Apps publicadas en App Store y Google Play",
+      "item4": "Plataformas operando negocios reales hoy"
     },
-    "Features": {
-      "badge": "Entrenado con tu negocio",
-      "title": "Qué hace el chatbot",
-      "bilingualSupport": {
-        "title": "Bilingüe en los dos sentidos",
-        "description": "Cambia de idioma a media conversación igual que tus clientes. Las respuestas en español están escritas, no traducidas."
+    "AfterHours": {
+      "badge": "Fuera de horario",
+      "title": "Mientras estás cerrado",
+      "scene1": "Tu oficina cierra a las 5.",
+      "scene2": "Elena no. 11:30 PM — contesta, califica y agenda la consulta.",
+      "scene3": "Llegas a un cliente firmado, no a un buzón de voz."
+    },
+    "ServicesGrid": {
+      "badge": "Servicios principales",
+      "title": "Qué construimos",
+      "subtitle": "Cinco formas de poner la IA a trabajar en un negocio de servicios.",
+      "addOnBadge": "Complemento",
+      "voice": {
+        "title": "Agentes de voz e IA fuera de horario",
+        "description": "Elena para bufetes. El mismo patrón para HVAC, plomería, pasto sintético y dental. Admisión, calificación, cita — directo a tu CRM."
       },
-      "aiPowered": {
-        "title": "Entrenado con tus SOPs",
-        "description": "Responde desde tus precios, horarios, servicios y políticas — no desde la web abierta. Actualizas la base de conocimiento sin reentrenar."
+      "dispatch": {
+        "title": "Plataformas de dispatch y operaciones",
+        "description": "Dispatch AI para manejo de residuos. Saguaro Transport. Rejunk con apps para choferes. Flota en vivo, CRM y RRHH en un solo panel."
       },
-      "leadCapture": {
-        "title": "Califica y enruta",
-        "description": "Captura problema, plazo y presupuesto. Envía los leads calificados a tu inbox o CRM con el contexto completo."
+      "pipeline": {
+        "title": "Automatización de pipeline de leads",
+        "description": "Webhooks de Thumbtack y Housecall Pro, cotización automática, estado en tiempo real. Entra el lead, sale la cotización, se agenda el trabajo — sin intervención humana."
       },
-      "seamlessIntegration": {
-        "title": "Encaja con tu stack",
-        "description": "Se conecta con tu CRM, calendario y herramientas de correo. Toda conversación queda registrada, no se pierde."
+      "apps": {
+        "title": "Apps a medida y plugins de IA",
+        "description": "Apps publicadas en App Store y Google Play, incluyendo modelos de IA en el dispositivo. Plugins para ChatGPT y Claude — el MLC Lab Compliance Finder ya está en producción."
+      },
+      "web": {
+        "title": "Sitios web y chatbots bilingües",
+        "description": "Toda plataforma necesita una puerta de entrada. Sitios y chatbots en English y español, escritos de forma nativa — el complemento que remata el proyecto."
+      }
+    },
+    "Showcase": {
+      "badge": "Míralo en acción",
+      "title": "Agentes para cada industria",
+      "subtitle": "Mira cómo nuestros agentes manejan conversaciones reales de distintos negocios",
+      "cta": "Quiero un agente así",
+      "audioTitle": "Escucha a Elena tomar una llamada real"
+    },
+    "CaseStudies": {
+      "badge": "Casos reales",
+      "title": "Operando negocios reales hoy",
+      "rejunk": {
+        "title": "Rejunk — pipeline de leads sin manos",
+        "description": "Lead de Thumbtack → cotizado → agendado → despachado, sin intervención humana. El pipeline corre mientras la cuadrilla va en el camión."
+      },
+      "waterloo": {
+        "title": "Waterloo Turf — presupuestos con IA al instante",
+        "description": "El cliente sube fotos de su patio, la IA renderiza el pasto terminado y cotiza el trabajo al momento. El presupuesto agenda la visita antes de que la competencia devuelva la llamada."
+      }
+    },
+    "Founder": {
+      "badge": "El fundador",
+      "title": "Manejé dispatch antes de automatizarlo.",
+      "p1": "Diecisiete años manejando dispatch en Waste Management Los Ángeles — incluyendo recycLA, una franquicia de mil millones de dólares.",
+      "p2": "Sé lo que cuesta una llamada perdida y lo que una ruta caída le hace a la semana.",
+      "p3": "Hoy construyo las herramientas que me hubieran servido: agentes y plataformas que mantienen la operación andando cuando todos se van a casa."
+    },
+    "MissedCall": {
+      "badge": "Calculadora de llamadas perdidas",
+      "title": "¿Cuánto te cuestan las llamadas fuera de horario?",
+      "subtitle": "Quien cae en el buzón ya no deja mensaje. Marca el siguiente número de la lista.",
+      "industryLabel": "Tu industria",
+      "industries": {
+        "law": "Bufete de abogados",
+        "hvac": "HVAC / climatización",
+        "plumbing": "Plomería",
+        "turf": "Jardinería / pasto sintético",
+        "dental": "Dental",
+        "other": "Otro negocio de servicios"
+      },
+      "missedCallsLabel": "Llamadas perdidas por semana (fuera de horario)",
+      "closeRateLabel": "Tasa de cierre",
+      "closeRateHint": "Prellenada según tu industria — ajústala a la tuya.",
+      "avgTicketLabel": "Ticket promedio",
+      "button": "Muéstrame el número",
+      "monthlyLostLabel": "Ingresos que se van cada mes",
+      "elenaLine": "Elena cuesta menos que un solo trabajo perdido.",
+      "cta": "Pon a Elena a contestar",
+      "recalculate": "Calcular de nuevo",
+      "errors": {
+        "missedCalls": "Ingresa tus llamadas perdidas por semana",
+        "avgTicket": "Ingresa tu ticket promedio"
+      }
+    },
+    "Faq": {
+      "title": "Preguntas frecuentes",
+      "q1": {
+        "question": "¿Qué es exactamente Elena?",
+        "answer": "Un agente de voz con IA que contesta el teléfono como una recepcionista de admisión entrenada. Levanta en segundos, califica a quien llama, agenda la cita y registra todo. Está en vivo ahora mismo — llama al (669) 669-4486."
+      },
+      "q2": {
+        "question": "¿Funciona para mi industria?",
+        "answer": "Hoy Elena maneja admisión de lesiones personales para bufetes. El mismo patrón de agente sirve para HVAC, plomería, pasto sintético, dental y recolección de escombros. Si tu teléfono suena fuera de horario y los trabajos se van, un agente encaja."
+      },
+      "q3": {
+        "question": "¿Qué pasa con los datos que toma?",
+        "answer": "Quedan registrados al terminar la llamada: nombre, número, qué necesita y para cuándo. Te llegan a tu CRM o a tu correo, y damos seguimiento el mismo día. Sin adivinar transcripciones de buzón de voz."
+      },
+      "q4": {
+        "question": "¿Reemplaza a mi despachador o recepcionista?",
+        "answer": "No. Los agentes toman las llamadas que nadie iba a contestar: fuera de horario, fines de semana, cuando la línea está ocupada. Las decisiones importantes siguen siendo de tu equipo."
+      },
+      "q5": {
+        "question": "¿Qué tan rápido lanzamos?",
+        "answer": "Un agente de voz entrenado con tu negocio suele estar en vivo en una o dos semanas. Las plataformas de dispatch y operaciones se definen en una llamada — te damos un plazo claro antes de que se mueva un dólar."
+      },
+      "q6": {
+        "question": "¿El español es realmente nativo?",
+        "answer": "Sí. Escrito por personas, en español, desde el inicio — no traducido por máquina. Los agentes cambian de idioma a media llamada, igual que tus clientes."
+      },
+      "q7": {
+        "question": "¿Cuánto cuesta?",
+        "answer": "Menos que los trabajos que estás perdiendo. Corre la calculadora de llamadas perdidas con tus números y revisa la página de precios. En la mayoría de los oficios, un agente de voz cuesta menos al mes que un solo trabajo perdido."
+      },
+      "q8": {
+        "question": "¿Se integra con mis herramientas actuales?",
+        "answer": "Ese es el punto. Webhooks de Thumbtack y Housecall Pro, CRMs, calendarios, cotizaciones. Construimos alrededor de lo que ya usas — no migras tu negocio para que quepa el agente."
       }
     },
     "TrustedBy": {
       "text": "Negocios que ya lanzaron con nosotros"
-    },
-    "Benefits": {
-      "badge": "Qué cambia",
-      "titlePart1": "Responde más rápido.",
-      "titlePart2": "Descansa tranquilo.",
-      "p1": "Los negocios pequeños pierden consultas de la misma forma cada vez: el mensaje llega a las 9 de la noche, la respuesta sale a las 9 de la mañana, y el cliente ya contrató a otro.",
-      "p2": "Un chatbot entrenado responde en el primer minuto, califica al cliente, y lo envía a donde lo puedas atender — sin que tengas que escribir nada.",
-      "instantResponses": {
-        "title": "Respuestas en menos de un minuto",
-        "description": "Preguntas frecuentes — precios, horarios, disponibilidad, servicios — se contestan al instante. Las preguntas complejas se marcan y te llegan con contexto."
-      },
-      "availability": {
-        "title": "Trabaja fuera de horario",
-        "description": "Atiende cada hora que el negocio está cerrado, no solo las de horario laboral. Fines de semana y feriados incluidos."
-      },
-      "smartData": {
-        "title": "Captura lo que necesitas",
-        "description": "Extrae problema, plazo y presupuesto — y los guarda con la conversación, no solo con un correo suelto."
-      }
     },
     "Testimonials": {
       "title": "Testimonios",
@@ -105,13 +182,11 @@
       }
     },
     "CTA": {
-      "title": "Ve si encaja con tu negocio"
-    },
-    "CalculatorCTA": {
-      "badge": "Calculadora de crecimiento bilingüe",
-      "title": "Cuánto vale tu mercado de habla hispana",
-      "subtitle": "Con base en la población hispana de tu ciudad y los patrones de búsqueda de tu industria, estima los ingresos mensuales que un sitio bilingüe podría captar.",
-      "button": "Estimar mi mercado"
+      "title": "Pon un agente a contestar este mes.",
+      "subtitle": "Llama a Elena para la demo en vivo, o cuéntanos de tu operación. Te decimos qué se necesita — alcance, plazo y costo.",
+      "button": "AGENDA UNA LLAMADA",
+      "metaPill": "Sin compromiso",
+      "metaText": "Respondemos en 1 día hábil"
     }
   },
   "Services": {
