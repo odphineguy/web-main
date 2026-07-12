@@ -2,7 +2,6 @@
 
 import { useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 
 // Scroll-scrubbed "after hours" story: closed office -> Elena answers at 11:30 PM -> morning payoff.
@@ -88,14 +87,8 @@ function StackedScenes() {
           {t("badge")}
         </span>
         <div className="space-y-14">
-          {scenes.map((scene, i) => (
-            <motion.figure
-              key={scene.id}
-              initial={{ opacity: 0, y: 32 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.05 * i }}
-              viewport={{ once: true, margin: "-60px" }}
-            >
+          {scenes.map((scene) => (
+            <figure key={scene.id}>
               <div className="relative rounded-2xl overflow-hidden">
                 <Image
                   src={scene.mobile}
@@ -109,7 +102,7 @@ function StackedScenes() {
               <figcaption className="mt-4 text-lg text-white/90 border-l-2 border-orange-500 pl-4">
                 {t(scene.captionKey)}
               </figcaption>
-            </motion.figure>
+            </figure>
           ))}
         </div>
       </div>

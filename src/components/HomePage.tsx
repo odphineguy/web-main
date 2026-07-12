@@ -207,10 +207,6 @@ export default function HomePage() {
       <section id="agents" className="bg-background py-20 px-6 scroll-mt-20">
         <div className="max-w-6xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
             className="mb-12 max-w-3xl"
           >
             <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500 mb-4">
@@ -228,10 +224,6 @@ export default function HomePage() {
             {serviceCards.map(({ key, Icon, ...card }, index) => (
               <motion.div
                 key={key}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
-                viewport={{ once: true }}
                 className="relative group h-full"
               >
                 <div className="h-full rounded-2xl p-px transition-all duration-300 bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
@@ -267,10 +259,6 @@ export default function HomePage() {
       <section className="bg-background py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
             className="mb-12 max-w-3xl"
           >
             <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500 mb-4">
@@ -284,10 +272,6 @@ export default function HomePage() {
           {/* Saguaro Transport — laptop mockup */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
               className="relative"
             >
               <div
@@ -311,10 +295,6 @@ export default function HomePage() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
               className="space-y-4"
             >
               <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
@@ -339,10 +319,6 @@ export default function HomePage() {
             {(["rejunk", "waterloo"] as const).map((study, index) => (
               <motion.div
                 key={study}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
                 className="h-full rounded-2xl p-px bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5"
               >
                 <div className="h-full rounded-2xl p-6 lg:p-8 bg-gray-50 dark:bg-neutral-900">
@@ -363,10 +339,6 @@ export default function HomePage() {
       <section className="bg-gray-100 dark:bg-neutral-900 py-10">
         <div className="px-6">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
             className="flex justify-center mb-6"
           >
             <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
@@ -407,10 +379,6 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-10 md:gap-16 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
               className="relative aspect-[3/4] w-full max-w-[280px] mx-auto md:mx-0 rounded-2xl overflow-hidden"
             >
               <Image
@@ -423,10 +391,6 @@ export default function HomePage() {
               />
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              viewport={{ once: true }}
               className="space-y-4"
             >
               <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
@@ -447,10 +411,6 @@ export default function HomePage() {
       <section id="missed-call" className="bg-gray-50 dark:bg-neutral-950 py-20 px-6 scroll-mt-20">
         <div className="max-w-6xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
             className="flex justify-center mb-10"
           >
             <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
@@ -465,10 +425,6 @@ export default function HomePage() {
       <section className="bg-gray-100 dark:bg-neutral-900 py-10">
         <div className="px-6">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
             className="flex justify-center mb-6"
           >
             <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">

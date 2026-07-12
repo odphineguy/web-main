@@ -1,5 +1,43 @@
 # Decisions
 
+## 2026-07-12 (later) — Scroll-world fly-through abandoned; ship the stills crossfade
+
+**Decision.** The scroll-world video fly-through for the after-hours section was
+attempted (skill installed at ~/.claude/skills/scroll-world/, Higgsfield CLI,
+architecture A / continuous forward take) and **abandoned by owner decision after
+repeated quality failures**. The shipped version is the GSAP ScrollTrigger
+crossfade of the three approved stills, with the stacked-mobile and
+reduced-motion fallbacks and visible-by-default content.
+
+**Why it failed.** The workspace is on the Higgsfield **starter plan**, which
+gates `seedance_2_0` (Pro+); the only usable roster tier was `seedance_2_0_mini`
+(720p). Across four video takes, mini (a) corrupted the window signage while
+approaching it ("ATRONEY S AT", "PARKER & ASSCIENTS") on two prompt-hardened
+takes, and (b) on the frame-locked endpoints take — which held the lettering —
+hallucinated building geometry mid-clip (a second front door + duplicate
+scales decals at ~5s). Small-text stability and geometry coherence on the
+starter tier aren't fixable from the prompt side.
+
+**Salvaged from the attempt:**
+- Scene-1 still regenerated per owner spec: gold "PARKER & ASSOCIATES —
+  ATTORNEYS AT LAW" window lettering, CLOSED sign removed, glass door with
+  scales-of-justice decal. Lettering zoom-verified. Now the repo's
+  `scene-1{,-mobile}.webp` and the crossfade's first frame.
+- A verified close-up storefront still exists at /tmp/sw-work/still_1_close.png
+  if ever needed.
+
+**Retry conditions (if ever).** Upgrade to a Higgsfield plan with `seedance_2_0`
+or `kling3_0` access, re-run architecture A with frame-locked endpoints per leg,
+and budget for geometry re-rolls. Assets/scripts in /tmp/sw-work (ephemeral).
+
+**Ops gotcha (cost of this session):** `pkill -f "next start"` does NOT kill the
+Next production server; the zombie kept port 3000 and served a stale build after
+`rm -rf .next && npm run build`, producing ChunkLoadError / "Application error:
+a client-side exception" — the blank homepage the owner hit. Kill by port:
+`lsof -ti :3000 | xargs kill -9`. Related fix: homepage sections were hidden at
+`opacity:0` pending framer-motion `whileInView` — stripped so all content is
+visible by default; a JS failure can no longer blank the page below the hero.
+
 ## 2026-07-12 — Homepage rebuild: AI agents & operations positioning
 
 **Decision.** Rebuilt the homepage per `HOMEPAGE_REBUILD_SPEC.md`: hero leads with
