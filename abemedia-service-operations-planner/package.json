@@ -1,0 +1,27 @@
+{
+  "name": "abemedia-service-operations-planner",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A ChatGPT app that helps service businesses assess after-hours lead coverage and create intake playbooks.",
+  "scripts": {
+    "dev": "tsx watch src/localServer.ts",
+    "start": "node dist/src/localServer.js",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/ext-apps": "^1.7.4",
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.14",
+    "@vercel/node": "^5.3.11",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
