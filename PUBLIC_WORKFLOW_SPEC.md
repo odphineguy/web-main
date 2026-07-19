@@ -17,7 +17,9 @@ call; prefer native route for SEO). Link from homepage services section.
   numbered left rail, timeline dots, terminal-style "in real time" log cards.
 - The narrative arc: lead arrives at 11:30pm → answered/priced/booked in under a
   minute → humans looped in → follow-ups → booking → job happens → clean books.
-- The hero video slot (Abe supplies a public-safe video; placeholder until then).
+- The hero video: abstract chart animation, no text/numbers — already public-safe.
+  Copied to `public/video/workflow-hero.mp4` (7MB). Use it directly; do NOT
+  hotlink the original Supabase URL from the source file.
 - "Everything marked LIVE is running in production right now" credibility framing.
 - The safety-built-in sidebar concept (nothing lost, humans emailed on unknowns).
 
@@ -53,7 +55,7 @@ call; prefer native route for SEO). Link from homepage services section.
 - GSAP: check licensing/bundle; the source file's animation JS can be reused.
   If porting is heavy, Phase 1 = sanitized static HTML in `public/how-it-works.html`
   with a nav link, Phase 2 = native route.
-- Hero video: slot accepts `/public/video/workflow-hero.mp4`; lazy, muted, loop.
+- Hero video: `/public/video/workflow-hero.mp4` (already in repo); lazy, muted, loop, `preload="none"` or poster frame to protect LCP.
 - Test on mobile — source file was likely desktop-first.
 - `npm run build` + push; Vercel auto-deploys. Subproject folder
   `abemedia-service-operations-planner` is tsconfig-excluded; keep it that way.
