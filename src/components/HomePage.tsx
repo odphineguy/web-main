@@ -384,6 +384,14 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
+            <div className="mt-6 text-center">
+              <Link
+                href={`/${locale}/portfolio`}
+                className="text-sm font-medium text-orange-500 hover:text-orange-400 transition-colors"
+              >
+                {t("Testimonials.caseStudiesLink")} →
+              </Link>
+            </div>
           </div>
         </div>
       </section>
