@@ -151,31 +151,8 @@
         "answer": "That's the point. Thumbtack and Housecall Pro webhooks, CRMs, calendars, quoting. We build around what you run today — you don't migrate your business to fit the agent."
       }
     },
-    "TrustedBy": {
-      "text": "Businesses shipping with us"
-    },
     "Testimonials": {
       "title": "Testimonials",
-      "lucia": {
-        "quote": "The bilingual chatbot handles 70% of our inbound questions. We only touch the conversations that actually need a human.",
-        "role": "Casa Verde"
-      },
-      "daniel": {
-        "quote": "The AI agents answer the first-line questions that used to land in my inbox at 7am. I get to the real decisions first.",
-        "role": "Operations Lead, MetroFit"
-      },
-      "rebecca": {
-        "quote": "We launched in three weeks. Clients keep asking how we did it.",
-        "role": "Collins & Morales"
-      },
-      "salvador": {
-        "quote": "The chatbot answers after-hours client questions and qualifies callers before we pick up the phone.",
-        "role": "Partner, Alvarez & Kerr Law"
-      },
-      "ricardo": {
-        "quote": "Their bilingual strategy opened a customer base we were effectively invisible to. First Spanish-speaking contracts closed within a month of launch.",
-        "role": "General Manager, Mueblería López"
-      },
       "sam": {
         "quote": "Started with SEO. Stayed for the chatbot and social. They're the ops team I don't have to hire.",
         "role": "Owner, MyLabCompliance.io"

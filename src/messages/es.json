@@ -151,31 +151,8 @@
         "answer": "Ese es el punto. Webhooks de Thumbtack y Housecall Pro, CRMs, calendarios, cotizaciones. Construimos alrededor de lo que ya usas — no migras tu negocio para que quepa el agente."
       }
     },
-    "TrustedBy": {
-      "text": "Negocios que ya lanzaron con nosotros"
-    },
     "Testimonials": {
       "title": "Testimonios",
-      "lucia": {
-        "quote": "El chatbot bilingüe atiende el 70% de nuestras consultas entrantes. Solo tocamos las conversaciones que realmente necesitan a una persona.",
-        "role": "Casa Verde"
-      },
-      "daniel": {
-        "quote": "Los agentes de IA responden las preguntas de primera línea que antes me llegaban a las 7 de la mañana. Llego a las decisiones importantes primero.",
-        "role": "Líder de Operaciones, MetroFit"
-      },
-      "rebecca": {
-        "quote": "Lanzamos en tres semanas. Los clientes siguen preguntando cómo lo hicimos.",
-        "role": "Collins & Morales"
-      },
-      "salvador": {
-        "quote": "El chatbot responde las preguntas de clientes fuera de horario y califica a los que llaman antes de que levantemos el teléfono.",
-        "role": "Socio, Alvarez & Kerr Law"
-      },
-      "ricardo": {
-        "quote": "Su estrategia bilingüe nos abrió una base de clientes para la que éramos invisibles. Cerramos los primeros contratos en español dentro del primer mes.",
-        "role": "Gerente General, Muebleria Lopez"
-      },
       "sam": {
         "quote": "Empezamos con SEO. Nos quedamos por el chatbot y las redes. Son el equipo de operaciones que no tengo que contratar.",
         "role": "Propietario, MyLabCompliance.io"

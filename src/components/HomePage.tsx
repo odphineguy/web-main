@@ -36,19 +36,6 @@ const MissedCallCalculator = dynamic(() => import("@/components/MissedCallCalcul
   ssr: false,
 });
 
-// Client logos for the carousel
-// isDark: true for black logos that need to be inverted in dark mode
-const clientLogos = [
-  { name: "DispatchAI", src: "/images/logo-maker/dispatchai.svg", isDark: false },
-  { name: "Meal Saver", src: "/images/logo-maker/Meal-Saver.svg", isDark: false },
-  { name: "Paw Relief", src: "/images/logo-maker/paw-relief.svg", isDark: false },
-  { name: "SafeHub", src: "/images/logo-maker/safehub.svg", isDark: false },
-  { name: "Tacos", src: "/images/logo-maker/tacos.svg", isDark: true },
-  { name: "InAction", src: "/images/logo-maker/inaction.svg", isDark: false },
-  { name: "Abe Media", src: "/images/logo-maker/abem.svg", isDark: false },
-  { name: "MyLab", src: "/images/logo-maker/mylab.svg", isDark: false },
-];
-
 export default function HomePage() {
   const t = useTranslations("Home");
   const p = useTranslations("Platforms");
@@ -335,78 +322,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Trusted By / Logo Carousel - Gray background */}
-      <section className="bg-gray-100 dark:bg-neutral-900 py-10">
-        <div className="px-6">
-          <motion.div
-            className="flex justify-center mb-6"
-          >
-            <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
-              {t("TrustedBy.text")}
-            </span>
-          </motion.div>
-        </div>
-
-        {/* Logo Marquee */}
-        <div className="relative overflow-hidden py-4">
-          <div className="absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-gray-100 dark:from-neutral-900 to-transparent pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-gray-100 dark:from-neutral-900 to-transparent pointer-events-none" />
-          <div className="flex animate-marquee items-center">
-            {[...clientLogos, ...clientLogos].map((logo, index) => (
-              <div
-                key={index}
-                className="flex-shrink-0 mx-12 flex items-center justify-center grayscale opacity-60"
-              >
-                <div className="h-24 w-64 relative flex items-center justify-center">
-                  <Image
-                    src={logo.src}
-                    alt={logo.name}
-                    width={240}
-                    height={96}
-                    className={`object-contain max-h-24 ${
-                      logo.isDark ? "dark:invert" : "invert dark:invert-0"
-                    }`}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Founder story — short */}
-      <section className="bg-background py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-10 md:gap-16 items-center">
-            <motion.div
-              className="relative aspect-[3/4] w-full max-w-[280px] mx-auto md:mx-0 rounded-2xl overflow-hidden"
-            >
-              <Image
-                src="/images/home/abe-fire.png"
-                alt="Abe - Founder"
-                fill
-                className="object-cover"
-                sizes="280px"
-                loading="lazy"
-              />
-            </motion.div>
-            <motion.div
-              className="space-y-4"
-            >
-              <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
-                {t("Founder.badge")}
-              </span>
-              <h2 className="text-[28px] md:text-[32px] font-medium tracking-[-0.02em] text-foreground">
-                {t("Founder.title")}
-              </h2>
-              <p className="text-muted-foreground">{t("Founder.p1")}</p>
-              <p className="text-muted-foreground">{t("Founder.p2")}</p>
-              <p className="text-foreground font-medium">{t("Founder.p3")}</p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
       {/* Missed-call revenue calculator */}
       <section id="missed-call" className="bg-gray-50 dark:bg-neutral-950 py-20 px-6 scroll-mt-20">
         <div className="max-w-6xl mx-auto">
@@ -433,113 +348,42 @@ export default function HomePage() {
           </motion.div>
         </div>
 
-        {/* Testimonials Carousel */}
-        <div className="relative overflow-hidden">
-          <div className="absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-gray-100 dark:from-neutral-900 to-transparent pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-gray-100 dark:from-neutral-900 to-transparent pointer-events-none" />
-
-          <div className="flex animate-marquee-slow items-stretch py-4">
-            {[
-              {
-                id: "lucia",
-                name: "Lucía Hernández",
-                avatar: "/images/testimonials/lucia-hernandez.png",
-              },
-              {
-                id: "daniel",
-                name: "Daniel Ortiz",
-                avatar: "/images/testimonials/daniel-ortiz.png",
-              },
-              {
-                id: "rebecca",
-                name: "Rebecca Collins",
-                avatar: "/images/testimonials/rebecca-collins.png",
-              },
-              {
-                id: "salvador",
-                name: "Salvador Alvarez",
-                avatar: "/images/testimonials/salvador-alvarez.png",
-              },
-              {
-                id: "ricardo",
-                name: "Ricardo Lopez",
-                avatar: "/images/testimonials/ricardo-lopez.png",
-              },
-              {
-                id: "sam",
-                name: "Sam Akers",
-                avatar: "/images/testimonials/sam-akers.png",
-              },
-              {
-                id: "lucia",
-                name: "Lucía Hernández",
-                avatar: "/images/testimonials/lucia-hernandez.png",
-              },
-              {
-                id: "daniel",
-                name: "Daniel Ortiz",
-                avatar: "/images/testimonials/daniel-ortiz.png",
-              },
-              {
-                id: "rebecca",
-                name: "Rebecca Collins",
-                avatar: "/images/testimonials/rebecca-collins.png",
-              },
-              {
-                id: "salvador",
-                name: "Salvador Alvarez",
-                avatar: "/images/testimonials/salvador-alvarez.png",
-              },
-              {
-                id: "ricardo",
-                name: "Ricardo Lopez",
-                avatar: "/images/testimonials/ricardo-lopez.png",
-              },
-              {
-                id: "sam",
-                name: "Sam Akers",
-                avatar: "/images/testimonials/sam-akers.png",
-              }
-            ].map((testimonial, index) => (
-              <div
-                key={`${testimonial.name}-${index}`}
-                className="flex-shrink-0 w-80 md:w-96 mx-3"
-              >
-                <div className="h-full rounded-2xl p-px transition-all duration-300 bg-gradient-to-b from-gray-300 dark:from-white/10 to-gray-200 dark:to-white/5">
-                  <div className="h-full rounded-2xl p-6 backdrop-blur-xl transition-all duration-300 bg-gray-50 dark:bg-neutral-950">
-                    <blockquote className="text-foreground mb-6 text-sm">
-                      &ldquo;{t(`Testimonials.${testimonial.id}.quote`)}&rdquo;
-                    </blockquote>
-                    <div className="flex items-center gap-4">
-                      <div className="relative h-10 w-10 rounded-full overflow-hidden border-2 border-orange-500/20 flex-shrink-0 bg-gray-100 dark:bg-neutral-800">
-                        {!avatarErrors.has(index % 6) ? (
-                          <Image
-                            src={testimonial.avatar}
-                            alt={testimonial.name}
-                            fill
-                            className="object-cover"
-                            sizes="40px"
-                            onError={() => {
-                              setAvatarErrors((prev) => new Set(prev).add(index % 6));
-                            }}
-                          />
-                        ) : (
-                          <div className="absolute inset-0 flex items-center justify-center bg-orange-500/10">
-                            <span className="text-xs font-semibold text-orange-600 dark:text-orange-400">
-                              {getInitials(testimonial.name)}
-                            </span>
-                          </div>
-                        )}
+        {/* Single real testimonial */}
+        <div className="px-6 pb-6">
+          <div className="max-w-2xl mx-auto">
+            <div className="rounded-2xl p-px bg-gradient-to-b from-gray-300 dark:from-white/10 to-gray-200 dark:to-white/5">
+              <div className="rounded-2xl p-8 bg-gray-50 dark:bg-neutral-950">
+                <blockquote className="text-foreground mb-6 text-base">
+                  &ldquo;{t("Testimonials.sam.quote")}&rdquo;
+                </blockquote>
+                <div className="flex items-center gap-4">
+                  <div className="relative h-10 w-10 rounded-full overflow-hidden border-2 border-orange-500/20 flex-shrink-0 bg-gray-100 dark:bg-neutral-800">
+                    {!avatarErrors.has(0) ? (
+                      <Image
+                        src="/images/testimonials/sam-akers.png"
+                        alt="Sam Akers"
+                        fill
+                        className="object-cover"
+                        sizes="40px"
+                        onError={() => {
+                          setAvatarErrors((prev) => new Set(prev).add(0));
+                        }}
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center bg-orange-500/10">
+                        <span className="text-xs font-semibold text-orange-600 dark:text-orange-400">
+                          {getInitials("Sam Akers")}
+                        </span>
                       </div>
-                      <div>
-                        <p className="text-sm font-semibold text-foreground">{testimonial.name}</p>
-                        <p className="text-xs text-muted-foreground">{t(`Testimonials.${testimonial.id}.role`)}</p>
-                      </div>
-                    </div>
+                    )}
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-foreground">Sam Akers</p>
+                    <p className="text-xs text-muted-foreground">{t("Testimonials.sam.role")}</p>
                   </div>
                 </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
