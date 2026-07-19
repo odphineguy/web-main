@@ -1,5 +1,21 @@
 # Decisions
 
+## 2026-07-19 (later) — Gemini live-voice mode removed from /chatbot
+
+**Decision.** Stripped the browser-side Gemini live-voice session from
+`ChatbotApp.tsx` (commit e1f6593) so `NEXT_PUBLIC_API_KEY` could be deleted.
+The mic button had already been unwired from ChatInput, so the entire voice
+path (GoogleGenAI client, audio contexts, LiveSession, audioUtils) was
+unreachable dead code. Text chat unaffected — it uses /api/chat (Groq,
+server-side key). `@google/genai` dependency dropped; /chatbot bundle
+50.5 kB → 2.63 kB. Abe is deleting the env var in Vercel and revoking the
+key in Google AI Studio (it shipped in client bundles, so treat as public).
+Voice demos are now Maya (web-call widget) and Elena (phone) — if live voice
+on /chatbot is ever wanted again, build it against those, not client-keyed
+Gemini. Same session: TURNSTILE/STRIPE/RESEND Vercel env vars converted to
+Sensitive (Prod+Preview; Vercel disallows Sensitive on Development).
+
+
 ## 2026-07-19 — Public /how-it-works page (sanitized Rejunk workflow showcase)
 
 **Decision.** Adapted the Progressive "From Lead to Finished Job" one-pager
