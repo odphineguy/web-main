@@ -24,7 +24,7 @@ export default function MayaLiveDemo() {
           </div>
           <div className="flex justify-center lg:justify-end">
             <div
-              className="w-full max-w-md min-h-[140px] flex items-center justify-center"
+              className="relative w-full max-w-md h-[420px] [transform:translateZ(0)] overflow-hidden rounded-2xl"
               dangerouslySetInnerHTML={{
                 __html: `<elevenlabs-convai agent-id="${MAYA_AGENT_ID}"></elevenlabs-convai>`,
               }}
