@@ -87,10 +87,10 @@
   font-size: 1.05rem; letter-spacing: 0.01em;
 }
 .page p { max-width: 68ch; margin: 0; }
-.lede { font-size: 1.16rem; color: var(--hiw-ink-mute); max-width: 60ch; }
+.page .lede { font-size: 1.16rem; color: var(--hiw-ink-mute); max-width: 60ch; }
 .mono { font-family: var(--font-hiw-mono), monospace; }
 
-.eyebrow {
+.page .eyebrow {
   font-family: var(--font-hiw-mono), monospace; font-size: 12px;
   letter-spacing: 0.2em; text-transform: uppercase;
   color: var(--hiw-amber); margin-bottom: var(--hiw-space-md);
@@ -172,18 +172,18 @@
   }
 }
 
-.pitch {
+.page .pitch {
   margin-top: var(--hiw-space-lg);
   font-size: clamp(1.25rem, 2.6vw, 1.7rem);
   line-height: 1.4; max-width: 34ch;
   font-weight: 500;
 }
-.pitch em { font-style: normal; color: var(--hiw-amber); }
-.heroNote {
+.page .pitch em { font-style: normal; color: var(--hiw-amber); }
+.page .heroNote {
   margin-top: var(--hiw-space-md); font-size: 0.92rem;
   color: var(--hiw-ink-faint); max-width: 62ch;
 }
-.heroNote b { color: var(--hiw-live); }
+.page .heroNote b { color: var(--hiw-live); }
 
 /* ============ pipeline diagram ============ */
 .pipelineWrap { margin: var(--hiw-space-xl) 0 var(--hiw-space-2xl); overflow-x: auto; padding-bottom: 6px; }
