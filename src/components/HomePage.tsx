@@ -120,33 +120,10 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right: Elena live-demo call card */}
+            {/* Right: Elena real-call transcript player */}
             <div className="relative lg:flex lg:justify-end">
-              <div className="w-full max-w-md mx-auto lg:mx-0 rounded-2xl p-px bg-gradient-to-b from-orange-500/40 to-white/5">
-                <div className="rounded-2xl bg-gray-50 dark:bg-neutral-900 p-8 space-y-5">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="relative">
-                        <div className="w-12 h-12 rounded-full bg-orange-500/15 flex items-center justify-center">
-                          <PhoneCall className="w-6 h-6 text-orange-500" />
-                        </div>
-                        <span className="absolute -top-0.5 -right-0.5 flex h-3 w-3">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-3 w-3 bg-orange-500"></span>
-                        </span>
-                      </div>
-                      <div>
-                        <p className="text-lg font-semibold text-foreground">Elena</p>
-                        <p className="text-xs text-muted-foreground">{t("Hero.callCtaSub")}</p>
-                      </div>
-                    </div>
-                    <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-500/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-orange-500">
-                      {t("Hero.liveBadge")}
-                    </span>
-                  </div>
-
-                  <TranscriptPlayer onFirstPlay={() => handleDemoCallClick("hero-transcript-play")} />
-                </div>
+              <div className="w-full max-w-lg mx-auto lg:mx-0 rounded-2xl p-px bg-gradient-to-b from-orange-500/40 to-white/5">
+                <TranscriptPlayer onFirstPlay={() => handleDemoCallClick("hero-transcript-play")} />
               </div>
             </div>
           </div>
