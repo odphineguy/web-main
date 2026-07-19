@@ -82,8 +82,8 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
             <div
               className={`mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-xs font-semibold ${
                 m.role === "agent"
-                  ? "bg-gradient-to-br from-violet-500 to-fuchsia-500 text-white"
-                  : "bg-neutral-800 text-neutral-400 border border-neutral-700"
+                  ? "bg-gradient-to-br from-orange-500 to-amber-500 text-white"
+                  : "bg-white text-neutral-900 border border-neutral-300"
               }`}
             >
               {m.role === "agent" ? "E" : "U"}
