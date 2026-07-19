@@ -72,13 +72,6 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, isLoading }) => {
                       />
                     )}
                     <p className="whitespace-pre-wrap leading-relaxed">{message.text}</p>
-                    {message.isAudioPlaying && (
-                      <div className="absolute -bottom-1 -right-1 animate-pulse">
-                        <svg className="w-4 h-4 text-orange-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                          <path fillRule="evenodd" d="M9.383 3.017C9.614 2.08 10.96 2.08 11.192 3.017l.791 3.165a1 1 0 00.732.607l3.298.824c.937.234.937 1.68 0 1.914l-3.298.824a1 1 0 00-.732.607l-.791 3.165c-.231.937-1.577.937-1.809 0l-.791-3.165a1 1 0 00-.732-.607l-3.298-.824c-.937-.234-.937-1.68 0-1.914l3.298-.824a1 1 0 00.732-.607l.791-3.165z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                    )}
                   </div>
                   <div className="text-[10px] text-muted-foreground mt-1 px-1">
                     {timestamp}

@@ -4,14 +4,10 @@ import { Send, Paperclip as PaperclipIcon, X } from 'lucide-react';
 
 interface ChatInputProps {
   onSendMessage: (message: string, image?: { data: string; mimeType: string }) => void;
-  onVoiceToggle: () => void;
-  isRecording: boolean;
   isLoading: boolean;
 }
 
-const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, onVoiceToggle, isRecording, isLoading }) => {
-  // Unused but required for interface
-  void onVoiceToggle;
+const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, isLoading }) => {
   const [input, setInput] = useState('');
   const [attachedImage, setAttachedImage] = useState<{ data: string; mimeType: string } | null>(null);
   const [isAttachClicked, setIsAttachClicked] = useState(false);
@@ -99,11 +95,11 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, onVoiceToggle, isR
         <textarea
           className="flex-1 p-3 border border-gray-300 bg-card dark:text-white rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-orange-500 disabled:bg-gray-100 dark:disabled:bg-gray-700 text-sm min-h-[40px] max-h-[100px]"
           rows={1}
-          placeholder={isRecording ? "Listening..." : ""}
+          placeholder=""
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyPress={handleKeyPress}
-          disabled={isLoading || isRecording}
+          disabled={isLoading}
         />
         <button
           className="p-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 disabled:bg-orange-400 disabled:cursor-not-allowed transition-colors flex items-center justify-center min-w-[40px]"

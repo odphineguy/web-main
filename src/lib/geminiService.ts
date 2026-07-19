@@ -20,13 +20,6 @@ export {
 // Legacy export for backwards compatibility
 export const INITIAL_MESSAGE = INITIAL_MESSAGE_EN;
 
-// Audio constants still consumed by the Gemini live-voice session in ChatbotApp.tsx.
-export const MICROPHONE_MIME_TYPE = 'audio/pcm;rate=16000';
-export const MODEL_AUDIO_SAMPLE_RATE = 24000;
-export const MICROPHONE_SAMPLE_RATE = 16000;
-export const AUDIO_CHUNK_SIZE = 4096;
-export const API_KEY_CHECK_ERROR_MESSAGE = 'Requested entity was not found.';
-
 // Helper to detect language from URL path
 export const detectLanguageFromPath = (): 'en' | 'es' => {
   if (typeof window !== 'undefined') {
