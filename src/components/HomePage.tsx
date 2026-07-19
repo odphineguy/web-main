@@ -14,8 +14,6 @@ import { useTranslations, useLocale } from "next-intl";
 import { useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
 
-const DEMO_PHONE_DISPLAY = "(669) 669-4486";
-const DEMO_PHONE_TEL = "tel:+16696694486";
 
 // Lazy load below-fold components to reduce initial bundle size
 const HomeFaq = dynamic(() => import("@/components/HomeFaq"), {
@@ -33,6 +31,10 @@ const AfterHoursScroll = dynamic(() => import("@/components/AfterHoursScroll"), 
 });
 
 const MissedCallCalculator = dynamic(() => import("@/components/MissedCallCalculator"), {
+  ssr: false,
+});
+
+const TranscriptPlayer = dynamic(() => import("@/components/TranscriptPlayer"), {
   ssr: false,
 });
 
@@ -105,20 +107,10 @@ export default function HomePage() {
               </p>
 
               <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-                <a
-                  href={DEMO_PHONE_TEL}
-                  onClick={() => handleDemoCallClick("hero")}
-                  className="group inline-flex items-center justify-center gap-3 bg-orange-500 hover:bg-orange-600 text-white rounded-full px-7 py-3.5 transition-all duration-300 shadow-lg hover:shadow-orange-500/25"
-                >
-                  <PhoneCall className="w-5 h-5" />
-                  <span className="text-sm font-bold tracking-widest uppercase">
-                    {t("Hero.callCta")}
-                  </span>
-                </a>
                 <ScheduleCallButton
                   type="button"
                   label={t("CTA.button")}
-                  className="bg-transparent border border-orange-500 !text-orange-500 hover:bg-orange-500/10"
+                  className="bg-orange-500 hover:bg-orange-600 !text-white border-0"
                   onClick={() => setIsConsultationOpen(true)}
                 />
               </div>
@@ -153,20 +145,7 @@ export default function HomePage() {
                     </span>
                   </div>
 
-                  <a
-                    href={DEMO_PHONE_TEL}
-                    onClick={() => handleDemoCallClick("hero-card")}
-                    className="block text-3xl md:text-4xl font-semibold tracking-tight text-foreground hover:text-orange-500 transition-colors"
-                  >
-                    {DEMO_PHONE_DISPLAY}
-                  </a>
-
-                  <div className="rounded-xl bg-white dark:bg-neutral-950 border border-border p-4">
-                    <p className="text-xs font-semibold uppercase tracking-wide text-orange-500 mb-1">
-                      {t("Hero.demoHintTitle")}
-                    </p>
-                    <p className="text-sm text-muted-foreground">{t("Hero.demoHintBody")}</p>
-                  </div>
+                  <TranscriptPlayer onFirstPlay={() => handleDemoCallClick("hero-transcript-play")} />
                 </div>
               </div>
             </div>
