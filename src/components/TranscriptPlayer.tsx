@@ -77,7 +77,12 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
 
       {/* Transcript */}
       <div ref={scrollRef} className="h-80 space-y-5 overflow-y-auto px-4 py-4 scroll-smooth">
-        {visible.map((m, i) => (
+        {visible.map((m, i) =>
+          m.role === "note" ? (
+            <div key={i} className="mx-2 rounded-lg border border-orange-500/25 bg-orange-500/5 px-3 py-2">
+              <p className="text-xs italic leading-relaxed text-orange-300/90">{m.text}</p>
+            </div>
+          ) : (
           <div key={i} className="flex gap-3">
             <div
               className={`mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-xs font-semibold ${
@@ -96,7 +101,8 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
               <p className="mt-1 text-[11px] tabular-nums text-neutral-600">{fmt(m.t)}</p>
             </div>
           </div>
-        ))}
+          )
+        )}
         {!started && (
           <p className="pt-2 text-center text-xs text-neutral-500">
             Press play to hear the full call

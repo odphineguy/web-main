@@ -1,5 +1,5 @@
 // Timestamps aligned via Whisper against elena-demo-call.mp3
-export type TranscriptMsg = { role: "agent" | "caller"; text: string; t: number };
+export type TranscriptMsg = { role: "agent" | "caller" | "note"; text: string; t: number };
 export const CALL_DURATION = 490;
 export const transcript: TranscriptMsg[] = [
   { role: "agent", t: 0.6, text: "Thank you for calling Sonoran Justice Injury Law. This is Elena. How can I help you today?" },
@@ -16,6 +16,7 @@ export const transcript: TranscriptMsg[] = [
   { role: "caller", t: 109.0, text: "At the time I didn't get any medical care, I felt fine. But the next day I was really sore and my back was hurting, so I went in to get checked and found out I have a fracture on my hip. So I haven't been able to work and it's been a struggle to get around." },
   { role: "agent", t: 155.7, text: "I'm sorry you're going through that. A hip fracture is serious. Are you currently receiving treatment, or do you have upcoming appointments scheduled?" },
   { role: "caller", t: 159.6, text: "Yes, I have an appointment with a specialist on Monday at 2:00 p.m." },
+  { role: "note", t: 171.5, text: "The caller paused mid-sentence, then added \"…at 2:00 p.m.\" as Elena started to reply. She caught it and recovered naturally:" },
   { role: "agent", t: 173.6, text: "Thank you for that detail. Before we continue, can I start with your full name?" },
   { role: "caller", t: 180.9, text: "Yes. My name is Abraham Perez." },
   { role: "agent", t: 236.7, text: "Thank you, Abraham. And what's the best callback number to reach you at?" },
