@@ -38,6 +38,10 @@ const TranscriptPlayer = dynamic(() => import("@/components/TranscriptPlayer"), 
   ssr: false,
 });
 
+const MayaLiveDemo = dynamic(() => import("@/components/MayaLiveDemo"), {
+  ssr: false,
+});
+
 export default function HomePage() {
   const t = useTranslations("Home");
   const p = useTranslations("Platforms");
@@ -277,6 +281,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Live voice demo — Maya, home services */}
+      <MayaLiveDemo />
 
       {/* Missed-call revenue calculator */}
       <section id="missed-call" className="bg-gray-50 dark:bg-neutral-950 py-20 px-6 scroll-mt-20">

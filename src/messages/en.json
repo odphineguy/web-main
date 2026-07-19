@@ -165,6 +165,12 @@
       "button": "SCHEDULE A CALL",
       "metaPill": "No obligation",
       "metaText": "Replies within 1 business day"
+    },
+    "MayaDemo": {
+      "badge": "Live demo",
+      "title": "Talk to Maya — right now",
+      "p1": "Maya answers for a moving and junk removal company. Click the call button, use your mic, and run her through a real intake — she collects the job details, handles interruptions, and never misses a call.",
+      "p2": "Elena handles law firm intake. Maya handles home services. Same platform, tailored to your business — English y español."
     }
   },
   "Services": {

@@ -165,6 +165,12 @@
       "button": "AGENDA UNA LLAMADA",
       "metaPill": "Sin compromiso",
       "metaText": "Respondemos en 1 día hábil"
+    },
+    "MayaDemo": {
+      "badge": "Demo en vivo",
+      "title": "Habla con Maya — ahora mismo",
+      "p1": "Maya contesta para una empresa de mudanzas y retiro de escombros. Haz clic en el botón de llamada, usa tu micrófono y ponla a prueba con una solicitud real — recopila los detalles del trabajo, maneja interrupciones y nunca pierde una llamada.",
+      "p2": "Elena atiende admisión para bufetes. Maya atiende servicios para el hogar. La misma plataforma, adaptada a tu negocio — English y español."
     }
   },
   "Services": {
