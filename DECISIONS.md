@@ -1,5 +1,51 @@
 # Decisions
 
+## 2026-07-19 — Public /how-it-works page (sanitized Rejunk workflow showcase)
+
+**Decision.** Adapted the Progressive "From Lead to Finished Job" one-pager
+(`rejunk-webhook-services/workflow.html`) into a public native route
+`/[locale]/how-it-works` per `PUBLIC_WORKFLOW_SPEC.md`. Kept the cinematic look
+(black stage, Big Shoulders display type, orange accents, numbered rail, terminal
+log cards, pipeline diagram, LIVE chips) as a CSS module
+(`src/components/how-it-works/how-it-works.module.css`) + client component with
+the source's IntersectionObserver reveal/scroll-spy logic ported 1:1. Page-scoped
+fonts (Big Shoulders / Familjen Grotesk / Spline Sans Mono) load via
+`next/font/google` only on this route. Full EN/ES parity under the `HowItWorks`
+messages namespace (Spanish authored natively). Homepage services grid links to
+it; sitemap updated. Hero video served from `public/video/workflow-hero.mp4`
+(already in repo) with an ffmpeg-extracted poster + `preload="none"` +
+play-on-intersection, so LCP is a 95 KB jpg, not a 7 MB mp4.
+
+**Reality-vs-spec divergences:**
+- Spec said the source page was GSAP/ScrollTrigger; it actually uses plain
+  IntersectionObserver + CSS transitions. Ported that directly — no GSAP usage,
+  no new dependencies, no licensing question.
+- Spec's "three scheduling-scenario cards" were four in the source; shipped three
+  fictional ones (open slot / taken slot / no time named) per the sanitize rule.
+
+**Sanitization applied (verified zero occurrences in the new namespace, both locales):**
+vendor names → "the lead platform / the calendar / the CRM"; all real rates and
+price floors removed; reply-formula breakdown replaced with outcome-level quality
+gates; follow-up cadence (4h/24h/72h), business-hours windows, watchdog timing,
+refund day-ranges, and version numbers removed or genericized; example replies
+rewritten as fictional outcomes; glossary reduced to public-safe terms; status
+board kept (credibility framing) but vendor-free. Progressive is NOT named —
+"a real Phoenix moving & junk-removal company" per the spec's default; Abe can
+opt into naming later. Note: pre-existing homepage copy (FAQ, Rejunk case-study
+card) already names Thumbtack/Housecall Pro at a marketing level and is embedded
+in every page's message payload — out of scope here, flagged for awareness.
+
+**Implementation choices:**
+- CTA stage links to `/contact` rather than mounting ConsultationForm (spec
+  allowed either; avoids pulling the modal + Turnstile into this bundle).
+- Dark-only page (spec allowed); site navbar/footer stay theme-aware above/below.
+- Source footer ("Powered by abemedia" logo) dropped — the page lives inside the
+  site shell, which has its own footer.
+
+**Rejected:** static HTML in `public/` (spec preferred native route for SEO);
+Tailwind rewrite of the ~600-line stylesheet (CSS module port is lower-risk and
+pixel-faithful).
+
 ## 2026-07-12 (later) — Scroll-world fly-through abandoned; ship the stills crossfade
 
 **Decision.** The scroll-world video fly-through for the after-hours section was

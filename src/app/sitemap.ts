@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/services/ai-chatbots",
     "/services/brand-identity",
     "/platforms",
+    "/how-it-works",
     "/portfolio",
     "/portfolio/mylabcompliance",
     "/portfolio/saguarotransport",

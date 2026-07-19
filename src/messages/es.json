@@ -61,7 +61,8 @@
       "web": {
         "title": "Sitios web y chatbots bilingües",
         "description": "Toda plataforma necesita una puerta de entrada. Sitios y chatbots en English y español, escritos de forma nativa — el complemento que remata el proyecto."
-      }
+      },
+      "howItWorksLink": "Mira paso a paso cómo funciona una operación dirigida por IA"
     },
     "Showcase": {
       "badge": "Míralo en acción",
@@ -550,6 +551,508 @@
     "Status": {
       "paymentSuccess": "Pago exitoso. Bienvenido a bordo.",
       "paymentCanceled": "Pago cancelado. Regresa cuando estés listo."
+    }
+  },
+  "HowItWorks": {
+    "railCap": "LEAD → TRABAJO",
+    "liveLabel": "En vivo",
+    "Hero": {
+      "eyebrow": "AbeMedia · Caso real",
+      "title1": "Del lead al",
+      "title2": "trabajo terminado",
+      "clockSub": "acaba de llegar un lead",
+      "videoLabel": "Animación abstracta de un pipeline de leads en movimiento",
+      "pitchStart": "Un lead que llega a las 11:30 de la noche recibe ",
+      "pitchEm": "respuesta, precio y un horario reservable en menos de un minuto",
+      "pitchEnd": " — mientras toda la competencia duerme.",
+      "notePre": "Un recorrido en lenguaje sencillo por una operación dirigida por IA que AbeMedia construyó para una empresa real de mudanzas y retiro de escombros en Phoenix. Todo lo marcado ",
+      "notePost": " está funcionando en producción ahora mismo."
+    },
+    "Pipeline": {
+      "nodes": [
+        {
+          "label": "Llega el lead",
+          "sub": "nos llega al instante"
+        },
+        {
+          "label": "El cerebro decide",
+          "sub": "segundos, no horas"
+        },
+        {
+          "label": "Respuesta enviada",
+          "sub": "precio + horarios reales"
+        },
+        {
+          "label": "Humanos avisados",
+          "sub": "correos de alerta"
+        },
+        {
+          "label": "Seguimientos",
+          "sub": "persistencia amable"
+        },
+        {
+          "label": "El cliente reserva",
+          "sub": "elige su propio horario"
+        },
+        {
+          "label": "El trabajo se hace",
+          "sub": "el estado fluye de vuelta"
+        },
+        {
+          "label": "Cuentas claras",
+          "sub": "presupuesto · reembolsos · auditoría"
+        }
+      ],
+      "captions": [
+        {
+          "b": "Funciona 24/7",
+          "rest": " — sin humanos para el camino feliz"
+        },
+        {
+          "b": "Cualquier cosa inusual",
+          "rest": " → respuesta amable al instante + correo a un humano"
+        },
+        {
+          "b": "El estado del trabajo",
+          "rest": " regresa a la plataforma de leads automáticamente"
+        }
+      ]
+    },
+    "Stage1": {
+      "kicker": "Paso uno",
+      "title": "Llega un lead",
+      "lede": "En el momento en que un cliente envía una solicitud en la plataforma de leads, cae en el sistema al instante — un webhook: su computadora llama a la nuestra en el segundo en que sucede. Nadie revisa, refresca ni vigila una bandeja de entrada.",
+      "captureTitle": "Qué se captura, cada vez",
+      "tags": [
+        "nombre del cliente",
+        "categoría de servicio",
+        "descripción del proyecto",
+        "tamaño del trabajo",
+        "fecha y hora solicitadas",
+        "cuánto costó el lead"
+      ],
+      "logTitle": "11:30 PM, en tiempo real",
+      "log": [
+        {
+          "t": "23:30:42",
+          "text": "el cliente toca “Enviar solicitud”",
+          "ok": false
+        },
+        {
+          "t": "23:30:43",
+          "text": "webhook recibido · identidad verificada",
+          "ok": true
+        },
+        {
+          "t": "23:30:43",
+          "text": "lead guardado permanentemente — antes de que corra cualquier otra cosa",
+          "ok": true
+        }
+      ],
+      "safetyTitle": "Seguridad de fábrica",
+      "safety": [
+        "Cada lead se guarda permanentemente antes de que pase cualquier otra cosa — nada se puede perder.",
+        "La conexión está autenticada; se rechaza cualquier solicitud que no venga de la plataforma de leads.",
+        "Un lead que el sistema no reconoce se guarda y se avisa a un humano por correo — nunca se descarta en silencio."
+      ]
+    },
+    "Stage2": {
+      "kicker": "Paso dos · segundos después",
+      "title": "El cerebro decide",
+      "lede": "El lead guardado pasa de inmediato por un pipeline de decisión. Primera pregunta: ¿qué tipo de trabajo es este?",
+      "colCategory": "Categoría",
+      "colAction": "Qué hace el sistema",
+      "rows": [
+        {
+          "cat": "Retiro de escombros",
+          "badge": "cotización instantánea",
+          "type": "quote",
+          "text": "Una cotización completa e instantánea del pricebook de la propia empresa — calculada, verificada y enviada en segundos."
+        },
+        {
+          "cat": "Mudanzas locales / muebles",
+          "badge": "tarjeta de tarifas",
+          "type": "rate",
+          "text": "Una tarjeta de tarifas instantánea según el tamaño del trabajo — incluso detecta cuándo en realidad no se necesita camión."
+        },
+        {
+          "cat": "Mudanza de pianos",
+          "badge": "tarjeta de tarifas",
+          "type": "rate",
+          "text": "El trabajo especializado tiene su propia tarjeta de tarifas, enviada igual de rápido."
+        },
+        {
+          "cat": "Todo lo demás",
+          "badge": "precio humano",
+          "type": "human",
+          "text": "Sale al instante una respuesta amable de “déjame conseguirte un precio exacto” — y un humano fija el precio."
+        }
+      ],
+      "rulePre": "La regla de oro: ",
+      "ruleEm": "la IA lee el mensaje. El pricebook pone el precio.",
+      "rulePost": " Nunca al revés.",
+      "ruleBody": "La IA solo identifica lo que el cliente tiene — “un sofá y un colchón en el garaje” coincide con filas del pricebook de la propia empresa, los mismos precios que cotizaría un humano. Los pisos de precio solo pueden subir un precio, nunca bajarlo. Y un trabajo inusualmente grande nunca se cotiza en automático — va a un humano.",
+      "flow": [
+        {
+          "text": "“un sofá y un colchón en el garaje”",
+          "hot": false
+        },
+        {
+          "text": "la IA encuentra: sofá, colchón",
+          "hot": false
+        },
+        {
+          "text": "filas del pricebook → $",
+          "hot": true
+        },
+        {
+          "text": "los pisos solo suben",
+          "hot": false
+        },
+        {
+          "text": "¿muy grande? → humano",
+          "hot": false
+        }
+      ]
+    },
+    "Stage3": {
+      "kicker": "Paso tres",
+      "title1": "La respuesta sale —",
+      "title2": "con disponibilidad real",
+      "lede": "Alrededor de un minuto después de llegar el lead, el cliente ya tiene una respuesta de verdad: un mensaje amable, con tono humano, con el precio o la tarifa — y horarios abiertos genuinos sacados del calendario en vivo de la empresa.",
+      "casesIntro": "Pregunte lo que pregunte el cliente sobre horarios, la respuesta lo alcanza ahí:",
+      "cases": [
+        {
+          "h": "Nombró un horario disponible",
+          "sub": "Se confirma en el acto.",
+          "text": "El martes a las 9am nos funciona — puedes apartarlo aquí mismo:",
+          "link": "enlace de reserva",
+          "meta": "horario verificado como disponible al enviar ✓"
+        },
+        {
+          "h": "Pidió un horario ocupado",
+          "sub": "Se ofrecen las alternativas reales más cercanas.",
+          "text": "El martes a las 6pm no está disponible, pero sí tenemos el martes de 3–5pm o el miércoles de 9–11am — aparta cualquiera aquí:",
+          "link": "enlace de reserva",
+          "meta": "ambas alternativas verificadas como disponibles ✓"
+        },
+        {
+          "h": "No mencionó ningún horario",
+          "sub": "Se abren las opciones reales más próximas.",
+          "text": "Tenemos espacios desde mañana por la mañana — elige el que mejor te quede aquí mismo:",
+          "link": "enlace de reserva",
+          "meta": "los espacios más próximos consultados en vivo ✓"
+        }
+      ],
+      "verifyNote": "Cada horario ofrecido se verifica como disponible en ese momento — el sistema nunca adivina. Si el calendario está lento o inaccesible, el mensaje recurre silenciosamente a la redacción estándar; el cliente nunca ve un error.",
+      "gatesTitle": "Controles de calidad que cada mensaje debe pasar antes de enviarse",
+      "gates": [
+        {
+          "b": "Suena a persona",
+          "rest": " — corto y cálido, nunca un interrogatorio"
+        },
+        {
+          "b": "Horarios con sentido común",
+          "rest": " — nunca ofrece un espacio que la cuadrilla no pueda cumplir"
+        },
+        {
+          "b": "Sin promesas que no pueda cumplir",
+          "rest": ""
+        },
+        {
+          "b": "Sin montos inventados por la IA",
+          "rest": ""
+        },
+        {
+          "b": "Cualquier control fallido va a un humano",
+          "rest": "",
+          "arrow": true
+        }
+      ]
+    },
+    "Stage4": {
+      "kicker": "Paso cuatro",
+      "title": "Los humanos siguen en el circuito",
+      "lede": "El sistema sabe lo que no sabe. Cualquier cosa inusual se escala — y la velocidad nunca se sacrifica: el cliente igual recibe una respuesta amable al instante mientras un correo de alerta llega a la bandeja del dueño en minutos.",
+      "escalatesTitle": "Qué se escala siempre",
+      "tags": [
+        "tipos de trabajo desconocidos",
+        "trabajos inusualmente grandes",
+        "materiales peligrosos",
+        "clientes molestos",
+        "solicitudes fuera de zona",
+        "negociaciones de precio"
+      ],
+      "flagsTitle": "Señales especiales en esos correos",
+      "flags": [
+        {
+          "b": "Fuera de horario.",
+          "rest": " El cliente pidió una hora en la que la cuadrilla normalmente no trabaja — un humano decide caso por caso."
+        },
+        {
+          "b": "El cliente ya respondió.",
+          "rest": " Este hilo te está esperando."
+        },
+        {
+          "b": "Candidato a reembolso.",
+          "rest": " Un lead pagado parece reembolsable — ver paso 8."
+        }
+      ],
+      "emailBar1": "Escalamiento · Mudanza de piano",
+      "emailBar2": "minutos después del lead",
+      "emailRows": [
+        {
+          "k": "Cliente",
+          "v": "Morgan H. — piano vertical, 2.º piso"
+        },
+        {
+          "k": "Motivo",
+          "v": "Pidió un horario de noche — fuera de horario laboral"
+        },
+        {
+          "k": "Ya enviado",
+          "v": "Tarjeta de tarifas instantánea + línea amable de espera"
+        },
+        {
+          "k": "Hora solicitada",
+          "v": "Martes por la noche"
+        }
+      ],
+      "emailNote": "Cada correo de escalamiento lleva los datos del cliente, el motivo y exactamente lo que ya se envió — para que el dueño responda informado, no en frío."
+    },
+    "Stage5": {
+      "kicker": "Paso cinco",
+      "title1": "Persistencia amable:",
+      "title2": "el motor de seguimiento",
+      "lede": "La mayoría de los clientes no contesta el primer mensaje — y la mayoría de las empresas nunca da seguimiento. Esta sí, automáticamente, espaciado a lo largo de los días siguientes.",
+      "stops": [
+        {
+          "ft": "inicio",
+          "fl": "Primera respuesta",
+          "fs": "precio + horarios + enlace"
+        },
+        {
+          "ft": "después",
+          "fl": "Recordatorio 1",
+          "fs": "saludo amistoso"
+        },
+        {
+          "ft": "al día sig.",
+          "fl": "Recordatorio 2",
+          "fs": "incluye enlace de reserva"
+        },
+        {
+          "ft": "días después",
+          "fl": "Recordatorio 3",
+          "fs": "el último"
+        },
+        {
+          "ft": "luego",
+          "fl": "Se detiene para siempre",
+          "fs": "nunca molesta"
+        }
+      ],
+      "stopRule": "En el instante en que el cliente responde, todos los recordatorios se detienen.",
+      "checks": [
+        "Los recordatorios solo se envían en horario laboral — nunca de noche, con un apagón nocturno estricto.",
+        "Un watchdog aparte se asegura de que ningún lead escalado quede sin respuesta durante el horario laboral."
+      ]
+    },
+    "Stage6": {
+      "kicker": "Paso seis",
+      "title": "El cliente reserva",
+      "lede": "Cada respuesta lleva un enlace de reserva en línea en vivo. El cliente elige su propio horario entre disponibilidad real — sin llamadas de ida y vuelta.",
+      "steps": [
+        {
+          "b": "El cliente toca el enlace y elige un horario",
+          "s": "Solo espacios reales — el mismo día es posible cuando el calendario lo permite."
+        },
+        {
+          "b": "El calendario revisa las agendas de la cuadrilla y agenda el trabajo",
+          "s": "Asignado directo a un miembro disponible de la cuadrilla — sin despachador."
+        },
+        {
+          "b": "El CRM crea los registros del cliente y del trabajo",
+          "s": "El sistema deliberadamente nunca duplica lo que el CRM ya hace mejor."
+        }
+      ],
+      "enrichTitle": "Enriquecimiento de contactos",
+      "enrichBadge": "construido · modo vista previa",
+      "enrichBody": "Los clientes suelen escribir su número real o el código del portón en el chat. El sistema los detecta y prepara actualizaciones para la ficha del cliente.",
+      "strip": [
+        "“el código del portón es 4482”",
+        "detectado en el chat",
+        "enviado por correo como resumen para revisión"
+      ],
+      "enrichNote": "Por ahora se envía por correo para revisión en vez de escribirse automáticamente — nada toca los registros sin ojos humanos encima."
+    },
+    "Stage7": {
+      "kicker": "Paso siete",
+      "title1": "El trabajo se hace —",
+      "title2": "y el pipeline se entera",
+      "lede": "El calendario reporta cada evento del trabajo — agendado, en camino, iniciado, completado, cancelado. El ciclo de sincronización mapea cada uno a la conversación original y publica la actualización automáticamente.",
+      "sync": [
+        {
+          "src": "calendario: cita agendada",
+          "dst": "la plataforma de leads muestra “cita agendada”"
+        },
+        {
+          "src": "calendario: trabajo terminado",
+          "dst": "“trabajo completo” — lo que alimenta las invitaciones a reseñas de la plataforma"
+        },
+        {
+          "src": "calendario: cancelado",
+          "dst": "registrado correctamente del lado de la plataforma"
+        }
+      ],
+      "checks": [
+        {
+          "b": "Orden garantizado",
+          "rest": " — “agendado” siempre se publica antes que “completo”."
+        },
+        {
+          "b": "Reintentos automáticos",
+          "rest": " cuando la plataforma no está disponible por un momento."
+        },
+        {
+          "b": "Cada evento se verifica criptográficamente",
+          "rest": " como genuino."
+        },
+        {
+          "b": "Se encendió con cuidado.",
+          "rest": " La publicación estuvo apagada hasta observar eventos reales de punta a punta — y entonces se activó."
+        }
+      ],
+      "kill": "Un interruptor de emergencia apaga la publicación al instante."
+    },
+    "Stage8": {
+      "kicker": "Paso ocho",
+      "title": "Cuentas claras",
+      "lede": "Corriendo silenciosamente en segundo plano, protegiendo el presupuesto de leads.",
+      "panels": [
+        {
+          "title": "Vigilancia del presupuesto semanal",
+          "body": "Alertas por correo conforme se llena el presupuesto semanal de leads — sin gastos sorpresa."
+        },
+        {
+          "title": "Watchdog de reembolsos · dinero encontrado",
+          "body": "Las plataformas cobran por leads aunque el cliente desaparezca. El sistema revisa los leads pagados donde la empresa respondió y el cliente nunca contestó, y envía una recomendación de reembolso antes de que venza el plazo."
+        },
+        {
+          "title": "Auditoría completa",
+          "body": "Cada lead, cada mensaje, cada decisión y cada precio se guarda con marca de tiempo — nada es una caja negra."
+        }
+      ],
+      "meterLabels": [
+        "inicia la semana",
+        "correo de aviso",
+        "presupuesto alcanzado"
+      ]
+    },
+    "Safety": {
+      "kicker": "Cómo se mantiene seguro",
+      "title": "La filosofía de seguridad",
+      "rules": [
+        {
+          "b": "La IA extrae hechos; el pricebook pone los precios.",
+          "s": "Nunca al revés. La IA no puede inventar un monto."
+        },
+        {
+          "b": "Cada función riesgosa tiene un interruptor de emergencia.",
+          "s": "Un ajuste la apaga al instante — sin redespliegue, sin caída."
+        },
+        {
+          "b": "Ante la duda, se escala a un humano.",
+          "s": "Con el cliente ya sosteniendo una respuesta amable e instantánea, así no se pierde velocidad."
+        },
+        {
+          "b": "Nunca afirmar lo que no está verificado.",
+          "s": "Un horario solo se ofrece si está genuinamente abierto en el calendario en este momento."
+        },
+        {
+          "b": "Si un servicio falla, la experiencia baja a “normal” — nunca a “rota.”",
+          "s": "El cliente nunca ve un error."
+        }
+      ]
+    },
+    "Board": {
+      "kicker": "El tablero honesto",
+      "title": "Qué corre y dónde, hoy",
+      "lede": "Sin promesas — esto es lo que ya está entregado para este cliente contra lo que está en cola.",
+      "status": {
+        "live": "En vivo",
+        "built": "Construido · vista previa",
+        "future": "Fase futura"
+      },
+      "rows": [
+        {
+          "cap": "Respuestas instantáneas: cotizaciones, tarjetas de tarifas, respuestas de espera",
+          "small": "Enviándose en automático en producción",
+          "status": "live"
+        },
+        {
+          "cap": "Ofertas de horarios con disponibilidad real + enlace de reserva instantáneo",
+          "status": "live"
+        },
+        {
+          "cap": "Correos de escalamiento, recordatorios de seguimiento, watchdog de respuesta",
+          "status": "live"
+        },
+        {
+          "cap": "Alertas de presupuesto + watchdog de reembolsos",
+          "status": "live"
+        },
+        {
+          "cap": "Enriquecimiento de contactos hacia el CRM",
+          "small": "Funciona por completo — los resultados se envían como resumen para revisión",
+          "status": "built"
+        },
+        {
+          "cap": "Estado del trabajo publicado de vuelta a la plataforma de leads",
+          "small": "Ambas direcciones en vivo",
+          "status": "live"
+        },
+        {
+          "cap": "Auto-reserva total — el sistema crea la cita por sí mismo",
+          "small": "Deliberadamente para después: por ahora la reserva queda en manos del cliente",
+          "status": "future"
+        }
+      ]
+    },
+    "Cta": {
+      "kicker": "Te toca",
+      "title": "Tu industria, la misma máquina",
+      "lede": "Todo lo que acabas de recorrer funciona hoy para una empresa de Phoenix. La misma máquina — respuestas instantáneas, disponibilidad real, persistencia amable, humanos en los casos límite, cuentas claras — sirve para HVAC, plomería, jardinería, dental, legal y cualquier negocio donde los leads llegan más rápido de lo que la gente puede contestar.",
+      "button": "Agenda una llamada",
+      "secondary": "Mira todo lo que construimos"
+    },
+    "Glossary": {
+      "kicker": "Apéndice",
+      "title": "Glosario en lenguaje sencillo",
+      "colTerm": "Término",
+      "colMeaning": "Qué significa",
+      "rows": [
+        {
+          "t": "Webhook",
+          "d": "Una computadora llamando a otra en el instante en que algo sucede — sin consultar, sin refrescar, sin vigilar bandejas."
+        },
+        {
+          "t": "CRM",
+          "d": "El sistema de registro de la empresa para clientes, trabajos y agendas."
+        },
+        {
+          "t": "Enlace de reserva",
+          "d": "Una página donde el cliente elige por sí mismo un horario realmente abierto — sin llamadas de ida y vuelta."
+        },
+        {
+          "t": "Escalamiento",
+          "d": "El sistema pasándole una decisión a un humano — con el cliente ya sosteniendo una respuesta amable e instantánea."
+        },
+        {
+          "t": "Pricebook",
+          "d": "La lista de precios de la propia empresa. El único lugar de donde puede salir un monto."
+        }
+      ]
     }
   }
 }

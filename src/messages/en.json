@@ -61,7 +61,8 @@
       "web": {
         "title": "Websites & bilingual chatbots",
         "description": "Every platform needs a front door. Sites and chatbots in English y español, written natively — the add-on that finishes the build."
-      }
+      },
+      "howItWorksLink": "See how an AI-run operation works — step by step"
     },
     "Showcase": {
       "badge": "See it in action",
@@ -550,6 +551,508 @@
     "Status": {
       "paymentSuccess": "Payment successful. Welcome aboard.",
       "paymentCanceled": "Payment canceled. Come back whenever you're ready."
+    }
+  },
+  "HowItWorks": {
+    "railCap": "LEAD → JOB",
+    "liveLabel": "Live",
+    "Hero": {
+      "eyebrow": "AbeMedia · Case story",
+      "title1": "From lead to",
+      "title2": "finished job",
+      "clockSub": "a lead just came in",
+      "videoLabel": "Abstract animation of a lead pipeline in motion",
+      "pitchStart": "A lead that comes in at 11:30pm gets ",
+      "pitchEm": "answered, priced, and handed a bookable time slot in under a minute",
+      "pitchEnd": " — while every competitor is asleep.",
+      "notePre": "A plain-English walkthrough of an AI-run operation AbeMedia built for a real Phoenix moving & junk-removal company. Everything marked ",
+      "notePost": " is running in production right now."
+    },
+    "Pipeline": {
+      "nodes": [
+        {
+          "label": "Lead arrives",
+          "sub": "pushed to us instantly"
+        },
+        {
+          "label": "Brain decides",
+          "sub": "seconds, not hours"
+        },
+        {
+          "label": "Reply sent",
+          "sub": "price + real openings"
+        },
+        {
+          "label": "Humans looped in",
+          "sub": "alert emails"
+        },
+        {
+          "label": "Follow-ups",
+          "sub": "polite persistence"
+        },
+        {
+          "label": "Customer books",
+          "sub": "picks their own slot"
+        },
+        {
+          "label": "Job happens",
+          "sub": "status flows back"
+        },
+        {
+          "label": "Clean books",
+          "sub": "budget · refunds · audit"
+        }
+      ],
+      "captions": [
+        {
+          "b": "Runs 24/7",
+          "rest": " — no humans needed for the happy path"
+        },
+        {
+          "b": "Anything unusual",
+          "rest": " → instant friendly reply + a human is emailed"
+        },
+        {
+          "b": "Job status",
+          "rest": " flows back to the lead platform automatically"
+        }
+      ]
+    },
+    "Stage1": {
+      "kicker": "Step one",
+      "title": "A lead arrives",
+      "lede": "The moment a customer submits a request on the lead platform, it lands in the system instantly — a webhook: their computer calls ours the second it happens. Nobody checks, refreshes, or watches an inbox.",
+      "captureTitle": "What gets captured, every time",
+      "tags": [
+        "customer name",
+        "service category",
+        "project description",
+        "job size",
+        "requested date & time",
+        "what the lead cost"
+      ],
+      "logTitle": "11:30 PM, in real time",
+      "log": [
+        {
+          "t": "23:30:42",
+          "text": "customer taps “Submit request”",
+          "ok": false
+        },
+        {
+          "t": "23:30:43",
+          "text": "webhook received · identity verified",
+          "ok": true
+        },
+        {
+          "t": "23:30:43",
+          "text": "lead stored permanently — before anything else runs",
+          "ok": true
+        }
+      ],
+      "safetyTitle": "Safety built in",
+      "safety": [
+        "Every lead is stored permanently before anything else happens — nothing can be lost.",
+        "The connection is authenticated; requests from anyone but the lead platform are rejected.",
+        "A lead the system doesn't recognize is stored and a human is emailed — never silently dropped."
+      ]
+    },
+    "Stage2": {
+      "kicker": "Step two · seconds later",
+      "title": "The brain decides",
+      "lede": "The stored lead immediately runs through a decision pipeline. First question: what kind of job is this?",
+      "colCategory": "Category",
+      "colAction": "What the system does",
+      "rows": [
+        {
+          "cat": "Junk removal",
+          "badge": "instant quote",
+          "type": "quote",
+          "text": "A full instant quote from the company's own pricebook — priced, checked, and sent in seconds."
+        },
+        {
+          "cat": "Local / furniture moving",
+          "badge": "rate card",
+          "type": "rate",
+          "text": "An instant rate card matched to the size of the job — including spotting when a truck isn't actually needed."
+        },
+        {
+          "cat": "Piano moving",
+          "badge": "rate card",
+          "type": "rate",
+          "text": "Specialty work gets its own rate card, sent just as fast."
+        },
+        {
+          "cat": "Everything else",
+          "badge": "human prices",
+          "type": "human",
+          "text": "A friendly “let me get you an exact price” reply goes out instantly — a human sets the price."
+        }
+      ],
+      "rulePre": "The golden rule: ",
+      "ruleEm": "AI reads the message. The pricebook sets the price.",
+      "rulePost": " Never the reverse.",
+      "ruleBody": "The AI only identifies what the customer has — “a couch and a mattress in the garage” matches rows in the company's own pricebook, the same prices a human would quote. Hard price floors can only ever raise a price, never lower it. And an unusually large job is never auto-quoted — it goes to a human.",
+      "flow": [
+        {
+          "text": "“a couch and a mattress in the garage”",
+          "hot": false
+        },
+        {
+          "text": "AI finds: couch, mattress",
+          "hot": false
+        },
+        {
+          "text": "pricebook rows → $",
+          "hot": true
+        },
+        {
+          "text": "floors only raise",
+          "hot": false
+        },
+        {
+          "text": "unusually big? → human",
+          "hot": false
+        }
+      ]
+    },
+    "Stage3": {
+      "kicker": "Step three",
+      "title1": "The reply goes out —",
+      "title2": "with real availability",
+      "lede": "About a minute after the lead arrives, the customer is holding a real answer: a friendly, human-sounding message with the price or rate — and genuine open time slots pulled from the company's live calendar.",
+      "casesIntro": "Whatever the customer asked about scheduling, the reply meets them there:",
+      "cases": [
+        {
+          "h": "They named an open time",
+          "sub": "Confirm it on the spot.",
+          "text": "Tuesday at 9am works on our end — you can lock it in right here:",
+          "link": "booking link",
+          "meta": "slot verified open at send time ✓"
+        },
+        {
+          "h": "They asked for a time that's taken",
+          "sub": "Offer the nearest real alternatives.",
+          "text": "Tuesday 6pm isn't open on our end, but we do have Tuesday 3–5pm or Wednesday 9–11am — grab either one here:",
+          "link": "booking link",
+          "meta": "both alternatives verified open ✓"
+        },
+        {
+          "h": "They didn't name a time at all",
+          "sub": "Lead with the soonest real openings.",
+          "text": "We have openings as soon as tomorrow morning — pick whatever works best right here:",
+          "link": "booking link",
+          "meta": "soonest openings pulled live ✓"
+        }
+      ],
+      "verifyNote": "Every slot offered is verified open at that moment — the system never guesses. If the calendar is ever slow or unreachable, the message quietly falls back to standard wording; the customer never sees an error.",
+      "gatesTitle": "Quality gates every message must pass before sending",
+      "gates": [
+        {
+          "b": "Sounds like a person",
+          "rest": " — short and warm, never an interrogation"
+        },
+        {
+          "b": "Common-sense timing",
+          "rest": " — never offers a slot the crew can't realistically make"
+        },
+        {
+          "b": "No promises it can't keep",
+          "rest": ""
+        },
+        {
+          "b": "No AI-invented dollar amounts",
+          "rest": ""
+        },
+        {
+          "b": "Any failed check goes to a human",
+          "rest": " instead",
+          "arrow": true
+        }
+      ]
+    },
+    "Stage4": {
+      "kicker": "Step four",
+      "title": "Humans stay in the loop",
+      "lede": "The system knows what it doesn't know. Anything unusual is escalated — and speed is never sacrificed: the customer still gets an instant friendly reply while an alert email heads to the owner's inbox within minutes.",
+      "escalatesTitle": "What always escalates",
+      "tags": [
+        "unfamiliar job types",
+        "unusually large jobs",
+        "hazardous materials",
+        "upset customers",
+        "out-of-area requests",
+        "price negotiations"
+      ],
+      "flagsTitle": "Special flags in those emails",
+      "flags": [
+        {
+          "b": "Outside working hours.",
+          "rest": " The customer asked for a time the crew doesn't normally run — a human decides case by case."
+        },
+        {
+          "b": "Customer already replied.",
+          "rest": " This thread is waiting on you."
+        },
+        {
+          "b": "Refund candidate.",
+          "rest": " A paid lead looks refundable — see step 8."
+        }
+      ],
+      "emailBar1": "Escalation · Piano moving",
+      "emailBar2": "minutes after the lead",
+      "emailRows": [
+        {
+          "k": "Customer",
+          "v": "Morgan H. — upright piano, 2nd floor"
+        },
+        {
+          "k": "Reason",
+          "v": "Requested an evening slot — outside working hours"
+        },
+        {
+          "k": "Already sent",
+          "v": "Instant rate card + friendly holding line"
+        },
+        {
+          "k": "Requested time",
+          "v": "Tuesday evening"
+        }
+      ],
+      "emailNote": "Every escalation email carries the customer's details, the reason, and exactly what was already sent — so the owner replies informed, not cold."
+    },
+    "Stage5": {
+      "kicker": "Step five",
+      "title1": "Polite persistence:",
+      "title2": "the follow-up engine",
+      "lede": "Most customers don't answer the first message — and most companies never follow up. This one does, automatically, spaced out over the following days.",
+      "stops": [
+        {
+          "ft": "start",
+          "fl": "First reply",
+          "fs": "price + slots + link"
+        },
+        {
+          "ft": "later",
+          "fl": "Nudge 1",
+          "fs": "friendly check-in"
+        },
+        {
+          "ft": "next day",
+          "fl": "Nudge 2",
+          "fs": "includes booking link"
+        },
+        {
+          "ft": "days later",
+          "fl": "Nudge 3",
+          "fs": "the last one"
+        },
+        {
+          "ft": "then",
+          "fl": "Stops for good",
+          "fs": "never pesters"
+        }
+      ],
+      "stopRule": "The instant a customer replies, all nudges stop.",
+      "checks": [
+        "Nudges only send during business hours — never at night, enforced by a hard overnight blackout.",
+        "A separate watchdog makes sure no escalated lead sits unanswered during business hours."
+      ]
+    },
+    "Stage6": {
+      "kicker": "Step six",
+      "title": "The customer books",
+      "lede": "Every reply carries a live online booking link. The customer picks their own slot from real availability — no phone tag.",
+      "steps": [
+        {
+          "b": "The customer taps the link and picks a slot",
+          "s": "Real openings only — same-day is possible when the calendar allows it."
+        },
+        {
+          "b": "The calendar checks crew schedules and books the job",
+          "s": "Assigned straight to an available crew member — no dispatcher needed."
+        },
+        {
+          "b": "The CRM creates the customer and job records",
+          "s": "The system deliberately never duplicates what the CRM already does best."
+        }
+      ],
+      "enrichTitle": "Contact enrichment",
+      "enrichBadge": "built · preview mode",
+      "enrichBody": "Customers often type their real phone number or a gate code into the chat. The system spots these and prepares updates for the customer record.",
+      "strip": [
+        "“gate code is 4482”",
+        "spotted in chat",
+        "emailed as a digest for review"
+      ],
+      "enrichNote": "Currently emailed for review rather than written automatically — nothing touches the records without human eyes on it."
+    },
+    "Stage7": {
+      "kicker": "Step seven",
+      "title1": "The job happens —",
+      "title2": "the pipeline hears about it",
+      "lede": "The calendar reports every job event — scheduled, on the way, started, completed, canceled. The status-sync loop maps each one back to the original conversation and posts the update automatically.",
+      "sync": [
+        {
+          "src": "calendar: appointment scheduled",
+          "dst": "lead platform shows “appointment scheduled”"
+        },
+        {
+          "src": "calendar: job finished",
+          "dst": "“job complete” — which feeds the platform's review prompts"
+        },
+        {
+          "src": "calendar: canceled",
+          "dst": "recorded correctly on the platform side"
+        }
+      ],
+      "checks": [
+        {
+          "b": "Ordering enforced",
+          "rest": " — “scheduled” always posts before “complete”."
+        },
+        {
+          "b": "Retries are automatic",
+          "rest": " when the platform is briefly unavailable."
+        },
+        {
+          "b": "Every event is cryptographically verified",
+          "rest": " as genuine."
+        },
+        {
+          "b": "Switched on the careful way.",
+          "rest": " Posting stayed off until real job events had been observed end-to-end — then it was flipped on."
+        }
+      ],
+      "kill": "One kill switch turns posting off instantly."
+    },
+    "Stage8": {
+      "kicker": "Step eight",
+      "title": "Clean books",
+      "lede": "Running quietly in the background, protecting the lead budget.",
+      "panels": [
+        {
+          "title": "Weekly budget watch",
+          "body": "Email alerts as the weekly lead budget fills up — no surprise spend."
+        },
+        {
+          "title": "Refund watchdog · found money",
+          "body": "Lead platforms charge for leads even when the customer ghosts. The system scans paid leads where the company replied and the customer never engaged, and emails a refund recommendation before the filing deadline."
+        },
+        {
+          "title": "Full audit trail",
+          "body": "Every lead, every message, every decision, and every price is stored with timestamps — nothing is a black box."
+        }
+      ],
+      "meterLabels": [
+        "week starts",
+        "heads-up email",
+        "budget reached"
+      ]
+    },
+    "Safety": {
+      "kicker": "How it's kept safe",
+      "title": "The safety philosophy",
+      "rules": [
+        {
+          "b": "AI extracts facts; the pricebook sets prices.",
+          "s": "Never the reverse. The AI cannot invent a dollar amount."
+        },
+        {
+          "b": "Every risky feature has a kill switch.",
+          "s": "One setting flips it off instantly — no redeploy, no downtime."
+        },
+        {
+          "b": "When in doubt, escalate to a human.",
+          "s": "With the customer already holding a friendly instant reply, so no speed is lost."
+        },
+        {
+          "b": "Never state what isn't verified.",
+          "s": "A time slot is only offered if it's genuinely open in the calendar right now."
+        },
+        {
+          "b": "If a service fails, the experience degrades to “normal” — never to “broken.”",
+          "s": "The customer never sees an error."
+        }
+      ]
+    },
+    "Board": {
+      "kicker": "The honest status board",
+      "title": "What runs where, today",
+      "lede": "No promises — this is what's already shipped for this client versus what's queued.",
+      "status": {
+        "live": "Live",
+        "built": "Built · preview",
+        "future": "Future phase"
+      },
+      "rows": [
+        {
+          "cap": "Instant replies: quotes, rate cards, soft-holds",
+          "small": "Auto-sending in production",
+          "status": "live"
+        },
+        {
+          "cap": "Real-availability slot offers + instant booking link",
+          "status": "live"
+        },
+        {
+          "cap": "Escalation emails, follow-up nudges, response watchdog",
+          "status": "live"
+        },
+        {
+          "cap": "Budget alerts + refund watchdog",
+          "status": "live"
+        },
+        {
+          "cap": "Contact enrichment into the CRM",
+          "small": "Runs fully — results emailed as a digest for review",
+          "status": "built"
+        },
+        {
+          "cap": "Job status posted back to the lead platform",
+          "small": "Both directions live",
+          "status": "live"
+        },
+        {
+          "cap": "True auto-booking — the system creates the appointment itself",
+          "small": "Deliberately later: booking stays in the customer's hands for now",
+          "status": "future"
+        }
+      ]
+    },
+    "Cta": {
+      "kicker": "Your move",
+      "title": "Your industry, same machine",
+      "lede": "Everything you just scrolled through runs for one Phoenix company today. The same machine — instant answers, real availability, polite persistence, humans on the edge cases, clean books — fits HVAC, plumbing, landscaping, dental, law, and any business where leads arrive faster than people can answer them.",
+      "button": "Schedule a call",
+      "secondary": "See everything we build"
+    },
+    "Glossary": {
+      "kicker": "Appendix",
+      "title": "Plain-English glossary",
+      "colTerm": "Term",
+      "colMeaning": "What it means",
+      "rows": [
+        {
+          "t": "Webhook",
+          "d": "One computer calling another the instant something happens — no polling, no refreshing, no inbox-watching."
+        },
+        {
+          "t": "CRM",
+          "d": "The company's system of record for customers, jobs, and schedules."
+        },
+        {
+          "t": "Booking link",
+          "d": "A page where the customer picks a real open slot themselves — no phone tag."
+        },
+        {
+          "t": "Escalation",
+          "d": "The system handing a decision to a human — with the customer already holding a friendly instant reply."
+        },
+        {
+          "t": "Pricebook",
+          "d": "The company's own price list. The only place a dollar amount can come from."
+        }
+      ]
     }
   }
 }

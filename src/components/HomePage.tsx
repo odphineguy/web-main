@@ -196,6 +196,15 @@ export default function HomePage() {
               </motion.div>
             ))}
           </div>
+
+          <div className="mt-10 text-center">
+            <Link
+              href={`/${locale}/how-it-works`}
+              className="inline-flex items-center gap-2 text-sm font-medium text-orange-500 hover:text-orange-400 transition-colors"
+            >
+              {t("ServicesGrid.howItWorksLink")} →
+            </Link>
+          </div>
         </div>
       </section>
 
