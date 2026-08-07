@@ -70,14 +70,9 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
 
       {/* Header bar */}
       <div className="flex items-center justify-between gap-3 border-b border-neutral-200 px-4 py-3 dark:border-neutral-800">
-        <div>
-          <p className="text-sm font-medium text-neutral-950 dark:text-white">
-            {t("widgetLabel")}
-          </p>
-          <p className="text-xs text-neutral-600 dark:text-neutral-400">
-            {t("widgetSublabel")}
-          </p>
-        </div>
+        <p className="text-sm font-medium text-neutral-950 dark:text-white">
+          {t("widgetLabel")}
+        </p>
         <span className="rounded-full border border-neutral-300 bg-neutral-100 px-2 py-0.5 text-[10px] uppercase tracking-wide text-neutral-700 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300">
           Telephony
         </span>

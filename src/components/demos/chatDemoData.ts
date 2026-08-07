@@ -56,13 +56,6 @@ export const industryDemos: DemoConfig[] = [
     accentColor: 'blue',
   },
   {
-    id: 'legal',
-    name: 'Legal Assistant',
-    subtitle: 'Case evaluation',
-    avatar: '',
-    accentColor: 'purple',
-  },
-  {
     id: 'dental',
     name: 'Smile Dental',
     subtitle: 'Appointment scheduling',
@@ -88,16 +81,6 @@ export const industryConversations: Record<string, ChatMessage[]> = {
     { type: 'bot', text: "Perfect! I've sent the return label to mike@email.com. You should receive it within 5 minutes. Is there anything else I can help you with?", delay: 2500 },
     { type: 'user', text: "That's all, thanks!", delay: 3500 },
     { type: 'bot', text: "You're welcome! Have a great night. Our team will follow up during business hours if needed.", delay: 2000 },
-  ],
-  legal: [
-    { type: 'bot', text: "Hello, I'm the intake assistant for Parker & Associates. I can help determine if you have a potential case. What type of legal matter are you inquiring about?", delay: 2000 },
-    { type: 'user', text: 'I was in a car accident last week and the other driver was at fault', delay: 4500 },
-    { type: 'bot', text: "I'm sorry to hear about your accident. Let me ask a few questions to help our attorneys evaluate your case.", delay: 2500 },
-    { type: 'bot', text: 'Were there any injuries? If so, have you received medical treatment?', delay: 2000 },
-    { type: 'user', text: "Yes, I have whiplash and back pain. I've been to the ER and my doctor twice", delay: 4500 },
-    { type: 'bot', text: 'Thank you for sharing that. Do you have documentation of the accident, such as a police report or photos from the scene?', delay: 2500 },
-    { type: 'user', text: 'Yes I have the police report and photos', delay: 3500 },
-    { type: 'bot', text: "Excellent. Based on what you've shared, this sounds like a case our personal injury team would want to review. Can I schedule a free consultation for you?", delay: 2500 },
   ],
   dental: [
     { type: 'bot', text: "Welcome to Smile Dental! I'm here to help you schedule an appointment. Are you a new or existing patient?", delay: 2000 },

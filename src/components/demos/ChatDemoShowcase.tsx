@@ -71,7 +71,6 @@ export default function ChatDemoShowcase({ onCtaClick }: ChatDemoShowcaseProps) 
               <span className="hidden sm:inline">{demo.name}</span>
               <span className="sm:hidden">
                 {demo.id === "afterhours" ? "After-Hours" :
-                 demo.id === "legal" ? "Legal" :
                  demo.id === "dental" ? "Dental" : "Sales"}
               </span>
             </button>

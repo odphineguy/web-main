@@ -1,11 +1,11 @@
 {
   "collection": "ms_web_main_7e19022e",
   "failed_files": [],
-  "indexed_chunks": 0,
+  "indexed_chunks": 2,
   "indexed_files": 4,
-  "last_completed_at": "2026-08-07T10:07:45.666728Z",
-  "last_started_at": "2026-08-07T10:07:42.240774Z",
-  "last_success_at": "2026-08-07T10:07:45.666728Z",
+  "last_completed_at": "2026-08-07T10:24:29.155658Z",
+  "last_started_at": "2026-08-07T10:24:27.753185Z",
+  "last_success_at": "2026-08-07T10:24:29.155658Z",
   "milvus_uri": "/Users/abemacmini/.memsearch/milvus.db",
   "operation": "index",
   "paths": [
@@ -14,5 +14,5 @@
   "schema_version": 1,
   "status": "ok",
   "total_files": 4,
-  "updated_at": "2026-08-07T10:07:45.666728Z"
+  "updated_at": "2026-08-07T10:24:29.155658Z"
 }
