@@ -27,11 +27,13 @@ Full EN/ES parity. Build clean; all 37 sitemap URLs 200 locally.
   platform (the old PLATFORMS_PRICING_SPEC explicitly left them as placeholders
   for Abe). Inventing prices is a business decision; end states show scope +
   "straight number on the call" note instead. **Abe: supply ranges if wanted.**
-- *Transcript widget label vs. content.* Per spec the label now says "Junk removal
-  after-hours call" while the kept audio/transcript is still the law-firm PI call
-  (swap is a separate task). Spoken transcript lines keep "Elena"/"Sonoran
+- *Transcript widget label vs. content.* Superseded same day (2f865fd): Abe
+  dropped the "Junk removal after-hours call" subtitle — the widget now shows
+  only "Recorded intake call — real AI, unedited" with no vertical claim until
+  the new recording is swapped in. Spoken transcript lines keep "Elena"/"Sonoran
   Justice" verbatim (they transcribe the actual recording); editorial note rows
-  were de-named. Swap the recording ASAP — the mismatch is visible.
+  were de-named. Same commit also removed the Legal chat-demo tab + conversation
+  (whole section to be replaced by a voice showcase later).
 - *`elena-ai-voice-agent` slug kept.* Renaming the live portfolio URL breaks the
   37-URL contract; display copy de-named instead. Flag: rename+redirect later if
   Abe wants zero grep hits.
