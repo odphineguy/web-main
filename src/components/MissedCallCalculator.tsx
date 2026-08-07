@@ -11,11 +11,12 @@ import Link from "next/link";
 
 // Close rates prefilled by industry — starting points, user-adjustable.
 const industryDefaults: Record<string, { closeRate: number; ticketPlaceholder: string }> = {
-  law: { closeRate: 0.25, ticketPlaceholder: "4500" },
+  junk: { closeRate: 0.55, ticketPlaceholder: "400" },
   hvac: { closeRate: 0.5, ticketPlaceholder: "450" },
   plumbing: { closeRate: 0.55, ticketPlaceholder: "350" },
+  moving: { closeRate: 0.4, ticketPlaceholder: "1500" },
   turf: { closeRate: 0.4, ticketPlaceholder: "3800" },
-  dental: { closeRate: 0.45, ticketPlaceholder: "900" },
+  waste: { closeRate: 0.5, ticketPlaceholder: "500" },
   other: { closeRate: 0.4, ticketPlaceholder: "500" },
 };
 
@@ -25,9 +26,9 @@ export default function MissedCallCalculator() {
   const t = useTranslations("Home.MissedCall");
   const locale = useLocale();
 
-  const [industry, setIndustry] = useState("law");
+  const [industry, setIndustry] = useState("junk");
   const [missedCalls, setMissedCalls] = useState("");
-  const [closeRate, setCloseRate] = useState(industryDefaults.law.closeRate);
+  const [closeRate, setCloseRate] = useState(industryDefaults.junk.closeRate);
   const [avgTicket, setAvgTicket] = useState("");
   const [monthlyLost, setMonthlyLost] = useState<number | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -90,12 +91,20 @@ export default function MissedCallCalculator() {
                 </div>
               </div>
 
-              <div className="space-y-5">
+              <form
+                className="space-y-5"
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  calculate();
+                }}
+              >
                 <div>
-                  <label className="block text-sm font-light text-foreground mb-2">
+                  <label htmlFor="missed-call-industry" className="block text-sm font-light text-foreground mb-2">
                     {t("industryLabel")}
                   </label>
                   <select
+                    id="missed-call-industry"
+                    name="industry"
                     value={industry}
                     onChange={(e) => handleIndustryChange(e.target.value)}
                     className={inputClass(false)}
@@ -109,27 +118,34 @@ export default function MissedCallCalculator() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-light text-foreground mb-2">
+                  <label htmlFor="missed-calls-per-week" className="block text-sm font-light text-foreground mb-2">
                     {t("missedCallsLabel")}
                   </label>
                   <input
+                    id="missed-calls-per-week"
+                    name="missedCallsPerWeek"
                     type="number"
                     value={missedCalls}
                     onChange={(e) => setMissedCalls(e.target.value)}
                     placeholder="6"
                     min="1"
+                    inputMode="numeric"
+                    aria-invalid={!!errors.missedCalls}
+                    aria-describedby={errors.missedCalls ? "missed-calls-error" : undefined}
                     className={inputClass(!!errors.missedCalls)}
                   />
                   {errors.missedCalls && (
-                    <p className="mt-1 text-sm text-red-500">{errors.missedCalls}</p>
+                    <p id="missed-calls-error" className="mt-1 text-sm text-red-500">{errors.missedCalls}</p>
                   )}
                 </div>
 
                 <div>
-                  <label className="block text-sm font-light text-foreground mb-2">
+                  <label htmlFor="missed-call-close-rate" className="block text-sm font-light text-foreground mb-2">
                     {t("closeRateLabel")}: <span className="font-semibold text-orange-500">{Math.round(closeRate * 100)}%</span>
                   </label>
                   <input
+                    id="missed-call-close-rate"
+                    name="closeRate"
                     type="range"
                     min="5"
                     max="80"
@@ -142,33 +158,38 @@ export default function MissedCallCalculator() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-light text-foreground mb-2">
+                  <label htmlFor="missed-call-average-ticket" className="block text-sm font-light text-foreground mb-2">
                     {t("avgTicketLabel")}
                   </label>
                   <div className="relative">
                     <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground">$</span>
                     <input
+                      id="missed-call-average-ticket"
+                      name="averageTicket"
                       type="number"
                       value={avgTicket}
                       onChange={(e) => setAvgTicket(e.target.value)}
                       placeholder={industryDefaults[industry]?.ticketPlaceholder ?? "500"}
                       min="1"
+                      inputMode="decimal"
+                      aria-invalid={!!errors.avgTicket}
+                      aria-describedby={errors.avgTicket ? "average-ticket-error" : undefined}
                       className={`${inputClass(!!errors.avgTicket)} pl-8`}
                     />
                   </div>
                   {errors.avgTicket && (
-                    <p className="mt-1 text-sm text-red-500">{errors.avgTicket}</p>
+                    <p id="average-ticket-error" className="mt-1 text-sm text-red-500">{errors.avgTicket}</p>
                   )}
                 </div>
 
                 <button
-                  onClick={calculate}
+                  type="submit"
                   className="w-full py-4 px-6 rounded-full font-normal text-sm text-white bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 flex items-center justify-center gap-2"
                 >
                   {t("button")}
                   <ArrowRight className="h-5 w-5" />
                 </button>
-              </div>
+              </form>
             </div>
           </motion.div>
         ) : (
@@ -186,7 +207,7 @@ export default function MissedCallCalculator() {
               <p className="text-4xl md:text-5xl font-semibold text-orange-500 mb-4">
                 {formatCurrency(monthlyLost)}
               </p>
-              <p className="text-lg text-foreground mb-8">{t("elenaLine")}</p>
+              <p className="text-lg text-foreground mb-8">{t("agentLine")}</p>
 
               <div className="space-y-3">
                 <Link

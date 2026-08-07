@@ -1,72 +1,33 @@
 "use client";
 
 import { Suspense, useState } from "react";
-import { useSearchParams } from "next/navigation";
-import { motion } from "framer-motion";
-import { Check } from "lucide-react";
 import { useTranslations } from "next-intl";
 import ConsultationForm from "@/components/ConsultationForm";
 import PricingDecisionTree from "@/components/pricing/PricingDecisionTree";
-import { type AddOnId, type TierId } from "@/lib/pricingData";
-
-function StatusBanner() {
-  const searchParams = useSearchParams();
-  const t = useTranslations("Pricing.Status");
-  const success = searchParams.get("success");
-  const canceled = searchParams.get("canceled");
-
-  if (!success && !canceled) return null;
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: -12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-24 left-1/2 -translate-x-1/2 z-50 rounded-full border px-6 py-3 text-sm shadow-lg backdrop-blur ${
-        success
-          ? "border-primary/30 bg-background/90 text-foreground"
-          : "border-border bg-background/90 text-muted-foreground"
-      }`}
-    >
-      <span className="flex items-center gap-2">
-        {success && <Check aria-hidden className="h-4 w-4 text-primary" />}
-        {success ? t("paymentSuccess") : t("paymentCanceled")}
-      </span>
-    </motion.div>
-  );
-}
+import { type ScopeId } from "@/lib/pricingData";
 
 function formatDescription(
-  tierId: TierId | null,
-  addOns: AddOnId[],
-  tierNames: Record<TierId, string>,
-  addOnNames: Record<AddOnId, string>,
+  scopeId: ScopeId | null,
+  scopeNames: Record<ScopeId, string>,
 ): string {
   const lines: string[] = [];
-  if (tierId) {
-    lines.push(`Recommended tier: ${tierNames[tierId]}`);
+  if (scopeId) {
+    lines.push(`Recommended scope: ${scopeNames[scopeId]}`);
   } else {
-    lines.push("Custom scope — not sure which tier fits.");
-  }
-  if (addOns.length > 0) {
-    lines.push(`Add-ons: ${addOns.map((id) => addOnNames[id]).join(", ")}`);
+    lines.push("Custom scope — not sure what fits yet.");
   }
   lines.push("");
-  lines.push("About my project: ");
+  lines.push("About my operation: ");
   return lines.join("\n");
 }
 
-function pickServiceKey(tierId: TierId | null): string {
-  if (!tierId) return "custom-solutions";
-  return tierId === "starter" ? "ai-chatbot" : "web-development";
-}
-
-function TreeWrapper({
-  onBookCall,
-}: {
-  onBookCall: (context: { tierId: TierId | null; selectedAddOns: AddOnId[] }) => void;
-}) {
-  return <PricingDecisionTree onBookCall={onBookCall} />;
+function pickServiceKey(scopeId: ScopeId | null): string {
+  if (!scopeId) return "other";
+  return scopeId === "voice"
+    ? "ai-voice-agent"
+    : scopeId === "pipeline"
+      ? "lead-automation"
+      : "dispatch-platform";
 }
 
 export default function PricingPage() {
@@ -75,38 +36,20 @@ export default function PricingPage() {
   const [prefilledDescription, setPrefilledDescription] = useState<string>("");
   const [preselectedService, setPreselectedService] = useState<string>("");
 
-  const tierNames: Record<TierId, string> = {
-    starter: t("Tiers.starter.name"),
-    business: t("Tiers.business.name"),
-    professional: t("Tiers.professional.name"),
-  };
-  const addOnNames: Record<AddOnId, string> = {
-    bilingual: t("AddOns.items.bilingual.name"),
-    seo: t("AddOns.items.seo.name"),
-    social: t("AddOns.items.social.name"),
-    care: t("AddOns.items.care.name"),
+  const scopeNames: Record<ScopeId, string> = {
+    voice: t("Scopes.voice.name"),
+    pipeline: t("Scopes.pipeline.name"),
+    platform: t("Scopes.platform.name"),
   };
 
-  const handleBookCall = ({
-    tierId,
-    selectedAddOns,
-  }: {
-    tierId: TierId | null;
-    selectedAddOns: AddOnId[];
-  }) => {
-    setPrefilledDescription(
-      formatDescription(tierId, selectedAddOns, tierNames, addOnNames),
-    );
-    setPreselectedService(pickServiceKey(tierId));
+  const handleBookCall = ({ scopeId }: { scopeId: ScopeId | null }) => {
+    setPrefilledDescription(formatDescription(scopeId, scopeNames));
+    setPreselectedService(pickServiceKey(scopeId));
     setIsConsultationOpen(true);
   };
 
   return (
     <div className="min-h-screen bg-background">
-      <Suspense fallback={null}>
-        <StatusBanner />
-      </Suspense>
-
       <section className="px-6 pt-10 pb-24 md:pt-16 md:pb-32">
         <header className="mx-auto w-full max-w-4xl text-center mb-14">
           <h1 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] m-0">
@@ -121,7 +64,7 @@ export default function PricingPage() {
 
         <div className="mx-auto w-full max-w-2xl">
           <Suspense fallback={<div className="h-96" />}>
-            <TreeWrapper onBookCall={handleBookCall} />
+            <PricingDecisionTree onBookCall={handleBookCall} />
           </Suspense>
         </div>
       </section>

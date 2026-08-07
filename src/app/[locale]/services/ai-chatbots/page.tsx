@@ -133,7 +133,7 @@ const integrations = [
   { icon: Mail, name: "Email Platforms", tools: "Mailchimp, Constant Contact" },
   { icon: Calendar, name: "Calendar Tools", tools: "Google Calendar, Calendly" },
   { icon: Headphones, name: "Live Chat", tools: "Transfer to human agents when needed" },
-  { icon: CreditCard, name: "Payment Systems", tools: "Stripe, PayPal for instant payments" },
+  { icon: CreditCard, name: "Payment Systems", tools: "PayPal, Square for instant payments" },
   { icon: Phone, name: "Phone Systems", tools: "Send SMS or call notifications" },
 ];
 

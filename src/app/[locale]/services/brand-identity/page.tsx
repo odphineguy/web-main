@@ -80,29 +80,7 @@ const packages: Package[] = [
 
 export default function BrandIdentity() {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
-  const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
   const t = useTranslations("BrandIdentity");
-
-  const handleCheckout = async (planId: string) => {
-    setLoadingPlan(planId);
-    try {
-      const response = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ planId }),
-      });
-      const data = await response.json();
-      if (data.url) {
-        window.location.href = data.url;
-      } else {
-        console.error("Checkout error:", data.error);
-        setLoadingPlan(null);
-      }
-    } catch (error) {
-      console.error("Checkout error:", error);
-      setLoadingPlan(null);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -169,24 +147,11 @@ export default function BrandIdentity() {
                     </div>
 
                     <button
-                      onClick={() => handleCheckout(pkg.planId)}
-                      disabled={loadingPlan === pkg.planId}
-                      className="w-full py-3.5 px-6 rounded-full text-sm font-medium text-center transition-all duration-300 bg-muted text-foreground border border-border hover:bg-primary hover:text-primary-foreground hover:border-primary flex items-center justify-center gap-2 group/btn disabled:opacity-50 disabled:cursor-not-allowed"
+                      onClick={() => setIsConsultationOpen(true)}
+                      className="w-full py-3.5 px-6 rounded-full text-sm font-medium text-center transition-all duration-300 bg-muted text-foreground border border-border hover:bg-primary hover:text-primary-foreground hover:border-primary flex items-center justify-center gap-2 group/btn"
                     >
-                      {loadingPlan === pkg.planId ? (
-                        <span className="flex items-center gap-2">
-                          <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                          </svg>
-                          Processing...
-                        </span>
-                      ) : (
-                        <>
-                          {t("orderNow")}
-                          <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
-                        </>
-                      )}
+                      {t("orderNow")}
+                      <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
                     </button>
                   </div>
                 </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import ChatDemoWindow from "./ChatDemoWindow";
@@ -9,52 +9,6 @@ import { cn } from "@/lib/utils";
 
 interface ChatDemoShowcaseProps {
   onCtaClick?: () => void;
-}
-
-const elenaAudioCandidates = [
-  "/audio/elena-demo.mp3",
-  "/audio/elena.mp3",
-  "/audio/elena-call.mp3",
-];
-
-function ElenaAudioPlayer() {
-  const t = useTranslations("Home.Showcase");
-  const [audioSrc, setAudioSrc] = useState<string | null>(null);
-
-  useEffect(() => {
-    let cancelled = false;
-
-    const findRecording = async () => {
-      for (const path of elenaAudioCandidates) {
-        try {
-          const res = await fetch(path, { method: "HEAD" });
-          const contentType = res.headers.get("content-type") ?? "";
-          if (res.ok && contentType.startsWith("audio")) {
-            if (!cancelled) setAudioSrc(path);
-            return;
-          }
-        } catch {
-          // Ignore network errors and try the next candidate
-        }
-      }
-    };
-
-    findRecording();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
-  if (!audioSrc) return null;
-
-  return (
-    <div className="rounded-2xl bg-card border border-border p-6 max-w-md mx-auto mt-10">
-      <h3 className="text-sm font-semibold text-foreground mb-3">
-        {t("audioTitle")}
-      </h3>
-      <audio controls preload="none" className="w-full" src={audioSrc} />
-    </div>
-  );
 }
 
 export default function ChatDemoShowcase({ onCtaClick }: ChatDemoShowcaseProps) {
@@ -145,9 +99,6 @@ export default function ChatDemoShowcase({ onCtaClick }: ChatDemoShowcaseProps) 
             height="h-[320px] md:h-[360px]"
           />
         </motion.div>
-
-        {/* Elena audio recording (renders only if a recording exists) */}
-        <ElenaAudioPlayer />
 
         {/* CTA */}
         <motion.div

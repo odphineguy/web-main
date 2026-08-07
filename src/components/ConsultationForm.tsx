@@ -5,6 +5,7 @@ import { X } from "lucide-react";
 import Image from "next/image";
 import TurnstileWidget from "@/components/TurnstileWidget";
 import { humanizeError, isValidEmail } from "@/lib/humanizeError";
+import { getLeadAttribution } from "@/lib/leadAttribution";
 
 interface ConsultationFormProps {
   isOpen: boolean;
@@ -43,6 +44,7 @@ export default function ConsultationForm({ isOpen, onClose, preselectedService, 
 
     const payload = {
       ...Object.fromEntries(formData.entries()),
+      ...getLeadAttribution(),
       "cf-turnstile-response": turnstileToken,
     };
 
@@ -178,19 +180,32 @@ export default function ConsultationForm({ isOpen, onClose, preselectedService, 
                 className="rounded-full border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-foreground shadow-sm"
               >
                 <option value="">Select a service</option>
-                <option value="platform-inquiry">Platform Inquiry</option>
-                <option value="ai-chatbot">AI Chatbot</option>
-                <option value="web-development">Web Development</option>
-                <option value="mobile-app">Mobile App Development</option>
-                <option value="ui-ux-design">UI/UX Design</option>
-                <option value="custom-solutions">Custom Solutions</option>
-                <option value="performance-optimization">Performance Optimization</option>
-                <option value="logo-design">Logo Design</option>
-                <option value="marketing">Digital Marketing</option>
+                <option value="ai-voice-agent">AI Voice Agent</option>
+                <option value="dispatch-platform">Dispatch or Operations Platform</option>
+                <option value="lead-automation">Lead-Pipeline Automation</option>
+                <option value="ai-estimating">AI Estimating Tool</option>
+                <option value="bilingual-automation">Bilingual AI Automation</option>
+                <option value="custom-software">Custom Business Software</option>
+                <option value="website-chatbot-addon">Website or Chatbot Add-on</option>
                 <option value="other">Other</option>
               </select>
             </div>
             
+            <div className="grid gap-2">
+              <label htmlFor="consultation-referral-source" className="text-sm font-medium text-foreground">
+                How did you hear about Abe Media? *
+              </label>
+              <select id="consultation-referral-source" name="referralSource" required className="rounded-full border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500 text-foreground shadow-sm">
+                <option value="">Select one</option>
+                <option value="AI search or assistant">AI search or assistant</option>
+                <option value="Google or Bing">Google or Bing</option>
+                <option value="Client or colleague referral">Client or colleague referral</option>
+                <option value="Clutch or directory">Clutch or directory</option>
+                <option value="Social media">Social media</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
             <div className="grid gap-2">
               <label htmlFor="description" className="text-sm font-medium text-foreground">
                 Project Description *

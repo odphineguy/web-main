@@ -1,5 +1,10 @@
 {
   "Navbar": {
+    "services": "Services",
+    "industries": "Industries",
+    "caseStudies": "Case Studies",
+    "howItWorks": "How It Works",
+    "about": "About Abe",
     "agents": "Agents",
     "platforms": "Platforms",
     "pricing": "Pricing",
@@ -9,19 +14,22 @@
     "getStarted": "Get Started"
   },
   "Footer": {
-    "copyright": "© 2026 Abevision LLC. AbeMedia is owned and operated by Abevision LLC. All rights reserved."
+    "copyright": "© 2026 Abevision LLC. Abe Media is owned and operated by Abevision LLC. All rights reserved.",
+    "entity": "Founded by Abe Perez · Phoenix, Arizona"
   },
   "Home": {
     "Hero": {
-      "eyebrow": "AI agents for service businesses",
+      "eyebrow": "AI voice agents for service businesses",
       "titlePart1": "AI agents that answer your phones, book your jobs,",
-      "titlePart2": "and run your dispatch. 24/7.",
-      "subtitle": "Bilingual by default — English y español, written natively.",
-      "callCta": "Call Elena now",
-      "callCtaSub": "Recorded intake call — real AI, unedited",
-      "followUp": "She'll take your info and we'll follow up the same day.",
-      "demoHintTitle": "How to demo her",
-      "demoHintBody": "Call from your phone. She handles a personal-injury intake end to end — qualifies the caller, books the consultation, logs it.",
+      "titlePart2": "and never miss a call. 24/7.",
+      "subtitle": "Bilingual by default — English y español. Built for junk removal, HVAC, moving, and home service companies.",
+      "callCta": "Call the demo agent",
+      "phoneNumber": "(669) 669-4486",
+      "callFromPhone": "Call from your phone",
+      "scheduleCta": "Schedule a call",
+      "followUp": "The agent takes your info and we follow up the same day.",
+      "widgetLabel": "Recorded intake call — real AI, unedited",
+      "widgetSublabel": "Junk removal after-hours call — English y español",
       "liveBadge": "Real call"
     },
     "ProofBar": {
@@ -30,12 +38,20 @@
       "item3": "Apps live on the App Store & Google Play",
       "item4": "Platforms running real businesses today"
     },
-    "AfterHours": {
-      "badge": "After hours",
-      "title": "While you're closed",
-      "scene1": "Your office closes at 5.",
-      "scene2": "Elena doesn't. 11:30 PM — she answers, qualifies, and books the consultation.",
-      "scene3": "You walk in to a signed-up client, not a voicemail."
+    "Jab": {
+      "title": "One of these is costing you jobs right now.",
+      "one": {
+        "title": "Missed calls are booked jobs — for your competitor.",
+        "body": "After-hours callers don't leave voicemails. They dial the next number on the list."
+      },
+      "two": {
+        "title": "Half your market speaks Spanish.",
+        "body": "An English-only line hangs up on them. Our agents switch languages mid-call."
+      },
+      "three": {
+        "title": "An answering service takes messages.",
+        "body": "Our agent qualifies the job, quotes it, and books it into your calendar."
+      }
     },
     "ServicesGrid": {
       "badge": "Core services",
@@ -44,7 +60,7 @@
       "addOnBadge": "Add-on",
       "voice": {
         "title": "AI voice agents & after-hours answering",
-        "description": "Elena for law firms. The same pattern for HVAC, plumbing, turf, and dental. Intake, qualify, book — logged straight to your CRM."
+        "description": "After-hours answering for junk removal, HVAC, moving, and home services. Intake, qualify, book — logged straight to your CRM."
       },
       "dispatch": {
         "title": "Dispatch & operations platforms",
@@ -68,18 +84,18 @@
       "badge": "See it in action",
       "title": "Agents for Every Industry",
       "subtitle": "Watch how our agents handle real conversations for different businesses",
-      "cta": "Get an agent like this",
-      "audioTitle": "Hear Elena take a real call"
+      "cta": "Get an agent like this"
     },
     "CaseStudies": {
+      "readCase": "Read the case study",
       "badge": "Case studies",
       "title": "Running real businesses today",
       "rejunk": {
         "title": "Rejunk — hands-free lead pipeline",
         "description": "Thumbtack lead → quoted → booked → dispatched, no human in the loop. The pipeline runs while the crew is on the truck."
       },
-      "waterloo": {
-        "title": "Waterloo Turf — instant AI estimates",
+      "turfStudio": {
+        "title": "AI Design Studio for an Artificial Turf Franchise",
         "description": "A customer uploads yard photos, the AI renders the finished turf and prices the job on the spot. The estimate books the visit before a competitor calls back."
       }
     },
@@ -96,11 +112,12 @@
       "subtitle": "Callers who hit voicemail don't leave messages anymore. They dial the next number on the list.",
       "industryLabel": "Your industry",
       "industries": {
-        "law": "Law firm",
+        "junk": "Junk removal",
         "hvac": "HVAC",
         "plumbing": "Plumbing",
+        "moving": "Moving",
         "turf": "Landscaping / turf",
-        "dental": "Dental",
+        "waste": "Waste & roll-off",
         "other": "Other service business"
       },
       "missedCallsLabel": "Missed calls per week (after hours)",
@@ -109,26 +126,26 @@
       "avgTicketLabel": "Average ticket",
       "button": "Show me the number",
       "monthlyLostLabel": "Revenue walking away every month",
-      "elenaLine": "Elena costs less than one missed job.",
-      "cta": "Put Elena on the phones",
+      "cta": "Put the agent on your phones",
       "recalculate": "Run it again",
       "errors": {
         "missedCalls": "Enter your missed calls per week",
         "avgTicket": "Enter your average ticket"
-      }
+      },
+      "agentLine": "The agent costs less than one missed job."
     },
     "Faq": {
       "title": "Frequently asked questions",
       "q1": {
-        "question": "What exactly is Elena?",
-        "answer": "A voice AI agent that answers the phone like a trained intake specialist. She picks up in seconds, qualifies the caller, books the appointment, and logs everything. She's live right now — call (669) 669-4486."
+        "question": "What exactly is the AI agent?",
+        "answer": "A voice AI agent that answers the phone like a trained intake specialist. It picks up in seconds, qualifies the caller, books the job, and logs everything. It's live right now — call (669) 669-4486."
       },
       "q2": {
         "question": "Will this work for my industry?",
-        "answer": "Elena runs personal-injury intake for law firms today. The same agent pattern handles HVAC, plumbing, turf, dental, and junk removal. If your phone rings after hours and jobs walk away, an agent fits."
+        "answer": "Our agents answer for junk removal, HVAC, moving, plumbing, and other home service companies. If your phone rings after hours and jobs walk away, an agent fits."
       },
       "q3": {
-        "question": "What happens to the info she takes?",
+        "question": "What happens to the info the agent takes?",
         "answer": "It's logged the moment the call ends — name, number, what they need, and when. You get it in your CRM or inbox, and we follow up the same day. No voicemail transcription guesswork."
       },
       "q4": {
@@ -158,29 +175,110 @@
         "quote": "Started with SEO. Stayed for the chatbot and social. They're the ops team I don't have to hire.",
         "role": "Owner, MyLabCompliance.io"
       },
-      "caseStudiesLink": "See the case studies"
+      "caseStudiesLink": "See the case studies",
+      "stat": {
+        "label": "Junk removal client — lead pipeline automation",
+        "spend": "$1,644 → $582",
+        "spendLabel": "weekly lead spend",
+        "cpl": "CPL $32 → $17",
+        "link": "See the Rejunk case study"
+      }
     },
     "CTA": {
       "title": "Put an agent on your phones this month.",
-      "subtitle": "Call Elena for the live demo, or tell us about your operation. We'll tell you what it takes — scope, timeline, cost.",
+      "subtitle": "Call the demo agent for a live conversation, or tell us about your operation. We'll tell you what it takes — scope, timeline, cost.",
       "button": "SCHEDULE A CALL",
       "metaPill": "No obligation",
       "metaText": "Replies within 1 business day"
     },
-    "MayaDemo": {
+    "AgentDemo": {
       "badge": "Live demo",
-      "title": "Talk to Maya — right now",
-      "p1": "Maya answers for a moving and junk removal company. Click the call button, use your mic, and run her through a real intake — she collects the job details, handles interruptions, and never misses a call.",
-      "p2": "Elena handles law firm intake. Maya handles home services. Same platform, tailored to your business — English y español."
+      "title": "Talk to our AI agent — right now",
+      "p1": "The agent answers for a moving and junk removal company. Start a call, use your mic, and run it through a real intake — it collects the job details, handles interruptions, and never misses a call.",
+      "p2": "The same agent, tailored to your business — English y español.",
+      "tryTitle": "Try it on the call:",
+      "try1": "Ask for a quote on a garage cleanout",
+      "try2": "Switch to Spanish mid-sentence",
+      "try3": "Try to stump it with a weird job",
+      "cardTitle": "AI intake agent",
+      "cardSubtitle": "Home services demo line",
+      "available": "Available now"
     }
   },
   "Services": {
+    "GridTitle": "What we build",
     "Hero": {
       "title": "Our",
       "highlight": "services",
-      "subtitle": "Websites, apps, chatbots, and custom platforms — shipped to small businesses in English and Spanish."
+      "subtitle": "AI agents, dispatch software, lead automation, estimating tools, and custom systems for service businesses."
     },
     "Cards": {
+      "aiVoice": {
+        "title": "AI voice agents",
+        "description": "Answer, qualify, book, escalate, and log every approved step in English or Spanish.",
+        "features": {
+          "f1": "After-hours answering",
+          "f2": "Structured qualification",
+          "f3": "Booking and human transfer",
+          "f4": "CRM call records"
+        },
+        "placeholder": "AI voice-agent workflow"
+      },
+      "dispatch": {
+        "title": "Dispatch and operations platforms",
+        "description": "One operating view for jobs, drivers, crews, customers, and the exceptions that change the plan.",
+        "features": {
+          "f1": "Live dispatch boards",
+          "f2": "Driver and crew workflows",
+          "f3": "Exception ownership",
+          "f4": "Operational reporting"
+        },
+        "placeholder": "Dispatch platform workflow"
+      },
+      "leadPipeline": {
+        "title": "Lead-pipeline automation",
+        "description": "Connect lead sources, qualification, pricebook rules, calendars, follow-up, and CRM updates.",
+        "features": {
+          "f1": "Webhook and form intake",
+          "f2": "Qualification and quoting",
+          "f3": "Retries and monitoring",
+          "f4": "Human exception queues"
+        },
+        "placeholder": "Lead pipeline workflow"
+      },
+      "aiEstimating": {
+        "title": "AI estimating tools",
+        "description": "Guide photo intake, create visual concepts, apply approved pricing rules, and hand leads to sales.",
+        "features": {
+          "f1": "Photo and project intake",
+          "f2": "AI-assisted visualization",
+          "f3": "Estimate documents",
+          "f4": "CRM lead creation"
+        },
+        "placeholder": "AI estimating workflow"
+      },
+      "bilingualAutomation": {
+        "title": "Bilingual AI automation",
+        "description": "Complete English-and-Spanish customer paths—not a translated greeting attached to an English workflow.",
+        "features": {
+          "f1": "Native call and chat flows",
+          "f2": "Language-aware forms",
+          "f3": "Consistent CRM fields",
+          "f4": "Complete language parity"
+        },
+        "placeholder": "Bilingual automation workflow"
+      },
+      "customSoftware": {
+        "title": "Custom business software",
+        "description": "Focused internal tools, portals, integrations, and field apps for workflows generic SaaS cannot represent.",
+        "features": {
+          "f1": "Internal dashboards",
+          "f2": "Customer and crew portals",
+          "f3": "Authorized integrations",
+          "f4": "Production monitoring"
+        },
+        "placeholder": "Custom software workflow"
+      },
       "aiChatbots": {
         "title": "AI chatbots & agents",
         "description": "Agents trained on your SOPs, pricing, and policies. Answers in English or Spanish. Qualifies leads and logs them to your CRM.",
@@ -356,7 +454,7 @@
       "title": "Custom platforms.",
       "titleAccent": "Built around your workflow.",
       "subtitle": "Saguaro Transport",
-      "description": "Operations platform for logistics and transportation companies. Live fleet tracking, dispatch, CRM, accounting, and HR — one dashboard, not six tabs.",
+      "description": "Built for a logistics operator: live fleet tracking, dispatch, CRM, accounting, and HR — one dashboard, not six tabs.",
       "feature1": {
         "title": "Live fleet tracking",
         "description": "Real-time GPS, dispatch assignment, and route optimization per vehicle."
@@ -430,36 +528,35 @@
   },
   "Pricing": {
     "Hero": {
-      "title": "Let's find the right scope.",
-      "subtitle": "Three short questions. One recommended package. No bait, no bundling you don't need.",
       "titleStart": "Let's find the",
       "titleAccent": "right",
-      "titleEnd": " scope."
+      "titleEnd": " scope.",
+      "subtitle": "Three short questions. One recommended scope. The next step is always a call — no checkout, no pressure."
     },
     "Breadcrumb": {
       "edit": "Edit"
     },
     "Questions": {
       "q1": {
-        "prompt": "What are you building?",
+        "prompt": "What do you need handled?",
         "options": {
-          "website": "A website",
-          "chatbot": "A chatbot",
-          "both": "Both — a website and a chatbot",
-          "other": "Something else"
+          "phones": "My phones — calls answered, jobs booked",
+          "leads": "My leads — auto-quoted and followed up",
+          "operations": "My operations — dispatch, crews, tracking",
+          "unsure": "Not sure — help me scope it"
         }
       },
       "q2": {
-        "prompt": "Bilingual?",
-        "hint": "English + Spanish, authored natively (not translated).",
+        "prompt": "How big is the operation?",
+        "hint": "Rough is fine — this just sizes the scope.",
         "options": {
-          "yes": "Yes — English and Spanish",
-          "english": "English only",
-          "unsure": "Not sure yet"
+          "solo": "Owner-operated — 1 to 3 people",
+          "team": "Small team — 4 to 15",
+          "fleet": "15+ people or multiple crews"
         }
       },
       "q3": {
-        "prompt": "When does it need to be live?",
+        "prompt": "When do you want it live?",
         "options": {
           "fast": "2–4 weeks",
           "medium": "1–2 months",
@@ -469,88 +566,57 @@
     },
     "Recommendation": {
       "eyebrow": "Based on your answers",
-      "perMonth": "/mo",
-      "seeAlt": "See alternate: {tier}",
+      "seeAlt": "See alternate: {scope}",
       "hideAlt": "Hide alternate",
       "altLabel": "Also worth considering",
-      "cta": "Book a call to confirm this",
-      "restart": "Answer the questions again"
+      "cta": "Schedule a call",
+      "restart": "Answer the questions again",
+      "priceNote": "Exact pricing depends on scope. You get a straight number on the call — before any money moves."
     },
-    "Tiers": {
-      "starter": {
-        "name": "Starter",
-        "tagline": "A focused build, shipped fast.",
+    "Scopes": {
+      "voice": {
+        "name": "AI voice agent",
+        "tagline": "Your phones answered and your jobs booked — 24/7, English y español.",
         "inclusions": [
-          "3-page site or single-purpose chatbot",
-          "24/7 lead capture",
-          "Mobile-ready, SEO-ready on launch",
-          "14 days of post-launch support"
+          "An agent trained on your business, services, and rules",
+          "After-hours, weekend, and overflow answering",
+          "Qualifies the caller, quotes the job, books it",
+          "Every call logged to your CRM or inbox",
+          "Bilingual by default — switches languages mid-call"
         ]
       },
-      "business": {
-        "name": "Business",
-        "tagline": "Website + chatbot + real support in one scope.",
+      "pipeline": {
+        "name": "Lead pipeline automation",
+        "tagline": "Leads answered, quoted, and followed up before your competitor calls back.",
         "inclusions": [
-          "Up to 7-page site",
-          "Chatbot trained on your SOPs",
-          "Basic SEO + blog setup",
-          "CRM integration",
-          "30 days of post-launch support"
+          "Instant response to new leads from your lead sources",
+          "Auto-quoting from your pricing rules",
+          "Follow-up sequences that don't forget",
+          "Booked jobs synced to your calendar and CRM"
         ]
       },
-      "professional": {
-        "name": "Professional",
-        "tagline": "Room for complex scope, with a dedicated PM.",
+      "platform": {
+        "name": "Custom operations platform",
+        "tagline": "Dispatch, crews, tracking, and paperwork — one dashboard, not six tabs.",
         "inclusions": [
-          "Custom website and app design",
-          "Unlimited pages",
-          "Advanced chatbot with custom training",
-          "Full SEO scope",
-          "CMS for your team to update",
-          "Dedicated project manager"
+          "Scoped around your actual workflow",
+          "Dispatch, fleet, CRM, and reporting where you need them",
+          "Driver and crew apps where they earn their keep",
+          "Integrates with the tools you already run"
         ]
       }
     },
     "Rationale": {
-      "starterFast": "You need a focused site live in the next few weeks. Starter fits the scope; Business is there if you add more later.",
-      "starterChatbotFast": "A chatbot for your current site, shipped in weeks. Starter keeps the scope tight.",
-      "businessBilingualFast": "Bilingual done right — authored in both languages — pushes you past Starter. Business covers it without Professional's overhead.",
-      "businessBoth": "A website and a chatbot in one scope. Business handles both without stepping up to Professional.",
-      "businessMedium": "You've got a month or two, which means room to do both well. Business is the right center point.",
-      "professionalComplex": "Both a site and a chatbot, bilingual, on a longer timeline. Professional gives you the room and a dedicated PM.",
-      "professionalFlexible": "No rush, and you want it done right in both languages. Professional covers the depth without cutting corners."
+      "voiceFast": "You need the phones handled and you need it soon. A voice agent trained on your business typically goes live in one to two weeks.",
+      "voiceDefault": "Calls answered, jobs booked, nothing walking away after hours. A voice agent is the tightest scope that fixes it.",
+      "pipelineDefault": "Your leads are the leak — speed to first response wins those jobs. Pipeline automation answers, quotes, and follows up without a human in the loop.",
+      "platformFleet": "At your size, the win is one system for dispatch, crews, and tracking instead of six tabs. That's a scoping conversation — we map your workflow first.",
+      "platformDefault": "A platform is built around your workflow, not a template. We scope it on a call so the build matches how your operation actually runs."
     },
     "Consult": {
-      "heading": "Let's talk about it directly.",
-      "subtitle": "\"Something else\" is usually the interesting conversation. Tell us what you need and we'll tell you what it takes — scope, timeline, cost.",
-      "cta": "Book a call"
-    },
-    "AddOns": {
-      "heading": "Enhance this package",
-      "subtitle": "Optional. Toggle what you'd like to include in the conversation.",
-      "perMonth": "/mo",
-      "items": {
-        "bilingual": {
-          "name": "Bilingual add-on",
-          "description": "Spanish site, native copy, hreflang, and bilingual chatbot."
-        },
-        "seo": {
-          "name": "SEO maintenance",
-          "description": "Monthly audit, keyword monitoring, content updates."
-        },
-        "social": {
-          "name": "Social media",
-          "description": "Weekly posts, content creation, engagement monitoring."
-        },
-        "care": {
-          "name": "Care plan",
-          "description": "Backups, updates, security, priority bug fixes."
-        }
-      }
-    },
-    "Status": {
-      "paymentSuccess": "Payment successful. Welcome aboard.",
-      "paymentCanceled": "Payment canceled. Come back whenever you're ready."
+      "heading": "Let's scope it on a call.",
+      "subtitle": "\"Not sure\" is usually the interesting conversation. Tell us what's breaking down and we'll tell you what it takes — scope, timeline, cost.",
+      "cta": "Schedule a call"
     }
   },
   "HowItWorks": {

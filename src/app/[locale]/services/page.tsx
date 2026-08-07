@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ScheduleCallButton } from "@/components/ScheduleCallButton";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle, Code, Palette, Smartphone, Globe, Bot, Languages, ArrowRight } from "lucide-react";
+import { CheckCircle, Code, Truck, Workflow, ImageIcon, Bot, Languages, ArrowRight } from "lucide-react";
 import ConsultationForm from "@/components/ConsultationForm";
 import { FooterCTA } from "@/components/ui/footer-cta";
 
@@ -18,37 +18,40 @@ export default function Services() {
 
   const services = [
     {
-      id: "aiChatbots",
+      id: "aiVoice",
       icon: <Bot className="h-8 w-8" />,
       image: "/images/services/ai-chatbots-agents.png",
-      link: "/services/ai-chatbots",
+      link: "/services/ai-voice-agents",
     },
     {
-      id: "bilingualWeb",
+      id: "dispatch",
+      icon: <Truck className="h-8 w-8" />,
+      image: "/images/services/mobile-app-development.png",
+      link: "/services/dispatch-operations-platforms",
+    },
+    {
+      id: "leadPipeline",
+      icon: <Workflow className="h-8 w-8" />,
+      image: "/images/services/web-development.png",
+      link: "/services/lead-pipeline-automation",
+    },
+    {
+      id: "aiEstimating",
+      icon: <ImageIcon className="h-8 w-8" />,
+      image: "/images/services/ui-ux-design.png",
+      link: "/services/ai-estimating-tools",
+    },
+    {
+      id: "bilingualAutomation",
       icon: <Languages className="h-8 w-8" />,
       image: "/images/services/bilingual-web-development.png",
-      link: "/services/bilingual-web-development",
+      link: "/services/bilingual-ai-automation",
     },
     {
-      id: "webDev",
-      icon: <Globe className="h-8 w-8" />,
-      image: "/images/services/web-development.png",
-    },
-    {
-      id: "mobileApp",
-      icon: <Smartphone className="h-8 w-8" />,
-      image: "/images/services/mobile-app-development.png",
-    },
-    {
-      id: "uiUx",
-      icon: <Palette className="h-8 w-8" />,
-      image: "/images/services/ui-ux-design.png",
-    },
-    {
-      id: "brandIdentity",
-      icon: <Palette className="h-8 w-8" />,
+      id: "customSoftware",
+      icon: <Code className="h-8 w-8" />,
       image: "/images/services/brand-identity.png",
-      link: "/services/brand-identity",
+      link: "/services/custom-business-software",
     },
   ];
 
@@ -73,6 +76,9 @@ export default function Services() {
       {/* Services Grid */}
       <section className="bg-gray-100 dark:bg-neutral-900 py-16 px-6">
         <div className="max-w-6xl mx-auto">
+          <h2 className="mb-10 text-center text-2xl font-medium tracking-[-0.02em] text-foreground md:text-3xl">
+            {t('GridTitle')}
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => {
               const cardContent = (
@@ -144,7 +150,7 @@ export default function Services() {
               );
 
               return service.link ? (
-                <Link key={index} href={service.link} className="block">
+                <Link key={index} href={`/en${service.link}`} hrefLang="en" className="block">
                   {cardContent}
                 </Link>
               ) : (

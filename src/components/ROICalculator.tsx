@@ -199,13 +199,21 @@ export default function ROICalculator() {
                 </div>
               </div>
 
-              <div className="space-y-5">
+              <form
+                className="space-y-5"
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  calculateROI();
+                }}
+              >
                 {/* Industry Select */}
                 <div>
-                  <label className="block text-sm font-light text-foreground mb-2">
+                  <label htmlFor="roi-industry" className="block text-sm font-light text-foreground mb-2">
                     {t("inputs.industry.label")}
                   </label>
                   <select
+                    id="roi-industry"
+                    name="industry"
                     value={industry}
                     onChange={(e) => setIndustry(e.target.value)}
                     className={`w-full px-4 py-3 rounded-lg border ${
@@ -229,10 +237,12 @@ export default function ROICalculator() {
 
                 {/* Customers per Month */}
                 <div>
-                  <label className="block text-sm font-light text-foreground mb-2">
+                  <label htmlFor="roi-customers" className="block text-sm font-light text-foreground mb-2">
                     {t("inputs.customers.label")}
                   </label>
                   <input
+                    id="roi-customers"
+                    name="customersPerMonth"
                     type="number"
                     value={customersPerMonth}
                     onChange={(e) => setCustomersPerMonth(e.target.value)}
@@ -251,7 +261,7 @@ export default function ROICalculator() {
 
                 {/* Revenue per Customer */}
                 <div>
-                  <label className="block text-sm font-light text-foreground mb-2">
+                  <label htmlFor="roi-revenue" className="block text-sm font-light text-foreground mb-2">
                     {t("inputs.revenue.label")}
                   </label>
                   <div className="relative">
@@ -259,6 +269,8 @@ export default function ROICalculator() {
                       $
                     </span>
                     <input
+                      id="roi-revenue"
+                      name="revenuePerCustomer"
                       type="number"
                       value={revenuePerCustomer}
                       onChange={(e) => setRevenuePerCustomer(e.target.value)}
@@ -278,10 +290,12 @@ export default function ROICalculator() {
 
                 {/* City */}
                 <div>
-                  <label className="block text-sm font-light text-foreground mb-2">
+                  <label htmlFor="roi-city" className="block text-sm font-light text-foreground mb-2">
                     {t("inputs.city.label")}
                   </label>
                   <select
+                    id="roi-city"
+                    name="city"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
                     className={`w-full px-4 py-3 rounded-lg border ${
@@ -336,13 +350,13 @@ export default function ROICalculator() {
 
                 {/* Calculate Button */}
                 <button
-                  onClick={calculateROI}
+                  type="submit"
                   className="w-full py-4 px-6 rounded-full font-normal text-sm text-white bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 flex items-center justify-center gap-2"
                 >
                   {t("calculateButton")}
                   <ArrowRight className="h-5 w-5" />
                 </button>
-              </div>
+              </form>
             </div>
           </motion.div>
         )}
@@ -371,31 +385,49 @@ export default function ROICalculator() {
 
               <form onSubmit={handleLeadSubmit} className="space-y-4">
                 <div>
+                  <label htmlFor="roi-lead-name" className="mb-2 block text-sm font-light text-foreground">
+                    {t("leadCapture.name")}
+                  </label>
                   <input
+                    id="roi-lead-name"
+                    name="name"
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder={t("leadCapture.name")}
+                    autoComplete="name"
                     required
                     className="w-full px-4 py-3 rounded-lg border border-border bg-card text-foreground focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
                   />
                 </div>
                 <div>
+                  <label htmlFor="roi-lead-email" className="mb-2 block text-sm font-light text-foreground">
+                    {t("leadCapture.email")}
+                  </label>
                   <input
+                    id="roi-lead-email"
+                    name="email"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder={t("leadCapture.email")}
+                    autoComplete="email"
                     required
                     className="w-full px-4 py-3 rounded-lg border border-border bg-card text-foreground focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
                   />
                 </div>
                 <div>
+                  <label htmlFor="roi-lead-phone" className="mb-2 block text-sm font-light text-foreground">
+                    {t("leadCapture.phone")}
+                  </label>
                   <input
+                    id="roi-lead-phone"
+                    name="phone"
                     type="tel"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder={t("leadCapture.phone")}
+                    autoComplete="tel"
                     className="w-full px-4 py-3 rounded-lg border border-border bg-card text-foreground focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
                   />
                 </div>

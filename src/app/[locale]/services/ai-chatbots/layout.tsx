@@ -9,6 +9,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: "Transform your customer service with custom AI chatbots. Answer questions instantly, qualify leads automatically, and provide 24/7 bilingual support. Get a free consultation today.",
     path: "/services/ai-chatbots",
     locale: locale,
+    hasSpanishEquivalent: false,
+    noIndex: locale === "es",
   });
 
   return {
@@ -37,4 +39,3 @@ export default function AIChatbotsLayout({
 }) {
   return <>{children}</>;
 }
-

@@ -42,7 +42,7 @@ const FloatingChatbot: React.FC = () => {
   // Generate session ID on mount
   const sessionIdRef = useRef<string>('');
   useEffect(() => {
-    sessionIdRef.current = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    sessionIdRef.current = `session_${crypto.randomUUID()}`;
   }, []);
 
   // Initialize conversation when chat opens
@@ -52,7 +52,7 @@ const FloatingChatbot: React.FC = () => {
         const id = await createConversation({
           sessionId: sessionIdRef.current,
           userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : undefined,
-          pageUrl: typeof window !== 'undefined' ? window.location.href : undefined,
+          pageUrl: typeof window !== 'undefined' ? window.location.pathname : undefined,
         });
         setConversationId(id);
         return id;
@@ -78,6 +78,7 @@ const FloatingChatbot: React.FC = () => {
       try {
         await addMessage({
           conversationId: convId,
+          sessionId: sessionIdRef.current,
           role: 'user',
           text,
           hasImage: !!image,
@@ -135,6 +136,7 @@ const FloatingChatbot: React.FC = () => {
         try {
           await addMessage({
             conversationId: convId,
+            sessionId: sessionIdRef.current,
             role: 'model',
             text: finalResponseText,
           });

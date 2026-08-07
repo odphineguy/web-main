@@ -5,7 +5,7 @@ import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-const faqIds = ["q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8"] as const;
+export const homeFaqIds = ["q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8"] as const;
 
 export default function HomeFaq() {
   const t = useTranslations("Home.Faq");
@@ -23,7 +23,7 @@ export default function HomeFaq() {
         {/* Questions on the right */}
         <div className="w-full">
           <AccordionPrimitive.Root type="single" collapsible className="w-full">
-            {faqIds.map((id) => (
+            {homeFaqIds.map((id) => (
               <AccordionPrimitive.Item
                 key={id}
                 value={id}

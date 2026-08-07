@@ -4,10 +4,12 @@ import { Metadata } from "next";
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   return constructMetadata({
-    title: "Portfolio — Our Work & Projects | Abe Media",
-    description: "Explore our portfolio of innovative web development projects, mobile apps, and AI chatbot solutions. See how we help small businesses with bilingual websites and custom digital tools.",
+    title: "Software Portfolio & Case Studies — Abe Media",
+    description: "Explore operational software, AI automation, mobile apps, and selected web projects built by Abe Media for service businesses.",
     path: "/portfolio",
     locale: locale,
+    hasSpanishEquivalent: false,
+    noIndex: locale === "es",
   });
 }
 

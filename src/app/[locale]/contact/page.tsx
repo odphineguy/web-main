@@ -52,14 +52,14 @@ export default function ContactPage() {
 
                   {/* Phone */}
                   <a 
-                    href="tel:+16264814827" 
+                    href="tel:+16267356216"
                     className="flex items-center gap-4 text-muted-foreground hover:text-orange-500 dark:hover:text-orange-400 transition-colors group"
                   >
                     <div className="w-10 h-10 rounded-lg bg-gray-200 dark:bg-neutral-800/50 border border-border flex items-center justify-center group-hover:border-orange-500/50 transition-colors">
                       <Phone className="w-5 h-5 text-orange-500" />
                     </div>
                     <div>
-                      <span>626-481-4827</span>
+                      <span>626-735-6216</span>
                       <p className="text-sm md:text-base font-normal leading-relaxed text-muted-foreground">(Mon-Fri, 9am-5pm PST)</p>
                     </div>
                   </a>
@@ -70,7 +70,7 @@ export default function ContactPage() {
                       <MapPin className="w-5 h-5 text-orange-500" />
                     </div>
                     <div>
-                      <p>1951 W Camelback Rd #269,</p>
+                      <p>2026 W Colter St,</p>
                       <p>Phoenix, AZ 85015</p>
                     </div>
                   </div>

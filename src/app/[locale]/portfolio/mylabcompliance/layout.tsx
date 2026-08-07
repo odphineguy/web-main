@@ -8,6 +8,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: "How a 2-week bug fix turned into a 2+ month partnership that transformed site stability, search rankings, and lead quality. 95% bug reduction, 500 SEO pages, and 981ms load time.",
     path: "/portfolio/mylabcompliance",
     locale: locale,
+    hasSpanishEquivalent: false,
+    noIndex: locale === "es",
   });
 }
 

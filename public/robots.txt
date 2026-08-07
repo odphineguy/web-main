@@ -1,21 +1,48 @@
-# robots.txt for abemedia.online
-# Allow all search engines to crawl the site
-
 User-agent: *
 Allow: /
+Disallow: /api/
 
-# Explicitly allow AI bots
-User-agent: GPTBot
+User-agent: OAI-SearchBot
 Allow: /
+Disallow: /api/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /api/
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /api/
+
+User-agent: Claude-User
+Allow: /
+Disallow: /api/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /api/
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /api/
+
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+
+# Owner-approved policy: allow search and user-request retrieval while
+# declining model-training crawlers.
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
 
 User-agent: Google-Extended
-Allow: /
+Disallow: /
 
-User-agent: CCBot
-Allow: /
-
-# Disallow admin and API routes
-Disallow: /api/
-Disallow: /_next/
-# Sitemap location
 Sitemap: https://abemedia.online/sitemap.xml

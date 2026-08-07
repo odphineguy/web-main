@@ -8,6 +8,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: "How Abe Media built Saguaro Transport a complete operations platform — Dispatch Command Center, Fleet, CRM, HR, Accounting, Driver App, and Client Portal — shipping daily builds from day one.",
     path: "/portfolio/saguarotransport",
     locale: locale,
+    hasSpanishEquivalent: false,
+    noIndex: locale === "es",
   });
 }
 

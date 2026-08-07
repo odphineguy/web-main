@@ -13,13 +13,10 @@ import { useTranslations } from "next-intl";
 import { ArrowRight, Check, Pencil } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
-  addOns,
-  tiers,
-  type AddOnId,
   type Answers,
-  type BilingualAnswer,
-  type ProductAnswer,
-  type TierId,
+  type NeedAnswer,
+  type ScopeId,
+  type SizeAnswer,
   type TimelineAnswer,
 } from "@/lib/pricingData";
 import {
@@ -28,21 +25,19 @@ import {
 } from "@/lib/pricingRecommender";
 
 interface Props {
-  onBookCall: (context: { tierId: TierId | null; selectedAddOns: AddOnId[] }) => void;
+  onBookCall: (context: { scopeId: ScopeId | null }) => void;
 }
 
-const productOptions: ProductAnswer[] = ["website", "chatbot", "both", "other"];
-const bilingualOptions: BilingualAnswer[] = ["yes", "english", "unsure"];
+const needOptions: NeedAnswer[] = ["phones", "leads", "operations", "unsure"];
+const sizeOptions: SizeAnswer[] = ["solo", "team", "fleet"];
 const timelineOptions: TimelineAnswer[] = ["fast", "medium", "flexible"];
 
-const isProductAnswer = (v: string | null): v is ProductAnswer =>
-  v !== null && productOptions.includes(v as ProductAnswer);
-const isBilingualAnswer = (v: string | null): v is BilingualAnswer =>
-  v !== null && bilingualOptions.includes(v as BilingualAnswer);
+const isNeedAnswer = (v: string | null): v is NeedAnswer =>
+  v !== null && needOptions.includes(v as NeedAnswer);
+const isSizeAnswer = (v: string | null): v is SizeAnswer =>
+  v !== null && sizeOptions.includes(v as SizeAnswer);
 const isTimelineAnswer = (v: string | null): v is TimelineAnswer =>
   v !== null && timelineOptions.includes(v as TimelineAnswer);
-
-type QuestionKey = "q1" | "q2" | "q3";
 
 const SETTLE_MS = 220;
 
@@ -57,22 +52,21 @@ export default function PricingDecisionTree({ onBookCall }: Props) {
     const q2 = searchParams.get("q2");
     const q3 = searchParams.get("q3");
     return {
-      product: isProductAnswer(q1) ? q1 : undefined,
-      bilingual: isBilingualAnswer(q2) ? q2 : undefined,
+      need: isNeedAnswer(q1) ? q1 : undefined,
+      size: isSizeAnswer(q2) ? q2 : undefined,
       timeline: isTimelineAnswer(q3) ? q3 : undefined,
     };
   }, [searchParams]);
 
   // Which question is currently being answered?
-  const activeQuestion: QuestionKey | "done" = answers.product === undefined
+  const activeQuestion: "q1" | "q2" | "q3" | "done" = answers.need === undefined
     ? "q1"
-    : answers.bilingual === undefined
+    : answers.size === undefined
       ? "q2"
       : answers.timeline === undefined
         ? "q3"
         : "done";
 
-  const [selectedAddOns, setSelectedAddOns] = useState<Set<AddOnId>>(new Set());
   const [altOpen, setAltOpen] = useState(false);
   const recommendationRef = useRef<HTMLDivElement | null>(null);
   const currentQuestionRef = useRef<HTMLHeadingElement | null>(null);
@@ -89,8 +83,8 @@ export default function PricingDecisionTree({ onBookCall }: Props) {
   const writeAnswers = useCallback(
     (next: Answers) => {
       const params = new URLSearchParams(searchParams.toString());
-      (["product", "bilingual", "timeline"] as const).forEach((key) => {
-        const urlKey = key === "product" ? "q1" : key === "bilingual" ? "q2" : "q3";
+      (["need", "size", "timeline"] as const).forEach((key) => {
+        const urlKey = key === "need" ? "q1" : key === "size" ? "q2" : "q3";
         const value = next[key];
         if (value) params.set(urlKey, value);
         else params.delete(urlKey);
@@ -101,7 +95,7 @@ export default function PricingDecisionTree({ onBookCall }: Props) {
   );
 
   const handleSelect = useCallback(
-    (key: keyof Answers, value: ProductAnswer | BilingualAnswer | TimelineAnswer) => {
+    (key: keyof Answers, value: NeedAnswer | SizeAnswer | TimelineAnswer) => {
       const next = { ...answers, [key]: value } as Answers;
       // Settle animation then commit (auto-advance).
       setTimeout(() => writeAnswers(next), prefersReducedMotion ? 0 : SETTLE_MS);
@@ -111,7 +105,6 @@ export default function PricingDecisionTree({ onBookCall }: Props) {
 
   const restart = useCallback(() => {
     router.replace("?", { scroll: false });
-    setSelectedAddOns(new Set());
     setAltOpen(false);
   }, [router]);
 
@@ -119,12 +112,12 @@ export default function PricingDecisionTree({ onBookCall }: Props) {
     (key: keyof Answers) => {
       const next: Answers = { ...answers };
       // Clear this answer and everything after it.
-      if (key === "product") {
-        next.product = undefined;
-        next.bilingual = undefined;
+      if (key === "need") {
+        next.need = undefined;
+        next.size = undefined;
         next.timeline = undefined;
-      } else if (key === "bilingual") {
-        next.bilingual = undefined;
+      } else if (key === "size") {
+        next.size = undefined;
         next.timeline = undefined;
       } else {
         next.timeline = undefined;
@@ -136,32 +129,18 @@ export default function PricingDecisionTree({ onBookCall }: Props) {
 
   const recommendation = useMemo(() => recommend(answers), [answers]);
 
-  const toggleAddOn = (id: AddOnId) => {
-    setSelectedAddOns((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
-  };
-
-  const visibleAddOns = useMemo(
-    () => addOns.filter((addon) => !addon.conditional || addon.conditional(answers)),
-    [answers],
-  );
-
   // Prior-answer breadcrumb entries: only show answered, earlier-than-active questions.
   const breadcrumb: Array<{ key: keyof Answers; label: string }> = [];
-  if (answers.product) {
+  if (answers.need) {
     breadcrumb.push({
-      key: "product",
-      label: t(`Questions.q1.options.${answers.product}`),
+      key: "need",
+      label: t(`Questions.q1.options.${answers.need}`),
     });
   }
-  if (answers.bilingual) {
+  if (answers.size) {
     breadcrumb.push({
-      key: "bilingual",
-      label: t(`Questions.q2.options.${answers.bilingual}`),
+      key: "size",
+      label: t(`Questions.q2.options.${answers.size}`),
     });
   }
   if (answers.timeline && activeQuestion === "done") {
@@ -202,31 +181,31 @@ export default function PricingDecisionTree({ onBookCall }: Props) {
             key="q1"
             headingRef={currentQuestionRef}
             question={t("Questions.q1.prompt")}
-            options={productOptions.map((opt) => ({
+            options={needOptions.map((opt) => ({
               value: opt,
               label: t(`Questions.q1.options.${opt}`),
             }))}
-            onSelect={(v) => handleSelect("product", v as ProductAnswer)}
+            onSelect={(v) => handleSelect("need", v as NeedAnswer)}
             reduceMotion={!!prefersReducedMotion}
           />
         )}
 
-        {activeQuestion === "q2" && answers.product !== "other" && (
+        {activeQuestion === "q2" && answers.need !== "unsure" && (
           <QuestionBlock
             key="q2"
             headingRef={currentQuestionRef}
             question={t("Questions.q2.prompt")}
             hint={t("Questions.q2.hint")}
-            options={bilingualOptions.map((opt) => ({
+            options={sizeOptions.map((opt) => ({
               value: opt,
               label: t(`Questions.q2.options.${opt}`),
             }))}
-            onSelect={(v) => handleSelect("bilingual", v as BilingualAnswer)}
+            onSelect={(v) => handleSelect("size", v as SizeAnswer)}
             reduceMotion={!!prefersReducedMotion}
           />
         )}
 
-        {activeQuestion === "q3" && answers.product !== "other" && (
+        {activeQuestion === "q3" && answers.need !== "unsure" && (
           <QuestionBlock
             key="q3"
             headingRef={currentQuestionRef}
@@ -240,8 +219,8 @@ export default function PricingDecisionTree({ onBookCall }: Props) {
           />
         )}
 
-        {/* "Something else" consult path */}
-        {answers.product === "other" && (
+        {/* "Not sure" consult path */}
+        {answers.need === "unsure" && (
           <motion.div
             key="consult"
             initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
@@ -260,7 +239,7 @@ export default function PricingDecisionTree({ onBookCall }: Props) {
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
               <button
                 type="button"
-                onClick={() => onBookCall({ tierId: null, selectedAddOns: [] })}
+                onClick={() => onBookCall({ scopeId: null })}
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 {t("Consult.cta")}
@@ -277,23 +256,15 @@ export default function PricingDecisionTree({ onBookCall }: Props) {
           </motion.div>
         )}
 
-        {activeQuestion === "done" && !recommendation.needsConsult && recommendation.tierId && (
+        {activeQuestion === "done" && !recommendation.needsConsult && recommendation.scopeId && (
           <RecommendationBlock
             key="recommendation"
-            tierId={recommendation.tierId}
+            scopeId={recommendation.scopeId}
             altId={recommendation.altId}
             rationaleKey={recommendation.rationaleKey}
             altOpen={altOpen}
             onToggleAlt={() => setAltOpen((o) => !o)}
-            selectedAddOns={selectedAddOns}
-            visibleAddOnIds={visibleAddOns.map((a) => a.id)}
-            onToggleAddOn={toggleAddOn}
-            onBookCall={() =>
-              onBookCall({
-                tierId: recommendation.tierId,
-                selectedAddOns: Array.from(selectedAddOns),
-              })
-            }
+            onBookCall={() => onBookCall({ scopeId: recommendation.scopeId })}
             onRestart={restart}
             ref={recommendationRef}
             reduceMotion={!!prefersReducedMotion}
@@ -390,14 +361,11 @@ function QuestionBlock({
 /* -------- Recommendation block -------- */
 
 interface RecommendationBlockProps {
-  tierId: TierId;
-  altId: TierId | null;
+  scopeId: ScopeId;
+  altId: ScopeId | null;
   rationaleKey: RationaleKey | null;
   altOpen: boolean;
   onToggleAlt: () => void;
-  selectedAddOns: Set<AddOnId>;
-  visibleAddOnIds: AddOnId[];
-  onToggleAddOn: (id: AddOnId) => void;
   onBookCall: () => void;
   onRestart: () => void;
   reduceMotion: boolean;
@@ -405,22 +373,18 @@ interface RecommendationBlockProps {
 }
 
 function RecommendationBlock({
-  tierId,
+  scopeId,
   altId,
   rationaleKey,
   altOpen,
   onToggleAlt,
-  selectedAddOns,
-  visibleAddOnIds,
-  onToggleAddOn,
   onBookCall,
   onRestart,
   reduceMotion,
   ref,
 }: RecommendationBlockProps) {
   const t = useTranslations("Pricing");
-  const tierName = t(`Tiers.${tierId}.name`);
-  const altTierName = altId ? t(`Tiers.${altId}.name`) : "";
+  const altScopeName = altId ? t(`Scopes.${altId}.name`) : "";
 
   return (
     <motion.div
@@ -436,15 +400,10 @@ function RecommendationBlock({
         {t("Recommendation.eyebrow")}
       </p>
 
-      <div className="mt-5 flex flex-wrap items-baseline gap-x-4 gap-y-2">
-        <h2 className="m-0">{tierName}</h2>
-        <span className="text-xl tabular-nums text-muted-foreground">
-          {tiers[tierId].price}
-        </span>
-      </div>
+      <h2 className="mt-5">{t(`Scopes.${scopeId}.name`)}</h2>
 
       <p className="mt-2 text-lg text-foreground">
-        {t(`Tiers.${tierId}.tagline`)}
+        {t(`Scopes.${scopeId}.tagline`)}
       </p>
 
       {rationaleKey && (
@@ -454,7 +413,7 @@ function RecommendationBlock({
       )}
 
       <ul className="mt-8 space-y-3">
-        {(t.raw(`Tiers.${tierId}.inclusions`) as string[]).map((item) => (
+        {(t.raw(`Scopes.${scopeId}.inclusions`) as string[]).map((item) => (
           <li key={item} className="flex items-start gap-3 text-foreground">
             <Check
               aria-hidden
@@ -465,7 +424,11 @@ function RecommendationBlock({
         ))}
       </ul>
 
-      {/* Alternate tier disclosure */}
+      <p className="mt-6 max-w-prose text-sm text-muted-foreground">
+        {t("Recommendation.priceNote")}
+      </p>
+
+      {/* Alternate scope disclosure */}
       {altId && (
         <div className="mt-8 border-t border-border pt-6">
           <button
@@ -476,7 +439,7 @@ function RecommendationBlock({
           >
             {altOpen
               ? t("Recommendation.hideAlt")
-              : t("Recommendation.seeAlt", { tier: altTierName })}
+              : t("Recommendation.seeAlt", { scope: altScopeName })}
           </button>
 
           <AnimatePresence initial={false}>
@@ -493,17 +456,12 @@ function RecommendationBlock({
                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
                     {t("Recommendation.altLabel")}
                   </p>
-                  <div className="mt-3 flex flex-wrap items-baseline gap-x-4 gap-y-1">
-                    <h3 className="m-0 text-xl font-medium">{altTierName}</h3>
-                    <span className="text-base tabular-nums text-muted-foreground">
-                      {tiers[altId].price}
-                    </span>
-                  </div>
+                  <h3 className="mt-3 m-0 text-xl font-medium">{altScopeName}</h3>
                   <p className="mt-2 text-muted-foreground">
-                    {t(`Tiers.${altId}.tagline`)}
+                    {t(`Scopes.${altId}.tagline`)}
                   </p>
                   <ul className="mt-4 space-y-2">
-                    {(t.raw(`Tiers.${altId}.inclusions`) as string[]).map((item) => (
+                    {(t.raw(`Scopes.${altId}.inclusions`) as string[]).map((item) => (
                       <li
                         key={item}
                         className="flex items-start gap-3 text-sm text-muted-foreground"
@@ -520,7 +478,7 @@ function RecommendationBlock({
         </div>
       )}
 
-      {/* Primary CTA */}
+      {/* Primary CTA — always a call, never a checkout */}
       <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
         <button
           type="button"
@@ -538,62 +496,6 @@ function RecommendationBlock({
           {t("Recommendation.restart")}
         </button>
       </div>
-
-      {/* Add-ons */}
-      <section className="mt-20 border-t border-border pt-12">
-        <h3 className="m-0">{t("AddOns.heading")}</h3>
-        <p className="mt-3 text-muted-foreground">{t("AddOns.subtitle")}</p>
-
-        <ul className="mt-8 flex flex-col gap-2">
-          {visibleAddOnIds.map((id) => {
-            const meta = addOns.find((a) => a.id === id)!;
-            const selected = selectedAddOns.has(id);
-            return (
-              <li key={id}>
-                <button
-                  type="button"
-                  role="checkbox"
-                  aria-checked={selected}
-                  onClick={() => onToggleAddOn(id)}
-                  className={cn(
-                    "group flex w-full items-start justify-between gap-6 rounded-xl border px-5 py-4 text-left transition-colors",
-                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-                    selected
-                      ? "border-primary bg-primary/5"
-                      : "border-border hover:border-foreground/40",
-                  )}
-                >
-                  <span className="flex items-start gap-4">
-                    <span
-                      aria-hidden
-                      className={cn(
-                        "mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border transition-colors",
-                        selected
-                          ? "border-primary bg-primary text-primary-foreground"
-                          : "border-border group-hover:border-foreground/40",
-                      )}
-                    >
-                      {selected && <Check className="h-3 w-3" />}
-                    </span>
-                    <span className="flex flex-col">
-                      <span className="text-base font-medium text-foreground">
-                        {t(`AddOns.items.${id}.name`)}
-                      </span>
-                      <span className="mt-1 text-sm text-muted-foreground">
-                        {t(`AddOns.items.${id}.description`)}
-                      </span>
-                    </span>
-                  </span>
-                  <span className="shrink-0 whitespace-nowrap text-sm tabular-nums text-muted-foreground">
-                    {meta.price}
-                    {meta.isMonthly ? t("AddOns.perMonth") : ""}
-                  </span>
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      </section>
     </motion.div>
   );
 }

@@ -23,6 +23,10 @@ export async function POST(req: NextRequest) {
 
   let body: ChatRequestBody;
   try {
+    const contentLength = Number(req.headers.get('content-length') || 0);
+    if (Number.isFinite(contentLength) && contentLength > 50_000) {
+      return new Response(JSON.stringify({ error: 'Request body is too large.' }), { status: 413, headers: { 'Content-Type': 'application/json' } });
+    }
     body = (await req.json()) as ChatRequestBody;
   } catch {
     return new Response(JSON.stringify({ error: 'Invalid JSON body.' }), {
@@ -32,6 +36,19 @@ export async function POST(req: NextRequest) {
   }
 
   const { messages = [], lang = 'en' } = body;
+  if (!Array.isArray(messages) || !['en', 'es'].includes(lang)) {
+    return new Response(JSON.stringify({ error: 'Invalid request.' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
+  }
+  const safeMessages = messages.slice(-20).filter((message) =>
+    message &&
+    (message.role === 'user' || message.role === 'model') &&
+    typeof message.text === 'string' &&
+    message.text.length > 0 &&
+    message.text.length <= 4000
+  );
+  if (safeMessages.length !== Math.min(messages.length, 20) || safeMessages.reduce((total, message) => total + message.text.length, 0) > 20_000) {
+    return new Response(JSON.stringify({ error: 'Invalid message history.' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
+  }
 
   const client = new OpenAI({
     apiKey,
@@ -40,8 +57,7 @@ export async function POST(req: NextRequest) {
 
   const chatMessages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
     { role: 'system', content: getSystemInstruction(lang) },
-    ...messages
-      .filter((m) => m.role === 'user' || m.role === 'model')
+    ...safeMessages
       .map((m) => ({
         role: m.role === 'model' ? ('assistant' as const) : ('user' as const),
         content: m.text,
@@ -79,9 +95,8 @@ export async function POST(req: NextRequest) {
       },
     });
   } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : 'Unknown error';
-    console.error('Groq chat error:', message);
-    return new Response(JSON.stringify({ error: message }), {
+    console.error('Groq chat error:', error instanceof Error ? error.message : 'Unknown error');
+    return new Response(JSON.stringify({ error: 'The assistant is temporarily unavailable.' }), {
       status: 502,
       headers: { 'Content-Type': 'application/json' },
     });

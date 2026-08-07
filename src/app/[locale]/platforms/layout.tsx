@@ -8,6 +8,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: "Purpose-built software platforms for growing businesses. Saguaro Transport: complete operations management for trucking and logistics companies with fleet tracking, CRM, accounting, and HR tools.",
     path: "/platforms",
     locale: locale,
+    hasSpanishEquivalent: false,
+    noIndex: locale === "es",
   });
 }
 

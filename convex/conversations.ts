@@ -9,13 +9,14 @@ export const createConversation = mutation({
     pageUrl: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
+    if (!/^session_[0-9a-f-]{36}$/.test(args.sessionId)) throw new Error("Invalid session");
     const now = Date.now();
     const conversationId = await ctx.db.insert("conversations", {
       sessionId: args.sessionId,
       startedAt: now,
       lastMessageAt: now,
-      userAgent: args.userAgent,
-      pageUrl: args.pageUrl,
+      userAgent: args.userAgent?.slice(0, 500),
+      pageUrl: args.pageUrl?.slice(0, 240),
       status: "active",
     });
     return conversationId;
@@ -26,11 +27,16 @@ export const createConversation = mutation({
 export const addMessage = mutation({
   args: {
     conversationId: v.id("conversations"),
+    sessionId: v.string(),
     role: v.string(),
     text: v.string(),
     hasImage: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
+    if (!/^session_[0-9a-f-]{36}$/.test(args.sessionId)) throw new Error("Invalid session");
+    const conversation = await ctx.db.get(args.conversationId);
+    if (!conversation || conversation.sessionId !== args.sessionId) throw new Error("Unauthorized");
+    if (!['user', 'model', 'error'].includes(args.role) || args.text.length > 8000) throw new Error("Invalid message");
     const now = Date.now();
     
     // Insert the message
@@ -55,8 +61,11 @@ export const addMessage = mutation({
 export const closeConversation = mutation({
   args: {
     conversationId: v.id("conversations"),
+    sessionId: v.string(),
   },
   handler: async (ctx, args) => {
+    const conversation = await ctx.db.get(args.conversationId);
+    if (!conversation || conversation.sessionId !== args.sessionId) throw new Error("Unauthorized");
     await ctx.db.patch(args.conversationId, {
       status: "closed",
     });
@@ -81,8 +90,11 @@ export const getConversationBySession = query({
 export const getMessages = query({
   args: {
     conversationId: v.id("conversations"),
+    sessionId: v.string(),
   },
   handler: async (ctx, args) => {
+    const conversation = await ctx.db.get(args.conversationId);
+    if (!conversation || conversation.sessionId !== args.sessionId) throw new Error("Unauthorized");
     const messages = await ctx.db
       .query("messages")
       .withIndex("by_conversation", (q) => q.eq("conversationId", args.conversationId))
@@ -98,7 +110,9 @@ export const getRecentConversations = query({
     limit: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
-    const limit = args.limit ?? 50;
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity || !process.env.ADMIN_EMAIL || identity.email !== process.env.ADMIN_EMAIL) throw new Error("Unauthorized");
+    const limit = Math.min(Math.max(args.limit ?? 50, 1), 100);
     const conversations = await ctx.db
       .query("conversations")
       .withIndex("by_lastMessage")
@@ -114,6 +128,8 @@ export const getConversationWithMessages = query({
     conversationId: v.id("conversations"),
   },
   handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity || !process.env.ADMIN_EMAIL || identity.email !== process.env.ADMIN_EMAIL) throw new Error("Unauthorized");
     const conversation = await ctx.db.get(args.conversationId);
     if (!conversation) return null;
     

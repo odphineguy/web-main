@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { FooterCTA } from "@/components/ui/footer-cta";
 import ConsultationForm from "@/components/ConsultationForm";
+import { useLocale } from "next-intl";
 
 // Animated counter component
 function AnimatedCounter({
@@ -74,6 +75,7 @@ function AnimatedCounter({
 }
 
 export default function CaseStudyMyLabCompliance() {
+  const locale = useLocale();
   const [activeMetric, setActiveMetric] = useState<string | null>(null);
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
 
@@ -146,7 +148,7 @@ export default function CaseStudyMyLabCompliance() {
         <div className="max-w-5xl mx-auto relative">
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
-            <Link href="/portfolio" className="hover:text-orange-500 transition-colors flex items-center gap-1">
+            <Link href={`/${locale}/portfolio`} className="hover:text-orange-500 transition-colors flex items-center gap-1">
               <ArrowLeft className="w-4 h-4" />
               Portfolio
             </Link>

@@ -13,6 +13,7 @@ import TopNavbar from "@/components/TopNavbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ConvexClientProvider } from "@/components/ConvexClientProvider";
 import { Analytics } from "@vercel/analytics/react";
+import { AttributionCapture } from "@/components/AttributionCapture";
 import { Instagram, Facebook, Music2, Twitter } from "lucide-react";
 
 // Lazy load the chatbot to reduce initial bundle size (code-splitting)
@@ -45,23 +46,17 @@ const spectral = Spectral({
 export const metadata: Metadata = {
   metadataBase: new URL("https://abemedia.online"),
   title: {
-    default: "Abe Media — Bilingual Web Development & AI Solutions for Small Business",
+    default: "Abe Media — AI Agents, Dispatch Software & Bilingual Automation",
     template: "%s | Abe Media",
   },
-  description: "Professional bilingual web development, AI chatbots, and custom digital solutions for small businesses. Modern websites, mobile apps, and AI automation in English & Spanish. Get started with a free consultation.",
+  description: "Abe Media builds AI agents, dispatch software, and bilingual automation for service businesses, grounded in real dispatch and operations experience.",
   keywords: [
-    "small business website",
-    "bilingual website",
-    "AI chatbots",
-    "web development",
-    "mobile app development",
-    "custom software",
-    "bilingual digital solutions",
-    "small business automation",
-    "AI agents",
-    "website design",
-    "English Spanish website",
-    "business website",
+    "AI voice agents",
+    "dispatch software",
+    "lead pipeline automation",
+    "bilingual AI automation",
+    "custom business software",
+    "service business automation",
   ],
   authors: [{ name: "Abe Media" }],
   creator: "Abe Media",
@@ -90,8 +85,8 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://abemedia.online",
     siteName: "Abe Media",
-    title: "Abe Media — Bilingual Web Development & AI Solutions for Small Business",
-    description: "Professional bilingual web development, AI chatbots, and custom digital solutions for small businesses. Modern websites, mobile apps, and AI automation in English & Spanish.",
+    title: "Abe Media — AI Agents, Dispatch Software & Bilingual Automation",
+    description: "AI agents, dispatch software, and bilingual automation for service businesses.",
     locale: "en_US",
     alternateLocale: ["es_US", "es_MX"],
     images: [
@@ -99,14 +94,14 @@ export const metadata: Metadata = {
         url: "/images/portfolio/og.png",
         width: 1200,
         height: 630,
-        alt: "Abe Media - Bilingual Web Development & AI Solutions",
+        alt: "Abe Media — AI agents, dispatch software, and bilingual automation",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Abe Media — Bilingual Web Development & AI Solutions",
-    description: "Professional bilingual web development, AI chatbots, and custom digital solutions for small businesses.",
+    title: "Abe Media — AI Agents, Dispatch Software & Bilingual Automation",
+    description: "AI agents, dispatch software, and bilingual automation for service businesses.",
     images: ["/images/portfolio/og.png"],
     creator: "@abe_vision",
   },
@@ -120,18 +115,19 @@ export const metadata: Metadata = {
   },
 };
 
-function Footer() {
+function Footer({ locale }: { locale: string }) {
   const t = useTranslations('Footer');
   return (
     <footer className="border-t border-border py-6">
       <div className="mx-auto max-w-6xl px-6 grid grid-cols-1 sm:grid-cols-3 items-center gap-4">
         <div className="flex justify-center sm:justify-start">
-          <Link href="/" aria-label="Abe Media">
+          <Link href={`/${locale}`} aria-label="Abe Media">
             <Image src="/images/portfolio/abemedia.logo.nobg.png" alt="Abe Media" width={120} height={24} className="h-6 w-auto" />
           </Link>
         </div>
         <div className="text-center">
           <p className="text-xs text-muted-foreground">{t('copyright')}</p>
+          <p className="mt-1 text-xs text-muted-foreground">{t('entity')}</p>
         </div>
         <div className="flex justify-center sm:justify-end text-muted-foreground gap-5">
           <a href="https://x.com/abe_vision" target="_blank" rel="noreferrer" aria-label="Twitter" className="transition-colors">
@@ -175,10 +171,27 @@ export default async function RootLayout({
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": "https://abemedia.online/#organization",
     name: "Abe Media",
     url: "https://abemedia.online",
     logo: "https://abemedia.online/images/portfolio/abemedia.black.svg",
-    description: "Professional bilingual web development, AI chatbots, and custom digital solutions for small businesses.",
+    description: "Abe Media builds AI agents, dispatch software, and bilingual automation for service businesses. Its work includes AI voice agents, operations platforms, lead-pipeline integrations, AI estimating tools, and custom applications grounded in real dispatch and operations experience.",
+    parentOrganization: {
+      "@type": "Organization",
+      name: "Abevision LLC",
+    },
+    founder: {
+      "@type": "Person",
+      name: "Abe Perez",
+    },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "2026 W Colter St",
+      addressLocality: "Phoenix",
+      addressRegion: "AZ",
+      postalCode: "85015",
+      addressCountry: "US",
+    },
     sameAs: [
       "https://x.com/abe_vision",
       "https://www.instagram.com/abevision_",
@@ -188,34 +201,36 @@ export default async function RootLayout({
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
+      telephone: "+1-626-735-6216",
+      email: "abe@abemedia.online",
       availableLanguage: ["English", "Spanish"],
+      areaServed: "US",
     },
-    areaServed: "US",
+    areaServed: {
+      "@type": "Country",
+      name: "United States",
+    },
     knowsAbout: [
-      "Web Development",
-      "AI Chatbots",
-      "Mobile App Development",
-      "Bilingual Websites",
-      "UI/UX Design",
-      "Custom Software Development",
+      "AI voice agents",
+      "Dispatch and operations software",
+      "Lead-pipeline automation",
+      "AI estimating tools",
+      "Bilingual English-Spanish automation",
+      "Custom business software",
     ],
   };
 
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": "https://abemedia.online/#website",
     name: "Abe Media",
     url: "https://abemedia.online",
-    description: "Professional bilingual web development, AI chatbots, and custom digital solutions for small businesses.",
+    description: "AI agents, dispatch software, and bilingual automation for service businesses.",
     publisher: {
-      "@type": "Organization",
-      name: "Abe Media",
-      logo: {
-        "@type": "ImageObject",
-        url: "https://abemedia.online/images/portfolio/abemedia.black.svg"
-      }
+      "@id": "https://abemedia.online/#organization",
     },
-    inLanguage: ["en-US", "es-US", "es-MX"],
+    inLanguage: ["en-US", "es-US"],
   };
 
   // Normal static/dynamic behavior restored
@@ -251,18 +266,19 @@ export default async function RootLayout({
       <body className={`${manrope.variable} ${spectral.variable} font-sans antialiased`}>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema).replace(/</g, "\\u003c") }}
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema).replace(/</g, "\\u003c") }}
         />
         <ThemeProvider>
+          <AttributionCapture />
           <NextIntlClientProvider messages={messages}>
             <ConvexClientProvider>
             <TopNavbar />
             <main className="min-h-screen">{children}</main>
-            <Footer />
+            <Footer locale={locale} />
             <FloatingChatbot />
             <Analytics />
             </ConvexClientProvider>

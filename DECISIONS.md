@@ -1,5 +1,62 @@
 # Decisions
 
+## 2026-08-07 — Hero rebuild + cleanup pass (single-offer positioning)
+
+**Decision.** Executed `docs/abemedia-hero-cleanup-spec.md`: locked the site around
+the bilingual AI voice agent. New hero (badge / H1 "never miss a call. 24/7." /
+tel: primary CTA to (669) 669-4486 — big button on mobile, large-number card on
+desktop — secondary "Schedule a call" → /contact), new three-column 01/02/03 jab
+section, transcript widget relabeled "Recorded intake call — real AI, unedited /
+Junk removal after-hours call — English y español". Elena/Maya de-named sitewide
+to "the (demo) agent"; MayaLiveDemo → AgentLiveDemo rebuilt two-column (try-this
+bullets left, designed call card with availability badge + embedded ElevenLabs
+widget right). Pricing quiz rebuilt: Q1 phones/leads/operations/unsure →
+scope recommendation (voice / pipeline / platform) + Schedule-a-call; website
+and chatbot removed as quiz paths; old Tiers/AddOns/Status messages deleted.
+Stripe fully removed (api/checkout deleted, brand-identity buttons → consultation
+modal, packages uninstalled, keys stripped from .env.local). Calculator defaults
+to Junk removal; law + dental dropped; junk/moving/waste added (prefills: junk
+.55/$400, moving .40/$1500, waste .50/$500). Testimonial two-up with Rejunk stat
+card ($1,644→$582 weekly spend, CPL $32→$17). Saguaro reframed as client work.
+Full EN/ES parity. Build clean; all 37 sitemap URLs 200 locally.
+
+**Reality-vs-spec divergences.**
+- *No price ranges in the quiz end states.* Spec said "keep price ranges" if the
+  quiz displayed prices — but the displayed prices were the dead website tiers
+  ($499/$1,499/$3,500), and no approved figures exist anywhere for voice/pipeline/
+  platform (the old PLATFORMS_PRICING_SPEC explicitly left them as placeholders
+  for Abe). Inventing prices is a business decision; end states show scope +
+  "straight number on the call" note instead. **Abe: supply ranges if wanted.**
+- *Transcript widget label vs. content.* Per spec the label now says "Junk removal
+  after-hours call" while the kept audio/transcript is still the law-firm PI call
+  (swap is a separate task). Spoken transcript lines keep "Elena"/"Sonoran
+  Justice" verbatim (they transcribe the actual recording); editorial note rows
+  were de-named. Swap the recording ASAP — the mismatch is visible.
+- *`elena-ai-voice-agent` slug kept.* Renaming the live portfolio URL breaks the
+  37-URL contract; display copy de-named instead. Flag: rename+redirect later if
+  Abe wants zero grep hits.
+- *Dead ElenaAudioPlayer removed* from ChatDemoShowcase (probed for audio files
+  that don't exist; never rendered).
+- *Commit includes prior uncommitted work.* The working tree already carried a
+  large uncommitted GEO/discoverability build (new /about, /faq, /guides,
+  /industries, /services/[slug], /portfolio/[slug] routes, llms.txt, navbar/meta
+  changes, deleted after-hours assets + old spec files). The sitemap and build
+  depend on it, so it ships in the same verified commit rather than being split.
+
+**Flagged for review (intentional survivors of the §9 greps).**
+- Law-firm mentions: chat-demo "Legal" tab (chatDemoData), bilingual-seo-phoenix
+  "Law Firms" chip, bilingual-web-development vertical, ai-chatbots service page,
+  Calculator ES "Servicios Profesionales (Legal…)" option, voice-agent case study
+  (history/portfolio context).
+- "Chatbot" beyond the allowed two spots: /chatbot route + Ashlee stack, the
+  /services/ai-chatbots page, mylabcompliance case study, Sam's testimonial quote
+  (kept verbatim per spec §7), ConsultationForm add-on option.
+
+**Manual steps for Abe (not attempted).** Delete STRIPE_SECRET_KEY and
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY from Vercel env vars; roll/revoke the live
+secret key in the Stripe dashboard (it was in .env.local as sk_live_…). New
+ElevenLabs junk-removal recording still pending.
+
 ## 2026-07-19 (later) — Gemini live-voice mode removed from /chatbot
 
 **Decision.** Stripped the browser-side Gemini live-voice session from

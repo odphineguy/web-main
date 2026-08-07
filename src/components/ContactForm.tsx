@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import TurnstileWidget from "@/components/TurnstileWidget";
 import { humanizeError, isValidEmail } from "@/lib/humanizeError";
+import { getLeadAttribution } from "@/lib/leadAttribution";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -44,6 +45,7 @@ export default function ContactForm() {
 
     const payload = {
       ...Object.fromEntries(formData.entries()),
+      ...getLeadAttribution(),
       "cf-turnstile-response": turnstileToken,
     };
 
@@ -121,6 +123,18 @@ export default function ContactForm() {
           <option value="General Inquiry">General Inquiry</option>
           <option value="Project Proposal">Project Proposal</option>
           <option value="Support">Support</option>
+        </select>
+      </div>
+      <div className="grid gap-2">
+        <label htmlFor="referralSource" className="text-sm text-foreground font-medium">How did you hear about Abe Media?</label>
+        <select id="referralSource" name="referralSource" required className={`${inputStyles} cursor-pointer`}>
+          <option value="">Select one</option>
+          <option value="AI search or assistant">AI search or assistant</option>
+          <option value="Google or Bing">Google or Bing</option>
+          <option value="Client or colleague referral">Client or colleague referral</option>
+          <option value="Clutch or directory">Clutch or directory</option>
+          <option value="Social media">Social media</option>
+          <option value="Other">Other</option>
         </select>
       </div>
       <div className="grid gap-2">

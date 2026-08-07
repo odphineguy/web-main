@@ -32,6 +32,10 @@ export default defineSchema({
     email: v.string(),
     subject: v.optional(v.string()),
     message: v.string(),
+    referralSource: v.optional(v.string()),
+    landingPage: v.optional(v.string()),
+    firstTouchSource: v.optional(v.string()),
+    utmCampaign: v.optional(v.string()),
     submittedAt: v.number(),
   })
     .index("by_email", ["email"])
@@ -53,6 +57,10 @@ export default defineSchema({
     company: v.optional(v.string()),
     service: v.optional(v.string()),
     description: v.string(),
+    referralSource: v.optional(v.string()),
+    landingPage: v.optional(v.string()),
+    firstTouchSource: v.optional(v.string()),
+    utmCampaign: v.optional(v.string()),
     submittedAt: v.number(),
   })
     .index("by_email", ["email"])

@@ -1,0 +1,32 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { constructMetadata } from "@/lib/seo";
+
+const baseUrl = "https://abemedia.online";
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return constructMetadata({ title: "Abe Perez — Founder of Abe Media | Operations Software Builder", description: "Meet Abe Perez, Phoenix-based founder of Abe Media and an operations-software builder with 17 years at Waste Management.", path: "/about/abe-perez", locale, hasSpanishEquivalent: false, noIndex: locale !== "en" });
+}
+
+export default async function AbePerezPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  if (locale !== "en") notFound();
+  const person = { "@context": "https://schema.org", "@type": "Person", "@id": `${baseUrl}/en/about/abe-perez#person`, name: "Abe Perez", jobTitle: "Founder", worksFor: { "@id": `${baseUrl}/#organization` }, homeLocation: { "@type": "Place", name: "Phoenix, Arizona" }, knowsAbout: ["AI voice agents", "Dispatch and operations software", "Lead-pipeline automation", "Bilingual English-Spanish automation", "Waste management operations", "Commercial hauling operations"] };
+  const profile = { "@context": "https://schema.org", "@type": "ProfilePage", "@id": `${baseUrl}/en/about/abe-perez#profile`, url: `${baseUrl}/en/about/abe-perez`, name: "Abe Perez — Founder of Abe Media", dateCreated: "2026-08-06", dateModified: "2026-08-06", mainEntity: { "@id": `${baseUrl}/en/about/abe-perez#person` }, publisher: { "@id": `${baseUrl}/#organization` } };
+  const safe = (value: unknown) => JSON.stringify(value).replace(/</g, "\\u003c");
+  return (
+    <main className="min-h-screen bg-background text-foreground">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safe(person) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safe(profile) }} />
+      <header className="border-b border-border bg-[radial-gradient(circle_at_top_right,rgba(234,88,12,0.14),transparent_40%)] px-6 py-16 md:py-24">
+        <div className="mx-auto max-w-6xl"><p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Founder · Phoenix, Arizona</p><h1 className="mt-5 max-w-5xl text-4xl font-medium tracking-[-0.035em] md:text-6xl">I ran dispatch before I automated it.</h1><p className="mt-7 max-w-3xl text-lg leading-8 text-muted-foreground md:text-xl">I&apos;m Abe Perez, founder of Abe Media. I build AI agents and operations software for service businesses using the lessons from 17 years at Waste Management.</p></div>
+      </header>
+      <section className="px-6 py-16 md:py-24"><div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.7fr_1.3fr]"><div><p className="text-sm font-semibold uppercase tracking-[0.16em] text-primary">Operating background</p><h2 className="mt-3 text-3xl font-medium">The software starts with the exception</h2></div><div className="space-y-6 text-lg leading-8 text-muted-foreground"><p>Before Abe Media, I worked in Waste Management operations in Southern California, including as a Dispatch Operations Manager during the recycLA era. My dispatch organization supported 300+ vehicles, and I managed 27 direct reports.</p><p>That work was not a clean sequence of dots on a map. It meant blocked stops, locked gates, contamination, overweight containers, wrong locations, customer escalations, driver constraints, and reporting requirements. Every exception needed an owner and a next action.</p><p>I now build the tools I wanted operators to have: one view of the work, a clear handoff, and a record that explains what happened. References to Waste Management and recycLA describe prior experience; they do not imply a current affiliation.</p></div></div></section>
+      <section className="border-y border-border bg-muted/35 px-6 py-16 md:py-20"><div className="mx-auto max-w-6xl"><h2 className="text-3xl font-medium">What I bring to a build</h2><ul className="mt-9 grid gap-4 md:grid-cols-2">{["17 years at Waste Management", "English-and-Spanish customer and staff workflows", "Production software for transportation, compliance, lead automation, and estimating", "An operator's focus on failure states, escalation, and accountability", "Founder-led scoping with direct access to the person designing the system", "A phased approach that proves the core workflow before expansion"].map((item) => <li key={item} className="flex gap-3 rounded-2xl border border-border bg-background p-5"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" /><span>{item}</span></li>)}</ul></div></section>
+      <section className="px-6 py-16 md:py-24"><div className="mx-auto max-w-6xl"><p className="text-sm font-semibold uppercase tracking-[0.16em] text-primary">Selected work</p><h2 className="mt-3 text-3xl font-medium">Systems you can inspect</h2><div className="mt-8 grid gap-4 md:grid-cols-3">{[{ href: "/en/portfolio/saguarotransport", title: "Saguaro Transport", body: "Transportation operations and platform delivery." }, { href: "/en/portfolio/rejunk", title: "Rejunk", body: "Lead handling, dispatch, and browser-based driver workflows." }, { href: "/en/portfolio/artificial-turf-ai-design-studio", title: "AI Design Studio for an Artificial Turf Franchise", body: "Photo intake, AI visualization, estimating, and CRM handoff." }].map((item) => <Link key={item.href} href={item.href} className="group rounded-2xl border border-border p-6 hover:border-primary/50"><h3 className="flex items-center justify-between text-xl font-medium">{item.title}<ArrowRight className="h-4 w-4 group-hover:translate-x-1" /></h3><p className="mt-3 text-sm leading-6 text-muted-foreground">{item.body}</p></Link>)}</div><div className="mt-12 rounded-3xl bg-neutral-950 p-8 text-white md:flex md:items-center md:justify-between"><div><h2 className="text-2xl font-medium">Bring me the messy workflow.</h2><p className="mt-2 text-neutral-300">We&apos;ll map the exceptions, decide what should stay human, and scope the smallest useful system.</p></div><Link href="/en/contact" className="mt-6 inline-flex items-center gap-2 rounded-full bg-orange-600 px-6 py-3 font-semibold md:mt-0">Talk with Abe <ArrowRight className="h-4 w-4" /></Link></div></div></section>
+    </main>
+  );
+}

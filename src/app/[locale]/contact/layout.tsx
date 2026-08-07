@@ -8,6 +8,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: "Book a free consultation for your bilingual website, AI chatbot, or custom platform. We'll outline scope, timeline, and cost so you can decide what's worth building.",
     path: "/contact",
     locale: locale,
+    hasSpanishEquivalent: false,
+    noIndex: locale === "es",
   });
 }
 

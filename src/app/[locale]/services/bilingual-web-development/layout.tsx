@@ -9,6 +9,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: "Professional bilingual website development for small businesses. Reach Spanish and English-speaking customers with SEO-optimized websites. Start your project today.",
     path: "/services/bilingual-web-development",
     locale: locale,
+    hasSpanishEquivalent: false,
+    noIndex: locale === "es",
   });
 
   return {
@@ -35,4 +37,3 @@ export default function BilingualWebDevelopmentLayout({
 }) {
   return <>{children}</>;
 }
-

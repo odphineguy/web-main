@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import PortfolioPreviewModal from "@/components/PortfolioPreviewModal";
 import { ArrowRight, ExternalLink } from "lucide-react";
+import { useLocale } from "next-intl";
 
 interface PortfolioProject {
   id: string;
@@ -76,6 +77,7 @@ const portfolioProjects: PortfolioProject[] = [
 ];
 
 export default function PortfolioPage() {
+  const locale = useLocale();
   const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(null);
 
   return (
@@ -84,11 +86,11 @@ export default function PortfolioPage() {
       <section className="px-6 pt-16 pb-8">
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] text-foreground mb-6">
-            Website Design{" "}
-            <span className="text-primary">
-              Previews
-            </span>
+            Software Portfolio &amp; <span className="text-primary">Case Studies</span>
           </h1>
+          <p className="mx-auto max-w-3xl text-sm leading-relaxed text-muted-foreground md:text-base">
+            Operational software, AI automation, mobile apps, and selected web projects built by Abe Media.
+          </p>
         </div>
       </section>
 
@@ -173,7 +175,7 @@ export default function PortfolioPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* myLabCompliance Case Study */}
             <Link
-              href="/portfolio/mylabcompliance"
+              href={`/${locale}/portfolio/mylabcompliance`}
               className="group block p-6 rounded-xl bg-card border border-border hover:border-orange-500/50 hover:shadow-lg transition-all duration-300"
             >
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 text-orange-500 text-sm mb-4">
@@ -194,7 +196,7 @@ export default function PortfolioPage() {
 
             {/* Saguaro Transport Case Study */}
             <Link
-              href="/portfolio/saguarotransport"
+              href={`/${locale}/portfolio/saguarotransport`}
               className="group block p-6 rounded-xl bg-card border border-border hover:border-orange-500/50 hover:shadow-lg transition-all duration-300"
             >
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 text-orange-500 text-sm mb-4">
@@ -211,6 +213,39 @@ export default function PortfolioPage() {
                 Read Case Study
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </div>
+            </Link>
+
+            <Link
+              href="/en/portfolio/rejunk"
+              hrefLang="en"
+              className="group block p-6 rounded-xl bg-card border border-border hover:border-orange-500/50 hover:shadow-lg transition-all duration-300"
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 text-orange-500 text-sm mb-4"><span className="w-2 h-2 rounded-full bg-orange-500" />Moving &amp; Junk Removal</div>
+              <h3 className="text-xl md:text-[28px] font-normal tracking-normal mb-2 text-foreground group-hover:text-orange-500 transition-colors">Rejunk</h3>
+              <p className="text-muted-foreground text-sm md:text-base font-normal leading-relaxed mb-4">Lead handling, dispatch, driver activation, job management, and live location in one browser-based platform.</p>
+              <div className="flex items-center gap-2 text-orange-500 text-sm font-medium">Read Case Study<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" /></div>
+            </Link>
+
+            <Link
+              href="/en/portfolio/artificial-turf-ai-design-studio"
+              hrefLang="en"
+              className="group block p-6 rounded-xl bg-card border border-border hover:border-orange-500/50 hover:shadow-lg transition-all duration-300"
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 text-orange-500 text-sm mb-4"><span className="w-2 h-2 rounded-full bg-orange-500" />AI Estimating</div>
+              <h3 className="text-xl md:text-[28px] font-normal tracking-normal mb-2 text-foreground group-hover:text-orange-500 transition-colors">AI Design Studio for an Artificial Turf Franchise</h3>
+              <p className="text-muted-foreground text-sm md:text-base font-normal leading-relaxed mb-4">Photo intake, AI-assisted visualization, estimate output, and CRM lead creation in one customer journey.</p>
+              <div className="flex items-center gap-2 text-orange-500 text-sm font-medium">Read Case Study<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" /></div>
+            </Link>
+
+            <Link
+              href="/en/portfolio/elena-ai-voice-agent"
+              hrefLang="en"
+              className="group block p-6 rounded-xl bg-card border border-border hover:border-orange-500/50 hover:shadow-lg transition-all duration-300"
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 text-orange-500 text-sm mb-4"><span className="w-2 h-2 rounded-full bg-orange-500" />AI Voice Agent</div>
+              <h3 className="text-xl md:text-[28px] font-normal tracking-normal mb-2 text-foreground group-hover:text-orange-500 transition-colors">Bilingual AI Voice Agent</h3>
+              <p className="text-muted-foreground text-sm md:text-base font-normal leading-relaxed mb-4">A bilingual personal-injury intake demonstration with emergency checks, qualification, booking, and guardrails.</p>
+              <div className="flex items-center gap-2 text-orange-500 text-sm font-medium">Read Case Study<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" /></div>
             </Link>
           </div>
         </div>

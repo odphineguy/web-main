@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { FooterCTA } from "@/components/ui/footer-cta";
 import ConsultationForm from "@/components/ConsultationForm";
+import { useLocale } from "next-intl";
 
 // Animated counter component
 function AnimatedCounter({
@@ -77,6 +78,7 @@ function AnimatedCounter({
 }
 
 export default function CaseStudySaguaroTransport() {
+  const locale = useLocale();
   const [activeMetric, setActiveMetric] = useState<string | null>(null);
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
 
@@ -173,7 +175,7 @@ export default function CaseStudySaguaroTransport() {
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
             <Link
-              href="/portfolio"
+              href={`/${locale}/portfolio`}
               className="hover:text-orange-500 transition-colors flex items-center gap-1"
             >
               <ArrowLeft className="w-4 h-4" />

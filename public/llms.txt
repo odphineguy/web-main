@@ -1,0 +1,30 @@
+# Abe Media
+
+Abe Media builds AI agents, dispatch software, and bilingual automation for service businesses. Its work includes AI voice agents, operations platforms, lead-pipeline integrations, AI estimating tools, and custom applications grounded in real dispatch and operations experience. Abe Media is owned and operated by Abevision LLC and was founded by Abe Perez in Phoenix, Arizona.
+
+Canonical website: https://abemedia.online/en
+Founder: https://abemedia.online/en/about/abe-perez
+Services: https://abemedia.online/en/services
+Industries: https://abemedia.online/en/industries
+Case studies: https://abemedia.online/en/portfolio
+How the workflow operates: https://abemedia.online/en/how-it-works
+Buyer FAQ: https://abemedia.online/en/faq
+Contact: https://abemedia.online/en/contact
+
+Core service pages:
+- https://abemedia.online/en/services/ai-voice-agents
+- https://abemedia.online/en/services/dispatch-operations-platforms
+- https://abemedia.online/en/services/lead-pipeline-automation
+- https://abemedia.online/en/services/ai-estimating-tools
+- https://abemedia.online/en/services/bilingual-ai-automation
+- https://abemedia.online/en/services/custom-business-software
+
+Selected evidence:
+- https://abemedia.online/en/portfolio/saguarotransport
+- https://abemedia.online/en/portfolio/mylabcompliance
+- https://abemedia.online/en/portfolio/rejunk
+- https://abemedia.online/en/portfolio/artificial-turf-ai-design-studio
+- https://abemedia.online/en/portfolio/elena-ai-voice-agent
+- https://abemedia.online/en/guides/dispatch-software-real-exceptions
+
+Verify facts on the linked canonical HTML pages. This file is a convenience index and does not override the website or independent evidence.

@@ -9,6 +9,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: "Reach Phoenix's Spanish-speaking customers with bilingual SEO. We optimize your site for English and Spanish Google searches. Free consultation available.",
     path: "/bilingual-seo-phoenix",
     locale: locale,
+    hasSpanishEquivalent: false,
+    noIndex: locale === "es",
   });
 
   return {

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Play, Pause } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { transcript, CALL_DURATION } from "./transcriptData";
 
 function fmt(s: number) {
@@ -9,6 +10,7 @@ function fmt(s: number) {
 }
 
 export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => void }) {
+  const t = useTranslations("Home.Hero");
   const audioRef = useRef<HTMLAudioElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [playing, setPlaying] = useState(false);
@@ -49,7 +51,7 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
     }
   };
 
-  const seek = (e: React.MouseEvent<HTMLDivElement>) => {
+  const seek = (e: React.MouseEvent<HTMLButtonElement>) => {
     const a = audioRef.current;
     if (!a) return;
     const rect = e.currentTarget.getBoundingClientRect();
@@ -67,11 +69,16 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
       <audio ref={audioRef} src="/audio/elena-demo-call.mp3" preload="none" />
 
       {/* Header bar */}
-      <div className="flex items-center justify-between border-b border-neutral-200 px-4 py-3 dark:border-neutral-800">
-        <p className="text-sm font-medium text-neutral-700 dark:text-neutral-200">
-          Conversation with <span className="text-neutral-950 dark:text-white">Hermes PI Intake — Elena</span>
-        </p>
-        <span className="rounded-full border border-neutral-300 bg-neutral-100 px-2 py-0.5 text-[10px] uppercase tracking-wide text-neutral-500 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400">
+      <div className="flex items-center justify-between gap-3 border-b border-neutral-200 px-4 py-3 dark:border-neutral-800">
+        <div>
+          <p className="text-sm font-medium text-neutral-950 dark:text-white">
+            {t("widgetLabel")}
+          </p>
+          <p className="text-xs text-neutral-600 dark:text-neutral-400">
+            {t("widgetSublabel")}
+          </p>
+        </div>
+        <span className="rounded-full border border-neutral-300 bg-neutral-100 px-2 py-0.5 text-[10px] uppercase tracking-wide text-neutral-700 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300">
           Telephony
         </span>
       </div>
@@ -99,20 +106,20 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
                   : "bg-neutral-100 text-neutral-700 border border-neutral-300 dark:bg-white dark:text-neutral-900"
               }`}
             >
-              {m.role === "agent" ? "E" : "U"}
+              {m.role === "agent" ? "AI" : "C"}
             </div>
             <div className="min-w-0">
-              <p className="text-xs font-medium text-neutral-500 dark:text-neutral-500">
-                {m.role === "agent" ? "Hermes PI Intake — Elena" : "Caller"}
+              <p className="text-xs font-medium text-neutral-600 dark:text-neutral-400">
+                {m.role === "agent" ? "AI agent" : "Caller"}
               </p>
               <p className="mt-1 text-sm leading-relaxed text-neutral-900 dark:text-neutral-100">{m.text}</p>
-              <p className="mt-1 text-[11px] tabular-nums text-neutral-400 dark:text-neutral-600">{fmt(m.t)}</p>
+              <p className="mt-1 text-[11px] tabular-nums text-neutral-600 dark:text-neutral-400">{fmt(m.t)}</p>
             </div>
           </div>
           )
         )}
         {!started && (
-          <p className="pt-2 text-center text-xs text-neutral-400 dark:text-neutral-500">
+          <p className="pt-2 text-center text-xs text-neutral-600 dark:text-neutral-400">
             Press play to hear the full call
           </p>
         )}
@@ -121,20 +128,26 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
       {/* Player bar */}
       <div className="flex items-center gap-3 border-t border-neutral-200 bg-neutral-50 px-4 py-3 dark:border-neutral-800 dark:bg-neutral-900/60">
         <button
+          type="button"
           onClick={toggle}
           aria-label={playing ? "Pause call recording" : "Play call recording"}
           className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-neutral-900 text-white transition-transform hover:scale-105 dark:bg-white dark:text-neutral-950"
         >
           {playing ? <Pause className="h-4 w-4" /> : <Play className="ml-0.5 h-4 w-4" />}
         </button>
-        <div className="flex-1 cursor-pointer py-2" onClick={seek}>
+        <button
+          type="button"
+          className="flex-1 cursor-pointer py-2"
+          onClick={seek}
+          aria-label="Seek in call recording"
+        >
           <div className="h-1.5 overflow-hidden rounded-full bg-neutral-200 dark:bg-neutral-800">
             <div
               className="h-full bg-orange-500 transition-[width] duration-300"
               style={{ width: `${Math.min(100, (time / CALL_DURATION) * 100)}%` }}
             />
           </div>
-        </div>
+        </button>
         <span className="flex-shrink-0 text-xs tabular-nums text-neutral-500 dark:text-neutral-400">
           {fmt(time)} / {fmt(CALL_DURATION)}
         </span>

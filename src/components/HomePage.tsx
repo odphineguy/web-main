@@ -4,29 +4,18 @@ import { useState } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import { ScheduleCallButton } from "@/components/ScheduleCallButton";
 import ConsultationForm from "@/components/ConsultationForm";
 import { FooterCTA } from "@/components/ui/footer-cta";
 import { PhoneCall, Truck, Workflow, Smartphone, Globe, X } from "lucide-react";
 import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
-import { useMutation } from "convex/react";
-import { api } from "../../convex/_generated/api";
+import { track } from "@vercel/analytics";
+import HomeFaq, { homeFaqIds } from "@/components/HomeFaq";
 
 
 // Lazy load below-fold components to reduce initial bundle size
-const HomeFaq = dynamic(() => import("@/components/HomeFaq"), {
-  ssr: false,
-  loading: () => <div className="py-20 px-6 text-center text-muted-foreground">Loading...</div>,
-});
-
 const ChatDemoShowcase = dynamic(() => import("@/components/demos/ChatDemoShowcase"), {
-  ssr: false,
-});
-
-// Scroll-world section must never block LCP — hero renders before any of its assets load
-const AfterHoursScroll = dynamic(() => import("@/components/AfterHoursScroll"), {
   ssr: false,
 });
 
@@ -38,7 +27,7 @@ const TranscriptPlayer = dynamic(() => import("@/components/TranscriptPlayer"), 
   ssr: false,
 });
 
-const MayaLiveDemo = dynamic(() => import("@/components/MayaLiveDemo"), {
+const AgentLiveDemo = dynamic(() => import("@/components/AgentLiveDemo"), {
   ssr: false,
 });
 
@@ -46,7 +35,6 @@ export default function HomePage() {
   const t = useTranslations("Home");
   const p = useTranslations("Platforms");
   const locale = useLocale();
-  const logDemoCallClick = useMutation(api.formSubmissions.logDemoCallClick);
   const [avatarErrors, setAvatarErrors] = useState<Set<number>>(new Set());
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
@@ -54,11 +42,10 @@ export default function HomePage() {
 
   // Fire-and-forget attribution log; never block the tel: navigation
   const handleDemoCallClick = (source: string) => {
-    logDemoCallClick({
+    track("demo_call_click", {
       locale,
       source,
-      userAgent: typeof navigator !== "undefined" ? navigator.userAgent : undefined,
-    }).catch(() => {});
+    });
   };
 
   const openLightbox = (image: string, title: string) => {
@@ -87,6 +74,18 @@ export default function HomePage() {
     { key: "apps", Icon: Smartphone },
     { key: "web", Icon: Globe, isAddOn: true },
   ] as const;
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: homeFaqIds.map((id) => ({
+      "@type": "Question",
+      name: t(`Faq.${id}.question`),
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: t(`Faq.${id}.answer`),
+      },
+    })),
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -110,21 +109,47 @@ export default function HomePage() {
                 {t("Hero.subtitle")}
               </p>
 
-              <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-                <ScheduleCallButton
-                  type="button"
-                  label={t("CTA.button")}
-                  className="bg-orange-500 hover:bg-orange-600 !text-white border-0"
-                  onClick={() => setIsConsultationOpen(true)}
-                />
+              <div className="flex flex-col gap-4">
+                {/* Primary CTA — tel: link on mobile */}
+                <a
+                  href="tel:+16696694486"
+                  onClick={() => handleDemoCallClick("hero-call-cta")}
+                  className="md:hidden inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 hover:bg-orange-600 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-orange-500/25 transition-colors"
+                >
+                  <span aria-hidden="true">📞</span>
+                  {t("Hero.callCta")} — {t("Hero.phoneNumber")}
+                </a>
+                {/* Primary CTA — desktop: large number + microcopy */}
+                <a
+                  href="tel:+16696694486"
+                  onClick={() => handleDemoCallClick("hero-call-cta")}
+                  className="hidden md:inline-flex items-center gap-4 self-start rounded-2xl border border-orange-500/40 bg-orange-500/10 px-6 py-4 transition-colors hover:border-orange-500/70 hover:bg-orange-500/15"
+                >
+                  <span className="text-3xl" aria-hidden="true">📞</span>
+                  <span>
+                    <span className="block text-xs font-semibold uppercase tracking-wide text-orange-500">
+                      {t("Hero.callCta")}
+                    </span>
+                    <span className="block text-3xl font-semibold tracking-tight text-foreground tabular-nums">
+                      {t("Hero.phoneNumber")}
+                    </span>
+                    <span className="block text-xs text-muted-foreground">
+                      {t("Hero.callFromPhone")}
+                    </span>
+                  </span>
+                </a>
+                {/* Secondary CTA */}
+                <Link
+                  href={`/${locale}/contact`}
+                  className="inline-flex items-center justify-center gap-2 self-start rounded-full border border-border px-8 py-3.5 text-sm font-semibold text-foreground transition-colors hover:border-orange-500/60 hover:text-orange-500"
+                >
+                  {t("Hero.scheduleCta")}
+                </Link>
               </div>
-              <div className="space-y-1">
-                <p className="text-sm font-medium text-foreground">{t("Hero.callCtaSub")}</p>
-                <p className="text-sm text-muted-foreground">{t("Hero.followUp")}</p>
-              </div>
+              <p className="text-sm text-muted-foreground">{t("Hero.followUp")}</p>
             </div>
 
-            {/* Right: Elena real-call transcript player */}
+            {/* Right: recorded-call transcript player */}
             <div className="relative lg:flex lg:justify-end">
               <div className="w-full max-w-lg mx-auto lg:mx-0 rounded-2xl p-px bg-gradient-to-b from-orange-500/40 to-white/5">
                 <TranscriptPlayer onFirstPlay={() => handleDemoCallClick("hero-transcript-play")} />
@@ -147,8 +172,34 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Scroll-world "after hours" sequence */}
-      <AfterHoursScroll />
+      {/* Three-column jab — what a missed call actually costs */}
+      <section className="bg-background pt-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-[28px] md:text-[32px] lg:text-[36px] font-medium tracking-[-0.02em] text-foreground max-w-3xl">
+            {t("Jab.title")}
+          </h2>
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {(["one", "two", "three"] as const).map((k, i) => (
+              <div
+                key={k}
+                className="h-full rounded-2xl p-px bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5"
+              >
+                <div className="h-full rounded-2xl p-6 lg:p-8 bg-gray-50 dark:bg-neutral-900">
+                  <span className="text-sm font-semibold tracking-[0.2em] text-orange-500">
+                    0{i + 1}
+                  </span>
+                  <h3 className="mt-3 text-lg font-semibold text-foreground">
+                    {t(`Jab.${k}.title`)}
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    {t(`Jab.${k}.body`)}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Services grid — 5 cards, agents first, websites/chatbots as add-on */}
       <section id="agents" className="bg-background py-20 px-6 scroll-mt-20">
@@ -230,8 +281,10 @@ export default function HomePage() {
             <motion.div
               className="relative"
             >
-              <div
-                className="relative rounded-2xl overflow-hidden shadow-2xl shadow-orange-500/10 cursor-pointer group"
+              <button
+                type="button"
+                aria-label={`Enlarge ${p("Preview.subtitle")} screenshot`}
+                className="relative block w-full rounded-2xl overflow-hidden shadow-2xl shadow-orange-500/10 cursor-pointer group text-left"
                 onClick={() => openLightbox("/images/assets-platforms/laptop.png", p("Preview.subtitle"))}
               >
                 <Image
@@ -247,7 +300,7 @@ export default function HomePage() {
                     Click to enlarge
                   </span>
                 </div>
-              </div>
+              </button>
             </motion.div>
 
             <motion.div
@@ -259,7 +312,7 @@ export default function HomePage() {
               <h3 className="text-xl font-semibold text-orange-500">{p("Preview.subtitle")}</h3>
               <p className="text-muted-foreground">{p("Preview.description")}</p>
               <Link
-                href="/platforms"
+                href={`/${locale}/platforms`}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-full transition-colors"
               >
                 {p("Preview.cta")}
@@ -270,29 +323,30 @@ export default function HomePage() {
             </motion.div>
           </div>
 
-          {/* Rejunk + Waterloo cards */}
+          {/* Rejunk + anonymized artificial-turf design-studio cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {(["rejunk", "waterloo"] as const).map((study, index) => (
+            {(["rejunk", "turfStudio"] as const).map((study, index) => (
               <motion.div
                 key={study}
                 className="h-full rounded-2xl p-px bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5"
               >
-                <div className="h-full rounded-2xl p-6 lg:p-8 bg-gray-50 dark:bg-neutral-900">
+                <Link href={`/en/portfolio/${study === "rejunk" ? "rejunk" : "artificial-turf-ai-design-studio"}`} hrefLang="en" className="block h-full rounded-2xl p-6 lg:p-8 bg-gray-50 dark:bg-neutral-900 transition-colors hover:bg-white dark:hover:bg-neutral-800">
                   <h3 className="text-lg font-semibold text-foreground mb-2">
                     {t(`CaseStudies.${study}.title`)}
                   </h3>
                   <p className="text-sm text-muted-foreground">
                     {t(`CaseStudies.${study}.description`)}
                   </p>
-                </div>
+                  <span className="mt-4 inline-block text-sm font-semibold text-orange-500">{t("CaseStudies.readCase")} →</span>
+                </Link>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Live voice demo — Maya, home services */}
-      <MayaLiveDemo />
+      {/* Live voice demo — home services agent */}
+      <AgentLiveDemo />
 
       {/* Missed-call revenue calculator */}
       <section id="missed-call" className="bg-gray-50 dark:bg-neutral-950 py-20 px-6 scroll-mt-20">
@@ -320,11 +374,11 @@ export default function HomePage() {
           </motion.div>
         </div>
 
-        {/* Single real testimonial */}
+        {/* Two-up: real testimonial + results stat card */}
         <div className="px-6 pb-6">
-          <div className="max-w-2xl mx-auto">
+          <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             <div className="rounded-2xl p-px bg-gradient-to-b from-gray-300 dark:from-white/10 to-gray-200 dark:to-white/5">
-              <div className="rounded-2xl p-8 bg-gray-50 dark:bg-neutral-950">
+              <div className="h-full rounded-2xl p-8 bg-gray-50 dark:bg-neutral-950">
                 <blockquote className="text-foreground mb-6 text-base">
                   &ldquo;{t("Testimonials.sam.quote")}&rdquo;
                 </blockquote>
@@ -356,20 +410,54 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            <div className="mt-6 text-center">
-              <Link
-                href={`/${locale}/portfolio`}
-                className="text-sm font-medium text-orange-500 hover:text-orange-400 transition-colors"
-              >
-                {t("Testimonials.caseStudiesLink")} →
-              </Link>
+
+            {/* Results stat card — Rejunk lead pipeline */}
+            <div className="rounded-2xl p-px bg-gradient-to-b from-orange-500/40 to-orange-600/10">
+              <div className="h-full rounded-2xl p-8 bg-gray-50 dark:bg-neutral-950 flex flex-col">
+                <p className="text-xs font-semibold uppercase tracking-wide text-orange-500">
+                  {t("Testimonials.stat.label")}
+                </p>
+                <p className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight text-foreground tabular-nums">
+                  {t("Testimonials.stat.spend")}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  {t("Testimonials.stat.spendLabel")}
+                </p>
+                <p className="mt-4 text-lg font-semibold text-foreground tabular-nums">
+                  {t("Testimonials.stat.cpl")}
+                </p>
+                <div className="mt-auto pt-6">
+                  <Link
+                    href="/en/portfolio/rejunk"
+                    hrefLang="en"
+                    className="text-sm font-medium text-orange-500 hover:text-orange-400 transition-colors"
+                  >
+                    {t("Testimonials.stat.link")} →
+                  </Link>
+                </div>
+              </div>
             </div>
+          </div>
+
+          <div className="max-w-4xl mx-auto mt-6 text-center">
+            <Link
+              href={`/${locale}/portfolio`}
+              className="text-sm font-medium text-orange-500 hover:text-orange-400 transition-colors"
+            >
+              {t("Testimonials.caseStudiesLink")} →
+            </Link>
           </div>
         </div>
       </section>
 
       {/* FAQs - Black background */}
       <div className="bg-background">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(faqSchema).replace(/</g, "\\u003c"),
+          }}
+        />
         <HomeFaq />
       </div>
 

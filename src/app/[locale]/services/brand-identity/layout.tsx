@@ -6,9 +6,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   const baseMetadata = constructMetadata({
     title: "Brand Identity Packages | Professional Logo & Corporate Design",
-    description: "Professional brand identity design services. Get a unique logo, business cards, letterhead, and complete corporate identity packages. Start with a 30% deposit.",
+    description: "Professional brand identity design services, including logo systems, business cards, letterhead, and complete corporate identity packages.",
     path: "/services/brand-identity",
     locale: locale,
+    hasSpanishEquivalent: false,
+    noIndex: locale === "es",
   });
 
   return {

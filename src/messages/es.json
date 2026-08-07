@@ -1,5 +1,10 @@
 {
   "Navbar": {
+    "services": "Servicios",
+    "industries": "Industrias",
+    "caseStudies": "Casos de estudio",
+    "howItWorks": "Cómo funciona",
+    "about": "Acerca de Abe",
     "agents": "Agentes",
     "platforms": "Plataformas",
     "pricing": "Precios",
@@ -9,19 +14,22 @@
     "getStarted": "Comenzar"
   },
   "Footer": {
-    "copyright": "© 2026 Abevision LLC. AbeMedia es propiedad y operada por Abevision LLC. Todos los derechos reservados."
+    "copyright": "© 2026 Abevision LLC. Abe Media es propiedad y está operada por Abevision LLC. Todos los derechos reservados.",
+    "entity": "Fundada por Abe Perez · Phoenix, Arizona"
   },
   "Home": {
     "Hero": {
-      "eyebrow": "Agentes de IA para negocios de servicios",
+      "eyebrow": "Agentes de voz con IA para negocios de servicios",
       "titlePart1": "Agentes de IA que contestan tus llamadas, agendan tus trabajos,",
-      "titlePart2": "y manejan tu dispatch. 24/7.",
-      "subtitle": "Bilingüe por diseño — English y español, escrito de forma nativa.",
-      "callCta": "Llama a Elena ahora",
-      "callCtaSub": "Llamada de admisión grabada — IA real, sin editar",
-      "followUp": "Ella toma tus datos y te contactamos el mismo día.",
-      "demoHintTitle": "Cómo probarla",
-      "demoHintBody": "Llámala desde tu celular. Maneja una admisión de lesiones personales de principio a fin — califica a quien llama, agenda la consulta y la registra.",
+      "titlePart2": "y nunca pierden una llamada. 24/7.",
+      "subtitle": "Bilingüe por diseño — English y español. Hecho para retiro de escombros, HVAC, mudanzas y servicios para el hogar.",
+      "callCta": "Llama al agente de demostración",
+      "phoneNumber": "(669) 669-4486",
+      "callFromPhone": "Llama desde tu celular",
+      "scheduleCta": "Agenda una llamada",
+      "followUp": "El agente toma tus datos y te contactamos el mismo día.",
+      "widgetLabel": "Llamada de admisión grabada — IA real, sin editar",
+      "widgetSublabel": "Llamada fuera de horario de retiro de escombros — English y español",
       "liveBadge": "Llamada real"
     },
     "ProofBar": {
@@ -30,12 +38,20 @@
       "item3": "Apps publicadas en App Store y Google Play",
       "item4": "Plataformas operando negocios reales hoy"
     },
-    "AfterHours": {
-      "badge": "Fuera de horario",
-      "title": "Mientras estás cerrado",
-      "scene1": "Tu oficina cierra a las 5.",
-      "scene2": "Elena no. 11:30 PM — contesta, califica y agenda la consulta.",
-      "scene3": "Llegas a un cliente firmado, no a un buzón de voz."
+    "Jab": {
+      "title": "Una de estas te está costando trabajos ahora mismo.",
+      "one": {
+        "title": "Las llamadas perdidas son trabajos agendados — para tu competencia.",
+        "body": "Quien llama fuera de horario no deja mensaje de voz. Marca el siguiente número de la lista."
+      },
+      "two": {
+        "title": "La mitad de tu mercado habla español.",
+        "body": "Una línea solo en inglés les cuelga. Nuestros agentes cambian de idioma a media llamada."
+      },
+      "three": {
+        "title": "Un servicio de contestación toma recados.",
+        "body": "Nuestro agente califica el trabajo, lo cotiza y lo agenda en tu calendario."
+      }
     },
     "ServicesGrid": {
       "badge": "Servicios principales",
@@ -44,7 +60,7 @@
       "addOnBadge": "Complemento",
       "voice": {
         "title": "Agentes de voz e IA fuera de horario",
-        "description": "Elena para bufetes. El mismo patrón para HVAC, plomería, pasto sintético y dental. Admisión, calificación, cita — directo a tu CRM."
+        "description": "Contestación fuera de horario para retiro de escombros, HVAC, mudanzas y servicios para el hogar. Admisión, calificación, cita — directo a tu CRM."
       },
       "dispatch": {
         "title": "Plataformas de dispatch y operaciones",
@@ -68,18 +84,18 @@
       "badge": "Míralo en acción",
       "title": "Agentes para cada industria",
       "subtitle": "Mira cómo nuestros agentes manejan conversaciones reales de distintos negocios",
-      "cta": "Quiero un agente así",
-      "audioTitle": "Escucha a Elena tomar una llamada real"
+      "cta": "Quiero un agente así"
     },
     "CaseStudies": {
+      "readCase": "Leer el caso en inglés",
       "badge": "Casos reales",
       "title": "Operando negocios reales hoy",
       "rejunk": {
         "title": "Rejunk — pipeline de leads sin manos",
         "description": "Lead de Thumbtack → cotizado → agendado → despachado, sin intervención humana. El pipeline corre mientras la cuadrilla va en el camión."
       },
-      "waterloo": {
-        "title": "Waterloo Turf — presupuestos con IA al instante",
+      "turfStudio": {
+        "title": "Estudio de diseño con IA para una franquicia de pasto artificial",
         "description": "El cliente sube fotos de su patio, la IA renderiza el pasto terminado y cotiza el trabajo al momento. El presupuesto agenda la visita antes de que la competencia devuelva la llamada."
       }
     },
@@ -96,11 +112,12 @@
       "subtitle": "Quien cae en el buzón ya no deja mensaje. Marca el siguiente número de la lista.",
       "industryLabel": "Tu industria",
       "industries": {
-        "law": "Bufete de abogados",
+        "junk": "Retiro de escombros",
         "hvac": "HVAC / climatización",
         "plumbing": "Plomería",
+        "moving": "Mudanzas",
         "turf": "Jardinería / pasto sintético",
-        "dental": "Dental",
+        "waste": "Residuos y contenedores",
         "other": "Otro negocio de servicios"
       },
       "missedCallsLabel": "Llamadas perdidas por semana (fuera de horario)",
@@ -109,27 +126,27 @@
       "avgTicketLabel": "Ticket promedio",
       "button": "Muéstrame el número",
       "monthlyLostLabel": "Ingresos que se van cada mes",
-      "elenaLine": "Elena cuesta menos que un solo trabajo perdido.",
-      "cta": "Pon a Elena a contestar",
+      "cta": "Pon al agente a contestar",
       "recalculate": "Calcular de nuevo",
       "errors": {
         "missedCalls": "Ingresa tus llamadas perdidas por semana",
         "avgTicket": "Ingresa tu ticket promedio"
-      }
+      },
+      "agentLine": "El agente cuesta menos que un solo trabajo perdido."
     },
     "Faq": {
       "title": "Preguntas frecuentes",
       "q1": {
-        "question": "¿Qué es exactamente Elena?",
-        "answer": "Un agente de voz con IA que contesta el teléfono como una recepcionista de admisión entrenada. Levanta en segundos, califica a quien llama, agenda la cita y registra todo. Está en vivo ahora mismo — llama al (669) 669-4486."
+        "question": "¿Qué es exactamente el agente de IA?",
+        "answer": "Un agente de voz con IA que contesta el teléfono como una recepcionista de admisión entrenada. Levanta en segundos, califica a quien llama, agenda el trabajo y registra todo. Está en vivo ahora mismo — llama al (669) 669-4486."
       },
       "q2": {
         "question": "¿Funciona para mi industria?",
-        "answer": "Hoy Elena maneja admisión de lesiones personales para bufetes. El mismo patrón de agente sirve para HVAC, plomería, pasto sintético, dental y recolección de escombros. Si tu teléfono suena fuera de horario y los trabajos se van, un agente encaja."
+        "answer": "Nuestros agentes contestan para retiro de escombros, HVAC, mudanzas, plomería y otros servicios para el hogar. Si tu teléfono suena fuera de horario y los trabajos se van, un agente encaja."
       },
       "q3": {
-        "question": "¿Qué pasa con los datos que toma?",
-        "answer": "Quedan registrados al terminar la llamada: nombre, número, qué necesita y para cuándo. Te llegan a tu CRM o a tu correo, y damos seguimiento el mismo día. Sin adivinar transcripciones de buzón de voz."
+        "question": "¿Qué pasa con la información que toma el agente?",
+        "answer": "Se registra en cuanto termina la llamada — nombre, número, qué necesitan y cuándo. Te llega a tu CRM o correo, y hacemos seguimiento el mismo día. Sin adivinar transcripciones de buzón de voz."
       },
       "q4": {
         "question": "¿Reemplaza a mi despachador o recepcionista?",
@@ -158,29 +175,110 @@
         "quote": "Empezamos con SEO. Nos quedamos por el chatbot y las redes. Son el equipo de operaciones que no tengo que contratar.",
         "role": "Propietario, MyLabCompliance.io"
       },
-      "caseStudiesLink": "Ver los casos de éxito"
+      "caseStudiesLink": "Ver los casos de éxito",
+      "stat": {
+        "label": "Cliente de retiro de escombros — automatización de leads",
+        "spend": "$1,644 → $582",
+        "spendLabel": "gasto semanal en leads",
+        "cpl": "CPL de $32 → $17",
+        "link": "Ver el caso de éxito de Rejunk"
+      }
     },
     "CTA": {
       "title": "Pon un agente a contestar este mes.",
-      "subtitle": "Llama a Elena para la demo en vivo, o cuéntanos de tu operación. Te decimos qué se necesita — alcance, plazo y costo.",
+      "subtitle": "Llama al agente de demostración para una conversación en vivo, o cuéntanos de tu operación. Te decimos qué se necesita — alcance, plazo y costo.",
       "button": "AGENDA UNA LLAMADA",
       "metaPill": "Sin compromiso",
       "metaText": "Respondemos en 1 día hábil"
     },
-    "MayaDemo": {
+    "AgentDemo": {
       "badge": "Demo en vivo",
-      "title": "Habla con Maya — ahora mismo",
-      "p1": "Maya contesta para una empresa de mudanzas y retiro de escombros. Haz clic en el botón de llamada, usa tu micrófono y ponla a prueba con una solicitud real — recopila los detalles del trabajo, maneja interrupciones y nunca pierde una llamada.",
-      "p2": "Elena atiende admisión para bufetes. Maya atiende servicios para el hogar. La misma plataforma, adaptada a tu negocio — English y español."
+      "title": "Habla con nuestro agente de IA — ahora mismo",
+      "p1": "El agente contesta para una empresa de mudanzas y retiro de escombros. Inicia una llamada, usa tu micrófono y ponlo a prueba con una solicitud real — recopila los detalles del trabajo, maneja interrupciones y nunca pierde una llamada.",
+      "p2": "El mismo agente, adaptado a tu negocio — English y español.",
+      "tryTitle": "Pruébalo en la llamada:",
+      "try1": "Pide una cotización para limpiar un garaje",
+      "try2": "Cambia al español a media oración",
+      "try3": "Intenta confundirlo con un trabajo raro",
+      "cardTitle": "Agente de admisión con IA",
+      "cardSubtitle": "Línea de demostración de servicios para el hogar",
+      "available": "Disponible ahora"
     }
   },
   "Services": {
+    "GridTitle": "Lo que construimos",
     "Hero": {
       "title": "Nuestros",
       "highlight": "servicios",
-      "subtitle": "Sitios web, apps, chatbots y plataformas a medida — entregados a negocios pequeños en inglés y español."
+      "subtitle": "Agentes de IA, software de dispatch, automatización de leads, herramientas de presupuestos y sistemas a medida para negocios de servicios."
     },
     "Cards": {
+      "aiVoice": {
+        "title": "Agentes de voz con IA",
+        "description": "Contesta, califica, agenda, escala y registra cada paso aprobado en inglés o español.",
+        "features": {
+          "f1": "Atención fuera de horario",
+          "f2": "Calificación estructurada",
+          "f3": "Citas y transferencia humana",
+          "f4": "Registros de llamada en el CRM"
+        },
+        "placeholder": "Flujo del agente de voz"
+      },
+      "dispatch": {
+        "title": "Plataformas de dispatch y operaciones",
+        "description": "Una sola vista para trabajos, choferes, cuadrillas, clientes y las excepciones que cambian el plan.",
+        "features": {
+          "f1": "Tableros de dispatch en vivo",
+          "f2": "Flujos para choferes y cuadrillas",
+          "f3": "Responsable de cada excepción",
+          "f4": "Reportes operativos"
+        },
+        "placeholder": "Flujo de la plataforma de dispatch"
+      },
+      "leadPipeline": {
+        "title": "Automatización del pipeline de leads",
+        "description": "Conecta fuentes de leads, calificación, reglas del pricebook, calendarios, seguimiento y actualizaciones del CRM.",
+        "features": {
+          "f1": "Entrada por webhooks y formularios",
+          "f2": "Calificación y cotización",
+          "f3": "Reintentos y monitoreo",
+          "f4": "Colas de excepción para humanos"
+        },
+        "placeholder": "Flujo del pipeline de leads"
+      },
+      "aiEstimating": {
+        "title": "Herramientas de presupuestos con IA",
+        "description": "Guía la captura de fotos, crea conceptos visuales, aplica reglas de precios aprobadas y entrega el lead a ventas.",
+        "features": {
+          "f1": "Fotos y detalles del proyecto",
+          "f2": "Visualización asistida por IA",
+          "f3": "Documentos de presupuesto",
+          "f4": "Creación del lead en el CRM"
+        },
+        "placeholder": "Flujo del presupuesto con IA"
+      },
+      "bilingualAutomation": {
+        "title": "Automatización bilingüe con IA",
+        "description": "Recorridos completos en inglés y español, no un saludo traducido conectado a un flujo en inglés.",
+        "features": {
+          "f1": "Flujos nativos de llamadas y chat",
+          "f2": "Formularios conscientes del idioma",
+          "f3": "Campos consistentes en el CRM",
+          "f4": "Paridad completa entre idiomas"
+        },
+        "placeholder": "Flujo de automatización bilingüe"
+      },
+      "customSoftware": {
+        "title": "Software empresarial a medida",
+        "description": "Herramientas internas, portales, integraciones y apps de campo para procesos que un SaaS genérico no puede representar.",
+        "features": {
+          "f1": "Paneles internos",
+          "f2": "Portales para clientes y cuadrillas",
+          "f3": "Integraciones autorizadas",
+          "f4": "Monitoreo en producción"
+        },
+        "placeholder": "Flujo de software a medida"
+      },
       "aiChatbots": {
         "title": "Chatbots y agentes de IA",
         "description": "Agentes entrenados con tus SOPs, precios y políticas. Responden en inglés o español. Califican leads y los guardan en tu CRM.",
@@ -356,7 +454,7 @@
       "title": "Plataformas a medida.",
       "titleAccent": "Construidas alrededor de tu flujo.",
       "subtitle": "Saguaro Transport",
-      "description": "Plataforma de operaciones para empresas de logística y transporte. Rastreo de flota en vivo, despacho, CRM, contabilidad y RH — un panel, no seis pestañas.",
+      "description": "Construida para un operador logístico: rastreo de flota en vivo, despacho, CRM, contabilidad y RH — un panel, no seis pestañas.",
       "feature1": {
         "title": "Rastreo de flota en vivo",
         "description": "GPS en tiempo real, asignación de despachos y optimización de rutas por vehículo."
@@ -430,127 +528,95 @@
   },
   "Pricing": {
     "Hero": {
-      "title": "Vamos a encontrar el alcance correcto.",
-      "subtitle": "Tres preguntas cortas. Un paquete recomendado. Sin anzuelos ni servicios que no necesitas.",
-      "titleStart": "Vamos a encontrar el alcance",
+      "titleStart": "Encontremos el alcance",
       "titleAccent": "correcto",
-      "titleEnd": "."
+      "titleEnd": ".",
+      "subtitle": "Tres preguntas cortas. Un alcance recomendado. El siguiente paso siempre es una llamada — sin pagos, sin presión."
     },
     "Breadcrumb": {
       "edit": "Editar"
     },
     "Questions": {
       "q1": {
-        "prompt": "¿Qué estás construyendo?",
+        "prompt": "¿Qué necesitas resolver?",
         "options": {
-          "website": "Un sitio web",
-          "chatbot": "Un chatbot",
-          "both": "Ambos — sitio web y chatbot",
-          "other": "Otra cosa"
+          "phones": "Mis teléfonos — llamadas contestadas, trabajos agendados",
+          "leads": "Mis leads — cotizados y con seguimiento automático",
+          "operations": "Mis operaciones — despacho, cuadrillas, rastreo",
+          "unsure": "No estoy seguro — ayúdame a definirlo"
         }
       },
       "q2": {
-        "prompt": "¿Bilingüe?",
-        "hint": "Inglés y español, escrito nativo (no traducido).",
+        "prompt": "¿Qué tan grande es la operación?",
+        "hint": "Un aproximado está bien — solo dimensiona el alcance.",
         "options": {
-          "yes": "Sí — inglés y español",
-          "english": "Solo inglés",
-          "unsure": "Aún no sé"
+          "solo": "Dueño-operador — 1 a 3 personas",
+          "team": "Equipo chico — 4 a 15",
+          "fleet": "Más de 15 o varias cuadrillas"
         }
       },
       "q3": {
-        "prompt": "¿Para cuándo lo necesitas en vivo?",
+        "prompt": "¿Para cuándo lo quieres en vivo?",
         "options": {
-          "fast": "2 a 4 semanas",
-          "medium": "1 a 2 meses",
-          "flexible": "Flexible — calidad primero"
+          "fast": "2–4 semanas",
+          "medium": "1–2 meses",
+          "flexible": "Flexible — primero la calidad"
         }
       }
     },
     "Recommendation": {
-      "eyebrow": "Con base en tus respuestas",
-      "perMonth": "/mes",
-      "seeAlt": "Ver otra opción: {tier}",
+      "eyebrow": "Según tus respuestas",
+      "seeAlt": "Ver alternativa: {scope}",
       "hideAlt": "Ocultar alternativa",
-      "altLabel": "También vale considerar",
-      "cta": "Agenda una llamada para confirmarlo",
-      "restart": "Responder las preguntas de nuevo"
+      "altLabel": "También vale la pena considerar",
+      "cta": "Agenda una llamada",
+      "restart": "Responder las preguntas de nuevo",
+      "priceNote": "El precio exacto depende del alcance. En la llamada te damos un número directo — antes de que se mueva un solo dólar."
     },
-    "Tiers": {
-      "starter": {
-        "name": "Starter",
-        "tagline": "Un alcance enfocado, entregado rápido.",
+    "Scopes": {
+      "voice": {
+        "name": "Agente de voz con IA",
+        "tagline": "Tus teléfonos contestados y tus trabajos agendados — 24/7, English y español.",
         "inclusions": [
-          "Sitio de 3 páginas o chatbot de un solo propósito",
-          "Captura de leads 24/7",
-          "Optimizado para móvil y SEO al lanzar",
-          "14 días de soporte post-lanzamiento"
+          "Un agente entrenado en tu negocio, servicios y reglas",
+          "Contestación fuera de horario, fines de semana y desborde",
+          "Califica a quien llama, cotiza el trabajo y lo agenda",
+          "Cada llamada registrada en tu CRM o correo",
+          "Bilingüe por diseño — cambia de idioma a media llamada"
         ]
       },
-      "business": {
-        "name": "Business",
-        "tagline": "Sitio + chatbot + soporte real en un solo alcance.",
+      "pipeline": {
+        "name": "Automatización de pipeline de leads",
+        "tagline": "Leads contestados, cotizados y con seguimiento antes de que tu competencia devuelva la llamada.",
         "inclusions": [
-          "Sitio hasta 7 páginas",
-          "Chatbot entrenado con tus SOPs",
-          "SEO básico y blog incluidos",
-          "Integración con tu CRM",
-          "30 días de soporte post-lanzamiento"
+          "Respuesta instantánea a leads nuevos de tus fuentes",
+          "Cotización automática con tus reglas de precios",
+          "Secuencias de seguimiento que no se olvidan",
+          "Trabajos agendados sincronizados con tu calendario y CRM"
         ]
       },
-      "professional": {
-        "name": "Professional",
-        "tagline": "Espacio para alcances complejos, con PM dedicado.",
+      "platform": {
+        "name": "Plataforma de operaciones a medida",
+        "tagline": "Despacho, cuadrillas, rastreo y papeleo — un panel, no seis pestañas.",
         "inclusions": [
-          "Diseño a medida de sitio y app",
-          "Páginas ilimitadas",
-          "Chatbot avanzado con entrenamiento a medida",
-          "Alcance completo de SEO",
-          "CMS para que tu equipo actualice el sitio",
-          "Gerente de proyecto dedicado"
+          "Definida alrededor de tu flujo de trabajo real",
+          "Despacho, flota, CRM y reportes donde los necesitas",
+          "Apps para conductores y cuadrillas donde valen la pena",
+          "Se integra con las herramientas que ya usas"
         ]
       }
     },
     "Rationale": {
-      "starterFast": "Necesitas un sitio enfocado en vivo en pocas semanas. Starter cubre el alcance; Business queda disponible si creces.",
-      "starterChatbotFast": "Un chatbot para tu sitio actual, entregado en semanas. Starter mantiene el alcance ajustado.",
-      "businessBilingualFast": "Bilingüe bien hecho — escrito en los dos idiomas — pasa de Starter. Business lo cubre sin la sobrecarga de Professional.",
-      "businessBoth": "Sitio web y chatbot en un solo alcance. Business lo resuelve sin saltar a Professional.",
-      "businessMedium": "Tienes uno o dos meses, suficiente para hacer las dos cosas bien. Business es el punto medio correcto.",
-      "professionalComplex": "Sitio y chatbot, bilingüe, en plazo largo. Professional te da el espacio y un PM dedicado.",
-      "professionalFlexible": "Sin prisa, y lo quieres bien hecho en los dos idiomas. Professional cubre la profundidad sin atajos."
+      "voiceFast": "Necesitas los teléfonos resueltos y lo necesitas pronto. Un agente de voz entrenado en tu negocio normalmente sale en vivo en una o dos semanas.",
+      "voiceDefault": "Llamadas contestadas, trabajos agendados, nada que se escape fuera de horario. Un agente de voz es el alcance más directo que lo resuelve.",
+      "pipelineDefault": "La fuga está en tus leads — la velocidad de la primera respuesta gana esos trabajos. La automatización contesta, cotiza y da seguimiento sin humanos de por medio.",
+      "platformFleet": "A tu tamaño, la ganancia es un solo sistema para despacho, cuadrillas y rastreo en lugar de seis pestañas. Eso se define en una llamada — primero mapeamos tu flujo.",
+      "platformDefault": "Una plataforma se construye alrededor de tu flujo, no de una plantilla. La definimos en una llamada para que el desarrollo refleje cómo opera tu negocio."
     },
     "Consult": {
-      "heading": "Hablemos directamente.",
-      "subtitle": "\"Otra cosa\" suele ser la conversación interesante. Cuéntanos qué necesitas y te decimos qué lleva — alcance, tiempo y costo.",
-      "cta": "Agendar llamada"
-    },
-    "AddOns": {
-      "heading": "Complementa este paquete",
-      "subtitle": "Opcional. Marca lo que te gustaría incluir en la conversación.",
-      "perMonth": "/mes",
-      "items": {
-        "bilingual": {
-          "name": "Complemento bilingüe",
-          "description": "Sitio en español, copy nativo, hreflang y chatbot bilingüe."
-        },
-        "seo": {
-          "name": "Mantenimiento SEO",
-          "description": "Auditoría mensual, seguimiento de keywords, actualizaciones de contenido."
-        },
-        "social": {
-          "name": "Redes sociales",
-          "description": "Posts semanales, creación de contenido, monitoreo de interacción."
-        },
-        "care": {
-          "name": "Plan de cuidado",
-          "description": "Respaldos, actualizaciones, seguridad y arreglos prioritarios."
-        }
-      }
-    },
-    "Status": {
-      "paymentSuccess": "Pago exitoso. Bienvenido a bordo.",
-      "paymentCanceled": "Pago cancelado. Regresa cuando estés listo."
+      "heading": "Definámoslo en una llamada.",
+      "subtitle": "\"No estoy seguro\" suele ser la conversación interesante. Cuéntanos qué se está rompiendo y te decimos qué se necesita — alcance, plazo y costo.",
+      "cta": "Agenda una llamada"
     }
   },
   "HowItWorks": {

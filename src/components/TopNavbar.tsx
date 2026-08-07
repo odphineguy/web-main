@@ -9,10 +9,11 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useModeAnimation, ThemeAnimationType } from "react-theme-switch-animation";
 import { Menu, X } from "lucide-react";
 
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 export default function TopNavbar() {
   const t = useTranslations('Navbar');
+  const locale = useLocale();
   const pathname = usePathname();
   const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -22,9 +23,11 @@ export default function TopNavbar() {
 
   // Check if a link is active
   const isActive = (href: string) => {
-    if (href === "/") return pathname === "/";
-    return pathname.startsWith(href);
+    const localePath = pathname.replace(/^\/(?:en|es)(?=\/|$)/, "") || "/";
+    if (href === "/") return localePath === "/";
+    return localePath.startsWith(href);
   };
+  const localizedHref = (href: string) => `/${locale}${href === "/" ? "" : href}`;
   const { scrollY } = useScroll();
 
   // Theme animation hook
@@ -53,7 +56,7 @@ export default function TopNavbar() {
         className="mx-auto flex h-full items-center justify-between"
       >
         <div className="flex items-center gap-3">
-          <Link href="/" className="hover:opacity-80 transition-opacity">
+          <Link href={localizedHref("/")} className="hover:opacity-80 transition-opacity">
             <Image
               src="/images/portfolio/abemedia.logo.nobg.png"
               alt="Abe Media"
@@ -75,14 +78,15 @@ export default function TopNavbar() {
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-5 md:gap-6 text-base ml-3 sm:ml-6 md:ml-10">
-          <Link href="/#agents" className="font-bold transition-colors opacity-80 hover:opacity-100">{t('agents')}</Link>
-          <Link href="/platforms" className={`font-bold transition-colors ${isActive("/platforms") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('platforms')}</Link>
-          <Link href="/pricing" className={`font-bold transition-colors ${isActive("/pricing") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('pricing')}</Link>
-          <Link href="/calculator" className={`font-bold transition-colors ${isActive("/calculator") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('calculator')}</Link>
-          <Link href="/portfolio" className={`font-bold transition-colors ${isActive("/portfolio") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('portfolio')}</Link>
-          <Link href="/contact" className={`font-bold transition-colors ${isActive("/contact") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('contact')}</Link>
+          <Link href={localizedHref("/services")} className={`font-bold transition-colors ${isActive("/services") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('services')}</Link>
+          <Link href="/en/industries" hrefLang="en" className={`font-bold transition-colors ${isActive("/industries") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('industries')}</Link>
+          <Link href="/en/portfolio" hrefLang="en" className={`font-bold transition-colors ${isActive("/portfolio") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('caseStudies')}</Link>
+          <Link href={localizedHref("/how-it-works")} className={`font-bold transition-colors ${isActive("/how-it-works") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('howItWorks')}</Link>
+          <Link href={localizedHref("/pricing")} className={`font-bold transition-colors ${isActive("/pricing") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('pricing')}</Link>
+          <Link href="/en/about/abe-perez" hrefLang="en" className={`font-bold transition-colors ${isActive("/about") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('about')}</Link>
+          <Link href={localizedHref("/contact")} className={`font-bold transition-colors ${isActive("/contact") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('contact')}</Link>
           <Link
-            href="/contact"
+            href={localizedHref("/contact")}
             className="ml-2 inline-flex items-center rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
           >
             {t('getStarted')}
@@ -126,14 +130,15 @@ export default function TopNavbar() {
           className="md:hidden bg-white/95 dark:bg-neutral-900/95 backdrop-blur supports-[backdrop-filter]:bg-white/95 dark:supports-[backdrop-filter]:bg-neutral-900/95 border-t border-border"
         >
           <nav className="flex flex-col py-4 px-6 space-y-3">
-            <Link href="/#agents" className="font-bold py-2 transition-colors text-foreground opacity-80 hover:opacity-100" onClick={() => setMobileMenuOpen(false)}>{t('agents')}</Link>
-            <Link href="/platforms" className={`font-bold py-2 transition-colors ${isActive("/platforms") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('platforms')}</Link>
-            <Link href="/pricing" className={`font-bold py-2 transition-colors ${isActive("/pricing") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('pricing')}</Link>
-            <Link href="/calculator" className={`font-bold py-2 transition-colors ${isActive("/calculator") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('calculator')}</Link>
-            <Link href="/portfolio" className={`font-bold py-2 transition-colors ${isActive("/portfolio") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('portfolio')}</Link>
-            <Link href="/contact" className={`font-bold py-2 transition-colors ${isActive("/contact") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('contact')}</Link>
+            <Link href={localizedHref("/services")} className={`font-bold py-2 transition-colors ${isActive("/services") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('services')}</Link>
+            <Link href="/en/industries" hrefLang="en" className={`font-bold py-2 transition-colors ${isActive("/industries") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('industries')}</Link>
+            <Link href="/en/portfolio" hrefLang="en" className={`font-bold py-2 transition-colors ${isActive("/portfolio") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('caseStudies')}</Link>
+            <Link href={localizedHref("/how-it-works")} className={`font-bold py-2 transition-colors ${isActive("/how-it-works") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('howItWorks')}</Link>
+            <Link href={localizedHref("/pricing")} className={`font-bold py-2 transition-colors ${isActive("/pricing") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('pricing')}</Link>
+            <Link href="/en/about/abe-perez" hrefLang="en" className={`font-bold py-2 transition-colors ${isActive("/about") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('about')}</Link>
+            <Link href={localizedHref("/contact")} className={`font-bold py-2 transition-colors ${isActive("/contact") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('contact')}</Link>
             <Link
-              href="/contact"
+              href={localizedHref("/contact")}
               className="mt-2 inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -145,5 +150,3 @@ export default function TopNavbar() {
     </motion.header>
   );
 }
-
-

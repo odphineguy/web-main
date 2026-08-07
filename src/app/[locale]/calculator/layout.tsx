@@ -3,9 +3,14 @@ import { Metadata } from "next";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  const isEs = locale === "es";
   return constructMetadata({
-    title: "Bilingual Marketing ROI Calculator | Abe Media",
-    description: "Estimate the revenue lift from launching a bilingual website or AI chatbot. Models customer reach, conversions, and time saved across English and Spanish audiences.",
+    title: isEs
+      ? "Calculadora de crecimiento bilingüe — Abe Media"
+      : "Bilingual Growth Calculator — Abe Media",
+    description: isEs
+      ? "Estima los ingresos mensuales que podrías captar al atender a clientes de habla hispana en tu mercado."
+      : "Estimate the monthly revenue your business could capture by serving Spanish-speaking customers in your market.",
     path: "/calculator",
     locale: locale,
   });
