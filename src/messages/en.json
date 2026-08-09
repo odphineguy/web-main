@@ -22,12 +22,8 @@
       "eyebrow": "AI voice agents for service businesses",
       "titlePart1": "AI agents that answer your phones, book your jobs,",
       "titlePart2": "and never miss a call. 24/7.",
-      "subtitle": "Bilingual by default — English y español. Built for junk removal, HVAC, moving, and home service companies.",
-      "callCta": "Call the demo agent",
-      "phoneNumber": "(669) 669-4486",
-      "callFromPhone": "Call from your phone",
+      "subtitle": "Bilingual by default — English y español. Built for plumbing, HVAC, moving, and home service companies.",
       "scheduleCta": "Schedule a call",
-      "followUp": "The agent takes your info and we follow up the same day.",
       "widgetLabel": "Recorded intake call — real AI, unedited",
       "widgetCaption": "Plumbing after-hours call — Desert Valley.",
       "liveBadge": "Real call"
@@ -54,7 +50,6 @@
       }
     },
     "ServicesGrid": {
-      "badge": "Core services",
       "title": "What we build",
       "subtitle": "Five ways we put AI to work in a service business.",
       "addOnBadge": "Add-on",
@@ -81,7 +76,6 @@
       "howItWorksLink": "See how an AI-run operation works — step by step"
     },
     "Showcase": {
-      "badge": "See it in action",
       "title": "Agents for Every Industry",
       "subtitle": "Watch how our agents handle real conversations for different businesses",
       "cta": "Get an agent like this"
@@ -138,7 +132,7 @@
       "title": "Frequently asked questions",
       "q1": {
         "question": "What exactly is the AI agent?",
-        "answer": "A voice AI agent that answers the phone like a trained intake specialist. It picks up in seconds, qualifies the caller, books the job, and logs everything. It's live right now — call (669) 669-4486."
+        "answer": "A voice AI agent that answers the phone like a trained intake specialist. It picks up in seconds, qualifies the caller, books the job, and logs everything."
       },
       "q2": {
         "question": "Will this work for my industry?",

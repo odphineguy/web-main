@@ -110,43 +110,13 @@ export default function HomePage() {
               </p>
 
               <div className="flex flex-col gap-4">
-                {/* Primary CTA — tel: link on mobile */}
-                <a
-                  href="tel:+16696694486"
-                  onClick={() => handleDemoCallClick("hero-call-cta")}
-                  className="md:hidden inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 hover:bg-orange-600 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-orange-500/25 transition-colors"
-                >
-                  <span aria-hidden="true">📞</span>
-                  {t("Hero.callCta")} — {t("Hero.phoneNumber")}
-                </a>
-                {/* Primary CTA — desktop: large number + microcopy */}
-                <a
-                  href="tel:+16696694486"
-                  onClick={() => handleDemoCallClick("hero-call-cta")}
-                  className="hidden md:inline-flex items-center gap-4 self-start rounded-2xl border border-orange-500/40 bg-orange-500/10 px-6 py-4 transition-colors hover:border-orange-500/70 hover:bg-orange-500/15"
-                >
-                  <span className="text-3xl" aria-hidden="true">📞</span>
-                  <span>
-                    <span className="block text-xs font-semibold uppercase tracking-wide text-orange-500">
-                      {t("Hero.callCta")}
-                    </span>
-                    <span className="block text-3xl font-semibold tracking-tight text-foreground tabular-nums">
-                      {t("Hero.phoneNumber")}
-                    </span>
-                    <span className="block text-xs text-muted-foreground">
-                      {t("Hero.callFromPhone")}
-                    </span>
-                  </span>
-                </a>
-                {/* Secondary CTA */}
                 <Link
                   href={`/${locale}/contact`}
-                  className="inline-flex items-center justify-center gap-2 self-start rounded-full border border-border px-8 py-3.5 text-sm font-semibold text-foreground transition-colors hover:border-orange-500/60 hover:text-orange-500"
+                  className="inline-flex items-center justify-center gap-2 self-start rounded-full bg-orange-500 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-orange-500/25 transition-colors hover:bg-orange-600"
                 >
                   {t("Hero.scheduleCta")}
                 </Link>
               </div>
-              <p className="text-sm text-muted-foreground">{t("Hero.followUp")}</p>
             </div>
 
             {/* Right: recorded-call transcript player */}
@@ -207,9 +177,6 @@ export default function HomePage() {
           <motion.div
             className="mb-12 max-w-3xl"
           >
-            <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500 mb-4">
-              {t("ServicesGrid.badge")}
-            </span>
             <h2 className="text-[28px] md:text-[32px] lg:text-[36px] font-medium tracking-[-0.02em] text-foreground mb-4">
               {t("ServicesGrid.title")}
             </h2>

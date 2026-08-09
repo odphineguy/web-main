@@ -17,7 +17,7 @@ export const bilingualDemo: DemoConfig = {
   id: 'bilingual',
   name: 'Casa Oaxaca',
   subtitle: 'Reservaciones y menú',
-  avatar: '🌶️',
+  avatar: 'CO',
   accentColor: 'orange',
 };
 

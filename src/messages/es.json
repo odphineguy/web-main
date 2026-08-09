@@ -22,12 +22,8 @@
       "eyebrow": "Agentes de voz con IA para negocios de servicios",
       "titlePart1": "Agentes de IA que contestan tus llamadas, agendan tus trabajos,",
       "titlePart2": "y nunca pierden una llamada. 24/7.",
-      "subtitle": "Bilingüe por diseño — English y español. Hecho para retiro de escombros, HVAC, mudanzas y servicios para el hogar.",
-      "callCta": "Llama al agente de demostración",
-      "phoneNumber": "(669) 669-4486",
-      "callFromPhone": "Llama desde tu celular",
+      "subtitle": "Bilingüe por diseño — English y español. Hecho para plomería, HVAC, mudanzas y servicios para el hogar.",
       "scheduleCta": "Agenda una llamada",
-      "followUp": "El agente toma tus datos y te contactamos el mismo día.",
       "widgetLabel": "Llamada de admisión grabada — IA real, sin editar",
       "widgetCaption": "Llamada de plomería fuera de horario — Desert Valley.",
       "liveBadge": "Llamada real"
@@ -54,7 +50,6 @@
       }
     },
     "ServicesGrid": {
-      "badge": "Servicios principales",
       "title": "Qué construimos",
       "subtitle": "Cinco formas de poner la IA a trabajar en un negocio de servicios.",
       "addOnBadge": "Complemento",
@@ -81,7 +76,6 @@
       "howItWorksLink": "Mira paso a paso cómo funciona una operación dirigida por IA"
     },
     "Showcase": {
-      "badge": "Míralo en acción",
       "title": "Agentes para cada industria",
       "subtitle": "Mira cómo nuestros agentes manejan conversaciones reales de distintos negocios",
       "cta": "Quiero un agente así"
@@ -138,7 +132,7 @@
       "title": "Preguntas frecuentes",
       "q1": {
         "question": "¿Qué es exactamente el agente de IA?",
-        "answer": "Un agente de voz con IA que contesta el teléfono como una recepcionista de admisión entrenada. Levanta en segundos, califica a quien llama, agenda el trabajo y registra todo. Está en vivo ahora mismo — llama al (669) 669-4486."
+        "answer": "Un agente de voz con IA que contesta el teléfono como una recepcionista de admisión entrenada. Levanta en segundos, califica a quien llama, agenda el trabajo y registra todo."
       },
       "q2": {
         "question": "¿Funciona para mi industria?",

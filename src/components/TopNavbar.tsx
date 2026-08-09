@@ -7,7 +7,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useModeAnimation, ThemeAnimationType } from "react-theme-switch-animation";
-import { Menu, X } from "lucide-react";
+import { ArrowRight, Menu, Moon, Sun, X } from "lucide-react";
 
 import { useLocale, useTranslations } from 'next-intl';
 
@@ -87,9 +87,10 @@ export default function TopNavbar() {
           <Link href={localizedHref("/contact")} className={`font-bold transition-colors ${isActive("/contact") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('contact')}</Link>
           <Link
             href={localizedHref("/contact")}
-            className="ml-2 inline-flex items-center rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+            className="group ml-2 inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-orange-500 px-5 py-2 text-sm font-semibold text-white shadow-md shadow-orange-500/25 transition-all hover:bg-orange-600 hover:shadow-lg hover:shadow-orange-500/30"
           >
             {t('getStarted')}
+            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
           </Link>
           <button
             ref={themeRef}
@@ -97,7 +98,7 @@ export default function TopNavbar() {
             aria-label="Toggle theme"
             className="ml-1 inline-flex h-8 w-8 items-center justify-center rounded-full border border-border opacity-80 hover:opacity-100"
           >
-            {mounted && (isDark ? "🌙" : "☀️")}
+            {mounted && (isDark ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />)}
           </button>
         </nav>
 
@@ -109,7 +110,7 @@ export default function TopNavbar() {
             aria-label="Toggle theme"
             className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-border opacity-80 hover:opacity-100"
           >
-            {mounted && (isDark ? "🌙" : "☀️")}
+            {mounted && (isDark ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />)}
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -139,10 +140,11 @@ export default function TopNavbar() {
             <Link href={localizedHref("/contact")} className={`font-bold py-2 transition-colors ${isActive("/contact") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('contact')}</Link>
             <Link
               href={localizedHref("/contact")}
-              className="mt-2 inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+              className="group mt-2 inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-full bg-orange-500 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-orange-500/25 transition-all hover:bg-orange-600"
               onClick={() => setMobileMenuOpen(false)}
             >
               {t('getStarted')}
+              <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </nav>
         </motion.div>

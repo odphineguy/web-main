@@ -37,9 +37,6 @@ export default function ChatDemoShowcase({ onCtaClick }: ChatDemoShowcaseProps) 
           viewport={{ once: true }}
           className="text-center mb-10"
         >
-          <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-orange-500 mb-4">
-            {t("badge")}
-          </span>
           <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
             {t("title")}
           </h2>
