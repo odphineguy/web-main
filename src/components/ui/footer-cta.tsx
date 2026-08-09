@@ -4,7 +4,6 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 interface FooterCTAProps {
-  eyebrow?: string;
   heading: string;
   subtext?: string;
   buttonText: string;
@@ -16,7 +15,6 @@ interface FooterCTAProps {
 }
 
 interface FooterCTANewsletterProps {
-  eyebrow?: string;
   heading: string;
   subtext?: string;
   inputPlaceholder?: string;
@@ -28,7 +26,6 @@ interface FooterCTANewsletterProps {
 const FooterCTA = React.forwardRef<HTMLElement, FooterCTAProps>(
   (
     {
-      eyebrow = "Next step",
       heading,
       subtext,
       buttonText,
@@ -76,23 +73,6 @@ const FooterCTA = React.forwardRef<HTMLElement, FooterCTAProps>(
           >
             {/* Content section */}
             <div className="relative z-10 flex flex-col items-start gap-3 md:max-w-[60%]">
-              {/* Eyebrow */}
-              <div
-                className="inline-flex items-center gap-2 text-[0.7rem] uppercase tracking-[0.15em]"
-                style={{ color: "var(--footer-cta-text-secondary)" }}
-              >
-                <span
-                  className="w-[7px] h-[7px] rounded-full"
-                  style={{
-                    background:
-                      "radial-gradient(circle, oklch(0.70 0.18 47.64) 0, oklch(0.50 0.15 47.64) 100%)",
-                    boxShadow: "var(--footer-cta-dot-glow)",
-                  }}
-                  aria-hidden="true"
-                />
-                <span>{eyebrow}</span>
-              </div>
-
               {/* Heading */}
               <h2
                 id="footer-cta-heading"
@@ -163,7 +143,6 @@ const FooterCTANewsletter = React.forwardRef<
 >(
   (
     {
-      eyebrow = "Stay connected",
       heading,
       subtext,
       inputPlaceholder = "my@email.com",
@@ -214,23 +193,6 @@ const FooterCTANewsletter = React.forwardRef<
               boxShadow: "var(--footer-cta-shadow)",
             }}
           >
-            {/* Eyebrow */}
-            <div
-              className="inline-flex items-center justify-center gap-2 text-[0.7rem] uppercase tracking-[0.15em] mx-auto"
-              style={{ color: "var(--footer-cta-text-secondary)" }}
-            >
-              <span
-                className="w-[7px] h-[7px] rounded-full"
-                style={{
-                  background:
-                    "radial-gradient(circle, oklch(0.70 0.18 47.64) 0, oklch(0.50 0.15 47.64) 100%)",
-                  boxShadow: "var(--footer-cta-dot-glow)",
-                }}
-                aria-hidden="true"
-              />
-              <span>{eyebrow}</span>
-            </div>
-
             {/* Heading */}
             <h2
               id="footer-newsletter-heading"

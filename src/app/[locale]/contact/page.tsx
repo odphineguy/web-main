@@ -107,9 +107,6 @@ export default function ContactPage() {
               />
             </div>
             <div className="space-y-4">
-              <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
-                {t("Founder.badge")}
-              </span>
               <h2 className="text-[28px] md:text-[32px] font-medium tracking-[-0.02em] text-foreground">
                 {t("Founder.title")}
               </h2>

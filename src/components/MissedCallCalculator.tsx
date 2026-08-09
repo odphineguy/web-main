@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { PhoneMissed, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
 
@@ -79,16 +79,11 @@ export default function MissedCallCalculator() {
             className="rounded-2xl p-px bg-primary/10"
           >
             <div className="rounded-2xl p-6 md:p-8 bg-card">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 rounded-lg bg-orange-500/10">
-                  <PhoneMissed className="h-6 w-6 text-orange-500" />
-                </div>
-                <div>
-                  <h3 className="text-xl md:text-2xl font-normal tracking-[-0.02em] text-foreground">
-                    {t("title")}
-                  </h3>
-                  <p className="text-sm font-light text-muted-foreground">{t("subtitle")}</p>
-                </div>
+              <div className="mb-6">
+                <h3 className="text-xl md:text-2xl font-normal tracking-[-0.02em] text-foreground">
+                  {t("title")}
+                </h3>
+                <p className="text-sm font-light text-muted-foreground">{t("subtitle")}</p>
               </div>
 
               <form

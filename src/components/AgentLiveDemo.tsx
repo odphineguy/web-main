@@ -15,9 +15,6 @@ export default function AgentLiveDemo() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           {/* Left: copy + what to try on the call */}
           <div className="space-y-4">
-            <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
-              {t("badge")}
-            </span>
             <h2 className="text-[28px] md:text-[32px] font-medium tracking-[-0.02em] text-foreground">
               {t("title")}
             </h2>
@@ -40,20 +37,14 @@ export default function AgentLiveDemo() {
           <div className="flex justify-center lg:justify-end">
             <div className="w-full max-w-md rounded-2xl p-px bg-gradient-to-b from-orange-500/40 to-white/5">
               <div className="rounded-2xl bg-white dark:bg-neutral-900 p-6">
-                <div className="flex items-center justify-between gap-3 mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-orange-500/10">
-                      <PhoneCall className="h-5 w-5 text-orange-500" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-foreground">{t("cardTitle")}</p>
-                      <p className="text-xs text-muted-foreground">{t("cardSubtitle")}</p>
-                    </div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-orange-500/10">
+                    <PhoneCall className="h-5 w-5 text-orange-500" />
                   </div>
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-green-500/30 bg-green-500/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-green-600 dark:text-green-400">
-                    <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" aria-hidden />
-                    {t("available")}
-                  </span>
+                  <div>
+                    <p className="text-sm font-semibold text-foreground">{t("cardTitle")}</p>
+                    <p className="text-xs text-muted-foreground">{t("cardSubtitle")}</p>
+                  </div>
                 </div>
                 {/* The embedded widget is the call trigger — it renders its own start button */}
                 <div

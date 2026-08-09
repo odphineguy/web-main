@@ -35,17 +35,6 @@ export default function PartnerSteps() {
     <section className="bg-background py-20 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-10 md:mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="flex justify-center mb-6"
-          >
-            <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-card px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
-              ENTERPRISE SOLUTIONS FOR SMALL BUSINESS
-            </span>
-          </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

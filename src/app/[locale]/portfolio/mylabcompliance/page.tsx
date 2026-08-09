@@ -156,12 +156,6 @@ export default function CaseStudyMyLabCompliance() {
             <span className="text-muted-foreground">myLabCompliance.io</span>
           </div>
 
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 dark:bg-orange-500/10 border border-orange-200 dark:border-orange-500/20 text-orange-600 dark:text-orange-500 text-sm mb-6">
-            <span className="w-2 h-2 rounded-full bg-orange-500" />
-            B2B SaaS &bull; Lab Compliance
-          </div>
-
           <h1 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] mb-6 leading-tight">
             From Critical SEO Failures to{" "}
             <span className="text-primary">

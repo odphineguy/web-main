@@ -119,10 +119,6 @@ export default function BilingualWebDevelopment() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-orange-500 mb-6">
-              <Globe className="h-3.5 w-3.5" />
-              Bilingual Solutions
-            </span>
             <h1 className="text-3xl md:text-4xl lg:text-[40px] font-medium tracking-[-0.02em] text-foreground mb-6 leading-tight">
               Bilingual Web Development{" "}
               <span className="text-primary">

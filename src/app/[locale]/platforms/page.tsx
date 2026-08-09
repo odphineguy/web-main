@@ -75,9 +75,6 @@ export default function PlatformsPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-4xl mx-auto mb-12"
           >
-            <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-orange-500 mb-6">
-              {t("Hero.badge")}
-            </span>
             <h1 className="text-3xl md:text-4xl lg:text-[48px] font-medium tracking-[-0.02em] text-foreground mb-6 leading-tight">
               {t("Hero.title")}{" "}
               <span className="text-primary">
@@ -129,15 +126,6 @@ export default function PlatformsPage() {
             viewport={{ once: true }}
             className="mb-12 max-w-3xl"
           >
-            {/* Badges row */}
-            <div className="flex items-center justify-center gap-3 mb-6 flex-wrap">
-              <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-orange-500">
-                {t("Saguaro.badge")}
-              </span>
-              <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-orange-500">
-                {t("Saguaro.forSaleBadge")}
-              </span>
-            </div>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium tracking-[-0.02em] text-foreground mb-4">
               {t("Saguaro.title")}
             </h2>
@@ -214,9 +202,6 @@ export default function PlatformsPage() {
             className="mt-20"
           >
             <div className="text-center mb-10">
-              <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-orange-500 mb-4">
-                {t("DriverApp.badge")}
-              </span>
               <h3 className="text-xl md:text-2xl lg:text-3xl font-medium tracking-[-0.02em] text-foreground mb-3">
                 {t("DriverApp.title")}
               </h3>
@@ -345,9 +330,6 @@ export default function PlatformsPage() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-orange-500 mb-6">
-              {t("ComingSoon.badge")}
-            </span>
             <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-foreground mb-4">
               {t("ComingSoon.title")}
             </h2>

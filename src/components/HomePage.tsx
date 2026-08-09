@@ -72,7 +72,7 @@ export default function HomePage() {
     { key: "dispatch" },
     { key: "pipeline" },
     { key: "apps" },
-    { key: "web", isAddOn: true },
+    { key: "web" },
   ] as const;
   const faqSchema = {
     "@context": "https://schema.org",
@@ -177,18 +177,13 @@ export default function HomePage() {
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {serviceCards.map(({ key, ...card }) => (
+            {serviceCards.map(({ key }) => (
               <motion.div
                 key={key}
                 className="relative group h-full"
               >
                 <div className="h-full rounded-2xl p-px transition-all duration-300 bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
                   <div className="h-full rounded-2xl p-6 lg:p-8 backdrop-blur-xl transition-all duration-300 bg-gray-50 dark:bg-neutral-900">
-                    {"isAddOn" in card && card.isAddOn && (
-                      <span className="mb-4 inline-flex items-center rounded-full border border-orange-500/30 bg-orange-500/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-orange-500">
-                        {t("ServicesGrid.addOnBadge")}
-                      </span>
-                    )}
                     <h3 className="text-lg font-semibold text-foreground mb-2">
                       {t(`ServicesGrid.${key}.title`)}
                     </h3>
@@ -221,9 +216,6 @@ export default function HomePage() {
           <motion.div
             className="mb-12 max-w-3xl"
           >
-            <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500 mb-4">
-              {t("CaseStudies.badge")}
-            </span>
             <h2 className="text-[28px] md:text-[32px] lg:text-[36px] font-medium tracking-[-0.02em] text-foreground">
               {t("CaseStudies.title")}
             </h2>
@@ -259,9 +251,6 @@ export default function HomePage() {
             <motion.div
               className="space-y-4"
             >
-              <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
-                {p("Preview.badge")}
-              </span>
               <h3 className="text-xl font-semibold text-orange-500">{p("Preview.subtitle")}</h3>
               <p className="text-muted-foreground">{p("Preview.description")}</p>
               <Link
@@ -304,29 +293,12 @@ export default function HomePage() {
       {/* Missed-call revenue calculator */}
       <section id="missed-call" className="bg-gray-50 dark:bg-neutral-950 py-20 px-6 scroll-mt-20">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="flex justify-center mb-10"
-          >
-            <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
-              {t("MissedCall.badge")}
-            </span>
-          </motion.div>
           <MissedCallCalculator />
         </div>
       </section>
 
       {/* Testimonials - Gray background with dark cards */}
       <section className="bg-gray-100 dark:bg-neutral-900 py-10">
-        <div className="px-6">
-          <motion.div
-            className="flex justify-center mb-6"
-          >
-            <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-orange-500">
-              {t("Testimonials.title")}
-            </span>
-          </motion.div>
-        </div>
-
         {/* Two-up: real testimonial + results stat card */}
         <div className="px-6 pb-6">
           <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">

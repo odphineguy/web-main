@@ -178,10 +178,6 @@ export default function PortfolioPage() {
               href={`/${locale}/portfolio/mylabcompliance`}
               className="group block p-6 rounded-xl bg-card border border-border hover:border-orange-500/50 hover:shadow-lg transition-all duration-300"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 text-orange-500 text-sm mb-4">
-                <span className="w-2 h-2 rounded-full bg-orange-500" />
-                B2B SaaS
-              </div>
               <h3 className="text-xl md:text-[28px] font-normal tracking-normal mb-2 text-foreground group-hover:text-orange-500 transition-colors">
                 myLabCompliance.io
               </h3>
@@ -199,10 +195,6 @@ export default function PortfolioPage() {
               href={`/${locale}/portfolio/saguarotransport`}
               className="group block p-6 rounded-xl bg-card border border-border hover:border-orange-500/50 hover:shadow-lg transition-all duration-300"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 text-orange-500 text-sm mb-4">
-                <span className="w-2 h-2 rounded-full bg-orange-500" />
-                Custom Platform
-              </div>
               <h3 className="text-xl md:text-[28px] font-normal tracking-normal mb-2 text-foreground group-hover:text-orange-500 transition-colors">
                 Saguaro Transport
               </h3>
@@ -220,7 +212,6 @@ export default function PortfolioPage() {
               hrefLang="en"
               className="group block p-6 rounded-xl bg-card border border-border hover:border-orange-500/50 hover:shadow-lg transition-all duration-300"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 text-orange-500 text-sm mb-4"><span className="w-2 h-2 rounded-full bg-orange-500" />Moving &amp; Junk Removal</div>
               <h3 className="text-xl md:text-[28px] font-normal tracking-normal mb-2 text-foreground group-hover:text-orange-500 transition-colors">Rejunk</h3>
               <p className="text-muted-foreground text-sm md:text-base font-normal leading-relaxed mb-4">Lead handling, dispatch, driver activation, job management, and live location in one browser-based platform.</p>
               <div className="flex items-center gap-2 text-orange-500 text-sm font-medium">Read Case Study<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" /></div>
@@ -231,7 +222,6 @@ export default function PortfolioPage() {
               hrefLang="en"
               className="group block p-6 rounded-xl bg-card border border-border hover:border-orange-500/50 hover:shadow-lg transition-all duration-300"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 text-orange-500 text-sm mb-4"><span className="w-2 h-2 rounded-full bg-orange-500" />AI Estimating</div>
               <h3 className="text-xl md:text-[28px] font-normal tracking-normal mb-2 text-foreground group-hover:text-orange-500 transition-colors">AI Design Studio for an Artificial Turf Franchise</h3>
               <p className="text-muted-foreground text-sm md:text-base font-normal leading-relaxed mb-4">Photo intake, AI-assisted visualization, estimate output, and CRM lead creation in one customer journey.</p>
               <div className="flex items-center gap-2 text-orange-500 text-sm font-medium">Read Case Study<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" /></div>
@@ -242,7 +232,6 @@ export default function PortfolioPage() {
               hrefLang="en"
               className="group block p-6 rounded-xl bg-card border border-border hover:border-orange-500/50 hover:shadow-lg transition-all duration-300"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 text-orange-500 text-sm mb-4"><span className="w-2 h-2 rounded-full bg-orange-500" />AI Voice Agent</div>
               <h3 className="text-xl md:text-[28px] font-normal tracking-normal mb-2 text-foreground group-hover:text-orange-500 transition-colors">Bilingual AI Voice Agent</h3>
               <p className="text-muted-foreground text-sm md:text-base font-normal leading-relaxed mb-4">A bilingual personal-injury intake demonstration with emergency checks, qualification, booking, and guardrails.</p>
               <div className="flex items-center gap-2 text-orange-500 text-sm font-medium">Read Case Study<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" /></div>

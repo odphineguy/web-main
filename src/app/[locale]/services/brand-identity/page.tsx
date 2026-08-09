@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import ConsultationForm from "@/components/ConsultationForm";
 import SlidingHighlightGrid from "@/components/SlidingHighlightGrid";
 import { FooterCTA } from "@/components/ui/footer-cta";
-import { Check, Palette, ArrowRight } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 
 interface Package {
   id: string;
@@ -93,10 +93,6 @@ export default function BrandIdentity() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-orange-500 mb-6">
-              <Palette className="h-3.5 w-3.5" />
-              {t("badge")}
-            </span>
             <h1 className="text-3xl md:text-4xl font-medium tracking-tight text-foreground mb-6 leading-tight">
               {t("title")}
             </h1>
