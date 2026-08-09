@@ -51,7 +51,7 @@
     },
     "ServicesGrid": {
       "title": "Qué construimos",
-      "subtitle": "Cinco formas de poner la IA a trabajar en un negocio de servicios.",
+      "subtitle": "Seis formas de poner la IA a trabajar en un negocio de servicios.",
       "addOnBadge": "Complemento",
       "voice": {
         "title": "Agentes de voz e IA fuera de horario",
@@ -66,8 +66,12 @@
         "description": "Webhooks de Thumbtack y Housecall Pro, cotización automática, estado en tiempo real. Entra el lead, sale la cotización, se agenda el trabajo — sin intervención humana."
       },
       "apps": {
-        "title": "Apps a medida y plugins de IA",
-        "description": "Apps publicadas en App Store y Google Play, incluyendo modelos de IA en el dispositivo. Plugins para ChatGPT y Claude — el MLC Lab Compliance Finder ya está en producción."
+        "title": "Apps a medida",
+        "description": "Apps publicadas en App Store y Google Play, incluyendo modelos de IA en el dispositivo que siguen funcionando sin conexión y sin costo por consulta."
+      },
+      "plugins": {
+        "title": "Plugins de IA y herramientas GPT",
+        "description": "Herramientas de ChatGPT y Claude hechas a medida que resuelven un solo problema a fondo. Tres construidas y funcionando: un buscador de cumplimiento de laboratorio, un estudio de diseño de césped y un planificador de operaciones de servicio."
       },
       "web": {
         "title": "Sitios web y chatbots bilingües",

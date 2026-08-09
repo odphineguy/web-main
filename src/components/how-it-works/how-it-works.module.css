@@ -120,11 +120,12 @@
 }
 
 /* ============ reveal animation ============ */
-.reveal { opacity: 0; transform: translateY(26px); }
+.reveal { opacity: 0; transform: translateY(14px); }
 .in .reveal {
   opacity: 1; transform: none;
-  transition: opacity 0.8s var(--hiw-ease-out), transform 0.8s var(--hiw-ease-out);
-  transition-delay: calc(var(--i, 0) * 90ms);
+  transition: opacity 0.38s var(--hiw-ease-out), transform 0.38s var(--hiw-ease-out);
+  /* Stagger is capped: without min() a list item at --i:10 waited ~1.7s to appear. */
+  transition-delay: min(calc(var(--i, 0) * 28ms), 200ms);
 }
 
 /* ============ hero ============ */
@@ -187,6 +188,10 @@
 
 /* ============ pipeline diagram ============ */
 .pipelineWrap { margin: var(--hiw-space-xl) 0 var(--hiw-space-2xl); overflow-x: auto; padding-bottom: 6px; }
+/* Toggled by IntersectionObserver so the infinite keyframes below cost nothing
+   while the diagram is scrolled out of view. */
+.animPaused .pipePulse,
+.animPaused .bulb { animation-play-state: paused; }
 .pipeline { min-width: 860px; position: relative; }
 .pipeTrack {
   position: absolute; left: 3%; right: 3%; top: 30px;

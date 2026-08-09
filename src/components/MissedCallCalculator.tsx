@@ -26,9 +26,9 @@ export default function MissedCallCalculator() {
   const t = useTranslations("Home.MissedCall");
   const locale = useLocale();
 
-  const [industry, setIndustry] = useState("junk");
+  const [industry, setIndustry] = useState("plumbing");
   const [missedCalls, setMissedCalls] = useState("");
-  const [closeRate, setCloseRate] = useState(industryDefaults.junk.closeRate);
+  const [closeRate, setCloseRate] = useState(industryDefaults.plumbing.closeRate);
   const [avgTicket, setAvgTicket] = useState("");
   const [monthlyLost, setMonthlyLost] = useState<number | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});

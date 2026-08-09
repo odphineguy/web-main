@@ -51,7 +51,7 @@
     },
     "ServicesGrid": {
       "title": "What we build",
-      "subtitle": "Five ways we put AI to work in a service business.",
+      "subtitle": "Six ways we put AI to work in a service business.",
       "addOnBadge": "Add-on",
       "voice": {
         "title": "AI voice agents & after-hours answering",
@@ -66,8 +66,12 @@
         "description": "Thumbtack and Housecall Pro webhooks, auto-quoting, realtime status sync. Lead in, quote out, job booked — no human in the loop."
       },
       "apps": {
-        "title": "Custom apps & AI plugins",
-        "description": "Apps live on the App Store and Google Play, including on-device AI models. ChatGPT and Claude plugins — the MLC Lab Compliance Finder shipped."
+        "title": "Custom apps",
+        "description": "Apps live on the App Store and Google Play, including on-device AI models that keep working with no connection and no per-call fee."
+      },
+      "plugins": {
+        "title": "AI plugins & GPT tools",
+        "description": "Purpose-built ChatGPT and Claude tools that solve one problem well. Three built and running: a lab compliance finder, a turf design studio, and a service-operations planner."
       },
       "web": {
         "title": "Websites & bilingual chatbots",

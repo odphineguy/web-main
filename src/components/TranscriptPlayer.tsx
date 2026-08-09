@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Play, Pause } from "lucide-react";
+import { useTheme } from "next-themes";
 import { useLocale, useTranslations } from "next-intl";
 import { calls } from "./transcriptData";
 
@@ -19,9 +20,20 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
   const scrollRef = useRef<HTMLDivElement>(null);
   const [playing, setPlaying] = useState(false);
   const [time, setTime] = useState(0);
+  const [mounted, setMounted] = useState(false);
   const firedRef = useRef(false);
 
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
+
+  // Match ChatDemoWindow: neutral surface during SSR to avoid a hydration mismatch
+  const themeClass = mounted ? (isDark ? "chat-demo-charcoal" : "chat-demo-cream") : "chat-demo-cream";
+
   const clip = calls[clipLang];
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const a = audioRef.current;
@@ -84,103 +96,218 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
   const activeIdx = started ? visible.length - 1 : -1;
 
   return (
-    <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white text-left dark:border-neutral-800 dark:bg-neutral-950">
+    <div
+      className={`relative overflow-hidden rounded-3xl backdrop-blur-[14px] text-left ${themeClass}`}
+      style={{
+        background: "var(--chat-surface)",
+        border: "1px solid var(--chat-border)",
+        boxShadow: "var(--chat-shadow)",
+      }}
+    >
       <audio ref={audioRef} src={clip.src} preload="none" />
 
-      {/* Header bar */}
-      <div className="border-b border-neutral-200 px-4 py-3 dark:border-neutral-800">
-        <p className="text-sm font-medium text-neutral-950 dark:text-white">
-          {t("widgetLabel")}
-        </p>
-        <div className="mt-2 flex items-center justify-between gap-3">
-          <p className="text-xs text-neutral-600 dark:text-neutral-400">{t("widgetCaption")}</p>
-          <div className="flex flex-shrink-0 rounded-full border border-neutral-300 bg-neutral-100 p-0.5 dark:border-neutral-700 dark:bg-neutral-900" role="group" aria-label="Call language">
-            {(["en", "es"] as const).map((lang) => (
-              <button
-                key={lang}
-                type="button"
-                onClick={() => switchClip(lang)}
-                aria-pressed={clipLang === lang}
-                className={`rounded-full px-2.5 py-0.5 text-[11px] font-medium transition-colors ${
-                  clipLang === lang
-                    ? "bg-white text-neutral-950 shadow-sm dark:bg-neutral-700 dark:text-white"
-                    : "text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200"
-                }`}
-              >
-                {CLIP_LABELS[lang]}
-              </button>
-            ))}
-          </div>
+      {/* Dot pattern overlay — light mode */}
+      {mounted && !isDark && (
+        <div
+          className="pointer-events-none absolute inset-0 z-0"
+          style={{
+            backgroundImage: "radial-gradient(circle at 12px 12px, rgba(23,23,23,0.04) 1px, transparent 1px)",
+            backgroundSize: "26px 26px",
+            opacity: 0.25,
+            maskImage: "linear-gradient(180deg, rgba(0,0,0,0.70), rgba(0,0,0,0.10))",
+            WebkitMaskImage: "linear-gradient(180deg, rgba(0,0,0,0.70), rgba(0,0,0,0.10))",
+          }}
+        />
+      )}
+
+      {/* Aurora overlay — dark mode */}
+      {mounted && isDark && (
+        <div
+          className="animate-aurora pointer-events-none absolute inset-[-40px] z-0"
+          style={{
+            background: `
+              radial-gradient(500px 240px at 20% 10%, rgba(249,115,22,0.30), transparent 60%),
+              radial-gradient(520px 260px at 85% 20%, rgba(251,146,60,0.25), transparent 62%),
+              radial-gradient(540px 260px at 55% 110%, rgba(234,88,12,0.18), transparent 65%)
+            `,
+            filter: "blur(18px)",
+            opacity: 0.9,
+          }}
+        />
+      )}
+
+      {/* Header */}
+      <div
+        className="relative z-10 flex items-center gap-3 border-b bg-transparent px-4 py-3"
+        style={{ borderColor: "var(--chat-header-border)" }}
+      >
+        <div
+          className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-2xl"
+          style={{
+            background: "#f17523",
+            boxShadow: isDark
+              ? "0 0 0 1px rgba(115,115,115,0.16), 0 16px 40px rgba(0,0,0,0.42)"
+              : "0 14px 30px rgba(249,115,22,0.28)",
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/favicon.ico" alt="" className="h-6 w-6 object-contain" />
+        </div>
+        <div className="min-w-0 flex-1 text-center">
+          <h3
+            className="text-sm font-semibold leading-snug"
+            style={{
+              fontFamily: "var(--font-serif), Georgia, serif",
+              fontStyle: "italic",
+              color: "var(--chat-text)",
+            }}
+          >
+            {t("widgetLabel")}
+          </h3>
+          <span className="text-xs" style={{ color: "var(--chat-muted)" }}>
+            {t("widgetCaption")}
+          </span>
+        </div>
+        {/* Spacer balances the avatar so the title stays optically centered */}
+        <div className="h-10 w-10 flex-shrink-0" aria-hidden="true" />
+      </div>
+
+      {/* Clip language toggle — its own row so the title above can breathe */}
+      <div
+        className="relative z-10 flex justify-center border-b bg-transparent px-4 py-2"
+        style={{ borderColor: "var(--chat-header-border)" }}
+      >
+        <div
+          className="flex rounded-full p-0.5"
+          style={{ background: "var(--chat-input-bg)", border: "1px solid var(--chat-border)" }}
+          role="group"
+          aria-label="Call language"
+        >
+          {(["en", "es"] as const).map((lang) => (
+            <button
+              key={lang}
+              type="button"
+              onClick={() => switchClip(lang)}
+              aria-pressed={clipLang === lang}
+              className="rounded-full px-3 py-1 text-[11px] font-medium transition-colors"
+              style={
+                clipLang === lang
+                  ? { background: "var(--chat-user-bubble)", color: "var(--chat-user-text)" }
+                  : { color: "var(--chat-muted)" }
+              }
+            >
+              {CLIP_LABELS[lang]}
+            </button>
+          ))}
         </div>
       </div>
 
-      {/* Transcript */}
-      <div ref={scrollRef} className="h-80 space-y-5 overflow-y-auto px-4 py-4 scroll-smooth">
+      {/* Transcript — AI left, caller right, matching the demo bubbles */}
+      <div
+        ref={scrollRef}
+        className="relative z-10 flex h-80 flex-col gap-3 overflow-y-auto bg-transparent px-4 py-3 scroll-smooth"
+      >
         {visible.map((m, i) =>
           m.role === "note" ? (
-            <div key={i} className="mx-2 rounded-lg border border-orange-500/30 bg-orange-500/10 px-3 py-2 dark:border-orange-500/25 dark:bg-orange-500/5">
-              <p className="text-xs italic leading-relaxed text-orange-700 dark:text-orange-300/90">{m.text}</p>
+            <div
+              key={i}
+              className="self-center rounded-xl px-3 py-2 text-center"
+              style={{
+                background: "rgba(249,115,22,0.10)",
+                border: "1px solid rgba(249,115,22,0.28)",
+              }}
+            >
+              <p className="text-xs italic leading-relaxed" style={{ color: "var(--chat-text)" }}>
+                {m.text}
+              </p>
             </div>
           ) : (
-          <div
-            key={i}
-            className={`flex gap-3 rounded-xl px-3 py-2 -mx-1 transition-colors duration-300 ${
-              playing && i === activeIdx
-                ? "border border-neutral-200 bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900/70"
-                : "border border-transparent"
-            }`}
-          >
             <div
-              className={`mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-xs font-semibold ${
-                m.role === "agent"
-                  ? "bg-gradient-to-br from-orange-500 to-amber-500 text-white"
-                  : "bg-neutral-100 text-neutral-700 border border-neutral-300 dark:bg-white dark:text-neutral-900"
+              key={i}
+              className={`max-w-[85%] duration-300 animate-in fade-in slide-in-from-bottom-2 ${
+                m.role === "agent" ? "self-start" : "self-end"
               }`}
             >
-              {m.role === "agent" ? "AI" : "C"}
+              <div
+                className={`rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed transition-shadow ${
+                  m.role === "agent" ? "rounded-bl-sm" : "rounded-br-sm"
+                }`}
+                style={
+                  m.role === "agent"
+                    ? {
+                        background: "var(--chat-bot-bubble)",
+                        border: "1px solid var(--chat-bot-border)",
+                        color: "var(--chat-text)",
+                        boxShadow: playing && i === activeIdx ? "0 0 0 2px rgba(249,115,22,0.45)" : "none",
+                      }
+                    : {
+                        background: "var(--chat-user-bubble)",
+                        color: "var(--chat-user-text)",
+                        boxShadow: playing && i === activeIdx ? "0 0 0 2px rgba(249,115,22,0.45)" : "none",
+                      }
+                }
+              >
+                {m.text}
+              </div>
+              <div
+                className={`mt-1 font-mono text-[10px] tabular-nums ${m.role === "agent" ? "" : "text-right"}`}
+                style={{ color: "var(--chat-muted)" }}
+              >
+                {m.role === "agent" ? "AI agent" : "Caller"} · {fmt(m.t)}
+              </div>
             </div>
-            <div className="min-w-0">
-              <p className="text-xs font-medium text-neutral-600 dark:text-neutral-400">
-                {m.role === "agent" ? "AI agent" : "Caller"}
-              </p>
-              <p className="mt-1 text-sm leading-relaxed text-neutral-900 dark:text-neutral-100">{m.text}</p>
-              <p className="mt-1 text-[11px] tabular-nums text-neutral-600 dark:text-neutral-400">{fmt(m.t)}</p>
-            </div>
-          </div>
           )
         )}
         {!started && (
-          <p className="pt-2 text-center text-xs text-neutral-600 dark:text-neutral-400">
+          <p className="pt-2 text-center text-xs" style={{ color: "var(--chat-muted)" }}>
             Press play to hear the full call
           </p>
         )}
       </div>
 
-      {/* Player bar */}
-      <div className="flex items-center gap-3 border-t border-neutral-200 bg-neutral-50 px-4 py-3 dark:border-neutral-800 dark:bg-neutral-900/60">
-        <button
-          type="button"
-          onClick={toggle}
-          aria-label={playing ? "Pause call recording" : "Play call recording"}
-          className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-neutral-900 text-white transition-transform hover:scale-105 dark:bg-white dark:text-neutral-950"
+      {/* Player bar — sits where the demo cards put their input row */}
+      <div className="relative z-10 bg-transparent px-4 py-3">
+        <div
+          className="flex items-center gap-3 rounded-2xl p-2"
+          style={{ background: "var(--chat-input-bg)", border: "1px solid var(--chat-border)" }}
         >
-          {playing ? <Pause className="h-4 w-4" /> : <Play className="ml-0.5 h-4 w-4" />}
-        </button>
-        <button
-          type="button"
-          className="flex-1 cursor-pointer py-2"
-          onClick={seek}
-          aria-label="Seek in call recording"
-        >
-          <div className="h-1.5 overflow-hidden rounded-full bg-neutral-200 dark:bg-neutral-800">
-            <div
-              className="h-full bg-orange-500 transition-[width] duration-300"
-              style={{ width: `${Math.min(100, (time / clip.duration) * 100)}%` }}
-            />
-          </div>
-        </button>
-        <span className="flex-shrink-0 text-xs tabular-nums text-neutral-500 dark:text-neutral-400">
-          {fmt(time)} / {fmt(clip.duration)}
+          <button
+            type="button"
+            onClick={toggle}
+            aria-label={playing ? "Pause call recording" : "Play call recording"}
+            className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl transition-transform hover:scale-105 active:scale-95"
+            style={{ background: "var(--chat-user-bubble)", color: "var(--chat-user-text)" }}
+          >
+            {playing ? <Pause className="h-4 w-4" /> : <Play className="ml-0.5 h-4 w-4" />}
+          </button>
+          <button type="button" className="flex-1 cursor-pointer py-2" onClick={seek} aria-label="Seek in call recording">
+            <div className="h-1.5 overflow-hidden rounded-full" style={{ background: "var(--chat-bot-bubble)" }}>
+              <div
+                className="h-full bg-orange-500 transition-[width] duration-300"
+                style={{ width: `${Math.min(100, (time / clip.duration) * 100)}%` }}
+              />
+            </div>
+          </button>
+          <span
+            className="flex-shrink-0 font-mono text-[11px] tabular-nums"
+            style={{ color: "var(--chat-muted)" }}
+          >
+            {fmt(time)} / {fmt(clip.duration)}
+          </span>
+        </div>
+      </div>
+
+      {/* Powered by footer — matches the industry demo cards */}
+      <div
+        className="relative z-10 border-t bg-transparent px-4 py-2 text-center"
+        style={{ borderColor: "var(--chat-footer-border)" }}
+      >
+        <span className="text-[10px]" style={{ color: "var(--chat-muted)" }}>
+          Powered by{" "}
+          <span className="font-semibold">
+            <span className="text-[rgb(251,146,60)]">abe</span>
+            <span style={{ color: "var(--chat-muted)" }}>media</span>
+          </span>
         </span>
       </div>
     </div>

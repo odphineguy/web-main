@@ -45,7 +45,9 @@ export default function HowItWorksPage() {
           }
         }
       },
-      { threshold: 0.12 }
+      // Fire as soon as any part of a stage enters the viewport. threshold 0.12 on
+      // stages taller than the viewport meant scrolling well past the top edge first.
+      { threshold: 0, rootMargin: "0px 0px -8% 0px" }
     );
     root.querySelectorAll(`.${styles.stage}`).forEach((s) => io.observe(s));
 
@@ -71,6 +73,24 @@ export default function HowItWorksPage() {
     );
     targets.forEach((el) => spy.observe(el));
 
+    // The pipeline diagram runs infinite keyframes (a travelling pulse plus eight
+    // blinking bulbs) that animate layout/paint properties. Left running while the
+    // diagram is scrolled off-screen they burn main-thread frames for the whole
+    // page, which is what made scrolling feel laggy. Pause them when out of view.
+    const pipeline = root.querySelector(`.${styles.pipelineWrap}`);
+    let pio: IntersectionObserver | undefined;
+    if (pipeline) {
+      pio = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            e.target.classList.toggle(styles.animPaused, !e.isIntersecting);
+          }
+        },
+        { rootMargin: "100px" }
+      );
+      pio.observe(pipeline);
+    }
+
     // Hero video: preload="none" protects LCP; start playback once it's on screen
     const video = videoRef.current;
     let vio: IntersectionObserver | undefined;
@@ -93,6 +113,7 @@ export default function HowItWorksPage() {
       io.disconnect();
       spy.disconnect();
       vio?.disconnect();
+      pio?.disconnect();
     };
   }, []);
 

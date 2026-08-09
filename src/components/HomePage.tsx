@@ -72,6 +72,7 @@ export default function HomePage() {
     { key: "dispatch" },
     { key: "pipeline" },
     { key: "apps" },
+    { key: "plugins" },
     { key: "web" },
   ] as const;
   const faqSchema = {
@@ -115,7 +116,7 @@ export default function HomePage() {
 
             {/* Right: recorded-call transcript player */}
             <div className="relative lg:flex lg:justify-end">
-              <div className="w-full max-w-lg mx-auto lg:mx-0 rounded-2xl p-px bg-gradient-to-b from-orange-500/40 to-white/5">
+              <div className="w-full max-w-lg mx-auto lg:mx-0 group rounded-3xl">
                 <TranscriptPlayer onFirstPlay={() => handleDemoCallClick("hero-transcript-play")} />
               </div>
             </div>
@@ -162,7 +163,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Services grid — 5 cards, agents first, websites/chatbots as add-on */}
+      {/* Services grid — 6 cards (3x2), agents first, websites/chatbots as add-on */}
       <section id="agents" className="bg-background py-20 px-6 scroll-mt-20">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -303,11 +304,11 @@ export default function HomePage() {
         <div className="px-6 pb-6">
           <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             <div className="rounded-2xl p-px bg-gradient-to-b from-gray-300 dark:from-white/10 to-gray-200 dark:to-white/5">
-              <div className="h-full rounded-2xl p-8 bg-gray-50 dark:bg-neutral-950">
-                <blockquote className="text-foreground mb-6 text-base">
+              <div className="h-full rounded-2xl p-8 bg-gray-50 dark:bg-neutral-950 flex flex-col">
+                <blockquote className="text-foreground text-base">
                   &ldquo;{t("Testimonials.sam.quote")}&rdquo;
                 </blockquote>
-                <div className="flex items-center gap-4">
+                <div className="mt-auto flex items-center gap-4 pt-6">
                   <div className="relative h-10 w-10 rounded-full overflow-hidden border-2 border-orange-500/20 flex-shrink-0 bg-gray-100 dark:bg-neutral-800">
                     {!avatarErrors.has(0) ? (
                       <Image
