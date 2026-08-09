@@ -53,7 +53,11 @@ export default function TopNavbar() {
       className="sticky top-0 z-50 h-[88px] w-full backdrop-blur supports-[backdrop-filter]:bg-background/60"
     >
       <div className="mx-auto flex h-full max-w-[1280px] items-center justify-between px-6">
-        <div className="flex items-center gap-3">
+        {/* shrink-0 is load-bearing: without it the logo is a shrinkable flex child
+            and the nav row eats it rather than overflowing the page. That hid the
+            overflow bug - at 1024px the logo measured 7px wide in EN and 0px (i.e.
+            invisible) in ES, and it never reached its full 192px in ES at any width. */}
+        <div className="flex shrink-0 items-center gap-3">
           <Link href={localizedHref("/")} className="hover:opacity-80 transition-opacity">
             <Image
               src="/images/portfolio/abemedia.logo.nobg.png"
@@ -75,11 +79,16 @@ export default function TopNavbar() {
         </div>
         
         {/* Desktop Navigation */}
-        {/* Spacing is tuned, not decorative: the nav is whitespace-nowrap inside a
-            fixed 1280px row, so every item costs horizontal room. gap-4 + md:ml-4
-            buys back exactly what the eighth link ("Our Builds") spends - the row
-            still fits from ~993px (EN) / ~1077px (ES), same as with seven links. */}
-        <nav className="hidden md:flex items-center gap-4 text-base ml-3 sm:ml-6 md:ml-4 whitespace-nowrap">
+        {/* The row is whitespace-nowrap next to a shrink-0 logo inside a max-w-1280
+            container, so it either fits or overflows the page - it cannot wrap or
+            steal space. Measured requirement with the logo at its full 192px:
+            gap-4 -> EN 1209px / ES 1293px;  gap-2.5 -> EN 1155px / ES 1239px.
+            Spanish is the binding constraint (~85px longer) and 1293px does not fit
+            the 1280px container, which is why the gap stays at 2.5 at every width
+            instead of widening. The row therefore switches on at xl: (1280px), not
+            lg: - at 1024px Spanish needs ~1239px and cannot fit even with smaller
+            type and a smaller logo (~1101px). Below xl: the hamburger handles it. */}
+        <nav className="hidden xl:flex items-center gap-2.5 text-base ml-2 whitespace-nowrap">
           <Link href={localizedHref("/services")} className={`font-bold transition-colors ${isActive("/services") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('services')}</Link>
           <Link href="/en/industries" hrefLang="en" className={`font-bold transition-colors ${isActive("/industries") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('industries')}</Link>
           <Link href="/en/portfolio" hrefLang="en" className={`font-bold transition-colors ${isActive("/portfolio") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('caseStudies')}</Link>
@@ -106,7 +115,7 @@ export default function TopNavbar() {
         </nav>
 
         {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center gap-2">
+        <div className="xl:hidden flex items-center gap-2">
           <button
             ref={themeRef}
             onClick={toggleSwitchTheme}
@@ -131,7 +140,7 @@ export default function TopNavbar() {
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
-          className="md:hidden bg-white/95 dark:bg-neutral-900/95 backdrop-blur supports-[backdrop-filter]:bg-white/95 dark:supports-[backdrop-filter]:bg-neutral-900/95 border-t border-border"
+          className="xl:hidden bg-white/95 dark:bg-neutral-900/95 backdrop-blur supports-[backdrop-filter]:bg-white/95 dark:supports-[backdrop-filter]:bg-neutral-900/95 border-t border-border"
         >
           <nav className="flex flex-col py-4 px-6 space-y-3">
             <Link href={localizedHref("/services")} className={`font-bold py-2 transition-colors ${isActive("/services") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('services')}</Link>
