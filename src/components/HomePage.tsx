@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import ConsultationForm from "@/components/ConsultationForm";
 import { FooterCTA } from "@/components/ui/footer-cta";
-import { PhoneCall, Truck, Workflow, Smartphone, Globe, X } from "lucide-react";
+import { X } from "lucide-react";
 import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
@@ -68,11 +68,11 @@ export default function HomePage() {
   };
 
   const serviceCards = [
-    { key: "voice", Icon: PhoneCall },
-    { key: "dispatch", Icon: Truck },
-    { key: "pipeline", Icon: Workflow },
-    { key: "apps", Icon: Smartphone },
-    { key: "web", Icon: Globe, isAddOn: true },
+    { key: "voice" },
+    { key: "dispatch" },
+    { key: "pipeline" },
+    { key: "apps" },
+    { key: "web", isAddOn: true },
   ] as const;
   const faqSchema = {
     "@context": "https://schema.org",
@@ -95,12 +95,6 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left: Text Content - Animations removed for LCP optimization */}
             <div className="space-y-6">
-              <div className="inline-flex items-center gap-2">
-                <span className="inline-flex h-1.5 w-1.5 rounded-full bg-orange-500"></span>
-                <span className="text-xs font-semibold uppercase tracking-[0.14em] text-orange-500">
-                  {t("Hero.eyebrow")}
-                </span>
-              </div>
               <h1 className="text-[36px] md:text-[44px] lg:text-[48px] font-medium tracking-[-0.02em] text-foreground leading-tight">
                 {t("Hero.titlePart1")}{" "}
                 <span className="text-primary">{t("Hero.titlePart2")}</span>
@@ -149,16 +143,13 @@ export default function HomePage() {
             {t("Jab.title")}
           </h2>
           <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
-            {(["one", "two", "three"] as const).map((k, i) => (
+            {(["one", "two", "three"] as const).map((k) => (
               <div
                 key={k}
                 className="h-full rounded-2xl p-px bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5"
               >
                 <div className="h-full rounded-2xl p-6 lg:p-8 bg-gray-50 dark:bg-neutral-900">
-                  <span className="text-sm font-semibold tracking-[0.2em] text-orange-500">
-                    0{i + 1}
-                  </span>
-                  <h3 className="mt-3 text-lg font-semibold text-foreground">
+                  <h3 className="text-lg font-semibold text-foreground">
                     {t(`Jab.${k}.title`)}
                   </h3>
                   <p className="mt-2 text-sm text-muted-foreground">
@@ -186,23 +177,18 @@ export default function HomePage() {
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {serviceCards.map(({ key, Icon, ...card }, index) => (
+            {serviceCards.map(({ key, ...card }) => (
               <motion.div
                 key={key}
                 className="relative group h-full"
               >
                 <div className="h-full rounded-2xl p-px transition-all duration-300 bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5">
                   <div className="h-full rounded-2xl p-6 lg:p-8 backdrop-blur-xl transition-all duration-300 bg-gray-50 dark:bg-neutral-900">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center">
-                        <Icon className="w-6 h-6 text-orange-500" />
-                      </div>
-                      {"isAddOn" in card && card.isAddOn && (
-                        <span className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-500/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-orange-500">
-                          {t("ServicesGrid.addOnBadge")}
-                        </span>
-                      )}
-                    </div>
+                    {"isAddOn" in card && card.isAddOn && (
+                      <span className="mb-4 inline-flex items-center rounded-full border border-orange-500/30 bg-orange-500/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-orange-500">
+                        {t("ServicesGrid.addOnBadge")}
+                      </span>
+                    )}
                     <h3 className="text-lg font-semibold text-foreground mb-2">
                       {t(`ServicesGrid.${key}.title`)}
                     </h3>
