@@ -14,12 +14,16 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { ConvexClientProvider } from "@/components/ConvexClientProvider";
 import { Analytics } from "@vercel/analytics/react";
 import { AttributionCapture } from "@/components/AttributionCapture";
+import { CHAT_ENABLED } from "@/lib/flags";
 import { Instagram, Facebook, Music2, Twitter } from "lucide-react";
 
 // Lazy load the chatbot to reduce initial bundle size (code-splitting)
 const FloatingChatbot = nextDynamic(() => import("@/components/FloatingChatbot"), {
   loading: () => null,
 });
+
+// Site chat kill switch - see src/lib/flags.ts. While it is false the dynamic
+// import above never runs, so the chunk is not fetched and no mount code executes.
 
 // Force fresh HTML on production so updates appear immediately
 export const dynamic = "force-dynamic";
@@ -279,7 +283,7 @@ export default async function RootLayout({
             <TopNavbar />
             <main className="min-h-screen">{children}</main>
             <Footer locale={locale} />
-            <FloatingChatbot />
+            {CHAT_ENABLED && <FloatingChatbot />}
             <Analytics />
             </ConvexClientProvider>
           </NextIntlClientProvider>

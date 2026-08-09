@@ -1,5 +1,7 @@
 import ChatbotApp from "@/components/chatbot/ChatbotApp";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { CHAT_ENABLED } from "@/lib/flags";
 
 export const metadata: Metadata = {
   title: "AI Chatbot — Get Help & Support | Abe Media",
@@ -14,6 +16,10 @@ export const metadata: Metadata = {
 };
 
 export default function ChatbotPage() {
+  // Gated by the same flag as the floating widget: while chat is off this route
+  // 404s instead of serving a chat UI backed by a failing server.
+  if (!CHAT_ENABLED) notFound();
+
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-4xl mx-auto h-screen">
