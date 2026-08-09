@@ -196,7 +196,19 @@
       "try3": "Intenta confundirlo con un trabajo raro",
       "cardTitle": "Agente de admisión con IA",
       "cardSubtitle": "Línea de demostración de servicios para el hogar",
-      "available": "Disponible ahora"
+      "available": "Disponible ahora",
+      "idle": "Listo cuando quieras",
+      "connecting": "Conectando",
+      "listening": "Escuchando",
+      "speaking": "El agente habla",
+      "startCall": "Iniciar llamada",
+      "endCall": "Finalizar llamada",
+      "mute": "Silenciar micrófono",
+      "unmute": "Activar micrófono",
+      "micNote": "Tu navegador pedirá acceso al micrófono.",
+      "callError": "No se pudo iniciar la llamada. Revisa los permisos del micrófono e inténtalo de nuevo.",
+      "you": "Tú",
+      "agent": "Agente"
     }
   },
   "Services": {

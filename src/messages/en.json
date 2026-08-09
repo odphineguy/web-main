@@ -196,7 +196,19 @@
       "try3": "Try to stump it with a weird job",
       "cardTitle": "AI intake agent",
       "cardSubtitle": "Home services demo line",
-      "available": "Available now"
+      "available": "Available now",
+      "idle": "Ready when you are",
+      "connecting": "Connecting",
+      "listening": "Listening",
+      "speaking": "Agent speaking",
+      "startCall": "Start call",
+      "endCall": "End call",
+      "mute": "Mute microphone",
+      "unmute": "Unmute microphone",
+      "micNote": "Your browser will ask for microphone access.",
+      "callError": "Couldn't start the call. Check microphone permissions and try again.",
+      "you": "You",
+      "agent": "Agent"
     }
   },
   "Services": {
