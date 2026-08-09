@@ -96,7 +96,9 @@ export default function TopNavbar() {
           <Link href={localizedHref("/how-it-works")} className={`font-bold transition-colors ${isActive("/how-it-works") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('howItWorks')}</Link>
           <Link href={localizedHref("/pricing")} className={`font-bold transition-colors ${isActive("/pricing") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('pricing')}</Link>
           <Link href="/en/about/abe-perez" hrefLang="en" className={`font-bold transition-colors ${isActive("/about") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('about')}</Link>
-          <Link href={localizedHref("/contact")} className={`font-bold transition-colors ${isActive("/contact") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('contact')}</Link>
+          {/* No "Contact" text link: it pointed at the same /contact route as the
+              Get Started button below, so it cost a slot and a gap for a duplicate
+              destination. Get Started is the single entry point to that page. */}
           <Link
             href={localizedHref("/contact")}
             className="group ml-2 inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-orange-500 px-5 py-2 text-sm font-semibold text-white shadow-md shadow-orange-500/25 transition-all hover:bg-orange-600 hover:shadow-lg hover:shadow-orange-500/30"
@@ -150,7 +152,6 @@ export default function TopNavbar() {
             <Link href={localizedHref("/how-it-works")} className={`font-bold py-2 transition-colors ${isActive("/how-it-works") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('howItWorks')}</Link>
             <Link href={localizedHref("/pricing")} className={`font-bold py-2 transition-colors ${isActive("/pricing") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('pricing')}</Link>
             <Link href="/en/about/abe-perez" hrefLang="en" className={`font-bold py-2 transition-colors ${isActive("/about") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('about')}</Link>
-            <Link href={localizedHref("/contact")} className={`font-bold py-2 transition-colors ${isActive("/contact") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('contact')}</Link>
             <Link
               href={localizedHref("/contact")}
               className="group mt-2 inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-full bg-orange-500 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-orange-500/25 transition-all hover:bg-orange-600"
