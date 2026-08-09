@@ -16,7 +16,7 @@ Replace the current hero content. Structure:
 
 **Sub:** `Bilingual by default — English y español. Built for junk removal, HVAC, moving, and home service companies.`
 
-**Primary CTA (visually dominant):** `📞 Call the demo agent — (669) 669-4486`
+**Primary CTA (visually dominant):** `Call the demo agent — (669) 669-4486`
 - On mobile: `tel:` link. On desktop: show number large + "Call from your phone" microcopy.
 
 **Secondary CTA:** `Schedule a call` → /en/contact
