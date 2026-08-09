@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ScheduleCallButton } from "@/components/ScheduleCallButton";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle, Code, Truck, Workflow, ImageIcon, Bot, Languages, ArrowRight } from "lucide-react";
+import { CheckCircle, ArrowRight } from "lucide-react";
 import ConsultationForm from "@/components/ConsultationForm";
 import { FooterCTA } from "@/components/ui/footer-cta";
 
@@ -19,37 +19,31 @@ export default function Services() {
   const services = [
     {
       id: "aiVoice",
-      icon: <Bot className="h-8 w-8" />,
       image: "/images/services/ai-chatbots-agents.png",
       link: "/services/ai-voice-agents",
     },
     {
       id: "dispatch",
-      icon: <Truck className="h-8 w-8" />,
       image: "/images/services/mobile-app-development.png",
       link: "/services/dispatch-operations-platforms",
     },
     {
       id: "leadPipeline",
-      icon: <Workflow className="h-8 w-8" />,
       image: "/images/services/web-development.png",
       link: "/services/lead-pipeline-automation",
     },
     {
       id: "aiEstimating",
-      icon: <ImageIcon className="h-8 w-8" />,
       image: "/images/services/ui-ux-design.png",
       link: "/services/ai-estimating-tools",
     },
     {
       id: "bilingualAutomation",
-      icon: <Languages className="h-8 w-8" />,
       image: "/images/services/bilingual-web-development.png",
       link: "/services/bilingual-ai-automation",
     },
     {
       id: "customSoftware",
-      icon: <Code className="h-8 w-8" />,
       image: "/images/services/brand-identity.png",
       link: "/services/custom-business-software",
     },
@@ -107,9 +101,6 @@ export default function Services() {
                       )}
                       {/* Gradient overlay on hover */}
                       <div className="absolute inset-0 bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    </div>
-                    <div className="text-orange-500 mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:text-orange-600 group-hover:rotate-3">
-                      {service.icon}
                     </div>
                     <CardTitle className="text-lg md:text-xl font-medium tracking-[-0.02em] text-foreground group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-300 flex items-center gap-2">
                       {t(`Cards.${service.id}.title`)}
