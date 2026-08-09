@@ -10,8 +10,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       ? "Abe Media — Agentes de IA que contestan tus llamadas, agendan trabajos y manejan tu dispatch"
       : "Abe Media — AI Agents That Answer Your Phones, Book Jobs & Run Dispatch",
     description: isEs
-      ? "Agentes de voz con IA, contestación fuera de horario, plataformas de dispatch y automatización de leads para negocios de servicios. Bilingüe por diseño — English y español."
-      : "AI voice agents, after-hours answering, dispatch platforms, and lead-pipeline automation for service businesses. Bilingual by default — English y español.",
+      ? "Agentes de voz con IA, contestación fuera de horario, sistemas de dispatch a medida y automatización de leads para negocios de servicios. Bilingüe por diseño — English y español."
+      : "AI voice agents, after-hours answering, custom dispatch systems, and lead-pipeline automation for service businesses. Bilingual by default — English y español.",
     locale: locale,
     path: "", // Homepage path
   });

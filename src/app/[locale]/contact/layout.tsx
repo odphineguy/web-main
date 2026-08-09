@@ -5,7 +5,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   return constructMetadata({
     title: "Contact Abe Media — Free Bilingual Web & AI Consultation",
-    description: "Book a free consultation for your bilingual website, AI chatbot, or custom platform. We'll outline scope, timeline, and cost so you can decide what's worth building.",
+    description: "Book a free consultation for your bilingual website, AI chatbot, or custom operations system. We'll outline scope, timeline, and cost so you can decide what's worth building.",
     path: "/contact",
     locale: locale,
     hasSpanishEquivalent: false,

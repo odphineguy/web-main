@@ -10,12 +10,12 @@ const meta = {
   en: {
     title: "About Abe Media — Phoenix AI Agents & Operations Software",
     description:
-      "Abe Media builds AI voice agents, dispatch platforms, and lead automation for service businesses. Founded and operated in Phoenix, Arizona, in English and Spanish.",
+      "Abe Media builds AI voice agents, custom dispatch systems, and lead automation for service businesses. Founded and operated in Phoenix, Arizona, in English and Spanish.",
   },
   es: {
     title: "Acerca de Abe Media — Agentes de IA y Software de Operaciones en Phoenix",
     description:
-      "Abe Media construye agentes de voz con IA, plataformas de despacho y automatización de leads para negocios de servicio. Con base en Phoenix, Arizona, en inglés y español.",
+      "Abe Media construye agentes de voz con IA, sistemas de despacho a medida y automatización de leads para negocios de servicio. Con base en Phoenix, Arizona, en inglés y español.",
   },
 };
 

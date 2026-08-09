@@ -33,7 +33,7 @@ const AgentLiveDemo = dynamic(() => import("@/components/AgentLiveDemo"), {
 
 export default function HomePage() {
   const t = useTranslations("Home");
-  const p = useTranslations("Platforms");
+  const p = useTranslations("Builds");
   const locale = useLocale();
   const [avatarErrors, setAvatarErrors] = useState<Set<number>>(new Set());
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
@@ -235,7 +235,7 @@ export default function HomePage() {
               >
                 <Image
                   src="/images/assets-platforms/laptop.png"
-                  alt="Saguaro Transport Platform"
+                  alt="Saguaro Transport operations system"
                   width={800}
                   height={500}
                   className="w-full h-auto transition-transform duration-300 group-hover:scale-[1.02]"
@@ -255,7 +255,7 @@ export default function HomePage() {
               <h3 className="text-xl font-semibold text-orange-500">{p("Preview.subtitle")}</h3>
               <p className="text-muted-foreground">{p("Preview.description")}</p>
               <Link
-                href={`/${locale}/platforms`}
+                href={`/${locale}/systems-we-build`}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-full transition-colors"
               >
                 {p("Preview.cta")}

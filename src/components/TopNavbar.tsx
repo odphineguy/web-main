@@ -75,10 +75,15 @@ export default function TopNavbar() {
         </div>
         
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-5 md:gap-6 text-base ml-3 sm:ml-6 md:ml-10 whitespace-nowrap">
+        {/* Spacing is tuned, not decorative: the nav is whitespace-nowrap inside a
+            fixed 1280px row, so every item costs horizontal room. gap-4 + md:ml-4
+            buys back exactly what the eighth link ("Our Builds") spends - the row
+            still fits from ~993px (EN) / ~1077px (ES), same as with seven links. */}
+        <nav className="hidden md:flex items-center gap-4 text-base ml-3 sm:ml-6 md:ml-4 whitespace-nowrap">
           <Link href={localizedHref("/services")} className={`font-bold transition-colors ${isActive("/services") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('services')}</Link>
           <Link href="/en/industries" hrefLang="en" className={`font-bold transition-colors ${isActive("/industries") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('industries')}</Link>
           <Link href="/en/portfolio" hrefLang="en" className={`font-bold transition-colors ${isActive("/portfolio") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('caseStudies')}</Link>
+          <Link href="/en/systems-we-build" hrefLang="en" className={`font-bold transition-colors ${isActive("/systems-we-build") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('builds')}</Link>
           <Link href={localizedHref("/how-it-works")} className={`font-bold transition-colors ${isActive("/how-it-works") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('howItWorks')}</Link>
           <Link href={localizedHref("/pricing")} className={`font-bold transition-colors ${isActive("/pricing") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('pricing')}</Link>
           <Link href="/en/about/abe-perez" hrefLang="en" className={`font-bold transition-colors ${isActive("/about") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('about')}</Link>
@@ -132,6 +137,7 @@ export default function TopNavbar() {
             <Link href={localizedHref("/services")} className={`font-bold py-2 transition-colors ${isActive("/services") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('services')}</Link>
             <Link href="/en/industries" hrefLang="en" className={`font-bold py-2 transition-colors ${isActive("/industries") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('industries')}</Link>
             <Link href="/en/portfolio" hrefLang="en" className={`font-bold py-2 transition-colors ${isActive("/portfolio") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('caseStudies')}</Link>
+            <Link href="/en/systems-we-build" hrefLang="en" className={`font-bold py-2 transition-colors ${isActive("/systems-we-build") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('builds')}</Link>
             <Link href={localizedHref("/how-it-works")} className={`font-bold py-2 transition-colors ${isActive("/how-it-works") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('howItWorks')}</Link>
             <Link href={localizedHref("/pricing")} className={`font-bold py-2 transition-colors ${isActive("/pricing") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('pricing')}</Link>
             <Link href="/en/about/abe-perez" hrefLang="en" className={`font-bold py-2 transition-colors ${isActive("/about") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('about')}</Link>

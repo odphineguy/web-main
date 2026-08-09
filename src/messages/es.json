@@ -6,7 +6,7 @@
     "howItWorks": "Cómo funciona",
     "about": "Acerca de Abe",
     "agents": "Agentes",
-    "platforms": "Plataformas",
+    "builds": "Proyectos",
     "pricing": "Precios",
     "calculator": "Calculadora",
     "portfolio": "Portafolio",
@@ -32,7 +32,7 @@
       "item1": "17 años manejando dispatch",
       "item2": "Waste Management Los Ángeles — recycLA, franquicia de mil millones de dólares",
       "item3": "Apps publicadas en App Store y Google Play",
-      "item4": "Plataformas operando negocios reales hoy"
+      "item4": "Sistemas a medida operando negocios reales hoy"
     },
     "Jab": {
       "title": "Una de estas te está costando trabajos ahora mismo.",
@@ -58,7 +58,7 @@
         "description": "Contestación fuera de horario para retiro de escombros, HVAC, mudanzas y servicios para el hogar. Admisión, calificación, cita — directo a tu CRM."
       },
       "dispatch": {
-        "title": "Plataformas de dispatch y operaciones",
+        "title": "Sistemas de dispatch y operaciones a medida",
         "description": "Dispatch AI para manejo de residuos. Saguaro Transport. Rejunk con apps para choferes. Flota en vivo, CRM y RRHH en un solo panel."
       },
       "pipeline": {
@@ -75,7 +75,7 @@
       },
       "web": {
         "title": "Sitios web y chatbots bilingües",
-        "description": "Toda plataforma necesita una puerta de entrada. Sitios y chatbots en English y español, escritos de forma nativa — el complemento que remata el proyecto."
+        "description": "Todo sistema de operaciones necesita una puerta de entrada. Sitios y chatbots en English y español, escritos de forma nativa — el complemento que remata el proyecto."
       },
       "howItWorksLink": "Mira paso a paso cómo funciona una operación dirigida por IA"
     },
@@ -102,7 +102,7 @@
       "title": "Manejé dispatch antes de automatizarlo.",
       "p1": "Diecisiete años manejando dispatch en Waste Management Los Ángeles — incluyendo recycLA, una franquicia de mil millones de dólares.",
       "p2": "Sé lo que cuesta una llamada perdida y lo que una ruta caída le hace a la semana.",
-      "p3": "Hoy construyo las herramientas que me hubieran servido: agentes y plataformas que mantienen la operación andando cuando todos se van a casa."
+      "p3": "Hoy construyo las herramientas que me hubieran servido: agentes y sistemas de operaciones que mantienen la operación andando cuando todos se van a casa."
     },
     "MissedCall": {
       "badge": "Calculadora de llamadas perdidas",
@@ -152,7 +152,7 @@
       },
       "q5": {
         "question": "¿Qué tan rápido lanzamos?",
-        "answer": "Un agente de voz entrenado con tu negocio suele estar en vivo en una o dos semanas. Las plataformas de dispatch y operaciones se definen en una llamada — te damos un plazo claro antes de que se mueva un dólar."
+        "answer": "Un agente de voz entrenado con tu negocio suele estar en vivo en una o dos semanas. Los sistemas de dispatch y operaciones a medida se definen en una llamada — te damos un plazo claro antes de que se mueva un dólar."
       },
       "q6": {
         "question": "¿El español es realmente nativo?",
@@ -235,7 +235,7 @@
         "placeholder": "Flujo del agente de voz"
       },
       "dispatch": {
-        "title": "Plataformas de dispatch y operaciones",
+        "title": "Sistemas de dispatch y operaciones a medida",
         "description": "Una sola vista para trabajos, choferes, cuadrillas, clientes y las excepciones que cambian el plan.",
         "features": {
           "f1": "Tableros de dispatch en vivo",
@@ -243,7 +243,7 @@
           "f3": "Responsable de cada excepción",
           "f4": "Reportes operativos"
         },
-        "placeholder": "Flujo de la plataforma de dispatch"
+        "placeholder": "Flujo del sistema de dispatch"
       },
       "leadPipeline": {
         "title": "Automatización del pipeline de leads",
@@ -458,10 +458,10 @@
       "recalculate": "Calcular de nuevo"
     }
   },
-  "Platforms": {
+  "Builds": {
     "Preview": {
-      "badge": "Plataformas a medida",
-      "title": "Plataformas a medida.",
+      "badge": "Software a medida",
+      "title": "Software a medida.",
       "titleAccent": "Construidas alrededor de tu flujo.",
       "subtitle": "Saguaro Transport",
       "description": "Construida para un operador logístico: rastreo de flota en vivo, despacho, CRM, contabilidad y RH — un panel, no seis pestañas.",
@@ -477,22 +477,22 @@
         "title": "Conductores y RH",
         "description": "Incorporación, cumplimiento y nómina en un solo lugar."
       },
-      "cta": "Explorar plataformas"
+      "cta": "Explorar nuestros proyectos"
     },
     "Page": {
       "Hero": {
         "badge": "Software a medida",
-        "title": "Plataformas a medida",
+        "title": "Sistemas de operaciones a medida",
         "titleAccent": "para negocios en crecimiento",
-        "subtitle": "Software hecho alrededor de tu flujo de trabajo. Deja de adaptarte a herramientas genéricas — consigue una plataforma que se adapte a ti."
+        "subtitle": "Software hecho alrededor de tu flujo de trabajo. Deja de adaptarte a herramientas genéricas — construimos el sistema alrededor de cómo ya trabajas."
       },
       "Saguaro": {
         "badge": "Logística y transporte",
         "forSaleBadge": "Disponible para compra",
         "title": "Saguaro Transport",
         "subtitle": "Gestión completa de operaciones para empresas de transporte y logística",
-        "description": "Para empresas de transporte que ya crecieron más allá de hojas de cálculo y software desconectado. Rastreo de flota, despacho, CRM, contabilidad y RH en una plataforma.",
-        "inquireButton": "Consultar sobre esta plataforma",
+        "description": "Para empresas de transporte que ya crecieron más allá de hojas de cálculo y software desconectado. Rastreo de flota, despacho, CRM, contabilidad y RH en un solo sistema.",
+        "inquireButton": "Consultar sobre este proyecto",
         "features": {
           "fleet": {
             "title": "Gestión de flota",
@@ -526,11 +526,11 @@
       },
       "ComingSoon": {
         "badge": "Más próximamente",
-        "title": "Más plataformas en desarrollo",
-        "description": "Construimos plataformas por industria para negocios que ya crecieron más allá de las herramientas genéricas. ¿Te interesa una para tu industria?"
+        "title": "Más sistemas en desarrollo",
+        "description": "Construimos sistemas de operaciones por industria para negocios que ya crecieron más allá de las herramientas genéricas. ¿Te interesa una para tu industria?"
       },
       "CTA": {
-        "title": "¿Necesitas una plataforma a medida?",
+        "title": "¿Necesitas un sistema a medida?",
         "subtitle": "Cuéntanos sobre tu flujo de trabajo. Te decimos qué lleva, en cuánto tiempo y cuánto cuesta.",
         "button": "Agenda una llamada"
       }
@@ -606,10 +606,10 @@
         ]
       },
       "platform": {
-        "name": "Plataforma de operaciones a medida",
+        "name": "Sistema de operaciones a medida",
         "tagline": "Despacho, cuadrillas, rastreo y papeleo — un panel, no seis pestañas.",
         "inclusions": [
-          "Definida alrededor de tu flujo de trabajo real",
+          "Definido alrededor de tu flujo de trabajo real",
           "Despacho, flota, CRM y reportes donde los necesitas",
           "Apps para conductores y cuadrillas donde valen la pena",
           "Se integra con las herramientas que ya usas"
@@ -621,7 +621,7 @@
       "voiceDefault": "Llamadas contestadas, trabajos agendados, nada que se escape fuera de horario. Un agente de voz es el alcance más directo que lo resuelve.",
       "pipelineDefault": "La fuga está en tus leads — la velocidad de la primera respuesta gana esos trabajos. La automatización contesta, cotiza y da seguimiento sin humanos de por medio.",
       "platformFleet": "A tu tamaño, la ganancia es un solo sistema para despacho, cuadrillas y rastreo en lugar de seis pestañas. Eso se define en una llamada — primero mapeamos tu flujo.",
-      "platformDefault": "Una plataforma se construye alrededor de tu flujo, no de una plantilla. La definimos en una llamada para que el desarrollo refleje cómo opera tu negocio."
+      "platformDefault": "Un sistema a medida se construye alrededor de tu flujo, no de una plantilla. Lo definimos en una llamada para que el desarrollo refleje cómo opera tu negocio."
     },
     "Consult": {
       "heading": "Definámoslo en una llamada.",

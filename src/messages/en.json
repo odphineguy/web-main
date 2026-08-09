@@ -6,7 +6,7 @@
     "howItWorks": "How It Works",
     "about": "About Abe",
     "agents": "Agents",
-    "platforms": "Platforms",
+    "builds": "Our Builds",
     "pricing": "Pricing",
     "calculator": "Calculator",
     "portfolio": "Portfolio",
@@ -32,7 +32,7 @@
       "item1": "17 years running dispatch",
       "item2": "Waste Management Los Angeles — recycLA, a billion-dollar franchise",
       "item3": "Apps live on the App Store & Google Play",
-      "item4": "Platforms running real businesses today"
+      "item4": "Custom systems running real businesses today"
     },
     "Jab": {
       "title": "One of these is costing you jobs right now.",
@@ -58,7 +58,7 @@
         "description": "After-hours answering for junk removal, HVAC, moving, and home services. Intake, qualify, book — logged straight to your CRM."
       },
       "dispatch": {
-        "title": "Dispatch & operations platforms",
+        "title": "Custom dispatch and operations systems",
         "description": "Dispatch AI for waste management. Saguaro Transport. Rejunk with driver apps. Live fleet, CRM, and HR in one dashboard."
       },
       "pipeline": {
@@ -75,7 +75,7 @@
       },
       "web": {
         "title": "Websites & bilingual chatbots",
-        "description": "Every platform needs a front door. Sites and chatbots in English y español, written natively — the add-on that finishes the build."
+        "description": "Every operations system needs a front door. Sites and chatbots in English y español, written natively — the add-on that finishes the build."
       },
       "howItWorksLink": "See how an AI-run operation works — step by step"
     },
@@ -102,7 +102,7 @@
       "title": "I ran dispatch before I automated it.",
       "p1": "Seventeen years managing dispatch at Waste Management Los Angeles — including recycLA, a billion-dollar franchise.",
       "p2": "I know what a missed call costs, and what a dropped route does to a week.",
-      "p3": "Now I build the tools I wished I had: agents and platforms that keep the operation moving after everyone goes home."
+      "p3": "Now I build the tools I wished I had: agents and operations systems that keep the operation moving after everyone goes home."
     },
     "MissedCall": {
       "badge": "Missed-call calculator",
@@ -152,7 +152,7 @@
       },
       "q5": {
         "question": "How fast can we launch?",
-        "answer": "A voice agent trained on your business typically goes live in one to two weeks. Dispatch and operations platforms get scoped on a call — we give you a straight timeline before any money moves."
+        "answer": "A voice agent trained on your business typically goes live in one to two weeks. Custom dispatch and operations systems get scoped on a call — we give you a straight timeline before any money moves."
       },
       "q6": {
         "question": "Is the Spanish actually native?",
@@ -235,7 +235,7 @@
         "placeholder": "AI voice-agent workflow"
       },
       "dispatch": {
-        "title": "Dispatch and operations platforms",
+        "title": "Custom dispatch and operations systems",
         "description": "One operating view for jobs, drivers, crews, customers, and the exceptions that change the plan.",
         "features": {
           "f1": "Live dispatch boards",
@@ -243,7 +243,7 @@
           "f3": "Exception ownership",
           "f4": "Operational reporting"
         },
-        "placeholder": "Dispatch platform workflow"
+        "placeholder": "Dispatch system workflow"
       },
       "leadPipeline": {
         "title": "Lead-pipeline automation",
@@ -458,10 +458,10 @@
       "recalculate": "Calculate again"
     }
   },
-  "Platforms": {
+  "Builds": {
     "Preview": {
-      "badge": "Custom platforms",
-      "title": "Custom platforms.",
+      "badge": "Custom software",
+      "title": "Custom software.",
       "titleAccent": "Built around your workflow.",
       "subtitle": "Saguaro Transport",
       "description": "Built for a logistics operator: live fleet tracking, dispatch, CRM, accounting, and HR — one dashboard, not six tabs.",
@@ -477,22 +477,22 @@
         "title": "Drivers and HR",
         "description": "Onboarding, compliance, and payroll in one place."
       },
-      "cta": "Explore platforms"
+      "cta": "Explore our builds"
     },
     "Page": {
       "Hero": {
         "badge": "Custom software",
-        "title": "Custom platforms",
+        "title": "Custom operations systems",
         "titleAccent": "for growing businesses",
-        "subtitle": "Software built around your workflow. Stop adapting to generic tools — get a platform that adapts to you."
+        "subtitle": "Software built around your workflow. Stop adapting to generic tools — we build the system around how you already work."
       },
       "Saguaro": {
         "badge": "Logistics & transportation",
         "forSaleBadge": "Available for purchase",
         "title": "Saguaro Transport",
         "subtitle": "Complete operations management for trucking and logistics companies",
-        "description": "For transportation businesses that have outgrown spreadsheets and disconnected software. Fleet tracking, dispatch, CRM, accounting, and HR in one platform.",
-        "inquireButton": "Inquire about this platform",
+        "description": "For transportation businesses that have outgrown spreadsheets and disconnected software. Fleet tracking, dispatch, CRM, accounting, and HR in one system.",
+        "inquireButton": "Inquire about this build",
         "features": {
           "fleet": {
             "title": "Fleet management",
@@ -526,11 +526,11 @@
       },
       "ComingSoon": {
         "badge": "More coming",
-        "title": "More platforms in development",
-        "description": "We build industry-specific platforms for businesses that have outgrown off-the-shelf tools. Interested in one for your industry?"
+        "title": "More systems in development",
+        "description": "We build industry-specific operations systems for businesses that have outgrown off-the-shelf tools. Interested in one for your industry?"
       },
       "CTA": {
-        "title": "Need a custom platform?",
+        "title": "Need a custom system?",
         "subtitle": "Tell us about your workflow. We'll tell you what it takes, on what timeline, and what it costs.",
         "button": "Schedule a call"
       }
@@ -606,7 +606,7 @@
         ]
       },
       "platform": {
-        "name": "Custom operations platform",
+        "name": "Custom operations system",
         "tagline": "Dispatch, crews, tracking, and paperwork — one dashboard, not six tabs.",
         "inclusions": [
           "Scoped around your actual workflow",
@@ -621,7 +621,7 @@
       "voiceDefault": "Calls answered, jobs booked, nothing walking away after hours. A voice agent is the tightest scope that fixes it.",
       "pipelineDefault": "Your leads are the leak — speed to first response wins those jobs. Pipeline automation answers, quotes, and follows up without a human in the loop.",
       "platformFleet": "At your size, the win is one system for dispatch, crews, and tracking instead of six tabs. That's a scoping conversation — we map your workflow first.",
-      "platformDefault": "A platform is built around your workflow, not a template. We scope it on a call so the build matches how your operation actually runs."
+      "platformDefault": "A custom system is built around your workflow, not a template. We scope it on a call so the build matches how your operation actually runs."
     },
     "Consult": {
       "heading": "Let's scope it on a call.",

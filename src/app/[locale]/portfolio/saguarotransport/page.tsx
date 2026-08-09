@@ -85,7 +85,7 @@ export default function CaseStudySaguaroTransport() {
   const metrics = [
     {
       id: "tooling",
-      before: "No platform",
+      before: "No system",
       beforeDetail: "Startup with nothing in place",
       after: "Full custom stack",
       afterDetail: "Seven integrated modules",
@@ -107,7 +107,7 @@ export default function CaseStudySaguaroTransport() {
     {
       id: "timeline",
       before: "9–12 months typical",
-      beforeDetail: "For a platform this size",
+      beforeDetail: "For a system this size",
       after: "4 months end-to-end",
       afterDetail: "Daily shipping cadence",
     },
@@ -135,7 +135,7 @@ export default function CaseStudySaguaroTransport() {
     {
       title: "Human Resources",
       description:
-        "Driver and staff records, onboarding workflows, document expirations, and compliance tracking — all inside the platform, not scattered across folders.",
+        "Driver and staff records, onboarding workflows, document expirations, and compliance tracking — all inside the system, not scattered across folders.",
       icon: <Briefcase className="w-6 h-6" />,
     },
     {
@@ -192,7 +192,7 @@ export default function CaseStudySaguaroTransport() {
 
           <p className="text-sm md:text-base font-normal leading-relaxed text-muted-foreground max-w-3xl mb-12">
             Saguaro Transport came to us as a startup with a clock already ticking.
-            We built them an end-to-end platform — Dispatch, Fleet, CRM, HR,
+            We built them an end-to-end system — Dispatch, Fleet, CRM, HR,
             Accounting, Driver App, and Client Portal — and shipped it in four
             months of daily builds.
           </p>
@@ -250,7 +250,7 @@ export default function CaseStudySaguaroTransport() {
                 Frank Ballesteros reached out with an ambitious goal: stand up a
                 full trucking company and the software to run it — at the same
                 time. No legacy systems to lean on, no dispatch tool, no CRM, no
-                driver workflow. Off-the-shelf platforms would have locked him
+                driver workflow. Off-the-shelf software would have locked him
                 into compromises on day one. He needed something built to fit the
                 way his team was going to work, and he needed it fast enough that
                 the business could actually start earning.
@@ -312,7 +312,7 @@ export default function CaseStudySaguaroTransport() {
             The Work
           </h2>
           <h3 className="text-xl md:text-[28px] font-normal tracking-normal mb-8">
-            Seven Modules, One Platform
+            Seven Modules, One System
           </h3>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -474,7 +474,7 @@ export default function CaseStudySaguaroTransport() {
       {/* Bottom CTA Section */}
       <section className="bg-gray-100 dark:bg-neutral-900 px-6 py-20">
         <FooterCTA
-          heading="Need a platform like this?"
+          heading="Need a system like this?"
           subtext="If you're standing up something ambitious and the clock is already ticking, let's talk about how to get you shipping."
           buttonText="SCHEDULE A CALL"
           onButtonClick={() => setIsConsultationOpen(true)}

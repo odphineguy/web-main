@@ -18,13 +18,13 @@ const PERMANENT_ENGLISH_REDIRECTS = new Set([
   "/services",
   "/services/bilingual-web-development",
   "/services/ai-voice-agents",
-  "/services/dispatch-operations-platforms",
+  "/services/dispatch-operations-software",
   "/services/lead-pipeline-automation",
   "/services/ai-estimating-tools",
   "/services/bilingual-ai-automation",
   "/services/custom-business-software",
   "/services/brand-identity",
-  "/platforms",
+  "/systems-we-build",
   "/how-it-works",
   "/portfolio",
   "/portfolio/mylabcompliance",
@@ -55,12 +55,31 @@ const LEGACY_REPLACEMENTS = new Map([
   ["/es/services/ai-chatbots", "/en/services/ai-voice-agents"],
 ]);
 
+// Routes renamed away from "platform" language. These emit 301 (not the 308 used
+// above) because that is the status search consoles and audit tools report as a
+// permanent rename; both are permanent, but 301 is what reviewers look for.
+const RENAMED_ROUTES = new Map([
+  ["/platforms", "/en/systems-we-build"],
+  ["/en/platforms", "/en/systems-we-build"],
+  ["/es/platforms", "/en/systems-we-build"],
+  ["/services/dispatch-operations-platforms", "/en/services/dispatch-operations-software"],
+  ["/en/services/dispatch-operations-platforms", "/en/services/dispatch-operations-software"],
+  ["/es/services/dispatch-operations-platforms", "/en/services/dispatch-operations-software"],
+]);
+
 export default function middleware(request: NextRequest) {
   if (GONE_PATTERN.test(request.nextUrl.pathname)) {
     return new NextResponse(
       '<!DOCTYPE html><html><head><title>Gone</title><meta name="robots" content="noindex"></head><body><h1>410 Gone</h1><p>This page is no longer available.</p></body></html>',
       { status: 410, headers: { 'Content-Type': 'text/html; charset=utf-8' } }
     );
+  }
+
+  const renamed = RENAMED_ROUTES.get(request.nextUrl.pathname);
+  if (renamed) {
+    const destination = request.nextUrl.clone();
+    destination.pathname = renamed;
+    return NextResponse.redirect(destination, 301);
   }
 
   const replacement = LEGACY_REPLACEMENTS.get(request.nextUrl.pathname);

@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/services", lastModified: "2026-07-19", hasSpanishEquivalent: true },
     { path: "/services/bilingual-web-development", lastModified: "2026-04-20", hasSpanishEquivalent: false },
     { path: "/services/brand-identity", lastModified: "2026-04-20", hasSpanishEquivalent: false },
-    { path: "/platforms", lastModified: "2026-07-19", hasSpanishEquivalent: false },
+    { path: "/systems-we-build", lastModified: "2026-08-09", hasSpanishEquivalent: false },
     { path: "/how-it-works", lastModified: "2026-07-19", hasSpanishEquivalent: true },
     { path: "/portfolio", lastModified: "2026-05-03", hasSpanishEquivalent: false },
     { path: "/portfolio/mylabcompliance", lastModified: "2026-04-20", hasSpanishEquivalent: false },

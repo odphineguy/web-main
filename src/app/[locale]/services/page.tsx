@@ -25,7 +25,7 @@ export default function Services() {
     {
       id: "dispatch",
       image: "/images/services/mobile-app-development.png",
-      link: "/services/dispatch-operations-platforms",
+      link: "/services/dispatch-operations-software",
     },
     {
       id: "leadPipeline",

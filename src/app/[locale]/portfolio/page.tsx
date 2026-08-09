@@ -49,9 +49,9 @@ const portfolioProjects: PortfolioProject[] = [
   {
     id: "saguaro",
     name: "Saguaro Transport",
-    description: "Custom operations platform for trucking and logistics",
+    description: "Custom operations system for trucking and logistics",
     siteUrl: "https://www.saguarotransport.com/",
-    category: "Custom Platform",
+    category: "Custom Software",
   },
   {
     id: "thedrone-college",
@@ -70,7 +70,7 @@ const portfolioProjects: PortfolioProject[] = [
   {
     id: "misana",
     name: "MiSana",
-    description: "Private health platform",
+    description: "Private health system",
     siteUrl: "https://misana.app/",
     category: "Private Health",
   },
@@ -213,7 +213,7 @@ export default function PortfolioPage() {
               className="group block p-6 rounded-xl bg-card border border-border hover:border-orange-500/50 hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-xl md:text-[28px] font-normal tracking-normal mb-2 text-foreground group-hover:text-orange-500 transition-colors">Rejunk</h3>
-              <p className="text-muted-foreground text-sm md:text-base font-normal leading-relaxed mb-4">Lead handling, dispatch, driver activation, job management, and live location in one browser-based platform.</p>
+              <p className="text-muted-foreground text-sm md:text-base font-normal leading-relaxed mb-4">Lead handling, dispatch, driver activation, job management, and live location in one browser-based systerm.</p>
               <div className="flex items-center gap-2 text-orange-500 text-sm font-medium">Read Case Study<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" /></div>
             </Link>
 

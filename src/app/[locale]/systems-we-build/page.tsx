@@ -38,8 +38,8 @@ const driverAppScreens = [
   },
 ];
 
-export default function PlatformsPage() {
-  const t = useTranslations("Platforms.Page");
+export default function SystemsWeBuildPage() {
+  const t = useTranslations("Builds.Page");
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
   const [inquiryService, setInquiryService] = useState<string | undefined>(undefined);
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);

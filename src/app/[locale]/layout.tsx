@@ -175,7 +175,7 @@ export default async function RootLayout({
     name: "Abe Media",
     url: "https://abemedia.online",
     logo: "https://abemedia.online/images/portfolio/abemedia.black.svg",
-    description: "Abe Media builds AI agents, dispatch software, and bilingual automation for service businesses. Its work includes AI voice agents, operations platforms, lead-pipeline integrations, AI estimating tools, and custom applications grounded in real dispatch and operations experience.",
+    description: "Abe Media builds AI agents, dispatch software, and bilingual automation for service businesses. Its work includes AI voice agents, custom dispatch and operations systems, lead-pipeline integrations, AI estimating tools, and custom applications grounded in real dispatch and operations experience.",
     parentOrganization: {
       "@type": "Organization",
       name: "Abevision LLC",

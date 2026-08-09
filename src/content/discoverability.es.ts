@@ -121,7 +121,7 @@ export const industryPagesEs: Record<string, ContentPageData> = {
     intro:
       "En retiro de escombros gana el que contesta primero, y eso se pelea con descripciones incompletas, fotos que no explican todo, precios mínimos, capacidad de cuadrilla y trabajos que nunca se deberían cotizar solos.",
     goodFit: [
-      "Los leads de plataformas necesitan respuesta inmediata",
+      "Los leads de las plataformas de terceros necesitan respuesta inmediata",
       "Las cotizaciones se rearman leyendo mensajes de texto",
       "El estatus del lead y el despacho viven en herramientas distintas",
       "Las cuadrillas necesitan algo simple que abra en el navegador",
@@ -152,7 +152,7 @@ export const industryPagesEs: Record<string, ContentPageData> = {
     ],
     proofTitle: "Rejunk",
     proof:
-      "Rejunk junta manejo de leads, despacho, activación de choferes, administración del trabajo y ubicación en vivo en una plataforma que corre en el navegador, para mudanzas y retiro de escombros.",
+      "Rejunk junta manejo de leads, despacho, activación de choferes, administración del trabajo y ubicación en vivo en un sistema que corre en el navegador, para mudanzas y retiro de escombros.",
     faqs: [
       {
         question: "¿La IA puede cotizar todos los trabajos?",
@@ -333,7 +333,7 @@ export const aboutPage = {
   en: {
     eyebrow: "About Abe Media",
     title: "An operator who builds the software, not an agency that subcontracts it",
-    lede: "Abe Media builds AI voice agents, dispatch platforms, and lead automation for service businesses in Phoenix and across the United States. The work is done by the person who scopes it.",
+    lede: "Abe Media builds AI voice agents, custom dispatch systems, and lead automation for service businesses in Phoenix and across the United States. The work is done by the person who scopes it.",
     body: [
       "Abe Media is the operating brand of Abevision LLC, based in Phoenix, Arizona. Every engagement is scoped and built by Abe Perez, who spent 17 years in Waste Management operations before building software for the same kind of work.",
       "The focus is narrow on purpose: intake and operations for service businesses. Voice agents that answer the phone the way a trained coordinator would, dispatch software that survives field conditions, and lead pipelines that make their own failures visible.",
@@ -342,7 +342,7 @@ export const aboutPage = {
     factsTitle: "The short version",
     facts: [
       "Founded and operated in Phoenix, Arizona",
-      "AI voice agents, dispatch platforms, lead automation, custom apps",
+      "AI voice agents, custom dispatch systems, lead automation, custom apps",
       "English and Spanish, written natively in both",
       "17 years of dispatch and waste operations behind the software",
       "Direct access to the person designing and building the system",
@@ -355,7 +355,7 @@ export const aboutPage = {
   es: {
     eyebrow: "Acerca de Abe Media",
     title: "Un operador que construye el software, no una agencia que lo subcontrata",
-    lede: "Abe Media construye agentes de voz con IA, plataformas de despacho y automatización de leads para negocios de servicio en Phoenix y en todo Estados Unidos. Lo construye la misma persona que define el alcance.",
+    lede: "Abe Media construye agentes de voz con IA, sistemas de despacho a medida y automatización de leads para negocios de servicio en Phoenix y en todo Estados Unidos. Lo construye la misma persona que define el alcance.",
     body: [
       "Abe Media es la marca con la que opera Abevision LLC, con base en Phoenix, Arizona. Cada proyecto lo define y lo construye Abe Perez, que trabajó 17 años en operaciones de Waste Management antes de construir software para ese mismo tipo de trabajo.",
       "El enfoque es angosto a propósito: admisión y operaciones para negocios de servicio. Agentes de voz que contestan el teléfono como lo haría un coordinador con experiencia, software de despacho que aguanta las condiciones del campo, y flujos de leads que muestran sus propias fallas.",
@@ -364,7 +364,7 @@ export const aboutPage = {
     factsTitle: "En corto",
     facts: [
       "Fundada y operada en Phoenix, Arizona",
-      "Agentes de voz con IA, plataformas de despacho, automatización de leads y apps a la medida",
+      "Agentes de voz con IA, sistemas de despacho a medida, automatización de leads y apps a la medida",
       "Inglés y español, escritos de forma nativa en los dos idiomas",
       "17 años de despacho y operaciones de residuos detrás del software",
       "Trato directo con la persona que diseña y construye el sistema",
