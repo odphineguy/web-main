@@ -4,14 +4,52 @@ import type { ContentPageData } from "@/content/discoverability";
 
 const baseUrl = "https://abemedia.online";
 
+// Page chrome shown around the content. Kept beside the component rather than in
+// messages/*.json because these strings only ever appear on these pages.
+const ui = {
+  en: {
+    home: "Home",
+    services: "Services",
+    industries: "Industries",
+    caseStudies: "Case Studies",
+    ctaPrimary: "Discuss your workflow",
+    ctaSecondary: "See how we work",
+    goodFitEyebrow: "Good fit when",
+    goodFitTitle: "The handoffs are costing more than the tools",
+    processEyebrow: "Process",
+    proofEyebrow: "Proof and boundaries",
+    faqEyebrow: "Buyer questions",
+    faqTitle: "Direct answers",
+    relatedTitle: "Continue the research",
+  },
+  es: {
+    home: "Inicio",
+    services: "Servicios",
+    industries: "Industrias",
+    caseStudies: "Casos de estudio",
+    ctaPrimary: "Cuéntanos tu flujo de trabajo",
+    ctaSecondary: "Mira cómo trabajamos",
+    goodFitEyebrow: "Encaja cuando",
+    goodFitTitle: "Los pases entre personas cuestan más que las herramientas",
+    processEyebrow: "Proceso",
+    proofEyebrow: "Evidencia y límites",
+    faqEyebrow: "Preguntas de quien contrata",
+    faqTitle: "Respuestas directas",
+    relatedTitle: "Sigue investigando",
+  },
+} as const;
+
 function safeJson(value: unknown) {
   return JSON.stringify(value).replace(/</g, "\\u003c");
 }
 
-export function DiscoverabilityPage({ data, path }: { data: ContentPageData; path: string }) {
+export function DiscoverabilityPage({ data, path, locale = "en" }: { data: ContentPageData; path: string; locale?: string }) {
+  const t = locale === "es" ? ui.es : ui.en;
+  const lp = locale === "es" ? "/es" : "/en";
+  const sectionSlug = data.kind === "service" ? "services" : data.kind === "industry" ? "industries" : "portfolio";
   const breadcrumbs = [
-    { name: "Home", item: `${baseUrl}/en` },
-    { name: data.kind === "service" ? "Services" : data.kind === "industry" ? "Industries" : "Case Studies", item: `${baseUrl}/en/${data.kind === "service" ? "services" : data.kind === "industry" ? "industries" : "portfolio"}` },
+    { name: t.home, item: `${baseUrl}${lp}` },
+    { name: data.kind === "service" ? t.services : data.kind === "industry" ? t.industries : t.caseStudies, item: `${baseUrl}${lp}/${sectionSlug}` },
     { name: data.eyebrow.replace(/^Case study · |^Product demonstration · /, ""), item: `${baseUrl}${path}` },
   ];
   const primarySchema = data.kind === "service"
@@ -42,8 +80,8 @@ export function DiscoverabilityPage({ data, path }: { data: ContentPageData; pat
           <h1 className="max-w-5xl text-4xl font-medium tracking-[-0.035em] md:text-6xl md:leading-[1.03]">{data.title}</h1>
           <p className="mt-7 max-w-3xl text-lg leading-8 text-muted-foreground md:text-xl">{data.intro}</p>
           <div className="mt-9 flex flex-wrap gap-3">
-            <Link href="/en/contact" className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground transition-colors hover:bg-primary/90">Discuss your workflow <ArrowRight className="h-4 w-4" /></Link>
-            <Link href="/en/how-it-works" className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 font-semibold transition-colors hover:border-primary/50">See how we work</Link>
+            <Link href={`${lp}/contact`} className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground transition-colors hover:bg-primary/90">{t.ctaPrimary}{" "} <ArrowRight className="h-4 w-4" /></Link>
+            <Link href={`${lp}/how-it-works`} className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 font-semibold transition-colors hover:border-primary/50">{t.ctaSecondary}</Link>
           </div>
         </div>
       </header>
@@ -51,8 +89,8 @@ export function DiscoverabilityPage({ data, path }: { data: ContentPageData; pat
       <section className="px-6 py-16 md:py-20">
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.72fr_1.28fr]">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-primary">Good fit when</p>
-            <h2 className="mt-3 text-3xl font-medium tracking-[-0.025em]">The handoffs are costing more than the tools</h2>
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-primary">{t.goodFitEyebrow}</p>
+            <h2 className="mt-3 text-3xl font-medium tracking-[-0.025em]">{t.goodFitTitle}</h2>
           </div>
           <ul className="grid gap-3 sm:grid-cols-2">
             {data.goodFit.map((item) => <li key={item} className="flex gap-3 rounded-2xl border border-border bg-card p-5 text-sm leading-6"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" /><span>{item}</span></li>)}
@@ -77,7 +115,7 @@ export function DiscoverabilityPage({ data, path }: { data: ContentPageData; pat
 
       <section className="px-6 py-16 md:py-24">
         <div className="mx-auto max-w-6xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-primary">Process</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-primary">{t.processEyebrow}</p>
           <h2 className="mt-3 max-w-3xl text-3xl font-medium tracking-[-0.025em] md:text-4xl">{data.processTitle}</h2>
           <ol className="mt-10 grid gap-px overflow-hidden rounded-3xl border border-border bg-border md:grid-cols-4">
             {data.process.map((step, index) => <li key={step.title} className="bg-background p-7"><span className="text-sm font-semibold text-primary">{String(index + 1).padStart(2, "0")}</span><h3 className="mt-4 text-xl font-medium">{step.title}</h3><p className="mt-3 text-sm leading-6 text-muted-foreground">{step.body}</p></li>)}
@@ -87,14 +125,14 @@ export function DiscoverabilityPage({ data, path }: { data: ContentPageData; pat
 
       <section className="bg-neutral-950 px-6 py-16 text-white md:py-20">
         <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[0.7fr_1.3fr] md:items-start">
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-orange-400">Proof and boundaries</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-orange-400">{t.proofEyebrow}</p>
           <div><h2 className="text-3xl font-medium tracking-[-0.025em] md:text-4xl">{data.proofTitle}</h2><p className="mt-5 max-w-3xl text-base leading-7 text-neutral-300">{data.proof}</p></div>
         </div>
       </section>
 
       <section className="px-6 py-16 md:py-20">
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.55fr_1.45fr]">
-          <div><p className="text-sm font-semibold uppercase tracking-[0.16em] text-primary">Buyer questions</p><h2 className="mt-3 text-3xl font-medium tracking-[-0.025em]">Direct answers</h2></div>
+          <div><p className="text-sm font-semibold uppercase tracking-[0.16em] text-primary">{t.faqEyebrow}</p><h2 className="mt-3 text-3xl font-medium tracking-[-0.025em]">{t.faqTitle}</h2></div>
           <div className="divide-y divide-border border-y border-border">
             {data.faqs.map((faq) => <details key={faq.question} className="group py-5"><summary className="cursor-pointer list-none pr-8 text-lg font-medium marker:hidden">{faq.question}<span aria-hidden="true" className="float-right text-primary group-open:rotate-45">+</span></summary><p className="mt-3 max-w-3xl pr-8 leading-7 text-muted-foreground">{faq.answer}</p></details>)}
           </div>
@@ -102,7 +140,7 @@ export function DiscoverabilityPage({ data, path }: { data: ContentPageData; pat
       </section>
 
       <section className="border-t border-border bg-muted/35 px-6 py-16">
-        <div className="mx-auto max-w-6xl"><h2 className="text-2xl font-medium">Continue the research</h2><div className="mt-7 grid gap-4 md:grid-cols-3">{data.related.map((link) => <Link key={link.href} href={link.href} className="group rounded-2xl border border-border bg-background p-6 transition-colors hover:border-primary/50"><span className="flex items-center justify-between font-semibold">{link.label}<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span><span className="mt-2 block text-sm leading-6 text-muted-foreground">{link.description}</span></Link>)}</div></div>
+        <div className="mx-auto max-w-6xl"><h2 className="text-2xl font-medium">{t.relatedTitle}</h2><div className="mt-7 grid gap-4 md:grid-cols-3">{data.related.map((link) => <Link key={link.href} href={link.href} className="group rounded-2xl border border-border bg-background p-6 transition-colors hover:border-primary/50"><span className="flex items-center justify-between font-semibold">{link.label}<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span><span className="mt-2 block text-sm leading-6 text-muted-foreground">{link.description}</span></Link>)}</div></div>
       </section>
     </article>
   );

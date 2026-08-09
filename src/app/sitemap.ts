@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { caseStudyPages, industryPages, servicePages } from "@/content/discoverability";
+import { industryPagesEs, servicePagesEs } from "@/content/discoverability.es";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://abemedia.online";
@@ -17,12 +18,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/calculator", lastModified: "2026-07-19", hasSpanishEquivalent: true },
     { path: "/bilingual-seo-phoenix", lastModified: "2026-04-20", hasSpanishEquivalent: false },
     { path: "/contact", lastModified: "2026-07-19", hasSpanishEquivalent: false },
-    { path: "/industries", lastModified: "2026-08-06", hasSpanishEquivalent: false },
-    { path: "/about/abe-perez", lastModified: "2026-08-06", hasSpanishEquivalent: false },
-    { path: "/faq", lastModified: "2026-08-06", hasSpanishEquivalent: false },
+    { path: "/industries", lastModified: "2026-08-09", hasSpanishEquivalent: true },
+    { path: "/about", lastModified: "2026-08-09", hasSpanishEquivalent: true },
+    { path: "/about/abe-perez", lastModified: "2026-08-09", hasSpanishEquivalent: true },
+    { path: "/faq", lastModified: "2026-08-09", hasSpanishEquivalent: true },
     { path: "/guides/dispatch-software-real-exceptions", lastModified: "2026-08-06", hasSpanishEquivalent: false },
-    ...Object.keys(servicePages).map((slug) => ({ path: `/services/${slug}`, lastModified: "2026-08-06", hasSpanishEquivalent: false })),
-    ...Object.keys(industryPages).map((slug) => ({ path: `/industries/${slug}`, lastModified: "2026-08-06", hasSpanishEquivalent: false })),
+    ...Object.keys(servicePages).map((slug) => ({ path: `/services/${slug}`, lastModified: "2026-08-06", hasSpanishEquivalent: Boolean(servicePagesEs[slug]) })),
+    ...Object.keys(industryPages).map((slug) => ({ path: `/industries/${slug}`, lastModified: "2026-08-06", hasSpanishEquivalent: Boolean(industryPagesEs[slug]) })),
     ...Object.keys(caseStudyPages).map((slug) => ({ path: `/portfolio/${slug}`, lastModified: "2026-08-06", hasSpanishEquivalent: false })),
   ];
 

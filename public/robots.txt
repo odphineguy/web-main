@@ -34,15 +34,18 @@ User-agent: Bingbot
 Allow: /
 Disallow: /api/
 
+# Google-Extended gates Gemini grounding, a retrieval channel rather than a
+# training-only crawler, so it follows the same policy as the search bots.
+User-agent: Google-Extended
+Allow: /
+Disallow: /api/
+
 # Owner-approved policy: allow search and user-request retrieval while
 # declining model-training crawlers.
 User-agent: GPTBot
 Disallow: /
 
 User-agent: ClaudeBot
-Disallow: /
-
-User-agent: Google-Extended
 Disallow: /
 
 Sitemap: https://abemedia.online/sitemap.xml
