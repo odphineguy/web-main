@@ -40,21 +40,19 @@ export default function TopNavbar() {
     }
   });
 
-  const height = useTransform(scrollY, [0, 200], [88, 56]);
-  const paddingX = useTransform(scrollY, [0, 200], [24, 12]);
+  // Height/padding/max-width stay fixed. They used to shrink on scroll
+  // (88->56, 24->12, 1280->1000), and the narrower container squeezed the nav
+  // until "Case Studies", "How It Works" and "About Abe" each wrapped to two
+  // lines. Only the bottom border still reacts to scroll - it costs no layout.
   const borderColor = useTransform(scrollY, [0, 200], ["rgba(255,255,255,0)", "rgba(255,255,255,0.12)"]);
-  const containerMaxWidth = useTransform(scrollY, [0, 200], [1280, 1000]);
 
 
   return (
     <motion.header
-      style={{ height, borderBottomColor: borderColor, borderBottomWidth: 1, borderBottomStyle: "solid" }}
-      className="sticky top-0 z-50 w-full backdrop-blur supports-[backdrop-filter]:bg-background/60"
+      style={{ borderBottomColor: borderColor, borderBottomWidth: 1, borderBottomStyle: "solid" }}
+      className="sticky top-0 z-50 h-[88px] w-full backdrop-blur supports-[backdrop-filter]:bg-background/60"
     >
-      <motion.div
-        style={{ paddingLeft: paddingX, paddingRight: paddingX, maxWidth: mounted ? containerMaxWidth : 1280 }}
-        className="mx-auto flex h-full items-center justify-between"
-      >
+      <div className="mx-auto flex h-full max-w-[1280px] items-center justify-between px-6">
         <div className="flex items-center gap-3">
           <Link href={localizedHref("/")} className="hover:opacity-80 transition-opacity">
             <Image
@@ -77,7 +75,7 @@ export default function TopNavbar() {
         </div>
         
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-5 md:gap-6 text-base ml-3 sm:ml-6 md:ml-10">
+        <nav className="hidden md:flex items-center gap-5 md:gap-6 text-base ml-3 sm:ml-6 md:ml-10 whitespace-nowrap">
           <Link href={localizedHref("/services")} className={`font-bold transition-colors ${isActive("/services") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('services')}</Link>
           <Link href="/en/industries" hrefLang="en" className={`font-bold transition-colors ${isActive("/industries") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('industries')}</Link>
           <Link href="/en/portfolio" hrefLang="en" className={`font-bold transition-colors ${isActive("/portfolio") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('caseStudies')}</Link>
@@ -120,7 +118,7 @@ export default function TopNavbar() {
             {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>
         </div>
-      </motion.div>
+      </div>
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
