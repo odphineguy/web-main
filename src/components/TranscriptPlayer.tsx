@@ -2,20 +2,26 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Play, Pause } from "lucide-react";
-import { useTranslations } from "next-intl";
-import { transcript, CALL_DURATION } from "./transcriptData";
+import { useLocale, useTranslations } from "next-intl";
+import { calls } from "./transcriptData";
 
 function fmt(s: number) {
   return `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
 }
 
+const CLIP_LABELS = { en: "English call", es: "Llamada en español" } as const;
+
 export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => void }) {
   const t = useTranslations("Home.Hero");
+  const locale = useLocale();
+  const [clipLang, setClipLang] = useState<"en" | "es">(locale === "es" ? "es" : "en");
   const audioRef = useRef<HTMLAudioElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [playing, setPlaying] = useState(false);
   const [time, setTime] = useState(0);
   const firedRef = useRef(false);
+
+  const clip = calls[clipLang];
 
   useEffect(() => {
     const a = audioRef.current;
@@ -34,6 +40,19 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
     const el = scrollRef.current;
     if (el) el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
   }, [time]);
+
+  const switchClip = (lang: "en" | "es") => {
+    if (lang === clipLang) return;
+    const a = audioRef.current;
+    if (a) a.pause();
+    setPlaying(false);
+    setTime(0);
+    setClipLang(lang);
+    if (a) {
+      a.src = calls[lang].src;
+      a.load();
+    }
+  };
 
   const toggle = () => {
     const a = audioRef.current;
@@ -56,26 +75,48 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
     if (!a) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const frac = (e.clientX - rect.left) / rect.width;
-    a.currentTime = frac * CALL_DURATION;
+    a.currentTime = frac * clip.duration;
     setTime(a.currentTime);
   };
 
   const started = playing || time > 0;
-  const visible = started ? transcript.filter((m) => m.t <= time) : transcript.slice(0, 3);
+  const visible = started ? clip.transcript.filter((m) => m.t <= time) : clip.transcript.slice(0, 3);
   const activeIdx = started ? visible.length - 1 : -1;
 
   return (
     <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white text-left dark:border-neutral-800 dark:bg-neutral-950">
-      <audio ref={audioRef} src="/audio/elena-demo-call.mp3" preload="none" />
+      <audio ref={audioRef} src={clip.src} preload="none" />
 
       {/* Header bar */}
-      <div className="flex items-center justify-between gap-3 border-b border-neutral-200 px-4 py-3 dark:border-neutral-800">
-        <p className="text-sm font-medium text-neutral-950 dark:text-white">
-          {t("widgetLabel")}
-        </p>
-        <span className="rounded-full border border-neutral-300 bg-neutral-100 px-2 py-0.5 text-[10px] uppercase tracking-wide text-neutral-700 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300">
-          Telephony
-        </span>
+      <div className="border-b border-neutral-200 px-4 py-3 dark:border-neutral-800">
+        <div className="flex items-center justify-between gap-3">
+          <p className="text-sm font-medium text-neutral-950 dark:text-white">
+            {t("widgetLabel")}
+          </p>
+          <span className="rounded-full border border-neutral-300 bg-neutral-100 px-2 py-0.5 text-[10px] uppercase tracking-wide text-neutral-700 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300">
+            Telephony
+          </span>
+        </div>
+        <div className="mt-2 flex items-center justify-between gap-3">
+          <p className="text-xs text-neutral-600 dark:text-neutral-400">{t("widgetCaption")}</p>
+          <div className="flex flex-shrink-0 rounded-full border border-neutral-300 bg-neutral-100 p-0.5 dark:border-neutral-700 dark:bg-neutral-900" role="group" aria-label="Call language">
+            {(["en", "es"] as const).map((lang) => (
+              <button
+                key={lang}
+                type="button"
+                onClick={() => switchClip(lang)}
+                aria-pressed={clipLang === lang}
+                className={`rounded-full px-2.5 py-0.5 text-[11px] font-medium transition-colors ${
+                  clipLang === lang
+                    ? "bg-white text-neutral-950 shadow-sm dark:bg-neutral-700 dark:text-white"
+                    : "text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200"
+                }`}
+              >
+                {CLIP_LABELS[lang]}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* Transcript */}
@@ -139,12 +180,12 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
           <div className="h-1.5 overflow-hidden rounded-full bg-neutral-200 dark:bg-neutral-800">
             <div
               className="h-full bg-orange-500 transition-[width] duration-300"
-              style={{ width: `${Math.min(100, (time / CALL_DURATION) * 100)}%` }}
+              style={{ width: `${Math.min(100, (time / clip.duration) * 100)}%` }}
             />
           </div>
         </button>
         <span className="flex-shrink-0 text-xs tabular-nums text-neutral-500 dark:text-neutral-400">
-          {fmt(time)} / {fmt(CALL_DURATION)}
+          {fmt(time)} / {fmt(clip.duration)}
         </span>
       </div>
     </div>

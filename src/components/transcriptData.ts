@@ -1,52 +1,34 @@
-// Timestamps aligned via Whisper against elena-demo-call.mp3
+// Timestamps aligned via Whisper against the sound-clip m4a recordings
 export type TranscriptMsg = { role: "agent" | "caller" | "note"; text: string; t: number };
-export const CALL_DURATION = 490;
-export const transcript: TranscriptMsg[] = [
-  { role: "agent", t: 0.6, text: "Thank you for calling Sonoran Justice Injury Law. This is Elena. How can I help you today?" },
-  { role: "caller", t: 10.8, text: "Hello?" },
-  { role: "agent", t: 11.9, text: "Hi there, I'm here. How can I help you today?" },
-  { role: "caller", t: 15.8, text: "I was in an accident. I'm looking for a lawyer." },
-  { role: "agent", t: 19.6, text: "I'm sorry you were in an accident. I'm here to help. Can you tell me a bit about what happened?" },
-  { role: "caller", t: 25.8, text: "Yeah. I was driving down the road on McDowell going west, and when I was approaching 35th Avenue I had green, but a car coming the opposite way hit me. He didn't realize he had a red, and it just crashed right into me and my door." },
-  { role: "note", t: 49.5, text: "Safety first — the agent checks for emergencies before any intake questions." },
-  { role: "agent", t: 50.7, text: "I'm sorry that happened to you. That sounds really frightening. Before I ask a few questions, are you somewhere safe right now, and does anyone need emergency medical help?" },
-  { role: "caller", t: 60.6, text: "Yeah, I'm safe now. Nobody here needs any emergency help." },
-  { role: "agent", t: 65.9, text: "I'm glad you're safe. I'm going to ask you a few questions so we can get the details down for our team to review. First, when did this accident happen?" },
-  { role: "caller", t: 80.9, text: "It was 4th of July, around 6:00 p.m." },
-  { role: "agent", t: 94.6, text: "Thank you. So that was July fourth at around six p.m. on McDowell and thirty-fifth Avenue. Did you receive any medical care after the accident, or are you experiencing any pain or injuries right now?" },
-  { role: "caller", t: 109.0, text: "At the time I didn't get any medical care, I felt fine. But the next day I was really sore and my back was hurting, so I went in to get checked and found out I have a fracture on my hip. So I haven't been able to work and it's been a struggle to get around." },
-  { role: "agent", t: 155.7, text: "I'm sorry you're going through that. A hip fracture is serious. Are you currently receiving treatment, or do you have upcoming appointments scheduled?" },
-  { role: "caller", t: 159.6, text: "Yes, I have an appointment with a specialist on Monday at 2:00 p.m." },
-  { role: "note", t: 171.5, text: "The caller paused mid-sentence, then added \"…at 2:00 p.m.\" as the agent started to reply. It caught the correction and recovered naturally:" },
-  { role: "agent", t: 173.6, text: "Thank you for that detail. Before we continue, can I start with your full name?" },
-  { role: "caller", t: 183.5, text: "Yes. My name is Abraham Perez." },
-  { role: "agent", t: 186.5, text: "Thank you, Abraham. And what's the best callback number to reach you at?" },
-  { role: "caller", t: 192.5, text: "626-735-6216." },
-  { role: "agent", t: 197.5, text: "Thank you. And do you have an email address where we can reach you as well?" },
-  { role: "caller", t: 207.5, text: "Yes. It is abe@icloud.com." },
-  { role: "agent", t: 212.5, text: "Perfect. Now, was a police report made at the scene, or did police respond?" },
-  { role: "caller", t: 223.9, text: "Yes, police responded right away and there was a police report made. I don't have it handy though." },
-  { role: "agent", t: 236.7, text: "That's okay. Do you happen to remember the case number or report number?" },
-  { role: "caller", t: 244.2, text: "No, I don't. I'll have to get it later." },
-  { role: "agent", t: 249.7, text: "No problem at all. Were there any witnesses to the accident?" },
-  { role: "caller", t: 259.1, text: "Yeah, there were two people at the bus stop who saw everything. One of the cops got their statement, and they said the other guy admitted he ran the red light." },
-  { role: "agent", t: 275.5, text: "That's helpful. Do you have contact info for those witnesses, or did you take any photos of the scene or the damage?" },
-  { role: "caller", t: 295.0, text: "I took photos on my phone, and the police officer got the contact info for the witnesses." },
-  { role: "agent", t: 314.0, text: "Okay, that's good. So the officer has their information on file. Do you know the name of the other driver, or have their insurance information?" },
-  { role: "caller", t: 325.5, text: "I just remember the name Steven Ramirez, but not his insurance." },
-  { role: "agent", t: 333.5, text: "Thank you. Do you have auto insurance yourself, and have you reported this accident to your insurance company yet?" },
-  { role: "caller", t: 347.2, text: "I have insurance with State Farm, and I have not reported the accident yet." },
-  { role: "agent", t: 355.5, text: "Okay. Has an adjuster or anyone from State Farm contacted you about the accident?" },
-  { role: "caller", t: 364.0, text: "No, no one has contacted me." },
-  { role: "agent", t: 367.5, text: "Understood. Abraham, have you already spoken with or hired another lawyer about this accident?" },
-  { role: "caller", t: 374.6, text: "No, I'm looking for one, so I haven't." },
-  { role: "note", t: 377.0, text: "Full structured recap — every fact captured and read back for confirmation before the call ends." },
-  { role: "agent", t: 379.0, text: "Thank you. Let me recap the key facts. You were driving west on McDowell near thirty-fifth Avenue on July fourth around six p.m. when a driver named Steven Ramirez ran a red light and hit your vehicle on the driver's side. The next day you discovered a hip fracture, and you have a specialist appointment Monday at two p.m. Police made a report, two witnesses saw everything, you have photos, you have State Farm insurance but haven't reported it, and you haven't hired another attorney. Anything I missed?" },
-  { role: "caller", t: 432.0, text: "No, I think you got it all." },
-  { role: "agent", t: 435.0, text: "Thank you, Abraham. This information is for staff review, and any follow-up is determined by the firm. Is there anything else you'd like me to note?" },
-  { role: "caller", t: 451.5, text: "Do you know how much they charge?" },
-  { role: "note", t: 452.5, text: "The agent declines to quote fees — compliance guardrails built in. No promises the business hasn't approved." },
-  { role: "agent", t: 454.0, text: "I understand wanting to know cost up front. I can collect information for review, but any fee arrangement would need to be explained and agreed to by the firm in writing. Anything else I can clarify?" },
-  { role: "caller", t: 472.0, text: "No, that's it. Thank you." },
-  { role: "agent", t: 474.5, text: "You're welcome, Abraham. Thank you for calling Sonoran Justice Injury Law, and I hope your specialist appointment on Monday goes well. Take care." },
-];
+
+export type CallClip = {
+  src: string;
+  duration: number;
+  transcript: TranscriptMsg[];
+};
+
+export const calls: Record<"en" | "es", CallClip> = {
+  en: {
+    src: "/audio/sound-clip.m4a",
+    duration: 35.6,
+    transcript: [
+      { role: "caller", t: 0.0, text: "Yeah, I have a flooding restroom." },
+      { role: "agent", t: 4.0, text: "That sounds stressful. Let's get this handled step by step. Do you know where your main water shutoff valve is located?" },
+      { role: "caller", t: 12.0, text: "Not sure. I think it's somewhere in the back corner of the house." },
+      { role: "agent", t: 18.0, text: "Okay, that's helpful. If you're comfortable, can you take a quick look in that back corner and see if you can locate it?" },
+      { role: "agent", t: 25.0, text: "It's usually a valve with a handle you can turn clockwise to stop the water flow. But if you can't find it or aren't sure, just let me know and we'll note this as urgent for the team." },
+    ],
+  },
+  es: {
+    src: "/audio/sound-clip-spanish.m4a",
+    duration: 38.5,
+    transcript: [
+      { role: "caller", t: 0.0, text: "Habla en español, necesito ayuda con mi baño." },
+      { role: "agent", t: 4.0, text: "Claro, sin problema. Estoy aquí para ayudarte. ¿Qué está pasando en tu baño?" },
+      { role: "caller", t: 10.0, text: "Está liqueando de la… de la… de la mano. Tiene mucha agua por abajo." },
+      { role: "agent", t: 17.0, text: "Entiendo. Suena como que hay agua debajo del lavamanos. ¿El agua está saliendo mucho en este momento, o ya paró?" },
+      { role: "caller", t: 26.0, text: "Un poquito, no más. No mucho." },
+      { role: "agent", t: 29.0, text: "Ok, gracias. ¿Sabes dónde está la llave de paso principal del agua en tu casa? Es la que cierra el agua de toda la casa." },
+    ],
+  },
+};
