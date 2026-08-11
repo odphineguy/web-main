@@ -3,19 +3,19 @@
  */
 
 /**
- * Site chat kill switch. Turned off 2026-08-09: the chat backend was answering
- * visitors with "Failed to get response from chat server: HTTP 502", so both the
- * floating widget and the standalone /chatbot page were advertising a broken
- * service.
+ * Site chat switch, now env-driven. Set NEXT_PUBLIC_CHAT_ENABLED=true (Vercel
+ * env or .env.local) to turn the chat on. It defaults to OFF in every
+ * environment so production stays chat-free until Abe verifies the rebuilt
+ * widget on a preview deployment.
  *
- * Nothing is deleted - FloatingChatbot, the chatbot components and the /chatbot
- * route all still exist. Flipping this to true is the only change needed to
- * bring both back.
+ * History: the original widget was killed 2026-08-09 because its Groq-backed
+ * /api/chat answered visitors with HTTP 502. The chat stack was rebuilt
+ * 2026-08-10 on the Anthropic API (claude-haiku-4-5) with booking + lead
+ * capture; the old Gemini/Groq components were deleted.
  *
  * While it is false:
- *  - src/app/[locale]/layout.tsx does not render FloatingChatbot, so its dynamic
- *    import never runs and the chunk is never fetched
+ *  - src/app/[locale]/layout.tsx does not render the floating ChatWidget
  *  - src/app/[locale]/chatbot/page.tsx calls notFound(), so /en/chatbot and
  *    /es/chatbot return 404
  */
-export const CHAT_ENABLED = false;
+export const CHAT_ENABLED = process.env.NEXT_PUBLIC_CHAT_ENABLED === "true";

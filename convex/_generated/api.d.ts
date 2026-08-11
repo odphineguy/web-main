@@ -8,6 +8,7 @@
  * @module
  */
 
+import type * as agentLeads from "../agentLeads.js";
 import type * as conversations from "../conversations.js";
 import type * as formSubmissions from "../formSubmissions.js";
 
@@ -18,6 +19,7 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  agentLeads: typeof agentLeads;
   conversations: typeof conversations;
   formSubmissions: typeof formSubmissions;
 }>;

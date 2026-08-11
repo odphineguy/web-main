@@ -49,6 +49,27 @@ export default defineSchema({
     userAgent: v.optional(v.string()),
   }).index("by_clickedAt", ["clickedAt"]),
 
+  // Leads captured by the AI agents (site chatbot + ElevenLabs phone agent).
+  // Kept separate from form tables: agent leads carry transcripts and booking
+  // references that form submissions never have.
+  agentLeads: defineTable({
+    name: v.optional(v.string()),
+    email: v.optional(v.string()),
+    phone: v.optional(v.string()),
+    company: v.optional(v.string()),
+    notes: v.optional(v.string()),
+    language: v.optional(v.string()), // "en" | "es"
+    referralSource: v.string(), // "site-chat" | "phone-agent"
+    transcript: v.optional(v.string()), // full conversation text
+    bookingUid: v.optional(v.string()), // Cal.com booking uid when booked
+    bookingStart: v.optional(v.string()), // ISO start of the booked slot
+    callerNumber: v.optional(v.string()), // phone-agent only
+    conversationId: v.optional(v.string()), // ElevenLabs conversation id
+    submittedAt: v.number(),
+  })
+    .index("by_submittedAt", ["submittedAt"])
+    .index("by_referralSource", ["referralSource"]),
+
   // Consultation form submissions
   consultationSubmissions: defineTable({
     name: v.string(),

@@ -1,5 +1,51 @@
 # Decisions
 
+## 2026-08-10 — Chatbot rebuild (Ember, Anthropic), legal pages, booking + call-log endpoints, 213 number
+
+**Decision.** Executed Abe's chatbot/legal/booking spec. Public number swapped
+(626) 735-6216 → **(213) 845-2704** everywhere user-facing (contact page,
+Organization JSON-LD) — Abe's explicit instruction overrode the spec's
+"public number stays 626" note. Chat stack rebuilt from scratch: old
+Gemini/Groq files deleted (FloatingChatbot, ChatbotApp, ChatWindow, ChatInput,
+geminiService, chatPrompts, sopContent — the Groq route was the source of the
+Aug-9 HTTP 502); new `/api/chat` runs `claude-haiku-4-5` (Anthropic SDK,
+streaming, prompt caching) with three tools: get_available_slots,
+book_consultation, capture_lead. Knowledge is one static block in
+`src/lib/agent-knowledge.ts` — no RAG, no prices ever. New widget
+`src/components/chatbot/EmberChat.tsx` (Ember theme = new `.chat-ember` vars in
+globals.css, dark glass + orange aurora; cream in light mode), mounted sitewide
++ full-page /chatbot restored. `CHAT_ENABLED` now env-driven
+(`NEXT_PUBLIC_CHAT_ENABLED`), default OFF — Abe tests on preview first.
+`/api/agent-booking` (Cal.com v2: GET /v2/slots `2024-09-04`, POST /v2/bookings
+`2026-02-25`, verified from live docs) + `/api/agent-call-log` (ElevenLabs
+post-call → Convex + Resend), both behind `x-agent-booking-secret` =
+`AGENT_BOOKING_SECRET`, fail closed. New Convex table `agentLeads` (additive;
+chose a new table over extending formSubmissions — transcripts/booking refs
+don't belong on form rows). Legal: /en|/es/privacy + /terms via
+`src/content/legal.ts` + `LegalPage`, footer-linked; ES pages are
+**noindex until Abe's native-speaker review**. Abe-side wiring steps + EN/ES
+recording-disclosure copy: `docs/PHONE_AGENT_SETUP_CHECKLIST.md`.
+
+**Reality-vs-spec divergences.**
+- *Ember design file is gone.* The spec's "existing orange-chatbot design
+  file" (orange-chatbots.html) no longer exists anywhere — only its Charcoal
+  and Cream themes survive in globals.css. `.chat-ember` is a derived
+  rendition (charcoal base, deeper black, hotter orange glow). **Abe: sign off
+  on the look on preview before flipping the flag.**
+- *Chat books via the shared `src/lib/calcom.ts` module, not by HTTP-calling
+  /api/agent-booking* — same logic, one code path, no self-request/secret
+  plumbing. The endpoint exists for ElevenLabs as specced.
+- Spec said keep 626 public; Abe's prompt said switch to 213. Prompt wins.
+
+**Verified.** tsc clean, prod build clean, lint 0 errors; smoke: legal pages
+200 (EN+ES), /en/chatbot un-404s with flag, booking/call-log 401 without
+secret, slots action fails closed without CALCOM_API_KEY; live haiku chat in
+EN + ES refuses pricing, pushes to booking, answers Spanish natively,
+declines out-of-scope (tax prep) with redirect. Not tested end-to-end: real
+Cal.com booking + Convex write + Resend email (need Vercel env vars —
+`CALCOM_API_KEY`, `CALCOM_EVENT_TYPE_ID`, `AGENT_BOOKING_SECRET`,
+`ANTHROPIC_API_KEY`, `NEXT_PUBLIC_CHAT_ENABLED=true` on a preview).
+
 ## 2026-08-07 — Hero rebuild + cleanup pass (single-offer positioning)
 
 **Decision.** Executed `docs/abemedia-hero-cleanup-spec.md`: locked the site around

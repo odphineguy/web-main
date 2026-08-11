@@ -403,6 +403,27 @@
   --chat-typing-dot: rgba(212, 212, 212, 0.62);
 }
 
+/* Ember theme (live chat widget, dark mode) - derived from the Charcoal
+   custom-property set; deeper near-black glass with a hotter orange glow.
+   The original orange-chatbots.html .t-ember values are lost - Abe signs off
+   on this rendition on preview before the chat flag flips. */
+.chat-ember {
+  --chat-surface: rgba(16, 12, 9, 0.82);
+  --chat-text: rgba(255, 250, 245, 0.94);
+  --chat-muted: rgba(231, 213, 197, 0.60);
+  --chat-border: rgba(249, 115, 22, 0.22);
+  --chat-bot-bubble: rgba(249, 115, 22, 0.08);
+  --chat-bot-border: rgba(249, 115, 22, 0.16);
+  --chat-user-bubble: linear-gradient(135deg, rgba(249,115,22,0.95), rgba(194,65,12,0.85));
+  --chat-user-text: rgba(255, 255, 255, 0.96);
+  --chat-input-bg: rgba(28, 20, 14, 0.6);
+  --chat-shadow: 0 24px 70px rgba(0,0,0,0.55), 0 0 40px rgba(249,115,22,0.12);
+  --chat-header-border: rgba(249, 115, 22, 0.18);
+  --chat-footer-border: rgba(249, 115, 22, 0.14);
+  --chat-placeholder: rgba(231, 213, 197, 0.55);
+  --chat-typing-dot: rgba(251, 146, 60, 0.75);
+}
+
 /* Cream theme (light mode) - matches orange-chatbots.html .t-cream */
 .chat-demo-cream {
   --chat-surface: linear-gradient(180deg, rgba(255,255,255,0.78), rgba(255,255,255,0.65));

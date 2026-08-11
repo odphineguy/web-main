@@ -18,7 +18,7 @@ import { CHAT_ENABLED } from "@/lib/flags";
 import { Instagram, Facebook, Music2, Twitter } from "lucide-react";
 
 // Lazy load the chatbot to reduce initial bundle size (code-splitting)
-const FloatingChatbot = nextDynamic(() => import("@/components/FloatingChatbot"), {
+const ChatWidget = nextDynamic(() => import("@/components/chatbot/EmberChat"), {
   loading: () => null,
 });
 
@@ -132,6 +132,11 @@ function Footer({ locale }: { locale: string }) {
         <div className="text-center">
           <p className="text-xs text-muted-foreground">{t('copyright')}</p>
           <p className="mt-1 text-xs text-muted-foreground">{t('entity')}</p>
+          <p className="mt-1 text-xs text-muted-foreground">
+            <Link href={`/${locale}/privacy`} className="hover:text-foreground transition-colors">{t('privacy')}</Link>
+            <span className="mx-2">·</span>
+            <Link href={`/${locale}/terms`} className="hover:text-foreground transition-colors">{t('terms')}</Link>
+          </p>
         </div>
         <div className="flex justify-center sm:justify-end text-muted-foreground gap-5">
           <a href="https://x.com/abe_vision" target="_blank" rel="noreferrer" aria-label="Twitter" className="transition-colors">
@@ -205,7 +210,7 @@ export default async function RootLayout({
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
-      telephone: "+1-626-735-6216",
+      telephone: "+1-213-845-2704",
       email: "abe@abemedia.online",
       availableLanguage: ["English", "Spanish"],
       areaServed: "US",
@@ -283,7 +288,7 @@ export default async function RootLayout({
             <TopNavbar />
             <main className="min-h-screen">{children}</main>
             <Footer locale={locale} />
-            {CHAT_ENABLED && <FloatingChatbot />}
+            {CHAT_ENABLED && <ChatWidget />}
             <Analytics />
             </ConvexClientProvider>
           </NextIntlClientProvider>

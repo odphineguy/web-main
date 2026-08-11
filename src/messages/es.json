@@ -15,7 +15,9 @@
   },
   "Footer": {
     "copyright": "© 2026 Abevision LLC. Abe Media es propiedad y está operada por Abevision LLC. Todos los derechos reservados.",
-    "entity": "Fundada por Abe Perez · Phoenix, Arizona"
+    "entity": "Fundada por Abe Perez · Phoenix, Arizona",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos de Servicio"
   },
   "Home": {
     "Hero": {
