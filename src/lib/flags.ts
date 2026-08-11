@@ -3,10 +3,10 @@
  */
 
 /**
- * Site chat switch, now env-driven. Set NEXT_PUBLIC_CHAT_ENABLED=true (Vercel
- * env or .env.local) to turn the chat on. It defaults to OFF in every
- * environment so production stays chat-free until Abe verifies the rebuilt
- * widget on a preview deployment.
+ * Site chat kill switch. Chat is ON by default (Abe's call, 2026-08-10, after
+ * the phone agent verified the same booking pipeline end-to-end in
+ * production). Set NEXT_PUBLIC_CHAT_ENABLED=false in Vercel to turn it off
+ * without a code change.
  *
  * History: the original widget was killed 2026-08-09 because its Groq-backed
  * /api/chat answered visitors with HTTP 502. The chat stack was rebuilt
@@ -18,4 +18,4 @@
  *  - src/app/[locale]/chatbot/page.tsx calls notFound(), so /en/chatbot and
  *    /es/chatbot return 404
  */
-export const CHAT_ENABLED = process.env.NEXT_PUBLIC_CHAT_ENABLED === "true";
+export const CHAT_ENABLED = process.env.NEXT_PUBLIC_CHAT_ENABLED !== "false";
