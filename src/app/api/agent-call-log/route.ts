@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createHmac, timingSafeEqual } from "crypto";
 import { Resend } from "resend";
 import { ConvexHttpClient } from "convex/browser";
 import { api } from "../../../../convex/_generated/api";
@@ -9,12 +10,38 @@ import { api } from "../../../../convex/_generated/api";
  * route stores the transcript as an agentLead (referralSource "phone-agent")
  * and emails Abe a copy via Resend.
  *
- * Auth: x-agent-booking-secret header must equal AGENT_BOOKING_SECRET (same
- * secret as /api/agent-booking so ElevenLabs only needs one header value).
- * Fails closed when the env var is missing.
+ * Auth, either of:
+ *  - x-agent-booking-secret header equal to AGENT_BOOKING_SECRET (manual
+ *    tests, curl), or
+ *  - a valid ElevenLabs-Signature HMAC header verified against
+ *    ELEVENLABS_WEBHOOK_SECRET (whsec_... from the ElevenLabs webhook UI) -
+ *    ElevenLabs post-call webhooks sign requests instead of sending custom
+ *    headers. Format: "t=<unix>,v0=<hex hmac_sha256(secret, `${t}.${body}`)>".
+ * Fails closed when neither env var matches.
  */
 
 export const dynamic = "force-dynamic";
+
+function verifyElevenLabsSignature(rawBody: string, header: string | null, secret: string | undefined): boolean {
+  if (!header || !secret) return false;
+  const parts = Object.fromEntries(
+    header.split(",").map((p) => {
+      const idx = p.indexOf("=");
+      return [p.slice(0, idx).trim(), p.slice(idx + 1).trim()];
+    }),
+  ) as { t?: string; v0?: string };
+  if (!parts.t || !parts.v0) return false;
+  const timestamp = Number(parts.t);
+  if (!Number.isFinite(timestamp) || Math.abs(Date.now() / 1000 - timestamp) > 30 * 60) return false;
+  const expected = createHmac("sha256", secret).update(`${parts.t}.${rawBody}`).digest("hex");
+  const provided = parts.v0.replace(/^sha256=/, "");
+  if (expected.length !== provided.length) return false;
+  try {
+    return timingSafeEqual(Buffer.from(expected, "hex"), Buffer.from(provided, "hex"));
+  } catch {
+    return false;
+  }
+}
 
 interface TranscriptTurn {
   role?: string;
@@ -30,18 +57,26 @@ function flattenTranscript(turns: unknown): string {
 }
 
 export async function POST(req: NextRequest) {
-  const expected = process.env.AGENT_BOOKING_SECRET;
-  if (!expected || req.headers.get("x-agent-booking-secret") !== expected) {
+  const contentLength = Number(req.headers.get("content-length") || 0);
+  if (Number.isFinite(contentLength) && contentLength > 1_000_000) {
+    return NextResponse.json({ ok: false, error: "Payload too large." }, { status: 413 });
+  }
+  const rawBody = await req.text();
+
+  const sharedSecret = process.env.AGENT_BOOKING_SECRET;
+  const headerAuthorized = Boolean(sharedSecret && req.headers.get("x-agent-booking-secret") === sharedSecret);
+  const hmacAuthorized = verifyElevenLabsSignature(
+    rawBody,
+    req.headers.get("elevenlabs-signature"),
+    process.env.ELEVENLABS_WEBHOOK_SECRET,
+  );
+  if (!headerAuthorized && !hmacAuthorized) {
     return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
   }
 
   let payload: Record<string, unknown>;
   try {
-    const contentLength = Number(req.headers.get("content-length") || 0);
-    if (Number.isFinite(contentLength) && contentLength > 1_000_000) {
-      return NextResponse.json({ ok: false, error: "Payload too large." }, { status: 413 });
-    }
-    payload = (await req.json()) as Record<string, unknown>;
+    payload = JSON.parse(rawBody) as Record<string, unknown>;
   } catch {
     return NextResponse.json({ ok: false, error: "Invalid JSON body." }, { status: 400 });
   }

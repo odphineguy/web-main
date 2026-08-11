@@ -5,6 +5,15 @@ endpoints. The site-side pieces (booking endpoint, call-log endpoint, legal
 pages) are already built — this file covers only what has to happen inside
 ElevenLabs and Vercel.
 
+> **STATUS 2026-08-10 (evening):** Steps 1–4 were done via the ElevenLabs API
+> in-session. **AbeMedia Reception** exists
+> (`agent_3501kzqnhrxeeke9exmmk199mqtj`) with the disclosure first message,
+> reception prompt, check_availability + book_consultation webhook tools
+> (secret header set), the agent-context calendar webhook, and reception
+> data-collection fields. Still manual: assign the agent to the number
+> (step 8), voicemail (step 5), and the post-call webhook (step 6 — see the
+> HMAC note there).
+
 Number: **+1 (213) 845-2704** (ported from Twilio into ElevenLabs,
 `phnum_9501kzqgk8wcesptbvjp0rg4sgxt`).
 
@@ -61,10 +70,17 @@ Add a webhook tool to AbeMedia Reception:
 
 ## 6. Post-call webhook (transcripts to Convex + email)
 
-- Add a post-call webhook (transcription event) pointing at
-  `https://abemedia.online/api/agent-call-log`
-- Header: `x-agent-booking-secret: <AGENT_BOOKING_SECRET>` (same secret as the
-  booking tool).
+ElevenLabs post-call webhooks do not send custom headers — they sign each
+request with an HMAC secret instead, and the call-log route now verifies that
+signature.
+
+- ElevenLabs → Settings (Conversational AI) → **Webhooks** → create a
+  post-call webhook pointing at `https://abemedia.online/api/agent-call-log`,
+  event type: transcription.
+- ElevenLabs shows a signing secret (`whsec_...`) when you create it — copy it
+  and add it in Vercel as **`ELEVENLABS_WEBHOOK_SECRET`**.
+- Then attach the webhook to the AbeMedia Reception agent (agent settings →
+  post-call webhook).
 - The route stores caller number, transcript, and summary in Convex
   (`agentLeads`, referralSource `phone-agent`) and emails the transcript to
   abe@abemedia.online via Resend.
@@ -77,6 +93,7 @@ Add a webhook tool to AbeMedia Reception:
 | `CALCOM_API_KEY` | set — from Cal.com settings |
 | `CALCOM_EVENT_TYPE_ID` | set — numeric id of the consultation event type |
 | `AGENT_BOOKING_SECRET` | generate + set; must match the ElevenLabs headers above |
+| `ELEVENLABS_WEBHOOK_SECRET` | the `whsec_...` from the post-call webhook you create in step 6 |
 | `RESEND_API_KEY` | verify it is present (contact form already uses it) |
 | `NEXT_PUBLIC_CHAT_ENABLED` | leave unset/false in Production; set `true` on a preview to test the chat |
 
