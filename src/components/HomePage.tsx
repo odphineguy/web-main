@@ -15,19 +15,12 @@ import HomeFaq, { homeFaqIds } from "@/components/HomeFaq";
 
 
 // Lazy load below-fold components to reduce initial bundle size
-const ChatDemoShowcase = dynamic(() => import("@/components/demos/ChatDemoShowcase"), {
-  ssr: false,
-});
-
 const MissedCallCalculator = dynamic(() => import("@/components/MissedCallCalculator"), {
   ssr: false,
 });
 
-const TranscriptPlayer = dynamic(() => import("@/components/TranscriptPlayer"), {
-  ssr: false,
-});
-
-const AgentLiveDemo = dynamic(() => import("@/components/AgentLiveDemo"), {
+// Recorded transcript + live call, together in one section below the fold.
+const AgentDemoSection = dynamic(() => import("@/components/AgentDemoSection"), {
   ssr: false,
 });
 
@@ -90,36 +83,25 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero — agents & after-hours positioning */}
-      <section className="bg-background px-6 pt-8 md:pt-16 pb-16 lg:pb-24 overflow-hidden">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left: Text Content - Animations removed for LCP optimization */}
-            <div className="space-y-6">
-              <h1 className="text-[36px] md:text-[44px] lg:text-[48px] font-medium tracking-[-0.02em] text-foreground leading-tight">
-                {t("Hero.titlePart1")}{" "}
-                <span className="text-primary">{t("Hero.titlePart2")}</span>
-              </h1>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-xl">
-                {t("Hero.subtitle")}
-              </p>
-
-              <div className="flex flex-col gap-4">
-                <Link
-                  href={`/${locale}/contact`}
-                  className="inline-flex items-center justify-center gap-2 self-start rounded-full bg-orange-500 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-orange-500/25 transition-colors hover:bg-orange-600"
-                >
-                  {t("Hero.scheduleCta")}
-                </Link>
-              </div>
-            </div>
-
-            {/* Right: recorded-call transcript player */}
-            <div className="relative lg:flex lg:justify-end">
-              <div className="w-full max-w-md mx-auto lg:mx-0 group rounded-3xl">
-                <TranscriptPlayer onFirstPlay={() => handleDemoCallClick("hero-transcript-play")} />
-              </div>
-            </div>
+      {/* Hero — agents & after-hours positioning. Single centered column since the
+          transcript player moved down to sit beside the live-call demo. */}
+      <section className="bg-background px-6 pt-16 md:pt-24 pb-16 lg:pb-24 overflow-hidden">
+        <div className="max-w-3xl mx-auto text-center">
+          {/* Animations removed for LCP optimization */}
+          <h1 className="text-[36px] md:text-[44px] lg:text-[48px] font-medium tracking-[-0.02em] text-foreground leading-tight">
+            {t("Hero.titlePart1")}{" "}
+            <span className="text-primary">{t("Hero.titlePart2")}</span>
+          </h1>
+          <p className="mt-6 text-lg md:text-xl text-muted-foreground mx-auto max-w-xl">
+            {t("Hero.subtitle")}
+          </p>
+          <div className="mt-8">
+            <Link
+              href={`/${locale}/contact`}
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-orange-500/25 transition-colors hover:bg-orange-600"
+            >
+              {t("Hero.scheduleCta")}
+            </Link>
           </div>
         </div>
       </section>
@@ -208,8 +190,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Industry Demo Showcase (retitled to agents) */}
-      <ChatDemoShowcase onCtaClick={() => setIsConsultationOpen(true)} />
+      {/* Agent demos — recorded call (moved up from the hero) beside the live call.
+          Replaces the retired industry-tabs showcase. */}
+      <AgentDemoSection
+        onRecordedPlay={() => handleDemoCallClick("agent-demos-transcript-play")}
+        onCtaClick={() => setIsConsultationOpen(true)}
+      />
 
       {/* Case studies strip */}
       <section className="bg-background py-20 px-6">
@@ -287,9 +273,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Live voice demo — home services agent */}
-      <AgentLiveDemo />
 
       {/* Missed-call revenue calculator */}
       <section id="missed-call" className="bg-gray-50 dark:bg-neutral-950 py-20 px-6 scroll-mt-20">

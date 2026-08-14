@@ -17,8 +17,9 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-manrope), system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
   --font-serif: var(--font-spectral), "Source Serif 4", Georgia, serif;
-  --font-display: var(--font-spectral), "Source Serif 4", Georgia, serif;
-  --font-mono: JetBrains Mono, monospace;
+  /* Headings sitewide. Serif is now an accent face only - see .font-display-italic. */
+  --font-display: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -80,49 +81,52 @@
   --color-orange-600: var(--brand-orange-600);
   --color-orange-700: var(--brand-orange-700);
   --color-orange-400: var(--brand-orange-400);
-  --color-orange-100: oklch(0.95 0.08 47.64);
+  --color-orange-100: oklch(0.95 0.08 39.25);
 }
 
 :root {
   --radius: 0.375rem;
-  /* Darker in light mode so orange text and orange buttons meet WCAG AA. */
-  --brand-orange-400: oklch(0.60 0.18 47.64);
-  --brand-orange-500: oklch(0.53 0.18 47.64);
-  --brand-orange-600: oklch(0.50 0.17 47.64);
-  --brand-orange-700: oklch(0.45 0.16 47.64);
-  /* Light mode background: pure white */
-  --background: oklch(1.0000 0 0);
-  --foreground: oklch(0.2686 0 0);
+  /* Single brand orange #E34F0B = oklch(0.6241 0.1949 39.25). The 400/500/600/700
+     steps are kept as names so existing utilities keep working, but they all
+     resolve to the one brand colour - no more mixed shades in light mode. */
+  --brand-orange-400: #E34F0B;
+  --brand-orange-500: #E34F0B;
+  --brand-orange-600: #E34F0B;
+  --brand-orange-700: #E34F0B;
+  /* Light mode background: warm beige (design token), not pure white.
+     Cards and panels stay near-white so they still lift off the page. */
+  --background: #E4E2DD;
+  --foreground: #111827;
   --card: oklch(1.0000 0 0);
-  --card-foreground: oklch(0.2686 0 0);
+  --card-foreground: #111827;
   --popover: oklch(1.0000 0 0);
-  --popover-foreground: oklch(0.2686 0 0);
-  --primary: oklch(0.53 0.18 47.64);
+  --popover-foreground: #111827;
+  --primary: #E34F0B;
   --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.9670 0.0029 264.5419);
   --secondary-foreground: oklch(0.4461 0.0263 256.8018);
   --muted: oklch(0.9846 0.0017 247.8389);
-  --muted-foreground: oklch(0.5510 0.0234 264.3637);
+  --muted-foreground: #4B5563;
   /* Keep accent neutral to avoid yellow cast */
   --accent: oklch(0.96 0 0);
-  --accent-foreground: oklch(0.32 0 0);
+  --accent-foreground: #374151;
   --destructive: oklch(0.6368 0.2078 25.3313);
-  --border: oklch(0.9276 0.0058 264.5313);
-  --input: oklch(0.9276 0.0058 264.5313);
-  --ring: oklch(0.53 0.18 47.64);
-  --chart-1: oklch(0.53 0.18 47.64);
-  --chart-2: oklch(0.6658 0.1574 58.3183);
-  --chart-3: oklch(0.5553 0.1455 48.9975);
-  --chart-4: oklch(0.4732 0.1247 46.2007);
-  --chart-5: oklch(0.4137 0.1054 45.9038);
+  --border: #E5E7EB;
+  --input: #E5E7EB;
+  --ring: #E34F0B;
+  --chart-1: #E34F0B;
+  --chart-2: oklch(0.6658 0.1574 39.25);
+  --chart-3: oklch(0.5553 0.1455 39.25);
+  --chart-4: oklch(0.4732 0.1247 39.25);
+  --chart-5: oklch(0.4137 0.1054 39.25);
   --sidebar: oklch(0.9846 0.0017 247.8389);
-  --sidebar-foreground: oklch(0.2686 0 0);
-  --sidebar-primary: oklch(0.53 0.18 47.64);
+  --sidebar-foreground: #111827;
+  --sidebar-primary: #E34F0B;
   --sidebar-primary-foreground: oklch(1.0000 0 0);
-  --sidebar-accent: oklch(0.9869 0.0214 95.2774);
-  --sidebar-accent-foreground: oklch(0.4732 0.1247 46.2007);
-  --sidebar-border: oklch(0.9276 0.0058 264.5313);
-  --sidebar-ring: oklch(0.53 0.18 47.64);
+  --sidebar-accent: oklch(0.96 0 0);
+  --sidebar-accent-foreground: #374151;
+  --sidebar-border: #E5E7EB;
+  --sidebar-ring: #E34F0B;
   --destructive-foreground: oklch(1.0000 0 0);
   --shadow-color: hsl(0 0% 0%);
   --shadow-opacity: 0.1;
@@ -144,10 +148,12 @@
 }
 
 .dark {
-  --brand-orange-400: oklch(0.78 0.16 47.64);
-  --brand-orange-500: oklch(0.72 0.18 47.64);
-  --brand-orange-600: oklch(0.67 0.18 47.64);
-  --brand-orange-700: oklch(0.62 0.18 47.64);
+  /* Same single brand orange as light mode. #E34F0B clears 5.39:1 on black,
+     so it is safe for text here without lightening it. */
+  --brand-orange-400: #E34F0B;
+  --brand-orange-500: #E34F0B;
+  --brand-orange-600: #E34F0B;
+  --brand-orange-700: #E34F0B;
   /* Dark mode background: pure black for site-wide consistency */
   --background: oklch(0 0 0);
   --foreground: oklch(0.9219 0 0);
@@ -155,31 +161,31 @@
   --card-foreground: oklch(0.9219 0 0);
   --popover: oklch(0.2686 0 0);
   --popover-foreground: oklch(0.9219 0 0);
-  --primary: oklch(0.70 0.18 47.64);
-  --primary-foreground: oklch(0 0 0);
+  --primary: #E34F0B;
+  --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.2686 0 0);
   --secondary-foreground: oklch(0.9219 0 0);
   --muted: oklch(0.2686 0 0);
   --muted-foreground: oklch(0.7155 0 0);
-  --accent: oklch(0.4732 0.1247 46.2007);
-  --accent-foreground: oklch(0.9243 0.1151 95.7459);
+  --accent: oklch(0.4732 0.1247 39.25);
+  --accent-foreground: oklch(0.98 0 0);
   --destructive: oklch(0.6368 0.2078 25.3313);
   --border: oklch(0.3715 0 0);
   --input: oklch(0.3715 0 0);
-  --ring: oklch(0.70 0.18 47.64);
-  --chart-1: oklch(0.8369 0.1644 84.4286);
-  --chart-2: oklch(0.6658 0.1574 58.3183);
-  --chart-3: oklch(0.4732 0.1247 46.2007);
-  --chart-4: oklch(0.5553 0.1455 48.9975);
-  --chart-5: oklch(0.4732 0.1247 46.2007);
+  --ring: #E34F0B;
+  --chart-1: #E34F0B;
+  --chart-2: oklch(0.6658 0.1574 39.25);
+  --chart-3: oklch(0.4732 0.1247 39.25);
+  --chart-4: oklch(0.5553 0.1455 39.25);
+  --chart-5: oklch(0.4732 0.1247 39.25);
   --sidebar: oklch(0.1684 0 0);
   --sidebar-foreground: oklch(0.9219 0 0);
-  --sidebar-primary: oklch(0.70 0.18 47.64);
+  --sidebar-primary: #E34F0B;
   --sidebar-primary-foreground: oklch(1.0000 0 0);
-  --sidebar-accent: oklch(0.4732 0.1247 46.2007);
-  --sidebar-accent-foreground: oklch(0.9243 0.1151 95.7459);
+  --sidebar-accent: oklch(0.4732 0.1247 39.25);
+  --sidebar-accent-foreground: oklch(0.98 0 0);
   --sidebar-border: oklch(0.3715 0 0);
-  --sidebar-ring: oklch(0.70 0.18 47.64);
+  --sidebar-ring: #E34F0B;
   --destructive-foreground: oklch(1.0000 0 0);
   --radius: 0.375rem;
   --shadow-color: hsl(0 0% 0%);
@@ -203,35 +209,35 @@
 /* Footer CTA Card Styles */
 :root {
   --footer-cta-outer-bg:
-    radial-gradient(circle at 0% 0%, oklch(0.78 0.14 47.64 / 0.5) 0, transparent 40%),
-    radial-gradient(circle at 100% 100%, oklch(0.72 0.18 47.64 / 0.65) 0, transparent 45%),
-    oklch(0.95 0.04 47.64);
+    radial-gradient(circle at 0% 0%, oklch(0.78 0.14 39.25 / 0.5) 0, transparent 40%),
+    radial-gradient(circle at 100% 100%, oklch(0.72 0.18 39.25 / 0.65) 0, transparent 45%),
+    oklch(0.95 0.04 39.25);
   --footer-cta-inner-bg:
-    radial-gradient(circle at top right, oklch(0.75 0.16 47.64 / 0.35), transparent 40%),
-    radial-gradient(circle at bottom left, oklch(0.82 0.10 47.64 / 0.25), transparent 45%),
-    oklch(0.96 0.035 47.64);
+    radial-gradient(circle at top right, oklch(0.75 0.16 39.25 / 0.35), transparent 40%),
+    radial-gradient(circle at bottom left, oklch(0.82 0.10 39.25 / 0.25), transparent 45%),
+    oklch(0.96 0.035 39.25);
   --footer-cta-glow-opacity: 0.3;
-  --footer-cta-border-color: oklch(0.86 0.10 47.64);
-  --footer-cta-shadow: 0 18px 45px rgba(234, 88, 12, 0.18), 0 0 0 1px rgba(234, 88, 12, 0.15);
+  --footer-cta-border-color: oklch(0.86 0.10 39.25);
+  --footer-cta-shadow: 0 18px 45px rgba(227,79,11, 0.18), 0 0 0 1px rgba(227,79,11, 0.15);
   --footer-cta-text-primary: oklch(0.20 0 0);
-  --footer-cta-text-secondary: oklch(0.35 0.08 47.64);
-  --footer-cta-dot-glow: 0 0 18px oklch(0.70 0.18 47.64 / 0.75);
+  --footer-cta-text-secondary: oklch(0.35 0.08 39.25);
+  --footer-cta-dot-glow: 0 0 18px oklch(0.70 0.18 39.25 / 0.75);
 }
 
 .dark {
   --footer-cta-outer-bg:
-    radial-gradient(circle at 0% 0%, oklch(0.55 0.15 47.64 / 0.35) 0, transparent 55%),
-    radial-gradient(circle at 100% 100%, oklch(0.55 0.15 47.64 / 0.35) 0, transparent 55%),
+    radial-gradient(circle at 0% 0%, oklch(0.55 0.15 39.25 / 0.35) 0, transparent 55%),
+    radial-gradient(circle at 100% 100%, oklch(0.55 0.15 39.25 / 0.35) 0, transparent 55%),
     oklch(0.12 0 0);
   --footer-cta-inner-bg:
-    radial-gradient(circle at top right, oklch(0.55 0.15 47.64 / 0.16), transparent 55%),
+    radial-gradient(circle at top right, oklch(0.55 0.15 39.25 / 0.16), transparent 55%),
     radial-gradient(circle at bottom left, oklch(0 0 0 / 0.9), oklch(0 0 0 / 0.98));
   --footer-cta-glow-opacity: 0.2;
   --footer-cta-border-color: oklch(0.25 0 0);
   --footer-cta-shadow: 0 18px 45px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.02);
   --footer-cta-text-primary: oklch(0.98 0 0);
   --footer-cta-text-secondary: oklch(0.55 0 0);
-  --footer-cta-dot-glow: 0 0 12px oklch(0.70 0.18 47.64 / 0.8);
+  --footer-cta-dot-glow: 0 0 12px oklch(0.70 0.18 39.25 / 0.8);
 }
 
 @layer base {
@@ -251,26 +257,28 @@
     line-height: 1.6;
     letter-spacing: var(--tracking-normal);
   }
-  /* Editorial type scale — fluid for marketing/content headings */
+  /* Display type scale — Inter 500, fluid for marketing/content headings.
+     Tracking is looser than the old serif scale because Inter needs less
+     negative letter-spacing to hold together at display sizes. */
   h1 {
-    font-family: var(--font-serif);
+    font-family: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
     font-size: clamp(2.5rem, 5vw + 0.75rem, 4.5rem);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    font-weight: 500;
-  }
-  h2 {
-    font-family: var(--font-serif);
-    font-size: clamp(1.875rem, 3vw + 0.5rem, 3rem);
-    line-height: 1.1;
+    line-height: 1.04;
     letter-spacing: -0.015em;
     font-weight: 500;
   }
+  h2 {
+    font-family: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: clamp(1.875rem, 3vw + 0.5rem, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+  }
   h3 {
-    font-family: var(--font-serif);
+    font-family: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
     font-size: clamp(1.5rem, 1.5vw + 0.75rem, 1.875rem);
     line-height: 1.2;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.005em;
     font-weight: 500;
   }
   h4 {
@@ -298,18 +306,26 @@
 /* Typography utilities */
 @layer utilities {
   .font-display {
-    font-family: var(--font-serif);
+    font-family: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
     font-weight: 500;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.01em;
   }
+  /* Deliberate serif accent — kept on Spectral (chat widget label, pull quotes) */
   .font-display-italic {
-    font-family: var(--font-serif);
+    font-family: var(--font-spectral), "Source Serif 4", Georgia, serif;
     font-style: italic;
     font-weight: 500;
   }
+  /* Labels / technical metadata — design system: JetBrains Mono 12px 600 */
+  .label-mono {
+    font-family: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
   /* Opt-out when a heading should inherit the body sans (e.g., eyebrows, labels) */
   .font-sans-override {
-    font-family: var(--font-sans) !important;
+    font-family: var(--font-manrope), system-ui, -apple-system, "Segoe UI", sans-serif !important;
   }
   /* Tabular numerals for pricing tables and data */
   .tabular-nums {
@@ -354,11 +370,11 @@
 
 /* Orange glow effects for chatbot widgets */
 .glow-orange {
-  box-shadow: 0 0 40px rgba(255, 107, 44, 0.3);
+  box-shadow: 0 0 40px rgba(227,79,11, 0.3);
 }
 
 .glow-orange-sm {
-  box-shadow: 0 0 20px rgba(255, 107, 44, 0.2);
+  box-shadow: 0 0 20px rgba(227,79,11, 0.2);
 }
 
 /* Aurora animation for Charcoal dark mode theme */
@@ -393,7 +409,7 @@
   --chat-border: rgba(115, 115, 115, 0.20);
   --chat-bot-bubble: rgba(115, 115, 115, 0.10);
   --chat-bot-border: rgba(115, 115, 115, 0.18);
-  --chat-user-bubble: linear-gradient(135deg, rgba(251,146,60,0.92), rgba(234,88,12,0.75));
+  --chat-user-bubble: linear-gradient(135deg, rgba(227,79,11,0.92), rgba(227,79,11,0.75));
   --chat-user-text: rgba(10, 10, 10, 0.92);
   --chat-input-bg: rgba(38, 38, 38, 0.42);
   --chat-shadow: 0 24px 70px rgba(0,0,0,0.48);
@@ -411,17 +427,17 @@
   --chat-surface: rgba(16, 12, 9, 0.82);
   --chat-text: rgba(255, 250, 245, 0.94);
   --chat-muted: rgba(231, 213, 197, 0.60);
-  --chat-border: rgba(249, 115, 22, 0.22);
-  --chat-bot-bubble: rgba(249, 115, 22, 0.08);
-  --chat-bot-border: rgba(249, 115, 22, 0.16);
-  --chat-user-bubble: linear-gradient(135deg, rgba(249,115,22,0.95), rgba(194,65,12,0.85));
+  --chat-border: rgba(227,79,11, 0.22);
+  --chat-bot-bubble: rgba(227,79,11, 0.08);
+  --chat-bot-border: rgba(227,79,11, 0.16);
+  --chat-user-bubble: linear-gradient(135deg, rgba(227,79,11,0.95), rgba(227,79,11,0.85));
   --chat-user-text: rgba(255, 255, 255, 0.96);
   --chat-input-bg: rgba(28, 20, 14, 0.6);
-  --chat-shadow: 0 24px 70px rgba(0,0,0,0.55), 0 0 40px rgba(249,115,22,0.12);
-  --chat-header-border: rgba(249, 115, 22, 0.18);
-  --chat-footer-border: rgba(249, 115, 22, 0.14);
+  --chat-shadow: 0 24px 70px rgba(0,0,0,0.55), 0 0 40px rgba(227,79,11,0.12);
+  --chat-header-border: rgba(227,79,11, 0.18);
+  --chat-footer-border: rgba(227,79,11, 0.14);
   --chat-placeholder: rgba(231, 213, 197, 0.55);
-  --chat-typing-dot: rgba(251, 146, 60, 0.75);
+  --chat-typing-dot: rgba(227,79,11, 0.75);
 }
 
 /* Cream theme (light mode) - matches orange-chatbots.html .t-cream */
@@ -432,7 +448,7 @@
   --chat-border: rgba(23, 23, 23, 0.10);
   --chat-bot-bubble: rgba(38, 38, 38, 0.04);
   --chat-bot-border: rgba(23, 23, 23, 0.07);
-  --chat-user-bubble: linear-gradient(135deg, rgba(251,146,60,0.94), rgba(253,186,116,0.80));
+  --chat-user-bubble: linear-gradient(135deg, rgba(227,79,11,0.94), rgba(227,79,11,0.80));
   --chat-user-text: white;
   --chat-input-bg: rgba(255, 253, 250, 0.65);
   --chat-shadow: 0 18px 50px rgba(0,0,0,0.10);
@@ -440,4 +456,176 @@
   --chat-footer-border: rgba(23, 23, 23, 0.07);
   --chat-placeholder: rgba(64, 64, 64, 0.58);
   --chat-typing-dot: rgba(100, 116, 139, 1);
+}
+
+/* ============================================================
+   DESIGN SYSTEM — promoted from the How It Works page
+   ------------------------------------------------------------
+   One set of type, spacing and label rules for every page. The
+   source page hardcoded a black-only palette; here the same
+   language is mapped onto the theme tokens so it works in the
+   beige light mode and the black dark mode alike.
+
+   Pages opt in by rendering <PageShell>, which applies .ds.
+   Nothing outside .ds is affected, so pages migrate one at a
+   time without the others drifting.
+
+   Everything lives in @layer components on purpose: Tailwind
+   utilities sit in a later layer, so a one-off `text-white` on a
+   button still wins over .ds-meta's colour without specificity
+   fights.
+   ============================================================ */
+
+.ds {
+  /* type */
+  --ds-display: var(--font-ds-display), "Arial Narrow", sans-serif;
+  --ds-body: var(--font-ds-body), system-ui, sans-serif;
+  --ds-mono: var(--font-ds-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* palette — theme-aware, unlike the dark-only source */
+  --ds-ink: var(--foreground);
+  --ds-ink-mute: var(--muted-foreground);
+  --ds-ink-faint: color-mix(in oklab, var(--muted-foreground) 65%, transparent);
+  --ds-line: var(--border);
+  --ds-line-soft: color-mix(in oklab, var(--border) 60%, transparent);
+  --ds-raise: var(--card);
+  --ds-accent: #E34F0B;
+  --ds-accent-bg: color-mix(in oklab, #E34F0B 12%, transparent);
+
+  /* rhythm — the source page's scale, kept exactly */
+  --ds-space-sm: 8px;
+  --ds-space-md: 16px;
+  --ds-space-lg: 24px;
+  --ds-space-xl: 48px;
+  --ds-space-2xl: 96px;
+  --ds-rail-w: 76px;
+  --ds-max-w: 1200px;
+  --ds-ease-out: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+@layer components {
+  .ds {
+    color: var(--ds-ink);
+    font-family: var(--ds-body);
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  /* ---- type scale. Sizes are NOT settable per page; that is the point. ---- */
+  .ds h1,
+  .ds h2 {
+    font-family: var(--ds-display);
+    text-wrap: balance;
+    text-transform: uppercase;
+  }
+  .ds h1 {
+    font-size: clamp(3rem, 7.5vw, 5.6rem);
+    font-weight: 780;
+    line-height: 0.98;
+    letter-spacing: 0.005em;
+  }
+  .ds h2 {
+    font-size: clamp(2rem, 4.2vw, 3.1rem);
+    font-weight: 720;
+    line-height: 1.02;
+    letter-spacing: 0.01em;
+  }
+  .ds h3 {
+    font-family: var(--ds-body);
+    font-weight: 650;
+    font-size: 1.05rem;
+    letter-spacing: 0.01em;
+    text-transform: none;
+  }
+  .ds p {
+    max-width: 68ch;
+    margin: 0;
+  }
+  .ds .ds-lede {
+    font-size: 1.16rem;
+    color: var(--ds-ink-mute);
+    max-width: 60ch;
+  }
+
+  /* ---- labels: eyebrows, breadcrumbs, metadata, numbering ---- */
+  .ds .ds-eyebrow {
+    font-family: var(--ds-mono);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ds-accent);
+  }
+  .ds .ds-meta {
+    font-family: var(--ds-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ds-ink-faint);
+  }
+  .ds .ds-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--ds-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 999px;
+    white-space: nowrap;
+    color: var(--ds-accent);
+    background: var(--ds-accent-bg);
+  }
+
+  /* ---- buttons: squared, mono, no pill. Part of the system, not per page. ---- */
+  .ds .ds-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--ds-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 16px 28px;
+    transition: opacity 0.2s var(--ds-ease-out), border-color 0.2s var(--ds-ease-out);
+  }
+  .ds .ds-btn-primary {
+    background: var(--ds-accent);
+    color: #ffffff;
+  }
+  .ds .ds-btn-primary:hover {
+    opacity: 0.9;
+  }
+  .ds .ds-btn-ghost {
+    border: 1px solid var(--ds-line);
+    color: var(--ds-ink);
+  }
+  .ds .ds-btn-ghost:hover {
+    border-color: var(--ds-accent);
+  }
+
+  /* ---- entrance reveal, stagger capped so late items do not lag ---- */
+  .ds .ds-reveal {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  .ds .ds-in .ds-reveal,
+  .ds .ds-in.ds-reveal {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.38s var(--ds-ease-out),
+      transform 0.38s var(--ds-ease-out);
+    transition-delay: min(calc(var(--i, 0) * 28ms), 200ms);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds .ds-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }

@@ -191,6 +191,14 @@
       "metaPill": "Sin compromiso",
       "metaText": "Respondemos en 1 día hábil"
     },
+    "AgentDemos": {
+      "title": "Escucha una llamada real y luego habla tú mismo con el agente",
+      "subtitle": "Una llamada de recepción grabada, sin editar. Y una línea en vivo que puedes probar ahora mismo.",
+      "recordedLabel": "Llamada grabada",
+      "liveLabel": "Llamada en vivo",
+      "recordedNote": "Una llamada real de plomería fuera de horario, de principio a fin. Sin cortes ni regrabaciones.",
+      "cta": "Consigue un agente como este"
+    },
     "AgentDemo": {
       "badge": "Demo en vivo",
       "title": "Habla con nuestro agente de IA — ahora mismo",
@@ -222,7 +230,10 @@
     "Hero": {
       "title": "Nuestros",
       "highlight": "servicios",
-      "subtitle": "Agentes de IA, software de dispatch, automatización de leads, herramientas de presupuestos y sistemas a medida para negocios de servicios."
+      "subtitle": "Agentes de IA, software de dispatch, automatización de leads, herramientas de presupuestos y sistemas a medida para negocios de servicios.",
+      "eyebrow": "Servicios",
+      "meta": "Inicio / Servicios",
+      "cta": "Agenda una llamada"
     },
     "Cards": {
       "aiVoice": {
@@ -362,7 +373,8 @@
       "title": "¿Listo para empezar?",
       "description": "Cuéntanos sobre tu proyecto. Te decimos qué lleva, en cuánto tiempo y cuánto cuesta.",
       "link": "Ver cómo trabajamos"
-    }
+    },
+    "GridEyebrow": "Capacidades"
   },
   "CalculatorPage": {
     "hero": {

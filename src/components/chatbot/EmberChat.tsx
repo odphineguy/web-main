@@ -156,9 +156,9 @@ export function EmberChatPanel({ heightClass = "h-[380px]" }: { heightClass?: st
           className="absolute inset-[-40px] pointer-events-none z-0 animate-aurora"
           style={{
             background: `
-              radial-gradient(500px 240px at 20% 10%, rgba(249,115,22,0.32), transparent 60%),
-              radial-gradient(520px 260px at 85% 20%, rgba(251,146,60,0.24), transparent 62%),
-              radial-gradient(540px 260px at 55% 110%, rgba(194,65,12,0.20), transparent 65%)
+              radial-gradient(500px 240px at 20% 10%, rgba(227,79,11,0.32), transparent 60%),
+              radial-gradient(520px 260px at 85% 20%, rgba(227,79,11,0.24), transparent 62%),
+              radial-gradient(540px 260px at 55% 110%, rgba(227,79,11,0.20), transparent 65%)
             `,
             filter: "blur(18px)",
             opacity: 0.9,
@@ -173,7 +173,7 @@ export function EmberChatPanel({ heightClass = "h-[380px]" }: { heightClass?: st
       >
         <div
           className="w-10 h-10 rounded-2xl grid place-items-center shrink-0"
-          style={{ background: "#f17523", boxShadow: "0 0 24px rgba(249,115,22,0.35)" }}
+          style={{ background: "#E34F0B", boxShadow: "0 0 24px rgba(227,79,11,0.35)" }}
         >
           <MessageCircle className="w-5 h-5 text-white" aria-hidden />
         </div>
@@ -299,8 +299,8 @@ export default function ChatWidget() {
           aria-label={copy.open}
           className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full grid place-items-center text-white transition-transform duration-300 hover:scale-110"
           style={{
-            background: "linear-gradient(135deg, #f97316, #c2410c)",
-            boxShadow: "0 8px 30px rgba(249,115,22,0.35), 0 0 0 3px rgba(249,115,22,0.1)",
+            background: "linear-gradient(135deg, #E34F0B, #E34F0B)",
+            boxShadow: "0 8px 30px rgba(227,79,11,0.35), 0 0 0 3px rgba(227,79,11,0.1)",
           }}
         >
           <MessageCircle className="w-6 h-6" aria-hidden />

@@ -126,9 +126,9 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
           className="animate-aurora pointer-events-none absolute inset-[-40px] z-0"
           style={{
             background: `
-              radial-gradient(500px 240px at 20% 10%, rgba(249,115,22,0.30), transparent 60%),
-              radial-gradient(520px 260px at 85% 20%, rgba(251,146,60,0.25), transparent 62%),
-              radial-gradient(540px 260px at 55% 110%, rgba(234,88,12,0.18), transparent 65%)
+              radial-gradient(500px 240px at 20% 10%, rgba(227,79,11,0.30), transparent 60%),
+              radial-gradient(520px 260px at 85% 20%, rgba(227,79,11,0.25), transparent 62%),
+              radial-gradient(540px 260px at 55% 110%, rgba(227,79,11,0.18), transparent 65%)
             `,
             filter: "blur(18px)",
             opacity: 0.9,
@@ -144,10 +144,10 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
         <div
           className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-2xl"
           style={{
-            background: "#f17523",
+            background: "#E34F0B",
             boxShadow: isDark
               ? "0 0 0 1px rgba(115,115,115,0.16), 0 16px 40px rgba(0,0,0,0.42)"
-              : "0 14px 30px rgba(249,115,22,0.28)",
+              : "0 14px 30px rgba(227,79,11,0.28)",
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -157,7 +157,7 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
           <h3
             className="text-sm font-semibold leading-snug"
             style={{
-              fontFamily: "var(--font-serif), Georgia, serif",
+              fontFamily: "var(--font-spectral), Georgia, serif",
               fontStyle: "italic",
               color: "var(--chat-text)",
             }}
@@ -213,8 +213,8 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
               key={i}
               className="self-center rounded-xl px-3 py-2 text-center"
               style={{
-                background: "rgba(249,115,22,0.10)",
-                border: "1px solid rgba(249,115,22,0.28)",
+                background: "rgba(227,79,11,0.10)",
+                border: "1px solid rgba(227,79,11,0.28)",
               }}
             >
               <p className="text-xs italic leading-relaxed" style={{ color: "var(--chat-text)" }}>
@@ -238,12 +238,12 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
                         background: "var(--chat-bot-bubble)",
                         border: "1px solid var(--chat-bot-border)",
                         color: "var(--chat-text)",
-                        boxShadow: playing && i === activeIdx ? "0 0 0 2px rgba(249,115,22,0.45)" : "none",
+                        boxShadow: playing && i === activeIdx ? "0 0 0 2px rgba(227,79,11,0.45)" : "none",
                       }
                     : {
                         background: "var(--chat-user-bubble)",
                         color: "var(--chat-user-text)",
-                        boxShadow: playing && i === activeIdx ? "0 0 0 2px rgba(249,115,22,0.45)" : "none",
+                        boxShadow: playing && i === activeIdx ? "0 0 0 2px rgba(227,79,11,0.45)" : "none",
                       }
                 }
               >
@@ -305,7 +305,7 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
         <span className="text-[10px]" style={{ color: "var(--chat-muted)" }}>
           Powered by{" "}
           <span className="font-semibold">
-            <span className="text-[rgb(251,146,60)]">abe</span>
+            <span className="text-[rgb(227,79,11)]">abe</span>
             <span style={{ color: "var(--chat-muted)" }}>media</span>
           </span>
         </span>

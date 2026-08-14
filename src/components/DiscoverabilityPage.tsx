@@ -66,7 +66,7 @@ export function DiscoverabilityPage({ data, path, locale = "en" }: { data: Conte
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJson(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJson(faqSchema) }} />
 
-      <header className="border-b border-border bg-[radial-gradient(circle_at_top_right,rgba(234,88,12,0.14),transparent_38%)] px-6 py-16 md:py-24">
+      <header className="border-b border-border bg-[radial-gradient(circle_at_top_right,rgba(227,79,11,0.14),transparent_38%)] px-6 py-16 md:py-24">
         <div className="mx-auto max-w-6xl">
           <nav aria-label="Breadcrumb" className="mb-8 flex flex-wrap gap-2 text-sm text-muted-foreground">
             {breadcrumbs.map((crumb, index) => (

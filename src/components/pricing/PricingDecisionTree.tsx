@@ -337,7 +337,9 @@ function QuestionBlock({
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                 isPicked
                   ? "border-primary bg-primary/5 text-foreground"
-                  : "border-border hover:border-foreground/40",
+                  // bg-card, not transparent: the page background is beige, so an
+                  // unfilled option would sink into it instead of reading as a control.
+                  : "border-border bg-card hover:border-foreground/40",
               )}
             >
               <span>{opt.label}</span>

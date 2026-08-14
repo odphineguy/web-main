@@ -3,7 +3,15 @@ import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import type { Metadata } from "next";
 
-import { Spectral, Manrope } from "next/font/google";
+import {
+  Spectral,
+  Manrope,
+  Inter,
+  JetBrains_Mono,
+  Big_Shoulders,
+  Familjen_Grotesk,
+  Spline_Sans_Mono,
+} from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
@@ -38,11 +46,58 @@ const manrope = Manrope({
   preload: true,
 });
 
-// Display / editorial serif — used for hero and section headings
+/* ── Design system faces ──────────────────────────────────────────────────
+   Promoted from the How It Works page, which was the only page using them.
+   These are the sitewide voices now: condensed display, grotesk body, mono
+   for labels and metadata. Loaded at root so every page can reach them. */
+const dsDisplay = Big_Shoulders({
+  variable: "--font-ds-display",
+  subsets: ["latin"],
+  display: "swap",
+  preload: true,
+  // Next cannot derive metric overrides for this face, so it warns and skips
+  // the auto fallback. Naming condensed fallbacks explicitly keeps the swap
+  // from reflowing headings.
+  fallback: ["Arial Narrow", "Helvetica Neue Condensed", "Impact", "sans-serif"],
+  adjustFontFallback: false,
+});
+
+const dsBody = Familjen_Grotesk({
+  variable: "--font-ds-body",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  display: "swap",
+  preload: true,
+});
+
+const dsMono = Spline_Sans_Mono({
+  variable: "--font-ds-mono",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// Display — retained for pages not yet migrated to the design system.
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+  preload: true,
+});
+
+// Labels / technical metadata (design system: JetBrains Mono 12px 600)
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// Editorial serif — no longer used for headings. Retained only for the italic
+// accent on the chat/transcript widget label and the decorative quote glyphs,
+// so the weight set is trimmed to just what those need.
 const spectral = Spectral({
   variable: "--font-spectral",
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500"],
   style: ["normal", "italic"],
   display: "swap",
 });
@@ -244,6 +299,10 @@ export default async function RootLayout({
 
   // Normal static/dynamic behavior restored
   return (
+    /* Font variables stay on <body>, not <html> — next-themes owns the <html>
+       className and overwrites it, which would drop them. globals.css therefore
+       references --font-inter / --font-spectral directly in the heading rules so
+       they resolve by inheritance from here. */
     <html lang={locale} suppressHydrationWarning>
       <head>
         {/* Preload LCP hero images for faster initial paint */}
@@ -272,7 +331,9 @@ export default async function RootLayout({
           `}
         </Script>
       </head>
-      <body className={`${manrope.variable} ${spectral.variable} font-sans antialiased`}>
+      <body
+        className={`${manrope.variable} ${inter.variable} ${jetbrainsMono.variable} ${spectral.variable} ${dsDisplay.variable} ${dsBody.variable} ${dsMono.variable} font-sans antialiased`}
+      >
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema).replace(/</g, "\\u003c") }}

@@ -191,6 +191,14 @@
       "metaPill": "No obligation",
       "metaText": "Replies within 1 business day"
     },
+    "AgentDemos": {
+      "title": "Hear a real call, then talk to the agent yourself",
+      "subtitle": "One recorded intake call, unedited. Then a live line you can pick up right now and try to break.",
+      "recordedLabel": "Recorded call",
+      "liveLabel": "Live call",
+      "recordedNote": "A real after-hours plumbing call, start to finish. Nothing cut, nothing re-recorded.",
+      "cta": "Get an agent like this"
+    },
     "AgentDemo": {
       "badge": "Live demo",
       "title": "Talk to our AI agent — right now",
@@ -222,7 +230,10 @@
     "Hero": {
       "title": "Our",
       "highlight": "services",
-      "subtitle": "AI agents, dispatch software, lead automation, estimating tools, and custom systems for service businesses."
+      "subtitle": "AI agents, dispatch software, lead automation, estimating tools, and custom systems for service businesses.",
+      "eyebrow": "Services",
+      "meta": "Home / Services",
+      "cta": "Schedule a call"
     },
     "Cards": {
       "aiVoice": {
@@ -362,7 +373,8 @@
       "title": "Ready to start?",
       "description": "Tell us about your project. We'll tell you what it takes, on what timeline, and what it costs.",
       "link": "See how we work"
-    }
+    },
+    "GridEyebrow": "Capabilities"
   },
   "CalculatorPage": {
     "hero": {

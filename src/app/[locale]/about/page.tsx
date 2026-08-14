@@ -65,7 +65,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organization).replace(/</g, "\\u003c") }}
       />
 
-      <header className="border-b border-border bg-[radial-gradient(circle_at_top_right,rgba(234,88,12,0.14),transparent_40%)] px-6 py-16 md:py-24">
+      <header className="border-b border-border bg-[radial-gradient(circle_at_top_right,rgba(227,79,11,0.14),transparent_40%)] px-6 py-16 md:py-24">
         <div className="mx-auto max-w-6xl">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">{c.eyebrow}</p>
           <h1 className="mt-5 max-w-4xl text-4xl font-medium tracking-[-0.035em] md:text-6xl">{c.title}</h1>
@@ -105,7 +105,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           <h2 className="text-3xl font-medium">{c.linksTitle}</h2>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {links.map((item) => (
-              <Link key={item.href} href={item.href} className="group rounded-2xl border border-border p-6 hover:border-primary/50">
+              <Link key={item.href} href={item.href} className="group rounded-2xl border border-border bg-card p-6 hover:border-primary/50">
                 <h3 className="flex items-center justify-between text-xl font-medium">
                   {item.label}
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

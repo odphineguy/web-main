@@ -167,9 +167,9 @@ export default function ChatDemoWindow({
           className="absolute inset-[-40px] pointer-events-none z-0 animate-aurora"
           style={{
             background: `
-              radial-gradient(500px 240px at 20% 10%, rgba(249,115,22,0.30), transparent 60%),
-              radial-gradient(520px 260px at 85% 20%, rgba(251,146,60,0.25), transparent 62%),
-              radial-gradient(540px 260px at 55% 110%, rgba(234,88,12,0.18), transparent 65%)
+              radial-gradient(500px 240px at 20% 10%, rgba(227,79,11,0.30), transparent 60%),
+              radial-gradient(520px 260px at 85% 20%, rgba(227,79,11,0.25), transparent 62%),
+              radial-gradient(540px 260px at 55% 110%, rgba(227,79,11,0.18), transparent 65%)
             `,
             filter: 'blur(18px)',
             opacity: 0.90
@@ -203,10 +203,10 @@ export default function ChatDemoWindow({
         <div
           className="w-10 h-10 rounded-2xl flex items-center justify-center overflow-hidden"
           style={{
-            background: "#f17523",
+            background: "#E34F0B",
             boxShadow: isDark
               ? "0 0 0 1px rgba(115,115,115,0.16), 0 16px 40px rgba(0,0,0,0.42)"
-              : "0 14px 30px rgba(249,115,22,0.28)",
+              : "0 14px 30px rgba(227,79,11,0.28)",
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -220,7 +220,7 @@ export default function ChatDemoWindow({
           <h3
             className="text-sm font-semibold truncate"
             style={{
-              fontFamily: "var(--font-serif), Georgia, serif",
+              fontFamily: "var(--font-spectral), Georgia, serif",
               fontStyle: "italic",
               color: "var(--chat-text)",
             }}
@@ -385,7 +385,7 @@ export default function ChatDemoWindow({
           >
             Powered by{" "}
             <span className="font-semibold">
-              <span className="text-[rgb(251,146,60)]">abe</span>
+              <span className="text-[rgb(227,79,11)]">abe</span>
               <span style={{ color: "var(--chat-muted)" }}>media</span>
             </span>
           </span>

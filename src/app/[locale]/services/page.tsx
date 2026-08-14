@@ -2,173 +2,135 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { ScheduleCallButton } from "@/components/ScheduleCallButton";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle, ArrowRight } from "lucide-react";
+import { useTranslations } from "next-intl";
+
+import PageShell from "@/components/ds/PageShell";
+import PageHero from "@/components/ds/PageHero";
+import Section from "@/components/ds/Section";
+import DsCard from "@/components/ds/Card";
+import { Reveal } from "@/components/ds/PageShell";
 import ConsultationForm from "@/components/ConsultationForm";
 import { FooterCTA } from "@/components/ui/footer-cta";
 
-import { useTranslations } from 'next-intl';
+const services = [
+  {
+    id: "aiVoice",
+    image: "/images/services/ai-chatbots-agents.png",
+    link: "/services/ai-voice-agents",
+  },
+  {
+    id: "dispatch",
+    image: "/images/services/mobile-app-development.png",
+    link: "/services/dispatch-operations-software",
+  },
+  {
+    id: "leadPipeline",
+    image: "/images/services/web-development.png",
+    link: "/services/lead-pipeline-automation",
+  },
+  {
+    id: "aiEstimating",
+    image: "/images/services/ui-ux-design.png",
+    link: "/services/ai-estimating-tools",
+  },
+  {
+    id: "bilingualAutomation",
+    image: "/images/services/bilingual-web-development.png",
+    link: "/services/bilingual-ai-automation",
+  },
+  {
+    id: "customSoftware",
+    image: "/images/services/brand-identity.png",
+    link: "/services/custom-business-software",
+  },
+] as const;
+
+const RAIL = [
+  { id: "overview", label: "Overview" },
+  { id: "what-we-build", label: "What we build" },
+  { id: "start", label: "Get started" },
+];
 
 export default function Services() {
-  const t = useTranslations('Services');
+  const t = useTranslations("Services");
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
-  const [imageErrors, setImageErrors] = useState<Set<number>>(new Set());
-
-  const services = [
-    {
-      id: "aiVoice",
-      image: "/images/services/ai-chatbots-agents.png",
-      link: "/services/ai-voice-agents",
-    },
-    {
-      id: "dispatch",
-      image: "/images/services/mobile-app-development.png",
-      link: "/services/dispatch-operations-software",
-    },
-    {
-      id: "leadPipeline",
-      image: "/images/services/web-development.png",
-      link: "/services/lead-pipeline-automation",
-    },
-    {
-      id: "aiEstimating",
-      image: "/images/services/ui-ux-design.png",
-      link: "/services/ai-estimating-tools",
-    },
-    {
-      id: "bilingualAutomation",
-      image: "/images/services/bilingual-web-development.png",
-      link: "/services/bilingual-ai-automation",
-    },
-    {
-      id: "customSoftware",
-      image: "/images/services/brand-identity.png",
-      link: "/services/custom-business-software",
-    },
-  ];
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="bg-background pt-8 md:pt-12 pb-12 px-6">
-        <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-3xl md:text-4xl lg:text-[40px] font-medium tracking-[-0.02em] mb-6 text-foreground">
-            {t('Hero.title')} <span className="text-primary">{t('Hero.highlight')}</span>
-          </h1>
-          <p className="text-sm md:text-base text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-            {t('Hero.subtitle')}
-          </p>
-          <ScheduleCallButton 
-            onClick={() => setIsConsultationOpen(true)}
-            className="mx-auto"
-          />
-        </div>
-      </section>
+    <PageShell railCap="SERVICES" railItems={RAIL}>
+      <div id="overview">
+        <PageHero
+          eyebrow={t("Hero.eyebrow")}
+          title={
+            <>
+              {t("Hero.title")}{" "}
+              <span className="text-[var(--ds-accent)]">
+                {t("Hero.highlight")}
+              </span>
+            </>
+          }
+          lede={t("Hero.subtitle")}
+          meta={<span className="ds-meta">{t("Hero.meta")}</span>}
+          actions={
+            <button
+              type="button"
+              onClick={() => setIsConsultationOpen(true)}
+              className="ds-btn ds-btn-primary"
+            >
+              {t("Hero.cta")}
+            </button>
+          }
+        />
+      </div>
 
-      {/* Services Grid */}
-      <section className="bg-gray-100 dark:bg-neutral-900 py-16 px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="mb-10 text-center text-2xl font-medium tracking-[-0.02em] text-foreground md:text-3xl">
-            {t('GridTitle')}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => {
-              const cardContent = (
-                <Card 
-                  className={`group relative overflow-hidden border border-border hover:border-orange-500/30 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-300 ease-out hover:-translate-y-2 bg-card h-full ${service.link ? "cursor-pointer" : ""}`}
-                >
-                  <CardHeader className="pb-4">
-                    <div className="relative mb-4 h-40 w-full overflow-hidden rounded-2xl border border-orange-500/20 bg-primary/5 group-hover:border-orange-500/40 transition-all duration-300">
-                      {service.image && !imageErrors.has(index) ? (
-                        <Image
-                          src={service.image}
-                          alt={t(`Cards.${service.id}.title`)}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-110"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          onError={() => {
-                            setImageErrors(prev => new Set(prev).add(index));
-                          }}
-                        />
-                      ) : (
-                        <div className="flex items-center justify-center h-full">
-                          <span className="text-sm font-semibold text-orange-600 dark:text-orange-300 text-center px-4">
-                            {t(`Cards.${service.id}.placeholder`)}
-                          </span>
-                        </div>
-                      )}
-                      {/* Gradient overlay on hover */}
-                      <div className="absolute inset-0 bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    </div>
-                    <CardTitle className="text-lg md:text-xl font-medium tracking-[-0.02em] text-foreground group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-300 flex items-center gap-2">
-                      {t(`Cards.${service.id}.title`)}
-                      {service.link && <ArrowRight className="h-4 w-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />}
-                    </CardTitle>
-                    <CardDescription className="text-sm text-muted-foreground leading-relaxed">
-                      {t(`Cards.${service.id}.description`)}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2">
-                      {['f1', 'f2', 'f3', 'f4'].map((featureKey, featureIndex) => (
-                        <li 
-                          key={featureIndex} 
-                          className="flex items-center gap-2 transition-transform duration-200 group-hover:translate-x-1"
-                          style={{ transitionDelay: `${featureIndex * 50}ms` }}
-                        >
-                          <CheckCircle className="h-4 w-4 text-muted-foreground flex-shrink-0 group-hover:text-orange-500 transition-colors duration-300" />
-                          <span className="text-sm leading-relaxed text-muted-foreground group-hover:text-foreground transition-colors duration-300">
-                            {t(`Cards.${service.id}.features.${featureKey}`)}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                    {service.link && (
-                      <div className="mt-4 pt-4 border-t border-gray-100 dark:border-neutral-800">
-                        <span className="text-sm font-medium text-orange-500 group-hover:text-orange-600 flex items-center gap-1">
-                          {t('CTA.link')} <ArrowRight className="h-3 w-3" />
-                        </span>
-                      </div>
-                    )}
-                  </CardContent>
-                  {/* Shine effect on hover */}
-                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none">
-                    <div className="h-full w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
+      <Section
+        id="what-we-build"
+        eyebrow={t("GridEyebrow")}
+        title={t("GridTitle")}
+      >
+        <div className="grid grid-cols-1 gap-px bg-[var(--ds-line-soft)] sm:grid-cols-2 lg:grid-cols-3">
+          {services.map((service, i) => (
+            <Reveal key={service.id} index={i}>
+              <DsCard
+                index={i}
+                href={`/en${service.link}`}
+                title={t(`Cards.${service.id}.title`)}
+                description={t(`Cards.${service.id}.description`)}
+                points={(["f1", "f2", "f3", "f4"] as const).map((k) =>
+                  t(`Cards.${service.id}.features.${k}`),
+                )}
+                cta={t("CTA.link")}
+                media={
+                  <div className="relative h-40 w-full">
+                    <Image
+                      src={service.image}
+                      alt=""
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
                   </div>
-                </Card>
-              );
-
-              return service.link ? (
-                <Link key={index} href={`/en${service.link}`} hrefLang="en" className="block">
-                  {cardContent}
-                </Link>
-              ) : (
-                <div key={index}>{cardContent}</div>
-              );
-            })}
-          </div>
+                }
+              />
+            </Reveal>
+          ))}
         </div>
-      </section>
+      </Section>
 
-      {/* Bottom CTA Section */}
-      <section className="bg-gray-100 dark:bg-neutral-900 px-6 py-20">
+      <Section id="start">
         <FooterCTA
-          heading={t('CTA.title')}
-          subtext={t('CTA.description')}
+          heading={t("CTA.title")}
+          subtext={t("CTA.description")}
           buttonText="SCHEDULE A CALL"
           onButtonClick={() => setIsConsultationOpen(true)}
           metaPill="No obligation"
           metaText="Replies within 1 business day"
         />
-      </section>
+      </Section>
 
-      {/* Consultation Modal */}
-      <ConsultationForm 
-        isOpen={isConsultationOpen} 
-        onClose={() => setIsConsultationOpen(false)} 
+      <ConsultationForm
+        isOpen={isConsultationOpen}
+        onClose={() => setIsConsultationOpen(false)}
       />
-    </div>
+    </PageShell>
   );
 }

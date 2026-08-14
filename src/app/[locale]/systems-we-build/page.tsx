@@ -93,7 +93,7 @@ export default function SystemsWeBuildPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="max-w-5xl mx-auto"
           >
-            <div className="relative rounded-2xl overflow-hidden border border-border shadow-[0_20px_50px_-12px_rgba(0,0,0,0.25)] dark:shadow-[0_20px_50px_-12px_rgba(249,115,22,0.15)]">
+            <div className="relative rounded-2xl overflow-hidden border border-border shadow-[0_20px_50px_-12px_rgba(0,0,0,0.25)] dark:shadow-[0_20px_50px_-12px_rgba(227,79,11,0.15)]">
               <video
                 autoPlay
                 loop

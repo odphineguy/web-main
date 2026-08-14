@@ -92,7 +92,7 @@ export default function PartnerSteps() {
                   
                   {/* Number Badge */}
                   <motion.div 
-                    whileHover={{ scale: 1.1, backgroundColor: "#f97316" }}
+                    whileHover={{ scale: 1.1, backgroundColor: "#E34F0B" }}
                     className="absolute bottom-3 left-8 w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center text-white text-sm font-bold shadow-lg ring-4 ring-white dark:ring-black z-20 transition-colors duration-300"
                   >
                     {step.id}

@@ -83,7 +83,7 @@ export default function ChatDemoShowcase({ onCtaClick }: ChatDemoShowcaseProps) 
           className={cn(
             "max-w-md mx-auto group rounded-3xl",
             // Light mode - Saffron glow
-            "shadow-[0_0_40px_rgba(249,115,22,0.3)]",
+            "shadow-[0_0_40px_rgba(227,79,11,0.3)]",
             // Dark mode - pulsing aurora glow
             "dark:dark:shadow-none"
           )}
