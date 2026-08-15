@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { aboutPage } from "@/content/discoverability.es";
 import { constructMetadata } from "@/lib/seo";
+import PageShell, { Reveal } from "@/components/ds/PageShell";
+import PageHero from "@/components/ds/PageHero";
+import Section from "@/components/ds/Section";
+import DsCard from "@/components/ds/Card";
 
 const baseUrl = "https://abemedia.online";
 
@@ -28,6 +32,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const m = locale === "es" ? meta.es : meta.en;
   return constructMetadata({ title: m.title, description: m.description, path: "/about", locale, hasSpanishEquivalent: true });
 }
+
+const RAIL = [
+  { id: "overview", label: "Overview" },
+  { id: "story", label: "Story" },
+  { id: "facts", label: "Facts" },
+  { id: "explore", label: "Explore" },
+];
 
 export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -59,73 +70,58 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       ];
 
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <PageShell railCap="ABOUT" railItems={RAIL}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organization).replace(/</g, "\\u003c") }}
       />
 
-      <header className="border-b border-border bg-[radial-gradient(circle_at_top_right,rgba(227,79,11,0.14),transparent_40%)] px-6 py-16 md:py-24">
-        <div className="mx-auto max-w-6xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">{c.eyebrow}</p>
-          <h1 className="mt-5 max-w-4xl text-4xl font-medium tracking-[-0.035em] md:text-6xl">{c.title}</h1>
-          <p className="mt-7 max-w-3xl text-lg leading-8 text-muted-foreground md:text-xl">{c.lede}</p>
-        </div>
-      </header>
+      <div id="overview">
+        <PageHero eyebrow={c.eyebrow} title={c.title} lede={c.lede} />
+      </div>
 
-      <section className="px-6 py-16 md:py-24">
-        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.7fr_1.3fr]">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-primary">{c.factsTitle}</p>
-          </div>
-          <div className="space-y-6 text-lg leading-8 text-muted-foreground">
-            {c.body.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
+      <Section id="story" eyebrow={c.factsTitle}>
+        <div className="space-y-6 text-[var(--ds-ink-mute)]">
+          {c.body.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
         </div>
-      </section>
+      </Section>
 
-      <section className="border-y border-border bg-muted/35 px-6 py-16 md:py-20">
-        <div className="mx-auto max-w-6xl">
-          <h2 className="text-3xl font-medium">{c.factsTitle}</h2>
-          <ul className="mt-9 grid gap-4 md:grid-cols-2">
-            {c.facts.map((item) => (
-              <li key={item} className="flex gap-3 rounded-2xl border border-border bg-background p-5">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                <span>{item}</span>
+      <Section id="facts" bleed title={c.factsTitle}>
+        <ul className="grid grid-cols-1 gap-px bg-[var(--ds-line-soft)] md:grid-cols-2">
+          {c.facts.map((item, i) => (
+            <Reveal key={item} index={i}>
+              <li className="flex h-full gap-3 border border-[var(--ds-line)] bg-[var(--ds-raise)] p-5">
+                <span aria-hidden className="text-[var(--ds-accent)]">
+                  /
+                </span>
+                <span className="text-[var(--ds-ink-mute)]">{item}</span>
               </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+            </Reveal>
+          ))}
+        </ul>
+      </Section>
 
-      <section className="px-6 py-16 md:py-24">
-        <div className="mx-auto max-w-6xl">
-          <h2 className="text-3xl font-medium">{c.linksTitle}</h2>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {links.map((item) => (
-              <Link key={item.href} href={item.href} className="group rounded-2xl border border-border bg-card p-6 hover:border-primary/50">
-                <h3 className="flex items-center justify-between text-xl font-medium">
-                  {item.label}
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </h3>
-                <p className="mt-3 text-sm leading-6 text-muted-foreground">{item.body}</p>
-              </Link>
-            ))}
-          </div>
-
-          <div className="mt-12 rounded-3xl bg-neutral-950 p-8 text-white md:flex md:items-center md:justify-between">
-            <div>
-              <h2 className="text-2xl font-medium">{c.ctaTitle}</h2>
-              <p className="mt-2 text-neutral-300">{c.ctaBody}</p>
-            </div>
-            <Link href={`${lp}/contact`} className="mt-6 inline-flex items-center gap-2 rounded-full bg-orange-600 px-6 py-3 font-semibold md:mt-0">
-              {c.ctaLabel} <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
+      <Section id="explore" title={c.linksTitle}>
+        <div className="grid grid-cols-1 gap-px bg-[var(--ds-line-soft)] md:grid-cols-3">
+          {links.map((item, i) => (
+            <Reveal key={item.href} index={i}>
+              <DsCard index={i} href={item.href} title={item.label} description={item.body} />
+            </Reveal>
+          ))}
         </div>
-      </section>
-    </main>
+
+        <div className="mt-[var(--ds-space-xl)] border border-[var(--ds-line)] bg-[var(--ds-raise)] p-8 md:flex md:items-center md:justify-between md:gap-8">
+          <div>
+            <h3>{c.ctaTitle}</h3>
+            <p className="mt-2 text-[var(--ds-ink-mute)]">{c.ctaBody}</p>
+          </div>
+          <Link href={`${lp}/contact`} className="ds-btn ds-btn-primary mt-6 shrink-0 md:mt-0">
+            {c.ctaLabel} <ArrowRight aria-hidden className="h-4 w-4" />
+          </Link>
+        </div>
+      </Section>
+    </PageShell>
   );
 }

@@ -5,6 +5,9 @@ import { useTranslations } from "next-intl";
 import ConsultationForm from "@/components/ConsultationForm";
 import PricingDecisionTree from "@/components/pricing/PricingDecisionTree";
 import { type ScopeId } from "@/lib/pricingData";
+import PageShell from "@/components/ds/PageShell";
+import PageHero from "@/components/ds/PageHero";
+import Section from "@/components/ds/Section";
 
 function formatDescription(
   scopeId: ScopeId | null,
@@ -30,6 +33,11 @@ function pickServiceKey(scopeId: ScopeId | null): string {
       : "dispatch-platform";
 }
 
+const RAIL = [
+  { id: "overview", label: "Overview" },
+  { id: "scope", label: "Find your scope" },
+];
+
 export default function PricingPage() {
   const t = useTranslations("Pricing");
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
@@ -49,25 +57,27 @@ export default function PricingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <section className="px-6 pt-10 pb-24 md:pt-16 md:pb-32">
-        <header className="mx-auto w-full max-w-4xl text-center mb-14">
-          <h1 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] m-0">
-            {t("Hero.titleStart")}{" "}
-            <span className="text-primary">{t("Hero.titleAccent")}</span>
-            {t("Hero.titleEnd")}
-          </h1>
-          <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto">
-            {t("Hero.subtitle")}
-          </p>
-        </header>
+    <PageShell railCap="PRICING" railItems={RAIL}>
+      <div id="overview">
+        <PageHero
+          title={
+            <>
+              {t("Hero.titleStart")}{" "}
+              <span className="text-[var(--ds-accent)]">{t("Hero.titleAccent")}</span>
+              {t("Hero.titleEnd")}
+            </>
+          }
+          lede={t("Hero.subtitle")}
+        />
+      </div>
 
+      <Section id="scope">
         <div className="mx-auto w-full max-w-2xl">
           <Suspense fallback={<div className="h-96" />}>
             <PricingDecisionTree onBookCall={handleBookCall} />
           </Suspense>
         </div>
-      </section>
+      </Section>
 
       <ConsultationForm
         isOpen={isConsultationOpen}
@@ -75,6 +85,6 @@ export default function PricingPage() {
         preselectedService={preselectedService}
         prefilledDescription={prefilledDescription}
       />
-    </div>
+    </PageShell>
   );
 }

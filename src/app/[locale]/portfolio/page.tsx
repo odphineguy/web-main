@@ -1,10 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import PortfolioPreviewModal from "@/components/PortfolioPreviewModal";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { useLocale } from "next-intl";
+import PageShell, { Reveal } from "@/components/ds/PageShell";
+import PageHero from "@/components/ds/PageHero";
+import Section from "@/components/ds/Section";
+import DsCard from "@/components/ds/Card";
 
 interface PortfolioProject {
   id: string;
@@ -76,171 +79,152 @@ const portfolioProjects: PortfolioProject[] = [
   },
 ];
 
+const RAIL = [
+  { id: "overview", label: "Overview" },
+  { id: "projects", label: "Projects" },
+  { id: "case-studies", label: "Case studies" },
+];
+
 export default function PortfolioPage() {
   const locale = useLocale();
   const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(null);
 
+  const caseStudies = [
+    {
+      href: `/${locale}/portfolio/mylabcompliance`,
+      title: "myLabCompliance.io",
+      description:
+        "From critical SEO failures to excellent performance. 95% bug reduction, 500 SEO pages, and 981ms load time.",
+    },
+    {
+      href: `/${locale}/portfolio/saguarotransport`,
+      title: "Saguaro Transport",
+      description:
+        "A full trucking operation built in 4 months — Dispatch Command Center, Fleet, CRM, HR, Accounting, Driver App, and Client Portal.",
+    },
+    {
+      href: "/en/portfolio/rejunk",
+      title: "Rejunk",
+      description:
+        "Lead handling, dispatch, driver activation, job management, and live location in one browser-based systerm.",
+    },
+    {
+      href: "/en/portfolio/artificial-turf-ai-design-studio",
+      title: "AI Design Studio for an Artificial Turf Franchise",
+      description:
+        "Photo intake, AI-assisted visualization, estimate output, and CRM lead creation in one customer journey.",
+    },
+    {
+      href: "/en/portfolio/elena-ai-voice-agent",
+      title: "Bilingual AI Voice Agent",
+      description:
+        "A bilingual personal-injury intake demonstration with emergency checks, qualification, booking, and guardrails.",
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="px-6 pt-16 pb-8">
-        <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] text-foreground mb-6">
-            Software Portfolio &amp; <span className="text-primary">Case Studies</span>
-          </h1>
-          <p className="mx-auto max-w-3xl text-sm leading-relaxed text-muted-foreground md:text-base">
-            Operational software, AI automation, mobile apps, and selected web projects built by Abe Media.
-          </p>
-        </div>
-      </section>
+    <PageShell railCap="WORK" railItems={RAIL}>
+      <div id="overview">
+        <PageHero
+          title={
+            <>
+              Software Portfolio &amp;{" "}
+              <span className="text-[var(--ds-accent)]">Case Studies</span>
+            </>
+          }
+          lede="Operational software, AI automation, mobile apps, and selected web projects built by Abe Media."
+        />
+      </div>
 
-      {/* Portfolio Grid */}
-      <section className="px-6 pb-16">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {portfolioProjects.map((project) => {
-              const cardBody = (
-                <>
-                  <div className="relative overflow-hidden rounded-lg border border-border hover:border-gray-300 dark:hover:border-neutral-600 transition-all duration-300">
-                    <div className="aspect-[16/10] relative bg-gray-100 dark:bg-neutral-900">
-                      {project.externalOnly && project.siteUrl ? (
-                        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-muted-foreground">
-                          <ExternalLink className="w-7 h-7 opacity-70 group-hover:text-primary transition-colors" />
-                          <span className="text-sm font-medium group-hover:text-primary transition-colors">
-                            Visit live site
-                          </span>
-                        </div>
-                      ) : project.siteUrl ? (
-                        <iframe
-                          src={project.siteUrl}
-                          className="absolute inset-0 w-[200%] h-[200%] origin-top-left scale-50 pointer-events-none"
-                          title={`${project.name} preview`}
-                          loading="lazy"
-                        />
-                      ) : (
-                        <div className="absolute inset-0 flex items-center justify-center text-muted-foreground dark:text-neutral-600">
-                          <span className="text-lg">Coming Soon</span>
-                        </div>
-                      )}
+      <Section id="projects">
+        <div className="grid grid-cols-1 gap-px bg-[var(--ds-line-soft)] md:grid-cols-2">
+          {portfolioProjects.map((project, i) => {
+            const cardBody = (
+              <article className="group flex h-full flex-col border border-[var(--ds-line)] bg-[var(--ds-raise)] p-6 transition-colors hover:border-[var(--ds-accent)]">
+                <div className="relative aspect-[16/10] overflow-hidden border border-[var(--ds-line-soft)] bg-[var(--ds-accent-bg)]">
+                  {project.externalOnly && project.siteUrl ? (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-[var(--ds-ink-mute)]">
+                      <ExternalLink className="h-7 w-7 opacity-70 transition-colors group-hover:text-[var(--ds-accent)]" />
+                      <span className="ds-meta transition-colors group-hover:text-[var(--ds-accent)]">
+                        Visit live site
+                      </span>
                     </div>
-                  </div>
-                  <div className="mt-4 text-center">
-                    <h3 className="text-xl md:text-[28px] font-normal tracking-normal text-foreground">
-                      {project.category}
-                    </h3>
-                    <p className="text-sm md:text-base font-normal leading-relaxed text-muted-foreground">
-                      {project.name}
-                    </p>
-                  </div>
-                </>
-              );
+                  ) : project.siteUrl ? (
+                    <iframe
+                      src={project.siteUrl}
+                      className="pointer-events-none absolute inset-0 h-[200%] w-[200%] origin-top-left scale-50"
+                      title={`${project.name} preview`}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center text-[var(--ds-ink-mute)]">
+                      <span className="text-lg">Coming Soon</span>
+                    </div>
+                  )}
+                </div>
+                <span className="ds-meta mt-5 block">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-2">{project.category}</h3>
+                <p className="mt-1 text-[0.95rem] text-[var(--ds-ink-mute)]">
+                  {project.name}
+                </p>
+              </article>
+            );
 
-              if (project.externalOnly && project.siteUrl) {
-                return (
+            if (project.externalOnly && project.siteUrl) {
+              return (
+                <Reveal key={project.id} index={i}>
                   <a
-                    key={project.id}
                     href={project.siteUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group text-left"
+                    className="block h-full text-left"
                   >
                     {cardBody}
                   </a>
-                );
-              }
+                </Reveal>
+              );
+            }
 
-              return (
+            return (
+              <Reveal key={project.id} index={i}>
                 <button
-                  key={project.id}
                   onClick={() => setSelectedProject(project)}
-                  className="group text-left"
+                  className="block h-full w-full text-left"
                 >
                   {cardBody}
                 </button>
-              );
-            })}
-          </div>
+              </Reveal>
+            );
+          })}
         </div>
-      </section>
+      </Section>
 
-      {/* Case Studies Section */}
-      <section className="bg-gray-100 dark:bg-neutral-900 py-16 px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] mb-8 text-foreground text-center">
-            Case{" "}
-            <span className="text-primary">
-              Studies
-            </span>
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* myLabCompliance Case Study */}
-            <Link
-              href={`/${locale}/portfolio/mylabcompliance`}
-              className="group block p-6 rounded-xl bg-card border border-border hover:border-orange-500/50 hover:shadow-lg transition-all duration-300"
-            >
-              <h3 className="text-xl md:text-[28px] font-normal tracking-normal mb-2 text-foreground group-hover:text-orange-500 transition-colors">
-                myLabCompliance.io
-              </h3>
-              <p className="text-muted-foreground text-sm md:text-base font-normal leading-relaxed mb-4">
-                From critical SEO failures to excellent performance. 95% bug reduction, 500 SEO pages, and 981ms load time.
-              </p>
-              <div className="flex items-center gap-2 text-orange-500 text-sm font-medium">
-                Read Case Study
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </div>
-            </Link>
-
-            {/* Saguaro Transport Case Study */}
-            <Link
-              href={`/${locale}/portfolio/saguarotransport`}
-              className="group block p-6 rounded-xl bg-card border border-border hover:border-orange-500/50 hover:shadow-lg transition-all duration-300"
-            >
-              <h3 className="text-xl md:text-[28px] font-normal tracking-normal mb-2 text-foreground group-hover:text-orange-500 transition-colors">
-                Saguaro Transport
-              </h3>
-              <p className="text-muted-foreground text-sm md:text-base font-normal leading-relaxed mb-4">
-                A full trucking operation built in 4 months — Dispatch Command Center, Fleet, CRM, HR, Accounting, Driver App, and Client Portal.
-              </p>
-              <div className="flex items-center gap-2 text-orange-500 text-sm font-medium">
-                Read Case Study
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </div>
-            </Link>
-
-            <Link
-              href="/en/portfolio/rejunk"
-              hrefLang="en"
-              className="group block p-6 rounded-xl bg-card border border-border hover:border-orange-500/50 hover:shadow-lg transition-all duration-300"
-            >
-              <h3 className="text-xl md:text-[28px] font-normal tracking-normal mb-2 text-foreground group-hover:text-orange-500 transition-colors">Rejunk</h3>
-              <p className="text-muted-foreground text-sm md:text-base font-normal leading-relaxed mb-4">Lead handling, dispatch, driver activation, job management, and live location in one browser-based systerm.</p>
-              <div className="flex items-center gap-2 text-orange-500 text-sm font-medium">Read Case Study<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" /></div>
-            </Link>
-
-            <Link
-              href="/en/portfolio/artificial-turf-ai-design-studio"
-              hrefLang="en"
-              className="group block p-6 rounded-xl bg-card border border-border hover:border-orange-500/50 hover:shadow-lg transition-all duration-300"
-            >
-              <h3 className="text-xl md:text-[28px] font-normal tracking-normal mb-2 text-foreground group-hover:text-orange-500 transition-colors">AI Design Studio for an Artificial Turf Franchise</h3>
-              <p className="text-muted-foreground text-sm md:text-base font-normal leading-relaxed mb-4">Photo intake, AI-assisted visualization, estimate output, and CRM lead creation in one customer journey.</p>
-              <div className="flex items-center gap-2 text-orange-500 text-sm font-medium">Read Case Study<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" /></div>
-            </Link>
-
-            <Link
-              href="/en/portfolio/elena-ai-voice-agent"
-              hrefLang="en"
-              className="group block p-6 rounded-xl bg-card border border-border hover:border-orange-500/50 hover:shadow-lg transition-all duration-300"
-            >
-              <h3 className="text-xl md:text-[28px] font-normal tracking-normal mb-2 text-foreground group-hover:text-orange-500 transition-colors">Bilingual AI Voice Agent</h3>
-              <p className="text-muted-foreground text-sm md:text-base font-normal leading-relaxed mb-4">A bilingual personal-injury intake demonstration with emergency checks, qualification, booking, and guardrails.</p>
-              <div className="flex items-center gap-2 text-orange-500 text-sm font-medium">Read Case Study<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" /></div>
-            </Link>
-          </div>
+      <Section
+        id="case-studies"
+        bleed
+        title={
+          <>
+            Case <span className="text-[var(--ds-accent)]">Studies</span>
+          </>
+        }
+      >
+        <div className="grid grid-cols-1 gap-px bg-[var(--ds-line-soft)] md:grid-cols-2 lg:grid-cols-3">
+          {caseStudies.map((study, i) => (
+            <Reveal key={study.href} index={i}>
+              <DsCard
+                index={i}
+                href={study.href}
+                title={study.title}
+                description={study.description}
+                cta="Read Case Study"
+              />
+            </Reveal>
+          ))}
         </div>
-      </section>
+      </Section>
 
-      {/* Preview Modal */}
       {selectedProject && (
         <PortfolioPreviewModal
           isOpen={!!selectedProject}
@@ -249,6 +233,6 @@ export default function PortfolioPage() {
           siteUrl={selectedProject.siteUrl}
         />
       )}
-    </div>
+    </PageShell>
   );
 }

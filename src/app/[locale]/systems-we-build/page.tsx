@@ -6,7 +6,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { FooterCTA } from "@/components/ui/footer-cta";
 import ConsultationForm from "@/components/ConsultationForm";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import PageShell, { Reveal } from "@/components/ds/PageShell";
+import PageHero from "@/components/ds/PageHero";
+import Section from "@/components/ds/Section";
 
 const saguaroFeatures = [
   {
@@ -38,6 +41,14 @@ const driverAppScreens = [
   },
 ];
 
+const RAIL = [
+  { id: "overview", label: "Overview" },
+  { id: "saguaro", label: "Saguaro Transport" },
+  { id: "driver-app", label: "Driver app" },
+  { id: "next", label: "What's next" },
+  { id: "start", label: "Get started" },
+];
+
 export default function SystemsWeBuildPage() {
   const t = useTranslations("Builds.Page");
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
@@ -65,292 +76,203 @@ export default function SystemsWeBuildPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Hero Section with Video */}
-      <section className="bg-background pt-8 md:pt-16 pb-16 lg:pb-24 px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto mb-12"
-          >
-            <h1 className="text-3xl md:text-4xl lg:text-[48px] font-medium tracking-[-0.02em] text-foreground mb-6 leading-tight">
+    <PageShell railCap="BUILDS" railItems={RAIL}>
+      <div id="overview">
+        <PageHero
+          title={
+            <>
               {t("Hero.title")}{" "}
-              <span className="text-primary">
-                {t("Hero.titleAccent")}
-              </span>
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-              {t("Hero.subtitle")}
-            </p>
-          </motion.div>
+              <span className="text-[var(--ds-accent)]">{t("Hero.titleAccent")}</span>
+            </>
+          }
+          lede={t("Hero.subtitle")}
+        />
 
-          {/* Video Player */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="max-w-5xl mx-auto"
+        {/* Video demo */}
+        <Reveal index={2}>
+          <div className="overflow-hidden border border-[var(--ds-line)]">
+            <video autoPlay loop muted playsInline className="h-auto w-full">
+              <source
+                src="/images/assets-platforms/demo-vid.mov"
+                type="video/quicktime"
+              />
+              <source
+                src="/images/assets-platforms/demo-vid.mov"
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </Reveal>
+      </div>
+
+      <Section id="saguaro" bleed title={t("Saguaro.title")} lede={t("Saguaro.subtitle")}>
+        <Reveal index={0}>
+          <p className="mb-[var(--ds-space-md)] max-w-[68ch] text-[var(--ds-ink-mute)]">
+            {t("Saguaro.description")}
+          </p>
+        </Reveal>
+        <Reveal index={1}>
+          <button
+            onClick={() => {
+              setInquiryService("platform-inquiry");
+              setIsConsultationOpen(true);
+            }}
+            className="ds-btn ds-btn-primary mb-[var(--ds-space-xl)]"
           >
-            <div className="relative rounded-2xl overflow-hidden border border-border shadow-[0_20px_50px_-12px_rgba(0,0,0,0.25)] dark:shadow-[0_20px_50px_-12px_rgba(227,79,11,0.15)]">
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-auto"
-              >
-                <source
-                  src="/images/assets-platforms/demo-vid.mov"
-                  type="video/quicktime"
-                />
-                <source
-                  src="/images/assets-platforms/demo-vid.mov"
-                  type="video/mp4"
-                />
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+            {t("Saguaro.inquireButton")}
+            <ArrowRight aria-hidden className="h-4 w-4" />
+          </button>
+        </Reveal>
 
-      {/* Saguaro Transport Section */}
-      <section className="bg-gray-50 dark:bg-neutral-950 py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="mb-12 max-w-3xl"
-          >
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium tracking-[-0.02em] text-foreground mb-4">
-              {t("Saguaro.title")}
-            </h2>
-            <p className="text-lg text-orange-500 font-medium mb-4">
-              {t("Saguaro.subtitle")}
-            </p>
-            <p className="text-muted-foreground max-w-3xl mb-6">
-              {t("Saguaro.description")}
-            </p>
-            {/* Inquiry Button */}
-            <button
-              onClick={() => {
-                setInquiryService("platform-inquiry");
-                setIsConsultationOpen(true);
-              }}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-full transition-all shadow-lg hover:shadow-xl hover:shadow-orange-500/25"
-            >
-              {t("Saguaro.inquireButton")}
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </motion.div>
-
-          {/* Feature Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {saguaroFeatures.map((feature, index) => (
-              <motion.div
-                key={feature.key}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group cursor-pointer"
+        {/* Feature grid */}
+        <div className="grid grid-cols-1 gap-px bg-[var(--ds-line-soft)] md:grid-cols-2 lg:grid-cols-3">
+          {saguaroFeatures.map((feature, index) => (
+            <Reveal key={feature.key} index={index}>
+              <button
+                type="button"
                 onClick={() =>
-                  openLightbox(
-                    feature.image,
-                    t(`Saguaro.features.${feature.key}.title`)
-                  )
+                  openLightbox(feature.image, t(`Saguaro.features.${feature.key}.title`))
+                }
+                className="block h-full w-full text-left"
+              >
+                <article className="group flex h-full flex-col border border-[var(--ds-line)] bg-[var(--ds-raise)] transition-colors hover:border-[var(--ds-accent)]">
+                  <div className="relative aspect-video overflow-hidden">
+                    <Image
+                      src={feature.image}
+                      alt={t(`Saguaro.features.${feature.key}.title`)}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <span className="ds-meta mb-3 block">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <h3>{t(`Saguaro.features.${feature.key}.title`)}</h3>
+                    <p className="mt-3 text-[0.95rem] text-[var(--ds-ink-mute)]">
+                      {t(`Saguaro.features.${feature.key}.description`)}
+                    </p>
+                  </div>
+                </article>
+              </button>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      <Section id="driver-app" title={t("DriverApp.title")} lede={t("DriverApp.description")}>
+        {/* Desktop: all 3 phones */}
+        <div className="hidden items-end justify-center gap-6 md:flex lg:gap-10">
+          {driverAppScreens.map((screen, index) => (
+            <Reveal key={screen.key} index={index}>
+              <div
+                className={`group cursor-pointer transition-all duration-300 ${
+                  index === 1
+                    ? "z-10 scale-105"
+                    : "scale-95 opacity-90 hover:scale-100 hover:opacity-100"
+                }`}
+                onClick={() =>
+                  openLightbox(screen.image, t(`DriverApp.screens.${screen.key}.title`))
                 }
               >
-                <div className="h-full rounded-2xl p-px transition-all duration-300 ease-out bg-gradient-to-b from-gray-200 dark:from-white/10 to-gray-100 dark:to-white/5 hover:bg-primary/20 shadow-lg shadow-gray-200/50 dark:shadow-none hover:shadow-2xl hover:shadow-orange-500/10 hover:-translate-y-2">
-                  <div className="h-full rounded-2xl overflow-hidden bg-card">
-                    {/* Image */}
-                    <div className="relative aspect-video overflow-hidden">
-                      <Image
-                        src={feature.image}
-                        alt={t(`Saguaro.features.${feature.key}.title`)}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                    {/* Content */}
-                    <div className="p-6">
-                      <h3 className="text-lg font-medium tracking-[-0.02em] text-foreground mb-2">
-                        {t(`Saguaro.features.${feature.key}.title`)}
-                      </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {t(`Saguaro.features.${feature.key}.description`)}
-                      </p>
-                    </div>
+                {/* Phone frame — a device mockup, not UI chrome */}
+                <div className="relative w-48 rounded-[2.5rem] bg-gradient-to-b from-gray-800 to-gray-900 p-2 shadow-2xl shadow-black/30 lg:w-56">
+                  <div className="relative overflow-hidden rounded-[2rem] bg-neutral-950">
+                    <Image
+                      src={screen.image}
+                      alt={t(`DriverApp.screens.${screen.key}.title`)}
+                      width={224}
+                      height={485}
+                      className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
+                    />
                   </div>
+                  <div className="absolute left-1/2 top-3 h-5 w-20 -translate-x-1/2 rounded-full bg-neutral-950" />
                 </div>
-              </motion.div>
-            ))}
-          </div>
+                <p className="ds-meta mt-4 text-center">
+                  {t(`DriverApp.screens.${screen.key}.title`)}
+                </p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
 
-          {/* Driver App Carousel */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="mt-20"
-          >
-            <div className="text-center mb-10">
-              <h3 className="text-xl md:text-2xl lg:text-3xl font-medium tracking-[-0.02em] text-foreground mb-3">
-                {t("DriverApp.title")}
-              </h3>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                {t("DriverApp.description")}
+        {/* Mobile: carousel with arrows */}
+        <div className="md:hidden">
+          <div className="relative flex items-center justify-center">
+            <button
+              onClick={prevSlide}
+              className="absolute left-2 z-20 border border-[var(--ds-line)] bg-[var(--ds-raise)] p-2 transition-colors hover:border-[var(--ds-accent)]"
+              aria-label="Previous screen"
+            >
+              <ChevronLeft className="h-6 w-6 text-[var(--ds-ink)]" />
+            </button>
+
+            <div
+              className="cursor-pointer"
+              onClick={() =>
+                openLightbox(
+                  driverAppScreens[currentSlide].image,
+                  t(`DriverApp.screens.${driverAppScreens[currentSlide].key}.title`)
+                )
+              }
+            >
+              <div className="relative w-52 rounded-[2.5rem] bg-gradient-to-b from-gray-800 to-gray-900 p-2 shadow-2xl shadow-black/30">
+                <div className="relative overflow-hidden rounded-[2rem] bg-neutral-950">
+                  <Image
+                    src={driverAppScreens[currentSlide].image}
+                    alt={t(`DriverApp.screens.${driverAppScreens[currentSlide].key}.title`)}
+                    width={208}
+                    height={450}
+                    className="h-auto w-full"
+                  />
+                </div>
+                <div className="absolute left-1/2 top-3 h-5 w-20 -translate-x-1/2 rounded-full bg-neutral-950" />
+              </div>
+              <p className="ds-meta mt-4 text-center">
+                {t(`DriverApp.screens.${driverAppScreens[currentSlide].key}.title`)}
               </p>
             </div>
 
-            {/* Carousel */}
-            <div className="relative">
-              {/* Desktop: Show all 3 phones */}
-              <div className="hidden md:flex justify-center items-end gap-6 lg:gap-10">
-                {driverAppScreens.map((screen, index) => (
-                  <motion.div
-                    key={screen.key}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.15 }}
-                    viewport={{ once: true }}
-                    className={`group cursor-pointer transition-all duration-300 ${
-                      index === 1 ? "scale-105 z-10" : "scale-95 opacity-90 hover:opacity-100 hover:scale-100"
-                    }`}
-                    onClick={() =>
-                      openLightbox(screen.image, t(`DriverApp.screens.${screen.key}.title`))
-                    }
-                  >
-                    {/* Phone Frame */}
-                    <div className="relative w-48 lg:w-56 rounded-[2.5rem] bg-gradient-to-b from-gray-800 to-gray-900 p-2 shadow-2xl shadow-black/30 dark:shadow-orange-500/10 group-hover:shadow-orange-500/20 transition-shadow">
-                      {/* Screen */}
-                      <div className="relative rounded-[2rem] overflow-hidden bg-neutral-950">
-                        <Image
-                          src={screen.image}
-                          alt={t(`DriverApp.screens.${screen.key}.title`)}
-                          width={224}
-                          height={485}
-                          className="w-full h-auto group-hover:scale-[1.02] transition-transform duration-500"
-                        />
-                      </div>
-                      {/* Notch */}
-                      <div className="absolute top-3 left-1/2 -translate-x-1/2 w-20 h-5 bg-neutral-950 rounded-full" />
-                    </div>
-                    {/* Label */}
-                    <p className="text-center mt-4 text-sm font-medium text-foreground">
-                      {t(`DriverApp.screens.${screen.key}.title`)}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
+            <button
+              onClick={nextSlide}
+              className="absolute right-2 z-20 border border-[var(--ds-line)] bg-[var(--ds-raise)] p-2 transition-colors hover:border-[var(--ds-accent)]"
+              aria-label="Next screen"
+            >
+              <ChevronRight className="h-6 w-6 text-[var(--ds-ink)]" />
+            </button>
+          </div>
 
-              {/* Mobile: Carousel with arrows */}
-              <div className="md:hidden">
-                <div className="flex justify-center items-center">
-                  {/* Left Arrow */}
-                  <button
-                    onClick={prevSlide}
-                    className="absolute left-2 z-20 p-2 rounded-full bg-white/80 dark:bg-neutral-800/80 shadow-lg hover:bg-white dark:hover:bg-neutral-700 transition-colors"
-                    aria-label="Previous screen"
-                  >
-                    <ChevronLeft className="w-6 h-6 text-foreground" />
-                  </button>
-
-                  {/* Phone */}
-                  <div
-                    className="cursor-pointer"
-                    onClick={() =>
-                      openLightbox(
-                        driverAppScreens[currentSlide].image,
-                        t(`DriverApp.screens.${driverAppScreens[currentSlide].key}.title`)
-                      )
-                    }
-                  >
-                    <div className="relative w-52 rounded-[2.5rem] bg-gradient-to-b from-gray-800 to-gray-900 p-2 shadow-2xl shadow-black/30">
-                      <div className="relative rounded-[2rem] overflow-hidden bg-neutral-950">
-                        <Image
-                          src={driverAppScreens[currentSlide].image}
-                          alt={t(`DriverApp.screens.${driverAppScreens[currentSlide].key}.title`)}
-                          width={208}
-                          height={450}
-                          className="w-full h-auto"
-                        />
-                      </div>
-                      <div className="absolute top-3 left-1/2 -translate-x-1/2 w-20 h-5 bg-neutral-950 rounded-full" />
-                    </div>
-                    <p className="text-center mt-4 text-sm font-medium text-foreground">
-                      {t(`DriverApp.screens.${driverAppScreens[currentSlide].key}.title`)}
-                    </p>
-                  </div>
-
-                  {/* Right Arrow */}
-                  <button
-                    onClick={nextSlide}
-                    className="absolute right-2 z-20 p-2 rounded-full bg-white/80 dark:bg-neutral-800/80 shadow-lg hover:bg-white dark:hover:bg-neutral-700 transition-colors"
-                    aria-label="Next screen"
-                  >
-                    <ChevronRight className="w-6 h-6 text-foreground" />
-                  </button>
-                </div>
-
-                {/* Dot indicators */}
-                <div className="flex justify-center gap-2 mt-6">
-                  {driverAppScreens.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentSlide(index)}
-                      className={`w-2.5 h-2.5 rounded-full transition-all ${
-                        index === currentSlide
-                          ? "bg-orange-500 w-6"
-                          : "bg-gray-300 dark:bg-neutral-600 hover:bg-gray-400 dark:hover:bg-neutral-500"
-                      }`}
-                      aria-label={`Go to slide ${index + 1}`}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-          </motion.div>
+          <div className="mt-6 flex justify-center gap-2">
+            {driverAppScreens.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`h-2.5 transition-all ${
+                  index === currentSlide
+                    ? "w-6 bg-[var(--ds-accent)]"
+                    : "w-2.5 bg-[var(--ds-line)] hover:bg-[var(--ds-ink-faint)]"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
-      </section>
+      </Section>
 
-      {/* Coming Soon Section */}
-      <section className="bg-background py-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-2xl md:text-3xl font-medium tracking-[-0.02em] text-foreground mb-4">
-              {t("ComingSoon.title")}
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              {t("ComingSoon.description")}
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <Section id="next" bleed title={t("ComingSoon.title")} lede={t("ComingSoon.description")}>
+        <div />
+      </Section>
 
-      {/* Footer CTA */}
-      <section className="bg-gray-100 dark:bg-neutral-900 py-20 px-6">
+      <Section id="start">
         <FooterCTA
           heading={t("CTA.title")}
           subtext={t("CTA.subtitle")}
           buttonText={t("CTA.button").toUpperCase()}
           onButtonClick={() => setIsConsultationOpen(true)}
         />
-      </section>
+      </Section>
 
-      {/* Consultation Form Modal */}
       <ConsultationForm
         isOpen={isConsultationOpen}
         onClose={() => {
@@ -367,7 +289,7 @@ export default function SystemsWeBuildPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-foreground/80 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/80 p-4 backdrop-blur-sm"
             onClick={closeLightbox}
           >
             <motion.div
@@ -380,27 +302,25 @@ export default function SystemsWeBuildPage() {
             >
               <button
                 onClick={closeLightbox}
-                className="absolute -top-12 right-0 p-2 text-white/80 hover:text-white transition-colors"
+                className="absolute -top-12 right-0 p-2 text-white/80 transition-colors hover:text-white"
                 aria-label="Close"
               >
-                <X className="w-8 h-8" />
+                <X className="h-8 w-8" />
               </button>
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl max-h-[80vh]">
+              <div className="relative max-h-[80vh] overflow-hidden border border-[var(--ds-line)] shadow-2xl">
                 <Image
                   src={lightboxImage}
                   alt={lightboxTitle}
                   width={1920}
                   height={1080}
-                  className="max-h-[80vh] w-auto h-auto object-contain"
+                  className="h-auto max-h-[80vh] w-auto object-contain"
                 />
               </div>
-              <p className="text-center text-white/80 mt-4 text-lg">
-                {lightboxTitle}
-              </p>
+              <p className="ds-meta mt-4 text-center text-white/80">{lightboxTitle}</p>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </PageShell>
   );
 }

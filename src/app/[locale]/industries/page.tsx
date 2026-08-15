@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight } from "lucide-react";
 import { industryPages } from "@/content/discoverability";
 import { industriesIndexEs, industryPagesEs } from "@/content/discoverability.es";
 import { constructMetadata } from "@/lib/seo";
+import PageShell, { Reveal } from "@/components/ds/PageShell";
+import PageHero from "@/components/ds/PageHero";
+import Section from "@/components/ds/Section";
+import DsCard from "@/components/ds/Card";
 
 const meta = {
   en: {
@@ -29,6 +32,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return constructMetadata({ title: m.title, description: m.description, path: "/industries", locale, hasSpanishEquivalent: true });
 }
 
+const RAIL = [
+  { id: "overview", label: "Overview" },
+  { id: "workflows", label: "Workflows" },
+];
+
 export default async function IndustriesPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   if (locale !== "en" && locale !== "es") notFound();
@@ -47,36 +55,35 @@ export default async function IndustriesPage({ params }: { params: Promise<{ loc
       };
 
   return (
-    <main className="min-h-screen bg-background px-6 py-16 md:py-24">
-      <div className="mx-auto max-w-6xl">
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">{copy.eyebrow}</p>
-        <h1 className="mt-5 max-w-4xl text-4xl font-medium tracking-[-0.035em] md:text-6xl">{copy.title}</h1>
-        <p className="mt-6 max-w-3xl text-lg leading-8 text-muted-foreground">{copy.intro}</p>
-        <div className="mt-14 grid gap-5 md:grid-cols-2">
-          {Object.values(pages).map((page) => (
-            <Link
-              key={page.slug}
-              href={`/${locale}/industries/${page.slug}`}
-              className="group rounded-3xl border border-border bg-card p-7 transition-colors hover:border-primary/50"
-            >
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-primary">{page.eyebrow}</p>
-              <h2 className="mt-4 text-2xl font-medium tracking-[-0.02em]">{page.title}</h2>
-              <p className="mt-4 text-sm leading-6 text-muted-foreground">{page.description}</p>
-              <span className="mt-6 inline-flex items-center gap-2 font-semibold">
-                {copy.cta} <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </span>
-            </Link>
+    <PageShell railCap="INDUSTRIES" railItems={RAIL}>
+      <div id="overview">
+        <PageHero eyebrow={copy.eyebrow} title={copy.title} lede={copy.intro} />
+      </div>
+
+      <Section id="workflows">
+        <div className="grid grid-cols-1 gap-px bg-[var(--ds-line-soft)] md:grid-cols-2">
+          {Object.values(pages).map((page, i) => (
+            <Reveal key={page.slug} index={i}>
+              <DsCard
+                index={i}
+                eyebrow={page.eyebrow}
+                title={page.title}
+                description={page.description}
+                href={`/${locale}/industries/${page.slug}`}
+                cta={copy.cta}
+              />
+            </Reveal>
           ))}
         </div>
         {copy.note && (
-          <p className="mt-10 text-sm text-muted-foreground">
+          <p className="mt-[var(--ds-space-lg)] text-sm text-[var(--ds-ink-mute)]">
             {copy.note}{" "}
-            <Link href="/en/industries" className="font-semibold text-primary hover:underline">
+            <Link href="/en/industries" className="font-semibold text-[var(--ds-accent)] hover:underline">
               Ver todas en inglés
             </Link>
           </p>
         )}
-      </div>
-    </main>
+      </Section>
+    </PageShell>
   );
 }

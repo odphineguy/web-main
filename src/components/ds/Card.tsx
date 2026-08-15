@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
  */
 export default function DsCard({
   index,
+  eyebrow,
   title,
   description,
   points,
@@ -21,6 +22,8 @@ export default function DsCard({
 }: {
   /** Renders as 01, 02, ... in the corner. Omit to hide. */
   index?: number;
+  /** Mono accent label above the title, for cards that carry a category. */
+  eyebrow?: string;
   title: React.ReactNode;
   description?: React.ReactNode;
   points?: string[];
@@ -42,6 +45,12 @@ export default function DsCard({
       {typeof index === "number" && (
         <span className="ds-meta mb-3 block">
           {String(index + 1).padStart(2, "0")}
+        </span>
+      )}
+
+      {eyebrow && (
+        <span className="ds-meta mb-2 block text-[var(--ds-accent)]">
+          {eyebrow}
         </span>
       )}
 
