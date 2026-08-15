@@ -24,6 +24,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { AttributionCapture } from "@/components/AttributionCapture";
 import { CHAT_ENABLED } from "@/lib/flags";
 import { Instagram, Facebook, Music2, Twitter } from "lucide-react";
+import ClutchWidget from "@/components/ClutchWidget";
 
 // Lazy load the chatbot to reduce initial bundle size (code-splitting)
 const ChatWidget = nextDynamic(() => import("@/components/chatbot/EmberChat"), {
@@ -178,15 +179,24 @@ function Footer({ locale }: { locale: string }) {
   const t = useTranslations('Footer');
   return (
     <footer className="border-t border-border py-6">
+      {/* Clutch review widget on its own row so it reads as a trust badge rather
+          than another line of footer text. The iframe fills its container and
+          the badge sits at the left inside it, so the container is sized to the
+          badge (~270px) rather than centred inside a much wider empty box. */}
+      <div className="mx-auto max-w-6xl px-6 pb-6 flex justify-center">
+        <ClutchWidget className="w-[280px]" />
+      </div>
       <div className="mx-auto max-w-6xl px-6 grid grid-cols-1 sm:grid-cols-3 items-center gap-4">
         <div className="flex justify-center sm:justify-start">
           <Link href={`/${locale}`} aria-label="Abe Media">
-            <Image src="/images/portfolio/abemedia.logo.nobg.png" alt="Abe Media" width={120} height={24} className="h-6 w-auto" />
+            {/* h-8, not h-6: the new logo file carries more transparent padding
+                than the old one (canvas 3:1 vs 3.84:1) so the same box height
+                renders a 25% smaller wordmark. h-8 restores the old ink size. */}
+            <Image src="/images/home/abemedia-new-darkmode.png" alt="Abe Media" width={2172} height={724} className="h-8 w-auto" />
           </Link>
         </div>
         <div className="text-center">
           <p className="text-xs text-muted-foreground">{t('copyright')}</p>
-          <p className="mt-1 text-xs text-muted-foreground">{t('entity')}</p>
           <p className="mt-1 text-xs text-muted-foreground">
             <Link href={`/${locale}/privacy`} className="hover:text-foreground transition-colors">{t('privacy')}</Link>
             <span className="mx-2">·</span>
@@ -305,19 +315,10 @@ export default async function RootLayout({
        they resolve by inheritance from here. */
     <html lang={locale} suppressHydrationWarning>
       <head>
-        {/* Preload LCP hero images for faster initial paint */}
-        <link
-          rel="preload"
-          href="/images/home/home-hero-light.png"
-          as="image"
-          type="image/png"
-        />
-        <link
-          rel="preload"
-          href="/images/home/home-hero.png"
-          as="image"
-          type="image/png"
-        />
+        {/* The two home-hero preloads that used to live here were removed: the
+            hero has been text-only since the single-offer repositioning and the
+            image files are gone, so they were firing a 404 on every page load
+            of every route. Nothing renders them any more. */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-EJCZTY1MCG"
           strategy="beforeInteractive"

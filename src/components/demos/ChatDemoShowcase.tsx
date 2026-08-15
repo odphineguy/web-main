@@ -27,7 +27,7 @@ export default function ChatDemoShowcase({ onCtaClick }: ChatDemoShowcaseProps) 
   const currentMessages = industryConversations[activeDemo];
 
   return (
-    <section className="bg-gray-50 dark:bg-neutral-950 py-20 px-6">
+    <section className="bg-band py-20 px-6">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <motion.div

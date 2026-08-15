@@ -14,8 +14,7 @@
     "getStarted": "Comenzar"
   },
   "Footer": {
-    "copyright": "© 2026 Abevision LLC. Abe Media es propiedad y está operada por Abevision LLC. Todos los derechos reservados.",
-    "entity": "Fundada por Abe Perez · Phoenix, Arizona",
+    "copyright": "© 2026 Abe Media. Propiedad y operada por Abevision LLC. Todos los derechos reservados.",
     "privacy": "Política de Privacidad",
     "terms": "Términos de Servicio"
   },
@@ -29,6 +28,17 @@
       "widgetLabel": "Llamada de admisión grabada — IA real, sin editar",
       "widgetCaption": "Llamada de plomería fuera de horario — Desert Valley.",
       "liveBadge": "Llamada real"
+    },
+    "VisualEstimate": {
+      "eyebrow": "Estimado visual con IA",
+      "title": "Su cliente ve el trabajo terminado antes de contratar.",
+      "lede": "El dueño de casa sube una foto de su jardín. La IA genera el resultado final y el prospecto le llega con ese diseño adjunto — los pies cuadrados medidos, el rango de presupuesto y lo que busca. Arrastre el control para comparar.",
+      "beforeLabel": "Antes",
+      "afterLabel": "Diseño con IA",
+      "tabsLabel": "Tipo de proyecto",
+      "turfLabel": "Césped artificial",
+      "turfBeforeAlt": "Patio trasero en Phoenix antes de la instalación — pasto natural opaco y desigual junto a la alberca.",
+      "turfAfterAlt": "El mismo patio generado por la IA con césped artificial instalado."
     },
     "ProofBar": {
       "item1": "17 años manejando dispatch",

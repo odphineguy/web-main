@@ -14,8 +14,7 @@
     "getStarted": "Get Started"
   },
   "Footer": {
-    "copyright": "© 2026 Abevision LLC. Abe Media is owned and operated by Abevision LLC. All rights reserved.",
-    "entity": "Founded by Abe Perez · Phoenix, Arizona",
+    "copyright": "© 2026 Abe Media. Owned and operated by Abevision LLC. All rights reserved.",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service"
   },
@@ -29,6 +28,17 @@
       "widgetLabel": "Recorded intake call — real AI, unedited",
       "widgetCaption": "Plumbing after-hours call — Desert Valley.",
       "liveBadge": "Real call"
+    },
+    "VisualEstimate": {
+      "eyebrow": "AI visual estimate",
+      "title": "Your customer sees the finished job before they book.",
+      "lede": "A homeowner uploads a photo of their yard. The AI renders the finished install and the lead reaches you with that design attached — traced square footage, budget range, and what they want. Drag the handle to compare.",
+      "beforeLabel": "Before",
+      "afterLabel": "AI render",
+      "tabsLabel": "Project type",
+      "turfLabel": "Artificial turf",
+      "turfBeforeAlt": "Phoenix back yard before installation — a dull, patchy natural lawn beside the pool.",
+      "turfAfterAlt": "The same back yard rendered by the AI with artificial turf installed."
     },
     "ProofBar": {
       "item1": "17 years running dispatch",

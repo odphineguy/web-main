@@ -82,6 +82,7 @@
   --color-orange-700: var(--brand-orange-700);
   --color-orange-400: var(--brand-orange-400);
   --color-orange-100: oklch(0.95 0.08 39.25);
+  --color-band: var(--band);
 }
 
 :root {
@@ -97,6 +98,10 @@
      Cards and panels stay near-white so they still lift off the page. */
   --background: #E4E2DD;
   --foreground: #111827;
+  /* Alternating band behind full-bleed sections. It has to sit a step off
+     --background in both themes, which a fixed tailwind neutral cannot do
+     (neutral-950 is indistinguishable from the dark #09090B background). */
+  --band: #F9FAFB;
   --card: oklch(1.0000 0 0);
   --card-foreground: #111827;
   --popover: oklch(1.0000 0 0);
@@ -154,9 +159,10 @@
   --brand-orange-500: #E34F0B;
   --brand-orange-600: #E34F0B;
   --brand-orange-700: #E34F0B;
-  /* Dark mode background: pure black for site-wide consistency */
-  --background: oklch(0 0 0);
+  /* Dark mode background: near-black #09090B for site-wide consistency */
+  --background: #09090B;
   --foreground: oklch(0.9219 0 0);
+  --band: #131316;
   --card: oklch(0.2686 0 0);
   --card-foreground: oklch(0.9219 0 0);
   --popover: oklch(0.2686 0 0);

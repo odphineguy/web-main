@@ -59,20 +59,18 @@ export default function TopNavbar() {
             invisible) in ES, and it never reached its full 192px in ES at any width. */}
         <div className="flex shrink-0 items-center gap-3">
           <Link href={localizedHref("/")} className="hover:opacity-80 transition-opacity">
+            {/* One logo for both themes for now. This is the new orange-and-grey
+                mark, drawn for dark mode; Abe wants to see how it holds up on the
+                beige light background before committing. When the light-mode file
+                is redrawn at this aspect ratio, fork it back into a
+                `block dark:hidden` / `hidden dark:block` pair here and in the
+                footer (src/app/[locale]/layout.tsx). */}
             <Image
-              src="/images/portfolio/abemedia.logo.nobg.png"
+              src="/images/home/abemedia-new-darkmode.png"
               alt="Abe Media"
-              width={192}
-              height={38}
-              className="block dark:hidden w-32 sm:w-40 md:w-44 lg:w-48 h-auto"
-              priority
-            />
-            <Image
-              src="/images/portfolio/abemedia.logo.nobg.png"
-              alt="Abe Media"
-              width={192}
-              height={38}
-              className="hidden dark:block w-32 sm:w-40 md:w-44 lg:w-48 h-auto"
+              width={2172}
+              height={724}
+              className="block w-32 sm:w-40 md:w-44 lg:w-48 h-auto"
               priority
             />
           </Link>

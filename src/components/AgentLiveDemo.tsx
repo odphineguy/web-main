@@ -13,7 +13,7 @@ export default function AgentLiveDemo() {
   const t = useTranslations("Home.AgentDemo");
 
   return (
-    <section className="bg-gray-50 dark:bg-neutral-950 py-20 px-6 border-y border-border">
+    <section className="bg-band py-20 px-6 border-y border-border">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           {/* Left: copy + what to try on the call */}

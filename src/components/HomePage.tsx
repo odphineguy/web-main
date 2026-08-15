@@ -12,6 +12,7 @@ import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { track } from "@vercel/analytics";
 import HomeFaq, { homeFaqIds } from "@/components/HomeFaq";
+import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 
 
 // Lazy load below-fold components to reduce initial bundle size
@@ -106,8 +107,42 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* AI visual estimate — drag-to-compare render from the turf design studio.
+          Only artificial turf has a before/after pair today; the slider takes an
+          array so doors, windows, exterior paint and counters drop in as tabs the
+          moment those pairs exist, with no change here beyond another entry. */}
+      <section id="visual-estimate" className="bg-background pb-20 px-6 scroll-mt-20">
+        <div className="max-w-5xl mx-auto">
+          <p className="text-xs font-semibold uppercase tracking-wide text-orange-500">
+            {t("VisualEstimate.eyebrow")}
+          </p>
+          <h2 className="mt-3 text-[28px] md:text-[32px] lg:text-[36px] font-medium tracking-[-0.02em] text-foreground max-w-3xl">
+            {t("VisualEstimate.title")}
+          </h2>
+          <p className="mt-4 text-base md:text-lg text-muted-foreground max-w-2xl">
+            {t("VisualEstimate.lede")}
+          </p>
+          <BeforeAfterSlider
+            className="mt-10"
+            beforeLabel={t("VisualEstimate.beforeLabel")}
+            afterLabel={t("VisualEstimate.afterLabel")}
+            tabsLabel={t("VisualEstimate.tabsLabel")}
+            pairs={[
+              {
+                id: "turf",
+                label: t("VisualEstimate.turfLabel"),
+                beforeSrc: "/images/home/turf-before.webp",
+                afterSrc: "/images/home/turf-after.webp",
+                beforeAlt: t("VisualEstimate.turfBeforeAlt"),
+                afterAlt: t("VisualEstimate.turfAfterAlt"),
+              },
+            ]}
+          />
+        </div>
+      </section>
+
       {/* Proof bar — single muted row */}
-      <section className="border-y border-border bg-gray-50 dark:bg-neutral-950 px-6 py-5">
+      <section className="border-y border-border bg-band px-6 py-5">
         <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center text-sm text-muted-foreground">
           <span>{t("ProofBar.item1")}</span>
           <span className="text-orange-500/60" aria-hidden="true">·</span>
@@ -275,7 +310,7 @@ export default function HomePage() {
       </section>
 
       {/* Missed-call revenue calculator */}
-      <section id="missed-call" className="bg-gray-50 dark:bg-neutral-950 py-20 px-6 scroll-mt-20">
+      <section id="missed-call" className="bg-band py-20 px-6 scroll-mt-20">
         <div className="max-w-6xl mx-auto">
           <MissedCallCalculator />
         </div>
@@ -287,7 +322,7 @@ export default function HomePage() {
         <div className="px-6 pb-6">
           <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             <div className="rounded-2xl p-px bg-gradient-to-b from-gray-300 dark:from-white/10 to-gray-200 dark:to-white/5">
-              <div className="h-full rounded-2xl p-8 bg-gray-50 dark:bg-neutral-950 flex flex-col justify-center">
+              <div className="h-full rounded-2xl p-8 bg-band flex flex-col justify-center">
                 <blockquote className="text-foreground text-base">
                   &ldquo;{t("Testimonials.sam.quote")}&rdquo;
                 </blockquote>
@@ -322,7 +357,7 @@ export default function HomePage() {
 
             {/* Results stat card — Rejunk lead pipeline */}
             <div className="rounded-2xl p-px bg-gradient-to-b from-orange-500/40 to-orange-600/10">
-              <div className="h-full rounded-2xl p-8 bg-gray-50 dark:bg-neutral-950 flex flex-col">
+              <div className="h-full rounded-2xl p-8 bg-band flex flex-col">
                 <p className="text-xs font-semibold uppercase tracking-wide text-orange-500">
                   {t("Testimonials.stat.label")}
                 </p>

@@ -29,7 +29,7 @@ export default function AgentDemoSection({
   return (
     <section
       id="agent-demos"
-      className="scroll-mt-20 border-y border-border bg-gray-50 dark:bg-neutral-950 px-6 py-20"
+      className="scroll-mt-20 border-y border-border bg-band px-6 py-20"
     >
       <div className="mx-auto max-w-6xl">
         <div className="mb-12 max-w-3xl">
