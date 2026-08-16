@@ -5,162 +5,168 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useModeAnimation, ThemeAnimationType } from "react-theme-switch-animation";
 import { ArrowRight, Menu, Moon, Sun, X } from "lucide-react";
-
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from "next-intl";
 
 export default function TopNavbar() {
-  const t = useTranslations('Navbar');
+  const t = useTranslations("Navbar");
   const locale = useLocale();
   const pathname = usePathname();
   const { setTheme, resolvedTheme } = useTheme();
+  const localePath = pathname.replace(/^\/(?:en|es)(?=\/|$)/, "") || "/";
+  const isHome = localePath === "/";
   const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  useEffect(() => setMounted(true), []);
+  const [heroPassed, setHeroPassed] = useState(!isHome);
+
+  useEffect(() => {
+    setMounted(true);
+    if (!isHome) {
+      setHeroPassed(true);
+      return;
+    }
+
+    const hero = document.querySelector<HTMLElement>("[data-home-hero]");
+    if (!hero) {
+      setHeroPassed(true);
+      return;
+    }
+
+    const updateNav = () => {
+      const next = hero.getBoundingClientRect().bottom <= 72;
+      setHeroPassed((current) => (current === next ? current : next));
+    };
+    const sentinel = hero.querySelector<HTMLElement>("[data-home-hero-end]") ?? hero;
+    const observer = new IntersectionObserver(updateNav, { threshold: 0 });
+    observer.observe(sentinel);
+    window.addEventListener("scroll", updateNav, { passive: true });
+    updateNav();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", updateNav);
+    };
+  }, [isHome]);
+
   const isDark = (mounted ? resolvedTheme : undefined) === "dark";
-
-  // Check if a link is active
-  const isActive = (href: string) => {
-    const localePath = pathname.replace(/^\/(?:en|es)(?=\/|$)/, "") || "/";
-    if (href === "/") return localePath === "/";
-    return localePath.startsWith(href);
-  };
+  const navVisible = !isHome || heroPassed;
   const localizedHref = (href: string) => `/${locale}${href === "/" ? "" : href}`;
-  const { scrollY } = useScroll();
+  const isActive = (href: string) => href === "/" ? localePath === "/" : localePath.startsWith(href);
 
-  // Theme animation hook
   const { ref: themeRef, toggleSwitchTheme } = useModeAnimation({
     animationType: ThemeAnimationType.CIRCLE,
     duration: 750,
     isDarkMode: isDark,
-    onDarkModeChange: (isDark) => {
-      setTheme(isDark ? "dark" : "light");
-    }
+    onDarkModeChange: (nextIsDark) => setTheme(nextIsDark ? "dark" : "light"),
   });
 
-  // Height/padding/max-width stay fixed. They used to shrink on scroll
-  // (88->56, 24->12, 1280->1000), and the narrower container squeezed the nav
-  // until "Case Studies", "How It Works" and "About Abe" each wrapped to two
-  // lines. Only the bottom border still reacts to scroll - it costs no layout.
-  const borderColor = useTransform(scrollY, [0, 200], ["rgba(255,255,255,0)", "rgba(255,255,255,0.12)"]);
-
+  const closeMenu = () => setMobileMenuOpen(false);
+  const linkClass = (href: string) =>
+    `font-bold transition-colors ${isActive(href) ? "text-orange-500" : "text-[#111827]/75 hover:text-[#111827]"}`;
 
   return (
-    <motion.header
-      style={{ borderBottomColor: borderColor, borderBottomWidth: 1, borderBottomStyle: "solid" }}
-      className="sticky top-0 z-50 h-[88px] w-full backdrop-blur supports-[backdrop-filter]:bg-background/60"
-    >
-      <div className="mx-auto flex h-full max-w-[1280px] items-center justify-between px-6">
-        {/* shrink-0 is load-bearing: without it the logo is a shrinkable flex child
-            and the nav row eats it rather than overflowing the page. That hid the
-            overflow bug - at 1024px the logo measured 7px wide in EN and 0px (i.e.
-            invisible) in ES, and it never reached its full 192px in ES at any width. */}
-        <div className="flex shrink-0 items-center gap-3">
-          <Link href={localizedHref("/")} className="hover:opacity-80 transition-opacity">
-            {/* One logo for both themes for now. This is the new orange-and-grey
-                mark, drawn for dark mode; Abe wants to see how it holds up on the
-                beige light background before committing. When the light-mode file
-                is redrawn at this aspect ratio, fork it back into a
-                `block dark:hidden` / `hidden dark:block` pair here and in the
-                footer (src/app/[locale]/layout.tsx). */}
-            <Image
-              src="/images/home/abemedia-new-darkmode.png"
-              alt="Abe Media"
-              width={2172}
-              height={724}
-              className="block w-32 sm:w-40 md:w-44 lg:w-48 h-auto"
-              priority
-            />
-          </Link>
-        </div>
-        
-        {/* Desktop Navigation */}
-        {/* The row is whitespace-nowrap next to a shrink-0 logo inside a max-w-1280
-            container, so it either fits or overflows the page - it cannot wrap or
-            steal space. Measured requirement with the logo at its full 192px:
-            gap-4 -> EN 1209px / ES 1293px;  gap-2.5 -> EN 1155px / ES 1239px.
-            Spanish is the binding constraint (~85px longer) and 1293px does not fit
-            the 1280px container, which is why the gap stays at 2.5 at every width
-            instead of widening. The row therefore switches on at xl: (1280px), not
-            lg: - at 1024px Spanish needs ~1239px and cannot fit even with smaller
-            type and a smaller logo (~1101px). Below xl: the hamburger handles it. */}
-        <nav className="hidden xl:flex items-center gap-2.5 text-base ml-2 whitespace-nowrap">
-          <Link href={localizedHref("/services")} className={`font-bold transition-colors ${isActive("/services") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('services')}</Link>
-          <Link href="/en/industries" hrefLang="en" className={`font-bold transition-colors ${isActive("/industries") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('industries')}</Link>
-          <Link href="/en/portfolio" hrefLang="en" className={`font-bold transition-colors ${isActive("/portfolio") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('caseStudies')}</Link>
-          <Link href="/en/systems-we-build" hrefLang="en" className={`font-bold transition-colors ${isActive("/systems-we-build") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('builds')}</Link>
-          <Link href={localizedHref("/how-it-works")} className={`font-bold transition-colors ${isActive("/how-it-works") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('howItWorks')}</Link>
-          <Link href={localizedHref("/pricing")} className={`font-bold transition-colors ${isActive("/pricing") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('pricing')}</Link>
-          <Link href="/en/about/abe-perez" hrefLang="en" className={`font-bold transition-colors ${isActive("/about") ? "text-orange-500" : "opacity-80 hover:opacity-100"}`}>{t('about')}</Link>
-          {/* No "Contact" text link: it pointed at the same /contact route as the
-              Get Started button below, so it cost a slot and a gap for a duplicate
-              destination. Get Started is the single entry point to that page. */}
-          <Link
-            href={localizedHref("/contact")}
-            className="group ml-2 inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-orange-500 px-5 py-2 text-sm font-semibold text-white shadow-md shadow-orange-500/25 transition-all hover:bg-orange-600 hover:shadow-lg hover:shadow-orange-500/30"
+    <div className="pointer-events-none fixed inset-x-0 top-4 z-50 px-4">
+      <AnimatePresence initial={false}>
+        {navVisible ? (
+          <motion.header
+            initial={{ opacity: 0, y: -28 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -22 }}
+            transition={{ duration: 0.48, ease: [0.16, 1, 0.3, 1] }}
+            className="pointer-events-auto relative mx-auto min-h-[68px] max-w-[1280px] rounded-full border border-black/10 bg-[#f7f5ef]/95 text-[#111827] shadow-[0_18px_55px_rgba(17,24,39,0.14)] backdrop-blur-xl"
           >
-            {t('getStarted')}
-            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-          </Link>
-          <button
-            ref={themeRef}
-            onClick={toggleSwitchTheme}
-            aria-label="Toggle theme"
-            className="ml-1 inline-flex h-8 w-8 items-center justify-center rounded-full border border-border opacity-80 hover:opacity-100"
-          >
-            {mounted && (isDark ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />)}
-          </button>
-        </nav>
+            <div className="flex min-h-[68px] items-center justify-between gap-5 px-4 pl-6">
+              <Link href={localizedHref("/")} className="shrink-0 transition-opacity hover:opacity-75">
+                <Image
+                  src="/images/home/abemedia-new-darkmode.png"
+                  alt="Abe Media"
+                  width={2172}
+                  height={724}
+                  className="h-auto w-32 sm:w-40 lg:w-44"
+                  priority
+                />
+              </Link>
 
-        {/* Mobile Menu Button */}
-        <div className="xl:hidden flex items-center gap-2">
-          <button
-            ref={themeRef}
-            onClick={toggleSwitchTheme}
-            aria-label="Toggle theme"
-            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-border opacity-80 hover:opacity-100"
-          >
-            {mounted && (isDark ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />)}
-          </button>
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-border opacity-80 hover:opacity-100"
-            aria-label="Toggle mobile menu"
-          >
-            {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-          </button>
-        </div>
-      </div>
+              <nav className="hidden items-center gap-2.5 whitespace-nowrap text-sm xl:flex">
+                <Link href={localizedHref("/services")} className={linkClass("/services")}>{t("services")}</Link>
+                <Link href="/en/industries" hrefLang="en" className={linkClass("/industries")}>{t("industries")}</Link>
+                <Link href="/en/portfolio" hrefLang="en" className={linkClass("/portfolio")}>{t("caseStudies")}</Link>
+                <Link href="/en/systems-we-build" hrefLang="en" className={linkClass("/systems-we-build")}>{t("builds")}</Link>
+                <Link href={localizedHref("/how-it-works")} className={linkClass("/how-it-works")}>{t("howItWorks")}</Link>
+                <Link href={localizedHref("/pricing")} className={linkClass("/pricing")}>{t("pricing")}</Link>
+                <Link href="/en/about/abe-perez" hrefLang="en" className={linkClass("/about")}>{t("about")}</Link>
+                <Link
+                  href={localizedHref("/contact")}
+                  className="group ml-2 inline-flex items-center gap-2 rounded-full bg-orange-500 py-2.5 pr-2.5 pl-5 font-semibold text-white transition-colors hover:bg-[#111827]"
+                >
+                  {t("getStarted")}
+                  <span className="grid h-7 w-7 place-items-center rounded-full border border-white/40">
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                  </span>
+                </Link>
+                <button
+                  ref={themeRef}
+                  onClick={toggleSwitchTheme}
+                  aria-label="Toggle theme"
+                  className="ml-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/10 transition-colors hover:border-orange-500"
+                >
+                  {mounted && (isDark ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />)}
+                </button>
+              </nav>
 
-      {/* Mobile Menu Dropdown */}
-      {mobileMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          className="xl:hidden bg-white/95 dark:bg-neutral-900/95 backdrop-blur supports-[backdrop-filter]:bg-white/95 dark:supports-[backdrop-filter]:bg-neutral-900/95 border-t border-border"
-        >
-          <nav className="flex flex-col py-4 px-6 space-y-3">
-            <Link href={localizedHref("/services")} className={`font-bold py-2 transition-colors ${isActive("/services") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('services')}</Link>
-            <Link href="/en/industries" hrefLang="en" className={`font-bold py-2 transition-colors ${isActive("/industries") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('industries')}</Link>
-            <Link href="/en/portfolio" hrefLang="en" className={`font-bold py-2 transition-colors ${isActive("/portfolio") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('caseStudies')}</Link>
-            <Link href="/en/systems-we-build" hrefLang="en" className={`font-bold py-2 transition-colors ${isActive("/systems-we-build") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('builds')}</Link>
-            <Link href={localizedHref("/how-it-works")} className={`font-bold py-2 transition-colors ${isActive("/how-it-works") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('howItWorks')}</Link>
-            <Link href={localizedHref("/pricing")} className={`font-bold py-2 transition-colors ${isActive("/pricing") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('pricing')}</Link>
-            <Link href="/en/about/abe-perez" hrefLang="en" className={`font-bold py-2 transition-colors ${isActive("/about") ? "text-orange-500" : "text-foreground opacity-80 hover:opacity-100"}`} onClick={() => setMobileMenuOpen(false)}>{t('about')}</Link>
-            <Link
-              href={localizedHref("/contact")}
-              className="group mt-2 inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-full bg-orange-500 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-orange-500/25 transition-all hover:bg-orange-600"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              {t('getStarted')}
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
-          </nav>
-        </motion.div>
-      )}
-    </motion.header>
+              <div className="flex items-center gap-2 xl:hidden">
+                <button
+                  ref={themeRef}
+                  onClick={toggleSwitchTheme}
+                  aria-label="Toggle theme"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10"
+                >
+                  {mounted && (isDark ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />)}
+                </button>
+                <button
+                  onClick={() => setMobileMenuOpen((open) => !open)}
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-orange-500 text-white"
+                  aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+                  aria-expanded={mobileMenuOpen}
+                >
+                  {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                </button>
+              </div>
+            </div>
+
+            <AnimatePresence>
+              {mobileMenuOpen ? (
+                <motion.nav
+                  initial={{ opacity: 0, gridTemplateRows: "0fr" }}
+                  animate={{ opacity: 1, gridTemplateRows: "1fr" }}
+                  exit={{ opacity: 0, gridTemplateRows: "0fr" }}
+                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                  className="grid overflow-hidden rounded-b-[2rem] bg-[#f7f5ef] xl:hidden"
+                >
+                  <div className="min-h-0">
+                    <div className="flex flex-col gap-1 px-6 pt-3 pb-6">
+                      {[
+                        ["/services", t("services")], ["/industries", t("industries")],
+                        ["/portfolio", t("caseStudies")], ["/systems-we-build", t("builds")],
+                        ["/how-it-works", t("howItWorks")], ["/pricing", t("pricing")],
+                        ["/about/abe-perez", t("about")],
+                      ].map(([href, label]) => (
+                        <Link key={href} href={localizedHref(href)} onClick={closeMenu} className="border-b border-black/10 py-3 text-lg font-bold">
+                          {label}
+                        </Link>
+                      ))}
+                      <Link href={localizedHref("/contact")} onClick={closeMenu} className="mt-3 rounded-full bg-orange-500 px-5 py-3 text-center font-bold text-white">
+                        {t("getStarted")}
+                      </Link>
+                    </div>
+                  </div>
+                </motion.nav>
+              ) : null}
+            </AnimatePresence>
+          </motion.header>
+        ) : null}
+      </AnimatePresence>
+    </div>
   );
 }

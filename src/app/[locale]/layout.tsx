@@ -1,4 +1,4 @@
-import { NextIntlClientProvider, useTranslations } from 'next-intl';
+import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import type { Metadata } from "next";
@@ -12,8 +12,6 @@ import {
   Familjen_Grotesk,
   Spline_Sans_Mono,
 } from "next/font/google";
-import Image from "next/image";
-import Link from "next/link";
 import Script from "next/script";
 import nextDynamic from "next/dynamic";
 import "../globals.css";
@@ -23,8 +21,7 @@ import { ConvexClientProvider } from "@/components/ConvexClientProvider";
 import { Analytics } from "@vercel/analytics/react";
 import { AttributionCapture } from "@/components/AttributionCapture";
 import { CHAT_ENABLED } from "@/lib/flags";
-import { Instagram, Facebook, Music2, Twitter } from "lucide-react";
-import ClutchWidget from "@/components/ClutchWidget";
+import ReactiveFooter from "@/components/ReactiveFooter";
 
 // Lazy load the chatbot to reduce initial bundle size (code-splitting)
 const ChatWidget = nextDynamic(() => import("@/components/chatbot/EmberChat"), {
@@ -175,53 +172,6 @@ export const metadata: Metadata = {
   },
 };
 
-function Footer({ locale }: { locale: string }) {
-  const t = useTranslations('Footer');
-  return (
-    <footer className="border-t border-border py-6">
-      {/* Clutch review widget on its own row so it reads as a trust badge rather
-          than another line of footer text. The iframe fills its container and
-          the badge sits at the left inside it, so the container is sized to the
-          badge (~270px) rather than centred inside a much wider empty box. */}
-      <div className="mx-auto max-w-6xl px-6 pb-6 flex justify-center">
-        <ClutchWidget className="w-[280px]" />
-      </div>
-      <div className="mx-auto max-w-6xl px-6 grid grid-cols-1 sm:grid-cols-3 items-center gap-4">
-        <div className="flex justify-center sm:justify-start">
-          <Link href={`/${locale}`} aria-label="Abe Media">
-            {/* h-8, not h-6: the new logo file carries more transparent padding
-                than the old one (canvas 3:1 vs 3.84:1) so the same box height
-                renders a 25% smaller wordmark. h-8 restores the old ink size. */}
-            <Image src="/images/home/abemedia-new-darkmode.png" alt="Abe Media" width={2172} height={724} className="h-8 w-auto" />
-          </Link>
-        </div>
-        <div className="text-center">
-          <p className="text-xs text-muted-foreground">{t('copyright')}</p>
-          <p className="mt-1 text-xs text-muted-foreground">
-            <Link href={`/${locale}/privacy`} className="hover:text-foreground transition-colors">{t('privacy')}</Link>
-            <span className="mx-2">·</span>
-            <Link href={`/${locale}/terms`} className="hover:text-foreground transition-colors">{t('terms')}</Link>
-          </p>
-        </div>
-        <div className="flex justify-center sm:justify-end text-muted-foreground gap-5">
-          <a href="https://x.com/abe_vision" target="_blank" rel="noreferrer" aria-label="Twitter" className="transition-colors">
-            <Twitter className="h-5 w-5" />
-          </a>
-          <a href="https://www.instagram.com/abevision_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noreferrer" aria-label="Instagram" className="transition-colors">
-            <Instagram className="h-5 w-5" />
-          </a>
-          <a href="https://www.facebook.com/profile.php?id=100091085333551&sk=about" target="_blank" rel="noreferrer" aria-label="Facebook" className="transition-colors">
-            <Facebook className="h-5 w-5" />
-          </a>
-          <a href="https://www.tiktok.com/@abevision_?is_from_webapp=1&sender_device=pc" target="_blank" rel="noreferrer" aria-label="TikTok" className="transition-colors">
-            <Music2 className="h-5 w-5" />
-          </a>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
 export default async function RootLayout({
   children,
   params
@@ -349,7 +299,7 @@ export default async function RootLayout({
             <ConvexClientProvider>
             <TopNavbar />
             <main className="min-h-screen">{children}</main>
-            <Footer locale={locale} />
+            <ReactiveFooter locale={locale} />
             {CHAT_ENABLED && <ChatWidget />}
             <Analytics />
             </ConvexClientProvider>
