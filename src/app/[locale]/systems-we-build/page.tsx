@@ -4,7 +4,6 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { FooterCTA } from "@/components/ui/footer-cta";
 import ConsultationForm from "@/components/ConsultationForm";
 import { X, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import PageShell, { Reveal } from "@/components/ds/PageShell";
@@ -46,7 +45,6 @@ const RAIL = [
   { id: "saguaro", label: "Saguaro Transport" },
   { id: "driver-app", label: "Driver app" },
   { id: "next", label: "What's next" },
-  { id: "start", label: "Get started" },
 ];
 
 export default function SystemsWeBuildPage() {
@@ -262,15 +260,6 @@ export default function SystemsWeBuildPage() {
 
       <Section id="next" bleed title={t("ComingSoon.title")} lede={t("ComingSoon.description")}>
         <div />
-      </Section>
-
-      <Section id="start">
-        <FooterCTA
-          heading={t("CTA.title")}
-          subtext={t("CTA.subtitle")}
-          buttonText={t("CTA.button").toUpperCase()}
-          onButtonClick={() => setIsConsultationOpen(true)}
-        />
       </Section>
 
       <ConsultationForm

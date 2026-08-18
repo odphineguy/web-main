@@ -7,7 +7,6 @@ type VideoHeroProps = {
   accent: string;
   subtitle: string;
   primaryLabel: string;
-  eyebrow: string;
   secondaryLabel: string;
 };
 
@@ -17,7 +16,6 @@ export default function VideoHero({
   accent,
   subtitle,
   primaryLabel,
-  eyebrow,
   secondaryLabel,
 }: VideoHeroProps) {
   return (
@@ -40,10 +38,10 @@ export default function VideoHero({
       <div className="home-video-hero__top">
         <Link href={`/${locale}`} aria-label="Abe Media home" className="home-video-hero__brand">
           <Image
-            src="/images/portfolio/abemedia.white.svg"
+            src="/images/home/abemedia-new-darkmode.png"
             alt="Abe Media"
-            width={864}
-            height={225}
+            width={2172}
+            height={724}
             priority
           />
         </Link>
@@ -55,7 +53,6 @@ export default function VideoHero({
       </div>
 
       <div className="home-video-hero__content">
-        <p className="home-video-hero__eyebrow">{eyebrow}</p>
         <h1 className="home-video-hero__title">
           {title} <em>{accent}</em>
         </h1>
@@ -72,13 +69,13 @@ export default function VideoHero({
         </div>
       </div>
 
-      <div className="home-video-hero__outcomes" aria-label="Live system outcomes">
+      <div className="home-video-hero__outcomes" aria-label={locale === "es" ? "Resultados del sistema en vivo" : "Live system outcomes"}>
         <p><span>00:08</span><small>{locale === "es" ? "tiempo de respuesta" : "answer time"}</small></p>
         <p><span>EN ⇄ ES</span><small>{locale === "es" ? "cambio nativo" : "native switching"}</small></p>
-        <p><span>24/7</span><small>{locale === "es" ? "siempre activo" : "always moving"}</small></p>
+        <p><span>24/7</span><small>{locale === "es" ? "cobertura de llamadas" : "call coverage"}</small></p>
+        <p><span>{locale === "es" ? "PERSONA" : "HUMAN"}</span><small>{locale === "es" ? "recibe excepciones" : "gets exceptions"}</small></p>
       </div>
 
-      <p className="home-video-hero__meta">Phoenix, Arizona&nbsp;&nbsp;/&nbsp;&nbsp;English y español</p>
       <span className="home-video-hero__scroll" aria-hidden="true">Scroll</span>
       <span className="home-video-hero__sentinel" data-home-hero-end aria-hidden="true" />
     </section>

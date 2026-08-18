@@ -179,12 +179,7 @@ export default function HowItWorksPage() {
           <header className={`${styles.hero} ${styles.in}`} id="top">
             <div className={styles.heroTop}>
               <div>
-                <p className={`${styles.eyebrow} ${styles.reveal}`} style={{ "--i": 0 } as CSSProperties}>{t("Hero.eyebrow")}</p>
-                <h1 className={styles.reveal} style={{ "--i": 1 } as CSSProperties}>{t("Hero.title1")}<br />{t("Hero.title2")}</h1>
-              </div>
-              <div className={`${styles.clock} ${styles.reveal}`} style={{ "--i": 2 } as CSSProperties}>
-                11<span className={styles.colon}>:</span>30 PM
-                <span className={styles.sub}>{t("Hero.clockSub")}</span>
+                <h1 className={styles.reveal} style={{ "--i": 0 } as CSSProperties}>{t("Hero.title1")}<br />{t("Hero.title2")}</h1>
               </div>
             </div>
             <video
@@ -612,8 +607,7 @@ export default function HowItWorksPage() {
           <section className={`${styles.stage} ${styles.ctaStage}`} id="cta">
             <div className={styles.stageHead}>
               <div className={styles.stageTitleBlock}>
-                <div className={`${styles.stageKicker} ${styles.reveal}`} style={{ "--i": 0 } as CSSProperties}>{t("Cta.kicker")}</div>
-                <h2 className={styles.reveal} style={{ "--i": 1 } as CSSProperties}>{t("Cta.title")}</h2>
+                <h2 className={styles.reveal} style={{ "--i": 0 } as CSSProperties}>{t("Cta.title")}</h2>
               </div>
             </div>
             <p className={`${styles.lede} ${styles.ctaLede} ${styles.reveal}`} style={{ "--i": 2 } as CSSProperties}>{t("Cta.lede")}</p>
@@ -627,8 +621,7 @@ export default function HowItWorksPage() {
           <section className={styles.stage} id="glossary">
             <div className={styles.stageHead}>
               <div className={styles.stageTitleBlock}>
-                <div className={`${styles.stageKicker} ${styles.reveal}`} style={{ "--i": 0 } as CSSProperties}>{t("Glossary.kicker")}</div>
-                <h2 className={styles.reveal} style={{ "--i": 1 } as CSSProperties}>{t("Glossary.title")}</h2>
+                <h2 className={styles.reveal} style={{ "--i": 0 } as CSSProperties}>{t("Glossary.title")}</h2>
               </div>
             </div>
             <div className={styles.reveal} style={{ "--i": 2, overflowX: "auto" } as CSSProperties}>

@@ -12,71 +12,53 @@ import BuildsChapter from "@/components/home/BuildsChapter";
 const pageCopy = {
   en: {
     hero: {
-      eyebrow: "AI systems for service businesses · Phoenix, AZ",
       title: "When the phone rings,",
       accent: "your business moves.",
-      subtitle: "AI agents, dispatch software, and bilingual automation—built by someone who ran the operation first.",
-      secondary: "See it work",
+      subtitle: "AI voice agents, dispatch systems, lead automation, and estimating tools for service businesses. Abe Perez builds every customer path in English y español with 17 years of dispatch experience.",
+      secondary: "See a live workflow",
     },
-    estimateIndex: "02 / Visual estimate",
-    estimateNote: "What arrives with the lead",
+    estimateIndex: "Visual estimate",
+    estimateNote: "What the lead includes",
     estimateItems: ["Finished design", "Traced square footage", "Budget range", "Customer intent"],
-    estimatePrompt: "Drag the handle. This is the exact experience your customer gets.",
-    servicesIndex: "04 / What we build",
+    estimatePrompt: "Drag the handle to see the same before-and-after view your customer receives.",
+    servicesIndex: "What we build",
     servicesTitle: {
-      before: "Software shaped by the ",
+      before: "Software built around how your ",
       accent: "operation",
-      after: ", not an industry label.",
+      after: " actually runs.",
     },
-    servicesLede: "We build around how your team actually works—exceptions, handoffs, and all.",
-    founderIndex: "06 / Why Abe Media",
-    founderQuote: {
-      before: "I ran dispatch before I ",
-      accent: "automated",
-      after: " it.",
-    },
-    founderBody: "Seventeen years managing dispatch at Waste Management Los Angeles—including recycLA, a billion-dollar franchise. Now I build the tools I wished I had.",
-    founderName: "Abe Perez · Founder, operator, builder",
-    faqIndex: "07 / Straight answers",
+    servicesLede: "Exceptions, handoffs, pricebooks, and escalation paths shape the build.",
+    faqIndex: "Straight answers",
     faqTitle: "Before you put an agent on the phones.",
     contactIndex: "Ready when you are",
-    contactTitle: "Put an agent on your phones this month.",
-    contactBody: "Tell us what your operation looks like. We’ll tell you what it takes—scope, timeline, and cost.",
+    contactTitle: "Put an AI agent on your phones this month.",
+    contactBody: "Tell us how your calls and handoffs work today. We will give you the scope, timeline, integration plan, and cost.",
     contactCta: "Schedule a call",
     contactMeta: "No obligation · Replies within 1 business day",
   },
   es: {
     hero: {
-      eyebrow: "Sistemas de IA para empresas de servicios · Phoenix, AZ",
       title: "Cuando suena el teléfono,",
       accent: "tu negocio se mueve.",
-      subtitle: "Agentes de IA, software de dispatch y automatización bilingüe—creados por alguien que primero operó el negocio.",
-      secondary: "Ver cómo funciona",
+      subtitle: "Agentes de voz con IA, sistemas de dispatch, automatización de leads y herramientas de estimación para negocios de servicios. Abe Perez construye cada recorrido en English y español con 17 años de experiencia en dispatch.",
+      secondary: "Verlo en acción",
     },
-    estimateIndex: "02 / Estimado visual",
-    estimateNote: "Lo que llega con el lead",
+    estimateIndex: "Estimado visual",
+    estimateNote: "Lo que incluye el lead",
     estimateItems: ["Diseño terminado", "Pies cuadrados trazados", "Rango de presupuesto", "Intención del cliente"],
-    estimatePrompt: "Arrastra el control. Esta es la experiencia exacta que recibe tu cliente.",
-    servicesIndex: "04 / Lo que construimos",
+    estimatePrompt: "Arrastra el control para ver la misma comparación que recibe tu cliente.",
+    servicesIndex: "Lo que construimos",
     servicesTitle: {
-      before: "Software diseñado por ",
-      accent: "la operación",
-      after: ", no por una etiqueta de industria.",
-    },
-    servicesLede: "Construimos alrededor de cómo trabaja tu equipo—excepciones, entregas y todo lo demás.",
-    founderIndex: "06 / Por qué Abe Media",
-    founderQuote: {
-      before: "Operé dispatch antes de ",
-      accent: "automatizarlo",
+      before: "Software construido alrededor de cómo funciona tu ",
+      accent: "operación",
       after: ".",
     },
-    founderBody: "Diecisiete años dirigiendo dispatch en Waste Management Los Angeles—including recycLA, una franquicia de mil millones de dólares. Ahora construyo las herramientas que necesitaba entonces.",
-    founderName: "Abe Perez · Fundador, operador, constructor",
-    faqIndex: "07 / Respuestas directas",
+    servicesLede: "Las excepciones, los handoffs, los pricebooks y las rutas de escalación definen el sistema.",
+    faqIndex: "Respuestas directas",
     faqTitle: "Antes de poner un agente en tus teléfonos.",
     contactIndex: "Cuando estés listo",
-    contactTitle: "Pon un agente en tus teléfonos este mes.",
-    contactBody: "Cuéntanos cómo funciona tu operación. Te diremos qué requiere—alcance, tiempo y costo.",
+    contactTitle: "Pon un agente de IA en tus teléfonos este mes.",
+    contactBody: "Cuéntanos cómo funcionan hoy tus llamadas y handoffs. Te daremos el alcance, plazo, plan de integración y costo.",
     contactCta: "Agenda una llamada",
     contactMeta: "Sin compromiso · Respuesta en 1 día hábil",
   },
@@ -108,7 +90,6 @@ export default function HomePage() {
         accent={text.hero.accent}
         subtitle={text.hero.subtitle}
         primaryLabel={t("Hero.scheduleCta")}
-        eyebrow={text.hero.eyebrow}
         secondaryLabel={text.hero.secondary}
       />
 
@@ -116,9 +97,9 @@ export default function HomePage() {
 
       <section id="visual-estimate" className="bold-estimate">
         <div className="bold-home__shell">
-          <header className="bold-home__intro">
+          <header className="bold-home__intro bold-home__intro--wide">
             <p className="bold-home__index">{text.estimateIndex}</p>
-            <h2>{t("VisualEstimate.title")}</h2>
+            <h2>{t.rich("VisualEstimate.title", { accent: (chunks) => <span>{chunks}</span> })}</h2>
             <p>{t("VisualEstimate.lede")}</p>
           </header>
 
@@ -136,6 +117,27 @@ export default function HomePage() {
                 afterSrc: "/images/home/turf-after.webp",
                 beforeAlt: t("VisualEstimate.turfBeforeAlt"),
                 afterAlt: t("VisualEstimate.turfAfterAlt"),
+              }, {
+                id: "paint",
+                label: t("VisualEstimate.paintLabel"),
+                beforeSrc: "/images/home/paint-before.webp",
+                afterSrc: "/images/home/paint-after.webp",
+                beforeAlt: t("VisualEstimate.paintBeforeAlt"),
+                afterAlt: t("VisualEstimate.paintAfterAlt"),
+              }, {
+                id: "doors",
+                label: t("VisualEstimate.doorsLabel"),
+                beforeSrc: "/images/home/door-before.webp",
+                afterSrc: "/images/home/door-after.webp",
+                beforeAlt: t("VisualEstimate.doorsBeforeAlt"),
+                afterAlt: t("VisualEstimate.doorsAfterAlt"),
+              }, {
+                id: "windows",
+                label: t("VisualEstimate.windowsLabel"),
+                beforeSrc: "/images/home/windows-before.webp",
+                afterSrc: "/images/home/windows-after.webp",
+                beforeAlt: t("VisualEstimate.windowsBeforeAlt"),
+                afterAlt: t("VisualEstimate.windowsAfterAlt"),
               }]}
             />
             <aside className="bold-estimate__note">
@@ -147,19 +149,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bold-proof" aria-label="Abe Media experience">
-        <div className="bold-home__shell">
-          {[t("ProofBar.item1"), t("ProofBar.item2"), t("ProofBar.item3"), t("ProofBar.item4")].map((item, index) => (
-            <p key={item}><strong>{String(index + 1).padStart(2, "0")}</strong><span>{item}</span></p>
-          ))}
-        </div>
-      </section>
-
       <OperationsStory locale={locale} />
 
       <section className="bold-services" id="services">
         <div className="bold-home__shell">
-          <header className="bold-home__intro bold-home__intro--services">
+          <header className="bold-home__intro bold-home__intro--wide">
             <p className="bold-home__index">{text.servicesIndex}</p>
             <h2>{text.servicesTitle.before}<span>{text.servicesTitle.accent}</span>{text.servicesTitle.after}</h2>
             <p>{text.servicesLede}</p>
@@ -167,7 +161,6 @@ export default function HomePage() {
           <div className="bold-services__list">
             {serviceKeys.map((key, index) => (
               <Link key={key} href={`/${locale}${serviceRoutes[index]}`}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
                 <h3>{t(`ServicesGrid.${key}.title`)}</h3>
                 <p>{t(`ServicesGrid.${key}.description`)}</p>
                 <b aria-hidden="true">↗</b>
@@ -179,17 +172,6 @@ export default function HomePage() {
 
       <BuildsChapter locale={locale} />
 
-      <section className="bold-founder">
-        <div className="bold-home__shell">
-          <p className="bold-home__index">{text.founderIndex}</p>
-          <blockquote>“{text.founderQuote.before}<span>{text.founderQuote.accent}</span>{text.founderQuote.after}”</blockquote>
-          <div>
-            <p>{text.founderBody}</p>
-            <p>{text.founderName}</p>
-          </div>
-        </div>
-      </section>
-
       <section className="bold-faq" id="faq">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, "\\u003c") }} />
         <div className="bold-home__shell">
@@ -198,9 +180,9 @@ export default function HomePage() {
             <h2>{text.faqTitle}</h2>
           </header>
           <div className="bold-faq__list">
-            {homeFaqIds.slice(3).map((id, index) => (
+            {homeFaqIds.slice(3).map((id) => (
               <details key={id}>
-                <summary><span>{String(index + 1).padStart(2, "0")}</span>{t(`Faq.${id}.question`)}<b aria-hidden="true">+</b></summary>
+                <summary>{t(`Faq.${id}.question`)}<b aria-hidden="true">+</b></summary>
                 <p>{t(`Faq.${id}.answer`)}</p>
               </details>
             ))}

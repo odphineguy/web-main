@@ -44,10 +44,21 @@ export default async function IndustriesPage({ params }: { params: Promise<{ loc
   const pages = isEs ? industryPagesEs : industryPages;
 
   const copy = isEs
-    ? industriesIndexEs
+    ? {
+        ...industriesIndexEs,
+        title: (
+          <>
+            Software formado por la <span className="text-[var(--ds-accent)]">operación</span>, no por la etiqueta de la industria
+          </>
+        ),
+      }
     : {
         eyebrow: "Industries",
-        title: "Software shaped by the operation, not an industry label",
+        title: (
+          <>
+            Software shaped by the <span className="text-[var(--ds-accent)]">operation</span>, not an industry label
+          </>
+        ),
         intro:
           "These pages focus on workflows Abe Media has direct experience building or operating. Each one covers the exceptions, handoffs, and proof relevant to that work.",
         cta: "Explore the workflow",
@@ -57,7 +68,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ loc
   return (
     <PageShell railCap="INDUSTRIES" railItems={RAIL}>
       <div id="overview">
-        <PageHero eyebrow={copy.eyebrow} title={copy.title} lede={copy.intro} />
+        <PageHero title={copy.title} lede={copy.intro} />
       </div>
 
       <Section id="workflows">
@@ -65,7 +76,6 @@ export default async function IndustriesPage({ params }: { params: Promise<{ loc
           {Object.values(pages).map((page, i) => (
             <Reveal key={page.slug} index={i}>
               <DsCard
-                index={i}
                 eyebrow={page.eyebrow}
                 title={page.title}
                 description={page.description}

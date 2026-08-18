@@ -85,36 +85,9 @@ export default function BeforeAfterSlider({
 
   return (
     <div className={className}>
-      {pairs.length > 1 && (
-        <div role="tablist" aria-label={tabsLabel} className="mb-5 flex flex-wrap gap-2">
-          {pairs.map((pair) => {
-            const selected = pair.id === active.id;
-            return (
-              <button
-                key={pair.id}
-                type="button"
-                role="tab"
-                aria-selected={selected}
-                onClick={() => {
-                  setActiveId(pair.id);
-                  setPosition(50);
-                }}
-                className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
-                  selected
-                    ? "bg-orange-500 text-white"
-                    : "border border-border text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {pair.label}
-              </button>
-            );
-          })}
-        </div>
-      )}
-
       <div
         ref={frameRef}
-        className={`relative w-full ${frameAspectClassName} select-none overflow-hidden rounded-2xl border border-border bg-band focus-within:ring-2 focus-within:ring-orange-500 focus-within:ring-offset-2 focus-within:ring-offset-background ${
+        className={`before-after__frame relative w-full ${frameAspectClassName} select-none overflow-hidden rounded-2xl border border-border bg-band focus-within:ring-2 focus-within:ring-orange-500 focus-within:ring-offset-2 focus-within:ring-offset-background ${
           dragging ? "cursor-grabbing" : "cursor-ew-resize"
         }`}
         onPointerDown={(e) => {
@@ -190,6 +163,32 @@ export default function BeforeAfterSlider({
           className="pointer-events-none absolute inset-0 h-full w-full opacity-0"
         />
       </div>
+
+      {pairs.length > 1 && (
+        <div role="group" aria-label={tabsLabel} className="before-after__tabs mt-5 flex flex-wrap justify-center gap-2">
+          {pairs.map((pair) => {
+            const selected = pair.id === active.id;
+            return (
+              <button
+                key={pair.id}
+                type="button"
+                aria-pressed={selected}
+                onClick={() => {
+                  setActiveId(pair.id);
+                  setPosition(50);
+                }}
+                className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+                  selected
+                    ? "bg-orange-500 text-white"
+                    : "border border-border text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {pair.label}
+              </button>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

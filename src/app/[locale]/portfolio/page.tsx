@@ -214,7 +214,6 @@ export default function PortfolioPage() {
           {caseStudies.map((study, i) => (
             <Reveal key={study.href} index={i}>
               <DsCard
-                index={i}
                 href={study.href}
                 title={study.title}
                 description={study.description}

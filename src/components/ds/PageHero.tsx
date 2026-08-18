@@ -31,7 +31,7 @@ export default function PageHero({
   return (
     <section
       className={cn(
-        "relative pb-[var(--ds-space-xl)] pt-[clamp(56px,9vh,110px)]",
+        "relative pt-[var(--ds-hero-clearance)]",
         className,
       )}
     >

@@ -21,24 +21,33 @@
   "Home": {
     "Hero": {
       "eyebrow": "AI voice agents for service businesses",
-      "titlePart1": "AI agents that answer your phones, book your jobs,",
-      "titlePart2": "and never miss a call. 24/7.",
-      "subtitle": "Bilingual by default — English y español. Built for plumbing, HVAC, moving, and home service companies.",
+      "titlePart1": "When the phone rings,",
+      "titlePart2": "your business moves.",
+      "subtitle": "AI voice agents, dispatch systems, lead automation, and estimating tools for service businesses. Every customer path works in English y español.",
       "scheduleCta": "Schedule a call",
-      "widgetLabel": "Recorded intake call — real AI, unedited",
-      "widgetCaption": "Plumbing after-hours call — Desert Valley.",
+      "widgetLabel": "Recorded intake call, real AI and unedited",
+      "widgetCaption": "After-hours plumbing call for Desert Valley.",
       "liveBadge": "Real call"
     },
     "VisualEstimate": {
       "eyebrow": "AI visual estimate",
-      "title": "Your customer sees the finished job before they book.",
-      "lede": "A homeowner uploads a photo of their yard. The AI renders the finished install and the lead reaches you with that design attached — traced square footage, budget range, and what they want. Drag the handle to compare.",
+      "title": "Your customer sees the <accent>finished job</accent> before they book.",
+      "lede": "A homeowner uploads a photo. The system creates the finished concept and sends the lead with the design, traced square footage, budget range, and customer intent attached. Your team keeps final pricing and site judgment.",
       "beforeLabel": "Before",
       "afterLabel": "AI render",
       "tabsLabel": "Project type",
       "turfLabel": "Artificial turf",
-      "turfBeforeAlt": "Phoenix back yard before installation — a dull, patchy natural lawn beside the pool.",
-      "turfAfterAlt": "The same back yard rendered by the AI with artificial turf installed."
+      "turfBeforeAlt": "Phoenix backyard before installation, with a dull and patchy natural lawn beside the pool.",
+      "turfAfterAlt": "The same back yard rendered by the AI with artificial turf installed.",
+      "paintLabel": "Paint",
+      "paintBeforeAlt": "A home before its exterior paint transformation.",
+      "paintAfterAlt": "The same home visualized with its finished exterior paint design.",
+      "doorsLabel": "Doors",
+      "doorsBeforeAlt": "A home entrance before the door upgrade.",
+      "doorsAfterAlt": "The same home entrance visualized with its new door installed.",
+      "windowsLabel": "Windows",
+      "windowsBeforeAlt": "A home before the window replacement.",
+      "windowsAfterAlt": "The same home visualized with its new windows installed."
     },
     "ProofBar": {
       "item1": "17 years running dispatch",
@@ -66,20 +75,20 @@
       "subtitle": "Six ways we put AI to work in a service business.",
       "addOnBadge": "Add-on",
       "voice": {
-        "title": "AI voice agents & after-hours answering",
-        "description": "After-hours answering for junk removal, HVAC, moving, and home services. Intake, qualify, book — logged straight to your CRM."
+        "title": "AI voice agents for after-hours calls",
+        "description": "Answer in English y español, qualify the caller, book approved jobs, and log the full call in your CRM."
       },
       "dispatch": {
         "title": "Custom dispatch and operations systems",
-        "description": "Dispatch AI for waste management. Saguaro Transport. Rejunk with driver apps. Live fleet, CRM, and HR in one dashboard."
+        "description": "Keep jobs, drivers, crews, and exceptions in one operating view."
       },
       "pipeline": {
         "title": "Lead pipeline automation",
-        "description": "Thumbtack and Housecall Pro webhooks, auto-quoting, realtime status sync. Lead in, quote out, job booked — no human in the loop."
+        "description": "Connect Thumbtack and Housecall Pro to your pricebook, calendar, CRM, and follow-up rules. Failed webhooks and stalled leads surface for review."
       },
       "apps": {
         "title": "Custom apps",
-        "description": "Apps live on the App Store and Google Play, including on-device AI models that keep working with no connection and no per-call fee."
+        "description": "Put field workflows on iPhone and Android. On-device models keep approved tools working without a connection or per-call AI fees."
       },
       "plugins": {
         "title": "AI plugins & GPT tools",
@@ -148,35 +157,35 @@
       "title": "Frequently asked questions",
       "q1": {
         "question": "What exactly is the AI agent?",
-        "answer": "A voice AI agent that answers the phone like a trained intake specialist. It picks up in seconds, qualifies the caller, books the job, and logs everything."
+        "answer": "A voice AI agent answers the phone using your approved intake rules. It responds in seconds, qualifies the caller, books approved jobs, and logs the full call."
       },
       "q2": {
         "question": "Will this work for my industry?",
-        "answer": "Our agents answer for junk removal, HVAC, moving, plumbing, and other home service companies. If your phone rings after hours and jobs walk away, an agent fits."
+        "answer": "Abe Media builds for plumbing, HVAC, moving, and junk-removal operators. The same intake model also fits service businesses with repeatable calls, clear rules, high lead volume, and costly handoffs."
       },
       "q3": {
         "question": "What happens to the info the agent takes?",
-        "answer": "It's logged the moment the call ends — name, number, what they need, and when. You get it in your CRM or inbox, and we follow up the same day. No voicemail transcription guesswork."
+        "answer": "The system logs the caller's name, number, request, and timing when the call ends. It sends the record to your CRM or inbox and flags any exception for review."
       },
       "q4": {
         "question": "Does this replace my dispatcher or front desk?",
-        "answer": "No. Agents take the calls nobody was going to answer: after hours, weekends, overflow when the line is busy. Your team keeps the judgment calls."
+        "answer": "The agent covers calls after hours and when your line is busy. Your dispatcher and front desk keep judgment calls and exceptions."
       },
       "q5": {
         "question": "How fast can we launch?",
-        "answer": "A voice agent trained on your business typically goes live in one to two weeks. Custom dispatch and operations systems get scoped on a call — we give you a straight timeline before any money moves."
+        "answer": "A voice agent trained on your business typically goes live in 1–2 weeks. We scope custom dispatch systems on a call and give you the timeline before work begins."
       },
       "q6": {
         "question": "Is the Spanish actually native?",
-        "answer": "Yes. Written by people, in Spanish, from the start — not machine-translated. Agents switch languages mid-call the same way your customers do."
+        "answer": "Yes. We write the complete customer path in Spanish from the start. The agent can switch languages mid-call and keep the same intake rules, pricebook, booking logic, and escalation path."
       },
       "q7": {
         "question": "What does it cost?",
-        "answer": "Less than the jobs you're losing. Run the missed-call calculator with your own numbers, then check the pricing page. In most trades a voice agent costs less per month than one average missed job."
+        "answer": "Pricing depends on call volume, integrations, languages, and workflow complexity. The pricing page shows starting points. We confirm scope, timeline, required integrations, and cost before work begins."
       },
       "q8": {
         "question": "Can you plug into my existing tools?",
-        "answer": "That's the point. Thumbtack and Housecall Pro webhooks, CRMs, calendars, quoting. We build around what you run today — you don't migrate your business to fit the agent."
+        "answer": "Yes. We connect Thumbtack, Housecall Pro, CRMs, and calendars to the approved workflow. We map your current process before we build the integration."
       }
     },
     "Testimonials": {
@@ -657,10 +666,8 @@
     "railCap": "LEAD → JOB",
     "liveLabel": "Live",
     "Hero": {
-      "eyebrow": "AbeMedia · Case story",
       "title1": "From lead to",
       "title2": "finished job",
-      "clockSub": "a lead just came in",
       "videoLabel": "Abstract animation of a lead pipeline in motion",
       "pitchStart": "A lead that comes in at 11:30pm gets ",
       "pitchEm": "answered, priced, and handed a bookable time slot in under a minute",
@@ -1078,7 +1085,7 @@
     "Board": {
       "kicker": "The honest status board",
       "title": "What runs where, today",
-      "lede": "No promises — this is what's already shipped for this client versus what's queued.",
+      "lede": "No promises — this is what's already running today for this client.",
       "status": {
         "live": "Live",
         "built": "Built · preview",
@@ -1105,7 +1112,7 @@
         {
           "cap": "Contact enrichment into the CRM",
           "small": "Runs fully — results emailed as a digest for review",
-          "status": "built"
+          "status": "live"
         },
         {
           "cap": "Job status posted back to the lead platform",
@@ -1114,8 +1121,8 @@
         },
         {
           "cap": "True auto-booking — the system creates the appointment itself",
-          "small": "Deliberately later: booking stays in the customer's hands for now",
-          "status": "future"
+          "small": "Appointments are created automatically in production",
+          "status": "live"
         }
       ]
     },

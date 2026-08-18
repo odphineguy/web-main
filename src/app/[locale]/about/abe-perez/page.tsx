@@ -55,10 +55,19 @@ export default async function AbePerezPage({ params }: { params: Promise<{ local
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safe(profile) }} />
 
       <div id="overview">
-        <PageHero eyebrow={c.eyebrow} title={c.title} lede={c.lede} />
+        <PageHero
+          title={
+            isEs ? (
+              <>Estuve en despacho antes de <span className="text-[var(--ds-accent)]">automatizarlo.</span></>
+            ) : (
+              <>I ran dispatch before I <span className="text-[var(--ds-accent)]">automated it.</span></>
+            )
+          }
+          lede={c.lede}
+        />
       </div>
 
-      <Section id="background" eyebrow={c.backgroundEyebrow} title={c.backgroundTitle}>
+      <Section id="background" title={c.backgroundTitle}>
         <div className="space-y-6 text-[var(--ds-ink-mute)]">
           {c.background.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
@@ -81,11 +90,11 @@ export default async function AbePerezPage({ params }: { params: Promise<{ local
         </ul>
       </Section>
 
-      <Section id="work" eyebrow={c.workEyebrow} title={c.workTitle}>
+      <Section id="work" title={c.workTitle}>
         <div className="grid grid-cols-1 gap-px bg-[var(--ds-line-soft)] md:grid-cols-3">
           {workLinks.map((item, i) => (
             <Reveal key={item.href} index={i}>
-              <DsCard index={i} href={item.href} title={item.title} description={item.body} />
+              <DsCard href={item.href} title={item.title} description={item.body} />
             </Reveal>
           ))}
         </div>

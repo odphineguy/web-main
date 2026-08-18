@@ -4,7 +4,6 @@ import ContactForm from "@/components/ContactForm";
 import { Mail, Phone, MapPin } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { FooterCTANewsletter } from "@/components/ui/footer-cta";
 import PageShell, { Reveal } from "@/components/ds/PageShell";
 import PageHero from "@/components/ds/PageHero";
 import Section from "@/components/ds/Section";
@@ -12,7 +11,6 @@ import Section from "@/components/ds/Section";
 const RAIL = [
   { id: "book-consultation", label: "Get in touch" },
   { id: "founder", label: "Founder" },
-  { id: "newsletter", label: "Newsletter" },
 ];
 
 export default function ContactPage() {
@@ -26,7 +24,7 @@ export default function ContactPage() {
               Get in <span className="text-[var(--ds-accent)]">Touch</span>
             </>
           }
-          lede="Let's discuss your custom chatbot solutions. We're here to help."
+          lede="Tell us how your operation works—and where it gets stuck. We’ll help you map the right automation, software, or AI system."
         />
 
         <div className="grid items-stretch gap-px bg-[var(--ds-line-soft)] lg:grid-cols-2">
@@ -120,16 +118,6 @@ export default function ContactPage() {
             </div>
           </Reveal>
         </div>
-      </Section>
-
-      {/* Newsletter Section */}
-      <Section id="newsletter">
-        <FooterCTANewsletter
-          heading="Stay Updated"
-          subtext="Subscribe to our newsletter for the latest insights, tutorials, and resources on web development and digital marketing."
-          inputPlaceholder="my@email.com"
-          buttonText="JOIN NEWSLETTER"
-        />
       </Section>
     </PageShell>
   );

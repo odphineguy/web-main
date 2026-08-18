@@ -21,24 +21,33 @@
   "Home": {
     "Hero": {
       "eyebrow": "Agentes de voz con IA para negocios de servicios",
-      "titlePart1": "Agentes de IA que contestan tus llamadas, agendan tus trabajos,",
-      "titlePart2": "y nunca pierden una llamada. 24/7.",
-      "subtitle": "Bilingüe por diseño — English y español. Hecho para plomería, HVAC, mudanzas y servicios para el hogar.",
+      "titlePart1": "Cuando suena el teléfono,",
+      "titlePart2": "tu negocio se mueve.",
+      "subtitle": "Agentes de voz con IA, sistemas de dispatch, automatización de leads y herramientas de estimación para negocios de servicios. Cada recorrido funciona en English y español.",
       "scheduleCta": "Agenda una llamada",
-      "widgetLabel": "Llamada de admisión grabada — IA real, sin editar",
-      "widgetCaption": "Llamada de plomería fuera de horario — Desert Valley.",
+      "widgetLabel": "Llamada de intake grabada, con IA real y sin editar",
+      "widgetCaption": "Llamada de plomería fuera de horario para Desert Valley.",
       "liveBadge": "Llamada real"
     },
     "VisualEstimate": {
       "eyebrow": "Estimado visual con IA",
-      "title": "Su cliente ve el trabajo terminado antes de contratar.",
-      "lede": "El dueño de casa sube una foto de su jardín. La IA genera el resultado final y el prospecto le llega con ese diseño adjunto — los pies cuadrados medidos, el rango de presupuesto y lo que busca. Arrastre el control para comparar.",
+      "title": "Su cliente ve el <accent>trabajo terminado</accent> antes de contratar.",
+      "lede": "El propietario sube una foto. El sistema crea el concepto terminado y envía el lead con el diseño, los pies cuadrados trazados, el rango de presupuesto y la intención del cliente. Tu equipo conserva la decisión final sobre el precio y el sitio.",
       "beforeLabel": "Antes",
       "afterLabel": "Diseño con IA",
       "tabsLabel": "Tipo de proyecto",
       "turfLabel": "Césped artificial",
-      "turfBeforeAlt": "Patio trasero en Phoenix antes de la instalación — pasto natural opaco y desigual junto a la alberca.",
-      "turfAfterAlt": "El mismo patio generado por la IA con césped artificial instalado."
+      "turfBeforeAlt": "Patio trasero en Phoenix antes de la instalación, con pasto natural opaco y desigual junto a la alberca.",
+      "turfAfterAlt": "El mismo patio generado por la IA con césped artificial instalado.",
+      "paintLabel": "Pintura",
+      "paintBeforeAlt": "Una casa antes de la transformación de su pintura exterior.",
+      "paintAfterAlt": "La misma casa visualizada con el diseño final de pintura exterior.",
+      "doorsLabel": "Puertas",
+      "doorsBeforeAlt": "La entrada de una casa antes de renovar la puerta.",
+      "doorsAfterAlt": "La misma entrada visualizada con la nueva puerta instalada.",
+      "windowsLabel": "Ventanas",
+      "windowsBeforeAlt": "Una casa antes de reemplazar las ventanas.",
+      "windowsAfterAlt": "La misma casa visualizada con las nuevas ventanas instaladas."
     },
     "ProofBar": {
       "item1": "17 años manejando dispatch",
@@ -66,20 +75,20 @@
       "subtitle": "Seis formas de poner la IA a trabajar en un negocio de servicios.",
       "addOnBadge": "Complemento",
       "voice": {
-        "title": "Agentes de voz e IA fuera de horario",
-        "description": "Contestación fuera de horario para retiro de escombros, HVAC, mudanzas y servicios para el hogar. Admisión, calificación, cita — directo a tu CRM."
+        "title": "Agentes de voz con IA para llamadas fuera de horario",
+        "description": "Contesta en English y español, califica a quien llama, agenda trabajos aprobados y registra la llamada completa en tu CRM."
       },
       "dispatch": {
         "title": "Sistemas de dispatch y operaciones a medida",
-        "description": "Dispatch AI para manejo de residuos. Saguaro Transport. Rejunk con apps para choferes. Flota en vivo, CRM y RRHH en un solo panel."
+        "description": "Mantén trabajos, conductores, equipos y excepciones en una sola vista operativa."
       },
       "pipeline": {
         "title": "Automatización de pipeline de leads",
-        "description": "Webhooks de Thumbtack y Housecall Pro, cotización automática, estado en tiempo real. Entra el lead, sale la cotización, se agenda el trabajo — sin intervención humana."
+        "description": "Conecta Thumbtack y Housecall Pro con tu pricebook, calendario, CRM y reglas de seguimiento. Los webhooks fallidos y leads detenidos quedan visibles para revisión."
       },
       "apps": {
         "title": "Apps a medida",
-        "description": "Apps publicadas en App Store y Google Play, incluyendo modelos de IA en el dispositivo que siguen funcionando sin conexión y sin costo por consulta."
+        "description": "Lleva los flujos de campo a iPhone y Android. Los modelos en el dispositivo mantienen las herramientas aprobadas activas sin conexión ni cargos de IA por consulta."
       },
       "plugins": {
         "title": "Plugins de IA y herramientas GPT",
@@ -148,35 +157,35 @@
       "title": "Preguntas frecuentes",
       "q1": {
         "question": "¿Qué es exactamente el agente de IA?",
-        "answer": "Un agente de voz con IA que contesta el teléfono como una recepcionista de admisión entrenada. Levanta en segundos, califica a quien llama, agenda el trabajo y registra todo."
+        "answer": "Un agente de voz con IA contesta el teléfono usando tus reglas de intake aprobadas. Responde en segundos, califica a quien llama, agenda trabajos aprobados y registra la llamada completa."
       },
       "q2": {
         "question": "¿Funciona para mi industria?",
-        "answer": "Nuestros agentes contestan para retiro de escombros, HVAC, mudanzas, plomería y otros servicios para el hogar. Si tu teléfono suena fuera de horario y los trabajos se van, un agente encaja."
+        "answer": "Abe Media construye para operadores de plomería, HVAC, mudanzas y retiro de escombros. El mismo modelo de intake funciona para negocios de servicios con llamadas repetibles, reglas claras, alto volumen de leads y handoffs costosos."
       },
       "q3": {
         "question": "¿Qué pasa con la información que toma el agente?",
-        "answer": "Se registra en cuanto termina la llamada — nombre, número, qué necesitan y cuándo. Te llega a tu CRM o correo, y hacemos seguimiento el mismo día. Sin adivinar transcripciones de buzón de voz."
+        "answer": "El sistema registra el nombre, número, solicitud y horario del cliente cuando termina la llamada. Envía el registro a tu CRM o correo y marca cualquier excepción para revisión."
       },
       "q4": {
         "question": "¿Reemplaza a mi despachador o recepcionista?",
-        "answer": "No. Los agentes toman las llamadas que nadie iba a contestar: fuera de horario, fines de semana, cuando la línea está ocupada. Las decisiones importantes siguen siendo de tu equipo."
+        "answer": "El agente cubre llamadas fuera de horario y cuando la línea está ocupada. Tu equipo de dispatch y recepción conserva las decisiones y excepciones."
       },
       "q5": {
         "question": "¿Qué tan rápido lanzamos?",
-        "answer": "Un agente de voz entrenado con tu negocio suele estar en vivo en una o dos semanas. Los sistemas de dispatch y operaciones a medida se definen en una llamada — te damos un plazo claro antes de que se mueva un dólar."
+        "answer": "Un agente de voz entrenado con tu negocio suele estar en vivo en 1–2 semanas. Definimos los sistemas de dispatch a medida en una llamada y te damos el plazo antes de comenzar."
       },
       "q6": {
         "question": "¿El español es realmente nativo?",
-        "answer": "Sí. Escrito por personas, en español, desde el inicio — no traducido por máquina. Los agentes cambian de idioma a media llamada, igual que tus clientes."
+        "answer": "Sí. Escribimos todo el recorrido del cliente en español desde el inicio. El agente puede cambiar de idioma durante la llamada y conservar las mismas reglas de intake, pricebook, lógica de agenda y ruta de escalación."
       },
       "q7": {
         "question": "¿Cuánto cuesta?",
-        "answer": "Menos que los trabajos que estás perdiendo. Corre la calculadora de llamadas perdidas con tus números y revisa la página de precios. En la mayoría de los oficios, un agente de voz cuesta menos al mes que un solo trabajo perdido."
+        "answer": "El precio depende del volumen de llamadas, integraciones, idiomas y complejidad del flujo. La página de precios muestra los puntos de partida. Confirmamos el alcance, plazo, integraciones necesarias y costo antes de comenzar."
       },
       "q8": {
         "question": "¿Se integra con mis herramientas actuales?",
-        "answer": "Ese es el punto. Webhooks de Thumbtack y Housecall Pro, CRMs, calendarios, cotizaciones. Construimos alrededor de lo que ya usas — no migras tu negocio para que quepa el agente."
+        "answer": "Sí. Conectamos Thumbtack, Housecall Pro, CRMs y calendarios con el flujo aprobado. Mapeamos tu proceso actual antes de construir la integración."
       }
     },
     "Testimonials": {
@@ -657,10 +666,8 @@
     "railCap": "LEAD → TRABAJO",
     "liveLabel": "En vivo",
     "Hero": {
-      "eyebrow": "AbeMedia · Caso real",
       "title1": "Del lead al",
       "title2": "trabajo terminado",
-      "clockSub": "acaba de llegar un lead",
       "videoLabel": "Animación abstracta de un pipeline de leads en movimiento",
       "pitchStart": "Un lead que llega a las 11:30 de la noche recibe ",
       "pitchEm": "respuesta, precio y un horario reservable en menos de un minuto",
@@ -1078,7 +1085,7 @@
     "Board": {
       "kicker": "El tablero honesto",
       "title": "Qué corre y dónde, hoy",
-      "lede": "Sin promesas — esto es lo que ya está entregado para este cliente contra lo que está en cola.",
+      "lede": "Sin promesas — esto es lo que ya está funcionando hoy para este cliente.",
       "status": {
         "live": "En vivo",
         "built": "Construido · vista previa",
@@ -1105,7 +1112,7 @@
         {
           "cap": "Enriquecimiento de contactos hacia el CRM",
           "small": "Funciona por completo — los resultados se envían como resumen para revisión",
-          "status": "built"
+          "status": "live"
         },
         {
           "cap": "Estado del trabajo publicado de vuelta a la plataforma de leads",
@@ -1114,8 +1121,8 @@
         },
         {
           "cap": "Auto-reserva total — el sistema crea la cita por sí mismo",
-          "small": "Deliberadamente para después: por ahora la reserva queda en manos del cliente",
-          "status": "future"
+          "small": "Las citas se crean automáticamente en producción",
+          "status": "live"
         }
       ]
     },

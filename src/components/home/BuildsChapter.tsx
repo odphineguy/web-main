@@ -8,21 +8,21 @@ type BuildsChapterProps = { locale: string };
 
 const content = {
   en: {
-    index: "05 / Running now",
-    statement: ["Not decks.", "Not demos.", "Operating systems."],
+    index: "Live systems",
+    statement: ["Built for the field.", "Running today."],
     category: "Logistics & transportation",
     title: "Saguaro Transport",
-    body: "Live fleet tracking, dispatch, CRM, accounting, and HR—one dashboard, not six tabs.",
-    points: ["Real-time GPS and task assignment", "Driver onboarding and compliance", "Customer, invoice, and fleet history"],
+    body: "Saguaro Transport runs fleet tracking and dispatch in one operating view. Customer records, invoicing, compliance, and driver history stay attached to the work.",
+    points: ["Real-time GPS and task assignment", "Route planning and maintenance schedules", "Customer records and invoicing", "Driver onboarding and compliance"],
     cta: "Explore our builds",
   },
   es: {
-    index: "05 / Operando ahora",
-    statement: ["No son decks.", "No son demos.", "Son sistemas reales."],
+    index: "Sistemas en vivo",
+    statement: ["Hechos para el campo.", "Operando hoy."],
     category: "Logística y transporte",
     title: "Saguaro Transport",
-    body: "Flota en vivo, dispatch, CRM, contabilidad y RR. HH.—un tablero, no seis pestañas.",
-    points: ["GPS y asignación en tiempo real", "Onboarding y cumplimiento de conductores", "Historial de clientes, facturas y flota"],
+    body: "Saguaro Transport maneja el rastreo de flota y dispatch en una sola vista operativa. Los clientes, facturas, cumplimiento e historial de conductores permanecen unidos al trabajo.",
+    points: ["GPS y asignación de tareas en tiempo real", "Planeación de rutas y mantenimiento", "Registros de clientes y facturación", "Onboarding y cumplimiento de conductores"],
     cta: "Explorar nuestros sistemas",
   },
 } as const;
@@ -67,7 +67,7 @@ export default function BuildsChapter({ locale }: BuildsChapterProps) {
         <div className="bold-builds__track">
           <div className="bold-builds__statement">
             <p className="bold-home__index">{text.index}</p>
-            <h2>{text.statement.map((line, index) => <span key={line} className={index === 2 ? "is-accent" : undefined}>{line}</span>)}</h2>
+            <h2>{text.statement.map((line, index) => <span key={line} className={index === text.statement.length - 1 ? "is-accent" : undefined}>{line}</span>)}</h2>
           </div>
 
           <article className="bold-builds__case">

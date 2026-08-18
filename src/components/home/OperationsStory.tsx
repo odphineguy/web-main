@@ -7,25 +7,33 @@ type OperationsStoryProps = { locale: string };
 
 const stories = {
   en: {
-    eyebrow: "03 / Lead → job",
-    title: "From missed call to booked job in under a minute.",
-    lede: "The happy path runs by itself. Anything unusual reaches a human with the context already attached.",
+    eyebrow: "Lead → job",
+    title: {
+      before: "From missed call to ",
+      accent: "booked job",
+      after: " in under a minute.",
+    },
+    lede: "Approved jobs move automatically. Exceptions reach a human with the call summary, photos, pricebook match, and decision history attached.",
     steps: [
-      { short: "Lead arrives", hint: "Call, form, Thumbtack, or chat", status: "Incoming lead", kicker: "New request · Phoenix", title: "Garage cleanout", body: "Answered in 8 seconds. English detected. Intake started.", tags: ["After hours", "New customer", "Web lead"] },
-      { short: "Agent decides", hint: "Qualifies, prices, checks capacity", status: "Agent working", kicker: "Intent confirmed · 00:22", title: "2-car garage", body: "Volume, access, material type, and timing collected without a form.", tags: ["Qualified", "Pricebook matched", "No hazards"] },
-      { short: "Customer books", hint: "A real slot lands on the calendar", status: "Slot reserved", kicker: "Tomorrow · 9:30 AM", title: "Job booked", body: "The customer chose a real opening. Confirmation sent immediately.", tags: ["Calendar synced", "SMS sent", "$425 range"] },
-      { short: "Your crew moves", hint: "Dispatch receives every detail", status: "Dispatch updated", kicker: "Crew 02 · Route assigned", title: "Ready to move", body: "Your team receives the job, address, photos, notes, and full call summary.", tags: ["Crew notified", "Route updated", "CRM logged"] },
+      { short: "Lead arrives", hint: "Call, form, Thumbtack, or chat", status: "Incoming lead", kicker: "New request · Phoenix", title: "Garage cleanout", body: "Answered in 8 seconds. English detected. Intake started.", tags: ["After hours", "New customer"] },
+      { short: "Agent decides", hint: "Qualifies, prices, checks capacity", status: "Agent working", kicker: "Intent confirmed · 00:22", title: "2-car garage", body: "Volume, access, material type, and timing collected without a form.", tags: ["Qualified", "Pricebook matched", "Capacity checked", "No hazards"] },
+      { short: "Customer books", hint: "A real slot lands on the calendar", status: "Slot reserved", kicker: "Tomorrow · 9:30 AM", title: "Job booked", body: "The customer chose a real opening. Confirmation sent immediately.", tags: ["Calendar synced", "SMS sent"] },
+      { short: "Your crew moves", hint: "Dispatch receives every detail", status: "Dispatch updated", kicker: "Crew 02 · Route assigned", title: "Ready to move", body: "Your team receives the job details, address, photos, and full call summary.", tags: ["Crew notified", "Route updated"] },
     ],
   },
   es: {
-    eyebrow: "03 / Lead → trabajo",
-    title: "De llamada perdida a trabajo reservado en menos de un minuto.",
-    lede: "El camino normal funciona solo. Cualquier excepción llega a una persona con todo el contexto adjunto.",
+    eyebrow: "Lead → trabajo",
+    title: {
+      before: "De llamada perdida a ",
+      accent: "trabajo reservado",
+      after: " en menos de un minuto.",
+    },
+    lede: "Los trabajos aprobados avanzan automáticamente. Las excepciones llegan a una persona con el resumen de la llamada, fotos, la regla de precio aplicada y el historial de decisiones.",
     steps: [
-      { short: "Llega el lead", hint: "Llamada, formulario, Thumbtack o chat", status: "Lead entrante", kicker: "Nueva solicitud · Phoenix", title: "Limpieza de garaje", body: "Contestada en 8 segundos. Español detectado. Intake iniciado.", tags: ["Fuera de horario", "Cliente nuevo", "Lead web"] },
-      { short: "El agente decide", hint: "Califica, cotiza y revisa capacidad", status: "Agente trabajando", kicker: "Intención confirmada · 00:22", title: "Garaje para 2 autos", body: "Volumen, acceso, materiales y horario recopilados sin formulario.", tags: ["Calificado", "Precio encontrado", "Sin riesgos"] },
-      { short: "El cliente reserva", hint: "Un horario real llega al calendario", status: "Horario reservado", kicker: "Mañana · 9:30 AM", title: "Trabajo reservado", body: "El cliente eligió un horario real. La confirmación salió al instante.", tags: ["Calendario listo", "SMS enviado", "Rango $425"] },
-      { short: "El equipo se mueve", hint: "Dispatch recibe cada detalle", status: "Dispatch actualizado", kicker: "Equipo 02 · Ruta asignada", title: "Listo para salir", body: "Tu equipo recibe el trabajo, dirección, fotos, notas y resumen completo.", tags: ["Equipo avisado", "Ruta lista", "CRM actualizado"] },
+      { short: "Llega el lead", hint: "Llamada, formulario, Thumbtack o chat", status: "Lead entrante", kicker: "Nueva solicitud · Phoenix", title: "Limpieza de garaje", body: "Contestada en 8 segundos. Español detectado. Intake iniciado.", tags: ["Fuera de horario", "Cliente nuevo"] },
+      { short: "El agente decide", hint: "Califica, cotiza y revisa capacidad", status: "Agente trabajando", kicker: "Intención confirmada · 00:22", title: "Garaje para 2 autos", body: "El sistema recopiló volumen, acceso, materiales y horario durante la conversación.", tags: ["Calificado", "Pricebook confirmado", "Capacidad revisada", "Sin riesgos"] },
+      { short: "El cliente reserva", hint: "Un horario real llega al calendario", status: "Horario reservado", kicker: "Mañana · 9:30 AM", title: "Trabajo reservado", body: "El cliente eligió un horario real. La confirmación salió al instante.", tags: ["Calendario listo", "SMS enviado"] },
+      { short: "El equipo se mueve", hint: "Dispatch recibe cada detalle", status: "Dispatch actualizado", kicker: "Equipo 02 · Ruta asignada", title: "Listo para salir", body: "Tu equipo recibe los detalles del trabajo, dirección, fotos y resumen completo de la llamada.", tags: ["Equipo avisado", "Ruta lista"] },
     ],
   },
 } as const;
@@ -84,9 +92,9 @@ export default function OperationsStory({ locale }: OperationsStoryProps) {
 
   return (
     <section ref={sectionRef} className="bold-operation" id="process">
-      <header className="bold-operation__intro bold-home__shell">
+      <header className="bold-operation__intro bold-home__intro--wide bold-home__shell">
         <p className="bold-home__index">{text.eyebrow}</p>
-        <h2>{text.title}</h2>
+        <h2>{text.title.before}<span>{text.title.accent}</span>{text.title.after}</h2>
         <p>{text.lede}</p>
       </header>
 

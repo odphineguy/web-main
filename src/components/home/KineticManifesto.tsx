@@ -8,14 +8,14 @@ type KineticManifestoProps = {
 
 const copy = {
   en: {
-    label: "The operation, compressed",
-    lines: ["Answer in seconds", "Qualify the job", "Book the slot", "Move the crew"],
-    closing: "One continuous system. No voicemail. No copy-and-paste. No lead left waiting.",
+    label: "The operation in motion",
+    lines: ["Answer every call", "Qualify every lead", "Book approved jobs", "Move the crew"],
+    closing: "First-party Thumbtack and Housecall Pro exports from one live junk-removal pipeline show weekly lead spend falling from $1,644 to $582. Cost per lead fell from $32 to $17.",
   },
   es: {
-    label: "La operación, comprimida",
-    lines: ["Contesta en segundos", "Califica el trabajo", "Reserva el horario", "Mueve al equipo"],
-    closing: "Un solo sistema continuo. Sin buzón de voz. Sin copiar y pegar. Ningún lead esperando.",
+    label: "La operación en movimiento",
+    lines: ["Contesta cada llamada", "Califica cada lead", "Agenda trabajos aprobados", "Mueve al equipo"],
+    closing: "Exportaciones propias de Thumbtack y Housecall Pro de un pipeline activo para retiro de escombros muestran que el gasto semanal bajó de $1,644 a $582. El costo por lead bajó de $32 a $17.",
   },
 } as const;
 
@@ -65,7 +65,7 @@ export default function KineticManifesto({ locale }: KineticManifestoProps) {
   return (
     <section ref={sectionRef} className="bold-manifesto" aria-labelledby="manifesto-title">
       <div className="bold-manifesto__sticky">
-        <p className="bold-home__index">01 / {text.label}</p>
+        <p className="bold-home__index">{text.label}</p>
         <h2 id="manifesto-title" className="sr-only">{text.lines.join(". ")}</h2>
         <div className="bold-manifesto__lines" aria-hidden="true">
           {text.lines.map((line, index) => (
