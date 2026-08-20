@@ -26,7 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/faq", lastModified: "2026-08-09", hasSpanishEquivalent: true },
     { path: "/guides/dispatch-software-real-exceptions", lastModified: "2026-08-06", hasSpanishEquivalent: false },
     ...Object.keys(servicePages).map((slug) => ({ path: `/services/${slug}`, lastModified: "2026-08-06", hasSpanishEquivalent: Boolean(servicePagesEs[slug]) })),
-    ...Object.keys(industryPages).map((slug) => ({ path: `/industries/${slug}`, lastModified: "2026-08-06", hasSpanishEquivalent: Boolean(industryPagesEs[slug]) })),
+    ...Object.keys(industryPages).map((slug) => ({ path: `/industries/${slug}`, lastModified: slug === "junk-removal" ? "2026-08-20" : "2026-08-06", hasSpanishEquivalent: Boolean(industryPagesEs[slug]) })),
     ...Object.keys(caseStudyPages).map((slug) => ({ path: `/portfolio/${slug}`, lastModified: "2026-08-06", hasSpanishEquivalent: false })),
   ];
 
