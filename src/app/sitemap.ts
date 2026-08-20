@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/how-it-works", lastModified: "2026-07-19", hasSpanishEquivalent: true },
     { path: "/missed-call-text-back", lastModified: "2026-08-20", hasSpanishEquivalent: true },
     { path: "/ai-receptionist-vs-answering-service", lastModified: "2026-08-20", hasSpanishEquivalent: true },
+    { path: "/smith-ai-alternatives-home-services", lastModified: "2026-08-20", hasSpanishEquivalent: true },
     { path: "/portfolio", lastModified: "2026-05-03", hasSpanishEquivalent: false },
     { path: "/portfolio/mylabcompliance", lastModified: "2026-04-20", hasSpanishEquivalent: false },
     { path: "/portfolio/saguarotransport", lastModified: "2026-04-20", hasSpanishEquivalent: false },
