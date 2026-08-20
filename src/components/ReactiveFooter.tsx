@@ -18,6 +18,7 @@ const footerCopy = {
     explore: "Explore",
     follow: "Follow",
     contact: "Contact",
+    missedCallTextBack: "Missed call text back",
     privacy: "Privacy",
     terms: "Terms",
     items: ["Voice agents", "Dispatch systems", "Lead automation", "Custom apps"],
@@ -31,6 +32,7 @@ const footerCopy = {
     explore: "Explorar",
     follow: "Síguenos",
     contact: "Contacto",
+    missedCallTextBack: "Respuesta por texto",
     privacy: "Privacidad",
     terms: "Términos",
     items: ["Agentes de voz", "Sistemas de dispatch", "Automatización de leads", "Apps a medida"],
@@ -109,6 +111,7 @@ export default function ReactiveFooter({ locale }: ReactiveFooterProps) {
           <Link href={`/${locale}/services`}>Services</Link>
           <Link href={`/${locale}/portfolio`}>Case studies</Link>
           <Link href={`/${locale}/contact`}>Contact</Link>
+          <Link href={`/${locale}/missed-call-text-back`}>{copy.missedCallTextBack}</Link>
         </div>
 
         <div className="reactive-footer__social">
