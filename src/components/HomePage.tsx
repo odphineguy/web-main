@@ -14,7 +14,7 @@ const pageCopy = {
     hero: {
       title: "When the phone rings,",
       accent: "your business moves.",
-      subtitle: "AI voice agents, dispatch systems, lead automation, and estimating tools for service businesses. Abe Perez builds every customer path in English y español with 17 years of dispatch experience.",
+      subtitle: "AI voice agents, dispatch systems, lead automation, and estimating tools for service businesses.",
       secondary: "See a live workflow",
     },
     estimateIndex: "Visual estimate",
@@ -40,7 +40,7 @@ const pageCopy = {
     hero: {
       title: "Cuando suena el teléfono,",
       accent: "tu negocio se mueve.",
-      subtitle: "Agentes de voz con IA, sistemas de dispatch, automatización de leads y herramientas de estimación para negocios de servicios. Abe Perez construye cada recorrido en English y español con 17 años de experiencia en dispatch.",
+      subtitle: "Agentes de voz con IA, sistemas de dispatch, automatización de leads y herramientas de estimación para negocios de servicios.",
       secondary: "Verlo en acción",
     },
     estimateIndex: "Estimado visual",

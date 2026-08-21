@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 type VideoHeroProps = {
   locale: string;
@@ -10,6 +13,17 @@ type VideoHeroProps = {
   secondaryLabel: string;
 };
 
+type NavigatorWithSaveData = Navigator & {
+  connection?: {
+    saveData?: boolean;
+  };
+};
+
+type WindowWithIdleCallback = Window & {
+  requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number;
+  cancelIdleCallback?: (handle: number) => void;
+};
+
 export default function VideoHero({
   locale,
   title,
@@ -18,20 +32,75 @@ export default function VideoHero({
   primaryLabel,
   secondaryLabel,
 }: VideoHeroProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+
+  useEffect(() => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const saveData = (navigator as NavigatorWithSaveData).connection?.saveData === true;
+    const idleWindow = window as WindowWithIdleCallback;
+    let idleHandle: number | undefined;
+    let timeoutHandle: number | undefined;
+
+    const cancelScheduledLoad = () => {
+      if (idleHandle !== undefined) idleWindow.cancelIdleCallback?.(idleHandle);
+      if (timeoutHandle !== undefined) window.clearTimeout(timeoutHandle);
+      idleHandle = undefined;
+      timeoutHandle = undefined;
+    };
+
+    const updatePlaybackPreference = () => {
+      cancelScheduledLoad();
+
+      if (reducedMotion.matches || saveData) {
+        setShouldLoadVideo(false);
+        return;
+      }
+
+      if (idleWindow.requestIdleCallback) {
+        idleHandle = idleWindow.requestIdleCallback(
+          () => setShouldLoadVideo(true),
+          { timeout: 1200 },
+        );
+      } else {
+        timeoutHandle = window.setTimeout(() => setShouldLoadVideo(true), 1);
+      }
+    };
+
+    updatePlaybackPreference();
+    reducedMotion.addEventListener("change", updatePlaybackPreference);
+
+    return () => {
+      cancelScheduledLoad();
+      reducedMotion.removeEventListener("change", updatePlaybackPreference);
+    };
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.load();
+    if (shouldLoadVideo) void video.play().catch(() => undefined);
+  }, [shouldLoadVideo]);
+
   return (
     <section className="home-video-hero" data-home-hero>
       <video
+        ref={videoRef}
         className="home-video-hero__media"
         autoPlay
         muted
         loop
         playsInline
-        preload="metadata"
-        poster="/video/workflow-hero-poster.jpg"
+        preload="none"
+        poster="/video/abe-media-hero-poster.webp"
+        disablePictureInPicture
         aria-hidden="true"
       >
-        {/* Temporary reel. Replace this single path when Abe's product montage is ready. */}
-        <source src="/video/workflow-hero.mp4" type="video/mp4" />
+        {shouldLoadVideo ? (
+          <source src="/video/abe-media-hero.mp4" type="video/mp4" />
+        ) : null}
       </video>
       <div className="home-video-hero__wash" aria-hidden="true" />
 

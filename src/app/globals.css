@@ -2251,6 +2251,10 @@
     padding-bottom: 7rem;
   }
 
+  .home-video-hero__media {
+    object-position: 64% center;
+  }
+
   .home-video-hero__wash {
     background:
       linear-gradient(90deg, rgb(8 8 10 / 0.86), rgb(8 8 10 / 0.42)),
@@ -2306,14 +2310,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .home-video-hero__media {
-    display: none;
-  }
-
-  .home-video-hero {
-    background: #111113 url("/video/workflow-hero-poster.jpg") center / cover no-repeat;
-  }
-
   .reactive-footer__glow,
   .home-video-hero__project-link,
   .home-video-hero__project-link::before,

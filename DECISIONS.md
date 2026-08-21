@@ -266,8 +266,15 @@ table `demoCallClicks` via `formSubmissions.logDemoCallClick`.
   **Resolved 2026-07-12:** deployed to production (cheerful-dinosaur-946) with
   owner approval and verified end-to-end — a live-site hero click logged
   `{locale: en, source: hero}` to the prod table; test rows cleaned up.
-  Note: the Vercel build does NOT run `convex deploy` — future Convex schema/
-  function changes must be deployed manually with `npx convex deploy`.
+  **Updated 2026-08-20:** Production Vercel builds run
+  `npx convex deploy --cmd 'npm run build'` with the production-scoped deploy
+  key. Vercel Preview builds are intentionally disabled at the project level
+  with the **Only build production** Ignored Build Step. The owner does not use
+  or want Preview deployments. Do not re-enable them or add Preview Convex
+  credentials unless the owner explicitly changes this decision. Convex schema
+  and function changes ship automatically with the next `main` production
+  deployment; a manual Convex deploy is only for an explicitly authorized
+  urgent backend-only release.
 - Elena recordings not yet present; player is invisible until mp3s are dropped in.
 - Lighthouse not run headlessly; LCP protection verified structurally
   (SSR hero text + no scroll assets in initial HTML + dynamic ssr:false imports).
