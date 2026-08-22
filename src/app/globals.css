@@ -716,8 +716,8 @@
 }
 
 .bold-home__intro--wide h2 {
-  font-size: clamp(3.7rem, 5.2vw, 5.6rem);
-  line-height: 0.88;
+  font-size: clamp(3.7rem, 6vw, 6.7rem);
+  line-height: 0.86;
 }
 
 .bold-home__intro--wide h2 span {
@@ -810,7 +810,7 @@
   width: max-content;
   margin: 0;
   font-family: var(--font-ds-display), Impact, sans-serif;
-  font-size: clamp(5.5rem, 12vw, 13rem);
+  font-size: clamp(3.7rem, 6vw, 6.7rem);
   font-weight: 800;
   line-height: 0.72;
   letter-spacing: -0.045em;
@@ -1496,7 +1496,7 @@
   display: grid;
   margin: 2rem 0 0;
   font-family: var(--font-ds-display), Impact, sans-serif;
-  font-size: clamp(5rem, 10vw, 11rem);
+  font-size: clamp(3.7rem, 6vw, 6.7rem);
   font-weight: 800;
   line-height: 0.73;
   letter-spacing: -0.04em;
@@ -1665,7 +1665,7 @@
 .bold-about__copy h2 {
   margin: 0 0 var(--bold-space-xl);
   font-family: var(--font-ds-display), Impact, sans-serif;
-  font-size: clamp(3.4rem, 5.4vw, 5.8rem);
+  font-size: clamp(3.7rem, 6vw, 6.7rem);
   font-weight: 800;
   line-height: 0.88;
   letter-spacing: -0.035em;
@@ -1747,8 +1747,8 @@
 .bold-contact h2 {
   max-width: 12ch;
   margin: 1.25rem auto;
-  font-size: clamp(5.5rem, 10vw, 11rem);
-  line-height: 0.75;
+  font-size: clamp(3.7rem, 6vw, 6.7rem);
+  line-height: 0.86;
 }
 
 .bold-contact .bold-home__shell > p:not(.bold-home__index) {
@@ -2456,7 +2456,7 @@
   max-width: 12ch;
   color: white;
   font-family: var(--font-ds-display), Impact, sans-serif;
-  font-size: clamp(3.4rem, 7.5vw, 7.7rem);
+  font-size: clamp(3.7rem, 6vw, 6.7rem);
   font-weight: 780;
   line-height: 0.84;
   letter-spacing: -0.025em;
