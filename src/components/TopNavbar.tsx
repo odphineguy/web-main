@@ -50,7 +50,11 @@ export default function TopNavbar() {
 
   const closeMenu = () => setMobileMenuOpen(false);
   const linkClass = (href: string) =>
-    `font-[var(--font-ds-mono)] text-[13px] font-semibold uppercase tracking-[0.14em] transition-colors ${isActive(href) ? "text-orange-500" : "text-[#111827]/75 hover:text-[#111827]"}`;
+    `relative py-1 font-[var(--font-ds-mono)] text-[13px] font-semibold uppercase tracking-[0.14em] transition-colors after:absolute after:inset-x-0 after:bottom-0 after:h-[2px] after:origin-left after:bg-orange-500 after:transition-transform after:duration-300 after:ease-out after:content-[''] ${
+      isActive(href)
+        ? "text-orange-500 after:scale-x-100"
+        : "text-[#111827]/75 after:scale-x-0 hover:text-[#111827] hover:after:scale-x-100"
+    }`;
 
   return (
     <div className="pointer-events-none fixed inset-x-0 top-4 z-50 px-4">
@@ -63,8 +67,8 @@ export default function TopNavbar() {
             transition={{ duration: 0.48, ease: [0.16, 1, 0.3, 1] }}
             className="pointer-events-auto relative mx-auto min-h-[68px] max-w-[1280px] rounded-full border border-black/10 bg-[#f7f5ef]/95 text-[#111827] shadow-[0_18px_55px_rgba(17,24,39,0.14)] backdrop-blur-xl"
           >
-            <div className="flex min-h-[68px] items-center justify-between gap-5 px-4 pl-6">
-              <Link href={localizedHref("/")} className="shrink-0 transition-opacity hover:opacity-75">
+            <div className="grid min-h-[68px] grid-cols-[1fr_auto] items-center gap-5 px-4 pl-6 lg:grid-cols-[minmax(11rem,1fr)_auto_minmax(11rem,1fr)]">
+              <Link href={localizedHref("/")} className="w-fit shrink-0 transition-opacity hover:opacity-75">
                 <Image
                   src="/images/home/abemedia-new-darkmode.png"
                   alt="Abe Media"
@@ -75,24 +79,27 @@ export default function TopNavbar() {
                 />
               </Link>
 
-              <nav className="hidden items-center gap-5 whitespace-nowrap lg:flex">
+              <nav className="hidden items-center justify-center gap-6 justify-self-center whitespace-nowrap lg:flex">
                 <Link href={localizedHref("/services")} className={linkClass("/services")}>{t("services")}</Link>
                 <Link href="/en/portfolio" hrefLang="en" className={linkClass("/portfolio")}>{t("work")}</Link>
                 <Link href={localizedHref("/how-it-works")} className={linkClass("/how-it-works")}>{t("howItWorks")}</Link>
                 <Link href={localizedHref("/pricing")} className={linkClass("/pricing")}>{t("pricing")}</Link>
                 <Link href="/en/about/abe-perez" hrefLang="en" className={linkClass("/about")}>{t("about")}</Link>
+              </nav>
+
+              <div className="hidden justify-self-end lg:block">
                 <Link
                   href={localizedHref("/contact")}
-                  className="group ml-2 inline-flex items-center gap-2 rounded-full bg-orange-500 py-2.5 pr-2.5 pl-5 font-[var(--font-ds-body)] font-semibold text-white transition-colors hover:bg-[#111827]"
+                  className="group inline-flex items-center gap-2 rounded-full bg-orange-500 py-2.5 pr-2.5 pl-5 font-[var(--font-ds-body)] font-semibold text-white transition-colors hover:bg-[#111827]"
                 >
                   {t("getStarted")}
                   <span className="grid h-7 w-7 place-items-center rounded-full border border-white/40">
                     <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                   </span>
                 </Link>
-              </nav>
+              </div>
 
-              <div className="flex items-center gap-2 lg:hidden">
+              <div className="flex items-center gap-2 justify-self-end lg:hidden">
                 <button
                   onClick={() => setMobileMenuOpen((open) => !open)}
                   className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-orange-500 text-white"
