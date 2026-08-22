@@ -21,9 +21,6 @@ const pageCopy = {
       secondary: "See a live workflow",
     },
     estimateIndex: "Visual estimate",
-    estimateNote: "What the lead includes",
-    estimateItems: ["Finished design", "Traced square footage", "Budget range", "Customer intent"],
-    estimatePrompt: "Drag the handle to see the same before-and-after view your customer receives.",
     leadIndex: "The owner's inbox",
     leadTitle: "The render lands in your inbox as a lead.",
     leadBody: "Name, phone, the finished design, traced square footage, and a budget range — attached to an email before you ever pick up the phone.",
@@ -53,9 +50,6 @@ const pageCopy = {
       secondary: "Verlo en acción",
     },
     estimateIndex: "Estimado visual",
-    estimateNote: "Lo que incluye el lead",
-    estimateItems: ["Diseño terminado", "Pies cuadrados trazados", "Rango de presupuesto", "Intención del cliente"],
-    estimatePrompt: "Arrastra el control para ver la misma comparación que recibe tu cliente.",
     leadIndex: "El inbox del dueño",
     leadTitle: "El diseño llega a tu inbox como un lead.",
     leadBody: "Nombre, teléfono, el diseño terminado, los pies cuadrados trazados y un rango de presupuesto — adjuntos a un correo antes de que levantes el teléfono.",
@@ -118,49 +112,42 @@ export default function HomePage() {
             <p>{t("VisualEstimate.lede")}</p>
           </header>
 
-          <div className="bold-estimate__layout">
-            <BeforeAfterSlider
-              className="bold-estimate__compare"
-              beforeLabel={t("VisualEstimate.beforeLabel")}
-              afterLabel={t("VisualEstimate.afterLabel")}
-              tabsLabel={t("VisualEstimate.tabsLabel")}
-              frameAspectClassName="aspect-[4/3] sm:aspect-[16/9]"
-              pairs={[{
-                id: "turf",
-                label: t("VisualEstimate.turfLabel"),
-                beforeSrc: "/images/home/turf-before.webp",
-                afterSrc: "/images/home/turf-after.webp",
-                beforeAlt: t("VisualEstimate.turfBeforeAlt"),
-                afterAlt: t("VisualEstimate.turfAfterAlt"),
-              }, {
-                id: "paint",
-                label: t("VisualEstimate.paintLabel"),
-                beforeSrc: "/images/home/paint-before.webp",
-                afterSrc: "/images/home/paint-after.webp",
-                beforeAlt: t("VisualEstimate.paintBeforeAlt"),
-                afterAlt: t("VisualEstimate.paintAfterAlt"),
-              }, {
-                id: "doors",
-                label: t("VisualEstimate.doorsLabel"),
-                beforeSrc: "/images/home/door-before.webp",
-                afterSrc: "/images/home/door-after.webp",
-                beforeAlt: t("VisualEstimate.doorsBeforeAlt"),
-                afterAlt: t("VisualEstimate.doorsAfterAlt"),
-              }, {
-                id: "windows",
-                label: t("VisualEstimate.windowsLabel"),
-                beforeSrc: "/images/home/windows-before.webp",
-                afterSrc: "/images/home/windows-after.webp",
-                beforeAlt: t("VisualEstimate.windowsBeforeAlt"),
-                afterAlt: t("VisualEstimate.windowsAfterAlt"),
-              }]}
-            />
-            <aside className="bold-estimate__note">
-              <p className="bold-home__index">{text.estimateNote}</p>
-              <ol>{text.estimateItems.map((item, index) => <li key={item}><span>{String(index + 1).padStart(2, "0")}</span><b>{item}</b></li>)}</ol>
-              <p>{text.estimatePrompt}</p>
-            </aside>
-          </div>
+          <BeforeAfterSlider
+            className="bold-estimate__compare"
+            beforeLabel={t("VisualEstimate.beforeLabel")}
+            afterLabel={t("VisualEstimate.afterLabel")}
+            tabsLabel={t("VisualEstimate.tabsLabel")}
+            frameAspectClassName="aspect-[4/3] sm:aspect-[16/9]"
+            pairs={[{
+              id: "turf",
+              label: t("VisualEstimate.turfLabel"),
+              beforeSrc: "/images/home/turf-before.webp",
+              afterSrc: "/images/home/turf-after.webp",
+              beforeAlt: t("VisualEstimate.turfBeforeAlt"),
+              afterAlt: t("VisualEstimate.turfAfterAlt"),
+            }, {
+              id: "paint",
+              label: t("VisualEstimate.paintLabel"),
+              beforeSrc: "/images/home/paint-before.webp",
+              afterSrc: "/images/home/paint-after.webp",
+              beforeAlt: t("VisualEstimate.paintBeforeAlt"),
+              afterAlt: t("VisualEstimate.paintAfterAlt"),
+            }, {
+              id: "doors",
+              label: t("VisualEstimate.doorsLabel"),
+              beforeSrc: "/images/home/door-before.webp",
+              afterSrc: "/images/home/door-after.webp",
+              beforeAlt: t("VisualEstimate.doorsBeforeAlt"),
+              afterAlt: t("VisualEstimate.doorsAfterAlt"),
+            }, {
+              id: "windows",
+              label: t("VisualEstimate.windowsLabel"),
+              beforeSrc: "/images/home/windows-before.webp",
+              afterSrc: "/images/home/windows-after.webp",
+              beforeAlt: t("VisualEstimate.windowsBeforeAlt"),
+              afterAlt: t("VisualEstimate.windowsAfterAlt"),
+            }]}
+          />
 
           <div className="bold-estimate__lead">
             <div className="bold-estimate__lead-copy">

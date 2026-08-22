@@ -862,17 +862,14 @@
   scroll-margin-top: 6rem;
 }
 
-.bold-estimate__layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 18rem;
-  align-items: stretch;
-  gap: var(--bold-space-xl);
-}
-
 .bold-estimate__phone {
   justify-self: end;
   width: 100%;
   max-width: 30rem;
+  max-height: 36rem;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(180deg, #000 72%, transparent 98%);
+  mask-image: linear-gradient(180deg, #000 72%, transparent 98%);
 }
 
 .bold-estimate__compare .before-after__frame {
@@ -880,47 +877,6 @@
   border-color: var(--bold-line);
   border-radius: 1.25rem;
   box-shadow: 0 2.5rem 5rem color-mix(in oklch, var(--bold-ink), transparent 90%);
-}
-
-.bold-estimate__note {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: var(--bold-space-xl);
-  padding: 1.5rem;
-  border: 1px solid var(--bold-line);
-  border-radius: 1.25rem;
-  background: var(--bold-paper-light);
-}
-
-.bold-estimate__note ol {
-  display: grid;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.bold-estimate__note li {
-  display: grid;
-  grid-template-columns: 2rem 1fr;
-  align-items: center;
-  gap: var(--bold-space-sm);
-  padding-block: 0.95rem;
-  border-bottom: 1px solid var(--bold-line);
-  font-size: 0.9rem;
-}
-
-.bold-estimate__note li span {
-  color: var(--bold-orange);
-  font-family: var(--font-ds-mono), monospace;
-  font-size: 0.62rem;
-}
-
-.bold-estimate__note > p:last-child {
-  margin: 0;
-  color: var(--bold-ink-soft);
-  font-size: 0.86rem;
-  line-height: 1.55;
 }
 
 /* Lead phone mockup — the email the owner receives, framed as a device */
@@ -1855,16 +1811,6 @@
     display: none;
   }
 
-  .bold-estimate__layout {
-    grid-template-columns: 1fr;
-  }
-
-  .bold-estimate__note {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    align-items: center;
-  }
-
   .bold-estimate__lead {
     grid-template-columns: 1fr;
   }
@@ -2015,10 +1961,6 @@
   .bold-operation__intro h2,
   .bold-faq h2 {
     font-size: clamp(3.7rem, 16vw, 5.5rem);
-  }
-
-  .bold-estimate__note {
-    display: flex;
   }
 
   .bold-estimate__compare .before-after__frame {
