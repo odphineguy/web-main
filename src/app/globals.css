@@ -846,9 +846,23 @@
 
 .bold-estimate__layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 18rem;
-  align-items: stretch;
-  gap: var(--bold-space-xl);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 21rem);
+  align-items: center;
+  gap: clamp(2rem, 4vw, 4.5rem);
+}
+
+.bold-estimate__prompt {
+  margin: 1.25rem 0 0;
+  color: var(--bold-ink-soft);
+  font-size: 0.86rem;
+  line-height: 1.55;
+  text-align: center;
+}
+
+.bold-estimate__phone {
+  justify-self: center;
+  width: 100%;
+  max-width: 21rem;
 }
 
 .bold-estimate__compare .before-after__frame {
@@ -902,7 +916,7 @@
 /* Lead phone mockup — the email the owner receives, framed as a device */
 .bold-estimate__lead {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 22rem);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
   align-items: center;
   gap: clamp(2.5rem, 5vw, 6rem);
   margin-top: clamp(3.5rem, 6vw, 6rem);
@@ -933,17 +947,9 @@
   line-height: 1.65;
 }
 
-.bold-estimate__lead .phone-frame {
-  justify-self: end;
-}
-
 @media (max-width: 900px) {
   .bold-estimate__lead {
     grid-template-columns: 1fr;
-  }
-
-  .bold-estimate__lead .phone-frame {
-    justify-self: center;
   }
 }
 
@@ -984,6 +990,62 @@
   display: block;
   width: 100%;
   height: auto;
+}
+
+/* Bare variant — the artwork already includes the device shell, so no CSS
+   bezel. Screens cross-fade in place, reading as the screen changing. */
+.phone-frame--bare {
+  position: relative;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.phone-frame__stage {
+  position: relative;
+}
+
+.phone-frame__stage img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 2rem 3.5rem color-mix(in oklch, var(--bold-ink), transparent 78%));
+}
+
+.phone-frame__fade {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  animation: phone-frame-fade 11s ease-in-out infinite;
+}
+
+.phone-frame--bare:hover .phone-frame__fade {
+  animation-play-state: paused;
+}
+
+@keyframes phone-frame-fade {
+  0%,
+  38% {
+    opacity: 0;
+  }
+
+  48%,
+  88% {
+    opacity: 1;
+  }
+
+  98%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phone-frame__fade {
+    animation: none;
+  }
 }
 
 @supports (container-type: size) {
@@ -1787,10 +1849,8 @@
     grid-template-columns: 1fr;
   }
 
-  .bold-estimate__note {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    align-items: center;
+  .bold-estimate__lead {
+    grid-template-columns: 1fr;
   }
 
   .bold-builds__statement {
@@ -1935,10 +1995,6 @@
   .bold-operation__intro h2,
   .bold-faq h2 {
     font-size: clamp(3.7rem, 16vw, 5.5rem);
-  }
-
-  .bold-estimate__note {
-    display: flex;
   }
 
   .bold-estimate__compare .before-after__frame {

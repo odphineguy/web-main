@@ -119,7 +119,8 @@ export default function HomePage() {
           </header>
 
           <div className="bold-estimate__layout">
-            <BeforeAfterSlider
+            <div className="bold-estimate__demo">
+              <BeforeAfterSlider
               className="bold-estimate__compare"
               beforeLabel={t("VisualEstimate.beforeLabel")}
               afterLabel={t("VisualEstimate.afterLabel")}
@@ -154,12 +155,18 @@ export default function HomePage() {
                 beforeAlt: t("VisualEstimate.windowsBeforeAlt"),
                 afterAlt: t("VisualEstimate.windowsAfterAlt"),
               }]}
+              />
+              <p className="bold-estimate__prompt">{text.estimatePrompt}</p>
+            </div>
+            <PhoneFrame
+              mode="fade"
+              framed={false}
+              className="bold-estimate__phone"
+              screens={[
+                { src: "/images/home/phone-lead1.webp", alt: text.leadAlt1, width: 1530, height: 3036 },
+                { src: "/images/home/phone-lead2.webp", alt: text.leadAlt2, width: 1530, height: 3036 },
+              ]}
             />
-            <aside className="bold-estimate__note">
-              <p className="bold-home__index">{text.estimateNote}</p>
-              <ol>{text.estimateItems.map((item, index) => <li key={item}><span>{String(index + 1).padStart(2, "0")}</span><b>{item}</b></li>)}</ol>
-              <p>{text.estimatePrompt}</p>
-            </aside>
           </div>
 
           <div className="bold-estimate__lead">
@@ -168,13 +175,10 @@ export default function HomePage() {
               <h3>{text.leadTitle}</h3>
               <p>{text.leadBody}</p>
             </div>
-            <PhoneFrame
-              animate
-              screens={[
-                { src: "/images/home/phone-lead1.webp", alt: text.leadAlt1, width: 1530, height: 3036 },
-                { src: "/images/home/phone-lead2.webp", alt: text.leadAlt2, width: 1530, height: 3036 },
-              ]}
-            />
+            <aside className="bold-estimate__note">
+              <p className="bold-home__index">{text.estimateNote}</p>
+              <ol>{text.estimateItems.map((item, index) => <li key={item}><span>{String(index + 1).padStart(2, "0")}</span><b>{item}</b></li>)}</ol>
+            </aside>
           </div>
         </div>
       </section>
