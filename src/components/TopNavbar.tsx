@@ -63,7 +63,7 @@ export default function TopNavbar() {
 
   const closeMenu = () => setMobileMenuOpen(false);
   const linkClass = (href: string) =>
-    `font-bold transition-colors ${isActive(href) ? "text-orange-500" : "text-[#111827]/75 hover:text-[#111827]"}`;
+    `font-[var(--font-ds-mono)] text-[13px] font-semibold uppercase tracking-[0.14em] transition-colors ${isActive(href) ? "text-orange-500" : "text-[#111827]/75 hover:text-[#111827]"}`;
 
   return (
     <div className="pointer-events-none fixed inset-x-0 top-4 z-50 px-4">
@@ -88,17 +88,15 @@ export default function TopNavbar() {
                 />
               </Link>
 
-              <nav className="hidden items-center gap-2.5 whitespace-nowrap text-sm xl:flex">
+              <nav className="hidden items-center gap-5 whitespace-nowrap lg:flex">
                 <Link href={localizedHref("/services")} className={linkClass("/services")}>{t("services")}</Link>
-                <Link href="/en/industries" hrefLang="en" className={linkClass("/industries")}>{t("industries")}</Link>
-                <Link href="/en/portfolio" hrefLang="en" className={linkClass("/portfolio")}>{t("caseStudies")}</Link>
-                <Link href="/en/systems-we-build" hrefLang="en" className={linkClass("/systems-we-build")}>{t("builds")}</Link>
+                <Link href="/en/portfolio" hrefLang="en" className={linkClass("/portfolio")}>{t("work")}</Link>
                 <Link href={localizedHref("/how-it-works")} className={linkClass("/how-it-works")}>{t("howItWorks")}</Link>
                 <Link href={localizedHref("/pricing")} className={linkClass("/pricing")}>{t("pricing")}</Link>
                 <Link href="/en/about/abe-perez" hrefLang="en" className={linkClass("/about")}>{t("about")}</Link>
                 <Link
                   href={localizedHref("/contact")}
-                  className="group ml-2 inline-flex items-center gap-2 rounded-full bg-orange-500 py-2.5 pr-2.5 pl-5 font-semibold text-white transition-colors hover:bg-[#111827]"
+                  className="group ml-2 inline-flex items-center gap-2 rounded-full bg-orange-500 py-2.5 pr-2.5 pl-5 font-[var(--font-ds-body)] font-semibold text-white transition-colors hover:bg-[#111827]"
                 >
                   {t("getStarted")}
                   <span className="grid h-7 w-7 place-items-center rounded-full border border-white/40">
@@ -115,7 +113,7 @@ export default function TopNavbar() {
                 </button>
               </nav>
 
-              <div className="flex items-center gap-2 xl:hidden">
+              <div className="flex items-center gap-2 lg:hidden">
                 <button
                   ref={themeRef}
                   onClick={toggleSwitchTheme}
@@ -142,21 +140,22 @@ export default function TopNavbar() {
                   animate={{ opacity: 1, gridTemplateRows: "1fr" }}
                   exit={{ opacity: 0, gridTemplateRows: "0fr" }}
                   transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                  className="grid overflow-hidden rounded-b-[2rem] bg-[#f7f5ef] xl:hidden"
+                  className="grid overflow-hidden rounded-b-[2rem] bg-[#f7f5ef] lg:hidden"
                 >
                   <div className="min-h-0">
                     <div className="flex flex-col gap-1 px-6 pt-3 pb-6">
                       {[
-                        ["/services", t("services")], ["/industries", t("industries")],
-                        ["/portfolio", t("caseStudies")], ["/systems-we-build", t("builds")],
-                        ["/how-it-works", t("howItWorks")], ["/pricing", t("pricing")],
+                        ["/services", t("services")],
+                        ["/portfolio", t("work")],
+                        ["/how-it-works", t("howItWorks")],
+                        ["/pricing", t("pricing")],
                         ["/about/abe-perez", t("about")],
                       ].map(([href, label]) => (
-                        <Link key={href} href={localizedHref(href)} onClick={closeMenu} className="border-b border-black/10 py-3 text-lg font-bold">
+                        <Link key={href} href={localizedHref(href)} onClick={closeMenu} className="border-b border-black/10 py-3 font-[var(--font-ds-display)] text-2xl font-bold uppercase tracking-wide">
                           {label}
                         </Link>
                       ))}
-                      <Link href={localizedHref("/contact")} onClick={closeMenu} className="mt-3 rounded-full bg-orange-500 px-5 py-3 text-center font-bold text-white">
+                      <Link href={localizedHref("/contact")} onClick={closeMenu} className="mt-3 rounded-full bg-orange-500 px-5 py-3 text-center font-[var(--font-ds-body)] font-bold text-white">
                         {t("getStarted")}
                       </Link>
                     </div>

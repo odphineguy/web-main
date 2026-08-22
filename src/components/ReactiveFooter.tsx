@@ -110,6 +110,8 @@ export default function ReactiveFooter({ locale }: ReactiveFooterProps) {
           <Link href={`/${locale}/about/abe-perez`}>About</Link>
           <Link href={`/${locale}/services`}>Services</Link>
           <Link href={`/${locale}/portfolio`}>Case studies</Link>
+          <Link href={`/${locale}/industries`}>Industries</Link>
+          <Link href={`/${locale}/systems-we-build`}>Our builds</Link>
           <Link href={`/${locale}/contact`}>Contact</Link>
           <Link href={`/${locale}/missed-call-text-back`}>{copy.missedCallTextBack}</Link>
         </div>
