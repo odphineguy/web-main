@@ -1470,6 +1470,94 @@
   line-height: 1.65;
 }
 
+/* Founder story — the one place personal credibility lives on the page */
+.bold-about {
+  padding-block: clamp(6rem, 10vw, 10rem);
+  background: var(--bold-paper);
+}
+
+.bold-about__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 24rem) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(3rem, 6vw, 7rem);
+}
+
+.bold-about__photo img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--bold-line);
+  border-radius: 1.25rem;
+  box-shadow: 0 2.5rem 5rem color-mix(in oklch, var(--bold-ink), transparent 90%);
+}
+
+.bold-about__copy .bold-home__index {
+  margin-bottom: var(--bold-space-lg);
+}
+
+.bold-about__copy h2 {
+  margin: 0 0 var(--bold-space-xl);
+  font-family: var(--font-ds-display), Impact, sans-serif;
+  font-size: clamp(3.4rem, 5.4vw, 5.8rem);
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.bold-about__copy > p:not(.bold-home__index) {
+  max-width: 52ch;
+  margin: 0 0 1rem;
+  color: var(--bold-ink-soft);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.bold-about__copy .bold-about__now {
+  color: var(--bold-ink);
+  font-weight: 600;
+}
+
+.bold-about__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.75rem;
+  padding: 0;
+  margin: var(--bold-space-xl) 0 0;
+  list-style: none;
+}
+
+.bold-about__facts li {
+  color: var(--bold-orange);
+  font-family: var(--font-ds-mono), monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.bold-about__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: var(--bold-space-xl);
+  color: var(--bold-ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+@media (max-width: 900px) {
+  .bold-about__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .bold-about__photo {
+    max-width: 20rem;
+  }
+}
+
 .bold-contact {
   position: relative;
   isolation: isolate;

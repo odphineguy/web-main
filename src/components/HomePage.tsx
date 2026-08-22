@@ -9,6 +9,7 @@ import KineticManifesto from "@/components/home/KineticManifesto";
 import OperationsStory from "@/components/home/OperationsStory";
 import CallProof from "@/components/home/CallProof";
 import BuildsChapter from "@/components/home/BuildsChapter";
+import AboutFounder from "@/components/home/AboutFounder";
 
 const pageCopy = {
   en: {
@@ -192,6 +193,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <AboutFounder locale={locale} />
 
       <section className="bold-contact">
         <div className="bold-contact__orb bold-contact__orb--small" aria-hidden="true" />
