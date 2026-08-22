@@ -32,12 +32,11 @@ export default function KineticManifesto({ locale }: KineticManifestoProps) {
       frame = 0;
       if (!visible) return;
       const rect = section.getBoundingClientRect();
-      const range = Math.max(1, rect.height - window.innerHeight);
-      const progress = Math.min(1, Math.max(0, -rect.top / range));
-      const distance = window.innerWidth < 700 ? 4 : 20;
-      const shift = (progress - 0.5) * distance;
-      section.style.setProperty("--manifesto-shift", `${shift}vw`);
-      section.style.setProperty("--manifesto-shift-reverse", `${-shift}vw`);
+      // Progress runs from the section's first visible pixel through the end
+      // of the pin, so the lines start flying in as soon as the section
+      // appears instead of waiting for the sticky region to engage.
+      const range = Math.max(1, rect.height);
+      const progress = Math.min(1, Math.max(0, (window.innerHeight - rect.top) / range));
       section.style.setProperty("--manifesto-progress", String(progress));
     };
     const requestUpdate = () => {

@@ -773,11 +773,9 @@
 /* Kinetic manifesto: the large words become the transition out of the video
    instead of falling directly into another conventional content section. */
 .bold-manifesto {
-  --manifesto-shift: -10vw;
-  --manifesto-shift-reverse: 10vw;
   --manifesto-progress: 0;
   position: relative;
-  min-height: 270vh;
+  min-height: 230vh;
   color: var(--bold-paper-light);
   background: var(--bold-ink);
 }
@@ -804,7 +802,12 @@
   width: 100%;
 }
 
+/* Each line flies in from off-screen as the section scrubs: --enter goes
+   0 -> 1 inside a staggered window of the section progress, then a small
+   residual drift keeps the block alive for the rest of the pin. */
 .bold-manifesto__lines p {
+  --enter-start: 0.05;
+  --enter: clamp(0, calc((var(--manifesto-progress) - var(--enter-start)) / 0.25), 1);
   display: flex;
   align-items: flex-start;
   width: max-content;
@@ -816,13 +819,25 @@
   letter-spacing: -0.045em;
   text-transform: uppercase;
   white-space: nowrap;
-  transform: translate3d(var(--manifesto-shift), 0, 0);
+  transform: translate3d(calc((1 - var(--enter)) * -110vw + (var(--manifesto-progress) - 0.65) * -5vw), 0, 0);
   will-change: transform;
 }
 
 .bold-manifesto__lines p:nth-child(even) {
   margin-left: auto;
-  transform: translate3d(var(--manifesto-shift-reverse), 0, 0);
+  transform: translate3d(calc((1 - var(--enter)) * 110vw + (var(--manifesto-progress) - 0.65) * 5vw), 0, 0);
+}
+
+.bold-manifesto__lines p:nth-child(2) {
+  --enter-start: 0.25;
+}
+
+.bold-manifesto__lines p:nth-child(3) {
+  --enter-start: 0.45;
+}
+
+.bold-manifesto__lines p:nth-child(4) {
+  --enter-start: 0.6;
 }
 
 .bold-manifesto__lines p.is-accent {
