@@ -899,6 +899,119 @@
   line-height: 1.55;
 }
 
+/* Lead phone mockup — the email the owner receives, framed as a device */
+.bold-estimate__lead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 22rem);
+  align-items: center;
+  gap: clamp(2.5rem, 5vw, 6rem);
+  margin-top: clamp(3.5rem, 6vw, 6rem);
+  padding-top: clamp(2.5rem, 4vw, 4.5rem);
+  border-top: 1px solid var(--bold-line);
+}
+
+.bold-estimate__lead-copy .bold-home__index {
+  margin-bottom: var(--bold-space-lg);
+}
+
+.bold-estimate__lead-copy h3 {
+  margin: 0;
+  font-family: var(--font-ds-display), Impact, sans-serif;
+  font-size: clamp(2.4rem, 4vw, 4.2rem);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.bold-estimate__lead-copy p:not(.bold-home__index) {
+  max-width: 46ch;
+  margin: var(--bold-space-lg) 0 0;
+  color: var(--bold-ink-soft);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.bold-estimate__lead .phone-frame {
+  justify-self: end;
+}
+
+@media (max-width: 900px) {
+  .bold-estimate__lead {
+    grid-template-columns: 1fr;
+  }
+
+  .bold-estimate__lead .phone-frame {
+    justify-self: center;
+  }
+}
+
+/* Phone frame — generic device shell; accepts stacked screenshots today and
+   video or live content later via children */
+.phone-frame {
+  position: relative;
+  width: 100%;
+  max-width: 19rem;
+  padding: 0.7rem;
+  border: 1px solid color-mix(in oklch, var(--bold-ink), transparent 55%);
+  border-radius: 2.9rem;
+  background: var(--bold-ink);
+  box-shadow: 0 2.5rem 5rem color-mix(in oklch, var(--bold-ink), transparent 82%);
+}
+
+.phone-frame__notch {
+  position: absolute;
+  top: 1.25rem;
+  left: 50%;
+  z-index: 2;
+  width: 5.5rem;
+  height: 1.05rem;
+  border-radius: 99rem;
+  background: var(--bold-ink);
+  transform: translateX(-50%);
+}
+
+.phone-frame__screen {
+  overflow: hidden;
+  aspect-ratio: 9 / 19;
+  border-radius: 2.25rem;
+  background: #ffffff;
+  container-type: size;
+}
+
+.phone-frame__track img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@supports (container-type: size) {
+  .phone-frame__track--scroll {
+    animation: phone-frame-scroll 28s ease-in-out 1.5s infinite alternate;
+  }
+
+  .phone-frame:hover .phone-frame__track--scroll {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes phone-frame-scroll {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(calc(-100% + 100cqh));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phone-frame__track--scroll {
+    animation: none;
+  }
+}
+
 /* Lead-to-job sequence */
 .bold-operation {
   --operation-progress: 0;

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
+import PhoneFrame from "@/components/PhoneFrame";
 import { homeFaqIds } from "@/components/HomeFaq";
 import VideoHero from "@/components/home/VideoHero";
 import KineticManifesto from "@/components/home/KineticManifesto";
@@ -23,6 +24,11 @@ const pageCopy = {
     estimateNote: "What the lead includes",
     estimateItems: ["Finished design", "Traced square footage", "Budget range", "Customer intent"],
     estimatePrompt: "Drag the handle to see the same before-and-after view your customer receives.",
+    leadIndex: "The owner's inbox",
+    leadTitle: "The render lands in your inbox as a lead.",
+    leadBody: "Name, phone, the finished design, traced square footage, and a budget range — attached to an email before you ever pick up the phone.",
+    leadAlt1: "Lead email a business owner receives, part one: customer details and the finished AI design",
+    leadAlt2: "Lead email a business owner receives, part two: traced square footage and budget range",
     servicesIndex: "What we build",
     servicesTitle: {
       before: "Software built around how your ",
@@ -50,6 +56,11 @@ const pageCopy = {
     estimateNote: "Lo que incluye el lead",
     estimateItems: ["Diseño terminado", "Pies cuadrados trazados", "Rango de presupuesto", "Intención del cliente"],
     estimatePrompt: "Arrastra el control para ver la misma comparación que recibe tu cliente.",
+    leadIndex: "El inbox del dueño",
+    leadTitle: "El diseño llega a tu inbox como un lead.",
+    leadBody: "Nombre, teléfono, el diseño terminado, los pies cuadrados trazados y un rango de presupuesto — adjuntos a un correo antes de que levantes el teléfono.",
+    leadAlt1: "Correo de lead que recibe el dueño del negocio, parte uno: datos del cliente y el diseño terminado con IA",
+    leadAlt2: "Correo de lead que recibe el dueño del negocio, parte dos: pies cuadrados trazados y rango de presupuesto",
     servicesIndex: "Lo que construimos",
     servicesTitle: {
       before: "Software construido alrededor de cómo funciona tu ",
@@ -149,6 +160,21 @@ export default function HomePage() {
               <ol>{text.estimateItems.map((item, index) => <li key={item}><span>{String(index + 1).padStart(2, "0")}</span><b>{item}</b></li>)}</ol>
               <p>{text.estimatePrompt}</p>
             </aside>
+          </div>
+
+          <div className="bold-estimate__lead">
+            <div className="bold-estimate__lead-copy">
+              <p className="bold-home__index">{text.leadIndex}</p>
+              <h3>{text.leadTitle}</h3>
+              <p>{text.leadBody}</p>
+            </div>
+            <PhoneFrame
+              animate
+              screens={[
+                { src: "/images/home/phone-lead1.webp", alt: text.leadAlt1, width: 1530, height: 3036 },
+                { src: "/images/home/phone-lead2.webp", alt: text.leadAlt2, width: 1530, height: 3036 },
+              ]}
+            />
           </div>
         </div>
       </section>
