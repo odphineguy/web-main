@@ -685,7 +685,7 @@
   grid-template-columns: 0.36fr 1.35fr 0.7fr;
   align-items: start;
   gap: clamp(2rem, 5vw, 6rem);
-  margin-bottom: clamp(3.5rem, 7vw, 6.5rem);
+  margin-bottom: clamp(2.5rem, 4vw, 4rem);
 }
 
 .bold-home__intro h2,
@@ -839,7 +839,7 @@
 }
 
 .bold-estimate {
-  padding-block: clamp(7rem, 12vw, 12rem);
+  padding-block: clamp(4.5rem, 7vw, 7.5rem);
   background: var(--bold-paper);
   scroll-margin-top: 6rem;
 }
@@ -1071,7 +1071,7 @@
   --operation-progress: 0;
   position: relative;
   min-height: 390vh;
-  padding-top: clamp(7rem, 11vw, 11rem);
+  padding-top: clamp(4.5rem, 7vw, 7.5rem);
   background: var(--bold-paper);
 }
 
@@ -1097,7 +1097,7 @@
   align-items: center;
   gap: clamp(3rem, 8vw, 8rem);
   min-height: 100svh;
-  padding-block: 7rem 3rem;
+  padding-block: 5rem 3rem;
 }
 
 .bold-operation__steps {
@@ -1301,7 +1301,7 @@
 /* Transforming service index — full rows, no repeated card grid. */
 /* Recorded call proof — dark chapter between the operation story and services */
 .bold-callproof {
-  padding-block: clamp(6rem, 10vw, 10rem);
+  padding-block: clamp(4.5rem, 7vw, 7.5rem);
   color: var(--bold-paper-light);
   background: var(--bold-ink);
 }
@@ -1385,7 +1385,7 @@
 .bold-services {
   position: relative;
   z-index: 3;
-  padding-block: clamp(7rem, 12vw, 12rem);
+  padding-block: clamp(4.5rem, 7vw, 7.5rem);
   background: var(--bold-paper-light);
 }
 
@@ -1575,7 +1575,7 @@
 }
 
 .bold-faq {
-  padding-block: clamp(7rem, 11vw, 11rem);
+  padding-block: clamp(4.5rem, 7vw, 7.5rem);
   background: var(--bold-paper-light);
 }
 
@@ -1639,7 +1639,7 @@
 
 /* Founder story — the one place personal credibility lives on the page */
 .bold-about {
-  padding-block: clamp(6rem, 10vw, 10rem);
+  padding-block: clamp(4.5rem, 7vw, 7.5rem);
   background: var(--bold-paper);
 }
 
@@ -1729,7 +1729,7 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding-block: clamp(8rem, 15vw, 14rem);
+  padding-block: clamp(4.5rem, 7vw, 7.5rem);
   color: var(--bold-paper-light);
   background: var(--bold-orange);
   text-align: center;
