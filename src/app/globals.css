@@ -805,6 +805,9 @@
 /* Each line flies in from off-screen as the section scrubs: --enter goes
    0 -> 1 inside a staggered window of the section progress, then a small
    residual drift keeps the block alive for the rest of the pin. */
+/* Poster tier, intentionally above the standard section-h2 scale: the four
+   lines must be wide enough that the left- and right-aligned rows overrun
+   each other and the composition fills the viewport with no center hole. */
 .bold-manifesto__lines p {
   --enter-start: 0.05;
   --enter: clamp(0, calc((var(--manifesto-progress) - var(--enter-start)) / 0.25), 1);
@@ -813,7 +816,7 @@
   width: max-content;
   margin: 0;
   font-family: var(--font-ds-display), Impact, sans-serif;
-  font-size: clamp(3.7rem, 6vw, 6.7rem);
+  font-size: clamp(4.5rem, 9vw, 10rem);
   font-weight: 800;
   line-height: 0.72;
   letter-spacing: -0.045em;
