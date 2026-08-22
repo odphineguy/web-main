@@ -7,6 +7,7 @@ import { homeFaqIds } from "@/components/HomeFaq";
 import VideoHero from "@/components/home/VideoHero";
 import KineticManifesto from "@/components/home/KineticManifesto";
 import OperationsStory from "@/components/home/OperationsStory";
+import CallProof from "@/components/home/CallProof";
 import BuildsChapter from "@/components/home/BuildsChapter";
 
 const pageCopy = {
@@ -150,6 +151,8 @@ export default function HomePage() {
       </section>
 
       <OperationsStory locale={locale} />
+
+      <CallProof locale={locale} />
 
       <section className="bold-services" id="services">
         <div className="bold-home__shell">

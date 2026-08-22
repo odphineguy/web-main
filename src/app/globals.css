@@ -1132,6 +1132,89 @@
 }
 
 /* Transforming service index — full rows, no repeated card grid. */
+/* Recorded call proof — dark chapter between the operation story and services */
+.bold-callproof {
+  padding-block: clamp(6rem, 10vw, 10rem);
+  color: var(--bold-paper-light);
+  background: var(--bold-ink);
+}
+
+.bold-callproof__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 26rem);
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(3rem, 6vw, 7rem);
+}
+
+.bold-callproof__copy .bold-home__index {
+  margin-bottom: var(--bold-space-lg);
+}
+
+.bold-callproof__copy h2 {
+  margin: 0;
+  font-family: var(--font-ds-display), Impact, sans-serif;
+  font-size: clamp(3.7rem, 6vw, 6.7rem);
+  font-weight: 800;
+  line-height: 0.86;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.bold-callproof__copy h2 span {
+  color: var(--bold-orange);
+}
+
+.bold-callproof__copy > p:not(.bold-home__index) {
+  max-width: 44ch;
+  margin: var(--bold-space-xl) 0 0;
+  color: color-mix(in oklch, var(--bold-paper-light), transparent 28%);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.bold-callproof__copy ol {
+  display: grid;
+  max-width: 30rem;
+  padding: 0;
+  margin: var(--bold-space-2xl) 0 0;
+  list-style: none;
+}
+
+.bold-callproof__copy li {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  align-items: center;
+  gap: var(--bold-space-sm);
+  padding-block: 0.95rem;
+  border-bottom: 1px solid color-mix(in oklch, var(--bold-paper-light), transparent 84%);
+  font-size: 0.95rem;
+}
+
+.bold-callproof__copy li span {
+  color: var(--bold-orange);
+  font-family: var(--font-ds-mono), monospace;
+  font-size: 0.62rem;
+}
+
+.bold-callproof__player {
+  width: 100%;
+  max-width: 26rem;
+  justify-self: end;
+}
+
+@media (max-width: 900px) {
+  .bold-callproof__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .bold-callproof__player {
+    justify-self: stretch;
+    max-width: 28rem;
+  }
+}
+
 .bold-services {
   position: relative;
   z-index: 3;
