@@ -846,23 +846,15 @@
 
 .bold-estimate__layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 21rem);
-  align-items: center;
-  gap: clamp(2rem, 4vw, 4.5rem);
-}
-
-.bold-estimate__prompt {
-  margin: 1.25rem 0 0;
-  color: var(--bold-ink-soft);
-  font-size: 0.86rem;
-  line-height: 1.55;
-  text-align: center;
+  grid-template-columns: minmax(0, 1fr) 18rem;
+  align-items: stretch;
+  gap: var(--bold-space-xl);
 }
 
 .bold-estimate__phone {
-  justify-self: center;
+  justify-self: end;
   width: 100%;
-  max-width: 21rem;
+  max-width: 30rem;
 }
 
 .bold-estimate__compare .before-after__frame {
@@ -916,11 +908,11 @@
 /* Lead phone mockup — the email the owner receives, framed as a device */
 .bold-estimate__lead {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 30rem);
   align-items: center;
   gap: clamp(2.5rem, 5vw, 6rem);
-  margin-top: clamp(3.5rem, 6vw, 6rem);
-  padding-top: clamp(2.5rem, 4vw, 4.5rem);
+  margin-top: clamp(2.5rem, 4vw, 4rem);
+  padding-top: clamp(2rem, 3.5vw, 3.5rem);
   border-top: 1px solid var(--bold-line);
 }
 
@@ -1849,8 +1841,18 @@
     grid-template-columns: 1fr;
   }
 
+  .bold-estimate__note {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+  }
+
   .bold-estimate__lead {
     grid-template-columns: 1fr;
+  }
+
+  .bold-estimate__phone {
+    justify-self: center;
   }
 
   .bold-builds__statement {
@@ -1995,6 +1997,10 @@
   .bold-operation__intro h2,
   .bold-faq h2 {
     font-size: clamp(3.7rem, 16vw, 5.5rem);
+  }
+
+  .bold-estimate__note {
+    display: flex;
   }
 
   .bold-estimate__compare .before-after__frame {
