@@ -16,7 +16,6 @@ import Script from "next/script";
 import nextDynamic from "next/dynamic";
 import "../globals.css";
 import TopNavbar from "@/components/TopNavbar";
-import { ThemeProvider } from "@/components/ThemeProvider";
 import { ConvexClientProvider } from "@/components/ConvexClientProvider";
 import { Analytics } from "@vercel/analytics/react";
 import { AttributionCapture } from "@/components/AttributionCapture";
@@ -259,11 +258,10 @@ export default async function RootLayout({
 
   // Normal static/dynamic behavior restored
   return (
-    /* Font variables stay on <body>, not <html> — next-themes owns the <html>
-       className and overwrites it, which would drop them. globals.css therefore
-       references --font-inter / --font-spectral directly in the heading rules so
-       they resolve by inheritance from here. */
-    <html lang={locale} suppressHydrationWarning>
+    /* Font variables live on <body>; globals.css references --font-inter /
+       --font-spectral directly in the heading rules so they resolve by
+       inheritance from here. */
+    <html lang={locale}>
       <head>
         {/* The two home-hero preloads that used to live here were removed: the
             hero has been text-only since the single-offer repositioning and the
@@ -293,18 +291,16 @@ export default async function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema).replace(/</g, "\\u003c") }}
         />
-        <ThemeProvider>
-          <AttributionCapture />
-          <NextIntlClientProvider messages={messages}>
-            <ConvexClientProvider>
-            <TopNavbar />
-            <main className="min-h-screen">{children}</main>
-            <ReactiveFooter locale={locale} />
-            {CHAT_ENABLED && <ChatWidget />}
-            <Analytics />
-            </ConvexClientProvider>
-          </NextIntlClientProvider>
-        </ThemeProvider>
+        <AttributionCapture />
+        <NextIntlClientProvider messages={messages}>
+          <ConvexClientProvider>
+          <TopNavbar />
+          <main className="min-h-screen">{children}</main>
+          <ReactiveFooter locale={locale} />
+          {CHAT_ENABLED && <ChatWidget />}
+          <Analytics />
+          </ConvexClientProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

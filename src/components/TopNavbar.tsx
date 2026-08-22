@@ -3,26 +3,21 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useModeAnimation, ThemeAnimationType } from "react-theme-switch-animation";
-import { ArrowRight, Menu, Moon, Sun, X } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 
 export default function TopNavbar() {
   const t = useTranslations("Navbar");
   const locale = useLocale();
   const pathname = usePathname();
-  const { setTheme, resolvedTheme } = useTheme();
   const localePath = pathname.replace(/^\/(?:en|es)(?=\/|$)/, "") || "/";
   const isHome = localePath === "/";
-  const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [heroPassed, setHeroPassed] = useState(!isHome);
 
   useEffect(() => {
-    setMounted(true);
     if (!isHome) {
       setHeroPassed(true);
       return;
@@ -49,17 +44,9 @@ export default function TopNavbar() {
     };
   }, [isHome]);
 
-  const isDark = (mounted ? resolvedTheme : undefined) === "dark";
   const navVisible = !isHome || heroPassed;
   const localizedHref = (href: string) => `/${locale}${href === "/" ? "" : href}`;
   const isActive = (href: string) => href === "/" ? localePath === "/" : localePath.startsWith(href);
-
-  const { ref: themeRef, toggleSwitchTheme } = useModeAnimation({
-    animationType: ThemeAnimationType.CIRCLE,
-    duration: 750,
-    isDarkMode: isDark,
-    onDarkModeChange: (nextIsDark) => setTheme(nextIsDark ? "dark" : "light"),
-  });
 
   const closeMenu = () => setMobileMenuOpen(false);
   const linkClass = (href: string) =>
@@ -103,25 +90,9 @@ export default function TopNavbar() {
                     <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                   </span>
                 </Link>
-                <button
-                  ref={themeRef}
-                  onClick={toggleSwitchTheme}
-                  aria-label="Toggle theme"
-                  className="ml-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/10 transition-colors hover:border-orange-500"
-                >
-                  {mounted && (isDark ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />)}
-                </button>
               </nav>
 
               <div className="flex items-center gap-2 lg:hidden">
-                <button
-                  ref={themeRef}
-                  onClick={toggleSwitchTheme}
-                  aria-label="Toggle theme"
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10"
-                >
-                  {mounted && (isDark ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />)}
-                </button>
                 <button
                   onClick={() => setMobileMenuOpen((open) => !open)}
                   className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-orange-500 text-white"
