@@ -1617,6 +1617,24 @@
   transform: rotate(45deg);
 }
 
+/* Secondary text link under the audit CTA — deliberately quiet */
+.bold-contact .bold-home__shell > p.bold-contact__secondary {
+  margin: 1.5rem auto 0;
+}
+
+.bold-contact .bold-contact__secondary a {
+  display: inline;
+  min-height: 0;
+  padding: 0;
+  border-radius: 0;
+  color: color-mix(in oklch, var(--bold-paper-light), transparent 18%);
+  background: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
 .bold-contact small {
   display: block;
   margin-top: 1.5rem;

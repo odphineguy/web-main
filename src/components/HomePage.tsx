@@ -35,7 +35,8 @@ const pageCopy = {
     contactIndex: "Ready when you are",
     contactTitle: "Put an AI agent on your phones this month.",
     contactBody: "Tell us how your calls and handoffs work today. We will give you the scope, timeline, integration plan, and cost.",
-    contactCta: "Schedule a call",
+    contactCta: "Get the free AI Readiness Audit",
+    contactSecondary: "Or schedule a call",
     contactMeta: "No obligation · Replies within 1 business day",
   },
   es: {
@@ -61,7 +62,8 @@ const pageCopy = {
     contactIndex: "Cuando estés listo",
     contactTitle: "Pon un agente de IA en tus teléfonos este mes.",
     contactBody: "Cuéntanos cómo funcionan hoy tus llamadas y handoffs. Te daremos el alcance, plazo, plan de integración y costo.",
-    contactCta: "Agenda una llamada",
+    contactCta: "Obtén la auditoría gratuita de preparación para IA",
+    contactSecondary: "O agenda una llamada",
     contactMeta: "Sin compromiso · Respuesta en 1 día hábil",
   },
 } as const;
@@ -204,6 +206,9 @@ export default function HomePage() {
           <h2>{text.contactTitle}</h2>
           <p>{text.contactBody}</p>
           <Link href={`/${locale}/contact`}>{text.contactCta}<span>↗</span></Link>
+          <p className="bold-contact__secondary">
+            <Link href={`/${locale}/contact`}>{text.contactSecondary}</Link>
+          </p>
           <small>{text.contactMeta}</small>
         </div>
       </section>

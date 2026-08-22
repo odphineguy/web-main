@@ -12,8 +12,8 @@ const footerCopy = {
   en: {
     eyebrow: "The next shift can run itself",
     title: "Ready for a real operational push?",
-    primary: "Start a project",
-    secondary: "Let's talk",
+    primary: "Get the free AI Readiness Audit",
+    secondary: "Schedule a call",
     services: "Services",
     explore: "Explore",
     follow: "Follow",
@@ -26,8 +26,8 @@ const footerCopy = {
   es: {
     eyebrow: "El próximo turno puede operar solo",
     title: "¿Listo para llevar tu operación más lejos?",
-    primary: "Iniciar proyecto",
-    secondary: "Hablemos",
+    primary: "Obtén la auditoría gratuita de preparación para IA",
+    secondary: "Agenda una llamada",
     services: "Servicios",
     explore: "Explorar",
     follow: "Síguenos",
