@@ -9,11 +9,11 @@ type AboutFounderProps = { locale: string };
 const copy = {
   en: {
     more: "More about Abe",
-    facts: ["17 years in SoCal operations", "recycLA dispatch, Los Angeles", "Based in Phoenix, Arizona"],
+    facts: ["17 years in SoCal operations", "recycLA dispatch, Los Angeles", "Based in Phoenix, Arizona", "Working nationwide"],
   },
   es: {
     more: "Más sobre Abe",
-    facts: ["17 años en operaciones en SoCal", "Dispatch de recycLA, Los Ángeles", "Con base en Phoenix, Arizona"],
+    facts: ["17 años en operaciones en SoCal", "Dispatch de recycLA, Los Ángeles", "Con base en Phoenix, Arizona", "Trabajo en todo el país"],
   },
 } as const;
 

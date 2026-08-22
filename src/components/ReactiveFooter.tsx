@@ -91,7 +91,7 @@ export default function ReactiveFooter({ locale }: ReactiveFooterProps) {
           <Link href={`/${locale}`} aria-label="Abe Media home">
             <Image src="/images/portfolio/abemedia.white.svg" alt="Abe Media" width={864} height={225} />
           </Link>
-          <p>Phoenix, Arizona<br />AI systems built from real operations.</p>
+          <p>Los Angeles · Phoenix<br />AI systems built from real operations.</p>
         </div>
 
         <div>
