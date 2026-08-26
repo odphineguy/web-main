@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState, type MouseEvent } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import PhoneFrame from "@/components/PhoneFrame";
@@ -10,7 +11,7 @@ import KineticManifesto from "@/components/home/KineticManifesto";
 import OperationsStory from "@/components/home/OperationsStory";
 import CallProof from "@/components/home/CallProof";
 import BuildsChapter from "@/components/home/BuildsChapter";
-import AboutFounder from "@/components/home/AboutFounder";
+import ConsultationForm from "@/components/ConsultationForm";
 
 const pageCopy = {
   en: {
@@ -38,7 +39,7 @@ const pageCopy = {
     contactIndex: "Ready when you are",
     contactTitle: "Put an AI agent on your phones this month.",
     contactBody: "Tell us how your calls and handoffs work today. We will give you the scope, timeline, integration plan, and cost.",
-    contactCta: "Get the free AI Readiness Audit",
+    contactCta: "Let’s Talk",
     contactSecondary: "Or schedule a call",
     contactMeta: "No obligation · Replies within 1 business day",
   },
@@ -67,7 +68,7 @@ const pageCopy = {
     contactIndex: "Cuando estés listo",
     contactTitle: "Pon un agente de IA en tus teléfonos este mes.",
     contactBody: "Cuéntanos cómo funcionan hoy tus llamadas y handoffs. Te daremos el alcance, plazo, plan de integración y costo.",
-    contactCta: "Obtén la auditoría gratuita de preparación para IA",
+    contactCta: "Hablemos",
     contactSecondary: "O agenda una llamada",
     contactMeta: "Sin compromiso · Respuesta en 1 día hábil",
   },
@@ -80,6 +81,12 @@ export default function HomePage() {
   const locale = useLocale();
   const t = useTranslations("Home");
   const text = locale === "es" ? pageCopy.es : pageCopy.en;
+  const [consultationOpen, setConsultationOpen] = useState(false);
+
+  const openConsultation = (event?: MouseEvent<HTMLAnchorElement>) => {
+    event?.preventDefault();
+    setConsultationOpen(true);
+  };
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -100,6 +107,7 @@ export default function HomePage() {
         subtitle={text.hero.subtitle}
         primaryLabel={t("Hero.scheduleCta")}
         secondaryLabel={text.hero.secondary}
+        onPrimaryClick={openConsultation}
       />
 
       <KineticManifesto locale={locale} />
@@ -211,8 +219,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <AboutFounder locale={locale} />
-
       <section className="bold-contact">
         <div className="bold-contact__orb bold-contact__orb--small" aria-hidden="true" />
         <div className="bold-contact__orb bold-contact__orb--large" aria-hidden="true" />
@@ -220,13 +226,14 @@ export default function HomePage() {
           <p className="bold-home__index">{text.contactIndex}</p>
           <h2>{text.contactTitle}</h2>
           <p>{text.contactBody}</p>
-          <Link href={`/${locale}/contact`}>{text.contactCta}<span>↗</span></Link>
+          <Link href={`/${locale}/contact`} onClick={openConsultation}>{text.contactCta}<span>↗</span></Link>
           <p className="bold-contact__secondary">
-            <Link href={`/${locale}/contact`}>{text.contactSecondary}</Link>
+            <a href="https://cal.com/abe-p-698781/talk-with-abe" target="_blank" rel="noreferrer">{text.contactSecondary}</a>
           </p>
           <small>{text.contactMeta}</small>
         </div>
       </section>
+      <ConsultationForm isOpen={consultationOpen} onClose={() => setConsultationOpen(false)} />
     </div>
   );
 }

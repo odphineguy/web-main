@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type MouseEventHandler } from "react";
 
 type VideoHeroProps = {
   locale: string;
@@ -11,6 +11,7 @@ type VideoHeroProps = {
   subtitle: string;
   primaryLabel: string;
   secondaryLabel: string;
+  onPrimaryClick?: MouseEventHandler<HTMLAnchorElement>;
 };
 
 type NavigatorWithSaveData = Navigator & {
@@ -31,6 +32,7 @@ export default function VideoHero({
   subtitle,
   primaryLabel,
   secondaryLabel,
+  onPrimaryClick,
 }: VideoHeroProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
@@ -114,7 +116,7 @@ export default function VideoHero({
             priority
           />
         </Link>
-        <Link href={`/${locale}/contact`} className="home-video-hero__project-link">
+        <Link href={`/${locale}/contact`} className="home-video-hero__project-link" onClick={onPrimaryClick}>
           <span aria-hidden="true" />
           {primaryLabel}
           <b aria-hidden="true">↗</b>
@@ -127,7 +129,7 @@ export default function VideoHero({
         </h1>
         <p className="home-video-hero__subtitle">{subtitle}</p>
         <div className="home-video-hero__actions">
-          <Link href={`/${locale}/contact`} className="home-video-hero__primary">
+          <Link href={`/${locale}/contact`} className="home-video-hero__primary" onClick={onPrimaryClick}>
             <span aria-hidden="true" />
             {primaryLabel}
             <b aria-hidden="true">↗</b>
@@ -136,13 +138,6 @@ export default function VideoHero({
             {secondaryLabel} <b aria-hidden="true">↓</b>
           </a>
         </div>
-      </div>
-
-      <div className="home-video-hero__outcomes" aria-label={locale === "es" ? "Resultados del sistema en vivo" : "Live system outcomes"}>
-        <p><span>00:08</span><small>{locale === "es" ? "tiempo de respuesta" : "answer time"}</small></p>
-        <p><span>EN ⇄ ES</span><small>{locale === "es" ? "cambio nativo" : "native switching"}</small></p>
-        <p><span>24/7</span><small>{locale === "es" ? "cobertura de llamadas" : "call coverage"}</small></p>
-        <p><span>{locale === "es" ? "PERSONA" : "HUMAN"}</span><small>{locale === "es" ? "recibe excepciones" : "gets exceptions"}</small></p>
       </div>
 
       <span className="home-video-hero__scroll" aria-hidden="true">Scroll</span>

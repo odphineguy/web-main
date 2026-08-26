@@ -1,10 +1,11 @@
 "use client";
 
-import { useCallback, useRef, type PointerEvent } from "react";
+import { useCallback, useRef, useState, type MouseEvent, type PointerEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Facebook, Instagram, Music2, Twitter } from "lucide-react";
 import ClutchWidget from "@/components/ClutchWidget";
+import ConsultationForm from "@/components/ConsultationForm";
 
 type ReactiveFooterProps = { locale: string };
 
@@ -12,7 +13,7 @@ const footerCopy = {
   en: {
     eyebrow: "The next shift can run itself",
     title: "Ready for a real operational push?",
-    primary: "Get the free AI Readiness Audit",
+    primary: "Let’s Talk",
     secondary: "Schedule a call",
     services: "Services",
     explore: "Explore",
@@ -26,7 +27,7 @@ const footerCopy = {
   es: {
     eyebrow: "El próximo turno puede operar solo",
     title: "¿Listo para llevar tu operación más lejos?",
-    primary: "Obtén la auditoría gratuita de preparación para IA",
+    primary: "Hablemos",
     secondary: "Agenda una llamada",
     services: "Servicios",
     explore: "Explorar",
@@ -42,7 +43,13 @@ const footerCopy = {
 export default function ReactiveFooter({ locale }: ReactiveFooterProps) {
   const footerRef = useRef<HTMLElement>(null);
   const frameRef = useRef<number | null>(null);
+  const [consultationOpen, setConsultationOpen] = useState(false);
   const copy = locale === "es" ? footerCopy.es : footerCopy.en;
+
+  const openConsultation = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    setConsultationOpen(true);
+  };
 
   const moveGlow = useCallback((event: PointerEvent<HTMLElement>) => {
     if (event.pointerType === "touch") return;
@@ -65,6 +72,7 @@ export default function ReactiveFooter({ locale }: ReactiveFooterProps) {
   }, []);
 
   return (
+    <>
     <footer
       ref={footerRef}
       className="reactive-footer"
@@ -81,8 +89,8 @@ export default function ReactiveFooter({ locale }: ReactiveFooterProps) {
           <h2>{copy.title}</h2>
         </div>
         <div className="reactive-footer__ctas">
-          <Link href={`/${locale}/contact`}><span />{copy.primary}<b>↗</b></Link>
-          <Link href={`/${locale}/contact`}><span />{copy.secondary}<b>↗</b></Link>
+          <Link href={`/${locale}/contact`} onClick={openConsultation}><span />{copy.primary}<b>↗</b></Link>
+          <a href="https://cal.com/abe-p-698781/talk-with-abe" target="_blank" rel="noreferrer"><span />{copy.secondary}<b>↗</b></a>
         </div>
       </div>
 
@@ -133,5 +141,7 @@ export default function ReactiveFooter({ locale }: ReactiveFooterProps) {
         <p><Link href={`/${locale}/privacy`}>{copy.privacy}</Link><Link href={`/${locale}/terms`}>{copy.terms}</Link></p>
       </div>
     </footer>
+    <ConsultationForm isOpen={consultationOpen} onClose={() => setConsultationOpen(false)} />
+    </>
   );
 }

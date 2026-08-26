@@ -737,39 +737,6 @@
   padding-left: clamp(0rem, 7vw, 7rem);
 }
 
-.home-video-hero__outcomes {
-  position: absolute;
-  right: clamp(4.75rem, 8vw, 8rem);
-  bottom: clamp(2rem, 4vw, 3rem);
-  display: grid;
-  grid-template-columns: repeat(4, minmax(6rem, 1fr));
-  min-width: min(37rem, 44vw);
-  border-top: 1px solid rgb(255 255 255 / 0.2);
-}
-
-.home-video-hero__outcomes p {
-  display: grid;
-  gap: 0.25rem;
-  margin: 0;
-  padding: 0.85rem 1rem 0;
-}
-
-.home-video-hero__outcomes p + p {
-  border-left: 1px solid rgb(255 255 255 / 0.15);
-}
-
-.home-video-hero__outcomes span {
-  font-family: var(--font-ds-mono), monospace;
-  font-size: 0.72rem;
-  font-weight: 600;
-}
-
-.home-video-hero__outcomes small {
-  color: rgb(255 255 255 / 0.48);
-  font-size: 0.65rem;
-  letter-spacing: 0.03em;
-}
-
 /* Kinetic manifesto: the large words become the transition out of the video
    instead of falling directly into another conventional content section. */
 .bold-manifesto {
@@ -794,6 +761,7 @@
 .bold-manifesto__sticky > .bold-home__index {
   width: min(calc(100% - 3rem), 80rem);
   margin: 0 auto 2.5rem;
+  text-align: center;
 }
 
 .bold-manifesto__lines {
@@ -802,15 +770,15 @@
   width: 100%;
 }
 
-/* Each line flies in from off-screen as the section scrubs: --enter goes
-   0 -> 1 inside a staggered window of the section progress, then a small
-   residual drift keeps the block alive for the rest of the pin. */
+/* Each line flies in from off-screen on an overlapping, eased window. The
+   per-line values are smoothstepped in KineticManifesto so the movement
+   accelerates gently and settles without a hard stop. */
 /* Poster tier, intentionally above the standard section-h2 scale: the four
    lines must be wide enough that the left- and right-aligned rows overrun
    each other and the composition fills the viewport with no center hole. */
 .bold-manifesto__lines p {
-  --enter-start: 0.05;
-  --enter: clamp(0, calc((var(--manifesto-progress) - var(--enter-start)) / 0.25), 1);
+  --enter: var(--manifesto-line-1, 0);
+  --settled-x: clamp(0.75rem, 1.5vw, 1.75rem);
   display: flex;
   align-items: flex-start;
   width: max-content;
@@ -822,25 +790,25 @@
   letter-spacing: -0.045em;
   text-transform: uppercase;
   white-space: nowrap;
-  transform: translate3d(calc((1 - var(--enter)) * -110vw + (var(--manifesto-progress) - 0.65) * -5vw), 0, 0);
+  transform: translate3d(calc((1 - var(--enter)) * -110vw + var(--enter) * var(--settled-x)), 0, 0);
   will-change: transform;
 }
 
 .bold-manifesto__lines p:nth-child(even) {
   margin-left: auto;
-  transform: translate3d(calc((1 - var(--enter)) * 110vw + (var(--manifesto-progress) - 0.65) * 5vw), 0, 0);
+  transform: translate3d(calc((1 - var(--enter)) * 110vw - var(--enter) * var(--settled-x)), 0, 0);
 }
 
 .bold-manifesto__lines p:nth-child(2) {
-  --enter-start: 0.25;
+  --enter: var(--manifesto-line-2, 0);
 }
 
 .bold-manifesto__lines p:nth-child(3) {
-  --enter-start: 0.45;
+  --enter: var(--manifesto-line-3, 0);
 }
 
 .bold-manifesto__lines p:nth-child(4) {
-  --enter-start: 0.6;
+  --enter: var(--manifesto-line-4, 0);
 }
 
 .bold-manifesto__lines p.is-accent {
@@ -1807,10 +1775,6 @@
 }
 
 @media (max-width: 1100px) {
-  .home-video-hero__outcomes {
-    display: none;
-  }
-
   .bold-estimate__lead {
     grid-template-columns: 1fr;
   }
@@ -2137,7 +2101,7 @@
   min-height: 2.75rem;
   margin: -0.75rem -1rem;
   padding: 0.75rem 1rem;
-  font-size: 0.9rem;
+  font-size: 1rem;
   transition: color 160ms ease;
 }
 
@@ -2264,6 +2228,7 @@
 .home-video-hero__primary {
   padding: 0.95rem 1.25rem;
   border: 1px solid rgb(255 255 255 / 0.3);
+  border-radius: 999px;
   background: rgb(10 10 12 / 0.28);
   backdrop-filter: blur(10px);
   transition: border-color 220ms ease, background 220ms ease;
@@ -2286,14 +2251,14 @@
 
 .home-video-hero__scroll {
   position: absolute;
-  right: clamp(1.5rem, 3vw, 2.75rem);
-  bottom: 3rem;
+  bottom: 1.5rem;
+  left: 50%;
   color: rgb(255 255 255 / 0.48);
   font-family: var(--font-ds-mono), monospace;
   font-size: 0.62rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  writing-mode: vertical-rl;
+  transform: translateX(-50%);
 }
 
 .home-video-hero__sentinel {
@@ -2608,7 +2573,7 @@
   }
 
   .home-video-hero__scroll {
-    bottom: 2.1rem;
+    bottom: 1.5rem;
   }
 
   .reactive-footer {

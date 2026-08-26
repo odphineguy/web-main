@@ -3,6 +3,8 @@
 import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { Check } from "lucide-react";
+import { useState } from "react";
+import ConsultationForm from "@/components/ConsultationForm";
 
 const AGENT_ID = "agent_0701kxxqc7hkfjy8r4k312032t9c";
 
@@ -25,8 +27,10 @@ export default function AgentDemoSection({
 }) {
   const t = useTranslations("Home.AgentDemos");
   const live = useTranslations("Home.AgentDemo");
+  const [consultationOpen, setConsultationOpen] = useState(false);
 
   return (
+    <>
     <section
       id="agent-demos"
       className="scroll-mt-20 border-y border-border bg-band px-6 py-20"
@@ -81,7 +85,7 @@ export default function AgentDemoSection({
         <div className="mt-14 text-center">
           <button
             type="button"
-            onClick={onCtaClick}
+            onClick={() => onCtaClick ? onCtaClick() : setConsultationOpen(true)}
             className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-8 py-4 font-semibold text-white shadow-lg shadow-orange-500/25 transition-colors hover:bg-orange-600"
           >
             {t("cta")}
@@ -92,5 +96,7 @@ export default function AgentDemoSection({
         </div>
       </div>
     </section>
+    <ConsultationForm isOpen={consultationOpen} onClose={() => setConsultationOpen(false)} />
+    </>
   );
 }

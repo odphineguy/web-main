@@ -6,6 +6,9 @@ type KineticManifestoProps = {
   locale: string;
 };
 
+const LINE_STARTS = [0.02, 0.1, 0.18, 0.26] as const;
+const LINE_DURATION = 0.4;
+
 const copy = {
   en: {
     label: "The operation in motion",
@@ -32,12 +35,22 @@ export default function KineticManifesto({ locale }: KineticManifestoProps) {
       frame = 0;
       if (!visible) return;
       const rect = section.getBoundingClientRect();
-      // Progress runs from the section's first visible pixel through the end
-      // of the pin, so the lines start flying in as soon as the section
-      // appears instead of waiting for the sticky region to engage.
-      const range = Math.max(1, rect.height);
-      const progress = Math.min(1, Math.max(0, (window.innerHeight - rect.top) / range));
+      // Start shortly after the section enters and finish exactly when the
+      // sticky panel releases. This keeps the early lines from racing ahead
+      // while leaving the final line enough time to settle fully on screen.
+      const viewportHeight = window.innerHeight;
+      const stickyTravel = Math.max(1, rect.height - viewportHeight);
+      const startTop = viewportHeight * 0.82;
+      const endTop = -stickyTravel;
+      const range = Math.max(1, startTop - endTop);
+      const progress = Math.min(1, Math.max(0, (startTop - rect.top) / range));
       section.style.setProperty("--manifesto-progress", String(progress));
+
+      LINE_STARTS.forEach((start, index) => {
+        const linear = Math.min(1, Math.max(0, (progress - start) / LINE_DURATION));
+        const eased = linear * linear * (3 - 2 * linear);
+        section.style.setProperty(`--manifesto-line-${index + 1}`, String(eased));
+      });
     };
     const requestUpdate = () => {
       if (frame) return;

@@ -8,14 +8,15 @@ interface TurnstileWidgetProps {
   onVerify: (token: string) => void;
   onError?: (error?: unknown) => void;
   onExpire?: () => void;
+  className?: string;
 }
 
-export default function TurnstileWidget({ onVerify, onError, onExpire }: TurnstileWidgetProps) {
+export default function TurnstileWidget({ onVerify, onError, onExpire, className = "justify-center my-4" }: TurnstileWidgetProps) {
   const ref = useRef<TurnstileInstance>(null);
   const { theme } = useTheme();
 
   return (
-    <div className="flex justify-center my-4">
+    <div className={`flex ${className}`}>
       <Turnstile
         ref={ref}
         siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
