@@ -420,18 +420,6 @@
       }
     }
   },
-  "BrandIdentity": {
-    "badge": "Brand Identity",
-    "title": "Brand identity packages",
-    "description": "A brand is how customers recognize you before they know you. We build logo systems and guidelines that survive past the first use.",
-    "depositNote": "50% deposit starts the work.",
-    "orderNow": "Order Now",
-    "cta": {
-      "title": "Ready to start?",
-      "description": "Tell us about your project. We'll tell you what it takes, on what timeline, and what it costs.",
-      "button": "SCHEDULE A CALL"
-    }
-  },
   "Calculator": {
     "title": "Bilingual Growth Calculator",
     "subtitle": "See your potential revenue increase",
@@ -490,84 +478,6 @@
       "yearlyRevenue": "Potential yearly revenue increase",
       "cta": "Start reaching more customers",
       "recalculate": "Calculate again"
-    }
-  },
-  "Builds": {
-    "Preview": {
-      "badge": "Custom software",
-      "title": "Custom software.",
-      "titleAccent": "Built around your workflow.",
-      "subtitle": "Saguaro Transport",
-      "description": "Built for a logistics operator: live fleet tracking, dispatch, CRM, accounting, and HR — one dashboard, not six tabs.",
-      "feature1": {
-        "title": "Live fleet tracking",
-        "description": "Real-time GPS, dispatch assignment, and route optimization per vehicle."
-      },
-      "feature2": {
-        "title": "CRM and accounting together",
-        "description": "Customers, invoices, and finances in one system — no app-switching."
-      },
-      "feature3": {
-        "title": "Drivers and HR",
-        "description": "Onboarding, compliance, and payroll in one place."
-      },
-      "cta": "Explore our builds"
-    },
-    "Page": {
-      "Hero": {
-        "badge": "Custom software",
-        "title": "Custom operations systems",
-        "titleAccent": "for growing businesses",
-        "subtitle": "Software built around your workflow. Stop adapting to generic tools — we build the system around how you already work."
-      },
-      "Saguaro": {
-        "badge": "Logistics & transportation",
-        "forSaleBadge": "Available for purchase",
-        "title": "Saguaro Transport",
-        "subtitle": "Complete operations management for trucking and logistics companies",
-        "description": "For transportation businesses that have outgrown spreadsheets and disconnected software. Fleet tracking, dispatch, CRM, accounting, and HR in one system.",
-        "inquireButton": "Inquire about this build",
-        "features": {
-          "fleet": {
-            "title": "Fleet management",
-            "description": "Real-time GPS, maintenance schedules, and fuel tracking."
-          },
-          "crm": {
-            "title": "Customer relations",
-            "description": "Shipper relationships, load tracking, and customer communication."
-          },
-          "accounting": {
-            "title": "Accounting",
-            "description": "Invoicing, expense tracking, and reporting built for trucking."
-          }
-        }
-      },
-      "DriverApp": {
-        "badge": "Driver mobile app",
-        "title": "Driver companion app",
-        "description": "A mobile app for drivers to manage tasks, track earnings, and stay connected on the road.",
-        "screens": {
-          "login": {
-            "title": "Driver login"
-          },
-          "tasks": {
-            "title": "Task management"
-          },
-          "earnings": {
-            "title": "Earnings dashboard"
-          }
-        }
-      },
-      "ComingSoon": {
-        "badge": "More coming",
-        "title": "More systems in development",
-        "description": "We build industry-specific operations systems for businesses that have outgrown off-the-shelf tools. Interested in one for your industry?"
-      },
-      "CTA": {
-        "title": "Need a custom system?",
-        "subtitle": "Tell us about your workflow. We'll tell you what it takes, on what timeline, and what it costs.",
-        "button": "Schedule a call"
-      }
     }
   },
   "Pricing": {

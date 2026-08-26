@@ -16,19 +16,22 @@ const GONE_PATTERN = /^\/(?:(?:en|es)\/)?(?:blog|resources)(?:\/|$)/;
 const PERMANENT_ENGLISH_REDIRECTS = new Set([
   "/",
   "/services",
-  "/services/bilingual-web-development",
   "/services/ai-voice-agents",
   "/services/dispatch-operations-software",
   "/services/lead-pipeline-automation",
   "/services/ai-estimating-tools",
   "/services/bilingual-ai-automation",
   "/services/custom-business-software",
-  "/services/brand-identity",
-  "/systems-we-build",
   "/how-it-works",
   "/portfolio",
   "/portfolio/mylabcompliance",
   "/portfolio/saguarotransport",
+  "/portfolio/dispatch-ai",
+  "/portfolio/hermes-legal-intake",
+  "/portfolio/safehub",
+  "/portfolio/misana",
+  "/portfolio/paw-relief",
+  "/portfolio/meal-saver",
   "/pricing",
   "/calculator",
   "/bilingual-seo-phoenix",
@@ -59,12 +62,23 @@ const LEGACY_REPLACEMENTS = new Map([
 // above) because that is the status search consoles and audit tools report as a
 // permanent rename; both are permanent, but 301 is what reviewers look for.
 const RENAMED_ROUTES = new Map([
-  ["/platforms", "/en/systems-we-build"],
-  ["/en/platforms", "/en/systems-we-build"],
-  ["/es/platforms", "/en/systems-we-build"],
+  ["/platforms", "/en/portfolio/saguarotransport"],
+  ["/en/platforms", "/en/portfolio/saguarotransport"],
+  ["/es/platforms", "/es/portfolio/saguarotransport"],
   ["/services/dispatch-operations-platforms", "/en/services/dispatch-operations-software"],
   ["/en/services/dispatch-operations-platforms", "/en/services/dispatch-operations-software"],
   ["/es/services/dispatch-operations-platforms", "/en/services/dispatch-operations-software"],
+  // The Saguaro deep-dive moved into the portfolio; project pages are bilingual.
+  ["/systems-we-build", "/en/portfolio/saguarotransport"],
+  ["/en/systems-we-build", "/en/portfolio/saguarotransport"],
+  ["/es/systems-we-build", "/es/portfolio/saguarotransport"],
+  // Retired service pages consolidate onto the services index.
+  ["/services/bilingual-web-development", "/en/services"],
+  ["/en/services/bilingual-web-development", "/en/services"],
+  ["/es/services/bilingual-web-development", "/es/services"],
+  ["/services/brand-identity", "/en/services"],
+  ["/en/services/brand-identity", "/en/services"],
+  ["/es/services/brand-identity", "/es/services"],
 ]);
 
 export default function middleware(request: NextRequest) {

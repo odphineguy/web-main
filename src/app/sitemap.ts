@@ -1,22 +1,20 @@
 import { MetadataRoute } from "next";
 import { caseStudyPages, industryPages, servicePages } from "@/content/discoverability";
 import { industryPagesEs, servicePagesEs } from "@/content/discoverability.es";
+import { projectOrder } from "@/content/projects";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://abemedia.online";
   const routes = [
     { path: "", lastModified: "2026-07-19", hasSpanishEquivalent: true },
     { path: "/services", lastModified: "2026-07-19", hasSpanishEquivalent: true },
-    { path: "/services/bilingual-web-development", lastModified: "2026-04-20", hasSpanishEquivalent: false },
-    { path: "/services/brand-identity", lastModified: "2026-04-20", hasSpanishEquivalent: false },
-    { path: "/systems-we-build", lastModified: "2026-08-09", hasSpanishEquivalent: false },
     { path: "/how-it-works", lastModified: "2026-07-19", hasSpanishEquivalent: true },
     { path: "/missed-call-text-back", lastModified: "2026-08-20", hasSpanishEquivalent: true },
     { path: "/ai-receptionist-vs-answering-service", lastModified: "2026-08-20", hasSpanishEquivalent: true },
     { path: "/smith-ai-alternatives-home-services", lastModified: "2026-08-20", hasSpanishEquivalent: true },
-    { path: "/portfolio", lastModified: "2026-05-03", hasSpanishEquivalent: false },
+    { path: "/portfolio", lastModified: "2026-08-26", hasSpanishEquivalent: true },
     { path: "/portfolio/mylabcompliance", lastModified: "2026-04-20", hasSpanishEquivalent: false },
-    { path: "/portfolio/saguarotransport", lastModified: "2026-04-20", hasSpanishEquivalent: false },
+    ...projectOrder.map((slug) => ({ path: `/portfolio/${slug}`, lastModified: "2026-08-26", hasSpanishEquivalent: true })),
     { path: "/pricing", lastModified: "2026-07-19", hasSpanishEquivalent: true },
     { path: "/calculator", lastModified: "2026-07-19", hasSpanishEquivalent: true },
     { path: "/bilingual-seo-phoenix", lastModified: "2026-04-20", hasSpanishEquivalent: false },

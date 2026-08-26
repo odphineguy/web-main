@@ -420,18 +420,6 @@
       }
     }
   },
-  "BrandIdentity": {
-    "badge": "Identidad de marca",
-    "title": "Paquetes de identidad de marca",
-    "description": "Una marca es cómo los clientes te reconocen antes de conocerte. Construimos sistemas de logotipo y guías que duran más allá del primer uso.",
-    "depositNote": "Un depósito del 50% inicia el trabajo.",
-    "orderNow": "Ordenar ahora",
-    "cta": {
-      "title": "¿Listo para empezar?",
-      "description": "Cuéntanos sobre tu proyecto. Te decimos qué lleva, en cuánto tiempo y cuánto cuesta.",
-      "button": "AGENDA UNA LLAMADA"
-    }
-  },
   "Calculator": {
     "title": "Calculadora de Crecimiento Bilingüe",
     "subtitle": "Ve tu potencial aumento de ingresos",
@@ -490,84 +478,6 @@
       "yearlyRevenue": "Aumento potencial de ingresos anuales",
       "cta": "Empieza a alcanzar más clientes",
       "recalculate": "Calcular de nuevo"
-    }
-  },
-  "Builds": {
-    "Preview": {
-      "badge": "Software a medida",
-      "title": "Software a medida.",
-      "titleAccent": "Construidas alrededor de tu flujo.",
-      "subtitle": "Saguaro Transport",
-      "description": "Construida para un operador logístico: rastreo de flota en vivo, despacho, CRM, contabilidad y RH — un panel, no seis pestañas.",
-      "feature1": {
-        "title": "Rastreo de flota en vivo",
-        "description": "GPS en tiempo real, asignación de despachos y optimización de rutas por vehículo."
-      },
-      "feature2": {
-        "title": "CRM y contabilidad juntos",
-        "description": "Clientes, facturas y finanzas en un solo sistema — sin cambiar de app."
-      },
-      "feature3": {
-        "title": "Conductores y RH",
-        "description": "Incorporación, cumplimiento y nómina en un solo lugar."
-      },
-      "cta": "Explorar nuestros proyectos"
-    },
-    "Page": {
-      "Hero": {
-        "badge": "Software a medida",
-        "title": "Sistemas de operaciones a medida",
-        "titleAccent": "para negocios en crecimiento",
-        "subtitle": "Software hecho alrededor de tu flujo de trabajo. Deja de adaptarte a herramientas genéricas — construimos el sistema alrededor de cómo ya trabajas."
-      },
-      "Saguaro": {
-        "badge": "Logística y transporte",
-        "forSaleBadge": "Disponible para compra",
-        "title": "Saguaro Transport",
-        "subtitle": "Gestión completa de operaciones para empresas de transporte y logística",
-        "description": "Para empresas de transporte que ya crecieron más allá de hojas de cálculo y software desconectado. Rastreo de flota, despacho, CRM, contabilidad y RH en un solo sistema.",
-        "inquireButton": "Consultar sobre este proyecto",
-        "features": {
-          "fleet": {
-            "title": "Gestión de flota",
-            "description": "GPS en tiempo real, programación de mantenimiento y seguimiento de combustible."
-          },
-          "crm": {
-            "title": "Relaciones con clientes",
-            "description": "Relaciones con transportistas, seguimiento de cargas y comunicación con clientes."
-          },
-          "accounting": {
-            "title": "Contabilidad",
-            "description": "Facturación, control de gastos y reportes hechos para transporte."
-          }
-        }
-      },
-      "DriverApp": {
-        "badge": "App móvil para conductores",
-        "title": "App compañera del conductor",
-        "description": "Una app móvil para que los conductores gestionen tareas, rastreen ganancias y se mantengan conectados en la carretera.",
-        "screens": {
-          "login": {
-            "title": "Inicio de sesión"
-          },
-          "tasks": {
-            "title": "Gestión de tareas"
-          },
-          "earnings": {
-            "title": "Panel de ganancias"
-          }
-        }
-      },
-      "ComingSoon": {
-        "badge": "Más próximamente",
-        "title": "Más sistemas en desarrollo",
-        "description": "Construimos sistemas de operaciones por industria para negocios que ya crecieron más allá de las herramientas genéricas. ¿Te interesa una para tu industria?"
-      },
-      "CTA": {
-        "title": "¿Necesitas un sistema a medida?",
-        "subtitle": "Cuéntanos sobre tu flujo de trabajo. Te decimos qué lleva, en cuánto tiempo y cuánto cuesta.",
-        "button": "Agenda una llamada"
-      }
     }
   },
   "Pricing": {

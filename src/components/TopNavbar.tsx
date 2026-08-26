@@ -81,10 +81,10 @@ export default function TopNavbar() {
 
               <nav className="hidden items-center justify-center gap-6 justify-self-center whitespace-nowrap lg:flex">
                 <Link href={localizedHref("/services")} className={linkClass("/services")}>{t("services")}</Link>
-                <Link href="/en/portfolio" hrefLang="en" className={linkClass("/portfolio")}>{t("work")}</Link>
+                <Link href={localizedHref("/portfolio")} className={linkClass("/portfolio")}>{t("work")}</Link>
                 <Link href={localizedHref("/how-it-works")} className={linkClass("/how-it-works")}>{t("howItWorks")}</Link>
                 <Link href={localizedHref("/pricing")} className={linkClass("/pricing")}>{t("pricing")}</Link>
-                <Link href="/en/about/abe-perez" hrefLang="en" className={linkClass("/about")}>{t("about")}</Link>
+                <Link href={localizedHref("/about/abe-perez")} className={linkClass("/about")}>{t("about")}</Link>
               </nav>
 
               <div className="hidden justify-self-end lg:block">

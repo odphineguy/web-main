@@ -75,7 +75,14 @@ const pageCopy = {
 } as const;
 
 const serviceKeys = ["voice", "dispatch", "pipeline", "apps"] as const;
-const serviceRoutes = ["/services/ai-voice-agents", "/services/dispatch-operations-software", "/services/lead-pipeline-automation", "/systems-we-build"];
+// Second segment is whether a Spanish page exists at that route; untranslated
+// pages keep their /en URL for Spanish visitors instead of 404ing.
+const serviceRoutes: Array<{ path: string; hasEs: boolean }> = [
+  { path: "/services/ai-voice-agents", hasEs: true },
+  { path: "/services/dispatch-operations-software", hasEs: false },
+  { path: "/services/lead-pipeline-automation", hasEs: false },
+  { path: "/portfolio/saguarotransport", hasEs: true },
+];
 
 export default function HomePage() {
   const locale = useLocale();
@@ -189,7 +196,7 @@ export default function HomePage() {
           </header>
           <div className="bold-services__list">
             {serviceKeys.map((key, index) => (
-              <Link key={key} href={`/${locale}${serviceRoutes[index]}`}>
+              <Link key={key} href={`/${serviceRoutes[index].hasEs ? locale : "en"}${serviceRoutes[index].path}`}>
                 <h3>{t(`ServicesGrid.${key}.title`)}</h3>
                 <p>{t(`ServicesGrid.${key}.description`)}</p>
                 <b aria-hidden="true">↗</b>

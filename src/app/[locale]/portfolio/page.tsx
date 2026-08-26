@@ -1,200 +1,124 @@
 "use client";
 
-import { useState } from "react";
-import PortfolioPreviewModal from "@/components/PortfolioPreviewModal";
-import { ExternalLink } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 import { useLocale } from "next-intl";
 import PageShell, { Reveal } from "@/components/ds/PageShell";
 import PageHero from "@/components/ds/PageHero";
 import Section from "@/components/ds/Section";
 import DsCard from "@/components/ds/Card";
+import { projectOrder, projects } from "@/content/projects";
+import { projectsEs } from "@/content/projects.es";
 
-interface PortfolioProject {
-  id: string;
-  name: string;
-  description: string;
-  siteUrl: string;
-  category: string;
-  /** When true, the site refuses iframe embedding (X-Frame-Options / CSP).
-   * Card opens the URL in a new tab directly instead of trying to preview it. */
-  externalOnly?: boolean;
-}
-
-const portfolioProjects: PortfolioProject[] = [
-  {
-    id: "dental",
-    name: "Dental Office",
-    description: "Dental practice website",
-    siteUrl: "https://odphineguy.github.io/dental/",
-    category: "Healthcare",
+// Page copy lives here (the ReactiveFooter pattern) rather than messages/*.json
+// because these strings only ever appear on this page.
+const pageCopy = {
+  en: {
+    heroTitleA: "Projects &",
+    heroTitleB: "Case Studies",
+    heroLede: "Real systems in production — voice AI, operations platforms, and mobile apps built end to end by Abe Media.",
+    projects: "Projects",
+    moreTitle: "More case studies",
+    readCase: "Read the story",
+    readStudy: "Read case study",
+    rail: { overview: "Overview", projects: "Projects", more: "More case studies" },
   },
-  {
-    id: "phoenix-balloon-decor",
-    name: "Phoenix Balloon Decor",
-    description: "Balloon decoration services",
-    siteUrl: "https://phx-balloon-decor.vercel.app/",
-    category: "Events",
+  es: {
+    heroTitleA: "Proyectos y",
+    heroTitleB: "casos de estudio",
+    heroLede: "Sistemas reales en producción — IA de voz, plataformas de operaciones y apps móviles construidas de punta a punta por Abe Media.",
+    projects: "Proyectos",
+    moreTitle: "Más casos de estudio",
+    readCase: "Leer la historia",
+    readStudy: "Leer el caso",
+    rail: { overview: "Resumen", projects: "Proyectos", more: "Más casos" },
   },
-  {
-    id: "gor-jess",
-    name: "Gor-Jess Grazing",
-    description: "Luxury grazing boards and catering",
-    siteUrl: "https://odphineguy.github.io/gor-jess-grazing/first.html",
-    category: "Catering",
-  },
-  {
-    id: "inaction",
-    name: "InAction",
-    description: "Professional business website",
-    siteUrl: "https://odphineguy.github.io/inaction/",
-    category: "Business",
-  },
-  {
-    id: "saguaro",
-    name: "Saguaro Transport",
-    description: "Custom operations system for trucking and logistics",
-    siteUrl: "https://www.saguarotransport.com/",
-    category: "Custom Software",
-  },
-  {
-    id: "thedrone-college",
-    name: "The Drone College",
-    description: "Drone training and certification",
-    siteUrl: "https://odphineguy.github.io/thedrone-college/",
-    category: "Education",
-  },
-  {
-    id: "paw-relief",
-    name: "Paw Relief",
-    description: "Pet care and relief services",
-    siteUrl: "https://paw-relief-landing.vercel.app/",
-    category: "Pet Care",
-  },
-  {
-    id: "misana",
-    name: "MiSana",
-    description: "Private health system",
-    siteUrl: "https://misana.app/",
-    category: "Private Health",
-  },
-];
-
-const RAIL = [
-  { id: "overview", label: "Overview" },
-  { id: "projects", label: "Projects" },
-  { id: "case-studies", label: "Case studies" },
-];
+} as const;
 
 export default function PortfolioPage() {
   const locale = useLocale();
-  const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(null);
+  const copy = locale === "es" ? pageCopy.es : pageCopy.en;
+  const record = locale === "es" ? projectsEs : projects;
 
-  const caseStudies = [
+  const rail = [
+    { id: "overview", label: copy.rail.overview },
+    { id: "projects", label: copy.rail.projects },
+    { id: "more-case-studies", label: copy.rail.more },
+  ];
+
+  const moreStudies = [
     {
       href: `/${locale}/portfolio/mylabcompliance`,
       title: "myLabCompliance.io",
       description:
-        "From critical SEO failures to excellent performance. 95% bug reduction, 500 SEO pages, and 981ms load time.",
+        locale === "es"
+          ? "De fallas críticas de SEO a un rendimiento excelente. 95% menos bugs, 500 páginas SEO y 981 ms de carga."
+          : "From critical SEO failures to excellent performance. 95% bug reduction, 500 SEO pages, and 981ms load time.",
     },
-    {
-      href: `/${locale}/portfolio/saguarotransport`,
-      title: "Saguaro Transport",
-      description:
-        "A full trucking operation built in 4 months — Dispatch Command Center, Fleet, CRM, HR, Accounting, Driver App, and Client Portal.",
-    },
-    {
-      href: "/en/portfolio/rejunk",
-      title: "Rejunk",
-      description:
-        "Lead handling, dispatch, driver activation, job management, and live location in one browser-based systerm.",
-    },
+    // The next two case studies exist in English only, so they link to /en
+    // deliberately even for Spanish visitors.
     {
       href: "/en/portfolio/artificial-turf-ai-design-studio",
-      title: "AI Design Studio for an Artificial Turf Franchise",
+      title: locale === "es" ? "Estudio de diseño con IA para una franquicia de pasto sintético" : "AI Design Studio for an Artificial Turf Franchise",
       description:
-        "Photo intake, AI-assisted visualization, estimate output, and CRM lead creation in one customer journey.",
+        locale === "es"
+          ? "Recepción de fotos, visualización asistida por IA, cotización y creación de leads en el CRM en un solo recorrido."
+          : "Photo intake, AI-assisted visualization, estimate output, and CRM lead creation in one customer journey.",
     },
     {
       href: "/en/portfolio/elena-ai-voice-agent",
-      title: "Bilingual AI Voice Agent",
+      title: locale === "es" ? "Agente de voz con IA bilingüe" : "Bilingual AI Voice Agent",
       description:
-        "A bilingual personal-injury intake demonstration with emergency checks, qualification, booking, and guardrails.",
+        locale === "es"
+          ? "Una demostración bilingüe de intake de lesiones personales con revisión de emergencias, calificación, agenda y salvaguardas."
+          : "A bilingual personal-injury intake demonstration with emergency checks, qualification, booking, and guardrails.",
     },
   ];
 
   return (
-    <PageShell railCap="WORK" railItems={RAIL}>
+    <PageShell railCap={locale === "es" ? "TRABAJO" : "WORK"} railItems={rail}>
       <div id="overview">
         <PageHero
           title={
             <>
-              Software Portfolio &amp;{" "}
-              <span className="text-[var(--ds-accent)]">Case Studies</span>
+              {copy.heroTitleA}{" "}
+              <span className="text-[var(--ds-accent)]">{copy.heroTitleB}</span>
             </>
           }
-          lede="Operational software, AI automation, mobile apps, and selected web projects built by Abe Media."
+          lede={copy.heroLede}
         />
       </div>
 
       <Section id="projects">
         <div className="grid grid-cols-1 gap-px bg-[var(--ds-line-soft)] md:grid-cols-2">
-          {portfolioProjects.map((project, i) => {
-            const cardBody = (
-              <article className="group flex h-full flex-col border border-[var(--ds-line)] bg-[var(--ds-raise)] p-6 transition-colors hover:border-[var(--ds-accent)]">
-                <div className="relative aspect-[16/10] overflow-hidden border border-[var(--ds-line-soft)] bg-[var(--ds-accent-bg)]">
-                  {project.externalOnly && project.siteUrl ? (
-                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-[var(--ds-ink-mute)]">
-                      <ExternalLink className="h-7 w-7 opacity-70 transition-colors group-hover:text-[var(--ds-accent)]" />
-                      <span className="ds-meta transition-colors group-hover:text-[var(--ds-accent)]">
-                        Visit live site
-                      </span>
-                    </div>
-                  ) : project.siteUrl ? (
-                    <iframe
-                      src={project.siteUrl}
-                      className="pointer-events-none absolute inset-0 h-[200%] w-[200%] origin-top-left scale-50"
-                      title={`${project.name} preview`}
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center text-[var(--ds-ink-mute)]">
-                      <span className="text-lg">Coming Soon</span>
-                    </div>
-                  )}
-                </div>
-                <span className="ds-meta mt-5 block">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-2">{project.category}</h3>
-                <p className="mt-1 text-[0.95rem] text-[var(--ds-ink-mute)]">
-                  {project.name}
-                </p>
-              </article>
-            );
-
-            if (project.externalOnly && project.siteUrl) {
-              return (
-                <Reveal key={project.id} index={i}>
-                  <a
-                    href={project.siteUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block h-full text-left"
-                  >
-                    {cardBody}
-                  </a>
-                </Reveal>
-              );
-            }
-
+          {projectOrder.map((slug, i) => {
+            const project = record[slug] ?? projects[slug];
             return (
-              <Reveal key={project.id} index={i}>
-                <button
-                  onClick={() => setSelectedProject(project)}
-                  className="block h-full w-full text-left"
-                >
-                  {cardBody}
-                </button>
+              <Reveal key={slug} index={i}>
+                <Link href={`/${locale}/portfolio/${slug}`} className="block h-full">
+                  <article className="group flex h-full flex-col border border-[var(--ds-line)] bg-[var(--ds-raise)] p-6 transition-colors hover:border-[var(--ds-accent)]">
+                    <div className="relative aspect-[16/10] overflow-hidden border border-[var(--ds-line-soft)] bg-[var(--ds-accent-bg)]">
+                      <Image
+                        src={project.thumbnail.src}
+                        alt={project.thumbnail.alt}
+                        fill
+                        sizes="(min-width: 768px) 24rem, 100vw"
+                        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                    <div className="mt-5 flex items-baseline justify-between gap-3">
+                      <span className="ds-meta block">{String(i + 1).padStart(2, "0")}</span>
+                      <span className="ds-meta block">{project.year}</span>
+                    </div>
+                    <h3 className="mt-2">{project.name}</h3>
+                    <p className="mt-1 text-[0.95rem] text-[var(--ds-ink-mute)]">
+                      {project.tagline}
+                    </p>
+                    <span className="ds-meta mt-auto pt-5 text-[var(--ds-accent)]">
+                      {copy.readCase}
+                    </span>
+                  </article>
+                </Link>
               </Reveal>
             );
           })}
@@ -202,36 +126,23 @@ export default function PortfolioPage() {
       </Section>
 
       <Section
-        id="case-studies"
+        id="more-case-studies"
         bleed
-        title={
-          <>
-            Case <span className="text-[var(--ds-accent)]">Studies</span>
-          </>
-        }
+        title={copy.moreTitle}
       >
         <div className="grid grid-cols-1 gap-px bg-[var(--ds-line-soft)] md:grid-cols-2 lg:grid-cols-3">
-          {caseStudies.map((study, i) => (
+          {moreStudies.map((study, i) => (
             <Reveal key={study.href} index={i}>
               <DsCard
                 href={study.href}
                 title={study.title}
                 description={study.description}
-                cta="Read Case Study"
+                cta={copy.readStudy}
               />
             </Reveal>
           ))}
         </div>
       </Section>
-
-      {selectedProject && (
-        <PortfolioPreviewModal
-          isOpen={!!selectedProject}
-          onClose={() => setSelectedProject(null)}
-          projectName={selectedProject.name}
-          siteUrl={selectedProject.siteUrl}
-        />
-      )}
     </PageShell>
   );
 }

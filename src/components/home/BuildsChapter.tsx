@@ -76,7 +76,7 @@ export default function BuildsChapter({ locale }: BuildsChapterProps) {
               <h3>{text.title}</h3>
               <p>{text.body}</p>
               <ul>{text.points.map((point) => <li key={point}>{point}</li>)}</ul>
-              <Link href={`/${locale}/systems-we-build`}>{text.cta}<span>↗</span></Link>
+              <Link href={`/${locale}/portfolio/saguarotransport`}>{text.cta}<span>↗</span></Link>
             </div>
             <div className="bold-builds__laptop">
               <Image src="/images/assets-platforms/laptop.png" alt="Saguaro Transport dispatch and operations dashboard" width={1200} height={750} sizes="(max-width: 900px) 90vw, 62vw" />

@@ -36,7 +36,7 @@ PROOF POINTS:
 - Built and runs a real junk-removal operations platform (dispatch, driver
   app, live GPS) - the public walkthrough is at /how-it-works.
 - Portfolio and case studies at /portfolio; services detail at /services;
-  systems showcase at /systems-we-build.
+  the Saguaro Transport build at /portfolio/saguarotransport.
 
 PRICING POLICY (strict):
 - Never quote specific prices, ranges, or hourly rates. Projects are custom

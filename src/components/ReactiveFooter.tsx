@@ -9,6 +9,8 @@ import ConsultationForm from "@/components/ConsultationForm";
 
 type ReactiveFooterProps = { locale: string };
 
+// Hrefs are stored fully locale-prefixed because not every page exists in
+// Spanish — untranslated service pages keep their /en URL for ES visitors.
 const footerCopy = {
   en: {
     eyebrow: "The next shift can run itself",
@@ -19,10 +21,25 @@ const footerCopy = {
     explore: "Explore",
     follow: "Follow",
     contact: "Contact",
-    missedCallTextBack: "Missed call text back",
     privacy: "Privacy",
     terms: "Terms",
-    items: ["Voice agents", "Dispatch systems", "Lead automation", "Custom apps"],
+    items: [
+      { label: "Voice agents", href: "/en/services/ai-voice-agents" },
+      { label: "Dispatch systems", href: "/en/services/dispatch-operations-software" },
+      { label: "Lead automation", href: "/en/services/lead-pipeline-automation" },
+      { label: "Custom apps", href: "/en/services/custom-business-software" },
+    ],
+    exploreItems: [
+      { label: "Work", href: "/en/portfolio" },
+      { label: "Services", href: "/en/services" },
+      { label: "How it works", href: "/en/how-it-works" },
+      { label: "Pricing", href: "/en/pricing" },
+      { label: "Industries", href: "/en/industries" },
+      { label: "About", href: "/en/about/abe-perez" },
+      { label: "FAQ", href: "/en/faq" },
+      { label: "Contact", href: "/en/contact" },
+      { label: "Missed call text back", href: "/en/missed-call-text-back" },
+    ],
   },
   es: {
     eyebrow: "El próximo turno puede operar solo",
@@ -33,10 +50,25 @@ const footerCopy = {
     explore: "Explorar",
     follow: "Síguenos",
     contact: "Contacto",
-    missedCallTextBack: "Respuesta por texto",
     privacy: "Privacidad",
     terms: "Términos",
-    items: ["Agentes de voz", "Sistemas de dispatch", "Automatización de leads", "Apps a medida"],
+    items: [
+      { label: "Agentes de voz", href: "/es/services/ai-voice-agents" },
+      { label: "Sistemas de dispatch", href: "/en/services/dispatch-operations-software" },
+      { label: "Automatización de leads", href: "/en/services/lead-pipeline-automation" },
+      { label: "Apps a medida", href: "/en/services/custom-business-software" },
+    ],
+    exploreItems: [
+      { label: "Trabajo", href: "/es/portfolio" },
+      { label: "Servicios", href: "/es/services" },
+      { label: "Cómo funciona", href: "/es/how-it-works" },
+      { label: "Precios", href: "/es/pricing" },
+      { label: "Industrias", href: "/es/industries" },
+      { label: "Sobre Abe", href: "/es/about/abe-perez" },
+      { label: "Preguntas frecuentes", href: "/es/faq" },
+      { label: "Contacto", href: "/es/contact" },
+      { label: "Respuesta por texto", href: "/es/missed-call-text-back" },
+    ],
   },
 } as const;
 
@@ -115,18 +147,12 @@ export default function ReactiveFooter({ locale }: ReactiveFooterProps) {
 
         <div>
           <h3>{copy.services}</h3>
-          {copy.items.map((item) => <span key={item}>{item}</span>)}
+          {copy.items.map((item) => <Link key={item.label} href={item.href}>{item.label}</Link>)}
         </div>
 
         <div>
           <h3>{copy.explore}</h3>
-          <Link href={`/${locale}/about/abe-perez`}>About</Link>
-          <Link href={`/${locale}/services`}>Services</Link>
-          <Link href={`/${locale}/portfolio`}>Case studies</Link>
-          <Link href={`/${locale}/industries`}>Industries</Link>
-          <Link href={`/${locale}/systems-we-build`}>Our builds</Link>
-          <Link href={`/${locale}/contact`}>Contact</Link>
-          <Link href={`/${locale}/missed-call-text-back`}>{copy.missedCallTextBack}</Link>
+          {copy.exploreItems.map((item) => <Link key={item.label} href={item.href}>{item.label}</Link>)}
         </div>
 
         <div className="reactive-footer__social">
