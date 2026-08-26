@@ -1,11 +1,14 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { useLocale } from "next-intl";
 import { useTheme } from "next-themes";
-import { MessageCircle, X, Send } from "lucide-react";
+import { ArrowUpRight, CalendarDays, MessageCircle, Send, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { Message } from "@/lib/types";
+
+const CALENDAR_URL = "https://cal.com/abe-p-698781/talk-with-abe";
 
 /**
  * Ember chat - the rebuilt site assistant, styled on the chat-ember /
@@ -24,9 +27,10 @@ const COPY = {
     send: "Send",
     open: "Open chat",
     close: "Close chat",
+    book: "Book a 30-minute call",
     error: "Something went wrong. Try again, or email abe@abemedia.online.",
     disclosure: "AI assistant. Answers are informational; bookings are subject to confirmation.",
-    chips: ["What does the AI call agent do?", "¿Hablan español?", "Book a call"],
+    chips: ["What does the AI call agent do?", "¿Hablan español?"],
   },
   es: {
     title: "Asistente de Abe Media",
@@ -37,9 +41,10 @@ const COPY = {
     send: "Enviar",
     open: "Abrir chat",
     close: "Cerrar chat",
+    book: "Agenda una llamada de 30 minutos",
     error: "Algo salió mal. Intenta de nuevo o escribe a abe@abemedia.online.",
     disclosure: "Asistente de IA. Las respuestas son informativas; las citas están sujetas a confirmación.",
-    chips: ["¿Qué hace el agente de llamadas?", "Do you speak English?", "Agendar una llamada"],
+    chips: ["¿Qué hace el agente de llamadas?", "Do you speak English?"],
   },
 } as const;
 
@@ -62,7 +67,13 @@ function TypingDots() {
   );
 }
 
-export function EmberChatPanel({ heightClass = "h-[380px]" }: { heightClass?: string }) {
+export function EmberChatPanel({
+  heightClass = "h-[380px]",
+  onClose,
+}: {
+  heightClass?: string;
+  onClose?: () => void;
+}) {
   const locale = useLocale();
   const lang: "en" | "es" = locale === "es" ? "es" : "en";
   const copy = COPY[lang];
@@ -171,13 +182,15 @@ export function EmberChatPanel({ heightClass = "h-[380px]" }: { heightClass?: st
         className="flex items-center gap-3 px-4 py-3 border-b relative z-10"
         style={{ borderColor: "var(--chat-header-border)" }}
       >
-        <div
-          className="w-10 h-10 rounded-2xl grid place-items-center shrink-0"
-          style={{ background: "#E34F0B", boxShadow: "0 0 24px rgba(227,79,11,0.35)" }}
-        >
-          <MessageCircle className="w-5 h-5 text-white" aria-hidden />
-        </div>
-        <div className="min-w-0">
+        <Image
+          src="/images/portfolio/a-icon-small.svg"
+          alt=""
+          width={40}
+          height={40}
+          className="h-10 w-10 shrink-0 rounded-2xl"
+          aria-hidden="true"
+        />
+        <div className="min-w-0 flex-1">
           <p className="text-sm font-semibold truncate" style={{ color: "var(--chat-text)" }}>
             {copy.title}
           </p>
@@ -185,6 +198,21 @@ export function EmberChatPanel({ heightClass = "h-[380px]" }: { heightClass?: st
             {copy.subtitle}
           </p>
         </div>
+        {onClose ? (
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label={copy.close}
+            className="grid h-9 w-9 shrink-0 place-items-center rounded-xl border transition-colors hover:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+            style={{
+              borderColor: "var(--chat-border)",
+              background: "var(--chat-bot-bubble)",
+              color: "var(--chat-text)",
+            }}
+          >
+            <X className="h-4 w-4" aria-hidden />
+          </button>
+        ) : null}
       </div>
 
       {/* Messages */}
@@ -236,6 +264,22 @@ export function EmberChatPanel({ heightClass = "h-[380px]" }: { heightClass?: st
         </div>
       )}
 
+      {/* Direct booking action */}
+      <div className="relative z-10 px-4 pb-2">
+        <a
+          href={CALENDAR_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="group flex min-h-11 w-full items-center justify-between rounded-xl bg-[#E34F0B] px-4 text-sm font-semibold text-white transition-colors hover:bg-[#111827] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+        >
+          <span className="flex items-center gap-2">
+            <CalendarDays className="h-4 w-4" aria-hidden />
+            {copy.book}
+          </span>
+          <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden />
+        </a>
+      </div>
+
       {/* Input */}
       <div className="px-4 py-3 relative z-10">
         <div
@@ -278,6 +322,13 @@ export function EmberChatPanel({ heightClass = "h-[380px]" }: { heightClass?: st
         style={{ borderColor: "var(--chat-footer-border)" }}
       >
         <p className="text-[10px]" style={{ color: "var(--chat-muted)" }}>
+          Powered by{" "}
+          <span className="font-semibold">
+            <span className="text-[rgb(227,79,11)]">abe</span>
+            <span style={{ color: "var(--chat-muted)" }}>media</span>
+          </span>
+        </p>
+        <p className="mt-1 text-[9px] leading-3" style={{ color: "var(--chat-muted)" }}>
           {copy.disclosure}
         </p>
       </div>
@@ -309,16 +360,10 @@ export default function ChatWidget() {
 
       {isOpen && (
         <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[min(380px,calc(100vw-2rem))]">
-          <button
-            type="button"
-            onClick={() => setIsOpen(false)}
-            aria-label={copy.close}
-            className="absolute top-3 right-3 z-20 h-9 w-9 rounded-2xl grid place-items-center transition-all hover:scale-105"
-            style={{ color: "var(--chat-muted, rgba(231,213,197,0.6))" }}
-          >
-            <X className="w-4 h-4" aria-hidden />
-          </button>
-          <EmberChatPanel heightClass="h-[min(380px,calc(100vh-20rem))]" />
+          <EmberChatPanel
+            heightClass="h-[min(340px,calc(100vh-23rem))] min-h-32"
+            onClose={() => setIsOpen(false)}
+          />
         </div>
       )}
     </>

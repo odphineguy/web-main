@@ -3,7 +3,7 @@ import type { LegalDoc } from "@/content/legal";
 export function LegalPage({ doc }: { doc: LegalDoc }) {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="max-w-3xl mx-auto px-6 py-16">
+      <div className="mx-auto max-w-3xl px-6 pt-32 pb-16 md:pt-36">
         <h1 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] mb-2">{doc.title}</h1>
         <p className="text-sm text-muted-foreground mb-8">{doc.updated}</p>
         <p className="text-base leading-relaxed text-muted-foreground mb-10">{doc.intro}</p>
