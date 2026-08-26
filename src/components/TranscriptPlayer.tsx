@@ -275,7 +275,7 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
             type="button"
             onClick={toggle}
             aria-label={playing ? "Pause call recording" : "Play call recording"}
-            className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl transition-transform hover:scale-105 active:scale-95"
+            className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full transition-transform hover:scale-105 active:scale-95"
             style={{ background: "var(--chat-user-bubble)", color: "var(--chat-user-text)" }}
           >
             {playing ? <Pause className="h-4 w-4" /> : <Play className="ml-0.5 h-4 w-4" />}

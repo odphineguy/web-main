@@ -187,7 +187,7 @@ export default function ConsultationForm({ isOpen, onClose, preselectedService, 
         <button
           type="button"
           onClick={onClose}
-          className="absolute right-3 top-4 grid h-9 w-9 place-items-center border border-foreground/15 text-muted-foreground transition-colors hover:border-foreground/35 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 sm:right-5 sm:top-5"
+          className="absolute right-3 top-4 grid h-9 w-9 place-items-center rounded-full border border-foreground/15 text-muted-foreground transition-colors hover:border-foreground/35 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 sm:right-5 sm:top-5"
           aria-label={text.close}
         >
           <X className="h-4 w-4" />
@@ -290,7 +290,7 @@ export default function ConsultationForm({ isOpen, onClose, preselectedService, 
               <button
                 type="submit"
                 disabled={status === "sending" || status === "sent" || !turnstileToken}
-                className="group inline-flex min-h-[65px] items-center justify-between bg-orange-500 px-5 text-left text-sm font-bold uppercase tracking-[0.06em] text-white transition-colors hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-50"
+                className="group inline-flex min-h-[65px] items-center justify-between rounded-full bg-orange-500 px-6 text-left text-sm font-bold uppercase tracking-[0.06em] text-white transition-colors hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {status === "sending" ? text.sending : status === "sent" ? text.sent : text.send}
                 <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -315,7 +315,7 @@ export default function ConsultationForm({ isOpen, onClose, preselectedService, 
             href={CALENDAR_URL}
             target="_blank"
             rel="noreferrer"
-            className="group flex min-h-12 w-full items-center justify-between border border-foreground/70 px-4 text-sm font-semibold uppercase tracking-[0.05em] text-foreground transition-colors hover:bg-foreground hover:text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+            className="group flex min-h-12 w-full items-center justify-between rounded-full border border-foreground/70 px-5 text-sm font-semibold uppercase tracking-[0.05em] text-foreground transition-colors hover:bg-foreground hover:text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
           >
             <span className="flex items-center gap-3"><CalendarDays className="h-4 w-4" />{text.calendar}</span>
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

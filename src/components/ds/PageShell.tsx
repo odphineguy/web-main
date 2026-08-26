@@ -66,7 +66,7 @@ export default function PageShell({
               href={`#${item.id}`}
               aria-label={item.label}
               className={cn(
-                "ds-meta grid h-[30px] w-[34px] place-items-center rounded transition-colors",
+                "ds-meta grid h-8 w-8 place-items-center rounded-full transition-colors",
                 active === item.id
                   ? "bg-[var(--ds-accent)] font-semibold text-white"
                   : "hover:text-[var(--ds-ink)]",

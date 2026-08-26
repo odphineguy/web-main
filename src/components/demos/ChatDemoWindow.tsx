@@ -181,7 +181,7 @@ export default function ChatDemoWindow({
       <button
         onClick={handleReplay}
         className={cn(
-          "absolute top-3 right-3 z-10 p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity",
+          "absolute top-3 right-3 z-10 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity",
           isDark ? "bg-white/10 hover:bg-white/20" : "bg-foreground/5 hover:bg-foreground/10"
         )}
         title="Replay"
@@ -237,7 +237,7 @@ export default function ChatDemoWindow({
         {/* Minimize/Expand button */}
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className="h-9 w-9 rounded-2xl grid place-items-center border transition-all hover:scale-105 active:scale-95"
+          className="h-9 w-9 rounded-full grid place-items-center border transition-all hover:scale-105 active:scale-95"
           style={{
             borderColor: "var(--chat-border)",
             color: "var(--chat-muted)",
@@ -362,7 +362,7 @@ export default function ChatDemoWindow({
                 }}
               />
               <button
-                className="px-3.5 py-2 rounded-xl text-sm font-medium shrink-0"
+                className="px-3.5 py-2 rounded-full text-sm font-medium shrink-0"
                 style={{
                   background: "var(--chat-user-bubble)",
                   color: "var(--chat-user-text)",

@@ -97,7 +97,12 @@ export default function ReactiveFooter({ locale }: ReactiveFooterProps) {
       <div className="reactive-footer__grid">
         <div className="reactive-footer__brand">
           <Link href={`/${locale}`} aria-label="Abe Media home">
-            <Image src="/images/portfolio/abemedia.white.svg" alt="Abe Media" width={864} height={225} />
+            <Image
+              src="/images/home/abemedia-new-darkmode.png"
+              alt="Abe Media"
+              width={2172}
+              height={724}
+            />
           </Link>
           <p>Los Angeles · Phoenix<br />AI systems built from real operations.</p>
         </div>

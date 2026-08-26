@@ -203,7 +203,7 @@ export function EmberChatPanel({
             type="button"
             onClick={onClose}
             aria-label={copy.close}
-            className="grid h-9 w-9 shrink-0 place-items-center rounded-xl border transition-colors hover:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+            className="grid h-9 w-9 shrink-0 place-items-center rounded-full border transition-colors hover:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
             style={{
               borderColor: "var(--chat-border)",
               background: "var(--chat-bot-bubble)",
@@ -270,7 +270,7 @@ export function EmberChatPanel({
           href={CALENDAR_URL}
           target="_blank"
           rel="noreferrer"
-          className="group flex min-h-11 w-full items-center justify-between rounded-xl bg-[#E34F0B] px-4 text-sm font-semibold text-white transition-colors hover:bg-[#111827] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+          className="group flex min-h-11 w-full items-center justify-between rounded-full bg-[#E34F0B] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#111827] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
         >
           <span className="flex items-center gap-2">
             <CalendarDays className="h-4 w-4" aria-hidden />
@@ -306,7 +306,7 @@ export function EmberChatPanel({
             type="button"
             onClick={() => sendMessage(input)}
             disabled={isLoading || !input.trim()}
-            className="px-3.5 py-2 rounded-xl text-sm font-medium shrink-0 disabled:opacity-50 inline-flex items-center gap-1.5"
+            className="px-3.5 py-2 rounded-full text-sm font-medium shrink-0 disabled:opacity-50 inline-flex items-center gap-1.5"
             style={{ background: "var(--chat-user-bubble)", color: "var(--chat-user-text)" }}
             aria-label={copy.send}
           >

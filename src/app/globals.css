@@ -585,7 +585,7 @@
     background: var(--ds-accent-bg);
   }
 
-  /* ---- buttons: squared, mono, no pill. Part of the system, not per page. ---- */
+  /* ---- buttons: one sitewide pill silhouette, with mono DS labeling. ---- */
   .ds .ds-btn {
     display: inline-flex;
     align-items: center;
@@ -596,6 +596,7 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
     padding: 16px 28px;
+    border-radius: 999px;
     transition: opacity 0.2s var(--ds-ease-out), border-color 0.2s var(--ds-ease-out);
   }
   .ds .ds-btn-primary {

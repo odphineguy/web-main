@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Check, MessageSquareText, PhoneMissed, ShieldAlert, UserRoundCheck } from "lucide-react";
 
 import MissedCallValueWorksheet from "@/components/MissedCallValueWorksheet";
 import { constructMetadata } from "@/lib/seo";
@@ -246,18 +245,16 @@ export default async function MissedCallTextBackPage({ params }: { params: Promi
     ],
   };
 
-  const icons = [PhoneMissed, MessageSquareText, UserRoundCheck, Check];
-
   return (
     <article className="ds overflow-hidden bg-background text-foreground">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJson(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJson(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJson(breadcrumbSchema) }} />
 
-      <header className="relative min-h-[820px] bg-[#0b1018] px-5 pt-36 pb-20 text-white sm:px-8 lg:pt-40 lg:pb-24">
+      <header className="relative bg-[#0b1018] px-5 pt-32 pb-16 text-white sm:px-8 lg:pt-36 lg:pb-20">
         <div className="pointer-events-none absolute inset-0 opacity-50 [background-image:linear-gradient(rgba(255,255,255,.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.04)_1px,transparent_1px)] [background-size:52px_52px]" />
         <div className="pointer-events-none absolute top-0 right-0 h-[560px] w-[560px] rounded-full bg-[#E34F0B]/15 blur-[130px]" />
-        <div className="relative mx-auto grid max-w-[1120px] items-center gap-14 lg:grid-cols-[1.05fr_0.75fr]">
+        <div className="relative mx-auto grid max-w-[1120px] items-center gap-10 lg:grid-cols-[1.05fr_0.75fr]">
           <div>
             <p className="font-[var(--font-ds-mono)] text-xs uppercase tracking-[0.2em] text-[#E34F0B]">{copy.hero.eyebrow}</p>
             <h1 className="mt-6 max-w-4xl text-[clamp(3.55rem,8.5vw,8rem)] leading-[0.82] text-white">
@@ -269,7 +266,6 @@ export default async function MissedCallTextBackPage({ params }: { params: Promi
             <div className="mt-9 flex flex-wrap items-center gap-5">
               <Link href={contactUrl} className="group inline-flex items-center gap-3 rounded-full bg-[#E34F0B] px-6 py-4 font-semibold text-white transition-colors hover:bg-white hover:text-[#111827]">
                 {copy.hero.cta}
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
             <p className="mt-6 max-w-2xl font-[var(--font-ds-mono)] text-xs leading-6 uppercase tracking-[0.14em] text-white/42">{copy.hero.proof}</p>
@@ -280,15 +276,15 @@ export default async function MissedCallTextBackPage({ params }: { params: Promi
             <div className="relative rotate-[2deg] rounded-[2.6rem] border border-white/15 bg-[#121926] p-3 shadow-[0_40px_100px_rgba(0,0,0,.55)]">
               <div className="rounded-[2rem] border border-white/10 bg-[#080c12] px-5 py-6">
                 <div className="flex items-center justify-between border-b border-white/10 pb-4 font-[var(--font-ds-mono)] text-[11px] uppercase tracking-[0.12em] text-white/50">
-                  <span className="flex items-center gap-2"><PhoneMissed className="h-4 w-4 text-[#E34F0B]" />{copy.hero.phoneLabel}</span>
+                  <span>{copy.hero.phoneLabel}</span>
                   <span>{copy.hero.phoneTime}</span>
                 </div>
                 <div className="space-y-4 py-7 text-sm leading-6">
                   <p className="ml-8 rounded-2xl rounded-br-sm bg-white/9 px-4 py-3 text-white/76">{copy.hero.customer}</p>
                   <p className="mr-5 rounded-2xl rounded-bl-sm bg-[#E34F0B] px-4 py-3 text-white">{copy.hero.reply}</p>
                 </div>
-                <div className="flex items-center gap-2 border-t border-white/10 pt-4 font-[var(--font-ds-mono)] text-[11px] uppercase tracking-[0.12em] text-white/45">
-                  <span className="h-2 w-2 animate-pulse rounded-full bg-[#E34F0B]" />{copy.hero.status}
+                <div className="border-t border-white/10 pt-4 font-[var(--font-ds-mono)] text-[11px] uppercase tracking-[0.12em] text-white/45">
+                  {copy.hero.status}
                 </div>
               </div>
             </div>
@@ -296,7 +292,7 @@ export default async function MissedCallTextBackPage({ params }: { params: Promi
         </div>
       </header>
 
-      <section className="px-5 py-20 sm:px-8 md:py-28">
+      <section className="px-5 py-16 sm:px-8 md:py-20">
         <div className="mx-auto grid max-w-[1120px] gap-12 lg:grid-cols-[0.78fr_1.22fr]">
           <div>
             <p className="ds-eyebrow">{copy.problem.eyebrow}</p>
@@ -305,46 +301,43 @@ export default async function MissedCallTextBackPage({ params }: { params: Promi
           <div className="space-y-6 pt-1 text-lg leading-8 text-[var(--ds-ink-mute)]">
             <p>{copy.problem.body1}</p>
             <p>{copy.problem.body2}</p>
-            <p className="border-l-2 border-[#E34F0B] pl-5 font-semibold text-[var(--ds-ink)]">{copy.problem.note}</p>
+            <p className="border-t border-[var(--ds-line-soft)] pt-5 font-semibold text-[var(--ds-ink)]">{copy.problem.note}</p>
           </div>
         </div>
       </section>
 
-      <section className="border-y border-[var(--ds-line-soft)] bg-[var(--band)] px-5 py-20 sm:px-8 md:py-24">
+      <section className="border-y border-[var(--ds-line-soft)] bg-[var(--band)] px-5 py-16 sm:px-8 md:py-20">
         <div className="mx-auto max-w-[1120px]">
           <p className="ds-eyebrow">{copy.steps.eyebrow}</p>
           <h2 className="mt-5 max-w-4xl text-[clamp(3rem,5vw,5rem)] leading-[0.92]">{copy.steps.title}</h2>
           <div className="mt-12 grid gap-px overflow-hidden border border-[var(--ds-line-soft)] bg-[var(--ds-line-soft)] md:grid-cols-2 lg:grid-cols-4">
-            {copy.steps.items.map((item, index) => {
-              const Icon = icons[index];
-              return (
-                <article key={item.title} className="min-h-64 bg-background p-6 md:p-7">
-                  <Icon className="h-7 w-7 text-[#E34F0B]" />
-                  <h3 className="mt-12 text-xl font-bold">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-[var(--ds-ink-mute)]">{item.body}</p>
-                </article>
-              );
-            })}
+            {copy.steps.items.map((item, index) => (
+              <article key={item.title} className="bg-background p-6 md:p-7">
+                <span className="font-[var(--font-ds-mono)] text-xs tracking-[0.18em] text-[#E34F0B]">{String(index + 1).padStart(2, "0")}</span>
+                <h3 className="mt-8 text-xl font-bold">{item.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-[var(--ds-ink-mute)]">{item.body}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-[#0b1018] px-5 py-20 text-white sm:px-8 md:py-28">
+      <section className="bg-[#0b1018] px-5 py-16 text-white sm:px-8 md:py-20">
         <div className="mx-auto max-w-[1120px]">
-          <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+          <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
             <div>
               <p className="font-[var(--font-ds-mono)] text-xs uppercase tracking-[0.18em] text-[#E34F0B]">{copy.math.eyebrow}</p>
-              <h2 className="mt-5 text-[clamp(3.3rem,6vw,6rem)] leading-[0.88] text-white">{copy.math.title}</h2>
+              <h2 className="mt-5 max-w-[13ch] text-[clamp(3rem,5vw,4.75rem)] leading-[0.92] text-white">{copy.math.title}</h2>
             </div>
             <p className="max-w-2xl text-lg leading-8 text-white/60 lg:pb-2">{copy.math.lede}</p>
           </div>
-          <div className="mt-12">
+          <div className="mt-10">
             <MissedCallValueWorksheet locale={lang} copy={copy.math.worksheet} />
           </div>
         </div>
       </section>
 
-      <section className="px-5 py-20 sm:px-8 md:py-28">
+      <section className="px-5 py-16 sm:px-8 md:py-20">
         <div className="mx-auto max-w-[1120px]">
           <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
             <div>
@@ -358,8 +351,7 @@ export default async function MissedCallTextBackPage({ params }: { params: Promi
           <div className="mt-12 grid gap-px border border-[var(--ds-line-soft)] bg-[var(--ds-line-soft)] md:grid-cols-2">
             {copy.difference.items.map((item) => (
               <article key={item.title} className="bg-[var(--ds-raise)] p-7 md:p-9">
-                <Check className="h-5 w-5 text-[#E34F0B]" />
-                <h3 className="mt-7 text-2xl font-bold">{item.title}</h3>
+                <h3 className="text-2xl font-bold">{item.title}</h3>
                 <p className="mt-3 max-w-xl leading-7 text-[var(--ds-ink-mute)]">{item.body}</p>
               </article>
             ))}
@@ -367,7 +359,7 @@ export default async function MissedCallTextBackPage({ params }: { params: Promi
         </div>
       </section>
 
-      <section className="border-y border-[var(--ds-line-soft)] bg-[var(--band)] px-5 py-20 sm:px-8 md:py-28">
+      <section className="border-y border-[var(--ds-line-soft)] bg-[var(--band)] px-5 py-16 sm:px-8 md:py-20">
         <div className="mx-auto grid max-w-[1120px] gap-12 lg:grid-cols-[1fr_0.9fr]">
           <div>
             <p className="ds-eyebrow">{copy.plumbing.eyebrow}</p>
@@ -375,16 +367,15 @@ export default async function MissedCallTextBackPage({ params }: { params: Promi
             <p className="mt-7 max-w-2xl text-lg leading-8 text-[var(--ds-ink-mute)]">{copy.plumbing.body}</p>
           </div>
           <div className="border border-[var(--ds-line-soft)] bg-background p-7 md:p-9">
-            <ShieldAlert className="h-8 w-8 text-[#E34F0B]" />
-            <h3 className="mt-8 text-2xl font-bold">{copy.plumbing.safeTitle}</h3>
+            <h3 className="text-2xl font-bold">{copy.plumbing.safeTitle}</h3>
             <ul className="mt-7 divide-y divide-[var(--ds-line-soft)] border-y border-[var(--ds-line-soft)]">
-              {copy.plumbing.safeItems.map((item) => <li key={item} className="flex items-center gap-3 py-4 text-[var(--ds-ink-mute)]"><span className="text-[#E34F0B]">×</span>{item}</li>)}
+              {copy.plumbing.safeItems.map((item) => <li key={item} className="py-4 text-[var(--ds-ink-mute)]">{item}</li>)}
             </ul>
           </div>
         </div>
       </section>
 
-      <section className="px-5 py-20 sm:px-8 md:py-28">
+      <section className="px-5 py-16 sm:px-8 md:py-20">
         <div className="mx-auto grid max-w-[1120px] gap-12 lg:grid-cols-[0.55fr_1.45fr]">
           <div>
             <p className="ds-eyebrow">{copy.faq.eyebrow}</p>
@@ -393,9 +384,7 @@ export default async function MissedCallTextBackPage({ params }: { params: Promi
           <div className="divide-y divide-[var(--ds-line-soft)] border-y border-[var(--ds-line-soft)]">
             {copy.faq.items.map((item) => (
               <details key={item.q} className="group py-6">
-                <summary className="cursor-pointer list-none pr-8 text-lg font-bold marker:hidden">
-                  {item.q}<span aria-hidden="true" className="float-right text-2xl font-normal text-[#E34F0B] transition-transform group-open:rotate-45">+</span>
-                </summary>
+                <summary className="cursor-pointer list-none text-lg font-bold marker:hidden">{item.q}</summary>
                 <p className="mt-4 max-w-3xl pr-8 leading-7 text-[var(--ds-ink-mute)]">{item.a}</p>
               </details>
             ))}
@@ -403,7 +392,7 @@ export default async function MissedCallTextBackPage({ params }: { params: Promi
         </div>
       </section>
 
-      <section className="bg-[#E34F0B] px-5 py-20 text-white sm:px-8 md:py-24">
+      <section className="bg-[#E34F0B] px-5 py-16 text-white sm:px-8 md:py-20">
         <div className="mx-auto grid max-w-[1120px] gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
           <div>
             <p className="font-[var(--font-ds-mono)] text-xs uppercase tracking-[0.18em] text-white/75">{copy.final.eyebrow}</p>
@@ -411,7 +400,7 @@ export default async function MissedCallTextBackPage({ params }: { params: Promi
             <p className="mt-7 max-w-2xl text-lg leading-8 text-white/80">{copy.final.body}</p>
           </div>
           <Link href={contactUrl} className="group inline-flex w-fit items-center gap-3 rounded-full bg-white px-6 py-4 font-semibold text-[#111827] transition-colors hover:bg-[#111827] hover:text-white">
-            {copy.final.cta}<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            {copy.final.cta}
           </Link>
         </div>
       </section>

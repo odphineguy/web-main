@@ -200,7 +200,7 @@ export default function SystemsWeBuildPage() {
           <div className="relative flex items-center justify-center">
             <button
               onClick={prevSlide}
-              className="absolute left-2 z-20 border border-[var(--ds-line)] bg-[var(--ds-raise)] p-2 transition-colors hover:border-[var(--ds-accent)]"
+              className="absolute left-2 z-20 rounded-full border border-[var(--ds-line)] bg-[var(--ds-raise)] p-2 transition-colors hover:border-[var(--ds-accent)]"
               aria-label="Previous screen"
             >
               <ChevronLeft className="h-6 w-6 text-[var(--ds-ink)]" />
@@ -234,7 +234,7 @@ export default function SystemsWeBuildPage() {
 
             <button
               onClick={nextSlide}
-              className="absolute right-2 z-20 border border-[var(--ds-line)] bg-[var(--ds-raise)] p-2 transition-colors hover:border-[var(--ds-accent)]"
+              className="absolute right-2 z-20 rounded-full border border-[var(--ds-line)] bg-[var(--ds-raise)] p-2 transition-colors hover:border-[var(--ds-accent)]"
               aria-label="Next screen"
             >
               <ChevronRight className="h-6 w-6 text-[var(--ds-ink)]" />
@@ -246,7 +246,7 @@ export default function SystemsWeBuildPage() {
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
-                className={`h-2.5 transition-all ${
+                className={`h-2.5 rounded-full transition-all ${
                   index === currentSlide
                     ? "w-6 bg-[var(--ds-accent)]"
                     : "w-2.5 bg-[var(--ds-line)] hover:bg-[var(--ds-ink-faint)]"
@@ -291,7 +291,7 @@ export default function SystemsWeBuildPage() {
             >
               <button
                 onClick={closeLightbox}
-                className="absolute -top-12 right-0 p-2 text-white/80 transition-colors hover:text-white"
+                className="absolute -top-12 right-0 rounded-full p-2 text-white/80 transition-colors hover:text-white"
                 aria-label="Close"
               >
                 <X className="h-8 w-8" />
