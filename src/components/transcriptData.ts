@@ -1,5 +1,10 @@
 // Timestamps aligned via Whisper against the sound-clip m4a recordings
-export type TranscriptMsg = { role: "agent" | "caller" | "note"; text: string; t: number };
+export type TranscriptMsg = {
+  role: "agent" | "caller" | "note";
+  text: string;
+  t: number;
+  emotion?: { en: string; es: string };
+};
 
 export type CallClip = {
   src: string;
@@ -78,15 +83,47 @@ const junkRemovalClips: Partial<Record<"en" | "es", CallClip>> = {
   },
 };
 
+const lawFirmClips: Partial<Record<"en" | "es", CallClip>> = {
+  es: {
+    src: "/audio/law-firms-spanish.mp3",
+    duration: 38,
+    transcript: [
+      {
+        role: "caller",
+        t: 0,
+        text: "Ah, yo estuve en un accidente el otro día y necesito un-- buscar un abogado que me pueda ayudar con mi caso. Me destruyeron mi carro.",
+      },
+      {
+        role: "agent",
+        t: 9,
+        emotion: { en: "concerned", es: "preocupada" },
+        text: "Lo siento mucho que haya pasado por eso. Antes de hacerle algunas preguntas, ¿se encuentra en un lugar seguro en este momento, y alguien necesita atención médica de emergencia?",
+      },
+      {
+        role: "caller",
+        t: 21,
+        text: "Todo bien ahorita, estamos bien. Nomás está dolorido.",
+      },
+      {
+        role: "agent",
+        t: 26,
+        text: "Entiendo. Voy a hacerle algunas preguntas para que el personal pueda revisar su información. Primero, ¿me puede dar su nombre completo, por favor?",
+      },
+      { role: "caller", t: 36, text: "Sí, mi amor. Ramiro Favela." },
+    ],
+  },
+};
+
 export const callScenarios: CallScenario[] = [
   {
     id: "law-firms",
-    available: false,
+    available: true,
     label: { en: "Law Firms", es: "Despachos legales" },
     caption: {
-      en: "After-hours intake, urgency checks, and staff-ready summaries.",
-      es: "Intake fuera de horario, revisión de urgencia y resúmenes para el personal.",
+      en: "Spanish personal-injury intake with an immediate safety check.",
+      es: "Intake de lesiones personales en español con revisión inmediata de seguridad.",
     },
+    clips: lawFirmClips,
   },
   {
     id: "plumbing-hvac",

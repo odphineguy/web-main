@@ -117,6 +117,8 @@ export default function HomePage() {
         onPrimaryClick={openConsultation}
       />
 
+      <CallProof locale={locale} />
+
       <KineticManifesto locale={locale} />
 
       <section id="visual-estimate" className="bold-estimate">
@@ -184,8 +186,6 @@ export default function HomePage() {
       </section>
 
       <OperationsStory locale={locale} />
-
-      <CallProof locale={locale} />
 
       <section className="bold-services" id="services">
         <div className="bold-home__shell">

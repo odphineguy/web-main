@@ -239,6 +239,11 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
                     : "rounded-[1.1rem] rounded-br-sm bg-[oklch(0.64_0.2_42)] text-[oklch(0.985_0.006_78)]"
                 } ${playing && index === activeIndex ? "shadow-[0_0_0_2px_oklch(0.7_0.16_45_/_0.42)]" : ""}`}
               >
+                {message.emotion && (
+                  <span className="mb-1.5 block text-[0.68rem] font-semibold uppercase tracking-[0.12em] opacity-65">
+                    ({message.emotion[locale]})
+                  </span>
+                )}
                 {message.text}
               </div>
               <div className={`mt-1.5 font-mono text-[0.62rem] tabular-nums text-[oklch(0.52_0.018_70)] ${message.role === "caller" ? "text-right" : ""}`}>
