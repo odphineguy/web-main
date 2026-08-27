@@ -12,6 +12,7 @@ import OperationsStory from "@/components/home/OperationsStory";
 import CallProof from "@/components/home/CallProof";
 import BuildsChapter from "@/components/home/BuildsChapter";
 import ConsultationForm from "@/components/ConsultationForm";
+import AIReadinessAudit from "@/components/home/AIReadinessAudit";
 
 const pageCopy = {
   en: {
@@ -20,6 +21,7 @@ const pageCopy = {
       accent: "your business moves.",
       subtitle: "AI voice agents, dispatch systems, lead automation, and estimating tools for service businesses.",
       secondary: "See a live workflow",
+      auditCta: "Get your free AI audit",
     },
     estimateIndex: "Visual estimate",
     leadIndex: "The owner's inbox",
@@ -49,6 +51,7 @@ const pageCopy = {
       accent: "tu negocio se mueve.",
       subtitle: "Agentes de voz con IA, sistemas de dispatch, automatización de leads y herramientas de estimación para negocios de servicios.",
       secondary: "Verlo en acción",
+      auditCta: "Obtén tu auditoría gratis",
     },
     estimateIndex: "Estimado visual",
     leadIndex: "El inbox del dueño",
@@ -95,6 +98,11 @@ export default function HomePage() {
     setConsultationOpen(true);
   };
 
+  const openAudit = (event?: MouseEvent<HTMLAnchorElement>) => {
+    event?.preventDefault();
+    document.getElementById("free-ai-audit")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -112,12 +120,15 @@ export default function HomePage() {
         title={text.hero.title}
         accent={text.hero.accent}
         subtitle={text.hero.subtitle}
-        primaryLabel={t("Hero.scheduleCta")}
+        primaryLabel={text.hero.auditCta}
         secondaryLabel={text.hero.secondary}
-        onPrimaryClick={openConsultation}
+        primaryHref="#free-ai-audit"
+        onPrimaryClick={openAudit}
       />
 
       <CallProof locale={locale} />
+
+      <AIReadinessAudit />
 
       <KineticManifesto locale={locale} />
 

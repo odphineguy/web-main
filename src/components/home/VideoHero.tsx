@@ -11,6 +11,7 @@ type VideoHeroProps = {
   subtitle: string;
   primaryLabel: string;
   secondaryLabel: string;
+  primaryHref?: string;
   onPrimaryClick?: MouseEventHandler<HTMLAnchorElement>;
 };
 
@@ -32,6 +33,7 @@ export default function VideoHero({
   subtitle,
   primaryLabel,
   secondaryLabel,
+  primaryHref,
   onPrimaryClick,
 }: VideoHeroProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -116,7 +118,7 @@ export default function VideoHero({
             priority
           />
         </Link>
-        <Link href={`/${locale}/contact`} className="home-video-hero__project-link" onClick={onPrimaryClick}>
+        <Link href={primaryHref || `/${locale}/contact`} className="home-video-hero__project-link" onClick={onPrimaryClick}>
           <span aria-hidden="true" />
           {primaryLabel}
           <b aria-hidden="true">↗</b>
@@ -129,7 +131,7 @@ export default function VideoHero({
         </h1>
         <p className="home-video-hero__subtitle">{subtitle}</p>
         <div className="home-video-hero__actions">
-          <Link href={`/${locale}/contact`} className="home-video-hero__primary" onClick={onPrimaryClick}>
+          <Link href={primaryHref || `/${locale}/contact`} className="home-video-hero__primary" onClick={onPrimaryClick}>
             <span aria-hidden="true" />
             {primaryLabel}
             <b aria-hidden="true">↗</b>
