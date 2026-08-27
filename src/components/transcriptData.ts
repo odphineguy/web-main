@@ -7,7 +7,21 @@ export type CallClip = {
   transcript: TranscriptMsg[];
 };
 
-export const calls: Record<"en" | "es", CallClip> = {
+export type CallScenarioId =
+  | "law-firms"
+  | "plumbing-hvac"
+  | "junk-removal"
+  | "ai-receptionist";
+
+export type CallScenario = {
+  id: CallScenarioId;
+  available: boolean;
+  label: { en: string; es: string };
+  caption: { en: string; es: string };
+  clips?: Partial<Record<"en" | "es", CallClip>>;
+};
+
+const plumbingClips: Record<"en" | "es", CallClip> = {
   en: {
     src: "/audio/sound-clip.m4a",
     duration: 35.6,
@@ -32,3 +46,77 @@ export const calls: Record<"en" | "es", CallClip> = {
     ],
   },
 };
+
+const junkRemovalClips: Partial<Record<"en" | "es", CallClip>> = {
+  en: {
+    src: "/audio/junk-removal.mp3",
+    duration: 43,
+    transcript: [
+      {
+        role: "agent",
+        t: 0,
+        text: "Thanks for calling Desert Ridge Moving and Junk Removal, this is Maya. Are you calling about a move, or a junk removal pickup?",
+      },
+      { role: "caller", t: 7, text: "I'm calling about a junk removal." },
+      { role: "agent", t: 9, text: "Great! What kind of items are you looking to have removed?" },
+      { role: "caller", t: 13, text: "I need to remove a refrigerator." },
+      {
+        role: "agent",
+        t: 16,
+        text: "Got it, a refrigerator. Is that the only item, or do you have a few other things you'd like hauled away too?",
+      },
+      { role: "caller", t: 22, text: "Yeah, just the refrigerator." },
+      {
+        role: "agent",
+        t: 24,
+        text: "Perfect. Where is the refrigerator located — is it inside your home, in the garage, or somewhere else like the backyard?",
+      },
+      { role: "caller", t: 32, text: "Yeah, I got it right here in my garage." },
+      { role: "agent", t: 35, text: "Awesome, that helps. When would you like us to come pick it up?" },
+      { role: "caller", t: 41, text: "Uh, you guys could come on Monday or Tuesday, that'd be great." },
+    ],
+  },
+};
+
+export const callScenarios: CallScenario[] = [
+  {
+    id: "law-firms",
+    available: false,
+    label: { en: "Law Firms", es: "Despachos legales" },
+    caption: {
+      en: "After-hours intake, urgency checks, and staff-ready summaries.",
+      es: "Intake fuera de horario, revisión de urgencia y resúmenes para el personal.",
+    },
+  },
+  {
+    id: "plumbing-hvac",
+    available: true,
+    label: { en: "Plumbing & HVAC", es: "Plomería y HVAC" },
+    caption: {
+      en: "After-hours plumbing call for Desert Valley.",
+      es: "Llamada de plomería fuera de horario para Desert Valley.",
+    },
+    clips: plumbingClips,
+  },
+  {
+    id: "junk-removal",
+    available: true,
+    label: { en: "Junk Removal", es: "Retiro de escombros" },
+    caption: {
+      en: "Refrigerator pickup intake for Desert Ridge Moving and Junk Removal.",
+      es: "Intake para recoger un refrigerador con Desert Ridge Moving and Junk Removal.",
+    },
+    clips: junkRemovalClips,
+  },
+  {
+    id: "ai-receptionist",
+    available: false,
+    label: { en: "AI Receptionist", es: "Recepcionista con IA" },
+    caption: {
+      en: "General answering, qualification, routing, and scheduling.",
+      es: "Atención general, calificación, transferencia y agenda.",
+    },
+  },
+];
+
+export const defaultCallScenarioId: CallScenarioId = "plumbing-hvac";

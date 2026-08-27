@@ -1,315 +1,289 @@
 "use client";
 
+import Link from "next/link";
+import { ChevronDown, Pause, PhoneCall, Play } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { Play, Pause } from "lucide-react";
-import { useTheme } from "next-themes";
-import { useLocale, useTranslations } from "next-intl";
-import { calls } from "./transcriptData";
+import { useLocale } from "next-intl";
+import {
+  callScenarios,
+  defaultCallScenarioId,
+  type CallScenarioId,
+} from "./transcriptData";
 
-function fmt(s: number) {
-  return `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
+function fmt(seconds: number) {
+  return `${Math.floor(seconds / 60)}:${String(Math.floor(seconds % 60)).padStart(2, "0")}`;
 }
 
-const CLIP_LABELS = { en: "English call", es: "Llamada en español" } as const;
+const waveform = [
+  8, 17, 11, 22, 14, 19, 9, 16, 24, 12, 18, 10, 21, 15, 26, 13, 20, 9,
+  17, 23, 12, 19, 8, 16, 22, 11, 18, 14, 25, 10, 17, 7,
+];
+
+const copy = {
+  en: {
+    library: "Real call library",
+    proof: "Recorded AI call excerpts",
+    callType: "Call type",
+    unavailable: "clip coming soon",
+    language: "Call language",
+    languages: { en: "English", es: "Español" },
+    play: "Play call recording",
+    pause: "Pause call recording",
+    seek: "Seek in call recording",
+    agent: "AI agent",
+    caller: "Caller",
+    prompt: "Press play to hear this call excerpt",
+    recording: "This is a recording.",
+    invitation: "Want to hear how an agent would handle your calls?",
+    cta: "Let’s Talk",
+  },
+  es: {
+    library: "Biblioteca de llamadas reales",
+    proof: "Extractos grabados de llamadas con IA",
+    callType: "Tipo de llamada",
+    unavailable: "audio próximamente",
+    language: "Idioma de la llamada",
+    languages: { en: "English", es: "Español" },
+    play: "Reproducir llamada grabada",
+    pause: "Pausar llamada grabada",
+    seek: "Buscar en la llamada grabada",
+    agent: "Agente con IA",
+    caller: "Cliente",
+    prompt: "Presiona reproducir para escuchar este extracto",
+    recording: "Esta es una grabación.",
+    invitation: "¿Quieres escuchar cómo un agente atendería tus llamadas?",
+    cta: "Hablemos",
+  },
+} as const;
 
 export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => void }) {
-  const t = useTranslations("Home.Hero");
-  const locale = useLocale();
-  const [clipLang, setClipLang] = useState<"en" | "es">(locale === "es" ? "es" : "en");
+  const locale = useLocale() === "es" ? "es" : "en";
+  const text = copy[locale];
+  const [scenarioId, setScenarioId] = useState<CallScenarioId>(defaultCallScenarioId);
+  const [clipLang, setClipLang] = useState<"en" | "es">(locale);
   const audioRef = useRef<HTMLAudioElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const firedRef = useRef(false);
   const [playing, setPlaying] = useState(false);
   const [time, setTime] = useState(0);
-  const [mounted, setMounted] = useState(false);
-  const firedRef = useRef(false);
 
-  const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === "dark";
-
-  // Match ChatDemoWindow: neutral surface during SSR to avoid a hydration mismatch
-  const themeClass = mounted ? (isDark ? "chat-demo-charcoal" : "chat-demo-cream") : "chat-demo-cream";
-
-  const clip = calls[clipLang];
+  const fallbackScenario = callScenarios.find((scenario) => scenario.id === defaultCallScenarioId)!;
+  const activeScenario = callScenarios.find((scenario) => scenario.id === scenarioId) ?? fallbackScenario;
+  const clip = activeScenario.clips?.[clipLang] ?? fallbackScenario.clips![clipLang]!;
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    const a = audioRef.current;
-    if (!a) return;
-    const onTime = () => setTime(a.currentTime);
+    const audio = audioRef.current;
+    if (!audio) return;
+    const onTime = () => setTime(audio.currentTime);
     const onEnd = () => setPlaying(false);
-    a.addEventListener("timeupdate", onTime);
-    a.addEventListener("ended", onEnd);
+    audio.addEventListener("timeupdate", onTime);
+    audio.addEventListener("ended", onEnd);
     return () => {
-      a.removeEventListener("timeupdate", onTime);
-      a.removeEventListener("ended", onEnd);
+      audio.removeEventListener("timeupdate", onTime);
+      audio.removeEventListener("ended", onEnd);
     };
   }, []);
 
   useEffect(() => {
-    const el = scrollRef.current;
-    if (el) el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
-  }, [time]);
+    const transcript = scrollRef.current;
+    if (!transcript) return;
+    if (!playing && time === 0) {
+      transcript.scrollTo({ top: 0 });
+      return;
+    }
+    transcript.scrollTo({ top: transcript.scrollHeight, behavior: "smooth" });
+  }, [playing, time]);
 
-  const switchClip = (lang: "en" | "es") => {
-    if (lang === clipLang) return;
-    const a = audioRef.current;
-    if (a) a.pause();
+  const resetAudio = () => {
+    const audio = audioRef.current;
+    if (audio) {
+      audio.pause();
+      audio.currentTime = 0;
+    }
     setPlaying(false);
     setTime(0);
-    setClipLang(lang);
-    if (a) {
-      a.src = calls[lang].src;
-      a.load();
-    }
+  };
+
+  const switchScenario = (nextId: CallScenarioId) => {
+    if (nextId === scenarioId) return;
+    const nextScenario = callScenarios.find((scenario) => scenario.id === nextId);
+    if (!nextScenario?.available) return;
+    const nextLanguage = nextScenario.clips?.[clipLang]
+      ? clipLang
+      : nextScenario.clips?.en
+        ? "en"
+        : "es";
+    resetAudio();
+    setScenarioId(nextId);
+    setClipLang(nextLanguage);
+  };
+
+  const switchLanguage = (language: "en" | "es") => {
+    if (language === clipLang || !activeScenario.clips?.[language]) return;
+    resetAudio();
+    setClipLang(language);
   };
 
   const toggle = () => {
-    const a = audioRef.current;
-    if (!a) return;
+    const audio = audioRef.current;
+    if (!audio) return;
     if (playing) {
-      a.pause();
+      audio.pause();
       setPlaying(false);
-    } else {
-      if (!firedRef.current) {
-        firedRef.current = true;
-        onFirstPlay?.();
-      }
-      a.play();
-      setPlaying(true);
+      return;
     }
+    if (!firedRef.current) {
+      firedRef.current = true;
+      onFirstPlay?.();
+    }
+    void audio.play();
+    setPlaying(true);
   };
 
-  const seek = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const a = audioRef.current;
-    if (!a) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const frac = (e.clientX - rect.left) / rect.width;
-    a.currentTime = frac * clip.duration;
-    setTime(a.currentTime);
+  const seek = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    const fraction = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
+    audio.currentTime = fraction * clip.duration;
+    setTime(audio.currentTime);
   };
 
   const started = playing || time > 0;
-  const visible = started ? clip.transcript.filter((m) => m.t <= time) : clip.transcript.slice(0, 3);
-  const activeIdx = started ? visible.length - 1 : -1;
+  const visible = started ? clip.transcript.filter((message) => message.t <= time) : clip.transcript.slice(0, 3);
+  const activeIndex = started ? visible.length - 1 : -1;
+  const progress = Math.min(1, time / clip.duration);
 
   return (
-    <div
-      className={`relative overflow-hidden rounded-3xl backdrop-blur-[14px] text-left ${themeClass}`}
-      style={{
-        background: "var(--chat-surface)",
-        border: "1px solid var(--chat-border)",
-        boxShadow: "var(--chat-shadow)",
-      }}
-    >
-      <audio ref={audioRef} src={clip.src} preload="none" />
+    <div className="overflow-hidden rounded-[1.75rem] border border-[oklch(0.78_0.02_70)] bg-[oklch(0.965_0.012_78)] text-left text-[oklch(0.22_0.015_70)] shadow-[0_28px_80px_oklch(0.08_0.015_265_/_0.38)]">
+      <audio ref={audioRef} src={clip.src} preload="metadata" />
 
-      {/* Dot pattern overlay — light mode */}
-      {mounted && !isDark && (
-        <div
-          className="pointer-events-none absolute inset-0 z-0"
-          style={{
-            backgroundImage: "radial-gradient(circle at 12px 12px, rgba(23,23,23,0.04) 1px, transparent 1px)",
-            backgroundSize: "26px 26px",
-            opacity: 0.25,
-            maskImage: "linear-gradient(180deg, rgba(0,0,0,0.70), rgba(0,0,0,0.10))",
-            WebkitMaskImage: "linear-gradient(180deg, rgba(0,0,0,0.70), rgba(0,0,0,0.10))",
-          }}
-        />
-      )}
-
-      {/* Aurora overlay — dark mode */}
-      {mounted && isDark && (
-        <div
-          className="animate-aurora pointer-events-none absolute inset-[-40px] z-0"
-          style={{
-            background: `
-              radial-gradient(500px 240px at 20% 10%, rgba(227,79,11,0.30), transparent 60%),
-              radial-gradient(520px 260px at 85% 20%, rgba(227,79,11,0.25), transparent 62%),
-              radial-gradient(540px 260px at 55% 110%, rgba(227,79,11,0.18), transparent 65%)
-            `,
-            filter: "blur(18px)",
-            opacity: 0.9,
-          }}
-        />
-      )}
-
-      {/* Header */}
-      <div
-        className="relative z-10 flex items-center gap-3 border-b bg-transparent px-4 py-3"
-        style={{ borderColor: "var(--chat-header-border)" }}
-      >
-        <div
-          className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-2xl"
-          style={{
-            background: "#E34F0B",
-            boxShadow: isDark
-              ? "0 0 0 1px rgba(115,115,115,0.16), 0 16px 40px rgba(0,0,0,0.42)"
-              : "0 14px 30px rgba(227,79,11,0.28)",
-          }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/favicon.ico" alt="" className="h-6 w-6 object-contain" />
-        </div>
-        <div className="min-w-0 flex-1 text-center">
-          <h3
-            className="text-sm font-semibold leading-snug"
-            style={{
-              fontFamily: "var(--font-spectral), Georgia, serif",
-              fontStyle: "italic",
-              color: "var(--chat-text)",
-            }}
-          >
-            {t("widgetLabel")}
-          </h3>
-          <span className="text-xs" style={{ color: "var(--chat-muted)" }}>
-            {t("widgetCaption")}
+      <header className="grid gap-4 border-b border-[oklch(0.85_0.018_72)] px-5 py-5 sm:grid-cols-[1fr_auto] sm:items-center">
+        <div className="flex min-w-0 items-center gap-3">
+          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[oklch(0.64_0.2_42)] text-[oklch(0.98_0.01_75)] shadow-[0_8px_20px_oklch(0.64_0.2_42_/_0.24)]">
+            <PhoneCall className="h-5 w-5" aria-hidden="true" />
           </span>
+          <div className="min-w-0">
+            <h3 className="text-[0.95rem] font-semibold leading-tight">{text.library}</h3>
+            <p className="mt-1 text-xs text-[oklch(0.5_0.018_70)]">{text.proof}</p>
+          </div>
         </div>
-        {/* Spacer balances the avatar so the title stays optically centered */}
-        <div className="h-10 w-10 flex-shrink-0" aria-hidden="true" />
-      </div>
 
-      {/* Clip language toggle — its own row so the title above can breathe */}
-      <div
-        className="relative z-10 flex justify-center border-b bg-transparent px-4 py-2"
-        style={{ borderColor: "var(--chat-header-border)" }}
-      >
-        <div
-          className="flex rounded-full p-0.5"
-          style={{ background: "var(--chat-input-bg)", border: "1px solid var(--chat-border)" }}
-          role="group"
-          aria-label="Call language"
-        >
-          {(["en", "es"] as const).map((lang) => (
-            <button
-              key={lang}
-              type="button"
-              onClick={() => switchClip(lang)}
-              aria-pressed={clipLang === lang}
-              className="rounded-full px-3 py-1 text-[11px] font-medium transition-colors"
-              style={
-                clipLang === lang
-                  ? { background: "var(--chat-user-bubble)", color: "var(--chat-user-text)" }
-                  : { color: "var(--chat-muted)" }
-              }
-            >
-              {CLIP_LABELS[lang]}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Transcript — AI left, caller right, matching the demo bubbles */}
-      <div
-        ref={scrollRef}
-        className="relative z-10 flex h-80 flex-col gap-3 overflow-y-auto bg-transparent px-4 py-3 scroll-smooth"
-      >
-        {visible.map((m, i) =>
-          m.role === "note" ? (
-            <div
-              key={i}
-              className="self-center rounded-xl px-3 py-2 text-center"
-              style={{
-                background: "rgba(227,79,11,0.10)",
-                border: "1px solid rgba(227,79,11,0.28)",
-              }}
-            >
-              <p className="text-xs italic leading-relaxed" style={{ color: "var(--chat-text)" }}>
-                {m.text}
-              </p>
-            </div>
-          ) : (
-            <div
-              key={i}
-              className={`max-w-[85%] duration-300 animate-in fade-in slide-in-from-bottom-2 ${
-                m.role === "agent" ? "self-start" : "self-end"
-              }`}
-            >
-              <div
-                className={`rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed transition-shadow ${
-                  m.role === "agent" ? "rounded-bl-sm" : "rounded-br-sm"
-                }`}
-                style={
-                  m.role === "agent"
-                    ? {
-                        background: "var(--chat-bot-bubble)",
-                        border: "1px solid var(--chat-bot-border)",
-                        color: "var(--chat-text)",
-                        boxShadow: playing && i === activeIdx ? "0 0 0 2px rgba(227,79,11,0.45)" : "none",
-                      }
-                    : {
-                        background: "var(--chat-user-bubble)",
-                        color: "var(--chat-user-text)",
-                        boxShadow: playing && i === activeIdx ? "0 0 0 2px rgba(227,79,11,0.45)" : "none",
-                      }
-                }
-              >
-                {m.text}
-              </div>
-              <div
-                className={`mt-1 font-mono text-[10px] tabular-nums ${m.role === "agent" ? "" : "text-right"}`}
-                style={{ color: "var(--chat-muted)" }}
-              >
-                {m.role === "agent" ? "AI agent" : "Caller"} · {fmt(m.t)}
-              </div>
-            </div>
-          )
-        )}
-        {!started && (
-          <p className="pt-2 text-center text-xs" style={{ color: "var(--chat-muted)" }}>
-            Press play to hear the full call
-          </p>
-        )}
-      </div>
-
-      {/* Player bar — sits where the demo cards put their input row */}
-      <div className="relative z-10 bg-transparent px-4 py-3">
-        <div
-          className="flex items-center gap-3 rounded-2xl p-2"
-          style={{ background: "var(--chat-input-bg)", border: "1px solid var(--chat-border)" }}
-        >
-          <button
-            type="button"
-            onClick={toggle}
-            aria-label={playing ? "Pause call recording" : "Play call recording"}
-            className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full transition-transform hover:scale-105 active:scale-95"
-            style={{ background: "var(--chat-user-bubble)", color: "var(--chat-user-text)" }}
+        <label className="relative block min-w-44">
+          <span className="sr-only">{text.callType}</span>
+          <select
+            value={scenarioId}
+            onChange={(event) => switchScenario(event.target.value as CallScenarioId)}
+            className="h-11 w-full appearance-none rounded-full border border-[oklch(0.78_0.02_70)] bg-[oklch(0.99_0.006_78)] py-2 pl-4 pr-10 text-sm font-semibold outline-none transition-colors hover:border-[oklch(0.64_0.2_42)] focus-visible:ring-2 focus-visible:ring-[oklch(0.64_0.2_42)]"
           >
-            {playing ? <Pause className="h-4 w-4" /> : <Play className="ml-0.5 h-4 w-4" />}
-          </button>
-          <button type="button" className="flex-1 cursor-pointer py-2" onClick={seek} aria-label="Seek in call recording">
-            <div className="h-1.5 overflow-hidden rounded-full" style={{ background: "var(--chat-bot-bubble)" }}>
-              <div
-                className="h-full bg-orange-500 transition-[width] duration-300"
-                style={{ width: `${Math.min(100, (time / clip.duration) * 100)}%` }}
-              />
-            </div>
-          </button>
-          <span
-            className="flex-shrink-0 font-mono text-[11px] tabular-nums"
-            style={{ color: "var(--chat-muted)" }}
-          >
+            {callScenarios.map((scenario) => (
+              <option key={scenario.id} value={scenario.id} disabled={!scenario.available}>
+                {scenario.label[locale]}
+                {!scenario.available ? ` · ${text.unavailable}` : ""}
+              </option>
+            ))}
+          </select>
+          <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2" aria-hidden="true" />
+        </label>
+      </header>
+
+      <div className="border-b border-[oklch(0.88_0.014_72)] bg-[oklch(0.99_0.006_78)] px-5 py-4">
+        <p className="text-sm font-medium">{activeScenario.caption[locale]}</p>
+        <div className="mt-3 flex items-center justify-between gap-4">
+          <div className="flex rounded-full border border-[oklch(0.84_0.018_72)] bg-[oklch(0.95_0.012_75)] p-1" role="group" aria-label={text.language}>
+            {(["en", "es"] as const).map((language) => {
+              const languageAvailable = Boolean(activeScenario.clips?.[language]);
+              return (
+                <button
+                  key={language}
+                  type="button"
+                  onClick={() => switchLanguage(language)}
+                  aria-pressed={clipLang === language}
+                  disabled={!languageAvailable}
+                  className={`rounded-full px-3 py-1.5 text-[0.7rem] font-semibold transition-colors ${
+                    clipLang === language
+                      ? "bg-[oklch(0.64_0.2_42)] text-[oklch(0.98_0.01_75)]"
+                      : languageAvailable
+                        ? "text-[oklch(0.48_0.018_70)] hover:text-[oklch(0.24_0.015_70)]"
+                        : "cursor-not-allowed text-[oklch(0.68_0.012_70)]"
+                  }`}
+                >
+                  {text.languages[language]}
+                </button>
+              );
+            })}
+          </div>
+          <span className="font-mono text-[0.68rem] tabular-nums text-[oklch(0.5_0.018_70)]">
             {fmt(time)} / {fmt(clip.duration)}
           </span>
         </div>
       </div>
 
-      {/* Powered by footer — matches the industry demo cards */}
-      <div
-        className="relative z-10 border-t bg-transparent px-4 py-2 text-center"
-        style={{ borderColor: "var(--chat-footer-border)" }}
-      >
-        <span className="text-[10px]" style={{ color: "var(--chat-muted)" }}>
-          Powered by{" "}
-          <span className="font-semibold">
-            <span className="text-[rgb(227,79,11)]">abe</span>
-            <span style={{ color: "var(--chat-muted)" }}>media</span>
-          </span>
-        </span>
+      <div ref={scrollRef} className="flex h-80 flex-col gap-4 overflow-y-auto bg-[oklch(0.985_0.006_78)] px-5 py-5 scroll-smooth">
+        {visible.map((message, index) =>
+          message.role === "note" ? (
+            <div key={index} className="self-center border-y border-[oklch(0.82_0.045_52)] px-3 py-2 text-center text-xs italic text-[oklch(0.4_0.04_48)]">
+              {message.text}
+            </div>
+          ) : (
+            <div
+              key={index}
+              className={`max-w-[86%] animate-in fade-in slide-in-from-bottom-2 duration-300 ${
+                message.role === "agent" ? "self-start" : "self-end"
+              }`}
+            >
+              <div
+                className={`px-4 py-3 text-sm leading-relaxed transition-shadow ${
+                  message.role === "agent"
+                    ? "rounded-[1.1rem] rounded-bl-sm border border-[oklch(0.8_0.018_72)] bg-[oklch(0.925_0.018_72)] text-[oklch(0.23_0.015_70)]"
+                    : "rounded-[1.1rem] rounded-br-sm bg-[oklch(0.64_0.2_42)] text-[oklch(0.985_0.006_78)]"
+                } ${playing && index === activeIndex ? "shadow-[0_0_0_2px_oklch(0.7_0.16_45_/_0.42)]" : ""}`}
+              >
+                {message.text}
+              </div>
+              <div className={`mt-1.5 font-mono text-[0.62rem] tabular-nums text-[oklch(0.52_0.018_70)] ${message.role === "caller" ? "text-right" : ""}`}>
+                {message.role === "agent" ? text.agent : text.caller} · {fmt(message.t)}
+              </div>
+            </div>
+          ),
+        )}
+        {!started && <p className="pt-1 text-center text-xs text-[oklch(0.52_0.018_70)]">{text.prompt}</p>}
       </div>
+
+      <div className="border-t border-[oklch(0.86_0.016_72)] bg-[oklch(0.955_0.014_75)] px-5 py-4">
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={toggle}
+            aria-label={playing ? text.pause : text.play}
+            className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[oklch(0.64_0.2_42)] text-[oklch(0.985_0.006_78)] transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[oklch(0.64_0.2_42)] focus-visible:ring-offset-2 active:scale-95"
+          >
+            {playing ? <Pause className="h-4 w-4" /> : <Play className="ml-0.5 h-4 w-4" />}
+          </button>
+          <button type="button" className="flex h-10 flex-1 items-center gap-[3px] py-1" onClick={seek} aria-label={text.seek}>
+            {waveform.map((height, index) => (
+              <span
+                key={index}
+                className="min-w-0 flex-1 rounded-full transition-colors"
+                style={{
+                  height,
+                  background: index / waveform.length <= progress ? "oklch(0.64 0.2 42)" : "oklch(0.83 0.018 72)",
+                }}
+              />
+            ))}
+          </button>
+        </div>
+      </div>
+
+      <footer className="flex flex-col gap-3 border-t border-[oklch(0.84_0.018_72)] bg-[oklch(0.985_0.006_78)] py-4 pl-5 pr-20 sm:flex-row sm:items-center sm:justify-between sm:pr-5">
+        <div>
+          <p className="text-xs font-semibold">{text.recording}</p>
+          <p className="mt-1 text-xs text-[oklch(0.5_0.018_70)]">{text.invitation}</p>
+        </div>
+        <Link href={`/${locale}/contact`} className="inline-flex min-h-10 shrink-0 items-center justify-center rounded-full bg-[oklch(0.22_0.015_70)] px-5 text-xs font-semibold text-[oklch(0.985_0.006_78)] transition-colors hover:bg-[oklch(0.64_0.2_42)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[oklch(0.64_0.2_42)] focus-visible:ring-offset-2">
+          {text.cta}
+        </Link>
+      </footer>
     </div>
   );
 }

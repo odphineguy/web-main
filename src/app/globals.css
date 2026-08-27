@@ -1251,7 +1251,7 @@
 
 .bold-callproof__layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 26rem);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 32rem);
   align-items: center;
   justify-content: space-between;
   gap: clamp(3rem, 6vw, 7rem);
@@ -1310,7 +1310,7 @@
 
 .bold-callproof__player {
   width: 100%;
-  max-width: 26rem;
+  max-width: 32rem;
   justify-self: end;
 }
 
@@ -1321,7 +1321,7 @@
 
   .bold-callproof__player {
     justify-self: stretch;
-    max-width: 28rem;
+    max-width: 32rem;
   }
 }
 

@@ -11,22 +11,22 @@ const copy = {
   en: {
     index: "Hear it yourself",
     title: {
-      before: "A real call, ",
-      accent: "unedited",
+      before: "Real calls, ",
+      accent: "no scripts",
       after: ".",
     },
-    lede: "An after-hours plumbing call, start to finish. Nothing cut, nothing re-recorded. The transcript follows the audio as it plays.",
-    points: ["Answered on the first ring", "Qualified and priced in conversation", "Booked on a real calendar slot"],
+    lede: "Recorded moments from real AI conversations across service businesses. The transcript follows each excerpt as it plays.",
+    points: ["Real caller and agent audio", "Different service-business scenarios", "Transcript synced to playback"],
   },
   es: {
     index: "Escúchalo tú mismo",
     title: {
-      before: "Una llamada real, ",
-      accent: "sin editar",
+      before: "Llamadas reales, ",
+      accent: "sin guiones",
       after: ".",
     },
-    lede: "Una llamada de plomería fuera de horario, de principio a fin. Sin cortes ni regrabaciones. La transcripción sigue el audio mientras se reproduce.",
-    points: ["Contestada al primer timbre", "Calificada y cotizada en la conversación", "Reservada en un horario real del calendario"],
+    lede: "Momentos grabados de conversaciones reales con IA para negocios de servicios. La transcripción sigue cada extracto mientras se reproduce.",
+    points: ["Audio real del cliente y del agente", "Diferentes escenarios de servicio", "Transcripción sincronizada"],
   },
 } as const;
 
