@@ -97,13 +97,14 @@ export default function PortfolioPage() {
               <Reveal key={slug} index={i}>
                 <Link href={`/${locale}/portfolio/${slug}`} className="block h-full">
                   <article className="group flex h-full flex-col border border-[var(--ds-line)] bg-[var(--ds-raise)] p-6 transition-colors hover:border-[var(--ds-accent)]">
-                    <div className="relative aspect-[16/10] overflow-hidden border border-[var(--ds-line-soft)] bg-[var(--ds-accent-bg)]">
+                    {/* 4:3 matches the source screenshots exactly, so nothing crops. */}
+                    <div className="relative aspect-[4/3] overflow-hidden border border-[var(--ds-line-soft)] bg-[var(--ds-accent-bg)]">
                       <Image
                         src={project.thumbnail.src}
                         alt={project.thumbnail.alt}
                         fill
                         sizes="(min-width: 768px) 24rem, 100vw"
-                        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>
                     <div className="mt-5 flex items-baseline justify-between gap-3">
