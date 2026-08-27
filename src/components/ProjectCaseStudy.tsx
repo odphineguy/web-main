@@ -1,9 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
-import type { Project, ProjectImage } from "@/content/projects";
+import type { Project } from "@/content/projects";
 import PageShell, { Reveal } from "@/components/ds/PageShell";
 import PageHero from "@/components/ds/PageHero";
 import Section from "@/components/ds/Section";
+import ProjectGallery from "@/components/ProjectGallery";
 
 const baseUrl = "https://abemedia.online";
 
@@ -29,10 +29,18 @@ const ui = {
     outcomeTitle: "The result",
     live: "Live at",
     ctaTitle: "Want a system like this for your operation?",
-    cta: "Start the conversation",
+    cta: "Let’s Talk",
     back: "All projects",
     home: "Home",
     work: "Work",
+    gallery: {
+      open: "Enlarge image",
+      close: "Close image viewer",
+      previous: "Previous image",
+      next: "Next image",
+      dialogTitle: "Project image viewer",
+      count: "Image",
+    },
   },
   es: {
     railCap: "TRABAJO",
@@ -53,60 +61,23 @@ const ui = {
     outcomeTitle: "El resultado",
     live: "En vivo en",
     ctaTitle: "¿Quieres un sistema así para tu operación?",
-    cta: "Iniciar la conversación",
+    cta: "Hablemos",
     back: "Todos los proyectos",
     home: "Inicio",
     work: "Trabajo",
+    gallery: {
+      open: "Ampliar imagen",
+      close: "Cerrar visor de imágenes",
+      previous: "Imagen anterior",
+      next: "Imagen siguiente",
+      dialogTitle: "Visor de imágenes del proyecto",
+      count: "Imagen",
+    },
   },
 } as const;
 
 function safeJson(value: unknown) {
   return JSON.stringify(value).replace(/</g, "\\u003c");
-}
-
-function Gallery({ images }: { images: ProjectImage[] }) {
-  const mobiles = images.filter((img) => img.mobile);
-  const wides = images.filter((img) => !img.mobile);
-  return (
-    <div className="space-y-[var(--ds-space-lg)]">
-      {wides.length > 0 && (
-        <div className={wides.length > 1 ? "grid gap-[var(--ds-space-lg)] md:grid-cols-2" : ""}>
-          {wides.map((img, i) => (
-            <Reveal key={img.src} index={i}>
-              <figure className="overflow-hidden border border-[var(--ds-line)] bg-[var(--ds-raise)]">
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  width={img.width}
-                  height={img.height}
-                  sizes="(min-width: 768px) 44rem, 100vw"
-                  className="h-auto w-full"
-                />
-              </figure>
-            </Reveal>
-          ))}
-        </div>
-      )}
-      {mobiles.length > 0 && (
-        <div className="flex flex-wrap items-start justify-center gap-[var(--ds-space-lg)]">
-          {mobiles.map((img, i) => (
-            <Reveal key={img.src} index={i}>
-              <figure className="w-40 overflow-hidden border border-[var(--ds-line)] bg-[var(--ds-raise)] sm:w-48">
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  width={img.width}
-                  height={img.height}
-                  sizes="12rem"
-                  className="h-auto w-full"
-                />
-              </figure>
-            </Reveal>
-          ))}
-        </div>
-      )}
-    </div>
-  );
 }
 
 function Paragraphs({ items }: { items: string[] }) {
@@ -169,7 +140,6 @@ export default function ProjectCaseStudy({
 
       <div id="overview">
         <PageHero
-          eyebrow={`${project.role} · ${project.year} · ${project.focus.join(" · ")}`}
           title={project.name}
           lede={project.tagline}
         />
@@ -191,7 +161,7 @@ export default function ProjectCaseStudy({
 
         {project.images.length > 0 && (
           <div className="pb-[var(--ds-space-2xl)]">
-            <Gallery images={project.images} />
+            <ProjectGallery images={project.images} labels={t.gallery} />
           </div>
         )}
       </div>
@@ -226,7 +196,7 @@ export default function ProjectCaseStudy({
           title={project.extraGallery.title}
           lede={project.extraGallery.description}
         >
-          <Gallery images={project.extraGallery.images} />
+          <ProjectGallery images={project.extraGallery.images} labels={t.gallery} />
         </Section>
       )}
 
