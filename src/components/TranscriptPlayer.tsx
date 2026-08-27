@@ -188,7 +188,7 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
       </header>
 
       <div className="border-b border-[oklch(0.88_0.014_72)] bg-[oklch(0.99_0.006_78)] px-5 py-4">
-        <p className="text-sm font-medium">{activeScenario.caption[locale]}</p>
+        <p className="text-sm font-medium">{clip.caption?.[locale] ?? activeScenario.caption[locale]}</p>
         <div className="mt-3 flex items-center justify-between gap-4">
           <div className="flex rounded-full border border-[oklch(0.84_0.018_72)] bg-[oklch(0.95_0.012_75)] p-1" role="group" aria-label={text.language}>
             {(["en", "es"] as const).map((language) => {

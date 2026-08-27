@@ -10,6 +10,7 @@ export type CallClip = {
   src: string;
   duration: number;
   transcript: TranscriptMsg[];
+  caption?: { en: string; es: string };
 };
 
 export type CallScenarioId =
@@ -84,9 +85,41 @@ const junkRemovalClips: Partial<Record<"en" | "es", CallClip>> = {
 };
 
 const lawFirmClips: Partial<Record<"en" | "es", CallClip>> = {
+  en: {
+    src: "/audio/law-firms-english.mp3",
+    duration: 42,
+    caption: {
+      en: "English personal-injury intake with calm incident clarification.",
+      es: "Intake de lesiones personales en inglés con aclaración calmada del accidente.",
+    },
+    transcript: [
+      {
+        role: "agent",
+        t: 0,
+        emotion: { en: "calm", es: "con calma" },
+        text: "I'm sorry that happened to you. That must have been startling. Can you tell me a bit more, where were you when this happened, and do you remember what time it was?",
+      },
+      {
+        role: "caller",
+        t: 11,
+        text: "Yeah, it was yesterday. I was, uh, waiting for the green light to turn here at the, uh, the I-17 and the, uh, Camelback intersection, and I was just waiting for my light to turn, and I was hit, rear-ended. A guy behind me didn't see me or something.",
+      },
+      {
+        role: "agent",
+        t: 27,
+        emotion: { en: "calm", es: "con calma" },
+        text: "Thank you for explaining that. So this happened yesterday at the I-17 and Camelback intersection while you were stopped at a red light. Do you remember roughly what time of day that was?",
+      },
+      { role: "caller", t: 40, text: "Yeah, it was around 5:00 p.m." },
+    ],
+  },
   es: {
     src: "/audio/law-firms-spanish.mp3",
     duration: 38,
+    caption: {
+      en: "Spanish personal-injury intake with an immediate safety check.",
+      es: "Intake de lesiones personales en español con revisión inmediata de seguridad.",
+    },
     transcript: [
       {
         role: "caller",
@@ -120,8 +153,8 @@ export const callScenarios: CallScenario[] = [
     available: true,
     label: { en: "Law Firms", es: "Despachos legales" },
     caption: {
-      en: "Spanish personal-injury intake with an immediate safety check.",
-      es: "Intake de lesiones personales en español con revisión inmediata de seguridad.",
+      en: "Bilingual personal-injury intake with calm, structured questioning.",
+      es: "Intake bilingüe de lesiones personales con preguntas calmadas y estructuradas.",
     },
     clips: lawFirmClips,
   },
