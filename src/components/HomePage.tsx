@@ -240,11 +240,6 @@ export default function HomePage() {
       <section className="bold-contact" id="contact">
         <div className="bold-contact__orb bold-contact__orb--small" aria-hidden="true" />
         <div className="bold-contact__orb bold-contact__orb--large" aria-hidden="true" />
-        <div className="bold-contact__signal" aria-hidden="true">
-          {[38, 62, 48, 84, 100, 72, 58, 44, 32].map((height, index) => (
-            <i key={index} style={{ height: `${height}%` }} />
-          ))}
-        </div>
         <div className="bold-home__shell">
           <p className="bold-home__index">{text.contactIndex}</p>
           <h2>{text.contactTitle}</h2>

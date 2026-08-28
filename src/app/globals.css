@@ -2657,31 +2657,12 @@
 }
 
 .bold-contact__orb--large {
-  right: -8%;
+  right: -6%;
   bottom: -44%;
-  width: clamp(31rem, 51vw, 49rem);
-  height: clamp(31rem, 51vw, 49rem);
+  width: clamp(24rem, 38vw, 36rem);
+  height: clamp(24rem, 38vw, 36rem);
   border-color: color-mix(in oklch, var(--bold-paper-light), transparent 76%);
   background: var(--bold-ink);
-}
-
-.bold-contact__signal {
-  position: absolute;
-  z-index: 2;
-  right: clamp(2rem, 7vw, 7rem);
-  bottom: clamp(1.4rem, 3vw, 2.4rem);
-  display: flex;
-  width: clamp(6rem, 10vw, 9rem);
-  height: 3.4rem;
-  align-items: end;
-  justify-content: flex-end;
-  gap: 0.28rem;
-}
-
-.bold-contact__signal i {
-  flex: 1;
-  max-width: 0.5rem;
-  background: var(--bold-orange);
 }
 
 @media (max-width: 1100px) {
