@@ -18,6 +18,11 @@ type AuditCopy = {
   time: string;
   checks: string;
   start: string;
+  coverSystem: string;
+  coverIssue: string;
+  coverSignals: string[];
+  coverNote: string;
+  coverMeta: string;
   question: string;
   of: string;
   back: string;
@@ -57,6 +62,11 @@ const copy: Record<"en" | "es", AuditCopy> = {
     time: "60–90 seconds",
     checks: "checks",
     start: "Start my audit",
+    coverSystem: "Call intake system",
+    coverIssue: "05 checks",
+    coverSignals: ["Missed calls", "After hours", "Bilingual", "Handoffs"],
+    coverNote: "A fast diagnosis of coverage, intake, and handoffs.",
+    coverMeta: "Free · Immediate result",
     question: "Question",
     of: "of",
     back: "Back",
@@ -129,6 +139,11 @@ const copy: Record<"en" | "es", AuditCopy> = {
     time: "60–90 segundos",
     checks: "puntos",
     start: "Iniciar mi auditoría",
+    coverSystem: "Sistema de intake",
+    coverIssue: "05 puntos",
+    coverSignals: ["Llamadas perdidas", "Fuera de horario", "Bilingüe", "Handoffs"],
+    coverNote: "Diagnóstico rápido de llamadas, cobertura y handoffs.",
+    coverMeta: "Gratis · Resultado inmediato",
     question: "Pregunta",
     of: "de",
     back: "Atrás",
@@ -290,9 +305,30 @@ export default function AIReadinessAudit() {
         <div className="bold-audit__workbench">
           {!started ? (
             <div className="bold-audit__start">
-              <div className="bold-audit__dial" aria-hidden="true"><span>05</span><small>{text.checks}</small></div>
-              <p>{locale === "es" ? "Diagnóstico rápido de llamadas, cobertura y handoffs." : "A fast diagnosis of coverage, intake, and handoffs."}</p>
-              <button type="button" onClick={() => setStarted(true)}>{text.start}<ArrowRight aria-hidden="true" /></button>
+              <div className="bold-audit__cover">
+                <div className="bold-audit__cover-topline">
+                  <span>{text.coverSystem}</span>
+                  <span>{text.coverIssue}</span>
+                </div>
+                <div className="bold-audit__cover-ring" aria-hidden="true"><i /></div>
+                <div className="bold-audit__cover-count" aria-hidden="true">
+                  <strong>05</strong>
+                  <small>{text.checks}</small>
+                </div>
+                <ol className="bold-audit__cover-signals">
+                  {text.coverSignals.map((signal, index) => <li key={signal}><span>{String(index + 1).padStart(2, "0")}</span>{signal}</li>)}
+                </ol>
+                <div className="bold-audit__cover-wave" aria-hidden="true">
+                  {[28, 46, 35, 62, 82, 54, 92, 68, 42, 58, 31].map((height, index) => <i key={index} style={{ height: `${height}%` }} />)}
+                </div>
+              </div>
+              <div className="bold-audit__cover-footer">
+                <div>
+                  <span>{text.coverMeta}</span>
+                  <p>{text.coverNote}</p>
+                </div>
+                <button type="button" onClick={() => setStarted(true)}>{text.start}<ArrowRight aria-hidden="true" /></button>
+              </div>
             </div>
           ) : !complete ? (
             <div className="bold-audit__question" key={current.key}>
