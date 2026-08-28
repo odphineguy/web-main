@@ -2,6 +2,7 @@ import { MetadataRoute } from "next";
 import { caseStudyPages, industryPages, servicePages } from "@/content/discoverability";
 import { industryPagesEs, servicePagesEs } from "@/content/discoverability.es";
 import { projectOrder } from "@/content/projects";
+import { blogPosts } from "@/content/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://abemedia.online";
@@ -24,6 +25,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/about/abe-perez", lastModified: "2026-08-09", hasSpanishEquivalent: true },
     { path: "/faq", lastModified: "2026-08-09", hasSpanishEquivalent: true },
     { path: "/guides/dispatch-software-real-exceptions", lastModified: "2026-08-06", hasSpanishEquivalent: false },
+    { path: "/blog", lastModified: "2026-08-27", hasSpanishEquivalent: false },
+    ...blogPosts.map((post) => ({ path: `/blog/${post.slug}`, lastModified: post.dateModified, hasSpanishEquivalent: false })),
     ...Object.keys(servicePages).map((slug) => ({ path: `/services/${slug}`, lastModified: "2026-08-06", hasSpanishEquivalent: Boolean(servicePagesEs[slug]) })),
     ...Object.keys(industryPages).map((slug) => ({ path: `/industries/${slug}`, lastModified: slug === "junk-removal" ? "2026-08-20" : "2026-08-06", hasSpanishEquivalent: Boolean(industryPagesEs[slug]) })),
     ...Object.keys(caseStudyPages).map((slug) => ({ path: `/portfolio/${slug}`, lastModified: "2026-08-06", hasSpanishEquivalent: false })),

@@ -7,8 +7,10 @@ const handleI18n = createMiddleware({
 });
 
 // Paths whose pages were intentionally removed and should signal HTTP 410 (Gone)
-// to search engines so they drop them from the index quickly.
-const GONE_PATTERN = /^\/(?:(?:en|es)\/)?(?:blog|resources)(?:\/|$)/;
+// to search engines so they drop them from the index quickly. The blog was
+// revived 2026-08-27 as the AEO content home, so only /resources stays gone;
+// old dead blog URLs are handled by the specific redirects in next.config.ts.
+const GONE_PATTERN = /^\/(?:(?:en|es)\/)?resources(?:\/|$)/;
 
 // next-intl uses temporary redirects while negotiating a locale. These public,
 // stable routes have a deliberate English default, so consolidate them with a
@@ -47,6 +49,8 @@ const PERMANENT_ENGLISH_REDIRECTS = new Set([
   "/about/abe-perez",
   "/faq",
   "/guides/dispatch-software-real-exceptions",
+  "/blog",
+  "/blog/thumbtack-lead-automation",
   "/portfolio/rejunk",
   "/portfolio/artificial-turf-ai-design-studio",
   "/portfolio/elena-ai-voice-agent",

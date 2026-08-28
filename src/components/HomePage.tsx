@@ -8,7 +8,7 @@ import PhoneFrame from "@/components/PhoneFrame";
 import { homeFaqIds } from "@/components/HomeFaq";
 import VideoHero from "@/components/home/VideoHero";
 import KineticManifesto from "@/components/home/KineticManifesto";
-import OperationsStory from "@/components/home/OperationsStory";
+import ThumbtackReplay from "@/components/home/ThumbtackReplay";
 import CallProof from "@/components/home/CallProof";
 import BuildsChapter from "@/components/home/BuildsChapter";
 import ConsultationForm from "@/components/ConsultationForm";
@@ -196,7 +196,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <OperationsStory locale={locale} />
+      <ThumbtackReplay locale={locale} />
 
       <section className="bold-services" id="services">
         <div className="bold-home__shell">

@@ -11,7 +11,6 @@ const DEAD_URL_REDIRECTS: ReadonlyArray<readonly [string, string]> = [
   ["/mes", "/es"],
   ["/mo", "/en"],
   ["/&", "/en"],
-  ["/en/blog", "/en"],
   ["/blog/web-development-trends-2026", "/en/services"],
   ["/en/blog/hreflang-explained-local-business", "/en/services"],
   ["/blog/bilingual-seo-best-practices-2026", "/en/bilingual-seo-phoenix"],
