@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import { constructMetadata } from "@/lib/seo";
+import PageShell from "@/components/ds/PageShell";
+import PageHero from "@/components/ds/PageHero";
 
 const url = "https://abemedia.online/en/blog/thumbtack-lead-automation";
 
@@ -54,24 +56,32 @@ const results = [
   { metric: "Lead-fee refunds recovered", before: "—", after: "$1,236" },
 ];
 
+const rail = [
+  { id: "overview", label: "Overview" },
+  { id: "speed", label: "Response speed" },
+  { id: "workflow", label: "Workflow" },
+  { id: "results", label: "Results" },
+  { id: "questions", label: "FAQ" },
+];
+
 type ChatLine = { from: "customer" | "ai" | "owner"; text: string };
 
 function ChatTranscript({ label, lines }: { label: string; lines: ChatLine[] }) {
   const who = { customer: "Customer", ai: "AI agent", owner: "Owner" } as const;
   return (
-    <figure className="my-8 rounded-2xl border border-border bg-card p-5 md:p-6">
-      <figcaption className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">{label}</figcaption>
+    <figure className="my-8 border border-[var(--ds-line)] bg-[var(--ds-raise)] p-5 md:p-6">
+      <figcaption className="ds-meta mb-4">{label}</figcaption>
       <div className="grid gap-3">
         {lines.map((line, index) => (
           <div key={index} className={`max-w-[92%] md:max-w-[85%] ${line.from === "customer" ? "" : "justify-self-end"}`}>
-            <p className={`mb-1 text-[0.65rem] font-semibold uppercase tracking-[0.12em] ${line.from === "customer" ? "text-muted-foreground" : "text-primary"}`}>
+            <p className={`ds-meta mb-1 ${line.from === "customer" ? "" : "text-[var(--ds-accent)]"}`}>
               {who[line.from]}
             </p>
             <p
-              className={`rounded-xl px-4 py-3 text-[0.95rem] leading-6 ${
+              className={`px-4 py-3 text-[0.95rem] leading-6 ${
                 line.from === "customer"
-                  ? "rounded-bl-sm border border-border bg-background"
-                  : "rounded-br-sm bg-neutral-950 text-neutral-100"
+                  ? "border border-[var(--ds-line)] bg-background"
+                  : "bg-[var(--ds-ink)] text-background"
               }`}
             >
               {line.text}
@@ -125,43 +135,39 @@ export default async function ThumbtackLeadAutomationPost({ params }: { params: 
   const auditCta = (
     <Link
       href="/en/#free-ai-audit"
-      className="inline-flex items-center gap-2 rounded-full bg-orange-600 px-6 py-3.5 font-semibold text-white transition-colors hover:bg-orange-500"
+      className="ds-btn ds-btn-primary"
     >
       Get Your Free AI Readiness Audit <ArrowRight className="h-4 w-4" />
     </Link>
   );
 
   return (
-    <article className="min-h-screen bg-background text-foreground">
+    <PageShell railCap="FIELD NOTE" railItems={rail}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }} />
 
-      <header className="border-b border-border px-6 py-16 md:py-24">
-        <div className="mx-auto max-w-4xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Lead automation · By Abe Perez</p>
-          <h1 className="mt-5 text-4xl font-medium tracking-[-0.035em] md:text-6xl">
-            AI that answers your Thumbtack leads in under a minute
-          </h1>
-          <p className="mt-7 text-lg leading-8 text-muted-foreground">
-            Thumbtack lead response automation means software replies to every new lead the moment it arrives — with a
-            real quote, not a canned greeting. AbeMedia builds this on the official Thumbtack Pro API: our AI reads the
-            job details, quotes from your rates, offers real openings from your calendar, follows up, and books the job.
-          </p>
-          <p className="mt-5 leading-8">
+      <div id="overview">
+        <PageHero
+          eyebrow="Lead automation · By Abe Perez"
+          title={
+            <>
+              AI that answers your Thumbtack leads <span className="text-[var(--ds-accent)]">in under a minute.</span>
+            </>
+          }
+          lede="Software replies to every new lead the moment it arrives—with a real quote, not a canned greeting. It reads the job, quotes from your rates, checks the calendar, follows up, and books."
+          actions={auditCta}
+        />
+        <div className="ds-article-intro mx-auto max-w-3xl border-b border-[var(--ds-line-soft)] pb-12 pt-10 md:pb-16">
+          <p>
             <strong>Built by an official Thumbtack Pro API partner.</strong> We connect your Thumbtack account under our
-            partner API — direct integration, no Zapier, no browser extensions, no copy-paste.
+            partner API—direct integration, no Zapier, no browser extensions, no copy-paste.
           </p>
-          <div className="mt-8">{auditCta}</div>
-          <div className="mt-8 flex gap-3 text-sm text-muted-foreground">
-            <span>Published August 27, 2026</span>
-            <span aria-hidden="true">·</span>
-            <span>7-minute read</span>
-          </div>
+          <p className="ds-meta mt-6">Published August 27, 2026 · 7-minute read</p>
         </div>
-      </header>
+      </div>
 
-      <div className="mx-auto max-w-4xl space-y-14 px-6 py-16 text-lg leading-8">
-        <section>
-          <h2 className="text-3xl font-medium tracking-[-0.025em]">Speed decides who wins the lead</h2>
+      <div className="ds-article mx-auto max-w-3xl pb-[var(--ds-space-2xl)]">
+        <section id="speed">
+          <h2>Speed decides who wins the lead</h2>
           <p className="mt-5 text-muted-foreground">
             On Thumbtack, the first pro to respond usually gets the conversation — and the customer often hires the
             first pro who sounds ready to do the job.
@@ -171,8 +177,8 @@ export default async function ThumbtackLeadAutomationPost({ params }: { params: 
             <strong className="text-foreground">1 minute</strong>. The competing pros replied in 6 minutes, 5 minutes,
             and 47 minutes.
           </p>
-          <figure className="my-8 rounded-2xl border border-border bg-card p-6">
-            <figcaption className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+          <figure className="my-8 border border-[var(--ds-line)] bg-[var(--ds-raise)] p-6">
+            <figcaption className="ds-meta mb-4">
               Response times on one live lead — Thumbtack competition panel, names removed
             </figcaption>
             <div className="grid gap-3">
@@ -184,9 +190,9 @@ export default async function ThumbtackLeadAutomationPost({ params }: { params: 
               ].map((row, index) => (
                 <div key={index} className="grid grid-cols-[8.5rem_1fr_3.5rem] items-center gap-3 text-sm">
                   <span className={row.win ? "font-semibold text-primary" : "text-muted-foreground"}>{row.who}</span>
-                  <div className="h-2.5 overflow-hidden rounded-full bg-muted">
+                  <div className="h-2.5 overflow-hidden bg-muted">
                     <div
-                      className={`h-full rounded-full ${row.win ? "bg-orange-600" : "bg-neutral-400"}`}
+                      className={`h-full ${row.win ? "bg-orange-600" : "bg-neutral-400"}`}
                       style={{ width: `${row.pct}%` }}
                     />
                   </div>
@@ -204,7 +210,7 @@ export default async function ThumbtackLeadAutomationPost({ params }: { params: 
         </section>
 
         <section>
-          <h2 className="text-3xl font-medium tracking-[-0.025em]">It doesn’t just reply — it quotes and books</h2>
+          <h2>It doesn’t just reply — it quotes and books</h2>
           <p className="mt-5 text-muted-foreground">
             Most Thumbtack autoresponders send one templated message and stop. Ours holds the whole conversation.
           </p>
@@ -238,7 +244,7 @@ export default async function ThumbtackLeadAutomationPost({ params }: { params: 
             details, and the pricebook sets the price.
           </p>
           <p className="mt-4 text-muted-foreground">Here’s what happened after the job:</p>
-          <figure className="my-8 rounded-2xl border border-border bg-card p-6">
+          <figure className="my-8 border-l-4 border-[var(--ds-accent)] bg-[var(--ds-raise)] p-6">
             <blockquote className="text-lg leading-8">
               “Great service provided for the cost. Professional service provided.”
             </blockquote>
@@ -251,8 +257,8 @@ export default async function ThumbtackLeadAutomationPost({ params }: { params: 
           </p>
         </section>
 
-        <section>
-          <h2 className="text-3xl font-medium tracking-[-0.025em]">How it works</h2>
+        <section id="workflow">
+          <h2>How it works</h2>
           <ol className="mt-6 space-y-4 text-muted-foreground">
             {[
               ["A lead arrives", "via the official Thumbtack Pro API — pushed to us the second the customer submits it."],
@@ -273,7 +279,7 @@ export default async function ThumbtackLeadAutomationPost({ params }: { params: 
         </section>
 
         <section>
-          <h2 className="text-3xl font-medium tracking-[-0.025em]">When the AI can’t quote, a human gets it instantly</h2>
+          <h2>When the AI can’t quote, a human gets it instantly</h2>
           <p className="mt-5 text-muted-foreground">
             The number one fear with AI lead response: it says something wrong to a real customer.
           </p>
@@ -283,8 +289,8 @@ export default async function ThumbtackLeadAutomationPost({ params }: { params: 
             short holding message to the customer, then emails the owner within seconds with the lead details and a
             drafted reply, ready to edit and send.
           </p>
-          <figure className="my-8 rounded-2xl border border-border bg-card p-6 font-mono text-sm leading-6">
-            <figcaption className="mb-4 font-sans text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+          <figure className="my-8 border border-[var(--ds-line)] bg-[var(--ds-raise)] p-6 font-mono text-sm leading-6">
+            <figcaption className="ds-meta mb-4 font-sans">
               Escalation email — sent seconds after the lead arrived
             </figcaption>
             <p className="text-primary">Subject: Lead needs your call — piano move, outside approved pricing</p>
@@ -312,8 +318,8 @@ export default async function ThumbtackLeadAutomationPost({ params }: { params: 
           />
         </section>
 
-        <section>
-          <h2 className="text-3xl font-medium tracking-[-0.025em]">Real results from a live deployment</h2>
+        <section id="results">
+          <h2>Real results from a live deployment</h2>
           <p className="mt-5 text-muted-foreground">
             This system runs in production for a Phoenix moving and junk removal company. Same Thumbtack account, before
             and after:
@@ -344,25 +350,26 @@ export default async function ThumbtackLeadAutomationPost({ params }: { params: 
           </p>
         </section>
 
-        <section>
-          <h2 className="text-3xl font-medium tracking-[-0.025em]">Frequently asked questions</h2>
-          <div className="mt-6 divide-y divide-border">
+        <section id="questions">
+          <h2>Frequently asked questions</h2>
+          <div className="mt-6 border-y border-[var(--ds-line)]">
             {faqs.map((faq) => (
-              <details key={faq.q} className="group py-5">
-                <summary className="cursor-pointer list-none text-xl font-medium tracking-[-0.01em] marker:content-none">
-                  {faq.q}
+              <details key={faq.q} className="group border-b border-[var(--ds-line)] last:border-b-0">
+                <summary className="grid cursor-pointer list-none grid-cols-[1fr_auto] items-center gap-4 py-5 text-xl font-semibold marker:content-none">
+                  {faq.q}<b aria-hidden="true" className="text-2xl font-normal text-[var(--ds-accent)] transition-transform group-open:rotate-45">+</b>
                 </summary>
-                <p className="mt-3 leading-8 text-muted-foreground">{faq.a}</p>
+                <p className="pb-6 pr-10 leading-8 text-muted-foreground">{faq.a}</p>
               </details>
             ))}
           </div>
         </section>
 
-        <section className="rounded-3xl bg-neutral-950 p-8 text-white md:p-10">
-          <h2 className="text-3xl font-medium tracking-[-0.02em] md:text-4xl">
+        <section className="border-t-0 bg-[var(--ds-ink)] p-8 text-background md:p-10">
+          <p className="ds-eyebrow mb-4">Your next lead</p>
+          <h2>
             Your next Thumbtack lead arrives at 9:47 tonight. Who’s answering?
           </h2>
-          <p className="mt-5 leading-8 text-neutral-300">
+          <p className="mt-5 leading-8 text-background/75">
             Get a free AI Readiness Audit: we review your Thumbtack profile, response times, and lead spend, and show
             you what an AI agent would have done with last month’s leads. No obligation, no generic pitch deck.
           </p>
@@ -378,6 +385,6 @@ export default async function ThumbtackLeadAutomationPost({ params }: { params: 
           </p>
         </section>
       </div>
-    </article>
+    </PageShell>
   );
 }

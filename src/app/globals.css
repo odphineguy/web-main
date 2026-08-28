@@ -614,6 +614,62 @@
     border-color: var(--ds-accent);
   }
 
+  /* Editorial surfaces use the same typography and square, hairline geometry
+     as the service pages instead of introducing a separate blog theme. */
+  .ds .blog-index-card h3 {
+    font-family: var(--ds-display);
+    font-size: clamp(2rem, 4.2vw, 3.7rem);
+    font-weight: 760;
+    line-height: 0.94;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .ds .ds-article-intro {
+    color: var(--ds-ink-mute);
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .ds .ds-article-intro .ds-meta {
+    line-height: 1.7;
+    white-space: normal;
+  }
+
+  .ds .ds-article > section {
+    scroll-margin-top: 7rem;
+    padding-block: clamp(3.5rem, 7vw, 5.5rem);
+    border-bottom: 1px solid var(--ds-line-soft);
+  }
+
+  .ds .ds-article > section > h2 {
+    max-width: 19ch;
+    margin-bottom: 1.5rem;
+  }
+
+  .ds .ds-article li {
+    line-height: 1.75;
+  }
+
+  @media (min-width: 768px) {
+    .ds .blog-index-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(18rem, 1.1fr);
+      column-gap: 4rem;
+    }
+
+    .ds .blog-index-card > p {
+      grid-column: 2;
+      grid-row: 1 / span 3;
+      align-self: center;
+    }
+
+    .ds .blog-index-card > span:last-child {
+      grid-column: 2;
+      align-self: end;
+    }
+  }
+
   /* ---- entrance reveal, stagger capped so late items do not lag ---- */
   .ds .ds-reveal {
     opacity: 0;
@@ -2121,6 +2177,23 @@
   margin-top: 1.5rem;
 }
 
+.bold-faq--page {
+  min-height: 72vh;
+  padding-top: clamp(10rem, 16vw, 13rem);
+}
+
+.bold-faq--page header h1 {
+  max-width: 8ch;
+  margin: 1.5rem 0 0;
+  font-family: var(--font-ds-display), Impact, sans-serif;
+  font-size: clamp(3.7rem, 6vw, 6.7rem);
+  font-weight: 800;
+  line-height: 0.86;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
 .bold-faq__list {
   border-top: 1px solid var(--bold-line);
 }
@@ -2495,7 +2568,8 @@
   }
 
   .bold-home__intro h2,
-  .bold-faq h2 {
+  .bold-faq h2,
+  .bold-faq--page header h1 {
     font-size: clamp(3.7rem, 16vw, 5.5rem);
   }
 
