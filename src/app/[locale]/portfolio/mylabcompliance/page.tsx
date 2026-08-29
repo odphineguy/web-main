@@ -11,8 +11,7 @@ import {
   TrendingUp,
   Lock,
   BarChart3,
-  X,
-  Check
+  X
 } from "lucide-react";
 import { FooterCTA } from "@/components/ui/footer-cta";
 import ConsultationForm from "@/components/ConsultationForm";

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
+import AuditCta from "@/components/AuditCta";
 import MissedCallValueWorksheet from "@/components/MissedCallValueWorksheet";
 import { constructMetadata } from "@/lib/seo";
 
@@ -17,7 +17,7 @@ const pageCopy = {
       titleHighlight: "TEXT BACK",
       titleEnd: "FOR CONTRACTORS.",
       lede: "When your team cannot answer, the customer gets a useful text in English or Spanish. The conversation keeps moving until the job is booked or handed to a person.",
-      cta: "Get the free AI Readiness Audit",
+      cta: "Get your free AI audit",
       proof: "Built for plumbing, HVAC, moving, junk removal, landscaping, and other service businesses.",
       phoneLabel: "Missed call",
       phoneTime: "11:07 PM",
@@ -96,7 +96,7 @@ const pageCopy = {
       eyebrow: "Start with the missed call",
       title: "Find the intake gap before you buy another tool.",
       body: "The free AI Readiness Audit maps what happens after your phone rings, where the handoff fails, and what should stay human.",
-      cta: "Get the free AI Readiness Audit",
+      cta: "Get your free AI audit",
     },
   },
   es: {
@@ -213,7 +213,6 @@ export default async function MissedCallTextBackPage({ params }: { params: Promi
   const lang = locale === "es" ? "es" : "en";
   const copy = lang === "es" ? pageCopy.es : pageCopy.en;
   const pageUrl = `${baseUrl}/${lang}/missed-call-text-back`;
-  const contactUrl = `/${lang}/contact`;
 
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -264,9 +263,7 @@ export default async function MissedCallTextBackPage({ params }: { params: Promi
             </h1>
             <p className="mt-8 max-w-2xl text-lg leading-8 text-white/68">{copy.hero.lede}</p>
             <div className="mt-9 flex flex-wrap items-center gap-5">
-              <Link href={contactUrl} className="group inline-flex items-center gap-3 rounded-full bg-[#E34F0B] px-6 py-4 font-semibold text-white transition-colors hover:bg-white hover:text-[#111827]">
-                {copy.hero.cta}
-              </Link>
+              <AuditCta locale={lang} label={copy.hero.cta} />
             </div>
             <p className="mt-6 max-w-2xl font-[var(--font-ds-mono)] text-xs leading-6 uppercase tracking-[0.14em] text-white/42">{copy.hero.proof}</p>
           </div>
@@ -381,11 +378,11 @@ export default async function MissedCallTextBackPage({ params }: { params: Promi
             <p className="ds-eyebrow">{copy.faq.eyebrow}</p>
             <h2 className="mt-5 text-[clamp(3rem,5vw,5rem)] leading-[0.92]">{copy.faq.title}</h2>
           </div>
-          <div className="divide-y divide-[var(--ds-line-soft)] border-y border-[var(--ds-line-soft)]">
+          <div className="lead-pipeline-faq">
             {copy.faq.items.map((item) => (
-              <details key={item.q} className="group py-6">
-                <summary className="cursor-pointer list-none text-lg font-bold marker:hidden">{item.q}</summary>
-                <p className="mt-4 max-w-3xl pr-8 leading-7 text-[var(--ds-ink-mute)]">{item.a}</p>
+              <details key={item.q}>
+                <summary>{item.q}<b aria-hidden="true">+</b></summary>
+                <p>{item.a}</p>
               </details>
             ))}
           </div>
@@ -399,9 +396,7 @@ export default async function MissedCallTextBackPage({ params }: { params: Promi
             <h2 className="mt-5 max-w-4xl text-[clamp(3.3rem,6vw,6.5rem)] leading-[0.88] text-white">{copy.final.title}</h2>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-white/80">{copy.final.body}</p>
           </div>
-          <Link href={contactUrl} className="group inline-flex w-fit items-center gap-3 rounded-full bg-white px-6 py-4 font-semibold text-[#111827] transition-colors hover:bg-[#111827] hover:text-white">
-            {copy.final.cta}
-          </Link>
+          <AuditCta locale={lang} label={copy.final.cta} />
         </div>
       </section>
     </article>

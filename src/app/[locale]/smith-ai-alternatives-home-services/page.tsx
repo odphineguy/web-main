@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import AuditCta from "@/components/AuditCta";
 import {
   ArrowRight,
   Bot,
@@ -25,7 +26,7 @@ const pageCopy = {
       titleHighlight: "ALTERNATIVES",
       titleEnd: "FOR HOME SERVICES.",
       lede: "Rosie is a practical lower-entry AI option. Goodcall fits teams that prefer unique-caller billing. My AI Front Desk covers phone, text, web chat, and CRM. Ruby puts a person on the call. Smith.ai remains a fit when its AI and live-agent network match your handoff rules.",
-      cta: "Get the free AI Readiness Audit",
+      cta: "Get your free AI audit",
       note: "The right choice depends on your call mix, booking rules, Spanish path, integrations, and the exceptions your team must own.",
       answerLabel: "Direct answer",
       answerTitle: "Choose around the hard part of your call.",
@@ -157,7 +158,7 @@ const pageCopy = {
       eyebrow: "Choose from your call evidence",
       title: "Map the call before you buy the plan.",
       body: "The free AI Readiness Audit reviews your call types, pricebook authority, booking rules, Spanish path, exceptions, integrations, and fallback so you can compare providers against the work they must perform.",
-      cta: "Get the free AI Readiness Audit",
+      cta: "Get your free AI audit",
     },
   },
   es: {
@@ -327,7 +328,6 @@ export default async function SmithAiAlternativesPage({ params }: { params: Prom
   const lang = locale === "es" ? "es" : "en";
   const copy = lang === "es" ? pageCopy.es : pageCopy.en;
   const pageUrl = `${baseUrl}/${lang}/smith-ai-alternatives-home-services`;
-  const contactUrl = `/${lang}/contact`;
   const criteriaIcons = [CircleDollarSign, PhoneCall, Languages, ShieldAlert];
 
   const articleSchema = {
@@ -379,9 +379,7 @@ export default async function SmithAiAlternativesPage({ params }: { params: Prom
               {copy.hero.titleEnd}
             </h1>
             <p className="mt-8 max-w-3xl text-lg leading-8 text-white/70">{copy.hero.lede}</p>
-            <Link href={contactUrl} className="group mt-9 inline-flex items-center gap-3 rounded-full bg-[#E34F0B] px-6 py-4 font-semibold text-white transition-colors hover:bg-white hover:text-[#111827]">
-              {copy.hero.cta}<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
+            <AuditCta locale={lang} label={copy.hero.cta} className="mt-9" />
             <p className="mt-6 max-w-3xl font-[var(--font-ds-mono)] text-xs leading-6 uppercase tracking-[0.14em] text-white/42">{copy.hero.note}</p>
           </div>
           <aside className="border border-white/15 bg-white/[0.055] p-7 shadow-[0_35px_90px_rgba(0,0,0,.35)] backdrop-blur-sm md:p-9">
@@ -478,7 +476,7 @@ export default async function SmithAiAlternativesPage({ params }: { params: Prom
       </section>
 
       <section className="bg-[#E34F0B] px-5 py-20 text-white sm:px-8 md:py-24">
-        <div className="mx-auto grid max-w-[1120px] gap-10 lg:grid-cols-[1fr_auto] lg:items-end"><div><p className="font-[var(--font-ds-mono)] text-xs uppercase tracking-[0.18em] text-white/75">{copy.final.eyebrow}</p><h2 className="mt-5 max-w-4xl text-[clamp(3.3rem,6vw,6.5rem)] leading-[0.88] text-white">{copy.final.title}</h2><p className="mt-7 max-w-2xl text-lg leading-8 text-white/80">{copy.final.body}</p></div><Link href={contactUrl} className="group inline-flex w-fit items-center gap-3 rounded-full bg-white px-6 py-4 font-semibold text-[#111827] transition-colors hover:bg-[#111827] hover:text-white">{copy.final.cta}<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></Link></div>
+        <div className="mx-auto grid max-w-[1120px] gap-10 lg:grid-cols-[1fr_auto] lg:items-end"><div><p className="font-[var(--font-ds-mono)] text-xs uppercase tracking-[0.18em] text-white/75">{copy.final.eyebrow}</p><h2 className="mt-5 max-w-4xl text-[clamp(3.3rem,6vw,6.5rem)] leading-[0.88] text-white">{copy.final.title}</h2><p className="mt-7 max-w-2xl text-lg leading-8 text-white/80">{copy.final.body}</p></div><AuditCta locale={lang} label={copy.final.cta} /></div>
       </section>
     </article>
   );

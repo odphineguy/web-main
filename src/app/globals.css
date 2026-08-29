@@ -2965,6 +2965,7 @@
 
 .home-video-hero__project-link,
 .home-video-hero__primary,
+.audit-cta,
 .home-video-hero__secondary,
 .reactive-footer__ctas a {
   display: inline-flex;
@@ -3001,6 +3002,7 @@
 
 .home-video-hero__project-link span,
 .home-video-hero__primary span,
+.audit-cta span,
 .reactive-footer__ctas span {
   width: 0.8rem;
   height: 0.8rem;
@@ -3013,6 +3015,7 @@
 
 .home-video-hero__project-link:hover span,
 .home-video-hero__primary:hover span,
+.audit-cta:hover span,
 .reactive-footer__ctas a:hover span {
   transform: scale(1.12);
   box-shadow: 0 0 0 0.45rem rgb(227 79 11 / 0.15);
@@ -3054,6 +3057,7 @@
 
 .home-video-hero__project-link b,
 .home-video-hero__primary b,
+.audit-cta b,
 .home-video-hero__secondary b,
 .reactive-footer__ctas b {
   font-weight: 400;
@@ -3062,6 +3066,7 @@
 
 .home-video-hero__project-link:hover b,
 .home-video-hero__primary:hover b,
+.audit-cta:hover b,
 .reactive-footer__ctas a:hover b {
   transform: translate(0.2rem, -0.2rem);
 }
@@ -3104,7 +3109,8 @@
   margin-top: 2rem;
 }
 
-.home-video-hero__primary {
+.home-video-hero__primary,
+.audit-cta {
   padding: 0.95rem 1.25rem;
   border: 1px solid rgb(255 255 255 / 0.3);
   border-radius: 999px;
@@ -3113,9 +3119,16 @@
   transition: border-color 220ms ease, background 220ms ease;
 }
 
-.home-video-hero__primary:hover {
+.home-video-hero__primary:hover,
+.audit-cta:hover {
   border-color: #e34f0b;
   background: rgb(10 10 12 / 0.55);
+}
+
+.audit-cta:focus-visible {
+  border-color: #e34f0b;
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
 }
 
 .home-video-hero__secondary {
@@ -3483,6 +3496,7 @@
   .home-video-hero__project-link::before,
   .home-video-hero__project-link span,
   .home-video-hero__primary span,
+  .audit-cta span,
   .reactive-footer__ctas span {
     transition: none;
   }

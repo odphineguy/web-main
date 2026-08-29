@@ -4,6 +4,7 @@ import { DiscoverabilityPage } from "@/components/DiscoverabilityPage";
 import { industryPages } from "@/content/discoverability";
 import { industryPagesEs } from "@/content/discoverability.es";
 import { constructMetadata } from "@/lib/seo";
+import EstablishedContentPage from "@/components/EstablishedContentPage";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -37,5 +38,8 @@ export default async function IndustryDetailPage({ params }: Props) {
   if (locale !== "en" && locale !== "es") notFound();
   const data = pagesFor(locale)[slug];
   if (!data) notFound();
+  if (locale === "en" && slug === "logistics-transportation") {
+    return <EstablishedContentPage data={data} path={`/${locale}/industries/${slug}`} locale={locale} />;
+  }
   return <DiscoverabilityPage data={data} path={`/${locale}/industries/${slug}`} locale={locale} />;
 }

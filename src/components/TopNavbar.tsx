@@ -89,7 +89,7 @@ export default function TopNavbar() {
 
               <div className="hidden justify-self-end lg:block">
                 <Link
-                  href={localizedHref("/contact")}
+                  href={`${localizedHref("/")}#free-ai-audit`}
                   className="group inline-flex items-center gap-2 rounded-full bg-orange-500 py-2.5 pr-2.5 pl-5 font-[var(--font-ds-body)] font-semibold text-white transition-colors hover:bg-[#111827]"
                 >
                   {t("getStarted")}
@@ -133,7 +133,7 @@ export default function TopNavbar() {
                           {label}
                         </Link>
                       ))}
-                      <Link href={localizedHref("/contact")} onClick={closeMenu} className="mt-3 rounded-full bg-orange-500 px-5 py-3 text-center font-[var(--font-ds-body)] font-bold text-white">
+                      <Link href={`${localizedHref("/")}#free-ai-audit`} onClick={closeMenu} className="mt-3 rounded-full bg-orange-500 px-5 py-3 text-center font-[var(--font-ds-body)] font-bold text-white">
                         {t("getStarted")}
                       </Link>
                     </div>

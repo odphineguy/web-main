@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import AuditCta from "@/components/AuditCta";
 import {
   ArrowRight,
   Bot,
@@ -27,7 +28,7 @@ const pageCopy = {
       titleHighlight: "VS. ANSWERING SERVICE",
       titleEnd: "FOR CONTRACTORS.",
       lede: "AI wins when calls follow repeatable rules and need an immediate answer, qualification, or booking. A human answering service wins when callers need judgment, reassurance, or a conversation that regularly leaves the script.",
-      cta: "Get the free AI Readiness Audit",
+      cta: "Get your free AI audit",
       proof: "A practical comparison for plumbing, HVAC, roofing, moving, junk removal, landscaping, and other field service businesses.",
       answerLabel: "Direct answer",
       aiTitle: "Choose AI when",
@@ -155,7 +156,7 @@ const pageCopy = {
       eyebrow: "Start with your call rules",
       title: "Find what AI should handle and what should stay human.",
       body: "The free AI Readiness Audit maps your call types, pricebook authority, booking rules, Spanish path, exceptions, and fallback before you choose a system.",
-      cta: "Get the free AI Readiness Audit",
+      cta: "Get your free AI audit",
     },
   },
   es: {
@@ -321,7 +322,6 @@ export default async function AiReceptionistComparisonPage({ params }: { params:
   const lang = locale === "es" ? "es" : "en";
   const copy = lang === "es" ? pageCopy.es : pageCopy.en;
   const pageUrl = `${baseUrl}/${lang}/ai-receptionist-vs-answering-service`;
-  const contactUrl = `/${lang}/contact`;
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -374,9 +374,7 @@ export default async function AiReceptionistComparisonPage({ params }: { params:
               {copy.hero.titleEnd}
             </h1>
             <p className="mt-8 max-w-3xl text-lg leading-8 text-white/70">{copy.hero.lede}</p>
-            <Link href={contactUrl} className="group mt-9 inline-flex items-center gap-3 rounded-full bg-[#E34F0B] px-6 py-4 font-semibold text-white transition-colors hover:bg-white hover:text-[#111827]">
-              {copy.hero.cta}<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
+            <AuditCta locale={lang} label={copy.hero.cta} className="mt-9" />
             <p className="mt-6 max-w-3xl font-[var(--font-ds-mono)] text-xs leading-6 uppercase tracking-[0.14em] text-white/42">{copy.hero.proof}</p>
           </div>
 
@@ -583,9 +581,7 @@ export default async function AiReceptionistComparisonPage({ params }: { params:
             <h2 className="mt-5 max-w-4xl text-[clamp(3.3rem,6vw,6.5rem)] leading-[0.88] text-white">{copy.final.title}</h2>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-white/80">{copy.final.body}</p>
           </div>
-          <Link href={contactUrl} className="group inline-flex w-fit items-center gap-3 rounded-full bg-white px-6 py-4 font-semibold text-[#111827] transition-colors hover:bg-[#111827] hover:text-white">
-            {copy.final.cta}<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Link>
+          <AuditCta locale={lang} label={copy.final.cta} />
         </div>
       </section>
     </article>

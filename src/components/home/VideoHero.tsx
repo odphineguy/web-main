@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState, type MouseEventHandler } from "react";
+import AuditCta from "@/components/AuditCta";
 
 type VideoHeroProps = {
   locale: string;
@@ -131,11 +132,13 @@ export default function VideoHero({
         </h1>
         <p className="home-video-hero__subtitle">{subtitle}</p>
         <div className="home-video-hero__actions">
-          <Link href={primaryHref || `/${locale}/contact`} className="home-video-hero__primary" onClick={onPrimaryClick}>
-            <span aria-hidden="true" />
-            {primaryLabel}
-            <b aria-hidden="true">↗</b>
-          </Link>
+          {primaryHref ? (
+            <AuditCta locale={locale} label={primaryLabel} onClick={onPrimaryClick} />
+          ) : (
+            <Link href={`/${locale}/contact`} className="audit-cta" onClick={onPrimaryClick}>
+              <span aria-hidden="true" />{primaryLabel}<b aria-hidden="true">↗</b>
+            </Link>
+          )}
           <a href="#visual-estimate" className="home-video-hero__secondary">
             {secondaryLabel} <b aria-hidden="true">↓</b>
           </a>

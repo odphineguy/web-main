@@ -5,6 +5,7 @@ import { servicePages } from "@/content/discoverability";
 import { servicePagesEs } from "@/content/discoverability.es";
 import { constructMetadata } from "@/lib/seo";
 import LeadPipelinePage from "@/components/LeadPipelinePage";
+import EstablishedContentPage from "@/components/EstablishedContentPage";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -40,6 +41,9 @@ export default async function ServiceDetailPage({ params }: Props) {
   if (!data) notFound();
   if (locale === "en" && slug === "lead-pipeline-automation") {
     return <LeadPipelinePage data={data} />;
+  }
+  if (locale === "en" && (slug === "custom-business-software" || slug === "dispatch-operations-software")) {
+    return <EstablishedContentPage data={data} path={`/${locale}/services/${slug}`} locale={locale} />;
   }
   return <DiscoverabilityPage data={data} path={`/${locale}/services/${slug}`} locale={locale} />;
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import AuditCta from "@/components/AuditCta";
 import {
   ArrowRight,
   CalendarCheck,
@@ -30,7 +31,7 @@ const pageCopy = {
       titleStart: "TURN THE LEAD INTO A",
       titleHighlight: "DISPATCH-READY JOB.",
       lede: "A junk-removal system should answer the call, collect the items, photos, access details, and address, apply your approved pricebook rules, check the calendar, and hand dispatch one usable job record. Unclear, oversized, and hazardous work goes to a person.",
-      cta: "Get the free AI Readiness Audit",
+      cta: "Get your free AI audit",
       proof: "Built for marketplace leads, direct calls, English and Spanish intake, quoting rules, crew scheduling, and field handoffs.",
       cardLabel: "New lead",
       cardSource: "Marketplace message · 6:18 PM",
@@ -146,7 +147,7 @@ const pageCopy = {
       eyebrow: "Start with the handoff",
       title: "Find where your leads stop becoming clean jobs.",
       body: "The free AI Readiness Audit maps your lead sources, phone intake, pricebook authority, calendar, CRM, dispatch path, driver workflow, exceptions, and failure alerts.",
-      cta: "Get the free AI Readiness Audit",
+      cta: "Get your free AI audit",
     },
   },
   es: {
@@ -299,7 +300,6 @@ export default async function JunkRemovalPage({ params }: { params: Promise<{ lo
   const lang = locale === "es" ? "es" : "en";
   const copy = lang === "es" ? pageCopy.es : pageCopy.en;
   const pageUrl = `${baseUrl}/${lang}/industries/junk-removal`;
-  const contactUrl = `/${lang}/contact`;
 
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -351,9 +351,7 @@ export default async function JunkRemovalPage({ params }: { params: Promise<{ lo
               <span className="text-[#E34F0B]">{copy.hero.titleHighlight}</span>
             </h1>
             <p className="mt-8 max-w-3xl text-lg leading-8 text-white/70">{copy.hero.lede}</p>
-            <Link href={contactUrl} className="group mt-9 inline-flex items-center gap-3 rounded-full bg-[#E34F0B] px-6 py-4 font-semibold text-white transition-colors hover:bg-white hover:text-[#111827]">
-              {copy.hero.cta}<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
+            <AuditCta locale={lang} label={copy.hero.cta} className="mt-9" />
             <p className="mt-6 max-w-3xl font-[var(--font-ds-mono)] text-xs leading-6 uppercase tracking-[0.14em] text-white/42">{copy.hero.proof}</p>
           </div>
 
@@ -573,9 +571,7 @@ export default async function JunkRemovalPage({ params }: { params: Promise<{ lo
             <h2 className="mt-5 max-w-4xl text-[clamp(3.3rem,6vw,6.5rem)] leading-[0.88] text-white">{copy.final.title}</h2>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-white/80">{copy.final.body}</p>
           </div>
-          <Link href={contactUrl} className="group inline-flex w-fit items-center gap-3 rounded-full bg-white px-6 py-4 font-semibold text-[#111827] transition-colors hover:bg-[#111827] hover:text-white">
-            {copy.final.cta}<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Link>
+          <AuditCta locale={lang} label={copy.final.cta} />
         </div>
       </section>
     </article>
