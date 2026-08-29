@@ -69,13 +69,26 @@ export default function EstablishedContentPage({
   const related = data.related.filter((item) => !item.href.endsWith("/contact"));
   const sectionName = data.kind === "industry" ? "Industries" : "Services";
   const mark = data.kind === "industry" ? ["ONE", "VIEW"] : ["WORK", "FLOW"];
-  const heroTitle = data.slug === "custom-business-software"
-    ? <>Software built around your <span className="text-[var(--ds-accent)]">operation.</span></>
-    : data.slug === "dispatch-operations-software"
-      ? <>Dispatch software for <span className="text-[var(--ds-accent)]">real exceptions.</span></>
-      : data.slug === "logistics-transportation"
-        ? <>Dispatch and drivers in <span className="text-[var(--ds-accent)]">one operating view.</span></>
-        : data.title;
+  const heroTitle = (() => {
+    switch (data.slug) {
+      case "custom-business-software":
+        return <>Software built around your <span className="text-[var(--ds-accent)]">operation.</span></>;
+      case "dispatch-operations-software":
+        return <>Dispatch software for <span className="text-[var(--ds-accent)]">real exceptions.</span></>;
+      case "logistics-transportation":
+        return <>Dispatch and drivers in <span className="text-[var(--ds-accent)]">one operating view.</span></>;
+      case "waste-management-commercial-hauling":
+        return <>Hauling software built for <span className="text-[var(--ds-accent)]">route exceptions.</span></>;
+      case "ai-voice-agents":
+        return <>AI voice agents built around your <span className="text-[var(--ds-accent)]">call flow.</span></>;
+      case "bilingual-ai-automation":
+        return <>Bilingual automation for the <span className="text-[var(--ds-accent)]">full customer journey.</span></>;
+      case "bilingual-seo-phoenix":
+        return <>Be found in Phoenix in <span className="text-[var(--ds-accent)]">English and Spanish.</span></>;
+      default:
+        return data.title;
+    }
+  })();
   const primarySchema = data.kind === "service"
     ? { "@context": "https://schema.org", "@type": "Service", "@id": `${baseUrl}${path}#service`, name: data.title, description: data.description, url: `${baseUrl}${path}`, areaServed: { "@type": "Country", name: "United States" }, provider: { "@id": `${baseUrl}/#organization` } }
     : { "@context": "https://schema.org", "@type": "WebPage", "@id": `${baseUrl}${path}#webpage`, name: data.title, description: data.description, url: `${baseUrl}${path}`, about: data.eyebrow, publisher: { "@id": `${baseUrl}/#organization` } };

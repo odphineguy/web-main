@@ -38,7 +38,7 @@ export default async function IndustryDetailPage({ params }: Props) {
   if (locale !== "en" && locale !== "es") notFound();
   const data = pagesFor(locale)[slug];
   if (!data) notFound();
-  if (locale === "en" && slug === "logistics-transportation") {
+  if (locale === "en" && ["logistics-transportation", "waste-management-commercial-hauling"].includes(slug)) {
     return <EstablishedContentPage data={data} path={`/${locale}/industries/${slug}`} locale={locale} />;
   }
   return <DiscoverabilityPage data={data} path={`/${locale}/industries/${slug}`} locale={locale} />;

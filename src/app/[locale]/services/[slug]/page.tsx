@@ -42,7 +42,12 @@ export default async function ServiceDetailPage({ params }: Props) {
   if (locale === "en" && slug === "lead-pipeline-automation") {
     return <LeadPipelinePage data={data} />;
   }
-  if (locale === "en" && (slug === "custom-business-software" || slug === "dispatch-operations-software")) {
+  if (locale === "en" && [
+    "custom-business-software",
+    "dispatch-operations-software",
+    "ai-voice-agents",
+    "bilingual-ai-automation",
+  ].includes(slug)) {
     return <EstablishedContentPage data={data} path={`/${locale}/services/${slug}`} locale={locale} />;
   }
   return <DiscoverabilityPage data={data} path={`/${locale}/services/${slug}`} locale={locale} />;
