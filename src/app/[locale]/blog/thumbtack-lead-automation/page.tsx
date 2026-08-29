@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, MoreHorizontal, Sparkles, Star } from "lucide-react";
 import { constructMetadata } from "@/lib/seo";
 import PageShell from "@/components/ds/PageShell";
 import PageHero from "@/components/ds/PageHero";
@@ -66,26 +66,37 @@ const rail = [
 
 type ChatLine = { from: "customer" | "ai" | "owner"; text: string };
 
+function chatLineMeta(line: ChatLine, index: number) {
+  if (index === 0) return "Customer message · 3:30 PM";
+  if (index === 1) return "Replied in under 1 min";
+  if (index === 2) return line.from === "customer" ? "Customer message · 3:37 PM" : "Owner replied · 3:32 PM";
+  return line.from === "customer" ? "Customer replied · 3:33 PM" : "Quote adjusted instantly";
+}
+
 function ChatTranscript({ label, lines }: { label: string; lines: ChatLine[] }) {
-  const who = { customer: "Customer", ai: "AI agent", owner: "Owner" } as const;
+  const who = { customer: "Customer", ai: "Sent by AI agent", owner: "Owner takeover" } as const;
   return (
-    <figure className="my-8 border border-[var(--ds-line)] bg-[var(--ds-raise)] p-5 md:p-6">
-      <figcaption className="ds-meta mb-4">{label}</figcaption>
-      <div className="grid gap-3">
+    <figure className="tt-blog-chat my-8">
+      <div className="tt-blog-chat__top">
+        <span className="tt-blog-chat__mark">T</span>
+        <b>Messages</b>
+        <MoreHorizontal aria-hidden="true" />
+      </div>
+      <div className="tt-blog-chat__contact">
+        <ArrowLeft aria-hidden="true" />
+        <span>Customer details redacted</span>
+        <Star aria-hidden="true" />
+      </div>
+      <figcaption>{label}</figcaption>
+      <div className="tt-blog-chat__thread">
         {lines.map((line, index) => (
-          <div key={index} className={`max-w-[92%] md:max-w-[85%] ${line.from === "customer" ? "" : "justify-self-end"}`}>
-            <p className={`ds-meta mb-1 ${line.from === "customer" ? "" : "text-[var(--ds-accent)]"}`}>
-              {who[line.from]}
-            </p>
-            <p
-              className={`px-4 py-3 text-[0.95rem] leading-6 ${
-                line.from === "customer"
-                  ? "border border-[var(--ds-line)] bg-background"
-                  : "bg-[var(--ds-ink)] text-background"
-              }`}
-            >
-              {line.text}
-            </p>
+          <div key={index} className={`tt-blog-line tt-blog-line--${line.from}`}>
+            <span className="tt-blog-line__avatar">{line.from === "customer" ? "C" : <Sparkles />}</span>
+            <div>
+              {line.from !== "customer" && <b><Sparkles /> {who[line.from]}</b>}
+              <p>{line.text}</p>
+              <small>{chatLineMeta(line, index)}</small>
+            </div>
           </div>
         ))}
       </div>
@@ -106,7 +117,7 @@ export default async function ThumbtackLeadAutomationPost({ params }: { params: 
       description:
         "Thumbtack lead response automation via the official Pro API: quotes from your own rates, automatic follow-up, real bookings, and real client numbers.",
       datePublished: "2026-08-27",
-      dateModified: "2026-08-27",
+      dateModified: "2026-08-29",
       author: { "@type": "Person", "@id": "https://abemedia.online/en/about/abe-perez#person", name: "Abe Perez" },
       publisher: { "@id": "https://abemedia.online/#organization" },
       about: ["Thumbtack lead response automation", "AI lead response", "Home service lead management"],

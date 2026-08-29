@@ -8,7 +8,7 @@ type ReplayItem = { from: "customer" | "ai" | "review"; text: string; meta?: str
 
 const originalConversation: ReplayItem[] = [
   { from: "customer", text: "It’s off a moving truck to my apartment. I have a mattress/boxspring, dresser, chest of drawers, mirror, 2 TVs, 2 chairs, and 4 boxes.", meta: "August 17 · 3:30 PM", delay: 650 },
-  { from: "ai", label: "Sent by Progressive Transportation Services", text: "Hi Rosezett, thanks for the details. Since we’re just handling labor, that’s $95/hr for a 2-man crew, no trip fee, with a 2-hour minimum. For a 1-bedroom load like yours, we’d estimate 2–3 hours, roughly $190–$285 all in. How many flights of stairs are there? Tomorrow is open morning and afternoon.", meta: "Replied in under 1 min", delay: 1800, typing: true },
+  { from: "ai", label: "Sent by Progressive Transportation Services", text: "Hi Gosezett, thanks for the details. Since we’re just handling labor, that’s $95/hr for a 2-man crew, no trip fee, with a 2-hour minimum. For a 1-bedroom load like yours, we’d estimate 2–3 hours, roughly $190–$285 all in. How many flights of stairs are there? Tomorrow is open morning and afternoon.", meta: "Replied in under 1 min", delay: 1800, typing: true },
   { from: "customer", text: "About 18 stairs to second level. 2 flights.", meta: "August 17 · 3:37 PM", delay: 1800 },
   { from: "ai", label: "Sent by Progressive Transportation Services", text: "Got it, two flights adds some time. With those stairs factored in, I’d estimate closer to 3–4 hours, so around $285–$380 all in. Still just an estimate, not fixed. Tomorrow’s wide open, morning and afternoon, if you want to lock in Aug 18.", meta: "Quote adjusted instantly", delay: 1600, typing: true },
   { from: "review", label: "Review posted", text: "Great service provided for the cost. Professional service provided", meta: "August 20 · 2:06 PM", delay: 2100 },
@@ -17,8 +17,8 @@ const originalConversation: ReplayItem[] = [
 ];
 
 const copy = {
-  en: { eyebrow: "Real lead · real outcome", titleBefore: "First to reply. Hired. Then rated ", titleAccent: "five stars.", lede: "A real Thumbtack thread, replayed. The AI quoted from the mover’s rate card in under a minute, adjusted when the details changed, and kept the relationship moving when the customer returned.", original: "Real conversation · lightly condensed for display", responseTitle: "Rosezett L. contacted 4 pros · 3 responded", you: "You", replied: "Initially replied in", response: "Customer has responded", notResponse: "Customer has not responded", active: "Last activity", replay: "Replay conversation", scheduled: "Scheduled", review: "Review posted" },
-  es: { eyebrow: "Lead real · resultado real", titleBefore: "Respondió primero. Contratado. Y luego, ", titleAccent: "cinco estrellas.", lede: "Una conversación real de Thumbtack, reproducida. La IA cotizó con el tarifario en menos de un minuto, ajustó el precio cuando cambiaron los detalles y respondió cuando la clienta volvió.", original: "Conversación real en inglés · resumida para la pantalla", responseTitle: "Rosezett L. contactó a 4 profesionales · 3 respondieron", you: "Tú", replied: "Respondió inicialmente en", response: "La clienta respondió", notResponse: "La clienta no respondió", active: "Última actividad", replay: "Reproducir conversación", scheduled: "Programado", review: "Reseña publicada" },
+  en: { eyebrow: "Real lead · real outcome", titleBefore: "First to reply. Hired. Then rated ", titleAccent: "five stars.", lede: "A real Thumbtack thread, replayed. The AI quoted from the mover’s rate card in under a minute, adjusted when the details changed, and kept the relationship moving when the customer returned.", original: "Real conversation · customer details redacted · lightly condensed", responseTitle: "Gosezett B. contacted 4 pros · 3 responded", you: "You", replied: "Initially replied in", response: "Customer has responded", notResponse: "Customer has not responded", active: "Last activity", replay: "Replay conversation", scheduled: "Scheduled", review: "Review posted", insights: "Market insights", paid: "What you paid", directLead: "Direct lead", total: "Total", manage: "Manage lead prices", commitment: "Thumbtack Quality Commitment" },
+  es: { eyebrow: "Lead real · resultado real", titleBefore: "Respondió primero. Contratado. Y luego, ", titleAccent: "cinco estrellas.", lede: "Una conversación real de Thumbtack, reproducida. La IA cotizó con el tarifario en menos de un minuto, ajustó el precio cuando cambiaron los detalles y respondió cuando la clienta volvió.", original: "Conversación real en inglés · datos del cliente ocultos · resumida", responseTitle: "Gosezett B. contactó a 4 profesionales · 3 respondieron", you: "Tú", replied: "Respondió inicialmente en", response: "La clienta respondió", notResponse: "La clienta no respondió", active: "Última actividad", replay: "Reproducir conversación", scheduled: "Programado", review: "Reseña publicada", insights: "Información del mercado", paid: "Lo que pagaste", directLead: "Lead directo", total: "Total", manage: "Administrar precios", commitment: "Compromiso de calidad de Thumbtack" },
 } as const;
 
 const LOOP_HOLD_MS = 7000;
@@ -93,7 +93,7 @@ export default function ThumbtackReplay({ locale }: ThumbtackReplayProps) {
 
             <main className="tt-conversation">
               <div className="tt-conversation__head">
-                <ArrowLeft aria-hidden="true" /><strong>Rosezett Land</strong><span>{text.scheduled} <ChevronDown aria-hidden="true" /></span>
+                <ArrowLeft aria-hidden="true" /><strong>Gosezett Band</strong><span>{text.scheduled} <ChevronDown aria-hidden="true" /></span>
                 <div><Archive aria-hidden="true" /><Star aria-hidden="true" /><MoreHorizontal aria-hidden="true" /></div>
               </div>
               <div ref={threadRef} className="tt-thread" aria-live="off">
@@ -118,7 +118,16 @@ export default function ThumbtackReplay({ locale }: ThumbtackReplayProps) {
               <ProRow name={text.you} rating="4.7" time="1 min" active="8 days ago" customerResponded copy={text} featured />
               <ProRow name="Pro A" rating="5.0" time="11 min" active="9 days ago" customerResponded copy={text} />
               <ProRow name="Pro B" rating="5.0" time="18 min" active="11 days ago" copy={text} />
+              <ProRow name="Pro C" rating="4.8" time="1 min" active="10 days ago" customerResponded copy={text} />
               <p className="tt-response__note"><Check /> Fastest response</p>
+              <div className="tt-cost">
+                <h4>{text.insights} <ChevronDown /></h4>
+                <h4>{text.paid}</h4>
+                <p><span>{text.directLead}</span><span>$22.94</span></p>
+                <p><strong>{text.total}</strong><strong>$22.94</strong></p>
+                <span className="tt-cost__link">{text.manage}</span>
+                <small>{text.commitment}</small>
+              </div>
             </aside>
           </div>
         </div>
