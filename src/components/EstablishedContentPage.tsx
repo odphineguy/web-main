@@ -11,8 +11,7 @@ const baseUrl = "https://abemedia.online";
 
 const copy = {
   en: {
-    primary: "Discuss your workflow",
-    secondary: "See how we work",
+    primary: "Let’s talk",
     fitEyebrow: "Good fit when",
     fitTitle: "The handoffs are costing more than the tools",
     systemEyebrow: "What we build",
@@ -27,8 +26,7 @@ const copy = {
     open: "Open",
   },
   es: {
-    primary: "Cuéntanos tu flujo de trabajo",
-    secondary: "Mira cómo trabajamos",
+    primary: "Hablemos",
     fitEyebrow: "Encaja cuando",
     fitTitle: "Los pases entre personas cuestan más que las herramientas",
     systemEyebrow: "Lo que construimos",
@@ -71,6 +69,13 @@ export default function EstablishedContentPage({
   const related = data.related.filter((item) => !item.href.endsWith("/contact"));
   const sectionName = data.kind === "industry" ? "Industries" : "Services";
   const mark = data.kind === "industry" ? ["ONE", "VIEW"] : ["WORK", "FLOW"];
+  const heroTitle = data.slug === "custom-business-software"
+    ? <>Software built around your <span className="text-[var(--ds-accent)]">operation.</span></>
+    : data.slug === "dispatch-operations-software"
+      ? <>Dispatch software for <span className="text-[var(--ds-accent)]">real exceptions.</span></>
+      : data.slug === "logistics-transportation"
+        ? <>Dispatch and drivers in <span className="text-[var(--ds-accent)]">one operating view.</span></>
+        : data.title;
   const primarySchema = data.kind === "service"
     ? { "@context": "https://schema.org", "@type": "Service", "@id": `${baseUrl}${path}#service`, name: data.title, description: data.description, url: `${baseUrl}${path}`, areaServed: { "@type": "Country", name: "United States" }, provider: { "@id": `${baseUrl}/#organization` } }
     : { "@context": "https://schema.org", "@type": "WebPage", "@id": `${baseUrl}${path}#webpage`, name: data.title, description: data.description, url: `${baseUrl}${path}`, about: data.eyebrow, publisher: { "@id": `${baseUrl}/#organization` } };
@@ -101,18 +106,12 @@ export default function EstablishedContentPage({
 
       <div id="overview">
         <PageHero
-          eyebrow={data.eyebrow}
-          title={data.title}
+          title={heroTitle}
           lede={data.intro}
           actions={
-            <>
-              <Link href={`/${lang}/contact`} className="ds-btn ds-btn-primary">
-                {t.primary} <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link href={`/${lang}/how-it-works`} className="ds-btn ds-btn-ghost">
-                {t.secondary}
-              </Link>
-            </>
+            <Link href={`/${lang}/contact`} className="ds-btn ds-btn-primary">
+              {t.primary} <ArrowRight className="h-4 w-4" />
+            </Link>
           }
         />
       </div>
@@ -130,10 +129,9 @@ export default function EstablishedContentPage({
 
       <Section id="system" eyebrow={t.systemEyebrow} title={t.systemTitle}>
         <div className="grid gap-px bg-[var(--ds-line-soft)] md:grid-cols-3">
-          {data.sections.map((section, index) => (
+          {data.sections.map((section) => (
             <DsCard
               key={section.title}
-              index={index}
               title={section.title}
               description={section.body}
               points={section.items}
@@ -184,8 +182,8 @@ export default function EstablishedContentPage({
 
       <Section eyebrow={t.relatedEyebrow} title={t.relatedTitle} className="border-t border-[var(--ds-line-soft)]">
         <div className="grid gap-px bg-[var(--ds-line-soft)] md:grid-cols-2">
-          {related.map((item, index) => (
-            <DsCard key={item.href} index={index} title={item.label} description={item.description} href={item.href} cta={t.open} className="min-h-56" />
+          {related.map((item) => (
+            <DsCard key={item.href} title={item.label} description={item.description} href={item.href} cta={t.open} className="min-h-56" />
           ))}
         </div>
       </Section>
