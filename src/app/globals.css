@@ -1540,6 +1540,65 @@
   font-family: var(--font-manrope), system-ui, sans-serif;
 }
 
+.tt-audit-cta {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  margin-top: 1.25rem;
+  padding: clamp(1.4rem, 3vw, 2.25rem);
+  color: #f8f7f3;
+  background: #151719;
+}
+
+.tt-audit-cta p {
+  margin: 0 0 0.65rem;
+  color: #f16b35;
+  font-family: var(--font-ds-mono), monospace;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.tt-audit-cta h3 {
+  margin: 0;
+  font-family: var(--font-ds-display), Impact, sans-serif;
+  font-size: clamp(2rem, 4vw, 3.8rem);
+  font-weight: 800;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.tt-audit-cta span {
+  display: block;
+  max-width: 48rem;
+  margin-top: 0.8rem;
+  color: rgb(248 247 243 / 65%);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.tt-audit-cta a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 3.2rem;
+  padding: 0 1.25rem;
+  color: white;
+  background: #f04b08;
+  font-family: var(--font-ds-mono), monospace;
+  font-size: 0.66rem;
+  font-weight: 750;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tt-audit-cta a:hover { background: #d94306; }
+.tt-audit-cta a svg { width: 1rem; height: 1rem; }
+
 .tt-topbar {
   display: flex;
   align-items: stretch;
@@ -1879,6 +1938,8 @@
 }
 
 @media (max-width: 760px) {
+  .tt-audit-cta { grid-template-columns: 1fr; align-items: start; }
+  .tt-audit-cta a { width: 100%; white-space: normal; }
   .tt-window { border-radius: 0.8rem; }
   .tt-topbar { height: 3.25rem; padding-inline: 0.7rem; }
   .tt-mark { width: 2rem; height: 2rem; margin-right: 0.7rem; }

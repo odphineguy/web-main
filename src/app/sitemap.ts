@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/missed-call-text-back", lastModified: "2026-08-20", hasSpanishEquivalent: true },
     { path: "/ai-receptionist-vs-answering-service", lastModified: "2026-08-20", hasSpanishEquivalent: true },
     { path: "/smith-ai-alternatives-home-services", lastModified: "2026-08-20", hasSpanishEquivalent: true },
+    { path: "/thumbtack-lead-spend-audit", lastModified: "2026-09-01", hasSpanishEquivalent: false },
     { path: "/portfolio", lastModified: "2026-08-26", hasSpanishEquivalent: true },
     { path: "/portfolio/mylabcompliance", lastModified: "2026-04-20", hasSpanishEquivalent: false },
     ...projectOrder.map((slug) => ({ path: `/portfolio/${slug}`, lastModified: "2026-08-26", hasSpanishEquivalent: true })),

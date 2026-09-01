@@ -117,7 +117,7 @@ export default async function ThumbtackLeadAutomationPost({ params }: { params: 
       description:
         "Thumbtack lead response automation via the official Pro API: quotes from your own rates, automatic follow-up, real bookings, and real client numbers.",
       datePublished: "2026-08-27",
-      dateModified: "2026-08-29",
+      dateModified: "2026-09-01",
       author: { "@type": "Person", "@id": "https://abemedia.online/en/about/abe-perez#person", name: "Abe Perez" },
       publisher: { "@id": "https://abemedia.online/#organization" },
       about: ["Thumbtack lead response automation", "AI lead response", "Home service lead management"],
@@ -145,10 +145,10 @@ export default async function ThumbtackLeadAutomationPost({ params }: { params: 
 
   const auditCta = (
     <Link
-      href="/en/#free-ai-audit"
+      href="/en/thumbtack-lead-spend-audit"
       className="ds-btn ds-btn-primary"
     >
-      Get Your Free AI Readiness Audit <ArrowRight className="h-4 w-4" />
+      Analyze my Thumbtack spend <ArrowRight className="h-4 w-4" />
     </Link>
   );
 
@@ -218,6 +218,17 @@ export default async function ThumbtackLeadAutomationPost({ params }: { params: 
             You can’t beat that with your phone in your pocket and a couch in your hands. The agent answers while you
             work.
           </p>
+
+          <aside className="my-10 grid gap-6 bg-[#151719] p-7 text-white md:grid-cols-[1fr_auto] md:items-end">
+            <div>
+              <p className="ds-meta text-[#f16b35]">Free Thumbtack Lead Spend Audit</p>
+              <h3 className="mt-3 text-2xl font-semibold leading-tight">Fast response matters. So does knowing when your budget produces hires.</h3>
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-white/65">Send your contacts export and monthly spend. I’ll show the strongest and weakest observed day, response-time impact, lead counts, and cost per matched hire—without needing account access.</p>
+            </div>
+            <Link href="/en/thumbtack-lead-spend-audit" className="ds-btn bg-[#f16b35] text-white hover:bg-[#d95624]">
+              Analyze my Thumbtack spend <ArrowRight className="h-4 w-4" />
+            </Link>
+          </aside>
         </section>
 
         <section>

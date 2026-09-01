@@ -1,6 +1,7 @@
 "use client";
 
-import { Archive, ArrowLeft, Check, ChevronDown, Clock3, Inbox, MessageSquareText, MoreHorizontal, RotateCcw, Send, Sparkles, Star } from "lucide-react";
+import Link from "next/link";
+import { Archive, ArrowLeft, ArrowRight, Check, ChevronDown, Clock3, Inbox, MessageSquareText, MoreHorizontal, RotateCcw, Send, Sparkles, Star } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 type ThumbtackReplayProps = { locale: string };
@@ -17,8 +18,8 @@ const originalConversation: ReplayItem[] = [
 ];
 
 const copy = {
-  en: { eyebrow: "Real lead · real outcome", titleBefore: "First to reply. Hired. Then rated ", titleAccent: "five stars.", lede: "A real Thumbtack thread, replayed. The AI quoted from the mover’s rate card in under a minute, adjusted when the details changed, and kept the relationship moving when the customer returned.", original: "Real conversation · customer details redacted · lightly condensed", responseTitle: "Gosezett B. contacted 4 pros · 3 responded", you: "You", replied: "Initially replied in", response: "Customer has responded", notResponse: "Customer has not responded", active: "Last activity", replay: "Replay conversation", scheduled: "Scheduled", review: "Review posted", insights: "Market insights", paid: "What you paid", directLead: "Direct lead", total: "Total", manage: "Manage lead prices", commitment: "Thumbtack Quality Commitment" },
-  es: { eyebrow: "Lead real · resultado real", titleBefore: "Respondió primero. Contratado. Y luego, ", titleAccent: "cinco estrellas.", lede: "Una conversación real de Thumbtack, reproducida. La IA cotizó con el tarifario en menos de un minuto, ajustó el precio cuando cambiaron los detalles y respondió cuando la clienta volvió.", original: "Conversación real en inglés · datos del cliente ocultos · resumida", responseTitle: "Gosezett B. contactó a 4 profesionales · 3 respondieron", you: "Tú", replied: "Respondió inicialmente en", response: "La clienta respondió", notResponse: "La clienta no respondió", active: "Última actividad", replay: "Reproducir conversación", scheduled: "Programado", review: "Reseña publicada", insights: "Información del mercado", paid: "Lo que pagaste", directLead: "Lead directo", total: "Total", manage: "Administrar precios", commitment: "Compromiso de calidad de Thumbtack" },
+  en: { eyebrow: "Real lead · real outcome", titleBefore: "First to reply. Hired. Then rated ", titleAccent: "five stars.", lede: "A real Thumbtack thread, replayed. The AI quoted from the mover’s rate card in under a minute, adjusted when the details changed, and kept the relationship moving when the customer returned.", original: "Real conversation · customer details redacted · lightly condensed", responseTitle: "Gosezett B. contacted 4 pros · 3 responded", you: "You", replied: "Initially replied in", response: "Customer has responded", notResponse: "Customer has not responded", active: "Last activity", replay: "Replay conversation", scheduled: "Scheduled", review: "Review posted", insights: "Market insights", paid: "What you paid", directLead: "Direct lead", total: "Total", manage: "Manage lead prices", commitment: "Thumbtack Quality Commitment", auditEyebrow: "Fast response is one part of the picture", auditTitle: "See when your best Thumbtack leads arrive.", auditBody: "Turn your contacts export into a clear view of response time, spend, and cost per matched hire.", auditCta: "Analyze my Thumbtack spend" },
+  es: { eyebrow: "Lead real · resultado real", titleBefore: "Respondió primero. Contratado. Y luego, ", titleAccent: "cinco estrellas.", lede: "Una conversación real de Thumbtack, reproducida. La IA cotizó con el tarifario en menos de un minuto, ajustó el precio cuando cambiaron los detalles y respondió cuando la clienta volvió.", original: "Conversación real en inglés · datos del cliente ocultos · resumida", responseTitle: "Gosezett B. contactó a 4 profesionales · 3 respondieron", you: "Tú", replied: "Respondió inicialmente en", response: "La clienta respondió", notResponse: "La clienta no respondió", active: "Última actividad", replay: "Reproducir conversación", scheduled: "Programado", review: "Reseña publicada", insights: "Información del mercado", paid: "Lo que pagaste", directLead: "Lead directo", total: "Total", manage: "Administrar precios", commitment: "Compromiso de calidad de Thumbtack", auditEyebrow: "La velocidad es solo una parte", auditTitle: "Descubre cuándo llegan tus mejores leads de Thumbtack.", auditBody: "Convierte tu exportación de contactos en una vista clara del tiempo de respuesta, gasto y costo por contratación vinculada.", auditCta: "Analiza mi gasto de Thumbtack" },
 } as const;
 
 const LOOP_HOLD_MS = 7000;
@@ -131,6 +132,15 @@ export default function ThumbtackReplay({ locale }: ThumbtackReplayProps) {
             </aside>
           </div>
         </div>
+
+        <aside className="tt-audit-cta" aria-label="Thumbtack Lead Spend Audit">
+          <div>
+            <p>{text.auditEyebrow}</p>
+            <h3>{text.auditTitle}</h3>
+            <span>{text.auditBody}</span>
+          </div>
+          <Link href="/en/thumbtack-lead-spend-audit">{text.auditCta}<ArrowRight aria-hidden="true" /></Link>
+        </aside>
       </div>
     </section>
   );
