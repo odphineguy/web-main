@@ -5,7 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 
 export default function TopNavbar() {
@@ -90,12 +90,9 @@ export default function TopNavbar() {
               <div className="hidden justify-self-end lg:block">
                 <Link
                   href={`${localizedHref("/")}#free-ai-audit`}
-                  className="group inline-flex items-center gap-2 rounded-[var(--radius-action)] bg-orange-500 py-2.5 pr-2.5 pl-5 font-[var(--font-ds-body)] font-semibold text-white transition-colors hover:bg-[#111827]"
+                  className="inline-flex items-center rounded-[var(--radius-action)] bg-orange-500 px-5 py-3 font-[var(--font-ds-body)] font-semibold text-white transition-colors hover:bg-[#111827]"
                 >
                   {t("getStarted")}
-                  <span className="grid h-7 w-7 place-items-center rounded-full border border-white/40">
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-                  </span>
                 </Link>
               </div>
 

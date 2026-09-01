@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 /**
@@ -54,15 +53,7 @@ export default function DsCard({
         </span>
       )}
 
-      <h3 className="flex items-center gap-2">
-        {title}
-        {href && (
-          <ArrowRight
-            aria-hidden
-            className="h-4 w-4 -translate-x-1 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100"
-          />
-        )}
-      </h3>
+      <h3>{title}</h3>
 
       {description && (
         <p className="mt-3 text-[0.95rem] text-[var(--ds-ink-mute)]">

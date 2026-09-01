@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
 import DsCard from "@/components/ds/Card";
 import PageHero from "@/components/ds/PageHero";
@@ -80,6 +79,12 @@ export default function EstablishedContentPage({
         return <>Dispatch and drivers in <span className="text-[var(--ds-accent)]">one operating view.</span></>;
       case "waste-management-commercial-hauling":
         return <>Hauling software built for <span className="text-[var(--ds-accent)]">route exceptions.</span></>;
+      case "artificial-turf-landscaping":
+        return <>Give homeowners a faster visual estimate without pretending AI replaces <span className="text-[var(--ds-accent)]">site judgment.</span></>;
+      case "home-service-businesses":
+        return <>Answer the call, capture the job, and give the field team a <span className="text-[var(--ds-accent)]">clean handoff.</span></>;
+      case "moving-companies":
+        return <>Connect lead response, pricebook rules, crew scheduling, and <span className="text-[var(--ds-accent)]">job completion.</span></>;
       case "ai-voice-agents":
         return <>AI voice agents built around your <span className="text-[var(--ds-accent)]">call flow.</span></>;
       case "bilingual-ai-automation":
@@ -124,7 +129,7 @@ export default function EstablishedContentPage({
           lede={data.intro}
           actions={
             <Link href={`/${lang}/contact`} className="ds-btn ds-btn-primary">
-              {t.primary} <ArrowRight className="h-4 w-4" />
+              {t.primary}
             </Link>
           }
         />
@@ -173,13 +178,13 @@ export default function EstablishedContentPage({
 
       <section id="proof" className="lead-pipeline-proof scroll-mt-16">
         <div className="lead-pipeline-proof__mark" aria-hidden="true">
-          <span>{mark[0]}</span><b>→</b><span>{mark[1]}</span>
+          <span>{mark[0]}</span><b>/</b><span>{mark[1]}</span>
         </div>
         <div className="lead-pipeline-proof__copy">
           <p className="ds-eyebrow">{t.proofEyebrow}</p>
           <h2>{data.proofTitle}</h2>
           <p>{data.proof}</p>
-          <Link href={`/${lang}/how-it-works`}>{t.proofLink} <ArrowRight className="h-4 w-4" /></Link>
+          <Link href={`/${lang}/how-it-works`}>{t.proofLink}</Link>
         </div>
       </section>
 

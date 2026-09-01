@@ -20,9 +20,7 @@ export default function AuditCta({
       className={cn("audit-cta", className)}
       onClick={onClick}
     >
-      <span aria-hidden="true" />
       {label}
-      <b aria-hidden="true">↗</b>
     </Link>
   );
 }

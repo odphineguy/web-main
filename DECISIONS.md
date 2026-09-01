@@ -323,3 +323,17 @@ table `demoCallClicks` via `formSubmissions.logDemoCallClick`.
   (SSR hero text + no scroll assets in initial HTML + dynamic ssr:false imports).
 - Old message keys (BilingualServices, Features, Benefits, CalculatorCTA) were
   deleted from both locales — only HomePage consumed them (verified by grep).
+# 2026-09-01 — Service and industry pages are icon-free
+
+**Decision.** Service and industry page content uses typography, numbered labels,
+hairline rules, and text links instead of decorative icons or emoji. Functional
+controls must have a visible text label; CTA buttons remain slightly rounded but
+do not carry decorative arrow icons. All standard service and industry detail
+routes use the established `PageShell` / `PageHero` design-system template so
+headline scale, condensed display type, spacing, and section structure stay
+consistent. The custom junk-removal page keeps its industry-specific content but
+follows the same icon-free rule.
+
+**Boundary.** This rule applies to page content. Essential application controls
+such as the responsive navigation toggle may retain familiar functional symbols
+when a text-only control would reduce usability.

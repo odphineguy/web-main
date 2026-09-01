@@ -2,22 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AuditCta from "@/components/AuditCta";
 import { FaqBlock } from "@/components/FaqAccordion";
-import {
-  ArrowRight,
-  CalendarCheck,
-  Check,
-  CircleDollarSign,
-  ClipboardList,
-  ExternalLink,
-  Images,
-  MapPinned,
-  MessageSquareText,
-  PhoneCall,
-  Route,
-  ShieldAlert,
-  Truck,
-  UserRoundCheck,
-} from "lucide-react";
 
 import { constructMetadata } from "@/lib/seo";
 
@@ -332,9 +316,6 @@ export default async function JunkRemovalPage({ params }: { params: Promise<{ lo
       { "@type": "ListItem", position: 3, name: copy.hero.eyebrow, item: pageUrl },
     ],
   };
-  const problemIcons = [ClipboardList, MessageSquareText, CalendarCheck, Truck];
-  const systemIcons = [PhoneCall, CalendarCheck, Route, MapPinned];
-
   return (
     <article className="ds overflow-hidden bg-background text-foreground">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJson(serviceSchema) }} />
@@ -370,7 +351,7 @@ export default async function JunkRemovalPage({ params }: { params: Promise<{ lo
             </div>
             <div className="mt-7 border-t border-white/10 pt-5">
               <p className="font-[var(--font-ds-mono)] text-[10px] uppercase tracking-[0.15em] text-white/38">{copy.hero.statusLabel}</p>
-              <p className="mt-3 flex items-center gap-3 font-bold text-white"><UserRoundCheck className="h-5 w-5 text-[#E34F0B]" />{copy.hero.status}</p>
+              <p className="mt-3 font-bold text-white">{copy.hero.status}</p>
             </div>
           </aside>
         </div>
@@ -407,11 +388,10 @@ export default async function JunkRemovalPage({ params }: { params: Promise<{ lo
           </div>
           <div className="mt-12 grid gap-px border border-[var(--ds-line-soft)] bg-[var(--ds-line-soft)] md:grid-cols-2 lg:grid-cols-4">
             {copy.problem.items.map((item, index) => {
-              const Icon = problemIcons[index];
               return (
                 <article key={item.title} className="min-h-64 bg-background p-7">
-                  <Icon className="h-7 w-7 text-[#E34F0B]" />
-                  <h3 className="mt-10 text-xl font-bold">{item.title}</h3>
+                  <span className="font-[var(--font-ds-mono)] text-xs tracking-[0.12em] text-[#E34F0B]">{String(index + 1).padStart(2, "0")}</span>
+                  <h3 className="mt-8 text-xl font-bold">{item.title}</h3>
                   <p className="mt-3 text-sm leading-6 text-[var(--ds-ink-mute)]">{item.body}</p>
                 </article>
               );
@@ -454,11 +434,10 @@ export default async function JunkRemovalPage({ params }: { params: Promise<{ lo
           </div>
           <div className="mt-12 grid gap-px border border-[var(--ds-line-soft)] bg-[var(--ds-line-soft)] md:grid-cols-2">
             {copy.pricebook.items.map((item, index) => {
-              const Icon = index === 0 ? ClipboardList : index === 1 ? CircleDollarSign : index === 2 ? Images : ShieldAlert;
               return (
                 <article key={item.title} className="bg-[var(--ds-raise)] p-7 md:p-9">
-                  <Icon className="h-6 w-6 text-[#E34F0B]" />
-                  <h3 className="mt-7 text-2xl font-bold">{item.title}</h3>
+                  <span className="font-[var(--font-ds-mono)] text-xs tracking-[0.12em] text-[#E34F0B]">{String(index + 1).padStart(2, "0")}</span>
+                  <h3 className="mt-6 text-2xl font-bold">{item.title}</h3>
                   <p className="mt-3 max-w-xl leading-7 text-[var(--ds-ink-mute)]">{item.body}</p>
                 </article>
               );
@@ -478,11 +457,10 @@ export default async function JunkRemovalPage({ params }: { params: Promise<{ lo
           </div>
           <div className="mt-12 grid gap-px border border-[var(--ds-line-soft)] bg-[var(--ds-line-soft)] md:grid-cols-2 lg:grid-cols-4">
             {copy.system.items.map((item, index) => {
-              const Icon = systemIcons[index];
               return (
                 <article key={item.title} className="min-h-64 bg-background p-7">
-                  <Icon className="h-7 w-7 text-[#E34F0B]" />
-                  <h3 className="mt-10 text-xl font-bold">{item.title}</h3>
+                  <span className="font-[var(--font-ds-mono)] text-xs tracking-[0.12em] text-[#E34F0B]">{String(index + 1).padStart(2, "0")}</span>
+                  <h3 className="mt-8 text-xl font-bold">{item.title}</h3>
                   <p className="mt-3 text-sm leading-6 text-[var(--ds-ink-mute)]">{item.body}</p>
                 </article>
               );
@@ -499,9 +477,9 @@ export default async function JunkRemovalPage({ params }: { params: Promise<{ lo
             <p className="mt-7 max-w-xl text-lg leading-8 text-[var(--ds-ink-mute)]">{copy.limits.intro}</p>
           </div>
           <div className="border border-[var(--ds-line-soft)] bg-[var(--ds-raise)] p-7 md:p-9">
-            <ShieldAlert className="h-8 w-8 text-[#E34F0B]" />
-            <ul className="mt-7 divide-y divide-[var(--ds-line-soft)] border-y border-[var(--ds-line-soft)]">
-              {copy.limits.items.map((item) => <li key={item} className="flex gap-3 py-4 leading-7 text-[var(--ds-ink-mute)]"><span className="text-[#E34F0B]">×</span>{item}</li>)}
+            <p className="font-[var(--font-ds-mono)] text-xs uppercase tracking-[0.12em] text-[#E34F0B]">{copy.limits.eyebrow}</p>
+            <ul className="mt-5 divide-y divide-[var(--ds-line-soft)] border-y border-[var(--ds-line-soft)]">
+              {copy.limits.items.map((item, index) => <li key={item} className="grid grid-cols-[2rem_1fr] gap-3 py-4 leading-7 text-[var(--ds-ink-mute)]"><span className="font-[var(--font-ds-mono)] text-xs text-[#E34F0B]">{String(index + 1).padStart(2, "0")}</span>{item}</li>)}
             </ul>
           </div>
         </div>
@@ -514,16 +492,16 @@ export default async function JunkRemovalPage({ params }: { params: Promise<{ lo
             <h2 className="mt-5 text-[clamp(3.3rem,6vw,6rem)] leading-[0.88] text-white">{copy.caseStudy.title}</h2>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-white/64">{copy.caseStudy.body1}</p>
             <p className="mt-5 max-w-2xl leading-7 text-white/48">{copy.caseStudy.body2}</p>
-            <Link href="/en/portfolio/rejunk" hrefLang="en" className="mt-7 inline-flex items-center gap-2 font-semibold text-[#E34F0B] hover:underline">
-              {copy.caseStudy.link}<ExternalLink className="h-4 w-4" />
+            <Link href="/en/portfolio/rejunk" hrefLang="en" className="mt-7 inline-flex font-semibold text-[#E34F0B] hover:underline">
+              {copy.caseStudy.link}
             </Link>
           </div>
           <aside className="border border-white/12 bg-white/5 p-7 md:p-9">
-            <Truck className="h-8 w-8 text-[#E34F0B]" />
-            <h3 className="mt-8 text-2xl font-bold text-white">{copy.caseStudy.operatorTitle}</h3>
+            <p className="font-[var(--font-ds-mono)] text-xs uppercase tracking-[0.12em] text-[#E34F0B]">{lang === "es" ? "Experiencia" : "Experience"}</p>
+            <h3 className="mt-6 text-2xl font-bold text-white">{copy.caseStudy.operatorTitle}</h3>
             <p className="mt-4 leading-7 text-white/60">{copy.caseStudy.operatorBody}</p>
-            <Link href={`/${lang}/about/abe-perez`} className="mt-7 inline-flex items-center gap-2 font-semibold text-[#E34F0B] hover:underline">
-              {lang === "es" ? "Conoce la experiencia de Abe Perez" : "Read Abe Perez's background"}<ArrowRight className="h-4 w-4" />
+            <Link href={`/${lang}/about/abe-perez`} className="mt-7 inline-flex font-semibold text-[#E34F0B] hover:underline">
+              {lang === "es" ? "Conoce la experiencia de Abe Perez" : "Read Abe Perez's background"}
             </Link>
           </aside>
         </div>
@@ -534,12 +512,12 @@ export default async function JunkRemovalPage({ params }: { params: Promise<{ lo
           <p className="ds-eyebrow">{copy.related.eyebrow}</p>
           <h2 className="mt-5 text-[clamp(3rem,5vw,5rem)] leading-[0.92]">{copy.related.title}</h2>
           <div className="mt-10 grid gap-px border border-[var(--ds-line-soft)] bg-[var(--ds-line-soft)] md:grid-cols-2 lg:grid-cols-4">
-            {copy.related.items.map((item) => (
+            {copy.related.items.map((item, index) => (
               <Link key={item.href} href={`/${lang}${item.href}`} className="group bg-background p-7 transition-colors hover:bg-[#111827] hover:text-white">
-                <Check className="h-5 w-5 text-[#E34F0B]" />
+                <span className="font-[var(--font-ds-mono)] text-xs tracking-[0.12em] text-[#E34F0B]">{String(index + 1).padStart(2, "0")}</span>
                 <h3 className="mt-8 text-xl font-bold">{item.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-[var(--ds-ink-mute)] transition-colors group-hover:text-white/60">{item.body}</p>
-                <ArrowRight className="mt-7 h-4 w-4 text-[#E34F0B] transition-transform group-hover:translate-x-1" />
+                <span className="mt-7 block font-[var(--font-ds-mono)] text-[10px] uppercase tracking-[0.12em] text-[#E34F0B]">{lang === "es" ? "Abrir" : "Open"}</span>
               </Link>
             ))}
           </div>

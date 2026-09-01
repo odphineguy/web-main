@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { DiscoverabilityPage } from "@/components/DiscoverabilityPage";
 import { industryPages } from "@/content/discoverability";
 import { industryPagesEs } from "@/content/discoverability.es";
 import { constructMetadata } from "@/lib/seo";
@@ -38,8 +37,5 @@ export default async function IndustryDetailPage({ params }: Props) {
   if (locale !== "en" && locale !== "es") notFound();
   const data = pagesFor(locale)[slug];
   if (!data) notFound();
-  if (locale === "en" && ["logistics-transportation", "waste-management-commercial-hauling"].includes(slug)) {
-    return <EstablishedContentPage data={data} path={`/${locale}/industries/${slug}`} locale={locale} />;
-  }
-  return <DiscoverabilityPage data={data} path={`/${locale}/industries/${slug}`} locale={locale} />;
+  return <EstablishedContentPage data={data} path={`/${locale}/industries/${slug}`} locale={locale} />;
 }

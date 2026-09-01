@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent, type MouseEvent } from "react";
-import { ArrowUpRight, CalendarDays, X } from "lucide-react";
 import { useLocale } from "next-intl";
 import TurnstileWidget from "@/components/TurnstileWidget";
 import { humanizeError, isValidEmail } from "@/lib/humanizeError";
@@ -187,10 +186,10 @@ export default function ConsultationForm({ isOpen, onClose, preselectedService, 
         <button
           type="button"
           onClick={onClose}
-          className="absolute right-3 top-4 grid h-9 w-9 place-items-center rounded-full border border-foreground/15 text-muted-foreground transition-colors hover:border-foreground/35 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 sm:right-5 sm:top-5"
+          className="absolute right-3 top-4 min-h-9 border border-foreground/15 px-3 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground transition-colors hover:border-foreground/35 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 sm:right-5 sm:top-5"
           aria-label={text.close}
         >
-          <X className="h-4 w-4" />
+          {locale === "es" ? "Cerrar" : "Close"}
         </button>
 
         <div className="px-4 pb-4 pt-5 sm:px-7 sm:pb-6 sm:pt-6">
@@ -293,7 +292,6 @@ export default function ConsultationForm({ isOpen, onClose, preselectedService, 
                 className="group inline-flex min-h-[65px] items-center justify-between rounded-[var(--radius-action)] bg-orange-500 px-6 text-left text-sm font-bold uppercase tracking-[0.06em] text-white transition-colors hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {status === "sending" ? text.sending : status === "sent" ? text.sent : text.send}
-                <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </button>
             </div>
 
@@ -317,8 +315,7 @@ export default function ConsultationForm({ isOpen, onClose, preselectedService, 
             rel="noreferrer"
             className="group flex min-h-12 w-full items-center justify-between rounded-[var(--radius-action)] border border-foreground/70 px-5 text-sm font-semibold uppercase tracking-[0.05em] text-foreground transition-colors hover:bg-foreground hover:text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
           >
-            <span className="flex items-center gap-3"><CalendarDays className="h-4 w-4" />{text.calendar}</span>
-            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <span>{text.calendar}</span>
           </a>
 
           <p className="mt-3 text-center text-xs text-muted-foreground">

@@ -3,7 +3,6 @@
 import { useCallback, useRef, useState, type MouseEvent, type PointerEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Facebook, Instagram, Music2, Twitter } from "lucide-react";
 import ClutchWidget from "@/components/ClutchWidget";
 import ConsultationForm from "@/components/ConsultationForm";
 
@@ -123,8 +122,8 @@ export default function ReactiveFooter({ locale }: ReactiveFooterProps) {
           <h2>{copy.title}</h2>
         </div>
         <div className="reactive-footer__ctas">
-          <Link href={`/${locale}/contact`} onClick={openConsultation}><span />{copy.primary}<b>↗</b></Link>
-          <a href="https://cal.com/abe-p-698781/talk-with-abe" target="_blank" rel="noreferrer"><span />{copy.secondary}<b>↗</b></a>
+          <Link href={`/${locale}/contact`} onClick={openConsultation}>{copy.primary}</Link>
+          <a href="https://cal.com/abe-p-698781/talk-with-abe" target="_blank" rel="noreferrer">{copy.secondary}</a>
         </div>
       </div>
 
@@ -160,10 +159,10 @@ export default function ReactiveFooter({ locale }: ReactiveFooterProps) {
         <div className="reactive-footer__social">
           <h3>{copy.follow}</h3>
           <div>
-            <a href="https://x.com/abe_vision" target="_blank" rel="noreferrer" aria-label="X / Twitter"><Twitter /></a>
-            <a href="https://www.instagram.com/abevision_" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram /></a>
-            <a href="https://www.facebook.com/profile.php?id=100091085333551" target="_blank" rel="noreferrer" aria-label="Facebook"><Facebook /></a>
-            <a href="https://www.tiktok.com/@abevision_" target="_blank" rel="noreferrer" aria-label="TikTok"><Music2 /></a>
+            <a href="https://x.com/abe_vision" target="_blank" rel="noreferrer">X / Twitter</a>
+            <a href="https://www.instagram.com/abevision_" target="_blank" rel="noreferrer">Instagram</a>
+            <a href="https://www.facebook.com/profile.php?id=100091085333551" target="_blank" rel="noreferrer">Facebook</a>
+            <a href="https://www.tiktok.com/@abevision_" target="_blank" rel="noreferrer">TikTok</a>
           </div>
         </div>
       </div>
