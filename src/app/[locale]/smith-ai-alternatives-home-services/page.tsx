@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AuditCta from "@/components/AuditCta";
+import { FaqBlock } from "@/components/FaqAccordion";
 import {
   ArrowRight,
   Bot,
@@ -469,10 +470,12 @@ export default async function SmithAiAlternativesPage({ params }: { params: Prom
       </section>
 
       <section className="px-5 py-20 sm:px-8 md:py-28">
-        <div className="mx-auto grid max-w-[1120px] gap-12 lg:grid-cols-[0.55fr_1.45fr]">
-          <div><p className="ds-eyebrow">{copy.faq.eyebrow}</p><h2 className="mt-5 text-[clamp(3rem,5vw,5rem)] leading-[0.92]">{copy.faq.title}</h2></div>
-          <div className="divide-y divide-[var(--ds-line-soft)] border-y border-[var(--ds-line-soft)]">{copy.faq.items.map((item) => <details key={item.q} className="group py-6"><summary className="cursor-pointer list-none pr-8 text-lg font-bold marker:hidden">{item.q}<span aria-hidden="true" className="float-right text-2xl font-normal text-[#E34F0B] transition-transform group-open:rotate-45">+</span></summary><p className="mt-4 max-w-3xl pr-8 leading-7 text-[var(--ds-ink-mute)]">{item.a}</p></details>)}</div>
-        </div>
+        <FaqBlock
+          className="mx-auto max-w-[1120px]"
+          eyebrow={copy.faq.eyebrow}
+          title={copy.faq.title}
+          items={copy.faq.items.map((item) => ({ key: item.q, question: item.q, answer: item.a }))}
+        />
       </section>
 
       <section className="bg-[#E34F0B] px-5 py-20 text-white sm:px-8 md:py-24">

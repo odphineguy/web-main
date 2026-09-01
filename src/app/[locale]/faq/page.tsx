@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { faqsEs } from "@/content/discoverability.es";
+import { FaqAccordion } from "@/components/FaqAccordion";
 import { constructMetadata } from "@/lib/seo";
 
 const faqsEn = [
@@ -64,17 +65,7 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
             <p className="bold-home__index">{copy.eyebrow}</p>
             <h1>{copy.title}</h1>
           </header>
-          <div className="bold-faq__list">
-            {faqs.map((item) => (
-              <details key={item.q}>
-                <summary>
-                  {item.q}
-                  <b aria-hidden="true">+</b>
-                </summary>
-                <p>{item.a}</p>
-              </details>
-            ))}
-          </div>
+          <FaqAccordion items={faqs.map((item) => ({ key: item.q, question: item.q, answer: item.a }))} />
         </div>
       </section>
     </div>

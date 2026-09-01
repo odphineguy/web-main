@@ -1,5 +1,25 @@
 # Decisions
 
+## 2026-09-01 — One shared FAQ presentation
+
+**Decision.** `/faq` is the visual source of truth for every FAQ-like section:
+a two-column editorial block, condensed uppercase heading, 20–22px questions,
+strong foreground-colored dividing rules, orange plus/X state, and consistent
+answer spacing. The canonical markup now lives in
+`src/components/FaqAccordion.tsx` as `FaqAccordion` and `FaqBlock`.
+
+**Implementation guardrail.** Do not hand-roll `<details>` markup or page-local
+FAQ typography/divider classes. All FAQ inventories—including service pages,
+the homepage, audits, industry/comparison pages, discoverability pages, and
+editorial articles—must render through the shared component. Contextual outer
+section padding/background may vary; accordion type, rules, spacing, and open
+state may not.
+
+**Verified.** Production build and lint pass (four unrelated generated Convex
+warnings remain). Rendered `/en/faq`, `/en/services/ai-voice-agents`, and
+`/en/thumbtack-lead-spend-audit` at desktop and 390px mobile widths; verified
+the open state and answer layout interactively.
+
 ## 2026-09-01 — Square-edge interface geometry
 
 **Decision.** The sitewide geometry is square and architectural: containers,

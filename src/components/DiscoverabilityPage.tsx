@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import type { ContentPageData } from "@/content/discoverability";
+import { FaqBlock } from "@/components/FaqAccordion";
 
 const baseUrl = "https://abemedia.online";
 
@@ -131,12 +132,12 @@ export function DiscoverabilityPage({ data, path, locale = "en" }: { data: Conte
       </section>
 
       <section className="px-6 py-16 md:py-20">
-        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.55fr_1.45fr]">
-          <div><p className="text-sm font-semibold uppercase tracking-[0.16em] text-primary">{t.faqEyebrow}</p><h2 className="mt-3 text-3xl font-medium tracking-[-0.025em]">{t.faqTitle}</h2></div>
-          <div className="divide-y divide-border border-y border-border">
-            {data.faqs.map((faq) => <details key={faq.question} className="group py-5"><summary className="cursor-pointer list-none pr-8 text-lg font-medium marker:hidden">{faq.question}<span aria-hidden="true" className="float-right text-primary group-open:rotate-45">+</span></summary><p className="mt-3 max-w-3xl pr-8 leading-7 text-muted-foreground">{faq.answer}</p></details>)}
-          </div>
-        </div>
+        <FaqBlock
+          className="mx-auto max-w-6xl"
+          eyebrow={t.faqEyebrow}
+          title={t.faqTitle}
+          items={data.faqs.map((faq) => ({ key: faq.question, question: faq.question, answer: faq.answer }))}
+        />
       </section>
 
       <section className="border-t border-border bg-muted/35 px-6 py-16">

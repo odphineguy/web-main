@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import AuditCta from "@/components/AuditCta";
+import { FaqBlock } from "@/components/FaqAccordion";
 import MissedCallValueWorksheet from "@/components/MissedCallValueWorksheet";
 import { constructMetadata } from "@/lib/seo";
 
@@ -373,20 +374,12 @@ export default async function MissedCallTextBackPage({ params }: { params: Promi
       </section>
 
       <section className="px-5 py-16 sm:px-8 md:py-20">
-        <div className="mx-auto grid max-w-[1120px] gap-12 lg:grid-cols-[0.55fr_1.45fr]">
-          <div>
-            <p className="ds-eyebrow">{copy.faq.eyebrow}</p>
-            <h2 className="mt-5 text-[clamp(3rem,5vw,5rem)] leading-[0.92]">{copy.faq.title}</h2>
-          </div>
-          <div className="lead-pipeline-faq">
-            {copy.faq.items.map((item) => (
-              <details key={item.q}>
-                <summary>{item.q}<b aria-hidden="true">+</b></summary>
-                <p>{item.a}</p>
-              </details>
-            ))}
-          </div>
-        </div>
+        <FaqBlock
+          className="mx-auto max-w-[1120px]"
+          eyebrow={copy.faq.eyebrow}
+          title={copy.faq.title}
+          items={copy.faq.items.map((item) => ({ key: item.q, question: item.q, answer: item.a }))}
+        />
       </section>
 
       <section className="bg-[#E34F0B] px-5 py-16 text-white sm:px-8 md:py-20">

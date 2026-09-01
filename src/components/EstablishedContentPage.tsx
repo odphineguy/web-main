@@ -5,6 +5,7 @@ import DsCard from "@/components/ds/Card";
 import PageHero from "@/components/ds/PageHero";
 import PageShell from "@/components/ds/PageShell";
 import Section from "@/components/ds/Section";
+import { FaqBlock } from "@/components/FaqAccordion";
 import type { ContentPageData } from "@/content/discoverability";
 
 const baseUrl = "https://abemedia.online";
@@ -182,16 +183,13 @@ export default function EstablishedContentPage({
         </div>
       </section>
 
-      <Section id="questions" eyebrow={t.faqEyebrow} title={t.faqTitle}>
-        <div className="lead-pipeline-faq">
-          {data.faqs.map((faq) => (
-            <details key={faq.question}>
-              <summary>{faq.question}<b aria-hidden="true">+</b></summary>
-              <p>{faq.answer}</p>
-            </details>
-          ))}
-        </div>
-      </Section>
+      <section id="questions" className="scroll-mt-16 py-[var(--ds-space-2xl)]">
+        <FaqBlock
+          eyebrow={t.faqEyebrow}
+          title={t.faqTitle}
+          items={data.faqs.map((faq) => ({ key: faq.question, question: faq.question, answer: faq.answer }))}
+        />
+      </section>
 
       <Section eyebrow={t.relatedEyebrow} title={t.relatedTitle} className="border-t border-[var(--ds-line-soft)]">
         <div className="grid gap-px bg-[var(--ds-line-soft)] md:grid-cols-2">

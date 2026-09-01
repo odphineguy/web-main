@@ -15,6 +15,7 @@ import {
 import PageHero from "@/components/ds/PageHero";
 import PageShell from "@/components/ds/PageShell";
 import ThumbtackAuditRequestForm from "@/components/thumbtack-audit/ThumbtackAuditRequestForm";
+import { FaqBlock } from "@/components/FaqAccordion";
 import ThumbtackAuditSample from "@/components/thumbtack-audit/ThumbtackAuditSample";
 import { constructMetadata } from "@/lib/seo";
 
@@ -219,17 +220,13 @@ export default async function ThumbtackLeadSpendAuditPage({ params }: { params: 
         <ThumbtackAuditRequestForm />
       </section>
 
-      <section className="py-[var(--ds-space-2xl)]" aria-labelledby="audit-faq-title">
-        <p className="ds-eyebrow">Straight answers</p>
-        <h2 id="audit-faq-title" className="mt-5">Before you send the export</h2>
-        <div className="mt-10 divide-y divide-[var(--ds-line)] border-y border-[var(--ds-line)]">
-          {faqs.map(([question, answer]) => (
-            <details key={question} className="group py-6">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 font-semibold">{question}<span className="font-mono text-[var(--ds-accent)] group-open:rotate-45">+</span></summary>
-              <p className="mt-4 max-w-3xl text-sm leading-6 text-[var(--ds-ink-mute)]">{answer}</p>
-            </details>
-          ))}
-        </div>
+      <section id="faq" className="scroll-mt-28 py-[var(--ds-space-2xl)]" aria-labelledby="audit-faq-title">
+        <FaqBlock
+          eyebrow="Straight answers"
+          title="Before you send the export"
+          titleId="audit-faq-title"
+          items={faqs.map(([question, answer]) => ({ key: question, question, answer }))}
+        />
       </section>
 
       <section className="mb-[var(--ds-space-2xl)] grid gap-6 bg-[#151719] p-8 text-white md:grid-cols-[1fr_auto] md:items-end md:p-12">

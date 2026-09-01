@@ -4,6 +4,7 @@ import PageShell from "@/components/ds/PageShell";
 import PageHero from "@/components/ds/PageHero";
 import Section from "@/components/ds/Section";
 import DsCard from "@/components/ds/Card";
+import { FaqBlock } from "@/components/FaqAccordion";
 import type { ContentPageData } from "@/content/discoverability";
 
 const baseUrl = "https://abemedia.online";
@@ -130,19 +131,13 @@ export default function LeadPipelinePage({ data }: { data: ContentPageData }) {
         </div>
       </section>
 
-      <Section id="questions" eyebrow="Buyer questions" title="Direct answers">
-        <div className="lead-pipeline-faq">
-          {data.faqs.map((faq) => (
-            <details key={faq.question} className="group">
-              <summary>
-                {faq.question}
-                <b aria-hidden="true">+</b>
-              </summary>
-              <p>{faq.answer}</p>
-            </details>
-          ))}
-        </div>
-      </Section>
+      <section id="questions" className="scroll-mt-16 py-[var(--ds-space-2xl)]">
+        <FaqBlock
+          eyebrow="Buyer questions"
+          title="Direct answers"
+          items={data.faqs.map((faq) => ({ key: faq.question, question: faq.question, answer: faq.answer }))}
+        />
+      </section>
 
       <Section eyebrow="Related" title="Keep exploring" className="border-t border-[var(--ds-line-soft)]">
         <div className="grid gap-px bg-[var(--ds-line-soft)] md:grid-cols-2">

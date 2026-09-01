@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight, MoreHorizontal, Sparkles, Star } from "lucide-re
 import { constructMetadata } from "@/lib/seo";
 import PageShell from "@/components/ds/PageShell";
 import PageHero from "@/components/ds/PageHero";
+import { FaqAccordion } from "@/components/FaqAccordion";
 
 const url = "https://abemedia.online/en/blog/thumbtack-lead-automation";
 
@@ -374,16 +375,10 @@ export default async function ThumbtackLeadAutomationPost({ params }: { params: 
 
         <section id="questions">
           <h2>Frequently asked questions</h2>
-          <div className="mt-6 border-y border-[var(--ds-line)]">
-            {faqs.map((faq) => (
-              <details key={faq.q} className="group border-b border-[var(--ds-line)] last:border-b-0">
-                <summary className="grid cursor-pointer list-none grid-cols-[1fr_auto] items-center gap-4 py-5 text-xl font-semibold marker:content-none">
-                  {faq.q}<b aria-hidden="true" className="text-2xl font-normal text-[var(--ds-accent)] transition-transform group-open:rotate-45">+</b>
-                </summary>
-                <p className="pb-6 pr-10 leading-8 text-muted-foreground">{faq.a}</p>
-              </details>
-            ))}
-          </div>
+          <FaqAccordion
+            className="mt-6"
+            items={faqs.map((faq) => ({ key: faq.q, question: faq.q, answer: faq.a }))}
+          />
         </section>
 
         <section className="border-t-0 bg-[var(--ds-ink)] p-8 text-background md:p-10">

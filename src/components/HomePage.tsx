@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from "next-intl";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import PhoneFrame from "@/components/PhoneFrame";
 import { homeFaqIds } from "@/components/HomeFaq";
+import { FaqAccordion } from "@/components/FaqAccordion";
 import VideoHero from "@/components/home/VideoHero";
 import KineticManifesto from "@/components/home/KineticManifesto";
 import ThumbtackReplay from "@/components/home/ThumbtackReplay";
@@ -226,14 +227,13 @@ export default function HomePage() {
             <p className="bold-home__index">{text.faqIndex}</p>
             <h2>{text.faqTitle}</h2>
           </header>
-          <div className="bold-faq__list">
-            {homeFaqIds.slice(3).map((id) => (
-              <details key={id}>
-                <summary>{t(`Faq.${id}.question`)}<b aria-hidden="true">+</b></summary>
-                <p>{t(`Faq.${id}.answer`)}</p>
-              </details>
-            ))}
-          </div>
+          <FaqAccordion
+            items={homeFaqIds.slice(3).map((id) => ({
+              key: id,
+              question: t(`Faq.${id}.question`),
+              answer: t(`Faq.${id}.answer`),
+            }))}
+          />
         </div>
       </section>
 

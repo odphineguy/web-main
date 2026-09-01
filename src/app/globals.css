@@ -786,50 +786,6 @@
     text-transform: uppercase;
   }
 
-  .ds .lead-pipeline-faq {
-    border-block: 1px solid var(--ds-line);
-  }
-
-  .ds .lead-pipeline-faq details {
-    border-bottom: 1px solid var(--ds-line);
-  }
-
-  .ds .lead-pipeline-faq details:last-child {
-    border-bottom: 0;
-  }
-
-  .ds .lead-pipeline-faq summary {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    gap: 1rem;
-    padding-block: 1.4rem;
-    list-style: none;
-    font-size: clamp(1.05rem, 1.7vw, 1.35rem);
-    font-weight: 650;
-    cursor: pointer;
-  }
-
-  .ds .lead-pipeline-faq summary::-webkit-details-marker {
-    display: none;
-  }
-
-  .ds .lead-pipeline-faq summary b {
-    color: var(--ds-accent);
-    font-size: 1.7rem;
-    font-weight: 400;
-    transition: transform 300ms var(--ds-ease-out);
-  }
-
-  .ds .lead-pipeline-faq details[open] summary b {
-    transform: rotate(45deg);
-  }
-
-  .ds .lead-pipeline-faq details p {
-    margin: -0.25rem 2rem 1.75rem 0;
-    color: var(--ds-ink-mute);
-  }
-
   @media (max-width: 850px) {
     .ds .lead-pipeline-process ol {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2877,45 +2833,88 @@
   text-wrap: balance;
 }
 
-.bold-faq__list {
-  border-top: 1px solid var(--bold-line);
+/* One FAQ language across every route. The standalone FAQ page established
+   the editorial two-column layout; service and content pages now reuse it. */
+.site-faq-grid {
+  display: grid;
+  grid-template-columns: 0.72fr 1.28fr;
+  gap: clamp(4rem, 9vw, 10rem);
+  align-items: start;
 }
 
-.bold-faq__list details {
-  border-bottom: 1px solid var(--bold-line);
+.site-faq-heading {
+  position: sticky;
+  top: 7rem;
+  align-self: start;
 }
 
-.bold-faq__list summary {
+.site-faq-eyebrow {
+  margin: 0;
+  color: #E34F0B;
+  font-family: var(--font-ds-mono), monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.site-faq-heading h2 {
+  max-width: 8ch;
+  margin: 1.5rem 0 0;
+  font-family: var(--font-ds-display), Impact, sans-serif;
+  font-size: clamp(3.7rem, 6vw, 6.7rem);
+  font-weight: 800;
+  line-height: 0.86;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.site-faq-accordion {
+  border-top: 1px solid var(--foreground);
+}
+
+.site-faq-accordion details {
+  border-bottom: 1px solid var(--foreground);
+}
+
+.site-faq-accordion summary {
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
   gap: 1rem;
   padding-block: 1.4rem;
   list-style: none;
+  color: var(--foreground);
+  font-family: var(--font-ds-body), sans-serif;
   font-size: clamp(1.05rem, 1.7vw, 1.35rem);
   font-weight: 650;
+  line-height: 1.35;
   cursor: pointer;
 }
 
-.bold-faq__list summary::-webkit-details-marker {
+.site-faq-accordion summary::-webkit-details-marker {
   display: none;
 }
 
-.bold-faq__list summary b {
-  color: var(--bold-orange);
+.site-faq-accordion summary b {
+  color: #E34F0B;
   font-size: 1.7rem;
   font-weight: 400;
-  transition: transform 300ms var(--bold-ease);
+  line-height: 1;
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.bold-faq__list details[open] summary b {
+.site-faq-accordion details[open] summary b {
   transform: rotate(45deg);
 }
 
-.bold-faq__list details p {
+.site-faq-answer {
   max-width: 65ch;
   margin: -0.25rem 2rem 1.75rem 0;
-  color: var(--bold-ink-soft);
+  color: var(--muted-foreground);
+  font-family: var(--font-ds-body), sans-serif;
+  font-size: 1rem;
   line-height: 1.65;
 }
 
@@ -3215,6 +3214,16 @@
     position: relative;
     top: auto;
   }
+
+  .site-faq-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .site-faq-heading {
+    position: relative;
+    top: auto;
+  }
 }
 
 @media (max-width: 700px) {
@@ -3314,12 +3323,12 @@
     font-size: clamp(4rem, 18vw, 6rem);
   }
 
-  .bold-faq__list summary {
-    grid-template-columns: 1fr auto;
+  .site-faq-heading h2 {
+    font-size: clamp(3.7rem, 16vw, 5.5rem);
   }
 
-  .bold-faq__list details p {
-    margin-left: 0;
+  .site-faq-answer {
+    margin-right: 0;
   }
 
   .bold-contact h2 {

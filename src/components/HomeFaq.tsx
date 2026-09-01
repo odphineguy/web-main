@@ -1,9 +1,7 @@
 "use client";
 
-import * as React from "react";
-import * as AccordionPrimitive from "@radix-ui/react-accordion";
-import { ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { FaqAccordion } from "@/components/FaqAccordion";
 
 export const homeFaqIds = ["q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8"] as const;
 
@@ -20,32 +18,13 @@ export default function HomeFaq() {
           </h2>
         </div>
 
-        {/* Questions on the right */}
-        <div className="w-full">
-          <AccordionPrimitive.Root type="single" collapsible className="w-full">
-            {homeFaqIds.map((id) => (
-              <AccordionPrimitive.Item
-                key={id}
-                value={id}
-                className="border-b border-border last:border-b-0"
-              >
-                <AccordionPrimitive.Header className="flex">
-                  <AccordionPrimitive.Trigger className="group flex flex-1 items-center justify-between gap-4 py-5 text-left text-base md:text-lg font-normal text-foreground hover:no-underline transition-all outline-none">
-                    <span className="pr-4 flex-1">
-                      {t(`${id}.question`)}
-                    </span>
-                    <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-180" />
-                  </AccordionPrimitive.Trigger>
-                </AccordionPrimitive.Header>
-                <AccordionPrimitive.Content className="overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
-                  <div className="pb-5 text-muted-foreground">
-                    {t(`${id}.answer`)}
-                  </div>
-                </AccordionPrimitive.Content>
-              </AccordionPrimitive.Item>
-            ))}
-          </AccordionPrimitive.Root>
-        </div>
+        <FaqAccordion
+          items={homeFaqIds.map((id) => ({
+            key: id,
+            question: t(`${id}.question`),
+            answer: t(`${id}.answer`),
+          }))}
+        />
       </div>
     </section>
   );
