@@ -155,7 +155,7 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
   const progress = Math.min(1, time / clip.duration);
 
   return (
-    <div className="overflow-hidden rounded-[1.75rem] border border-[oklch(0.78_0.02_70)] bg-[oklch(0.965_0.012_78)] text-left text-[oklch(0.22_0.015_70)] shadow-[0_28px_80px_oklch(0.08_0.015_265_/_0.38)]">
+    <div className="overflow-hidden rounded-none border border-[oklch(0.78_0.02_70)] bg-[oklch(0.965_0.012_78)] text-left text-[oklch(0.22_0.015_70)] shadow-[0_28px_80px_oklch(0.08_0.015_265_/_0.38)]">
       <audio ref={audioRef} src={clip.src} preload="metadata" />
 
       <header className="grid gap-4 border-b border-[oklch(0.85_0.018_72)] px-5 py-5 sm:grid-cols-[1fr_auto] sm:items-center">
@@ -174,7 +174,7 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
           <select
             value={scenarioId}
             onChange={(event) => switchScenario(event.target.value as CallScenarioId)}
-            className="h-11 w-full appearance-none rounded-full border border-[oklch(0.78_0.02_70)] bg-[oklch(0.99_0.006_78)] py-2 pl-4 pr-10 text-sm font-semibold outline-none transition-colors hover:border-[oklch(0.64_0.2_42)] focus-visible:ring-2 focus-visible:ring-[oklch(0.64_0.2_42)]"
+            className="h-11 w-full appearance-none rounded-none border border-[oklch(0.78_0.02_70)] bg-[oklch(0.99_0.006_78)] py-2 pl-4 pr-10 text-sm font-semibold outline-none transition-colors hover:border-[oklch(0.64_0.2_42)] focus-visible:ring-2 focus-visible:ring-[oklch(0.64_0.2_42)]"
           >
             {callScenarios.map((scenario) => (
               <option key={scenario.id} value={scenario.id} disabled={!scenario.available}>
@@ -190,7 +190,7 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
       <div className="border-b border-[oklch(0.88_0.014_72)] bg-[oklch(0.99_0.006_78)] px-5 py-4">
         <p className="text-sm font-medium">{clip.caption?.[locale] ?? activeScenario.caption[locale]}</p>
         <div className="mt-3 flex items-center justify-between gap-4">
-          <div className="flex rounded-full border border-[oklch(0.84_0.018_72)] bg-[oklch(0.95_0.012_75)] p-1" role="group" aria-label={text.language}>
+          <div className="flex rounded-none border border-[oklch(0.84_0.018_72)] bg-[oklch(0.95_0.012_75)] p-1" role="group" aria-label={text.language}>
             {(["en", "es"] as const).map((language) => {
               const languageAvailable = Boolean(activeScenario.clips?.[language]);
               return (
@@ -200,7 +200,7 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
                   onClick={() => switchLanguage(language)}
                   aria-pressed={clipLang === language}
                   disabled={!languageAvailable}
-                  className={`rounded-full px-3 py-1.5 text-[0.7rem] font-semibold transition-colors ${
+                  className={`rounded-[var(--radius-action)] px-3 py-1.5 text-[0.7rem] font-semibold transition-colors ${
                     clipLang === language
                       ? "bg-[oklch(0.64_0.2_42)] text-[oklch(0.98_0.01_75)]"
                       : languageAvailable
@@ -235,8 +235,8 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
               <div
                 className={`px-4 py-3 text-sm leading-relaxed transition-shadow ${
                   message.role === "agent"
-                    ? "rounded-[1.1rem] rounded-bl-sm border border-[oklch(0.8_0.018_72)] bg-[oklch(0.925_0.018_72)] text-[oklch(0.23_0.015_70)]"
-                    : "rounded-[1.1rem] rounded-br-sm bg-[oklch(0.64_0.2_42)] text-[oklch(0.985_0.006_78)]"
+                    ? "rounded-none border border-[oklch(0.8_0.018_72)] bg-[oklch(0.925_0.018_72)] text-[oklch(0.23_0.015_70)]"
+                    : "rounded-none bg-[oklch(0.64_0.2_42)] text-[oklch(0.985_0.006_78)]"
                 } ${playing && index === activeIndex ? "shadow-[0_0_0_2px_oklch(0.7_0.16_45_/_0.42)]" : ""}`}
               >
                 {message.emotion && (
@@ -285,7 +285,7 @@ export default function TranscriptPlayer({ onFirstPlay }: { onFirstPlay?: () => 
           <p className="text-xs font-semibold">{text.recording}</p>
           <p className="mt-1 text-xs text-[oklch(0.5_0.018_70)]">{text.invitation}</p>
         </div>
-        <Link href={`/${locale}/contact`} className="inline-flex min-h-10 shrink-0 items-center justify-center rounded-full bg-[oklch(0.22_0.015_70)] px-5 text-xs font-semibold text-[oklch(0.985_0.006_78)] transition-colors hover:bg-[oklch(0.64_0.2_42)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[oklch(0.64_0.2_42)] focus-visible:ring-offset-2">
+        <Link href={`/${locale}/contact`} className="inline-flex min-h-10 shrink-0 items-center justify-center rounded-[var(--radius-action)] bg-[oklch(0.22_0.015_70)] px-5 text-xs font-semibold text-[oklch(0.985_0.006_78)] transition-colors hover:bg-[oklch(0.64_0.2_42)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[oklch(0.64_0.2_42)] focus-visible:ring-offset-2">
           {text.cta}
         </Link>
       </footer>

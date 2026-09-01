@@ -34,7 +34,7 @@ export const ShinyButton = ({
       }}
       {...props}
       className={cn(
-        "relative overflow-hidden inline-flex items-center justify-center rounded-full font-semibold text-white",
+        "relative overflow-hidden inline-flex items-center justify-center rounded-[var(--radius-action)] font-semibold text-white",
         "bg-primary hover:bg-primary/90",
         "shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out",
         className
@@ -51,4 +51,3 @@ export const ShinyButton = ({
     </motion.button>
   );
 };
-

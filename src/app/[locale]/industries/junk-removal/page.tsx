@@ -364,7 +364,7 @@ export default async function JunkRemovalPage({ params }: { params: Promise<{ lo
             <div className="mt-7">
               <p className="font-[var(--font-ds-mono)] text-[10px] uppercase tracking-[0.15em] text-white/38">{copy.hero.factsLabel}</p>
               <div className="mt-3 flex flex-wrap gap-2">
-                {copy.hero.facts.map((fact) => <span key={fact} className="rounded-full border border-white/12 bg-white/5 px-3 py-1.5 text-xs text-white/64">{fact}</span>)}
+                {copy.hero.facts.map((fact) => <span key={fact} className="rounded-none border border-white/12 bg-white/5 px-3 py-1.5 text-xs text-white/64">{fact}</span>)}
               </div>
             </div>
             <div className="mt-7 border-t border-white/10 pt-5">

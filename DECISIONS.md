@@ -1,5 +1,28 @@
 # Decisions
 
+## 2026-09-01 — Square-edge interface geometry
+
+**Decision.** The sitewide geometry is square and architectural: containers,
+cards, data cells, static information boxes, form fields, media frames, chips,
+and labels use `0px` corners. Primary and secondary actions use the shared
+`--radius-action: 0.25rem` token so they remain visibly clickable without
+returning to a pill-based visual language. True circles remain reserved for
+shape-dependent UI: status dots, avatars, compact icon controls, progress
+nodes, decorative glows, and physical device frames.
+
+**Implementation guardrail.** Surface radii are zeroed in the Tailwind theme in
+`src/app/globals.css`; shared `Button`, `Card`, `Input`, `Badge`, `ShinyButton`,
+navbar, footer CTA, calculators, demos, and legacy CSS-module surfaces follow
+the same rule. New rectangular UI must use `rounded-none` (or the zeroed shared
+radius utilities). New CTA controls must use
+`rounded-[var(--radius-action)]`. Do not introduce `rounded-full`, arbitrary
+large radii, or page-local radius values unless the element is one of the true
+circle/device exceptions above.
+
+**Verified.** Production build and lint pass (lint retains four unrelated
+generated Convex warnings). Rendered `/en` and `/en/how-it-works` at desktop and
+390px mobile widths; no clipping, overlap, or geometry regressions observed.
+
 ## 2026-08-10 — Chatbot rebuild (Ember, Anthropic), legal pages, booking + call-log endpoints, 213 number
 
 **Decision.** Executed Abe's chatbot/legal/booking spec. Public number swapped

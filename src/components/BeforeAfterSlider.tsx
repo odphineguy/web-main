@@ -127,10 +127,10 @@ export default function BeforeAfterSlider({
             description of each state instead of a half-image it cannot drag. */}
         <span className="sr-only">{active.beforeAlt}</span>
 
-        <span className="pointer-events-none absolute left-3 top-3 rounded-full bg-black/65 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
+        <span className="pointer-events-none absolute left-3 top-3 rounded-none bg-black/65 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
           {beforeLabel}
         </span>
-        <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-orange-500 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
+        <span className="pointer-events-none absolute right-3 top-3 rounded-none bg-orange-500 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
           {afterLabel}
         </span>
 
@@ -177,7 +177,7 @@ export default function BeforeAfterSlider({
                   setActiveId(pair.id);
                   setPosition(50);
                 }}
-                className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+                className={`rounded-[var(--radius-action)] px-4 py-2 text-sm font-semibold transition-colors ${
                   selected
                     ? "bg-orange-500 text-white"
                     : "border border-border text-muted-foreground hover:text-foreground"

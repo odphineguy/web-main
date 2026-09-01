@@ -10,7 +10,7 @@ export function ScheduleCallButton({ className, label = "SCHEDULE A CALL", ...pr
   return (
     <button
       className={cn(
-        "group flex items-center gap-3 bg-orange-500 hover:bg-orange-600 text-white rounded-full pl-6 pr-1.5 py-1.5 transition-all duration-300 shadow-lg hover:shadow-orange-500/25",
+        "group flex items-center gap-3 bg-orange-500 hover:bg-orange-600 text-white rounded-[var(--radius-action)] pl-6 pr-1.5 py-1.5 transition-all duration-300 shadow-lg hover:shadow-orange-500/25",
         className
       )}
       {...props}

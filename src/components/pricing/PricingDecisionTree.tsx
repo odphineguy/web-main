@@ -161,7 +161,7 @@ export default function PricingDecisionTree({ onBookCall }: Props) {
               <button
                 type="button"
                 onClick={() => editAnswer(entry.key)}
-                className="group inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1 transition-colors hover:border-primary hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                className="group inline-flex items-center gap-1.5 rounded-none border border-border px-3 py-1 transition-colors hover:border-primary hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
               >
                 <span>{entry.label}</span>
                 <Pencil
@@ -240,7 +240,7 @@ export default function PricingDecisionTree({ onBookCall }: Props) {
               <button
                 type="button"
                 onClick={() => onBookCall({ scopeId: null })}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="inline-flex items-center justify-center gap-2 rounded-[var(--radius-action)] bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 {t("Consult.cta")}
                 <ArrowRight className="h-4 w-4" />
@@ -485,7 +485,7 @@ function RecommendationBlock({
         <button
           type="button"
           onClick={onBookCall}
-          className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          className="inline-flex items-center justify-center gap-2 rounded-[var(--radius-action)] bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
           {t("Recommendation.cta")}
           <ArrowRight className="h-4 w-4" />

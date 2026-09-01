@@ -290,7 +290,7 @@ export default function ConsultationForm({ isOpen, onClose, preselectedService, 
               <button
                 type="submit"
                 disabled={status === "sending" || status === "sent" || !turnstileToken}
-                className="group inline-flex min-h-[65px] items-center justify-between rounded-full bg-orange-500 px-6 text-left text-sm font-bold uppercase tracking-[0.06em] text-white transition-colors hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-50"
+                className="group inline-flex min-h-[65px] items-center justify-between rounded-[var(--radius-action)] bg-orange-500 px-6 text-left text-sm font-bold uppercase tracking-[0.06em] text-white transition-colors hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {status === "sending" ? text.sending : status === "sent" ? text.sent : text.send}
                 <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -315,7 +315,7 @@ export default function ConsultationForm({ isOpen, onClose, preselectedService, 
             href={CALENDAR_URL}
             target="_blank"
             rel="noreferrer"
-            className="group flex min-h-12 w-full items-center justify-between rounded-full border border-foreground/70 px-5 text-sm font-semibold uppercase tracking-[0.05em] text-foreground transition-colors hover:bg-foreground hover:text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+            className="group flex min-h-12 w-full items-center justify-between rounded-[var(--radius-action)] border border-foreground/70 px-5 text-sm font-semibold uppercase tracking-[0.05em] text-foreground transition-colors hover:bg-foreground hover:text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
           >
             <span className="flex items-center gap-3"><CalendarDays className="h-4 w-4" />{text.calendar}</span>
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

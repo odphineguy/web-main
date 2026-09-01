@@ -73,7 +73,7 @@
   color: var(--hiw-ink-faint); text-decoration: none;
   width: 34px; height: 30px;
   display: grid; place-items: center;
-  border-radius: 4px;
+  border-radius: 0;
   transition: color 0.25s, background 0.25s;
 }
 .rail a:hover { color: var(--hiw-ink); }
@@ -109,7 +109,7 @@
   display: inline-flex; align-items: center; gap: 7px;
   font-family: var(--font-hiw-mono), monospace; font-size: 11px; font-weight: 600;
   letter-spacing: 0.12em; text-transform: uppercase;
-  padding: 4px 12px 4px 9px; border-radius: 999px;
+  padding: 4px 12px 4px 9px; border-radius: 0;
   white-space: nowrap;
 }
 .chipLive { color: var(--hiw-live); background: var(--hiw-live-bg); }
@@ -155,7 +155,7 @@
   aspect-ratio: 1104 / 832;
   object-fit: cover;
   z-index: 0;
-  border-radius: 16px;
+  border-radius: 0;
   pointer-events: none;
   background: #000000;
   border: 1px solid var(--hiw-line);
@@ -277,7 +277,7 @@
 .panel {
   background: var(--hiw-bg-raise);
   border: 1px solid var(--hiw-line-soft);
-  border-radius: 10px;
+  border-radius: 0;
   padding: var(--hiw-space-lg);
 }
 .panelTitle {
@@ -301,7 +301,7 @@
 .tags { display: flex; flex-wrap: wrap; gap: 8px; }
 .tag {
   font-family: var(--font-hiw-mono), monospace; font-size: 12.5px;
-  padding: 6px 12px; border-radius: 6px;
+  padding: 6px 12px; border-radius: 0;
   background: var(--hiw-bg-raise2); border: 1px solid var(--hiw-line-soft);
   color: var(--hiw-ink-mute);
 }
@@ -329,7 +329,7 @@
 .catBadge {
   display: inline-block; font-family: var(--font-hiw-mono), monospace;
   font-size: 10.5px; font-weight: 600; letter-spacing: 0.1em;
-  text-transform: uppercase; padding: 3px 9px; border-radius: 4px;
+  text-transform: uppercase; padding: 3px 9px; border-radius: 0;
   margin-top: 6px;
 }
 .cbQuote { background: var(--hiw-live-bg); color: var(--hiw-live); }
@@ -339,7 +339,7 @@
 /* golden rule */
 .golden {
   border: 1.5px solid var(--hiw-amber-dim);
-  border-radius: 12px;
+  border-radius: 0;
   padding: clamp(24px, 4vw, 40px);
   background: var(--hiw-golden-bg);
 }
@@ -357,7 +357,7 @@
 }
 .priceFlow .pf {
   background: var(--hiw-bg-raise2); border: 1px solid var(--hiw-line-soft);
-  border-radius: 6px; padding: 7px 12px;
+  border-radius: 0; padding: 7px 12px;
 }
 .priceFlow .pfHot { border-color: var(--hiw-amber-dim); color: var(--hiw-amber); }
 .priceFlow .arrow { color: var(--hiw-ink-faint); }
@@ -372,7 +372,7 @@
   position: relative;
   background: var(--hiw-bg-raise2);
   border: 1px solid var(--hiw-line);
-  border-radius: 14px 14px 14px 4px;
+  border-radius: 0;
   padding: 16px 20px;
   font-size: 0.98rem; line-height: 1.55;
   max-width: 56ch;
@@ -392,7 +392,7 @@
 .gateGrid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: var(--hiw-space-md); }
 .gate {
   display: inline-flex; align-items: center; gap: 8px;
-  border: 1px solid var(--hiw-line); border-radius: 8px;
+  border: 1px solid var(--hiw-line); border-radius: 0;
   padding: 9px 14px; font-size: 0.9rem; color: var(--hiw-ink-mute);
 }
 .gate b { color: var(--hiw-ink); font-weight: 600; }
@@ -402,7 +402,7 @@
 .email {
   background: var(--hiw-bg-raise);
   border: 1px solid var(--hiw-line);
-  border-radius: 10px; overflow: hidden;
+  border-radius: 0; overflow: hidden;
   font-size: 0.93rem;
 }
 .emailBar {
@@ -446,7 +446,7 @@
 
 .stopRule {
   display: inline-flex; align-items: center; gap: 10px;
-  border: 1px solid var(--hiw-live); border-radius: 8px;
+  border: 1px solid var(--hiw-live); border-radius: 0;
   color: var(--hiw-live); padding: 10px 16px;
   font-weight: 600; font-size: 0.95rem;
   margin-top: var(--hiw-space-md);
@@ -473,7 +473,7 @@
 }
 .previewStrip .ps {
   background: var(--hiw-bg-raise2); border: 1px solid var(--hiw-line-soft);
-  border-radius: 6px; padding: 6px 11px; color: var(--hiw-ink-mute);
+  border-radius: 0; padding: 6px 11px; color: var(--hiw-ink-mute);
 }
 .previewStrip .arrow { color: var(--hiw-ink-faint); }
 .previewStrip .psMail { border-color: var(--hiw-amber-dim); color: var(--hiw-amber); }
@@ -490,20 +490,20 @@
 .kill {
   display: inline-flex; align-items: center; gap: 10px;
   background: var(--hiw-amber-bg); color: var(--hiw-amber);
-  border-radius: 8px; padding: 10px 16px;
+  border-radius: 0; padding: 10px 16px;
   font-size: 0.93rem; font-weight: 600; margin-top: var(--hiw-space-lg);
 }
 
 /* ============ money (stage 8) ============ */
 .meterWrap { margin-top: var(--hiw-space-md); }
 .meter {
-  height: 14px; border-radius: 999px;
+  height: 14px; border-radius: 0;
   background: var(--hiw-bg-raise2); border: 1px solid var(--hiw-line-soft);
   position: relative; overflow: visible;
 }
 .meter .fill {
   position: absolute; inset: 2px auto 2px 2px; width: 0;
-  border-radius: 999px; background: var(--hiw-amber);
+  border-radius: 0; background: var(--hiw-amber);
   transition: width 2s var(--hiw-ease-out) 0.3s;
 }
 .in .meter .fill { width: 63%; }
@@ -549,7 +549,7 @@
   background: var(--hiw-amber); color: #1a0d00;
   font-family: var(--font-hiw-mono), monospace; font-weight: 600;
   font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase;
-  border-radius: 999px; padding: 14px 28px;
+  border-radius: 4px; padding: 14px 28px;
   text-decoration: none;
   transition: background 0.25s, transform 0.25s;
 }

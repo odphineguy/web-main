@@ -251,7 +251,7 @@ export function EmberChatPanel({
               key={chip}
               type="button"
               onClick={() => sendMessage(chip)}
-              className="px-3 py-1.5 rounded-full text-xs transition-transform hover:scale-[1.03]"
+              className="px-3 py-1.5 rounded-[var(--radius-action)] text-xs transition-transform hover:scale-[1.03]"
               style={{
                 border: "1px solid var(--chat-bot-border)",
                 background: "var(--chat-bot-bubble)",
@@ -270,7 +270,7 @@ export function EmberChatPanel({
           href={CALENDAR_URL}
           target="_blank"
           rel="noreferrer"
-          className="group flex min-h-11 w-full items-center justify-between rounded-full bg-[#E34F0B] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#111827] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+          className="group flex min-h-11 w-full items-center justify-between rounded-[var(--radius-action)] bg-[#E34F0B] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#111827] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
         >
           <span className="flex items-center gap-2">
             <CalendarDays className="h-4 w-4" aria-hidden />
@@ -306,7 +306,7 @@ export function EmberChatPanel({
             type="button"
             onClick={() => sendMessage(input)}
             disabled={isLoading || !input.trim()}
-            className="px-3.5 py-2 rounded-full text-sm font-medium shrink-0 disabled:opacity-50 inline-flex items-center gap-1.5"
+            className="px-3.5 py-2 rounded-[var(--radius-action)] text-sm font-medium shrink-0 disabled:opacity-50 inline-flex items-center gap-1.5"
             style={{ background: "var(--chat-user-bubble)", color: "var(--chat-user-text)" }}
             aria-label={copy.send}
           >

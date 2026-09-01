@@ -58,7 +58,7 @@ export default function ChatDemoShowcase({ onCtaClick }: ChatDemoShowcaseProps) 
               key={demo.id}
               onClick={() => handleDemoChange(demo.id)}
               className={cn(
-                "flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-200",
+                "flex items-center gap-2 px-4 py-2.5 rounded-[var(--radius-action)] text-sm font-medium transition-all duration-200",
                 activeDemo === demo.id
                   ? "bg-orange-500 text-white shadow-lg shadow-orange-500/25"
                   : "bg-card text-muted-foreground border border-border hover:border-orange-500/50 hover:text-orange-500"
@@ -106,7 +106,7 @@ export default function ChatDemoShowcase({ onCtaClick }: ChatDemoShowcaseProps) 
         >
           <button
             onClick={onCtaClick}
-            className="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary/90 text-white font-semibold rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary/90 text-white font-semibold rounded-[var(--radius-action)] shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300"
           >
             {t("cta")}
             <svg

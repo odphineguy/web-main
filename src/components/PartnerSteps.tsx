@@ -78,7 +78,7 @@ export default function PartnerSteps() {
               >
                 <div className="relative mb-6 w-fit mx-auto">
                   {/* Image Container with light blue/gray background shape */}
-                  <div className="w-48 h-40 bg-orange-50 dark:bg-orange-900/10 rounded-[2rem] flex items-center justify-center p-6 relative overflow-hidden transition-transform duration-300 group-hover:-translate-y-2">
+                  <div className="w-48 h-40 bg-orange-50 dark:bg-orange-900/10 rounded-none flex items-center justify-center p-6 relative overflow-hidden transition-transform duration-300 group-hover:-translate-y-2">
                     <Image
                       src={step.image}
                       alt={step.title}

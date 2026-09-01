@@ -157,7 +157,7 @@ function CallSurface({ agentId }: { agentId: string }) {
           type="button"
           onClick={connected ? endSession : start}
           disabled={busy}
-          className={`inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-colors disabled:opacity-60 ${
+          className={`inline-flex items-center gap-2 rounded-[var(--radius-action)] px-6 py-3 text-sm font-semibold transition-colors disabled:opacity-60 ${
             connected
               ? "bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200"
               : "bg-orange-500 text-white hover:bg-orange-600"

@@ -86,7 +86,7 @@ export default function AgentDemoSection({
           <button
             type="button"
             onClick={() => onCtaClick ? onCtaClick() : setConsultationOpen(true)}
-            className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-8 py-4 font-semibold text-white shadow-lg shadow-orange-500/25 transition-colors hover:bg-orange-600"
+            className="inline-flex items-center gap-2 rounded-[var(--radius-action)] bg-orange-500 px-8 py-4 font-semibold text-white shadow-lg shadow-orange-500/25 transition-colors hover:bg-orange-600"
           >
             {t("cta")}
             <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

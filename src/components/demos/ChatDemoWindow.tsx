@@ -362,7 +362,7 @@ export default function ChatDemoWindow({
                 }}
               />
               <button
-                className="px-3.5 py-2 rounded-full text-sm font-medium shrink-0"
+                className="px-3.5 py-2 rounded-[var(--radius-action)] text-sm font-medium shrink-0"
                 style={{
                   background: "var(--chat-user-bubble)",
                   color: "var(--chat-user-text)",

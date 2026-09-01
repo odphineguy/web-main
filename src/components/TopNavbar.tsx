@@ -65,7 +65,7 @@ export default function TopNavbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -22 }}
             transition={{ duration: 0.48, ease: [0.16, 1, 0.3, 1] }}
-            className="pointer-events-auto relative mx-auto min-h-[68px] max-w-[1280px] rounded-full border border-black/10 bg-[#f7f5ef]/95 text-[#111827] shadow-[0_18px_55px_rgba(17,24,39,0.14)] backdrop-blur-xl"
+            className="pointer-events-auto relative mx-auto min-h-[68px] max-w-[1280px] rounded-none border border-black/10 bg-[#f7f5ef]/95 text-[#111827] shadow-[0_18px_55px_rgba(17,24,39,0.14)] backdrop-blur-xl"
           >
             <div className="grid min-h-[68px] grid-cols-[1fr_auto] items-center gap-5 px-4 pl-6 lg:grid-cols-[minmax(11rem,1fr)_auto_minmax(11rem,1fr)]">
               <Link href={localizedHref("/")} className="w-fit shrink-0 transition-opacity hover:opacity-75">
@@ -90,7 +90,7 @@ export default function TopNavbar() {
               <div className="hidden justify-self-end lg:block">
                 <Link
                   href={`${localizedHref("/")}#free-ai-audit`}
-                  className="group inline-flex items-center gap-2 rounded-full bg-orange-500 py-2.5 pr-2.5 pl-5 font-[var(--font-ds-body)] font-semibold text-white transition-colors hover:bg-[#111827]"
+                  className="group inline-flex items-center gap-2 rounded-[var(--radius-action)] bg-orange-500 py-2.5 pr-2.5 pl-5 font-[var(--font-ds-body)] font-semibold text-white transition-colors hover:bg-[#111827]"
                 >
                   {t("getStarted")}
                   <span className="grid h-7 w-7 place-items-center rounded-full border border-white/40">
@@ -118,7 +118,7 @@ export default function TopNavbar() {
                   animate={{ opacity: 1, gridTemplateRows: "1fr" }}
                   exit={{ opacity: 0, gridTemplateRows: "0fr" }}
                   transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                  className="grid overflow-hidden rounded-b-[2rem] bg-[#f7f5ef] lg:hidden"
+                  className="grid overflow-hidden rounded-none bg-[#f7f5ef] lg:hidden"
                 >
                   <div className="min-h-0">
                     <div className="flex flex-col gap-1 px-6 pt-3 pb-6">
@@ -133,7 +133,7 @@ export default function TopNavbar() {
                           {label}
                         </Link>
                       ))}
-                      <Link href={`${localizedHref("/")}#free-ai-audit`} onClick={closeMenu} className="mt-3 rounded-full bg-orange-500 px-5 py-3 text-center font-[var(--font-ds-body)] font-bold text-white">
+                      <Link href={`${localizedHref("/")}#free-ai-audit`} onClick={closeMenu} className="mt-3 rounded-[var(--radius-action)] bg-orange-500 px-5 py-3 text-center font-[var(--font-ds-body)] font-bold text-white">
                         {t("getStarted")}
                       </Link>
                     </div>

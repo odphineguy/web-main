@@ -46,7 +46,7 @@ const FooterCTA = React.forwardRef<HTMLElement, FooterCTAProps>(
         aria-labelledby="footer-cta-heading"
       >
         <div
-          className="relative overflow-hidden rounded-[18px] p-px"
+          className="relative overflow-hidden rounded-none p-px"
           style={{ background: "var(--footer-cta-outer-bg)" }}
         >
           {/* Glow effect layer */}
@@ -64,7 +64,7 @@ const FooterCTA = React.forwardRef<HTMLElement, FooterCTAProps>(
 
           {/* Inner card */}
           <div
-            className="relative flex flex-col gap-5 p-7 md:p-8 md:flex-row md:justify-between md:items-center md:gap-7 rounded-[17px] border backdrop-blur-[12px] min-h-[180px]"
+            className="relative flex flex-col gap-5 p-7 md:p-8 md:flex-row md:justify-between md:items-center md:gap-7 rounded-none border backdrop-blur-[12px] min-h-[180px]"
             style={{
               background: "var(--footer-cta-inner-bg)",
               borderColor: "var(--footer-cta-border-color)",
@@ -102,7 +102,7 @@ const FooterCTA = React.forwardRef<HTMLElement, FooterCTAProps>(
                 href={buttonHref}
                 onClick={onButtonClick}
                 type={buttonHref ? undefined : "button"}
-                className="relative overflow-hidden rounded-full border border-white/10 px-8 h-11 bg-gradient-to-br from-white to-gray-50 dark:from-white dark:to-gray-100 text-orange-500 text-[0.8rem] font-bold uppercase tracking-[0.16em] inline-flex items-center justify-center cursor-pointer outline-none transition-all duration-150 hover:translate-y-[-1px] hover:shadow-[0_18px_38px_rgba(0,0,0,0.15)] dark:hover:shadow-[0_18px_38px_rgba(0,0,0,0.8)] active:translate-y-0"
+                className="relative overflow-hidden rounded-[var(--radius-action)] border border-white/10 px-8 h-11 bg-gradient-to-br from-white to-gray-50 dark:from-white dark:to-gray-100 text-orange-500 text-[0.8rem] font-bold uppercase tracking-[0.16em] inline-flex items-center justify-center cursor-pointer outline-none transition-all duration-150 hover:translate-y-[-1px] hover:shadow-[0_18px_38px_rgba(0,0,0,0.15)] dark:hover:shadow-[0_18px_38px_rgba(0,0,0,0.8)] active:translate-y-0"
                 style={{
                   boxShadow:
                     "0 14px 30px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.03)",
@@ -119,7 +119,7 @@ const FooterCTA = React.forwardRef<HTMLElement, FooterCTAProps>(
                 >
                   {metaPill && (
                     <span
-                      className="rounded-full px-2.5 py-0.5 border border-border/60 bg-background text-[0.68rem] uppercase tracking-[0.12em]"
+                      className="rounded-none px-2.5 py-0.5 border border-border/60 bg-background text-[0.68rem] uppercase tracking-[0.12em]"
                       style={{ color: "var(--footer-cta-text-primary)" }}
                     >
                       {metaPill}
@@ -168,7 +168,7 @@ const FooterCTANewsletter = React.forwardRef<
         aria-labelledby="footer-newsletter-heading"
       >
         <div
-          className="relative overflow-hidden rounded-[18px] p-px"
+          className="relative overflow-hidden rounded-none p-px"
           style={{ background: "var(--footer-cta-outer-bg)" }}
         >
           {/* Glow effect layer */}
@@ -186,7 +186,7 @@ const FooterCTANewsletter = React.forwardRef<
 
           {/* Inner card */}
           <div
-            className="relative flex flex-col gap-5 p-7 md:p-8 rounded-[17px] border backdrop-blur-[12px] text-center min-h-[180px] justify-center"
+            className="relative flex flex-col gap-5 p-7 md:p-8 rounded-none border backdrop-blur-[12px] text-center min-h-[180px] justify-center"
             style={{
               background: "var(--footer-cta-inner-bg)",
               borderColor: "var(--footer-cta-border-color)",
@@ -225,12 +225,12 @@ const FooterCTANewsletter = React.forwardRef<
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={inputPlaceholder}
-                className="w-full pl-6 pr-44 py-4 rounded-full border-0 bg-white dark:bg-white text-gray-900 placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all shadow-lg"
+                className="w-full pl-6 pr-44 py-4 rounded-none border-0 bg-white dark:bg-white text-gray-900 placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all shadow-lg"
                 required
               />
               <button
                 type="submit"
-                className="absolute right-1.5 top-1.5 bottom-1.5 px-6 rounded-full bg-orange-500 text-white text-sm font-medium uppercase hover:bg-orange-600 transition-colors shadow-md"
+                className="absolute right-1.5 top-1.5 bottom-1.5 px-6 rounded-[var(--radius-action)] bg-orange-500 text-white text-sm font-medium uppercase hover:bg-orange-600 transition-colors shadow-md"
               >
                 {buttonText}
               </button>

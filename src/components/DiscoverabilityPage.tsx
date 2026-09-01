@@ -80,8 +80,8 @@ export function DiscoverabilityPage({ data, path, locale = "en" }: { data: Conte
           <h1 className="max-w-5xl text-4xl font-medium tracking-[-0.035em] md:text-6xl md:leading-[1.03]">{data.title}</h1>
           <p className="mt-7 max-w-3xl text-lg leading-8 text-muted-foreground md:text-xl">{data.intro}</p>
           <div className="mt-9 flex flex-wrap gap-3">
-            <Link href={`${lp}/contact`} className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground transition-colors hover:bg-primary/90">{t.ctaPrimary}{" "} <ArrowRight className="h-4 w-4" /></Link>
-            <Link href={`${lp}/how-it-works`} className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 font-semibold transition-colors hover:border-primary/50">{t.ctaSecondary}</Link>
+            <Link href={`${lp}/contact`} className="inline-flex items-center gap-2 rounded-[var(--radius-action)] bg-primary px-6 py-3 font-semibold text-primary-foreground transition-colors hover:bg-primary/90">{t.ctaPrimary}{" "} <ArrowRight className="h-4 w-4" /></Link>
+            <Link href={`${lp}/how-it-works`} className="inline-flex items-center gap-2 rounded-[var(--radius-action)] border border-border bg-card px-6 py-3 font-semibold transition-colors hover:border-primary/50">{t.ctaSecondary}</Link>
           </div>
         </div>
       </header>

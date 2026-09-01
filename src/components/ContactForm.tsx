@@ -161,7 +161,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending" || status === "sent" || !turnstileToken}
-        className="w-full inline-flex items-center justify-center rounded-full bg-primary hover:bg-primary/90 px-8 py-3.5 text-sm font-semibold text-white uppercase tracking-wider shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-60"
+        className="w-full inline-flex items-center justify-center rounded-[var(--radius-action)] bg-primary hover:bg-primary/90 px-8 py-3.5 text-sm font-semibold text-white uppercase tracking-wider shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-60"
       >
         {status === "sending" ? "Sending..." : status === "sent" ? "Message Sent!" : "SEND MESSAGE"}
       </button>

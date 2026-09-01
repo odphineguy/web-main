@@ -11,7 +11,7 @@
 
 .heroReport {
   padding: clamp(1.25rem, 3vw, 2rem);
-  border-radius: 0.9rem;
+  border-radius: 0;
 }
 
 .reportTopline,
@@ -38,7 +38,7 @@
   width: fit-content;
   padding: 0.28rem 0.48rem;
   border: 1px solid #3d454c;
-  border-radius: 99rem;
+  border-radius: 0;
   color: #d6dadd;
   background: #202326;
   font-family: var(--font-ds-mono), monospace;
@@ -97,7 +97,7 @@
 
 .sampleReport {
   overflow: hidden;
-  border-radius: 1rem;
+  border-radius: 0;
 }
 
 .sampleHeader {

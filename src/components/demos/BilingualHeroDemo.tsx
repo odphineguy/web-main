@@ -33,7 +33,7 @@ export default function BilingualHeroDemo() {
       {/* Language toggle at top */}
       <div className="flex justify-center mb-3">
         <div
-          className="inline-flex rounded-full border overflow-hidden"
+          className="inline-flex rounded-none border overflow-hidden"
           style={{
             borderColor: mounted && isDark ? "rgba(115, 115, 115, 0.4)" : "rgba(209, 213, 219, 1)",
           }}

@@ -179,7 +179,7 @@ export default function MissedCallCalculator() {
 
                 <button
                   type="submit"
-                  className="w-full py-4 px-6 rounded-full font-normal text-sm text-white bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 flex items-center justify-center gap-2"
+                  className="w-full py-4 px-6 rounded-[var(--radius-action)] font-normal text-sm text-white bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 flex items-center justify-center gap-2"
                 >
                   {t("button")}
                   <ArrowRight className="h-5 w-5" />
@@ -207,14 +207,14 @@ export default function MissedCallCalculator() {
               <div className="space-y-3">
                 <Link
                   href={`/${locale}/contact`}
-                  className="w-full py-4 px-6 rounded-full font-normal text-sm text-white bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 flex items-center justify-center gap-2"
+                  className="w-full py-4 px-6 rounded-[var(--radius-action)] font-normal text-sm text-white bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 flex items-center justify-center gap-2"
                 >
                   {t("cta")}
                   <ArrowRight className="h-5 w-5" />
                 </Link>
                 <button
                   onClick={reset}
-                  className="w-full py-3 px-6 rounded-full font-light text-sm text-muted-foreground hover:text-orange-500 dark:hover:text-orange-400 transition-colors"
+                  className="w-full py-3 px-6 rounded-[var(--radius-action)] font-light text-sm text-muted-foreground hover:text-orange-500 dark:hover:text-orange-400 transition-colors"
                 >
                   {t("recalculate")}
                 </button>
