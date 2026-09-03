@@ -178,7 +178,7 @@ export default function EstablishedContentPage({
 
       <section id="proof" className="lead-pipeline-proof scroll-mt-16">
         <div className="lead-pipeline-proof__mark" aria-hidden="true">
-          <span>{mark[0]}</span><b>/</b><span>{mark[1]}</span>
+          <span>{mark[0]}</span><span>{mark[1]}</span>
         </div>
         <div className="lead-pipeline-proof__copy">
           <p className="ds-eyebrow">{t.proofEyebrow}</p>

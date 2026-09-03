@@ -120,7 +120,7 @@ export default function LeadPipelinePage({ data }: { data: ContentPageData }) {
 
       <section id="proof" className="lead-pipeline-proof scroll-mt-16">
         <div className="lead-pipeline-proof__mark" aria-hidden="true">
-          <span>LEAD</span><b>/</b><span>JOB</span>
+          <span>LEAD</span><span>JOB</span>
         </div>
         <div className="lead-pipeline-proof__copy">
           <p className="ds-eyebrow">Proof and boundaries</p>

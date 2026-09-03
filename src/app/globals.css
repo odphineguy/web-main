@@ -728,6 +728,7 @@
     display: grid;
     min-height: 32rem;
     place-content: center;
+    row-gap: 0.2em;
     overflow: hidden;
     padding: 3rem;
     color: #111827;
@@ -743,19 +744,12 @@
     position: absolute;
     z-index: -1;
     right: -38%;
-    bottom: -26%;
+    bottom: -42%;
     width: 90%;
     aspect-ratio: 1;
     border-radius: 50%;
     background: #111827;
     content: "";
-  }
-
-  .ds .lead-pipeline-proof__mark b {
-    color: #f8f7f3;
-    font-size: 0.55em;
-    font-weight: 400;
-    line-height: 0.9;
   }
 
   .ds .lead-pipeline-proof__copy {
@@ -805,6 +799,10 @@
 
     .ds .lead-pipeline-proof__mark {
       min-height: 22rem;
+    }
+
+    .ds .lead-pipeline-proof__mark::after {
+      bottom: -58%;
     }
   }
 
