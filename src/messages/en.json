@@ -571,6 +571,11 @@
       "heading": "Let's scope it on a call.",
       "subtitle": "\"Not sure\" is usually the interesting conversation. Tell us what's breaking down and we'll tell you what it takes — scope, timeline, cost.",
       "cta": "Schedule a call"
+    },
+    "Terms": {
+      "scope": "Scope, timeline, and cost are confirmed in writing before work begins.",
+      "support": "Post-launch support: 30 days of bug fixes included. Ongoing monthly maintenance available.",
+      "ownership": "Ownership: Flexible. Clients can purchase full ownership of their build and source code, or choose a lower-cost managed option. Terms are set per project."
     }
   },
   "HowItWorks": {

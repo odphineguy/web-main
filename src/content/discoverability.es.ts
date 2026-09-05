@@ -277,7 +277,7 @@ export const abePerezPage = {
   en: {
     eyebrow: "Founder · Phoenix, Arizona",
     title: "I ran dispatch before I automated it.",
-    lede: "I'm Abe Perez, founder of Abe Media. I build AI agents and operations software for service businesses using the lessons from 17 years at Waste Management.",
+    lede: "I'm Abe Perez, founder of Abe Media. I build AI agents and operations software for service businesses using the lessons from 17 years at Waste Management. I'm bilingual in English and Spanish.",
     backgroundEyebrow: "Operating background",
     backgroundTitle: "The software starts with the exception",
     background: [

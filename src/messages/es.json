@@ -571,6 +571,11 @@
       "heading": "Definámoslo en una llamada.",
       "subtitle": "\"No estoy seguro\" suele ser la conversación interesante. Cuéntanos qué se está rompiendo y te decimos qué se necesita — alcance, plazo y costo.",
       "cta": "Agenda una llamada"
+    },
+    "Terms": {
+      "scope": "El alcance, el plazo y el costo se confirman por escrito antes de empezar el trabajo.",
+      "support": "Soporte después del lanzamiento: 30 días de corrección de errores incluidos. Mantenimiento mensual continuo disponible.",
+      "ownership": "Propiedad: Flexible. Los clientes pueden comprar la propiedad total de su desarrollo y del código fuente, o elegir una opción administrada de menor costo. Los términos se definen por proyecto."
     }
   },
   "HowItWorks": {

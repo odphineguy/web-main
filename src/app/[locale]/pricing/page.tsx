@@ -77,6 +77,11 @@ export default function PricingPage() {
             <PricingDecisionTree onBookCall={handleBookCall} />
           </Suspense>
         </div>
+        <div className="mx-auto mt-12 w-full max-w-2xl space-y-2 text-sm text-[var(--ds-ink-mute)]">
+          <p>{t("Terms.scope")}</p>
+          <p>{t("Terms.support")}</p>
+          <p>{t("Terms.ownership")}</p>
+        </div>
       </Section>
 
       <ConsultationForm
