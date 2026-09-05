@@ -45,7 +45,7 @@ export default async function AbePerezPage({ params }: { params: Promise<{ local
   const isEs = locale === "es";
   const c = isEs ? abePerezPage.es : abePerezPage.en;
   const lp = isEs ? "/es" : "/en";
-  const person = { "@context": "https://schema.org", "@type": "Person", "@id": `${baseUrl}${lp}/about/abe-perez#person`, name: "Abe Perez", jobTitle: "Founder", worksFor: { "@id": `${baseUrl}/#organization` }, homeLocation: { "@type": "Place", name: "Phoenix, Arizona" }, knowsAbout: ["AI voice agents", "Dispatch and operations software", "Lead-pipeline automation", "Bilingual English-Spanish automation", "Waste management operations", "Commercial hauling operations"] };
+  const person = { "@context": "https://schema.org", "@type": "Person", "@id": `${baseUrl}${lp}/about/abe-perez#person`, name: "Abe Perez", jobTitle: "Founder", worksFor: { "@id": `${baseUrl}/#organization` }, homeLocation: { "@type": "Place", name: "Phoenix, Arizona" }, knowsLanguage: ["en", "es"], knowsAbout: ["AI voice agents", "Dispatch and operations software", "Lead-pipeline automation", "Bilingual English-Spanish automation", "Waste management operations", "Commercial hauling operations"] };
   const profile = { "@context": "https://schema.org", "@type": "ProfilePage", "@id": `${baseUrl}${lp}/about/abe-perez#profile`, url: `${baseUrl}${lp}/about/abe-perez`, name: "Abe Perez — Founder of Abe Media", dateCreated: "2026-08-06", dateModified: "2026-08-06", mainEntity: { "@id": `${baseUrl}${lp}/about/abe-perez#person` }, publisher: { "@id": `${baseUrl}/#organization` } };
   const safe = (value: unknown) => JSON.stringify(value).replace(/</g, "\\u003c");
 
