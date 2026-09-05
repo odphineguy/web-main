@@ -139,6 +139,7 @@
   display: block;
   width: max-content;
   font-family: var(--font-ds-display), Impact, sans-serif;
+  color: color-mix(in oklch, var(--lab-ink), var(--lab-paper) 24%);
   font-size: clamp(7rem, 15vw, 15rem);
   font-weight: 760;
   line-height: 0.72;

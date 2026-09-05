@@ -9,17 +9,19 @@ type ScrollMotionLabProps = {
   locale: string;
 };
 
+// The strip travels forward, so the LAST panel here is the first one on screen.
+// Order alternates dark dashboards, light screens, and photos so adjacent panels contrast.
 const panels = [
-  { src: "/images/motion-lab/fleet.webp", label: { en: "Dispatch command", es: "Centro de dispatch" }, position: "center" },
   { src: "/images/motion-lab/crm.webp", label: { en: "Customer records", es: "Registros de clientes" }, position: "center" },
-  { src: "/images/motion-lab/accounting.webp", label: { en: "Accounting view", es: "Vista contable" }, position: "center" },
-  { src: "/images/motion-lab/laptop.webp", label: { en: "Fleet operations", es: "Operación de flota" }, position: "center" },
-  { src: "/images/motion-lab/driver-app.webp", label: { en: "Driver mobile app", es: "App para conductores" }, position: "center" },
-  { src: "/images/motion-lab/ai-agent.webp", label: { en: "AI agent", es: "Agente de IA" }, position: "center" },
   { src: "/images/motion-lab/turf-after.webp", label: { en: "Visual estimate", es: "Estimado visual" }, position: "center" },
-  { src: "/images/motion-lab/paint-after.webp", label: { en: "Design preview", es: "Vista previa" }, position: "center" },
-  { src: "/images/motion-lab/door-after.webp", label: { en: "Customer approval", es: "Aprobación del cliente" }, position: "center" },
+  { src: "/images/motion-lab/accounting.webp", label: { en: "Accounting view", es: "Vista contable" }, position: "center" },
   { src: "/images/motion-lab/bilingual-build.webp", label: { en: "Bilingual build", es: "Sistema bilingüe" }, position: "center" },
+  { src: "/images/motion-lab/driver-app.webp", label: { en: "Driver mobile app", es: "App para conductores" }, position: "center" },
+  { src: "/images/motion-lab/paint-after.webp", label: { en: "Design preview", es: "Vista previa" }, position: "center" },
+  { src: "/images/motion-lab/ai-agent.webp", label: { en: "AI agent", es: "Agente de IA" }, position: "center" },
+  { src: "/images/motion-lab/laptop.webp", label: { en: "Fleet operations", es: "Operación de flota" }, position: "center" },
+  { src: "/images/motion-lab/door-after.webp", label: { en: "Customer approval", es: "Aprobación del cliente" }, position: "center" },
+  { src: "/images/motion-lab/fleet.webp", label: { en: "Dispatch command", es: "Centro de dispatch" }, position: "center" },
 ] as const;
 
 const clamp = (value: number, min = 0, max = 1) => Math.min(max, Math.max(min, value));
@@ -81,8 +83,9 @@ export default function ScrollMotionLab({ locale }: ScrollMotionLabProps) {
 
       stage.style.setProperty("--lab-progress", `${progress * 100}%`);
       stage.style.setProperty("--guide-rotation", `${-12 + progress * 28}deg`);
-      firstWord.style.transform = `translate3d(${-58 * (1 - enter) + 68 * exit}vw, 0, 0)`;
-      secondWord.style.transform = `translate3d(${58 * (1 - enter) - 68 * exit}vw, 0, 0)`;
+      const drift = (progress - 0.5) * 14;
+      firstWord.style.transform = `translate3d(${-58 * (1 - enter) + 68 * exit + drift}vw, 0, 0)`;
+      secondWord.style.transform = `translate3d(${58 * (1 - enter) - 68 * exit - drift}vw, 0, 0)`;
       firstWord.style.opacity = String(wordOpacity);
       secondWord.style.opacity = String(wordOpacity);
       support.style.opacity = String(clamp(enter * 1.8 - exit * 1.3));
@@ -130,16 +133,29 @@ export default function ScrollMotionLab({ locale }: ScrollMotionLabProps) {
     let loadedTextures: Three.Texture[] = [];
 
     const curveStart = -2.4;
-    const curveEnd = 12.3;
+    const curveEnd = 11.6;
     const curveCenter = (curveStart + curveEnd) / 2;
-    const curveSpan = curveEnd - curveStart;
-    const panelSpan = 0.72;
-    const panelStep = 0.745;
-    const contentSpan = panelStep * (panels.length - 1) + panelSpan;
+    // Arc length of one panel is ~0.86 rad * ~7.7 avg radius = ~6.6 units, so a 4.0 unit
+    // height keeps the on-screen panel at 16:10 and matches the texture crop below.
+    const panelSpan = 0.86;
+    const panelStep = 0.885;
+    const fadeDistance = 0.95;
     const radiusX = 8.25;
     const radiusZ = 7.15;
-    const rise = 0.43;
-    const panelHeight = 4.25;
+    const rise = 0.24;
+    const panelHeight = 4.0;
+    // Camera sits near ring height. The ring is pitched so its far side drops and its near
+    // side lifts: the strip enters low and small, then sweeps across the upper half at the
+    // near pass with the far loop visible beneath it.
+    const desktopCamera = { fov: 43, y: 1.6, z: 16.5 };
+    const mobileCamera = { fov: 55, y: 1.2, z: 22 };
+    const cameraTargetY = 0.2;
+    const ringPitch = -0.22;
+    const ringOffsetY = -0.5;
+    // The helix climbs as it travels; the camera rides up with it so the near pass keeps a
+    // steady height on screen while the far loop drifts down behind it.
+    const cameraRide = 1.2;
+    let activeCamera = desktopCamera;
 
     const readProgress = () => {
       const rect = section.getBoundingClientRect();
@@ -188,18 +204,24 @@ export default function ScrollMotionLab({ locale }: ScrollMotionLabProps) {
       if (!visible || !renderer || !scene || !camera || !ribbonGroup) return;
 
       const progress = readProgress();
-      const travelStart = curveStart - contentSpan + 0.64;
-      const travelDistance = curveSpan + contentSpan - 1.28;
-      const firstPanelStart = travelStart + progress * travelDistance;
+      // At progress 0 the last panel's center sits one full fade before the curve start;
+      // at progress 1 the first panel's center sits one full fade past the curve end.
+      const travelStart = curveStart - fadeDistance - panelSpan * 0.5 - panelStep * (panels.length - 1);
+      const travelEnd = curveEnd + fadeDistance - panelSpan * 0.5;
+      const firstPanelStart = travelStart + progress * (travelEnd - travelStart);
 
-      ribbonGroup.rotation.z = (-8 + progress * 15) * (Math.PI / 180);
-      ribbonGroup.position.x = (progress - 0.5) * 0.45;
+      ribbonGroup.rotation.x = ringPitch;
+      ribbonGroup.rotation.z = (-12 + progress * 6) * (Math.PI / 180);
+      ribbonGroup.position.x = (progress - 0.5) * 0.6;
+      ribbonGroup.position.y = ringOffsetY;
+      camera.position.y = activeCamera.y + (progress - 0.5) * cameraRide;
+      camera.lookAt(0, cameraTargetY, 0);
 
       ribbonMeshes.forEach((ribbonMesh, index) => {
         const panelStart = firstPanelStart + index * panelStep;
         const panelCenter = panelStart + panelSpan * 0.5;
-        const entrance = smoothstep(curveStart - 0.8, curveStart + 0.5, panelCenter);
-        const departure = 1 - smoothstep(curveEnd - 0.5, curveEnd + 0.8, panelCenter);
+        const entrance = smoothstep(curveStart - fadeDistance, curveStart + 0.35, panelCenter);
+        const departure = 1 - smoothstep(curveEnd - 0.35, curveEnd + fadeDistance, panelCenter);
         const opacity = clamp(entrance * departure);
 
         ribbonMesh.mesh.visible = opacity > 0.015;
@@ -218,9 +240,11 @@ export default function ScrollMotionLab({ locale }: ScrollMotionLabProps) {
       if (!renderer || !camera) return;
       const width = window.innerWidth;
       const height = window.innerHeight;
+      activeCamera = width < 760 ? mobileCamera : desktopCamera;
       camera.aspect = width / height;
-      camera.fov = width < 760 ? 53 : 43;
-      camera.position.z = width < 760 ? 29 : 22.5;
+      camera.fov = activeCamera.fov;
+      camera.position.set(0, activeCamera.y, activeCamera.z);
+      camera.lookAt(0, cameraTargetY, 0);
       camera.updateProjectionMatrix();
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, width < 760 ? 1.35 : 1.8));
       renderer.setSize(width, height, false);
@@ -249,9 +273,9 @@ export default function ScrollMotionLab({ locale }: ScrollMotionLabProps) {
       renderer.outputColorSpace = THREE.SRGBColorSpace;
 
       scene = new THREE.Scene();
-      camera = new THREE.PerspectiveCamera(43, 1, 0.1, 100);
-      camera.position.set(0, 0, 22.5);
-      camera.lookAt(0, 0, 0);
+      camera = new THREE.PerspectiveCamera(desktopCamera.fov, 1, 0.1, 100);
+      camera.position.set(0, desktopCamera.y, desktopCamera.z);
+      camera.lookAt(0, cameraTargetY, 0);
       ribbonGroup = new THREE.Group();
       scene.add(ribbonGroup);
 
@@ -331,7 +355,10 @@ export default function ScrollMotionLab({ locale }: ScrollMotionLabProps) {
               sampleUv = sampleUv * uUvScale + uUvOffset;
               vec4 color = texture2D(uMap, sampleUv);
               if (color.a * uOpacity < 0.01) discard;
-              gl_FragColor = vec4(color.rgb, color.a * uOpacity);
+              // Front faces point toward the ring's axis, so they are the inner surface seen
+              // through the far side of the loop. Dim them a touch for depth.
+              vec3 shaded = gl_FrontFacing ? color.rgb * 0.86 : color.rgb;
+              gl_FragColor = vec4(shaded, color.a * uOpacity);
             }
           `,
           side: THREE.DoubleSide,
@@ -346,8 +373,10 @@ export default function ScrollMotionLab({ locale }: ScrollMotionLabProps) {
       });
 
       resize();
+      // The observer owns `visible`; only fill in if it has not reported yet.
+      // Inclusive bounds match IntersectionObserver, which treats an edge touch as intersecting.
       const sectionRect = section.getBoundingClientRect();
-      visible = sectionRect.bottom > 0 && sectionRect.top < window.innerHeight;
+      visible = visible || (sectionRect.bottom >= 0 && sectionRect.top <= window.innerHeight);
       requestRender();
     });
 
