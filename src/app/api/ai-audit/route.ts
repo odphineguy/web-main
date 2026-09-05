@@ -3,11 +3,12 @@ import { ConvexHttpClient } from "convex/browser";
 import { Resend } from "resend";
 import { api } from "../../../../convex/_generated/api";
 import { calculateAuditResult, isAuditAnswer, type AuditAnswers } from "@/lib/aiAudit";
+import { buildAuditEmailHtml, buildAuditEmailText, getAuditPlan } from "@/lib/aiAuditReport";
+import { createAuditReportToken } from "@/lib/aiAuditReportToken";
 import { asInput, LeadValidationError, optionalString, rejectOversizedRequest, requiredString, validatedEmail } from "@/lib/leadValidation";
 
 const labels = {
   en: {
-    levels: { foundation: "Foundation", ready: "Workflow ready", priority: "High priority" },
     recommendations: {
       "missed-call": "Recover missed calls with instant text-back and qualification.",
       "after-hours": "Cover after-hours calls, collect details, and escalate urgent requests.",
@@ -15,16 +16,9 @@ const labels = {
       intake: "Standardize the required questions and data captured on every call.",
       handoff: "Send complete call summaries into booking, dispatch, or your lead system.",
     },
-    subject: "Your Abe Media AI readiness audit",
-    greeting: "Here is your AI readiness audit.",
-    score: "Readiness score",
-    next: "Recommended first moves",
-    starter: "Starter intake questions",
-    questions: ["What service do you need and where is the job?", "How urgent is the request?", "What is the best callback number and preferred language?", "What details, photos, or access notes should the team receive?"],
-    close: "Abe will review your answers. Reply to this email if you want to map the first workflow together.",
+    subject: "Your AI Call Opportunity Plan | Abe Media",
   },
   es: {
-    levels: { foundation: "Base lista", ready: "Flujo listo", priority: "Alta prioridad" },
     recommendations: {
       "missed-call": "Recupera llamadas perdidas con texto inmediato y calificación.",
       "after-hours": "Cubre llamadas fuera de horario, recopila datos y escala urgencias.",
@@ -32,13 +26,7 @@ const labels = {
       intake: "Estandariza las preguntas y datos requeridos en cada llamada.",
       handoff: "Envía resúmenes completos al sistema de citas, dispatch o leads.",
     },
-    subject: "Tu auditoría de preparación para IA de Abe Media",
-    greeting: "Aquí está tu auditoría de preparación para IA.",
-    score: "Nivel de preparación",
-    next: "Primeros pasos recomendados",
-    starter: "Preguntas iniciales para el intake",
-    questions: ["¿Qué servicio necesitas y dónde está el trabajo?", "¿Qué tan urgente es la solicitud?", "¿Cuál es el mejor teléfono y el idioma preferido?", "¿Qué detalles, fotos o notas de acceso debe recibir el equipo?"],
-    close: "Abe revisará tus respuestas. Responde a este correo si quieres diseñar el primer flujo juntos.",
+    subject: "Tu Plan de Oportunidad para Llamadas con IA | Abe Media",
   },
 } as const;
 
@@ -81,11 +69,15 @@ export async function POST(request: NextRequest) {
 
     const result = calculateAuditResult(answers);
     const text = labels[locale];
+    const plan = getAuditPlan(answers, locale);
+    const reportToken = createAuditReportToken(answers, locale);
+    const reportOrigin = process.env.NODE_ENV === "production" ? "https://abemedia.online" : request.nextUrl.origin;
+    const reportUrl = reportToken
+      ? `${reportOrigin}/api/ai-audit/report?report=${encodeURIComponent(reportToken)}`
+      : null;
     const recommendations = result.recommendationKeys.map((key, index) => `${index + 1}. ${text.recommendations[key]}`).join("\n");
-    const starterQuestions = text.questions.map((question, index) => `${index + 1}. ${question}`).join("\n");
-    const resultText = `${text.greeting}\n\n${text.score}: ${result.score}/100 (${text.levels[result.level]})\n\n${text.next}:\n${recommendations}\n\n${text.starter}:\n${starterQuestions}\n\n${text.close}`;
     const auditDetails = [
-      `AI readiness score: ${result.score}/100 (${result.level})`,
+      `AI opportunity score: ${result.score}/100 (${plan.opportunityLabel})`,
       `Business type: ${answers.businessType}`,
       `Missed calls: ${answers.missedCalls}`,
       `After hours: ${answers.afterHours}`,
@@ -103,7 +95,8 @@ export async function POST(request: NextRequest) {
         to: [email],
         replyTo: "abe@abemedia.online",
         subject: text.subject,
-        text: resultText,
+        text: buildAuditEmailText({ name: safeName, plan, reportUrl }),
+        html: buildAuditEmailHtml({ name: safeName, plan, reportUrl }),
       });
       if (delivery.error) throw new Error("Audit delivery failed");
       const notification = await resend.emails.send({
