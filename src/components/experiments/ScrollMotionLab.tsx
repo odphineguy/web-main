@@ -34,6 +34,7 @@ type RibbonMesh = {
   material: Three.ShaderMaterial;
   mesh: Three.Mesh;
   restY: Float32Array;
+  hoverScale: number;
 };
 
 export default function ScrollMotionLab({ locale }: ScrollMotionLabProps) {
@@ -77,14 +78,16 @@ export default function ScrollMotionLab({ locale }: ScrollMotionLabProps) {
       const progress = clamp(-rect.top / distance);
       const enter = smoothstep(0.02, 0.24, progress);
       const exit = smoothstep(0.72, 0.98, progress);
-      const wordOpacity = clamp(Math.min(enter * 1.7 + 0.12, (1 - exit) * 1.7 + 0.12), 0.12, 1);
+      // One linear crossing for the entire scroll range, without a center hold.
+      // Actual word widths keep both languages fully offscreen at the endpoints.
+      const width = stage.clientWidth;
+      const firstX = -firstWord.offsetWidth + progress * (width + firstWord.offsetWidth);
+      const secondX = width - progress * (width + secondWord.offsetWidth);
 
       stage.style.setProperty("--lab-progress", `${progress * 100}%`);
       stage.style.setProperty("--guide-rotation", `${-12 + progress * 28}deg`);
-      firstWord.style.transform = `translate3d(${-58 * (1 - enter) + 68 * exit}vw, 0, 0)`;
-      secondWord.style.transform = `translate3d(${58 * (1 - enter) - 68 * exit}vw, 0, 0)`;
-      firstWord.style.opacity = String(wordOpacity);
-      secondWord.style.opacity = String(wordOpacity);
+      firstWord.style.transform = `translate3d(${firstX}px, 0, 0)`;
+      secondWord.style.transform = `translate3d(${secondX}px, 0, 0)`;
       support.style.opacity = String(clamp(enter * 1.8 - exit * 1.3));
     };
 
@@ -128,18 +131,25 @@ export default function ScrollMotionLab({ locale }: ScrollMotionLabProps) {
     let ribbonGroup: Three.Group | null = null;
     let ribbonMeshes: RibbonMesh[] = [];
     let loadedTextures: Three.Texture[] = [];
+    let raycaster: Three.Raycaster | null = null;
+    let pointer: Three.Vector2 | null = null;
+    let pointerInside = false;
+    let lastFrameTime = 0;
+    let contextLost = false;
+    const hoverPreference = window.matchMedia("(hover: hover) and (pointer: fine)");
 
-    const curveStart = -2.4;
-    const curveEnd = 12.3;
-    const curveCenter = (curveStart + curveEnd) / 2;
-    const curveSpan = curveEnd - curveStart;
-    const panelSpan = 0.72;
-    const panelStep = 0.745;
+    // Reference measurements and capture workflow: docs/MOTION_LAB_HANDOFF.md.
+    // Distance along a rising ribbon, with enough pitch to separate successive turns.
+    const curveStart = 0;
+    const curveEnd = Math.PI * 4;
+    const curveCenter = Math.PI * 2;
+    const radius = 12;
+    const rise = 28 / curveEnd;
+    const distancePerRadian = Math.hypot(radius, rise);
+    const panelSpan = 5.8 / distancePerRadian;
+    const panelStep = 6.2 / distancePerRadian;
     const contentSpan = panelStep * (panels.length - 1) + panelSpan;
-    const radiusX = 8.25;
-    const radiusZ = 7.15;
-    const rise = 0.43;
-    const panelHeight = 4.25;
+    const panelHeight = 5.8 * (568 / 812);
 
     const readProgress = () => {
       const rect = section.getBoundingClientRect();
@@ -155,25 +165,31 @@ export default function ScrollMotionLab({ locale }: ScrollMotionLabProps) {
       for (let vertex = 0; vertex < position.count; vertex += 1) {
         const u = uv.getX(vertex);
         const side = ribbonMesh.restY[vertex] >= 0 ? 1 : -1;
-        const theta = start + u * panelSpan;
+        const theta = start + panelSpan * 0.5 + (u - 0.5) * panelSpan * ribbonMesh.hoverScale;
         const cosine = Math.cos(theta);
         const sine = Math.sin(theta);
-        const distanceFromCenter = (theta - curveCenter) / 1.55;
-        const dip = -0.72 * Math.exp(-(distanceFromCenter * distanceFromCenter));
-        const dipSlope = 0.6 * distanceFromCenter * Math.exp(-(distanceFromCenter * distanceFromCenter));
-        const centerX = radiusX * cosine;
-        const centerY = rise * (theta - curveCenter) + dip;
-        const centerZ = radiusZ * sine;
+        const distanceFromCenter = (theta - curveCenter) / 2;
+        const dip = 2.5 * Math.exp(-(distanceFromCenter * distanceFromCenter));
+        const slope = rise + distanceFromCenter * dip;
+        const centerX = radius * cosine;
+        const centerY = -16 + rise * theta - dip;
+        const centerZ = radius * sine;
 
-        let normalX = (rise + dipSlope) * sine;
-        let normalY = radiusZ * cosine * cosine + radiusX * sine * sine;
-        let normalZ = -(rise + dipSlope) * cosine;
-        const normalLength = Math.hypot(normalX, normalY, normalZ) || 1;
+        // Cross the tangent with the radial direction, then bias toward vertical.
+        // This bends the image surfaces without independently spinning each card.
+        let normalX = slope * sine;
+        let normalY = radius;
+        let normalZ = -slope * cosine;
+        const normalLength = Math.hypot(normalX, normalY, normalZ);
         normalX /= normalLength;
-        normalY /= normalLength;
+        normalY = normalY / normalLength + 0.6;
         normalZ /= normalLength;
+        const uprightLength = Math.hypot(normalX, normalY, normalZ);
+        normalX /= uprightLength;
+        normalY /= uprightLength;
+        normalZ /= uprightLength;
 
-        const offset = side * panelHeight * 0.5;
+        const offset = side * panelHeight * 0.5 * ribbonMesh.hoverScale;
         const arrayIndex = vertex * 3;
         positionArray[arrayIndex] = centerX + normalX * offset;
         positionArray[arrayIndex + 1] = centerY + normalY * offset;
@@ -181,25 +197,26 @@ export default function ScrollMotionLab({ locale }: ScrollMotionLabProps) {
       }
 
       position.needsUpdate = true;
+      // Raycasting must use the current deformed surface, not the original unit plane.
+      ribbonMesh.geometry.computeBoundingSphere();
     };
 
-    const renderRibbon = () => {
+    const renderRibbon = (timestamp: number) => {
       frame = 0;
+      if (cancelled || contextLost) return;
+      canvas.dataset.renderState = !visible ? "offscreen" : !ribbonGroup ? "initializing" : "ready";
       if (!visible || !renderer || !scene || !camera || !ribbonGroup) return;
 
+      const elapsed = lastFrameTime ? Math.min((timestamp - lastFrameTime) / 1000, 0.05) : 1 / 60;
+      lastFrameTime = timestamp;
       const progress = readProgress();
-      const travelStart = curveStart - contentSpan + 0.64;
-      const travelDistance = curveSpan + contentSpan - 1.28;
-      const firstPanelStart = travelStart + progress * travelDistance;
-
-      ribbonGroup.rotation.z = (-8 + progress * 15) * (Math.PI / 180);
-      ribbonGroup.position.x = (progress - 0.5) * 0.45;
+      const travelStart = 25 / distancePerRadian - contentSpan;
+      const firstPanelStart = travelStart + progress * (curveEnd - travelStart);
 
       ribbonMeshes.forEach((ribbonMesh, index) => {
         const panelStart = firstPanelStart + index * panelStep;
-        const panelCenter = panelStart + panelSpan * 0.5;
-        const entrance = smoothstep(curveStart - 0.8, curveStart + 0.5, panelCenter);
-        const departure = 1 - smoothstep(curveEnd - 0.5, curveEnd + 0.8, panelCenter);
+        const entrance = smoothstep(curveStart, curveStart + 0.15, panelStart);
+        const departure = 1 - smoothstep(curveEnd - 0.15, curveEnd, panelStart);
         const opacity = clamp(entrance * departure);
 
         ribbonMesh.mesh.visible = opacity > 0.015;
@@ -207,11 +224,75 @@ export default function ScrollMotionLab({ locale }: ScrollMotionLabProps) {
         if (ribbonMesh.mesh.visible) updatePanel(ribbonMesh, panelStart);
       });
 
+      scene.updateMatrixWorld(true);
+      camera.updateMatrixWorld(true);
+      let hovered: Three.Object3D | undefined;
+      if (pointerInside && hoverPreference.matches && !motionPreference.matches && raycaster && pointer) {
+        raycaster.setFromCamera(pointer, camera);
+        hovered = raycaster.intersectObjects(
+          ribbonMeshes.filter(({ mesh }) => mesh.visible).map(({ mesh }) => mesh), false,
+        )[0]?.object;
+      }
+
+      const blend = 1 - Math.pow(0.001, elapsed);
+      let settling = false;
+      ribbonMeshes.forEach((ribbonMesh, index) => {
+        const target = ribbonMesh.mesh === hovered ? 1.12 : 1;
+        const difference = target - ribbonMesh.hoverScale;
+        if (Math.abs(difference) > 0.0001) {
+          ribbonMesh.hoverScale += difference * blend;
+          settling = true;
+        } else {
+          ribbonMesh.hoverScale = target;
+        }
+        if (ribbonMesh.mesh.visible) updatePanel(ribbonMesh, firstPanelStart + index * panelStep);
+      });
+      canvas.dataset.hoveredPanel = String(ribbonMeshes.findIndex(({ mesh }) => mesh === hovered));
+      canvas.dataset.hoverScale = Math.max(1, ...ribbonMeshes.map(({ hoverScale }) => hoverScale)).toFixed(4);
       renderer.render(scene, camera);
+      if (settling) requestRender();
+      canvas.dataset.motionProgress = progress.toFixed(4);
+      canvas.dataset.visiblePanels = String(ribbonMeshes.filter(({ mesh }) => mesh.visible).length);
     };
 
     const requestRender = () => {
       if (!frame) frame = window.requestAnimationFrame(renderRibbon);
+    };
+
+    const resumeRendering = () => {
+      if (cancelled || document.hidden) return;
+      const rect = section.getBoundingClientRect();
+      visible = rect.bottom > 0 && rect.top < window.innerHeight;
+      lastFrameTime = 0;
+      requestRender();
+    };
+    const loseContext = (event: Event) => {
+      event.preventDefault();
+      contextLost = true;
+      canvas.dataset.renderState = "context-lost";
+      if (frame) window.cancelAnimationFrame(frame);
+      frame = 0;
+    };
+    const restoreContext = () => {
+      contextLost = false;
+      // Three restores its GPU resources; the on-demand scene also needs a new frame.
+      resumeRendering();
+    };
+
+    const clearHover = () => {
+      pointerInside = false;
+      requestRender();
+    };
+    const movePointer = (event: PointerEvent) => {
+      if (!pointer || event.pointerType === "touch" || !hoverPreference.matches) {
+        clearHover();
+        return;
+      }
+      const rect = canvas.getBoundingClientRect();
+      pointer.set((event.clientX - rect.left) / rect.width * 2 - 1,
+        -((event.clientY - rect.top) / rect.height) * 2 + 1);
+      pointerInside = true;
+      requestRender();
     };
 
     const resize = () => {
@@ -219,8 +300,8 @@ export default function ScrollMotionLab({ locale }: ScrollMotionLabProps) {
       const width = window.innerWidth;
       const height = window.innerHeight;
       camera.aspect = width / height;
-      camera.fov = width < 760 ? 53 : 43;
-      camera.position.z = width < 760 ? 29 : 22.5;
+      camera.fov = width < 760 ? 58 : width < 1200 ? 54 : 52;
+      camera.position.z = width < 760 ? 28 : width < 1200 ? 24 : 22;
       camera.updateProjectionMatrix();
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, width < 760 ? 1.35 : 1.8));
       renderer.setSize(width, height, false);
@@ -233,6 +314,16 @@ export default function ScrollMotionLab({ locale }: ScrollMotionLabProps) {
     });
 
     observer.observe(section);
+    canvas.addEventListener("webglcontextlost", loseContext);
+    canvas.addEventListener("webglcontextrestored", restoreContext);
+    window.addEventListener("pageshow", resumeRendering);
+    window.addEventListener("focus", resumeRendering);
+    document.addEventListener("visibilitychange", resumeRendering);
+    section.addEventListener("pointermove", movePointer, { passive: true });
+    section.addEventListener("pointerleave", clearHover);
+    window.addEventListener("blur", clearHover);
+    hoverPreference.addEventListener("change", clearHover);
+    motionPreference.addEventListener("change", clearHover);
     window.addEventListener("scroll", requestRender, { passive: true });
     window.addEventListener("resize", resize);
 
@@ -248,13 +339,16 @@ export default function ScrollMotionLab({ locale }: ScrollMotionLabProps) {
       renderer.setClearColor(0x000000, 0);
       renderer.outputColorSpace = THREE.SRGBColorSpace;
 
+      raycaster = new THREE.Raycaster();
+      pointer = new THREE.Vector2();
       scene = new THREE.Scene();
-      camera = new THREE.PerspectiveCamera(43, 1, 0.1, 100);
-      camera.position.set(0, 0, 22.5);
+      camera = new THREE.PerspectiveCamera(52, 1, 0.1, 100);
+      camera.position.set(0, 0, 22);
       camera.lookAt(0, 0, 0);
       ribbonGroup = new THREE.Group();
       scene.add(ribbonGroup);
 
+      canvas.dataset.renderState = "loading-images";
       const textureLoader = new THREE.TextureLoader();
       const textureResults = await Promise.allSettled(
         panels.map((panel) => textureLoader.loadAsync(panel.src)),
@@ -264,10 +358,11 @@ export default function ScrollMotionLab({ locale }: ScrollMotionLabProps) {
         textureResults.forEach((result) => {
           if (result.status === "fulfilled") result.value.dispose();
         });
-        renderer.dispose();
+        // Cleanup already disposed this renderer when the effect was cancelled.
         return;
       }
 
+      canvas.dataset.renderState = "images-loaded";
       const maximumAnisotropy = Math.min(4, renderer.capabilities.getMaxAnisotropy());
       const fallbackPixel = new Uint8Array([231, 83, 11, 255]);
 
@@ -286,7 +381,7 @@ export default function ScrollMotionLab({ locale }: ScrollMotionLabProps) {
         const imageWidth = image?.naturalWidth ?? image?.width ?? 16;
         const imageHeight = image?.naturalHeight ?? image?.height ?? 10;
         const imageAspect = imageWidth / imageHeight;
-        const panelAspect = 16 / 10;
+        const panelAspect = 812 / 568;
         const uvScale = new THREE.Vector2(1, 1);
         const uvOffset = new THREE.Vector2(0, 0);
 
@@ -298,7 +393,7 @@ export default function ScrollMotionLab({ locale }: ScrollMotionLabProps) {
           uvOffset.y = (1 - uvScale.y) / 2;
         }
 
-        const geometry = new THREE.PlaneGeometry(1, 1, 80, 1);
+        const geometry = new THREE.PlaneGeometry(1, 1, 116, 1);
         const positions = geometry.attributes.position.array as Float32Array;
         const restY = new Float32Array(geometry.attributes.position.count);
         for (let vertex = 0; vertex < restY.length; vertex += 1) {
@@ -342,7 +437,7 @@ export default function ScrollMotionLab({ locale }: ScrollMotionLabProps) {
         const mesh = new THREE.Mesh(geometry, material);
         mesh.frustumCulled = false;
         ribbonGroup?.add(mesh);
-        return { geometry, material, mesh, restY };
+        return { geometry, material, mesh, restY, hoverScale: 1 };
       });
 
       resize();
@@ -356,6 +451,16 @@ export default function ScrollMotionLab({ locale }: ScrollMotionLabProps) {
       observer.disconnect();
       window.removeEventListener("scroll", requestRender);
       window.removeEventListener("resize", resize);
+      canvas.removeEventListener("webglcontextlost", loseContext);
+      canvas.removeEventListener("webglcontextrestored", restoreContext);
+      window.removeEventListener("pageshow", resumeRendering);
+      window.removeEventListener("focus", resumeRendering);
+      document.removeEventListener("visibilitychange", resumeRendering);
+      section.removeEventListener("pointermove", movePointer);
+      section.removeEventListener("pointerleave", clearHover);
+      window.removeEventListener("blur", clearHover);
+      hoverPreference.removeEventListener("change", clearHover);
+      motionPreference.removeEventListener("change", clearHover);
       if (frame) window.cancelAnimationFrame(frame);
       ribbonMeshes.forEach(({ geometry, material }) => {
         geometry.dispose();
@@ -369,7 +474,7 @@ export default function ScrollMotionLab({ locale }: ScrollMotionLabProps) {
   return (
     <div className={styles.lab}>
       <header className={styles.intro}>
-        <p>{isSpanish ? "Prototipo de movimiento · 02" : "Motion prototype · 02"}</p>
+        <p>{isSpanish ? "Prototipo de movimiento · 03" : "Motion prototype · 03"}</p>
         <h1>{isSpanish ? "El scroll convierte sistemas en una historia." : "Scroll turns systems into a story."}</h1>
         <div className={styles.introFooter}>
           <span>{isSpanish ? "Desplázate para controlar la secuencia" : "Scroll to control the sequence"}</span>
