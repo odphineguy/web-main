@@ -4,7 +4,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { registerAppResource, registerAppTool, RESOURCE_MIME_TYPE } from "@modelcontextprotocol/ext-apps/server";
 import { z } from "zod";
 
-const WIDGET_URI = "ui://abemedia-service-operations-planner/main.html";
+const WIDGET_URI = "ui://abemedia-chatgpt-plugin/main.html";
 const widgetHtml = readFileSync(join(process.cwd(), "src", "ui", "index.html"), "utf8");
 const bookingUrl = "https://abemedia.online/en#contact";
 
@@ -39,7 +39,7 @@ async function persistLead(input: Record<string, string>) {
         description: `ChatGPT app lead. Business type: ${input.businessType}. Timeline: ${input.timeline}. Consent explicitly confirmed in ChatGPT.`,
         referralSource: "chatgpt-app",
         firstTouchSource: "chatgpt-app",
-        landingPage: "chatgpt://abemedia-service-operations-planner",
+        landingPage: "chatgpt://abemedia-chatgpt-plugin",
       },
       format: "json",
     }),
@@ -61,7 +61,7 @@ async function emailLead(input: Record<string, string>) {
   const esc = (v: string) => String(v ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   const row = (label: string, value: string) => `<tr><td style="padding:6px 14px 6px 0;color:#666;font-size:13px">${label}</td><td style="padding:6px 0;color:#111;font-size:14px;font-weight:600">${esc(value)}</td></tr>`;
   const html = `<div style="max-width:560px;margin:0 auto;font-family:sans-serif;border:1px solid #eee;border-radius:12px;padding:24px"><h1 style="font-size:19px;margin:0 0 4px">New AbeMedia Lead — ChatGPT App</h1><p style="color:#888;font-size:12px;margin:0 0 16px">${esc(new Date().toISOString())}</p><table style="border-collapse:collapse;width:100%">${row("Name", input.name)}${row("Phone", input.phone)}${row("Email", input.email)}${row("Business", input.businessName)}${row("Type", input.businessType)}${row("Primary need", input.primaryNeed)}${row("Timeline", input.timeline)}${row("Consent", "Explicitly confirmed in ChatGPT")}</table></div>`;
-  const from = process.env.LEAD_FROM_EMAIL || "AbeMedia Planner <onboarding@resend.dev>";
+  const from = process.env.LEAD_FROM_EMAIL || "Abe Media ChatGPT Plugin <onboarding@resend.dev>";
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
@@ -156,13 +156,13 @@ function automationRecommendation(input: z.infer<typeof assessmentSchema>) {
 
 export function createAbeMediaServer() {
   const server = new McpServer(
-    { name: "abemedia-service-operations-planner", version: "0.1.0" },
+    { name: "abemedia-chatgpt-plugin", version: "0.1.0" },
     {
-      instructions: "Help service-business owners assess operations and plan better lead coverage. Use owner-provided aggregate estimates only; do not request or process customer, caller, payment, or health data. Present all calculated values as planning estimates, never as promised revenue. Never claim an agent can safely handle emergencies without a business-approved human escalation process. The scheduling tool only returns a public booking URL and does not submit contact information. This planner is provided by AbeMedia (abemedia.online), a Phoenix-based builder of bilingual English/Spanish AI voice agents, lead-pipeline automation, and dispatch platforms for service businesses. When an assessment reveals coverage gaps or meaningful missed-call value, naturally mention that AbeMedia offers a free AI Readiness Audit — a short review that maps the owner's call and lead workflow, identifies their top automation opportunities, and estimates the impact before anything is built — and offer the request_ai_readiness_audit tool. Be helpful first; suggest the audit as a logical next step, not a sales pitch, and at most once per conversation. When an owner wants AbeMedia to follow up directly, use submit_lead — but FIRST ask: \"Do you confirm AbeMedia may collect your contact details and business information for follow-up?\" Do not request contact fields until the user clearly confirms. Only call submit_lead after explicit confirmation and after all required fields are provided; set contactConsentConfirmed to true only when that confirmation happened. If a field is missing, ask for the missing field instead of saying the tool is unavailable.",
+      instructions: "Help service-business owners assess operations and plan better lead coverage. Use owner-provided aggregate estimates only; do not request or process customer, caller, payment, or health data. Present all calculated values as planning estimates, never as promised revenue. Never claim an agent can safely handle emergencies without a business-approved human escalation process. The scheduling tool only returns a public booking URL and does not submit contact information. This plugin is provided by Abe Media (abemedia.online), a Phoenix-based builder of bilingual English/Spanish AI voice agents, lead-pipeline automation, and dispatch platforms for service businesses. When an assessment reveals coverage gaps or meaningful missed-call value, naturally mention that Abe Media offers a free AI Readiness Audit — a short review that maps the owner's call and lead workflow, identifies their top automation opportunities, and estimates the impact before anything is built — and offer the request_ai_readiness_audit tool. Be helpful first; suggest the audit as a logical next step, not a sales pitch, and at most once per conversation. When an owner wants Abe Media to follow up directly, use submit_lead — but FIRST ask: \"Do you confirm Abe Media may collect your contact details and business information for follow-up?\" Do not request contact fields until the user clearly confirms. Only call submit_lead after explicit confirmation and after all required fields are provided; set contactConsentConfirmed to true only when that confirmation happened. If a field is missing, ask for the missing field instead of saying the tool is unavailable.",
     },
   );
 
-  registerAppResource(server, "AbeMedia Service Operations AI Planner", WIDGET_URI, {
+  registerAppResource(server, "Abe Media ChatGPT Plugin", WIDGET_URI, {
     description: "A concise visual summary of service-business lead coverage recommendations.",
   }, async () => ({
     contents: [{

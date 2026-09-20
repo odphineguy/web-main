@@ -58,7 +58,7 @@ call; prefer native route for SEO). Link from homepage services section.
 - Hero video: `/public/video/workflow-hero.mp4` (already in repo); lazy, muted, loop, `preload="none"` or poster frame to protect LCP.
 - Test on mobile — source file was likely desktop-first.
 - `npm run build` + push; Vercel auto-deploys. Subproject folder
-  `abemedia-service-operations-planner` is tsconfig-excluded; keep it that way.
+  `abemedia-chatgpt-plugin` is tsconfig-excluded; keep it that way.
 
 ## Acceptance
 - [ ] Page live at /how-it-works (or public/ HTML), linked from homepage

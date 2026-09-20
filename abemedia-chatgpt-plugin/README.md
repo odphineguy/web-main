@@ -1,13 +1,15 @@
-# AbeMedia Service Operations AI Planner
+# Abe Media ChatGPT Plugin
 
-A developer-mode-ready ChatGPT app for service-business owners who want to find gaps in after-hours call coverage, estimate the value of missed opportunities, and create a practical intake playbook.
+This is Abe Media's ChatGPT plugin for service-business owners. It helps a business owner check after-hours call coverage, estimate the value of missed opportunities, create an intake playbook, request a free AI audit, and ask Abe Media to follow up.
+
+OpenAI now calls this type of integration a **ChatGPT app**, but this project uses **plugin** throughout the README because that is the name we recognize internally. Technically, it is an MCP server with a small embedded interface.
 
 ## MVP scope
 
 - Assess lead coverage without asking for customer or caller data.
 - Estimate potential monthly value from the owner's own inputs; estimates are not promises of revenue.
 - Create a bilingual-ready intake and escalation playbook.
-- Capture leads only through `submit_lead`, strictly behind explicit in-conversation consent, delivered via Supabase and/or Resend email.
+- Capture leads only through `submit_lead`, strictly behind explicit in-conversation consent, delivered via Convex and/or Resend email.
 
 ## Tools
 
@@ -29,7 +31,7 @@ Set in Vercel (each channel degrades gracefully, but at least one must work):
 
 ## Privacy and safety
 
-The planner tools do not persist personal data. The only tool that collects contact information is `submit_lead`, which runs strictly behind explicit user consent confirmed in-conversation, and delivers the lead to AbeMedia via Convex and/or email. Do not enter caller or customer data into assessment inputs.
+The plugin's assessment tools do not persist personal data. The only tool that collects contact information is `submit_lead`, which runs strictly behind explicit user consent confirmed in-conversation, and delivers the lead to Abe Media via Convex and/or email. Do not enter caller or customer data into assessment inputs.
 
 ## Run locally
 

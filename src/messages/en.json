@@ -93,7 +93,7 @@
       },
       "plugins": {
         "title": "AI plugins & GPT tools",
-        "description": "Purpose-built ChatGPT and Claude tools that solve one problem well. Three built and running: a lab compliance finder, a turf design studio, and a service-operations planner."
+        "description": "Purpose-built ChatGPT and Claude tools that solve one problem well. Three built and running: a lab compliance finder, a turf design studio, and the Abe Media ChatGPT plugin for missed-call planning."
       },
       "web": {
         "title": "Websites & bilingual chatbots",

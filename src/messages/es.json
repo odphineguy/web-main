@@ -93,7 +93,7 @@
       },
       "plugins": {
         "title": "Plugins de IA y herramientas GPT",
-        "description": "Herramientas de ChatGPT y Claude hechas a medida que resuelven un solo problema a fondo. Tres construidas y funcionando: un buscador de cumplimiento de laboratorio, un estudio de diseño de césped y un planificador de operaciones de servicio."
+        "description": "Herramientas de ChatGPT y Claude hechas a medida que resuelven un solo problema a fondo. Tres construidas y funcionando: un buscador de cumplimiento de laboratorio, un estudio de diseño de césped y el plugin de ChatGPT de Abe Media para planificar llamadas perdidas."
       },
       "web": {
         "title": "Sitios web y chatbots bilingües",

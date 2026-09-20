@@ -15,7 +15,7 @@ const httpServer = createServer(async (req, res) => {
   if (!req.url) return res.writeHead(400).end("Missing URL");
   const url = new URL(req.url, `http://${req.headers.host ?? "localhost"}`);
   if (req.method === "GET" && url.pathname === "/") {
-    return res.writeHead(200, { "content-type": "application/json" }).end(JSON.stringify({ name: "AbeMedia Service Operations AI Planner", mcp: mcpPath, status: "ok" }));
+    return res.writeHead(200, { "content-type": "application/json" }).end(JSON.stringify({ name: "Abe Media ChatGPT Plugin", mcp: mcpPath, status: "ok" }));
   }
   if (req.method === "OPTIONS" && url.pathname === mcpPath) return res.writeHead(204, corsHeaders).end();
   if (url.pathname !== mcpPath || !req.method || !new Set(["POST", "GET", "DELETE"]).has(req.method)) return res.writeHead(404).end("Not Found");
@@ -32,4 +32,4 @@ const httpServer = createServer(async (req, res) => {
   }
 });
 
-httpServer.listen(port, () => console.log(`AbeMedia Service Operations AI Planner listening on http://localhost:${port}${mcpPath}`));
+httpServer.listen(port, () => console.log(`Abe Media ChatGPT Plugin listening on http://localhost:${port}${mcpPath}`));
