@@ -15,14 +15,14 @@ const readOnlyAnnotations = {
   openWorldHint: false,
 };
 
-// --- Lead delivery (ported from waterloo-turf-gpt-app request_quote pattern) ---
+// --- Lead delivery ---
 function isValidPhone(value: string) {
   return (value.match(/\d/g) ?? []).length >= 10;
 }
 
 async function persistLead(input: Record<string, string>) {
   const convexUrl = process.env.CONVEX_URL;
-  const secret = process.env.FORM_SUBMISSION_SECRET;
+  const secret = process.env.CHATGPT_PLUGIN_SUBMISSION_SECRET;
   if (!convexUrl || !secret) return { ok: false, detail: "Convex env not configured — persistence skipped." };
   const response = await fetch(`${convexUrl}/api/mutation`, {
     method: "POST",
@@ -60,12 +60,12 @@ async function emailLead(input: Record<string, string>) {
   if (!to) return { ok: false, detail: "LEAD_EMAIL not configured — email skipped." };
   const esc = (v: string) => String(v ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   const row = (label: string, value: string) => `<tr><td style="padding:6px 14px 6px 0;color:#666;font-size:13px">${label}</td><td style="padding:6px 0;color:#111;font-size:14px;font-weight:600">${esc(value)}</td></tr>`;
-  const html = `<div style="max-width:560px;margin:0 auto;font-family:sans-serif;border:1px solid #eee;border-radius:12px;padding:24px"><h1 style="font-size:19px;margin:0 0 4px">New AbeMedia Lead — ChatGPT App</h1><p style="color:#888;font-size:12px;margin:0 0 16px">${esc(new Date().toISOString())}</p><table style="border-collapse:collapse;width:100%">${row("Name", input.name)}${row("Phone", input.phone)}${row("Email", input.email)}${row("Business", input.businessName)}${row("Type", input.businessType)}${row("Primary need", input.primaryNeed)}${row("Timeline", input.timeline)}${row("Consent", "Explicitly confirmed in ChatGPT")}</table></div>`;
+  const html = `<div style="max-width:560px;margin:0 auto;font-family:sans-serif;border:1px solid #eee;border-radius:12px;padding:24px"><h1 style="font-size:19px;margin:0 0 4px">New Abe Media Lead — ChatGPT App</h1><p style="color:#888;font-size:12px;margin:0 0 16px">${esc(new Date().toISOString())}</p><table style="border-collapse:collapse;width:100%">${row("Name", input.name)}${row("Phone", input.phone)}${row("Email", input.email)}${row("Business", input.businessName)}${row("Type", input.businessType)}${row("Primary need", input.primaryNeed)}${row("Timeline", input.timeline)}${row("Consent", "Explicitly confirmed in ChatGPT")}</table></div>`;
   const from = process.env.LEAD_FROM_EMAIL || "Abe Media ChatGPT Plugin <onboarding@resend.dev>";
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-    body: JSON.stringify({ from, to, subject: `New AbeMedia Lead — ${input.name} — ${input.primaryNeed}`, html }),
+    body: JSON.stringify({ from, to, subject: `New Abe Media Lead — ${input.name} — ${input.primaryNeed}`, html }),
   });
   if (!response.ok) {
     const errorText = await response.text().catch(() => "");
@@ -75,13 +75,20 @@ async function emailLead(input: Record<string, string>) {
 }
 
 async function submitLead(input: Record<string, string>) {
-  const [persisted, emailed] = await Promise.all([
-    persistLead(input).catch((error) => ({ ok: false, detail: `Supabase insert threw: ${error?.message ?? error}` })),
-    emailLead(input).catch((error) => ({ ok: false, detail: `Resend send threw: ${error?.message ?? error}` })),
-  ]);
-  if (!persisted.ok) console.error("[submit_lead]", persisted.detail);
+  const persisted = await persistLead(input).catch((error) => ({
+    ok: false,
+    detail: `Convex mutation threw: ${error instanceof Error ? error.message : String(error)}`,
+  }));
+  if (!persisted.ok) {
+    console.error("[submit_lead]", persisted.detail);
+    throw new Error("We could not securely save this follow-up request. Please try again or use the Abe Media website.");
+  }
+
+  const emailed = await emailLead(input).catch((error) => ({
+    ok: false,
+    detail: `Resend send threw: ${error instanceof Error ? error.message : String(error)}`,
+  }));
   if (!emailed.ok) console.error("[submit_lead]", emailed.detail);
-  if (!persisted.ok && !emailed.ok) throw new Error("Lead delivery failed — both persistence and email were unavailable.");
 }
 // --- end lead delivery ---
 
@@ -90,7 +97,7 @@ const calculatorIndustries = ["junk removal", "hvac", "plumbing", "moving", "tur
 const nonNegativeInteger = z.number().int().min(0).max(100_000);
 const nonNegativeCurrency = z.number().min(0).max(10_000_000);
 
-// Mirrors src/components/MissedCallCalculator.tsx in the AbeMedia website.
+// Mirrors src/components/MissedCallCalculator.tsx in the Abe Media website.
 // Keep these values in sync until both products consume a shared config source.
 const afterHoursDefaults = {
   "junk removal": { closeRatePercent: 55, averageTicket: 400 },
@@ -128,8 +135,8 @@ const assessmentSchema = z.object({
   businessType: z.enum(businessTypes).describe("The closest service-business category."),
   weeklyInboundCalls: nonNegativeInteger.describe("Average inbound calls per week, including after-hours calls."),
   weeklyMissedCalls: nonNegativeInteger.describe("Average calls per week that receive no same-day response."),
-  averageJobValue: nonNegativeCurrency.optional().describe("Typical completed-job value in US dollars. If omitted, use the matching AbeMedia website calculator's industry default."),
-  estimatedCloseRatePercent: z.number().min(0).max(100).optional().describe("Estimated percent of qualified calls that become completed jobs. If omitted, use the matching AbeMedia website calculator's industry default."),
+  averageJobValue: nonNegativeCurrency.optional().describe("Typical completed-job value in US dollars. If omitted, use the matching Abe Media website calculator's industry default."),
+  estimatedCloseRatePercent: z.number().min(0).max(100).optional().describe("Estimated percent of qualified calls that become completed jobs. If omitted, use the matching Abe Media website calculator's industry default."),
   afterHoursCoverage: z.enum(["none", "voicemail", "on-call person", "live answering", "ai agent"]).describe("How inbound calls are handled outside normal business hours."),
   bookingMethod: z.enum(["none", "manual callback", "calendar", "crm or field service platform"]).describe("The usual method for moving a qualified lead to an appointment or follow-up."),
   spanishDemand: z.enum(["none", "occasional", "regular"]).describe("How often callers need Spanish-language support."),
@@ -196,7 +203,7 @@ export function createAbeMediaServer() {
     const band = score >= 80 ? "Strong foundation" : score >= 55 ? "Coverage gaps to address" : "High risk of lead leakage";
     const calculatorAssumptions = resolveCalculatorAssumptions(calculatorIndustryForBusiness(input.businessType), input.estimatedCloseRatePercent, input.averageJobValue);
     const priorities = automationRecommendation(input);
-    if (score < 80) priorities.push("Free AI Readiness Audit from AbeMedia — a short review that maps your call and lead workflow, identifies your top automation opportunities, and estimates the impact before anything is built. Use the request_ai_readiness_audit tool or visit " + bookingUrl + ".");
+    if (score < 80) priorities.push("Free AI Readiness Audit from Abe Media — a short review that maps your call and lead workflow, identifies your top automation opportunities, and estimates the impact before anything is built. Use the request_ai_readiness_audit tool or visit " + bookingUrl + ".");
     return {
       structuredContent: { coverageScore: score, band, gaps, priorities, monthlyOpportunity: monthlyOpportunity(input.weeklyMissedCalls, calculatorAssumptions.estimatedCloseRatePercent, calculatorAssumptions.averageJobValue), calculatorAssumptions, disclaimer: "Planning estimate only. Actual results depend on lead quality, response time, staffing, pricing, and execution." },
       content: [{ type: "text", text: `Coverage score: ${score}/100 — ${band}. Review the structured plan for gaps and priorities.` }],
@@ -205,10 +212,10 @@ export function createAbeMediaServer() {
 
   server.registerTool("estimate_missed_call_value", {
     title: "Estimate missed-call opportunity",
-    description: "Read-only calculator using the same industry defaults and formula as the AbeMedia website's after-hours missed-call calculator. The owner may override the default close rate or average ticket with their real numbers. Returns transparent planning math, not a revenue promise.",
+    description: "Read-only calculator using the same industry defaults and formula as the Abe Media website's after-hours missed-call calculator. The owner may override the default close rate or average ticket with their real numbers. Returns transparent planning math, not a revenue promise.",
     inputSchema: {
       weeklyMissedCalls: nonNegativeInteger.describe("Average inbound calls per week that receive no same-day response."),
-      industry: z.enum(calculatorIndustries).optional().describe("Industry used to select the same starting close rate and average ticket as the AbeMedia website calculator. Defaults to other when unknown."),
+      industry: z.enum(calculatorIndustries).optional().describe("Industry used to select the same starting close rate and average ticket as the Abe Media website calculator. Defaults to other when unknown."),
       estimatedCloseRatePercent: z.number().min(0).max(100).optional().describe("Optional override for the website calculator's industry-default close rate."),
       averageJobValue: nonNegativeCurrency.optional().describe("Optional override for the website calculator's industry-default average ticket in US dollars."),
     },
@@ -250,8 +257,8 @@ export function createAbeMediaServer() {
   });
 
   server.registerTool("recommend_automation_path", {
-    title: "Recommend an AbeMedia automation path",
-    description: "Read-only routing that matches service-business operations needs to a likely AbeMedia solution path. It does not collect data, make changes, or promise outcomes.",
+    title: "Recommend an Abe Media automation path",
+    description: "Read-only routing that matches service-business operations needs to a likely Abe Media solution path. It does not collect data, make changes, or promise outcomes.",
     inputSchema: {
       primaryNeed: z.enum(["after-hours calls", "bilingual intake", "booking", "lead follow-up", "dispatch", "custom platform"]).describe("The main operations gap the owner wants to address first."),
       businessType: z.enum(businessTypes).describe("The closest service-business category."),
@@ -265,8 +272,8 @@ export function createAbeMediaServer() {
   });
 
   server.registerTool("request_ai_readiness_audit", {
-    title: "Request a free AbeMedia AI Readiness Audit",
-    description: "Explains AbeMedia's free AI Readiness Audit and returns the public booking link. The audit maps the owner's call and lead workflow, identifies their top 3 automation opportunities, and estimates the impact — before anything is built. Read-only: it does not collect, store, or submit contact information.",
+    title: "Request a free Abe Media AI Readiness Audit",
+    description: "Explains Abe Media's free AI Readiness Audit and returns the public booking link. The audit maps the owner's call and lead workflow, identifies their top 3 automation opportunities, and estimates the impact — before anything is built. Read-only: it does not collect, store, or submit contact information.",
     inputSchema: {
       primaryInterest: z.enum(["after-hours calls", "bilingual intake", "booking", "lead follow-up", "dispatch", "custom platform", "not sure"]).optional().describe("The area the owner most wants the audit to focus on, if known."),
     },
@@ -274,7 +281,7 @@ export function createAbeMediaServer() {
     annotations: { title: "Request AI Readiness Audit", ...readOnlyAnnotations },
   }, async (input) => ({
     structuredContent: {
-      auditName: "AbeMedia AI Readiness Audit (free)",
+      auditName: "Abe Media AI Readiness Audit (free)",
       whatYouGet: [
         "A map of your current call, lead, and booking workflow",
         "Your top 3 automation opportunities, ranked by impact",
@@ -289,14 +296,14 @@ export function createAbeMediaServer() {
       ],
       focusArea: input.primaryInterest ?? "not sure",
       bookingUrl,
-      provider: "AbeMedia — bilingual AI voice agents, lead automation, and dispatch platforms for service businesses. abemedia.online",
+      provider: "Abe Media — bilingual AI voice agents, lead automation, and dispatch platforms for service businesses. abemedia.online",
     },
-    content: [{ type: "text", text: `Free AI Readiness Audit from AbeMedia — schedule at ${bookingUrl}. Nothing is collected here; booking happens on the AbeMedia site.` }],
+    content: [{ type: "text", text: `Free AI Readiness Audit from Abe Media — schedule at ${bookingUrl}. Nothing is collected here; booking happens on the Abe Media site.` }],
   }));
 
   server.registerTool("show_sample_agent_call", {
-    title: "Show a real AbeMedia agent call transcript",
-    description: "Returns a real, unedited transcript of an AbeMedia AI voice agent handling a live after-hours plumbing intake call — available in English or Spanish. Demonstrates triage, urgency handling, information collection, and booking. Read-only static content; no data is collected.",
+    title: "Show a real Abe Media agent call transcript",
+    description: "Returns a real, unedited transcript of an Abe Media AI voice agent handling a live after-hours plumbing intake call — available in English or Spanish. Demonstrates triage, urgency handling, information collection, and booking. Read-only static content; no data is collected.",
     inputSchema: {
       language: z.enum(["english", "spanish"]).describe("Which real call transcript to show."),
     },
@@ -353,10 +360,10 @@ export function createAbeMediaServer() {
   });
 
   server.registerTool("submit_lead", {
-    title: "Send my info to AbeMedia for follow-up",
-    description: "Use this when the user has explicitly confirmed AbeMedia may collect their contact details and business information for follow-up, and all required fields are available. If consent or a required field is missing, ask for it first instead of calling this tool. Validate email and phone format before submission. AbeMedia replies within one business day.",
+    title: "Send my info to Abe Media for follow-up",
+    description: "Use this when the user has explicitly confirmed Abe Media may collect their contact details and business information for follow-up, and all required fields are available. If consent or a required field is missing, ask for it first instead of calling this tool. Validate email and phone format before submission. Abe Media replies within one business day.",
     inputSchema: {
-      contactConsentConfirmed: z.boolean().describe("Set to true only after the user explicitly confirms AbeMedia may collect their contact details and business information for follow-up."),
+      contactConsentConfirmed: z.boolean().describe("Set to true only after the user explicitly confirms Abe Media may collect their contact details and business information for follow-up."),
       name: z.string().min(2).max(120),
       phone: z.string().min(7).max(32).refine(isValidPhone, "Enter a valid phone number with at least 10 digits."),
       email: z.string().email(),
@@ -367,7 +374,7 @@ export function createAbeMediaServer() {
     },
     outputSchema: { leadSubmitted: z.boolean(), message: z.string() },
     annotations: {
-      title: "Send info to AbeMedia",
+      title: "Send info to Abe Media",
       readOnlyHint: false,
       destructiveHint: false,
       idempotentHint: false,
@@ -377,7 +384,7 @@ export function createAbeMediaServer() {
     if (args.contactConsentConfirmed !== true) {
       return {
         isError: true,
-        content: [{ type: "text" as const, text: "Please confirm AbeMedia may collect your contact details and business information for follow-up before submitting." }],
+        content: [{ type: "text" as const, text: "Please confirm Abe Media may collect your contact details and business information for follow-up before submitting." }],
       };
     }
     await submitLead({
@@ -385,17 +392,17 @@ export function createAbeMediaServer() {
       businessType: args.businessType, primaryNeed: args.primaryNeed, timeline: args.timeline,
     });
     return {
-      structuredContent: { leadSubmitted: true, message: "Got it — Abe at AbeMedia will reach out within one business day." },
-      content: [{ type: "text" as const, text: "Submitted. Abe at AbeMedia will reach out within one business day." }],
+      structuredContent: { leadSubmitted: true, message: "Got it — Abe at Abe Media will reach out within one business day." },
+      content: [{ type: "text" as const, text: "Submitted. Abe at Abe Media will reach out within one business day." }],
     };
   });
 
   server.registerTool("schedule_abemedia_consultation", {
-    title: "Open AbeMedia consultation scheduling",
-    description: "Returns the public AbeMedia consultation page. It does not collect, store, transmit, or submit contact information, and it makes no external changes.",
+    title: "Open Abe Media consultation scheduling",
+    description: "Returns the public Abe Media consultation page. It does not collect, store, transmit, or submit contact information, and it makes no external changes.",
     inputSchema: {}, outputSchema: { bookingUrl: z.string().url(), message: z.string() },
-    annotations: { title: "Open AbeMedia consultation scheduling", ...readOnlyAnnotations },
-  }, async () => ({ structuredContent: { bookingUrl, message: "Use the AbeMedia website to schedule a conversation when you are ready." }, content: [{ type: "text", text: `Schedule with AbeMedia: ${bookingUrl}` }] }));
+    annotations: { title: "Open Abe Media consultation scheduling", ...readOnlyAnnotations },
+  }, async () => ({ structuredContent: { bookingUrl, message: "Use the Abe Media website to schedule a conversation when you are ready." }, content: [{ type: "text", text: `Schedule with Abe Media: ${bookingUrl}` }] }));
 
   return server;
 }

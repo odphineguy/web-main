@@ -49,12 +49,54 @@ export const saveConsultationSubmission = mutation({
     utmCampaign: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
-    if (!process.env.FORM_SUBMISSION_SECRET || args.serverSecret !== process.env.FORM_SUBMISSION_SECRET) {
+    const isChatGptPluginLead = args.referralSource === "chatgpt-app";
+    const hasWebsiteAccess = Boolean(
+      process.env.FORM_SUBMISSION_SECRET && args.serverSecret === process.env.FORM_SUBMISSION_SECRET,
+    );
+    const hasPluginAccess = Boolean(
+      isChatGptPluginLead &&
+      process.env.CHATGPT_PLUGIN_SUBMISSION_SECRET &&
+      args.serverSecret === process.env.CHATGPT_PLUGIN_SUBMISSION_SECRET,
+    );
+    if (!hasWebsiteAccess && !hasPluginAccess) {
       throw new Error("Unauthorized");
     }
+
+    const submittedAt = Date.now();
+    const email = isChatGptPluginLead ? args.email.trim().toLowerCase() : args.email;
+
+    if (isChatGptPluginLead) {
+      const oneDayAgo = submittedAt - 24 * 60 * 60 * 1000;
+      const duplicate = await ctx.db
+        .query("consultationSubmissions")
+        .withIndex("by_email", (q) => q.eq("email", email))
+        .filter((q) =>
+          q.and(
+            q.eq(q.field("referralSource"), "chatgpt-app"),
+            q.gte(q.field("submittedAt"), oneDayAgo),
+          ),
+        )
+        .first();
+
+      if (duplicate) {
+        throw new Error("A follow-up request for this email was already received in the last 24 hours.");
+      }
+
+      const recentPluginLeads = await ctx.db
+        .query("consultationSubmissions")
+        .withIndex("by_submittedAt", (q) => q.gte("submittedAt", oneDayAgo))
+        .order("desc")
+        .filter((q) => q.eq(q.field("referralSource"), "chatgpt-app"))
+        .take(25);
+
+      if (recentPluginLeads.length >= 25) {
+        throw new Error("The ChatGPT plugin follow-up limit has been reached. Please try again later.");
+      }
+    }
+
     const id = await ctx.db.insert("consultationSubmissions", {
       name: args.name.slice(0, 100),
-      email: args.email.slice(0, 254),
+      email: email.slice(0, 254),
       phone: args.phone?.slice(0, 40),
       company: args.company?.slice(0, 160),
       service: args.service?.slice(0, 80),
@@ -63,7 +105,7 @@ export const saveConsultationSubmission = mutation({
       landingPage: args.landingPage?.slice(0, 240),
       firstTouchSource: args.firstTouchSource?.slice(0, 120),
       utmCampaign: args.utmCampaign?.slice(0, 120),
-      submittedAt: Date.now(),
+      submittedAt,
     });
     return id;
   },

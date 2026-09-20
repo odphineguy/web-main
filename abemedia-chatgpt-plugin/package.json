@@ -8,7 +8,9 @@
     "dev": "tsx watch src/localServer.ts",
     "start": "node dist/src/localServer.js",
     "build": "tsc",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "tsx scripts/smokeTest.ts",
+    "deploy": "vercel --prod"
   },
   "dependencies": {
     "@modelcontextprotocol/ext-apps": "^1.7.4",
