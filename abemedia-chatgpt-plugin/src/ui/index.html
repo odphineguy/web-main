@@ -3,31 +3,233 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Abe Media ChatGPT Plugin</title>
+    <meta name="color-scheme" content="light dark" />
+    <title>Abe Media call coverage result</title>
     <style>
-      :root { color: #ffffff; background: #090909; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
-      body { margin: 0; padding: 18px; background: radial-gradient(circle at top right, #25130a, #090909 52%); }
-      main { max-width: 720px; margin: 0 auto; }
-      .eyebrow { color: #ff6a24; font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-      h1 { margin: 8px 0; font-size: clamp(24px, 5vw, 40px); line-height: 1.05; }
-      p { color: #e3e3e3; line-height: 1.5; }
-      .grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); margin-top: 20px; }
-      article { background: #171717; border: 1px solid #4a2818; border-radius: 16px; padding: 16px; box-shadow: inset 0 1px 0 rgba(255,255,255,.06); }
-      h2 { margin: 0 0 8px; font-size: 16px; color: #ffffff; } .number { color: #ff6a24; font-size: 28px; font-weight: 800; }
-      footer { color: #b8b8b8; font-size: 12px; margin-top: 18px; border-top: 1px solid #3d3d3d; padding-top: 14px; }
+      :root {
+        color-scheme: light dark;
+        --bg: #f7f4ef;
+        --panel: #ffffff;
+        --ink: #17130f;
+        --muted: #685f57;
+        --line: #d9d0c6;
+        --accent: #e64d12;
+        --accent-soft: #fff0e8;
+        --warning: #9b3410;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #11100f;
+          --panel: #1a1816;
+          --ink: #fffaf5;
+          --muted: #c2b7ad;
+          --line: #3a332d;
+          --accent: #ff6a2d;
+          --accent-soft: #321a10;
+          --warning: #ff9a70;
+        }
+      }
+
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--bg); color: var(--ink); }
+      main { padding: 20px; }
+      .shell { max-width: 760px; margin: 0 auto; }
+      .brand { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+      .wordmark { color: var(--accent); font-size: 12px; font-weight: 850; letter-spacing: .14em; text-transform: uppercase; }
+      .context { color: var(--muted); font-size: 12px; }
+      .loading { min-height: 210px; display: grid; place-items: center; text-align: center; color: var(--muted); }
+      .loading strong { display: block; margin-bottom: 6px; color: var(--ink); font-size: 18px; }
+      .result { display: none; }
+      .hero { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(160px, .8fr); gap: 18px; align-items: end; padding: 24px 0 20px; }
+      .eyebrow { margin: 0 0 8px; color: var(--accent); font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+      h1 { margin: 0; max-width: 18ch; font-size: clamp(25px, 5vw, 40px); line-height: 1.04; letter-spacing: -.035em; }
+      .score-block { border-left: 3px solid var(--accent); padding-left: 16px; }
+      .score { display: block; font-size: 48px; font-weight: 850; line-height: .95; letter-spacing: -.05em; }
+      .score small { color: var(--muted); font-size: 15px; font-weight: 700; letter-spacing: 0; }
+      .score-label { display: block; margin-top: 7px; color: var(--muted); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; }
+      .metrics { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); background: var(--panel); }
+      .metric { min-width: 0; padding: 16px; }
+      .metric + .metric { border-left: 1px solid var(--line); }
+      .metric strong { display: block; font-size: clamp(20px, 4vw, 29px); line-height: 1; letter-spacing: -.03em; }
+      .metric span { display: block; margin-top: 7px; color: var(--muted); font-size: 12px; line-height: 1.3; }
+      .sections { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px; }
+      section { border-top: 2px solid var(--ink); padding-top: 12px; }
+      h2 { margin: 0 0 10px; font-size: 14px; letter-spacing: .02em; }
+      ul { margin: 0; padding: 0; list-style: none; }
+      li { position: relative; padding: 8px 0 8px 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; line-height: 1.42; }
+      li:first-child { border-top: 0; }
+      li::before { content: ""; position: absolute; left: 1px; top: 15px; width: 6px; height: 6px; background: var(--accent); }
+      .assumption { margin: 18px 0 0; padding: 12px 14px; background: var(--accent-soft); color: var(--warning); font-size: 12px; line-height: 1.45; }
+      footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; line-height: 1.4; }
+      a { color: var(--accent); font-weight: 750; text-decoration-thickness: 1px; text-underline-offset: 3px; white-space: nowrap; }
+
+      @media (max-width: 560px) {
+        main { padding: 16px; }
+        .hero { grid-template-columns: 1fr; align-items: start; }
+        .score-block { border-left: 0; border-top: 3px solid var(--accent); padding: 12px 0 0; }
+        .metrics { grid-template-columns: 1fr; }
+        .metric + .metric { border-left: 0; border-top: 1px solid var(--line); }
+        .sections { grid-template-columns: 1fr; }
+        footer { align-items: flex-start; flex-direction: column; }
+      }
     </style>
   </head>
   <body>
     <main>
-      <div class="eyebrow">Abe Media</div>
-      <h1>Find out what happens to your leads after 5 PM.</h1>
-      <p>Use the assessment, calculator, and intake playbook tools to build an operational plan for your service business.</p>
-      <section class="grid">
-        <article><h2>1. Assess coverage</h2><p>See the gaps between an inbound call and a real next step.</p></article>
-        <article><h2>2. Calculate exposure</h2><p>Turn missed-call volume into transparent planning math.</p></article>
-        <article><h2>3. Build the handoff</h2><p>Make an owner-approved intake and escalation playbook.</p></article>
-      </section>
-      <footer>Planning guidance only. Do not enter customer or caller personal data.</footer>
+      <div class="shell">
+        <header class="brand">
+          <span class="wordmark">Abe Media</span>
+          <span class="context" id="context-label">Call coverage check</span>
+        </header>
+
+        <div class="loading" id="loading" role="status" aria-live="polite">
+          <div><strong id="loading-title">Preparing your results…</strong><span id="loading-copy">ChatGPT is checking the coverage details you provided.</span></div>
+        </div>
+
+        <div class="result" id="result">
+          <div class="hero">
+            <div>
+              <p class="eyebrow" id="coverage-label">Your current coverage</p>
+              <h1 id="band">Call coverage result</h1>
+            </div>
+            <div class="score-block" aria-label="Coverage score">
+              <span class="score"><span id="score">—</span><small>/100</small></span>
+              <span class="score-label" id="score-label">Coverage score</span>
+            </div>
+          </div>
+
+          <div class="metrics" aria-label="Estimated monthly opportunity">
+            <div class="metric"><strong id="monthly-value">—</strong><span id="value-label">potential monthly value</span></div>
+            <div class="metric"><strong id="monthly-calls">—</strong><span id="calls-label">missed calls per month</span></div>
+            <div class="metric"><strong id="monthly-jobs">—</strong><span id="jobs-label">potential completed jobs</span></div>
+          </div>
+
+          <div class="sections">
+            <section aria-labelledby="gaps-heading">
+              <h2 id="gaps-heading">Where leads can slip through</h2>
+              <ul id="gaps"></ul>
+            </section>
+            <section aria-labelledby="priorities-heading">
+              <h2 id="priorities-heading">What to fix first</h2>
+              <ul id="priorities"></ul>
+            </section>
+          </div>
+
+          <p class="assumption" id="assumption"></p>
+          <footer>
+            <span id="disclaimer">Planning estimate only.</span>
+            <a id="review-link" href="https://abemedia.online/en#contact" target="_blank" rel="noopener noreferrer">Review it with Abe Media ↗</a>
+          </footer>
+        </div>
+      </div>
     </main>
+
+    <script>
+      const loading = document.getElementById("loading");
+      const result = document.getElementById("result");
+      const locale = document.documentElement.lang || "en-US";
+      const spanish = locale.toLowerCase().startsWith("es");
+      const copy = spanish ? {
+        context: "Evaluación de cobertura",
+        loadingTitle: "Preparando tus resultados…",
+        loadingCopy: "ChatGPT está revisando los datos de cobertura que compartiste.",
+        coverage: "Tu cobertura actual",
+        score: "Puntuación de cobertura",
+        value: "valor mensual potencial",
+        calls: "llamadas perdidas al mes",
+        jobs: "trabajos completados potenciales",
+        gaps: "Dónde se pueden perder prospectos",
+        priorities: "Qué corregir primero",
+        review: "Revisarlo con Abe Media ↗",
+        noGaps: "No se detectaron brechas importantes con estos datos.",
+        noPriorities: "Sigue monitoreando el flujo actual de llamadas y citas.",
+        defaultResult: "Resultado de cobertura",
+        defaultDisclaimer: "Es una estimación para planificación.",
+      } : {
+        context: "Call coverage check",
+        loadingTitle: "Preparing your results…",
+        loadingCopy: "ChatGPT is checking the coverage details you provided.",
+        coverage: "Your current coverage",
+        score: "Coverage score",
+        value: "potential monthly value",
+        calls: "missed calls per month",
+        jobs: "potential completed jobs",
+        gaps: "Where leads can slip through",
+        priorities: "What to fix first",
+        review: "Review it with Abe Media ↗",
+        noGaps: "No major coverage gaps surfaced from these inputs.",
+        noPriorities: "Keep monitoring the current call and booking workflow.",
+        defaultResult: "Coverage result",
+        defaultDisclaimer: "Planning estimate only.",
+      };
+      document.getElementById("context-label").textContent = copy.context;
+      document.getElementById("loading-title").textContent = copy.loadingTitle;
+      document.getElementById("loading-copy").textContent = copy.loadingCopy;
+      document.getElementById("coverage-label").textContent = copy.coverage;
+      document.getElementById("score-label").textContent = copy.score;
+      document.getElementById("value-label").textContent = copy.value;
+      document.getElementById("calls-label").textContent = copy.calls;
+      document.getElementById("jobs-label").textContent = copy.jobs;
+      document.getElementById("gaps-heading").textContent = copy.gaps;
+      document.getElementById("priorities-heading").textContent = copy.priorities;
+      document.getElementById("review-link").textContent = copy.review;
+      document.getElementById("review-link").href = spanish ? "https://abemedia.online/es#contact" : "https://abemedia.online/en#contact";
+      const currency = new Intl.NumberFormat(locale, { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+      const number = new Intl.NumberFormat(locale, { maximumFractionDigits: 1 });
+
+      function setList(id, items, emptyMessage) {
+        const list = document.getElementById(id);
+        list.replaceChildren();
+        const safeItems = Array.isArray(items) && items.length ? items : [emptyMessage];
+        safeItems.forEach((item) => {
+          const row = document.createElement("li");
+          row.textContent = String(item);
+          list.appendChild(row);
+        });
+      }
+
+      function render(data) {
+        if (!data || typeof data !== "object" || typeof data.coverageScore !== "number") return;
+        const opportunity = data.monthlyOpportunity || {};
+        const assumptions = data.calculatorAssumptions || {};
+        document.getElementById("band").textContent = String(data.band || copy.defaultResult);
+        document.getElementById("score").textContent = String(Math.max(0, Math.min(100, Math.round(data.coverageScore))));
+        document.getElementById("monthly-value").textContent = currency.format(Number(opportunity.estimatedMonthlyValue) || 0);
+        document.getElementById("monthly-calls").textContent = number.format(Number(opportunity.monthlyMissedCalls) || 0);
+        document.getElementById("monthly-jobs").textContent = number.format(Number(opportunity.estimatedCompletedJobs) || 0);
+        setList("gaps", data.gaps, copy.noGaps);
+        setList("priorities", data.priorities, copy.noPriorities);
+
+        const closeRate = Number(assumptions.estimatedCloseRatePercent) || 0;
+        const ticket = Number(assumptions.averageJobValue) || 0;
+        const defaultParts = [];
+        if (assumptions.usedWebsiteCloseRateDefault) defaultParts.push("close rate");
+        if (assumptions.usedWebsiteAverageTicketDefault) defaultParts.push("average job value");
+        const source = spanish
+          ? defaultParts.length
+            ? `Se usaron los valores iniciales del sitio de Abe Media para ${defaultParts.length === 2 ? "la tasa de cierre y el valor promedio del trabajo" : defaultParts[0] === "close rate" ? "la tasa de cierre" : "el valor promedio del trabajo"}.`
+            : "Se usaron tu tasa de cierre y el valor promedio de tus trabajos."
+          : defaultParts.length
+            ? `Abe Media website defaults were used for ${defaultParts.join(" and ")}.`
+            : "Your close rate and average job value were used.";
+        document.getElementById("assumption").textContent = spanish
+          ? `Base de la estimación: ${closeRate}% de cierre × ${currency.format(ticket)} por trabajo. ${source}`
+          : `Estimate basis: ${closeRate}% close rate × ${currency.format(ticket)} average job. ${source}`;
+        document.getElementById("disclaimer").textContent = String(data.disclaimer || copy.defaultDisclaimer);
+        loading.style.display = "none";
+        result.style.display = "block";
+      }
+
+      window.addEventListener("message", (event) => {
+        if (event.source !== window.parent) return;
+        const message = event.data;
+        if (!message || message.jsonrpc !== "2.0") return;
+        if (message.method === "ui/notifications/tool-result") render(message.params?.structuredContent);
+      }, { passive: true });
+
+      if (window.openai?.toolOutput) render(window.openai.toolOutput);
+    </script>
   </body>
 </html>

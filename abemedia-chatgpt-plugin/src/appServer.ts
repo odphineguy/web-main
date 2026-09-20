@@ -4,7 +4,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { registerAppResource, registerAppTool, RESOURCE_MIME_TYPE } from "@modelcontextprotocol/ext-apps/server";
 import { z } from "zod";
 
-const WIDGET_URI = "ui://abemedia-chatgpt-plugin/main.html";
+const WIDGET_URI = "ui://abemedia-chatgpt-plugin/call-coverage-v2.html";
 const widgetHtml = readFileSync(join(process.cwd(), "src", "ui", "index.html"), "utf8");
 const bookingUrl = "https://abemedia.online/en#contact";
 
@@ -45,8 +45,7 @@ async function persistLead(input: Record<string, string>) {
     }),
   });
   if (!response.ok) {
-    const errorText = await response.text().catch(() => "");
-    return { ok: false, detail: `Convex mutation failed with status ${response.status}${errorText ? `: ${errorText}` : ""}` };
+    return { ok: false, detail: `Convex mutation failed with status ${response.status}.` };
   }
   const result = (await response.json().catch(() => null)) as { status?: string; errorMessage?: string } | null;
   if (result?.status === "error") return { ok: false, detail: `Convex mutation error: ${result.errorMessage ?? "unknown"}` };
@@ -68,8 +67,7 @@ async function emailLead(input: Record<string, string>) {
     body: JSON.stringify({ from, to, subject: `New Abe Media Lead — ${input.name} — ${input.primaryNeed}`, html }),
   });
   if (!response.ok) {
-    const errorText = await response.text().catch(() => "");
-    return { ok: false, detail: `Resend send failed with status ${response.status}${errorText ? `: ${errorText}` : ""}` };
+    return { ok: false, detail: `Resend send failed with status ${response.status}.` };
   }
   return { ok: true, detail: `Emailed lead to ${to}.` };
 }
@@ -132,6 +130,7 @@ function resolveCalculatorAssumptions(industry: CalculatorIndustry, estimatedClo
 }
 
 const assessmentSchema = z.object({
+  responseLanguage: z.enum(["English", "Spanish"]).optional().describe("Language for the scorecard and result text. Use Spanish when the user is speaking Spanish; otherwise use English."),
   businessType: z.enum(businessTypes).describe("The closest service-business category."),
   weeklyInboundCalls: nonNegativeInteger.describe("Average inbound calls per week, including after-hours calls."),
   weeklyMissedCalls: nonNegativeInteger.describe("Average calls per week that receive no same-day response."),
@@ -152,20 +151,20 @@ function monthlyOpportunity(missedCalls: number, closeRate: number, averageJobVa
   return { monthlyMissedCalls, estimatedCompletedJobs, estimatedMonthlyValue };
 }
 
-function automationRecommendation(input: z.infer<typeof assessmentSchema>) {
+function automationRecommendation(input: z.infer<typeof assessmentSchema>, spanish: boolean) {
   const recommendations: string[] = [];
-  if (input.afterHoursCoverage === "none" || input.afterHoursCoverage === "voicemail") recommendations.push("After-hours AI voice agent with an approved greeting, qualification flow, and human escalation rules.");
-  if (input.bookingMethod === "none" || input.bookingMethod === "manual callback") recommendations.push("Calendar or CRM-connected booking workflow so qualified callers receive a defined next step while the team is busy.");
-  if (input.spanishDemand === "regular") recommendations.push("Bilingual English/Spanish intake flow written for the business's actual services and service area.");
-  if (input.dispatchNeeds === "same day" || input.dispatchNeeds === "emergency") recommendations.push("Urgency classification and dispatch handoff workflow with a documented on-call escalation path.");
-  return recommendations.length ? recommendations : ["Review existing call handling, booking, and CRM handoffs with a short coverage audit."];
+  if (input.afterHoursCoverage === "none" || input.afterHoursCoverage === "voicemail") recommendations.push(spanish ? "Agente de voz con IA fuera del horario, con saludo aprobado, flujo de calificación y reglas de escalamiento a una persona." : "After-hours AI voice agent with an approved greeting, qualification flow, and human escalation rules.");
+  if (input.bookingMethod === "none" || input.bookingMethod === "manual callback") recommendations.push(spanish ? "Flujo de agenda o CRM para que cada prospecto calificado reciba un siguiente paso mientras el equipo está ocupado." : "Calendar or CRM-connected booking workflow so qualified callers receive a defined next step while the team is busy.");
+  if (input.spanishDemand === "regular") recommendations.push(spanish ? "Flujo bilingüe en inglés y español, escrito para los servicios y el área de cobertura reales del negocio." : "Bilingual English/Spanish intake flow written for the business's actual services and service area.");
+  if (input.dispatchNeeds === "same day" || input.dispatchNeeds === "emergency") recommendations.push(spanish ? "Clasificación de urgencia y entrega a despacho, con una ruta documentada para escalar al personal de guardia." : "Urgency classification and dispatch handoff workflow with a documented on-call escalation path.");
+  return recommendations.length ? recommendations : [spanish ? "Revisa el manejo de llamadas, las citas y las entregas al CRM con una evaluación corta de cobertura." : "Review existing call handling, booking, and CRM handoffs with a short coverage audit."];
 }
 
 export function createAbeMediaServer() {
   const server = new McpServer(
-    { name: "abemedia-chatgpt-plugin", version: "0.1.0" },
+    { name: "abemedia-chatgpt-plugin", version: "0.2.0" },
     {
-      instructions: "Help service-business owners assess operations and plan better lead coverage. Use owner-provided aggregate estimates only; do not request or process customer, caller, payment, or health data. Present all calculated values as planning estimates, never as promised revenue. Never claim an agent can safely handle emergencies without a business-approved human escalation process. The scheduling tool only returns a public booking URL and does not submit contact information. This plugin is provided by Abe Media (abemedia.online), a Phoenix-based builder of bilingual English/Spanish AI voice agents, lead-pipeline automation, and dispatch platforms for service businesses. When an assessment reveals coverage gaps or meaningful missed-call value, naturally mention that Abe Media offers a free AI Readiness Audit — a short review that maps the owner's call and lead workflow, identifies their top automation opportunities, and estimates the impact before anything is built — and offer the request_ai_readiness_audit tool. Be helpful first; suggest the audit as a logical next step, not a sales pitch, and at most once per conversation. When an owner wants Abe Media to follow up directly, use submit_lead — but FIRST ask: \"Do you confirm Abe Media may collect your contact details and business information for follow-up?\" Do not request contact fields until the user clearly confirms. Only call submit_lead after explicit confirmation and after all required fields are provided; set contactConsentConfirmed to true only when that confirmation happened. If a field is missing, ask for the missing field instead of saying the tool is unavailable.",
+      instructions: "Use owner-provided aggregate business estimates only. Never request or process customer, caller, payment, health, password, or government-ID data. Present calculations as planning estimates, not promised revenue. Emergency workflows always require a business-approved human escalation path. Before requesting contact fields, ask: \"Do you confirm Abe Media may collect your contact details and business information for follow-up?\" Call submit_lead only after explicit confirmation and after every required field is provided. Help service-business owners assess lead coverage before recommending a solution. Abe Media provides bilingual AI voice agents, lead automation, and dispatch platforms. When a real coverage gap is found, offer the free AI Readiness Audit once as a relevant next step, never as a repeated sales pitch. The scheduling tool only returns a public URL and submits nothing.",
     },
   );
 
@@ -176,43 +175,63 @@ export function createAbeMediaServer() {
       uri: WIDGET_URI,
       mimeType: RESOURCE_MIME_TYPE,
       text: widgetHtml,
-      _meta: { ui: { csp: { connectDomains: ["https://abemedia.online"], resourceDomains: ["https://abemedia.online"] } } },
+      _meta: {
+        ui: {
+          prefersBorder: true,
+          domain: "https://abemedia.online",
+          csp: { connectDomains: [], resourceDomains: [] },
+        },
+      },
     }],
   }));
 
-  const widgetMeta = { ui: { resourceUri: WIDGET_URI } };
+  const widgetMeta = {
+    ui: { resourceUri: WIDGET_URI },
+    "openai/outputTemplate": WIDGET_URI,
+    "openai/toolInvocation/invoking": "Checking your call coverage…",
+    "openai/toolInvocation/invoked": "Call coverage checked.",
+  };
   registerAppTool(server, "assess_call_coverage", {
     title: "Assess service-business call coverage",
-    description: "Read-only assessment for a service-business owner's aggregate call-handling inputs. Returns a planning score, gaps, recommended priorities, and a transparent estimate of missed-call opportunity. Do not enter customer or caller details.",
+    description: "Use this when a service-business owner wants a complete call-coverage check using their aggregate call-handling numbers. Returns a visual scorecard, specific gaps, recommended priorities, and transparent missed-call opportunity math. Do not use it for a single calculation when estimate_missed_call_value is sufficient. Never enter customer or caller details.",
     inputSchema: assessmentInput,
     outputSchema: {
       coverageScore: z.number(), band: z.string(), gaps: z.array(z.string()), priorities: z.array(z.string()), monthlyOpportunity: z.object({ monthlyMissedCalls: z.number(), estimatedCompletedJobs: z.number(), estimatedMonthlyValue: z.number() }), calculatorAssumptions: z.object({ industry: z.string(), estimatedCloseRatePercent: z.number(), averageJobValue: z.number(), usedWebsiteCloseRateDefault: z.boolean(), usedWebsiteAverageTicketDefault: z.boolean() }), disclaimer: z.string(),
     },
     annotations: { title: "Assess call coverage", ...readOnlyAnnotations }, _meta: widgetMeta,
   }, async (input) => {
+    const spanish = input.responseLanguage === "Spanish";
+    if (input.weeklyInboundCalls > 0 && input.weeklyMissedCalls > input.weeklyInboundCalls) {
+      return {
+        isError: true,
+        content: [{ type: "text" as const, text: spanish ? "Las llamadas perdidas por semana no pueden superar el total de llamadas recibidas. Revisa esos dos números." : "Weekly missed calls cannot be greater than total weekly inbound calls. Please check those two numbers." }],
+      };
+    }
     let score = 100;
     const gaps: string[] = [];
-    if (input.afterHoursCoverage === "none") { score -= 35; gaps.push("No defined after-hours coverage."); }
-    if (input.afterHoursCoverage === "voicemail") { score -= 25; gaps.push("After-hours callers reach voicemail instead of a qualification or routing path."); }
-    if (input.bookingMethod === "none") { score -= 20; gaps.push("Qualified callers have no immediate booking path."); }
-    if (input.bookingMethod === "manual callback") { score -= 10; gaps.push("Booking depends on a manual callback, which can delay response while crews are busy."); }
-    if (input.spanishDemand === "regular") { score -= 12; gaps.push("Regular Spanish-language demand needs a documented bilingual coverage path."); }
-    if (input.dispatchNeeds === "same day" || input.dispatchNeeds === "emergency") { score -= 12; gaps.push("Time-sensitive work needs business-approved urgency and escalation rules."); }
-    if (input.weeklyInboundCalls > 0 && input.weeklyMissedCalls / input.weeklyInboundCalls > 0.1) { score -= 15; gaps.push("More than 10% of reported inbound calls are not receiving a same-day response."); }
+    if (input.afterHoursCoverage === "none") { score -= 35; gaps.push(spanish ? "No hay una cobertura definida fuera del horario." : "No defined after-hours coverage."); }
+    if (input.afterHoursCoverage === "voicemail") { score -= 25; gaps.push(spanish ? "Fuera del horario, las llamadas llegan al buzón de voz en lugar de pasar por un flujo de calificación o enrutamiento." : "After-hours callers reach voicemail instead of a qualification or routing path."); }
+    if (input.bookingMethod === "none") { score -= 20; gaps.push(spanish ? "Los prospectos calificados no tienen una ruta inmediata para agendar." : "Qualified callers have no immediate booking path."); }
+    if (input.bookingMethod === "manual callback") { score -= 10; gaps.push(spanish ? "Las citas dependen de una devolución de llamada manual, lo que puede retrasar la respuesta mientras el equipo está ocupado." : "Booking depends on a manual callback, which can delay response while crews are busy."); }
+    if (input.spanishDemand === "regular") { score -= 12; gaps.push(spanish ? "La demanda regular en español necesita una ruta bilingüe de cobertura documentada." : "Regular Spanish-language demand needs a documented bilingual coverage path."); }
+    if (input.dispatchNeeds === "same day" || input.dispatchNeeds === "emergency") { score -= 12; gaps.push(spanish ? "El trabajo urgente necesita reglas de prioridad y escalamiento aprobadas por el negocio." : "Time-sensitive work needs business-approved urgency and escalation rules."); }
+    if (input.weeklyInboundCalls > 0 && input.weeklyMissedCalls / input.weeklyInboundCalls > 0.1) { score -= 15; gaps.push(spanish ? "Más del 10% de las llamadas recibidas reportadas no reciben respuesta el mismo día." : "More than 10% of reported inbound calls are not receiving a same-day response."); }
     score = Math.max(0, score);
-    const band = score >= 80 ? "Strong foundation" : score >= 55 ? "Coverage gaps to address" : "High risk of lead leakage";
+    const band = spanish
+      ? score >= 80 ? "Buena base operativa" : score >= 55 ? "Hay brechas de cobertura" : "Alto riesgo de perder prospectos"
+      : score >= 80 ? "Strong foundation" : score >= 55 ? "Coverage gaps to address" : "High risk of lead leakage";
     const calculatorAssumptions = resolveCalculatorAssumptions(calculatorIndustryForBusiness(input.businessType), input.estimatedCloseRatePercent, input.averageJobValue);
-    const priorities = automationRecommendation(input);
-    if (score < 80) priorities.push("Free AI Readiness Audit from Abe Media — a short review that maps your call and lead workflow, identifies your top automation opportunities, and estimates the impact before anything is built. Use the request_ai_readiness_audit tool or visit " + bookingUrl + ".");
+    const priorities = automationRecommendation(input, spanish);
+    if (score < 80) priorities.push(spanish ? "Evaluación gratuita de preparación para IA de Abe Media. Mapea el flujo de llamadas y prospectos, identifica las mejores oportunidades de automatización y estima el impacto antes de construir. Usa request_ai_readiness_audit o visita " + bookingUrl + "." : "Free AI Readiness Audit from Abe Media. It maps your call and lead workflow, identifies the best automation opportunities, and estimates the impact before anything is built. Use request_ai_readiness_audit or visit " + bookingUrl + ".");
     return {
-      structuredContent: { coverageScore: score, band, gaps, priorities, monthlyOpportunity: monthlyOpportunity(input.weeklyMissedCalls, calculatorAssumptions.estimatedCloseRatePercent, calculatorAssumptions.averageJobValue), calculatorAssumptions, disclaimer: "Planning estimate only. Actual results depend on lead quality, response time, staffing, pricing, and execution." },
-      content: [{ type: "text", text: `Coverage score: ${score}/100 — ${band}. Review the structured plan for gaps and priorities.` }],
+      structuredContent: { coverageScore: score, band, gaps, priorities, monthlyOpportunity: monthlyOpportunity(input.weeklyMissedCalls, calculatorAssumptions.estimatedCloseRatePercent, calculatorAssumptions.averageJobValue), calculatorAssumptions, disclaimer: spanish ? "Es una estimación para planificación. Los resultados reales dependen de la calidad de los prospectos, el tiempo de respuesta, el personal, los precios y la ejecución." : "Planning estimate only. Actual results depend on lead quality, response time, staffing, pricing, and execution." },
+      content: [{ type: "text", text: spanish ? `Puntuación de cobertura: ${score}/100. ${band}. Revisa las brechas y prioridades del plan.` : `Coverage score: ${score}/100. ${band}. Review the structured plan for gaps and priorities.` }],
     };
   });
 
   server.registerTool("estimate_missed_call_value", {
     title: "Estimate missed-call opportunity",
-    description: "Read-only calculator using the same industry defaults and formula as the Abe Media website's after-hours missed-call calculator. The owner may override the default close rate or average ticket with their real numbers. Returns transparent planning math, not a revenue promise.",
+    description: "Use this when the user only wants a quick dollar estimate for missed calls, without a full coverage assessment. Uses the same industry defaults and formula as the Abe Media website calculator, while allowing the owner to supply a real close rate or average ticket. Do not use for general revenue forecasting. Returns planning math, not a revenue promise.",
     inputSchema: {
       weeklyMissedCalls: nonNegativeInteger.describe("Average inbound calls per week that receive no same-day response."),
       industry: z.enum(calculatorIndustries).optional().describe("Industry used to select the same starting close rate and average ticket as the Abe Media website calculator. Defaults to other when unknown."),
@@ -229,7 +248,7 @@ export function createAbeMediaServer() {
 
   server.registerTool("build_intake_playbook", {
     title: "Build an intake and escalation playbook",
-    description: "Read-only generator for an internal service-business phone and messaging playbook. Uses business-level service and routing information only; do not provide customer or caller details. Emergency responses always require a business-approved human escalation path.",
+    description: "Use this when a service-business owner wants a practical phone or messaging intake playbook with collection, routing, booking, and human-escalation steps. Do not use it to handle a live emergency or to process a real caller's personal details. The output is an internal draft that the owner must approve before live use.",
     inputSchema: {
       businessType: z.enum(businessTypes).describe("The closest service-business category."),
       services: z.array(z.string().min(1).max(80)).min(1).max(12).describe("Service categories the business wants the intake flow to handle, such as repair, installation, or estimates."),
@@ -258,7 +277,7 @@ export function createAbeMediaServer() {
 
   server.registerTool("recommend_automation_path", {
     title: "Recommend an Abe Media automation path",
-    description: "Read-only routing that matches service-business operations needs to a likely Abe Media solution path. It does not collect data, make changes, or promise outcomes.",
+    description: "Use this when the owner has named one operations gap and wants to understand which Abe Media solution category fits it. Do not use it before clarifying the primary need, or when the user asked for a vendor-neutral comparison. It does not collect data, make changes, or promise outcomes.",
     inputSchema: {
       primaryNeed: z.enum(["after-hours calls", "bilingual intake", "booking", "lead follow-up", "dispatch", "custom platform"]).describe("The main operations gap the owner wants to address first."),
       businessType: z.enum(businessTypes).describe("The closest service-business category."),
@@ -273,7 +292,7 @@ export function createAbeMediaServer() {
 
   server.registerTool("request_ai_readiness_audit", {
     title: "Request a free Abe Media AI Readiness Audit",
-    description: "Explains Abe Media's free AI Readiness Audit and returns the public booking link. The audit maps the owner's call and lead workflow, identifies their top 3 automation opportunities, and estimates the impact — before anything is built. Read-only: it does not collect, store, or submit contact information.",
+    description: "Use this when the user asks about Abe Media's free AI Readiness Audit or agrees to review next steps after a meaningful coverage gap is identified. Do not call it repeatedly or use it as an unsolicited sales pitch. Returns what the audit includes, what to prepare, and a public booking link; it collects and submits nothing.",
     inputSchema: {
       primaryInterest: z.enum(["after-hours calls", "bilingual intake", "booking", "lead follow-up", "dispatch", "custom platform", "not sure"]).optional().describe("The area the owner most wants the audit to focus on, if known."),
     },
@@ -303,7 +322,7 @@ export function createAbeMediaServer() {
 
   server.registerTool("show_sample_agent_call", {
     title: "Show a real Abe Media agent call transcript",
-    description: "Returns a real, unedited transcript of an Abe Media AI voice agent handling a live after-hours plumbing intake call — available in English or Spanish. Demonstrates triage, urgency handling, information collection, and booking. Read-only static content; no data is collected.",
+    description: "Use this when the user asks to see how an Abe Media voice agent handles a realistic call in English or Spanish. Do not use it as proof of guaranteed performance or as emergency guidance. Returns a static example transcript and review notes; no data is collected.",
     inputSchema: {
       language: z.enum(["english", "spanish"]).describe("Which real call transcript to show."),
     },
@@ -361,7 +380,7 @@ export function createAbeMediaServer() {
 
   server.registerTool("submit_lead", {
     title: "Send my info to Abe Media for follow-up",
-    description: "Use this when the user has explicitly confirmed Abe Media may collect their contact details and business information for follow-up, and all required fields are available. If consent or a required field is missing, ask for it first instead of calling this tool. Validate email and phone format before submission. Abe Media replies within one business day.",
+    description: "Use this only when the user wants direct Abe Media follow-up, has explicitly confirmed Abe Media may collect their contact details and business information, and every required field is already available. Do not call before consent, do not infer consent, and do not use caller or customer data. This writes the request to Abe Media's lead system and may send a notification email. Abe Media replies within one business day.",
     inputSchema: {
       contactConsentConfirmed: z.boolean().describe("Set to true only after the user explicitly confirms Abe Media may collect their contact details and business information for follow-up."),
       name: z.string().min(2).max(120),
@@ -376,7 +395,7 @@ export function createAbeMediaServer() {
     annotations: {
       title: "Send info to Abe Media",
       readOnlyHint: false,
-      destructiveHint: false,
+      destructiveHint: true,
       idempotentHint: false,
       openWorldHint: true,
     },
@@ -399,7 +418,7 @@ export function createAbeMediaServer() {
 
   server.registerTool("schedule_abemedia_consultation", {
     title: "Open Abe Media consultation scheduling",
-    description: "Returns the public Abe Media consultation page. It does not collect, store, transmit, or submit contact information, and it makes no external changes.",
+    description: "Use this when the user asks for the Abe Media consultation or scheduling link. Do not use it when the user wants Abe Media to contact them directly; after explicit consent, use submit_lead for that. This only returns a public page and does not collect, store, transmit, or submit contact information.",
     inputSchema: {}, outputSchema: { bookingUrl: z.string().url(), message: z.string() },
     annotations: { title: "Open Abe Media consultation scheduling", ...readOnlyAnnotations },
   }, async () => ({ structuredContent: { bookingUrl, message: "Use the Abe Media website to schedule a conversation when you are ready." }, content: [{ type: "text", text: `Schedule with Abe Media: ${bookingUrl}` }] }));

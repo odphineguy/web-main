@@ -23,11 +23,17 @@ await Promise.all([server.connect(serverTransport), client.connect(clientTranspo
 try {
   const tools = await client.listTools();
   assert.deepEqual(tools.tools.map((tool) => tool.name).sort(), [...expectedTools].sort());
+  const submitLeadTool = tools.tools.find((tool) => tool.name === "submit_lead");
+  assert.equal(submitLeadTool?.annotations?.readOnlyHint, false);
+  assert.equal(submitLeadTool?.annotations?.destructiveHint, true);
+  assert.equal(submitLeadTool?.annotations?.openWorldHint, true);
 
   const resources = await client.listResources();
-  assert.ok(resources.resources.some((resource) => resource.uri === "ui://abemedia-chatgpt-plugin/main.html"));
-  const widget = await client.readResource({ uri: "ui://abemedia-chatgpt-plugin/main.html" });
+  assert.ok(resources.resources.some((resource) => resource.uri === "ui://abemedia-chatgpt-plugin/call-coverage-v2.html"));
+  const widget = await client.readResource({ uri: "ui://abemedia-chatgpt-plugin/call-coverage-v2.html" });
   assert.match(String(widget.contents[0]?.text), /Abe Media/);
+  assert.match(String(widget.contents[0]?.text), /ui\/notifications\/tool-result/);
+  assert.match(String(widget.contents[0]?.text), /monthlyOpportunity/);
 
   const assessment = await client.callTool({
     name: "assess_call_coverage",
@@ -48,6 +54,37 @@ try {
   assert.ok(assessmentData.gaps.length >= 4);
   assert.ok(assessmentData.priorities.length >= 3);
   assert.match(assessmentData.disclaimer, /estimate|planning/i);
+
+  const invalidAssessment = await client.callTool({
+    name: "assess_call_coverage",
+    arguments: {
+      businessType: "HVAC",
+      weeklyInboundCalls: 5,
+      weeklyMissedCalls: 12,
+      afterHoursCoverage: "none",
+      bookingMethod: "none",
+      spanishDemand: "none",
+      dispatchNeeds: "none",
+    },
+  });
+  assert.equal(invalidAssessment.isError, true);
+  assert.match(JSON.stringify(invalidAssessment.content), /cannot be greater/i);
+
+  const spanishAssessment = await client.callTool({
+    name: "assess_call_coverage",
+    arguments: {
+      responseLanguage: "Spanish",
+      businessType: "plumbing",
+      weeklyInboundCalls: 30,
+      weeklyMissedCalls: 8,
+      afterHoursCoverage: "voicemail",
+      bookingMethod: "manual callback",
+      spanishDemand: "regular",
+      dispatchNeeds: "same day",
+    },
+  });
+  assert.match(JSON.stringify(spanishAssessment.structuredContent), /Alto riesgo|brechas de cobertura|Buena base/);
+  assert.match(JSON.stringify(spanishAssessment.structuredContent), /estimación para planificación/);
 
   const estimate = await client.callTool({
     name: "estimate_missed_call_value",

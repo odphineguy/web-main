@@ -1,6 +1,6 @@
 {
   "name": "abemedia-chatgpt-plugin",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "description": "Abe Media's ChatGPT plugin for missed-call planning, intake playbooks, AI audits, and lead follow-up.",

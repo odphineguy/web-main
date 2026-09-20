@@ -49,6 +49,20 @@ The MCP endpoint is `http://localhost:8787/mcp`. The health endpoint is `http://
 
 ## Connect in ChatGPT developer mode
 
-Deploy to a public HTTPS domain, then use `https://YOUR_DOMAIN/mcp` with **No authentication**. Refresh the connection after changes to tool descriptions or annotations.
+Use the production MCP endpoint:
+
+```text
+https://abemedia-service-operations-planner.vercel.app/mcp
+```
+
+In ChatGPT, turn on Developer mode under **Settings → Security and login**, open **Plugins**, add the endpoint above, and choose **No authentication**. Review the eight discovered tools before saving. After a deployment changes tool descriptions, annotations, schemas, or UI resources, open the connection and select **Refresh**, then start a new conversation for testing.
+
+Good first prompts:
+
+- “Check my HVAC call coverage. We get 80 calls a week, miss 12, use voicemail after hours, call people back manually, regularly get Spanish calls, and offer same-day service.”
+- “I miss about 10 plumbing calls a week. Roughly what could that be worth?”
+- “Muéstrame cómo maneja una llamada el agente de Abe Media en español.”
+
+The complete positive, negative, consent, and bilingual evaluation set is in [`docs/test-cases.md`](./docs/test-cases.md).
 
 The existing Vercel project may still show the older technical name `abemedia-service-operations-planner`. It is retained only to preserve the current endpoint; the user-facing product name is **Abe Media ChatGPT Plugin**.
