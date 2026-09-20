@@ -1,18 +1,17 @@
 {
   "collection": "ms_web_main_7e19022e",
   "failed_files": [],
-  "indexed_chunks": 2,
-  "indexed_files": 4,
-  "last_completed_at": "2026-08-07T10:24:29.155658Z",
-  "last_started_at": "2026-08-07T10:24:27.753185Z",
-  "last_success_at": "2026-08-07T10:24:29.155658Z",
+  "last_completed_at": "2026-09-05T06:35:28.346888Z",
+  "last_error": "BrokenPipeError: [Errno 32] Broken pipe",
+  "last_failed_at": "2026-09-05T06:35:28.346888Z",
+  "last_started_at": "2026-09-05T06:35:27.145447Z",
+  "last_success_at": "2026-09-05T06:35:28.346436Z",
   "milvus_uri": "/Users/abemacmini/.memsearch/milvus.db",
   "operation": "index",
   "paths": [
     "/Volumes/Media 2TB/web-main/.memsearch/memory"
   ],
   "schema_version": 1,
-  "status": "ok",
-  "total_files": 4,
-  "updated_at": "2026-08-07T10:24:29.155658Z"
+  "status": "error",
+  "updated_at": "2026-09-05T06:35:28.346888Z"
 }
