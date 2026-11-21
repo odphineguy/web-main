@@ -28,6 +28,10 @@ type WindowWithIdleCallback = Window & {
   cancelIdleCallback?: (handle: number) => void;
 };
 
+const POSTER_SRC = "/video/abe-media-hero-poster.webp";
+const POSTER_SRCSET =
+  "/video/abe-media-hero-poster-828.webp 828w, /video/abe-media-hero-poster.webp 1280w";
+
 export default function VideoHero({
   locale,
   title,
@@ -38,9 +42,16 @@ export default function VideoHero({
   primaryHref,
   onPrimaryClick,
 }: VideoHeroProps) {
-  // The poster is the LCP element on mobile, but a <video poster> is discovered
-  // late and fetched at low priority. Preload it so it beats fonts and scripts.
-  preload("/video/abe-media-hero-poster.webp", { as: "image", fetchPriority: "high" });
+  // The poster is the LCP element on mobile. A <video poster> cannot be
+  // responsive, so the poster is a real <img> with a srcset behind the video
+  // (phones get the 828px file), preloaded so it beats fonts and scripts.
+  preload(POSTER_SRC, {
+    as: "image",
+    fetchPriority: "high",
+    imageSrcSet: POSTER_SRCSET,
+    imageSizes: "100vw",
+  });
+  const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
 
@@ -95,15 +106,27 @@ export default function VideoHero({
 
   return (
     <section className="home-video-hero" data-home-hero>
+      {/* eslint-disable-next-line @next/next/no-img-element -- static poster, already sized; next/image would add a hop */}
+      <img
+        className="home-video-hero__media"
+        src={POSTER_SRC}
+        srcSet={POSTER_SRCSET}
+        sizes="100vw"
+        alt=""
+        aria-hidden="true"
+        fetchPriority="high"
+        decoding="async"
+      />
       <video
         ref={videoRef}
-        className="home-video-hero__media"
+        className="home-video-hero__media home-video-hero__video"
+        data-playing={isPlaying ? "true" : undefined}
+        onPlaying={() => setIsPlaying(true)}
         autoPlay
         muted
         loop
         playsInline
         preload="none"
-        poster="/video/abe-media-hero-poster.webp"
         disablePictureInPicture
         aria-hidden="true"
       >

@@ -3396,6 +3396,16 @@
   transform: scale(1.015);
 }
 
+/* The poster <img> sits underneath; the video stays invisible until it is
+   actually playing, so no blank or black video box ever covers the poster. */
+.home-video-hero__video {
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.home-video-hero__video[data-playing="true"] {
+  opacity: 1;
+}
+
 .home-video-hero__wash {
   z-index: -2;
   background:
