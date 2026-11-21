@@ -1,5 +1,5 @@
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import type { Metadata } from "next";
 
@@ -29,11 +29,6 @@ const ChatWidget = nextDynamic(() => import("@/components/chatbot/EmberChat"), {
 
 // Site chat kill switch - see src/lib/flags.ts. While it is false the dynamic
 // import above never runs, so the chunk is not fetched and no mount code executes.
-
-// Force fresh HTML on production so updates appear immediately
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
-export const fetchCache = "force-no-store";
 
 // Body / UI sans — humanist, distinctive, variable weight
 const manrope = Manrope({
@@ -171,6 +166,10 @@ export const metadata: Metadata = {
   },
 };
 
+export function generateStaticParams() {
+  return [{ locale: "en" }, { locale: "es" }];
+}
+
 export default async function RootLayout({
   children,
   params
@@ -184,6 +183,7 @@ export default async function RootLayout({
   if (!['en', 'es'].includes(locale)) {
     notFound();
   }
+  setRequestLocale(locale);
 
   // Providing all messages to the client
   // side is the easiest way to get started
