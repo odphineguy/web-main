@@ -35,7 +35,9 @@ const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin", "latin-ext"],
   display: "swap",
-  preload: true,
+  // Not preloaded: the homepage hero uses only the ds faces, and every
+  // preloaded font competes with the hero poster (the LCP image) on mobile.
+  preload: false,
 });
 
 /* ── Design system faces ──────────────────────────────────────────────────
@@ -73,7 +75,7 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin", "latin-ext"],
   display: "swap",
-  preload: true,
+  preload: false,
 });
 
 // Labels / technical metadata (design system: JetBrains Mono 12px 600)
@@ -81,6 +83,7 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   display: "swap",
+  preload: false,
 });
 
 // Editorial serif — no longer used for headings. Retained only for the italic
@@ -92,6 +95,8 @@ const spectral = Spectral({
   weight: ["400", "500"],
   style: ["normal", "italic"],
   display: "swap",
+  // 8 files (2 weights x 2 styles x 2 subsets) for one widget label; never preload.
+  preload: false,
 });
 
 export const metadata: Metadata = {

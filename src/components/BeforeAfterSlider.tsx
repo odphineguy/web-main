@@ -102,7 +102,6 @@ export default function BeforeAfterSlider({
           fill
           sizes="(max-width: 768px) 100vw, 1100px"
           className="object-cover"
-          priority
           draggable={false}
         />
 
@@ -118,7 +117,6 @@ export default function BeforeAfterSlider({
             fill
             sizes="(max-width: 768px) 100vw, 1100px"
             className="object-cover"
-            priority
             draggable={false}
           />
         </div>

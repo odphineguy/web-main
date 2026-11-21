@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState, type MouseEventHandler } from "react";
+import { preload } from "react-dom";
 import AuditCta from "@/components/AuditCta";
 
 type VideoHeroProps = {
@@ -37,6 +38,9 @@ export default function VideoHero({
   primaryHref,
   onPrimaryClick,
 }: VideoHeroProps) {
+  // The poster is the LCP element on mobile, but a <video poster> is discovered
+  // late and fetched at low priority. Preload it so it beats fonts and scripts.
+  preload("/video/abe-media-hero-poster.webp", { as: "image", fetchPriority: "high" });
   const videoRef = useRef<HTMLVideoElement>(null);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
 
@@ -116,6 +120,7 @@ export default function VideoHero({
             alt="Abe Media"
             width={2172}
             height={724}
+            sizes="(max-width: 970px) 136px, 192px"
             priority
           />
         </Link>
